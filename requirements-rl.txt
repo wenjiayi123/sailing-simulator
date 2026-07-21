@@ -1,5 +1,5 @@
 # Core versions used by the checked-in smoke tests. Platform-specific Torch is
 # resolved by Stable-Baselines3 so CPU/CUDA/Metal wheels remain selectable.
 numpy==1.26.4
-gymnasium==1.0.0
+gymnasium==1.3.0
 stable-baselines3==2.4.1

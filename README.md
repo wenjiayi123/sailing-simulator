@@ -1,13 +1,17 @@
 <div align="center">
-  <img src="docs/images/hero.svg" width="100%" alt="航行模拟器项目封面">
-  <h1>航行模拟器</h1>
-  <p><strong>面向自主航行研究的可审计数字实验系统：统一 3D 仿真、控制基线、港口数据、独立评估与证据回放。</strong></p>
-  <p><em>An auditable digital experimentation stack for autonomous-vessel simulation, control, evaluation, and evidence replay.</em></p>
+  <img src="docs/images/hero.svg" width="100%" alt="航行模拟器 / Sailing Simulator">
+  <h1>航行模拟器 · Sailing Simulator</h1>
+  <p><strong>面向自主航行研究的全栈数字实验系统</strong></p>
+  <p><strong>A Full-Stack Digital Experimentation System for Maritime Autonomy Research</strong></p>
   <p>
-    <a href="README_EN.md">English</a> ·
-    <a href="docs/RL_DATA_TRAINING_POLICY_REPLAY_GUIDE.md">实验指南</a> ·
-    <a href="docs/DATASET_SCHEMA.md">数据契约</a> ·
-    <a href="CONTRIBUTING.md">参与贡献</a>
+    统一 3D 仿真、船舶动力学、控制基线、港口数据、独立评估与证据回放<br>
+    Unifying 3D simulation, vessel dynamics, control baselines, port data, held-out evaluation, and evidence replay
+  </p>
+  <p>
+    <a href="#系统总览--system-overview">系统总览 / Overview</a> ·
+    <a href="#技术架构--technical-architecture">技术架构 / Architecture</a> ·
+    <a href="#快速开始--quick-start">快速开始 / Quick Start</a> ·
+    <a href="README_EN.md">English-only</a>
   </p>
   <p>
     <img alt="CI" src="https://github.com/wenjiayi123/sailing-simulator/actions/workflows/rl-tests.yml/badge.svg">
@@ -16,252 +20,234 @@
     <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white">
     <img alt="Observation" src="https://img.shields.io/badge/observation-21D-8B5CF6">
     <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-FFB000">
-    <img alt="Status" src="https://img.shields.io/badge/status-research%20benchmark-00d7e9">
+    <img alt="Architecture" src="https://img.shields.io/badge/architecture-contract--driven-00B8D9">
   </p>
 </div>
 
-> [!IMPORTANT]
-> 这是研究、教学和软件验证项目，不是经认证的船舶导航、避碰或自动驾驶系统，不能用于真实船舶决策。
+## 系统总览 / System Overview
 
-## 项目定位
+航行模拟器不是单一驾驶场景，也不是用动画包装训练过程的 RL 展示。它是一套**契约驱动、来源可追溯、结果可复算、失败不改写**的自主航行数字实验栈，覆盖从港口数据进入、数值环境构建、策略训练、模型冻结、独立测试到 3D 证据回放的完整生命周期。
 
-航行模拟器不是单一驾驶场景，也不是只展示一条成功曲线的 RL 演示。它是一套由 **交互仿真平面、数值实验平面、数据治理平面和证据回放平面** 组成的研究型系统：Godot 4.7 负责船舶动力、港区场景、交通、航线、遥测与测试结果回放；Python 负责数据切分、无渲染训练、模型冻结和独立测试集评估；版本化 JSON 契约连接两端。
+*Sailing Simulator is neither a single driving scene nor an RL showcase wrapped around progress animation. It is a **contract-driven, provenance-aware, reproducible, and failure-preserving** maritime autonomy stack covering the full lifecycle from port-data ingestion and numerical environment construction to policy training, model freeze, held-out evaluation, and 3D evidence replay.*
 
-| 能力 | 本项目的实现 |
+### 系统画像 / System Profile
+
+| 指标 / Signal | 当前实现 / Current Implementation | 工程意义 / Engineering Significance |
+|---|---|---|
+| **4 个架构平面 / 4 planes** | 交互仿真、数值实验、数据治理、证据回放 / simulation, experiment, data governance, evidence replay | UI、算法、数据和结果解释彼此解耦 / decoupled evolution |
+| **5 种统一基线 / 5 baselines** | PPO、SAC、TD3、DQN、LOS-PID | 学习算法与控制理论在同一测试契约下比较 / RL and control under one contract |
+| **21 维观测 / 21D observation** | 任务、船态、风险目标、风流、边界、三扇区净距 | 对外稳定的算法接口 / stable algorithm-facing interface |
+| **3 个严格 split / 3 strict splits** | `train`、`validation`、`test` | 降低航次和任务泄漏 / reduced voyage and task leakage |
+| **3 个版本化契约 / 3 versioned contracts** | dataset、port profile、training experiment | 换港口不改算法 / port substitution without algorithm rewrites |
+| **2 级指纹 / dual fingerprints** | 数据集 SHA-256 + 完整实验 SHA-256 | 阻止旧模型包装新配置 / prevents stale-policy reuse |
+| **0 训练渲染 / zero training render** | Python 数值环境独立训练 | 训练计算与视觉表现解耦 / compute separated from presentation |
+| **9+ 原始指标 / 9+ raw metrics** | 成功、碰撞、地形、近失、净距、XTE、航程、时间、奖励 | reward 不替代安全结论 / reward does not replace safety evidence |
+
+### 核心能力 / Core Capabilities
+
+| 能力域 / Capability Domain | 系统实现 / System Implementation |
 |---|---|
-| 可交互仿真 | 程序化海面、无人船、港区障碍、航标、天气、AIS 目标与双语遥测 HUD |
-| 五种可比基线 | PPO、SAC、TD3、DQN，以及控制理论 LOS-PID |
-| 严格实验边界 | 训练只读 `train`，测试只读 `test`，训练阶段不渲染 |
-| 可替换港口 | `ship_port_dataset_v2`、港区 profile、AIS/GeoJSON 适配器 |
-| 可审计产物 | 配置与数据 SHA-256、checkpoint、进度、真实测试轨迹和原始指标 |
-| 可信展示 | Godot 只回放测试 rollout，不生成预制成功曲线 |
+| **自主航行数字孪生 / Maritime autonomy digital twin** | 程序化海面与船体、港区障碍、航标、动态目标、天气、航线和双语遥测 / procedural sea and vessel, harbor geometry, aids to navigation, traffic, weather, routes, bilingual telemetry |
+| **算法与控制实验室 / Algorithm and control laboratory** | 四种 Stable-Baselines3 算法与 LOS-PID 控制理论基线，共享观测、动力学和指标 / four SB3 algorithms plus LOS-PID sharing observations, dynamics, and metrics |
+| **风险几何引擎 / Risk geometry engine** | 圆、矩形、多边形、地形额外净距、动态会遇、闭合速度、TCPA 与扇区感知 / shape-aware hazards, terrain margins, moving encounters, closing speed, TCPA, sector sensing |
+| **港口数据智能层 / Port data intelligence layer** | AccessAIS、WGS84 GeoJSON、Open-Meteo、局部米制坐标与来源元数据 / AccessAIS, GeoJSON, Open-Meteo, local metric projection, provenance metadata |
+| **实验控制平面 / Experiment control plane** | split 隔离、参数映射、配置冻结、checkpoint 指纹与 held-out 测试 / split isolation, parameter mapping, config freeze, checkpoint fingerprints, held-out tests |
+| **证据保真回放 / Evidence-preserving replay** | 回放测试产生的油门/舵角、动态交通位置和原始失败结论 / replay of evaluated commands, recorded traffic positions, and original failure outcomes |
 
-### 四个设计原则
+## 真实运行界面 / Real Runtime Interface
 
-1. **训练与展示解耦**：训练不依赖帧率、相机或画面刷新，3D 只在独立测试完成后承担解释和复盘。
-2. **算法与港口解耦**：算法消费稳定的 21 维观测和 `ship_port_dataset_v2`，更换水域不要求改写算法源码。
-3. **配置与结果绑定**：数据、动力学、奖励、安全包络和场景快照共同形成实验指纹，旧模型不能包装新配置结果。
-4. **来源与数值分级**：公开观测、时间戳缓存、数值估算、人工场景注入和不可用状态在界面与文档中明确区分。
-
-## 真实运行画面
-
-![模拟器总览](docs/images/simulator-overview.png)
+![模拟器总览 / Simulator overview](docs/images/simulator-overview.png)
 
 <details>
-<summary><strong>航线规划与港口数据配置</strong></summary>
+<summary><strong>航线规划与港口配置 / Route Planning and Port Configuration</strong></summary>
 
-![航线规划面板](docs/images/navigation-planning.png)
+![航线规划面板 / Navigation planning panel](docs/images/navigation-planning.png)
 
 </details>
 
 <details>
-<summary><strong>五基线训练与测试控制台</strong></summary>
+<summary><strong>五基线训练与独立测试 / Five-Baseline Training and Held-Out Evaluation</strong></summary>
 
-![强化学习训练控制台](docs/images/rl-training-console.png)
+![强化学习训练控制台 / RL experiment console](docs/images/rl-training-console.png)
 
 </details>
 
-以上 PNG 均由 [`tools/capture_readme_screenshots.gd`](tools/capture_readme_screenshots.gd) 从当前 `main.tscn` 自动生成，不是概念图。项目封面和架构图是仓库内自绘 SVG。
+以上 PNG 由 [`tools/capture_readme_screenshots.gd`](tools/capture_readme_screenshots.gd) 从当前 `main.tscn` 自动生成。封面、架构图、图标和社交预览均为项目原生图形。
 
-## 为什么这个项目值得复现
+*The PNG files above are generated from the current `main.tscn` by [`tools/capture_readme_screenshots.gd`](tools/capture_readme_screenshots.gd). The cover, architecture diagram, icon, and social preview are project-authored assets.*
 
-许多仿真演示把“训练进度动画”“预制轨迹”和“模型训练”混在一起。本项目把边界写进代码和数据契约：
+## 技术架构 / Technical Architecture
 
-- 训练进度来自 Stable-Baselines3 的真实 `num_timesteps`。
-- 训练阶段只实例化 `train` split，并且不启动 Godot 渲染。
-- checkpoint 记录数据集和完整实验配置的 SHA-256；数据、动力学、奖励或安全参数改变后，旧 checkpoint 会被拒绝。
-- 测试阶段对 `test` split 做确定性 rollout；碰撞、超时、偏航和失败不会被改写。
-- Godot 回放读取测试产出的逐步油门/舵角序列，不使用内置演示路线。
-
-> [!NOTE]
-> 仓库自带的数据集是用于软件复现的项目原生数值基准，不是实测 AIS、测绘数据或生产港口数据。公开数据适配器与默认基准刻意分开标注。
-
-## 系统架构
-
-![训练、测试与回放架构](docs/images/architecture.svg)
+![训练、测试与回放架构 / Train-test-replay architecture](docs/images/architecture.svg)
 
 ```text
-train split -> Python 数值环境 -> 真实训练 -> checkpoint
-                                                   |
-用户点击“运行测试集并渲染”                         v
-test split  -> Python 确定性 rollout -> 轨迹/指标 -> Godot 3D 回放
+Port Data / Scene Snapshot
+           │
+           ▼
+ship_port_dataset_v2 ──► train split ──► Headless Numerical Training
+           │                                      │
+           │                                      ▼
+           │                         Frozen Model + Dual Fingerprints
+           │                                      │
+           └──────────────► test split ────────────┤
+                                                  ▼
+                                     Deterministic Held-out Rollout
+                                                  │
+                                  Raw Metrics + Recorded Trajectory
+                                                  │
+                                                  ▼
+                                        Godot Evidence Replay
 ```
 
-系统按四个平面组织：
+### 四平面架构 / Four-Plane Architecture
 
-| 平面 | 核心职责 | 主要实现 |
+| 架构平面 / Plane | 核心职责 / Responsibility | 主要实现 / Main Implementation |
 |---|---|---|
-| 交互仿真平面 | 船舶驾驶、航线、天气、交通、风险、教员注入与遥测 | Godot `main.tscn`、`player.gd`、`scripts/world/`、`scripts/ui/` |
-| 数值实验平面 | 环境积分、五基线训练、确定性测试与指标聚合 | Gymnasium、Stable-Baselines3、`tools/ship_rl/` |
-| 数据治理平面 | split 隔离、坐标转换、来源元数据、配置和数据指纹 | `ship_port_dataset_v2`、AIS/GeoJSON/Open-Meteo 适配器 |
-| 证据回放平面 | 读取测试动作序列、同步动态障碍、显示原始测试结论 | `ship_policy_test_rollout_v3`、Godot policy replay |
+| **交互仿真平面 / Interactive simulation** | 驾驶、航线、场景、天气、交通、风险、教员注入、遥测和复盘 / control, route, scene, weather, traffic, risk, instructor injection, telemetry, review | Godot `main.tscn`、`player.gd`、`scripts/world/`、`scripts/ui/` |
+| **数值实验平面 / Numerical experiment** | 动力学积分、五基线训练、确定性测试和指标聚合 / dynamics integration, five-baseline training, deterministic evaluation, aggregation | Gymnasium、Stable-Baselines3、`tools/ship_rl/` |
+| **数据治理平面 / Data governance** | split 隔离、坐标转换、来源记录、数据和配置指纹 / split isolation, coordinate transformation, provenance, fingerprints | versioned JSON contracts、AIS/GeoJSON/Open-Meteo adapters |
+| **证据回放平面 / Evidence replay** | 读取测试动作、同步动态目标、显示原始结果 / recorded commands, synchronized traffic, original outcome | `ship_policy_test_rollout_v3`、Godot replay controller |
 
-这种分层让 UI、数据和算法都可以独立替换，同时保留可验证的连接契约。
+### 契约驱动的模块边界 / Contract-Driven Module Boundaries
 
-## 技术深潜
+系统不让 Godot UI 直接决定训练结论，也不让 Python 训练器依赖具体场景名称。两端通过版本化配置、进度、checkpoint 和 trajectory 文件协作，使训练、测试、可视化与数据替换具备独立演化能力。
 
-### 船舶状态与数值积分
+*The Godot UI does not determine training outcomes, and the Python trainer does not depend on scene names. Both sides collaborate through versioned configuration, progress, checkpoint, and trajectory artifacts, allowing training, evaluation, visualization, and port substitution to evolve independently.*
 
-环境内部状态为 `(x, z, heading, signed_speed, throttle, rudder)`。每个时间步执行油门和舵角的一阶响应、前进/倒车目标速度、加减速约束、低速转向权、倒车转向符号以及海流平流。这个模型用于算法与软件链路研究，参数可审计、可复现，但不冒充经实船辨识的六自由度水动力模型。
+## 自主航行数值核心 / Autonomous Navigation Numerical Core
 
-### 21 维观测契约
+### 六状态船舶积分模型 / Six-State Vessel Integrator
 
-| 观测组 | 维度 | 内容 |
+环境状态为 `(x, z, heading, signed_speed, throttle, rudder)`。每个时间步执行：
+
+*The environment state is `(x, z, heading, signed_speed, throttle, rudder)`. Every step applies:*
+
+- 油门与舵角的一阶执行器响应 / first-order throttle and rudder response;
+- 前进与倒车目标速度、加速和减速约束 / forward/reverse target speed with acceleration and deceleration limits;
+- 随速度变化的转向权与倒车转向符号 / speed-dependent turning authority and reverse steering sign;
+- 海流速度与流向产生的平流位移 / current-driven advection;
+- 航点推进、航段横向误差和到达判定 / waypoint progression, segment XTE, and arrival logic.
+
+该模型强调参数透明、配置可冻结和结果可复算，是算法与软件链路研究的稳定底座。
+
+*The model emphasizes transparent parameters, frozen configurations, and reproducible transitions, providing a stable base for algorithm and software-pipeline research.*
+
+### 21 维观测契约 / 21D Observation Contract
+
+| 观测组 / Group | 维度 / Dim. | 信号 / Signals |
 |---|:---:|---|
-| 任务几何 | 4 | 目标距离、航向误差 `sin/cos`、横向误差 XTE |
-| 船舶状态 | 3 | 归一化航速、油门、舵角 |
-| 最近风险目标 | 5 | 净距、相对方位 `sin/cos`、闭合速度、TCPA |
-| 环境作用 | 4 | 海流速度、相对流向 `sin/cos`、风速 |
-| 航行上下文 | 2 | 航点进度、可航边界净距 |
-| 空间感知 | 3 | 前方、左舷、右舷扇区净距 |
-| **合计** | **21** | 全部分量归一化到 `[-1, 1]` |
+| 任务几何 / Mission geometry | 4 | 目标距离、航向误差 `sin/cos`、横向误差 / target distance, heading-error `sin/cos`, XTE |
+| 船舶状态 / Vessel state | 3 | 归一化航速、油门、舵角 / normalized speed, throttle, rudder |
+| 最近风险目标 / Nearest risk target | 5 | 净距、相对方位 `sin/cos`、闭合速度、TCPA / clearance, bearing, closing speed, TCPA |
+| 环境作用 / Environmental effect | 4 | 海流速度、相对流向 `sin/cos`、风速 / current speed, relative-current direction, wind |
+| 航行上下文 / Navigation context | 2 | 航点进度、边界净距 / waypoint progress, boundary clearance |
+| 空间扇区 / Spatial sectors | 3 | 前方、左舷、右舷净距 / forward, port, starboard clearances |
+| **合计 / Total** | **21** | 全部分量归一化至 `[-1, 1]` / all components normalized to `[-1, 1]` |
 
-连续算法使用 `Box(-1, 1, shape=(2,))` 输出油门与舵角；DQN 使用由相同控制量构成的 9 个离散组合，因此算法比较仍建立在一致的物理语义上。
+连续算法输出 `Box(-1, 1, shape=(2,))` 的油门与舵角；DQN 使用具备相同物理语义的 9 个离散组合。
 
-### 形状感知安全引擎
+*Continuous methods output throttle and rudder in `Box(-1, 1, shape=(2,))`; DQN uses nine discrete combinations with the same physical semantics.*
 
-- 静态几何支持 `circle`、轴对齐 `box` 和 `polygon`，不是统一退化成质点距离。
-- `cliff`、`terrain`、`shoreline` 在船体半径和通用障碍膨胀外叠加专用净距。
-- 动态交通船按航向/航速或速度向量推进，环境计算相对运动、闭合速度与 TCPA。
-- 感知半径、碰撞终止、边界内缩、障碍膨胀和地形净距全部进入实验配置与指纹。
-- 训练可启用起点、航向、障碍尺寸/位置、风流和传感器噪声域随机化；相同种子可复现。
+### 形状感知风险几何 / Shape-Aware Risk Geometry
 
-### 奖励与评估分离
-
-训练奖励综合航线推进、航向一致性、速度、舵角使用、近障惩罚、普通碰撞、地形碰撞、越界与航点到达。最终评价不以 reward 代替安全结论，而是单独输出：
-
-| 指标族 | 原始指标 |
+| 能力 / Capability | 实际计算 / Actual Computation |
 |---|---|
-| 任务完成 | `success`、`goal_reached`、steps、elapsed time |
-| 安全 | collisions、terrain collisions、near misses、minimum clearance |
-| 航迹质量 | maximum cross-track error、path length |
-| 实验统计 | episode reward、mean reward、success rate、动态障碍数量 |
+| 静态障碍 / Static hazards | `circle`、axis-aligned `box`、`polygon` 的形状距离 / shape-aware distance |
+| 地形安全层 / Terrain safety layer | `cliff`、`terrain`、`shoreline` 叠加专用净距 / dedicated terrain inflation |
+| 动态会遇 / Dynamic encounters | 航向/航速或速度向量推进 / propagation from course-speed or velocity |
+| 相对运动 / Relative motion | closing speed、TCPA、nearest clearance |
+| 空间感知 / Spatial sensing | sensor range、front/port/starboard sector clearance |
+| 航区约束 / Navigation boundary | vessel radius + inward boundary margin |
+| 域随机化 / Domain randomization | 起点、航向、障碍、风流、传感器噪声；固定 seed 可复现 / seeded start, hazards, weather, sensor noise |
 
-失败 episode 与成功 episode 使用同一套导出路径；没有“只对成功轨迹生成回放”的旁路。
+## 算法与控制实验室 / Algorithm and Control Laboratory
 
-## 统一基准下的五种算法
+### 统一基准下的五种方法 / Five Methods Under One Benchmark
 
-| 基线 | 范式 | 动作空间 | 真实接入参数 | 实验角色 |
+| 方法 / Method | 范式 / Paradigm | 动作空间 / Action Space | 真实接入参数 / Connected Parameters | 实验角色 / Role |
 |---|---|---|---|---|
-| PPO | on-policy actor-critic | 连续油门 + 舵角 | learning rate、GAE、clip、entropy、value loss、rollout、mini-batch | 稳健策略优化参照 |
-| SAC | off-policy maximum entropy | 连续油门 + 舵角 | learning rate、gamma、batch、replay buffer、warm-up | 样本效率与随机策略参照 |
-| TD3 | off-policy deterministic actor-critic | 连续油门 + 舵角 | learning rate、gamma、batch、replay buffer、warm-up | 连续控制和双评论家参照 |
-| DQN | off-policy value learning | 9 个离散组合 | replay buffer、target update、epsilon 起止与衰减 | 离散控制对照 |
-| LOS-PID | guidance + feedback control | 连续油门 + 舵角 | LOS 与 `Kp/Ki/Kd` 增益 | 无训练控制理论下界 |
+| **PPO** | on-policy actor-critic | 连续 / continuous | learning rate、GAE、clip、entropy、value loss、rollout、mini-batch | 策略优化参照 / policy-optimization reference |
+| **SAC** | off-policy maximum entropy | 连续 / continuous | learning rate、gamma、batch、replay buffer、warm-up | 样本效率参照 / sample-efficient stochastic reference |
+| **TD3** | off-policy deterministic actor-critic | 连续 / continuous | learning rate、gamma、batch、replay buffer、warm-up | 连续控制参照 / continuous-control reference |
+| **DQN** | off-policy value learning | 9 个离散组合 / 9 discrete commands | replay buffer、target update、epsilon schedule | 离散控制对照 / discrete-control comparison |
+| **LOS-PID** | guidance + feedback control | 连续 / continuous | LOS、`Kp/Ki/Kd` | 无训练控制基线 / non-learning control baseline |
 
-DQN 使用离散动作，因为标准 DQN 不支持连续动作。所有基线共享同一观测定义、动力学、安全指标和数据切分。参数的实际映射见 [算法参数说明](docs/ALGORITHM_PARAMETERS.md)。
+所有方法共享观测、动力学、任务 split、安全包络、指标和导出器。DQN 保持离散动作，因为标准 DQN 不支持连续动作；LOS-PID checkpoint 明确记录 `trained=false` 与控制器增益，不伪装成学习算法。
 
-LOS-PID 的 checkpoint 明确记录 `trained=false` 和控制器增益；它不伪装成学习算法，但经历与四种 RL 完全相同的 held-out 测试与指标计算。
+*All methods share observations, dynamics, task splits, safety envelopes, metrics, and exporters. DQN remains discrete because standard DQN does not support continuous actions. LOS-PID checkpoints explicitly record `trained=false` and controller gains rather than misrepresenting the controller as a learned policy.*
 
-## 实验完整性与证据链
+参数到后端的真实映射见 [算法参数说明 / Algorithm Parameters](docs/ALGORITHM_PARAMETERS.md)。
 
-| 阶段 | 允许读取 | 禁止事项 | 可审计产物 |
-|---|---|---|---|
-| 数据准备 | 原始 AIS/GeoJSON/天气与来源元数据 | 跨 split 复制同一航次 | 数据集、来源 URL/时间、原文件 SHA-256 |
-| 训练 | `train`，可用 `validation` 做模型选择 | 读取 `test`、启动 3D 渲染、写死进度 | progress、训练 CSV、模型、checkpoint |
-| 冻结 | 数据与完整实验配置 | 更换动力学/奖励/安全参数后复用旧 checkpoint | `dataset_sha256`、`experiment_sha256` |
-| 测试 | 冻结模型 + `test` | 修改失败结果、筛除失败 seed | 测试 CSV、聚合指标、原始 trajectory |
-| 回放 | 已记录测试动作与动态目标位置 | 使用演示航线替换策略输出 | Godot 3D 轨迹、事件与复盘指标 |
+### Reward 与安全指标分离 / Reward-Safety Separation
 
-公开 AIS 适配器按 MMSI 的 SHA-256 稳定分组；小数据集为补齐 split 时移动完整任务，而不是复制观测。该约束用于降低同一船舶轨迹同时进入训练与测试造成的数据泄漏。
+训练 reward 综合航线推进、航向一致性、速度、舵角使用、近障惩罚、普通碰撞、地形碰撞、越界和航点到达。最终评价不把 reward 当成安全结论，而是独立输出原始指标。
 
-## 快速开始
+*The training reward combines route progress, heading alignment, speed, rudder effort, proximity, collision, terrain collision, boundary violation, and waypoint arrival. Final evaluation exports raw safety and task metrics independently instead of treating reward as a safety conclusion.*
 
-### 1. 准备环境
-
-要求：Godot 4.7、Python 3.10+。macOS、Linux 和 Windows 均可运行；训练默认使用 CPU，也可由 PyTorch 选择可用加速设备。
-
-```bash
-git clone https://github.com/wenjiayi123/sailing-simulator.git
-cd sailing-simulator
-bash tools/setup_rl_env.sh
-```
-
-### 2. 验证 Python 链路
-
-```bash
-.venv/bin/python -m unittest tests.test_ship_rl -v
-```
-
-### 3. 打开模拟器
-
-```bash
-godot --editor --path .
-```
-
-运行 `main.tscn` 后即可驾驶。按 `C` 直接打开训练页，选择算法与预算，先“启动训练”，完成后再“运行测试集并渲染”。
-
-| 按键 | 功能 |
+| 指标族 / Metric Family | 输出 / Outputs |
 |---|---|
-| 方向键 | 油门 / 舵角控制 |
-| 鼠标右键拖动、滚轮 | 环视 / 调整相机距离 |
-| `G` | 切换开放水域与港区场景 |
-| `T` / `1`–`4` | 循环天气 / 选择天气预设 |
-| `N` | 航行任务与航线规划 |
-| `I` | AIS 船队态势 |
-| `V` | 风险决策面板 |
-| `P` | 仿真复盘 |
-| `O` | 教员控制台 |
-| `Z` / `X` / `C` | RL 面板 / 船舶页 / 训练页 |
+| 任务完成 / Completion | `success`、`goal_reached`、steps、elapsed time |
+| 安全 / Safety | collisions、terrain collisions、near misses、minimum clearance |
+| 航迹质量 / Track quality | maximum cross-track error、path length |
+| 实验统计 / Experiment statistics | episode reward、mean reward、success rate、dynamic-obstacle count |
 
-## 命令行实验
+## 实验控制平面 / Experiment Control Plane
 
-训练示例：
+### Train → Freeze → Test → Replay
 
-```bash
-.venv/bin/python tools/rl_train_baselines.py \
-  --mode train \
-  --algorithm ppo \
-  --config tests/fixtures/ship_training_config.json \
-  --episodes 25 \
-  --steps 800 \
-  --agents 1 \
-  --output-dir output/rl_runs \
-  --progress-json output/rl_runs/training_progress.json \
-  --checkpoint-json output/rl_runs/policy_checkpoint.json
+```text
+TRAIN     train split only ──► optimization ──► model + checkpoint
+FREEZE    dataset SHA-256 + experiment SHA-256 ──► immutable experiment identity
+TEST      frozen policy + test split ──► deterministic rollout + raw metrics
+REPLAY    recorded actions + traffic states ──► Godot 3D evidence playback
 ```
 
-独立测试：
+### 证据完整性矩阵 / Evidence-Integrity Matrix
 
-```bash
-.venv/bin/python tools/rl_train_baselines.py \
-  --mode evaluate \
-  --algorithm ppo \
-  --config tests/fixtures/ship_training_config.json \
-  --steps 800 \
-  --eval-episodes 1 \
-  --output-dir output/rl_runs \
-  --progress-json output/rl_runs/evaluation_progress.json \
-  --checkpoint-json output/rl_runs/policy_checkpoint.json \
-  --trajectory-json output/rl_runs/policy_test_trajectory.json
-```
+| 阶段 / Stage | 允许输入 / Allowed Inputs | 被阻止的捷径 / Blocked Shortcuts | 可审计产物 / Auditable Outputs |
+|---|---|---|---|
+| 数据准备 / Preparation | 原始 AIS、GeoJSON、天气和来源元数据 / raw data and provenance | 同一航次跨 split / voyage leakage | dataset、source URL/time、original SHA-256 |
+| 训练 / Training | `train`；`validation` 可用于选择 / optional validation | 读取 `test`、3D 渲染、计时器进度 / test access, rendering, timer progress | progress、train CSV、model、checkpoint |
+| 冻结 / Freeze | 数据与完整实验配置 / data and full config | 改参数后复用旧模型 / stale-policy reuse | `dataset_sha256`、`experiment_sha256` |
+| 测试 / Evaluation | frozen policy + `test` | 改写失败、筛除失败 seed / failure rewriting | test CSV、aggregate metrics、trajectory |
+| 回放 / Replay | 已记录动作和交通位置 / recorded actions and traffic | 演示路线替换策略输出 / demo-path substitution | 3D trajectory、events、review metrics |
 
-短预算 smoke test 只证明数据、环境、checkpoint、测试和回放链路能闭环，不代表策略已经收敛。完整复现约定见 [REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md)。
+公开 AIS 适配器使用 MMSI 的 SHA-256 进行稳定分组；即使输入很小，也移动完整任务补齐 split，不复制观测。
 
-### 实验产物契约
+*The public AIS adapter uses stable MMSI SHA-256 grouping. Even for small inputs, whole tasks move to complete required splits; observations are never duplicated.*
+
+### 版本化实验产物 / Versioned Experiment Artifacts
 
 ```text
 output/rl_runs/
-├── training_progress.json          # 真实 timestep、阶段、速度和近期统计
-├── policy_checkpoint.json          # 模型、算法、split 与双重实验指纹
-├── <algorithm>_policy.zip          # Stable-Baselines3 冻结模型
-├── <algorithm>_train_episodes.csv  # 训练 episode 原始指标
-├── evaluation_progress.json        # held-out 测试进度
-├── policy_test_trajectory.json     # 状态、动作、动态目标和测试结论
-└── <algorithm>_test_episodes.csv   # 测试 episode 原始指标
+├── training_progress.json          # real timestep, stage, throughput, recent metrics
+├── policy_checkpoint.json          # model, algorithm, split, dual fingerprints
+├── <algorithm>_policy.zip          # frozen Stable-Baselines3 model
+├── <algorithm>_train_episodes.csv  # raw training episodes
+├── evaluation_progress.json        # held-out evaluation state
+├── policy_test_trajectory.json     # state, action, traffic, raw outcome
+└── <algorithm>_test_episodes.csv   # raw test episodes
 ```
 
-研究报告应至少记录 commit SHA、依赖版本、算法、随机种子、训练预算、数据与实验指纹、多 seed 分布、全部失败案例和 held-out 指标。仓库不接受仅凭一次短训练得出算法优越性或可部署性的结论。
+短预算 smoke test 只证明链路闭环，不等同于策略收敛。正式报告应记录 commit、依赖、随机种子、预算、双重指纹、多 seed 分布和全部失败案例。
 
-## 换训练集即可接入港口
+*A short smoke budget proves pipeline closure, not policy convergence. Formal reports should retain the commit, dependencies, seeds, budget, dual fingerprints, multi-seed distributions, and every failed case.*
 
-项目接受包含 `train`、`validation`、`test` 的 `ship_port_dataset_v2` JSON。算法不依赖具体港口名称：
+## 港口数据智能 / Port Data Intelligence
 
-```bash
-export SHIP_RL_DATASET=/absolute/path/to/port_training_dataset.json
-```
+### 三个稳定接口 / Three Stable Contracts
 
-NOAA/BOEM AccessAIS CSV 或 ZIP 可规范化为统一数据契约：
+| 契约 / Contract | 作用 / Responsibility | 解耦价值 / Decoupling Value |
+|---|---|---|
+| `ship_port_dataset_v2` | train/validation/test 任务、障碍、地形、交通和海况 / tasks, hazards, terrain, traffic, sea state | 算法只依赖字段，不依赖港口名称 / algorithms depend on fields, not port names |
+| `ship_port_profile_v1` | Godot 场景、人工任务、出生点和计划航速 / interactive scene and manual missions | 替换可视化港口 / replaces the visual port layer |
+| `ship_training_experiment_v3` | 算法、环境、动力学、世界快照和 split / algorithm, environment, dynamics, world, split | 冻结完整实验上下文 / freezes the full experiment context |
+
+符合契约的新数据集可直接替换实验水域，无需修改算法源码。RL held-out task 与 Godot 人工驾驶预设保持分离，防止可视化配置覆盖独立测试。
+
+*A compliant dataset can replace the experimental waterway without modifying algorithm source. Held-out RL tasks remain separate from Godot manual-driving presets so visualization settings cannot overwrite evaluation data.*
+
+### AccessAIS + GeoJSON 数据管道 / AccessAIS + GeoJSON Pipeline
 
 ```bash
 python3 tools/public_data_pipeline.py ais \
@@ -274,26 +260,21 @@ python3 tools/public_data_pipeline.py ais \
   --targets-output /path/to/ais_targets.json
 ```
 
+AIS 提供历史交通轨迹；GeoJSON 提供岸线、礁石、码头和防波堤。转换器投影到统一局部米制坐标系，并保留来源文件名、SHA-256、原点、边界和特征数量。
+
+*AIS supplies historical traffic tracks; GeoJSON supplies coastline, reefs, piers, and breakwaters. The adapter projects both into one local metric frame and preserves source filename, SHA-256, origin, bounds, and feature counts.*
+
 ```bash
+export SHIP_RL_DATASET=/absolute/path/to/port_training_dataset.json
 export SHIP_AIS_TARGETS=/absolute/path/to/ais_targets.json
 export SHIP_PORT_PROFILE=/absolute/path/to/port_profile.json
 ```
 
-AIS 提供历史航迹，GeoJSON 提供岸线、礁石、码头和防波堤；两类数据投影到同一个局部米制坐标系。格式与来源要求见 [数据集契约](docs/DATASET_SCHEMA.md)、[港区配置契约](docs/PORT_PROFILE_SCHEMA.md) 和 [数据来源](docs/DATA_SOURCES.md)。
+### 公开海况与来源状态 / Public Weather and Provenance State
 
-### 三个稳定契约
+默认场景读取带时间戳的 Open-Meteo 新加坡水域海况快照，并可异步刷新。界面区分 `live`、`cache_fallback`、`scenario_override` 和 `manual_override`。
 
-| 契约 | 作用 | 与具体港口的关系 |
-|---|---|---|
-| `ship_port_dataset_v2` | 训练/验证/测试任务、障碍、地形、动态目标与海况 | 算法只依赖字段，不依赖港口名称 |
-| `ship_port_profile_v1` | Godot 场景几何、人工驾驶任务、出生点与计划航速 | 用于可视化和操作场景替换 |
-| `ship_training_experiment_v3` | 算法参数、环境参数、船舶动力学、世界快照与 split | 冻结一次实验的完整上下文 |
-
-RL 测试任务与 Godot 人工驾驶预设保持分离，避免可视化场景在运行时覆盖独立测试数据。
-
-## 公开海况数据
-
-默认场景读取仓库内带来源元数据的 Open-Meteo 新加坡水域快照，并可异步刷新公开数据。界面会区分 `live`、`cache`、`scenario_override` 与 `manual_override`，不会把缓存或手工场景值标为传感器实测。
+*The default scene reads a timestamped Open-Meteo marine snapshot for Singapore waters and can refresh asynchronously. The UI distinguishes `live`, `cache_fallback`, `scenario_override`, and `manual_override`.*
 
 ```bash
 python3 tools/public_data_pipeline.py weather \
@@ -302,78 +283,160 @@ python3 tools/public_data_pipeline.py weather \
   --output data/public_cache/marine_weather_singapore.json
 ```
 
-## 质量门槛
+## 交互式航行控制台 / Interactive Maritime Operations Console
 
-每次 push 和 pull request 会运行数据契约、split 隔离、环境动力学、LOS-PID 闭环与 AIS 转换测试。本地可额外运行 Godot 解析和完整闭环：
+| 模块 / Module | 能力 / Capability | 数据边界 / Data Boundary |
+|---|---|---|
+| 遥测 HUD / Telemetry HUD | 航向、航速、舵角、路线、雷达、环境、告警 / heading, speed, rudder, route, radar, environment | live simulator state |
+| 航线规划 / Route planning | 任务、航图、航点、到达半径、计划航速 / mission, chart, waypoints, radius, speed | versioned port profile |
+| AIS 舰队 / AIS fleet | 历史目标与场景交通 / historical targets and scenario traffic | source-labelled, not live surveillance |
+| 风险决策 / Risk decision | CPA/TCPA、XTE、净距和风险阈值 / CPA/TCPA, XTE, clearance, thresholds | deterministic local computation |
+| 天气海况 / Weather and sea | public live/cache + manual/scenario modes | explicit source state |
+| 教员控制 / Instructor console | 天气、事故、临时障碍注入 / weather, incident, temporary-hazard injection | explicitly labelled scenario injection |
+| 仿真复盘 / Simulation review | 航程、时间、事件和估算指标 / distance, time, events, modeled metrics | runtime record and model estimates |
+| RL 控制 / RL control | 算法配置、环境包络、训练、测试和回放 / algorithm, envelope, train, test, replay | real process and artifact state |
+
+## 快速开始 / Quick Start
+
+### 环境 / Requirements
+
+- Godot 4.7
+- Python 3.10+
+- macOS、Linux 或 Windows / macOS, Linux, or Windows
 
 ```bash
-make test
-make godot-check
+git clone https://github.com/wenjiayi123/sailing-simulator.git
+cd sailing-simulator
+bash tools/setup_rl_env.sh
+.venv/bin/python -m unittest tests.test_ship_rl -v
+godot --editor --path .
 ```
 
-发布前检查项见 [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md)。
+运行 `main.tscn`，按 `C` 打开训练页；选择算法与预算，完成训练后再执行 held-out test 与 3D replay。
 
-### 当前自动化覆盖
+*Run `main.tscn` and press `C` to open the training tab. Select an algorithm and budget, complete training, then execute the held-out test and 3D replay.*
 
-- 21 维 observation/action 契约与 `train` split 隔离；
-- 训练后仅使用 `test` split 的评估与轨迹导出；
-- 数据/环境设置变化导致 checkpoint 拒绝；
-- LOS-PID 从 checkpoint 到 held-out rollout 的闭环；
-- 圆/矩形/多边形地形包络与动态障碍；
-- 相同随机种子下的域随机化可复现性；
-- AccessAIS 规范化、必需 split 和来源字段。
+### 操作键 / Controls
 
-CI 使用只读仓库权限、固定到完整 commit SHA 的官方 Actions、依赖缓存路径和 15 分钟超时。它验证工程回归，不替代大预算算法 benchmark。
+| 按键 / Key | 功能 / Function |
+|---|---|
+| 方向键 / Arrow keys | 油门与舵角 / throttle and rudder |
+| 鼠标右键拖动、滚轮 / Right-drag, wheel | 环视与相机距离 / orbit and distance |
+| `G` | 开放水域 / 港区场景 / open-water or harbor scenario |
+| `T` / `1`–`4` | 天气循环 / 直接预设 / weather cycle or preset |
+| `N` | 航行任务与航线规划 / mission and route planning |
+| `I` | AIS 舰队态势 / AIS fleet picture |
+| `V` | 风险决策 / risk decision |
+| `P` | 仿真复盘 / simulation review |
+| `O` | 教员控制台 / instructor console |
+| `Z` / `X` / `C` | RL 面板 / 船舶页 / 训练页 |
 
-## 项目结构
+### 命令行训练 / CLI Training
+
+```bash
+.venv/bin/python tools/rl_train_baselines.py \
+  --mode train \
+  --algorithm ppo \
+  --config tests/fixtures/ship_training_config.json \
+  --episodes 25 --steps 800 --agents 1 \
+  --output-dir output/rl_runs \
+  --progress-json output/rl_runs/training_progress.json \
+  --checkpoint-json output/rl_runs/policy_checkpoint.json
+```
+
+### 独立测试 / Held-Out Evaluation
+
+```bash
+.venv/bin/python tools/rl_train_baselines.py \
+  --mode evaluate \
+  --algorithm ppo \
+  --config tests/fixtures/ship_training_config.json \
+  --steps 800 --eval-episodes 1 \
+  --output-dir output/rl_runs \
+  --progress-json output/rl_runs/evaluation_progress.json \
+  --checkpoint-json output/rl_runs/policy_checkpoint.json \
+  --trajectory-json output/rl_runs/policy_test_trajectory.json
+```
+
+## 工程质量与复现 / Engineering Quality and Reproducibility
+
+```bash
+make test          # Python data, environment, controller, and adapter tests
+make godot-check   # Godot scene startup and script parsing
+make godot-smoke   # Godot RL config and safety-envelope smoke test
+```
+
+### 自动化覆盖 / Automated Coverage
+
+- 21D observation/action contract 与 `train` split 隔离 / contract and split isolation;
+- test-only evaluation 与 trajectory export / held-out evaluation and trajectory export;
+- 数据或环境变化后的 checkpoint 拒绝 / checkpoint rejection after mutation;
+- LOS-PID checkpoint-to-rollout 闭环 / control-baseline lifecycle closure;
+- circle/box/polygon 地形包络与动态障碍 / shape-aware envelopes and moving hazards;
+- 固定随机种子的域随机化复现 / seeded randomization reproducibility;
+- AccessAIS 规范化、必需 split 与来源字段 / normalization, mandatory splits, provenance.
+
+GitHub Actions 使用只读仓库权限、固定到完整 commit SHA 的官方 Actions、明确依赖缓存和超时。CI 负责工程回归；大预算多 seed benchmark 负责算法结论。
+
+*GitHub Actions uses read-only repository permissions, official actions pinned to full commit SHAs, explicit dependency caching, and timeouts. CI protects engineering integrity; large-budget multi-seed benchmarks support algorithmic conclusions.*
+
+## 研究与工程应用 / Research and Engineering Applications
+
+| 场景 / Application | 可直接使用的能力 / Immediately Available Capability |
+|---|---|
+| 自主航行算法研究 / autonomy research | 五基线、统一观测、可替换任务与 held-out 指标 |
+| 控制与 RL 对照 / control-vs-RL studies | LOS-PID 与四种 RL 的同契约比较 |
+| 港口数据适配 / port-data integration | AIS、GeoJSON、天气、局部坐标和来源追踪 |
+| 数字孪生交互 / digital-twin interaction | 3D 场景、遥测、风险、规划、教员与复盘面板 |
+| 实验治理 / experiment governance | split、fingerprint、artifact、failure-preserving replay |
+| 教学与课程 / education | 从动力学、控制、RL、数据工程到可视化的完整链路 |
+
+## 工程目录 / Engineering Map
 
 ```text
 .
-├── main.tscn / player.gd       # 程序化 3D 主场景与船舶控制
-├── scripts/                    # 世界、UI、音频、视觉与测试回放
-├── tools/ship_rl/              # 21 维环境与五种基线
-├── tools/rl_train_baselines.py # 训练、评估、产物导出入口
+├── main.tscn / player.gd       # 3D entry point and vessel control
+├── scripts/
+│   ├── world/                  # route, hazards, scenario, weather
+│   ├── ui/                     # telemetry, planning, AIS, risk, RL, review
+│   ├── rl/                     # fleet config and policy replay
+│   ├── audio/                  # procedural runtime audio
+│   └── visual/                 # wake and visual systems
+├── tools/ship_rl/              # 21D Gymnasium environment and five baselines
+├── tools/rl_train_baselines.py # train/evaluate/export entry point
 ├── tools/public_data_pipeline.py
-├── data/                       # 原生基准、港区配置、公开缓存
-├── tests/                      # 自动化契约与闭环测试
-├── docs/                       # 数据、算法、复现与架构说明
-└── .github/                    # CI、Issue 和 PR 模板
+├── data/                       # native benchmark, port profile, public cache
+├── tests/                      # contract and closed-loop regression tests
+├── docs/                       # algorithms, schemas, provenance, reproduction
+└── .github/                    # CI, dependency updates, issue and PR forms
 ```
 
-更完整的模块说明见 [project_structure.md](docs/project_structure.md) 和 [模块数据驱动表](docs/MODULE_DATA_DRIVERS.md)。
+进一步阅读 / Further reading:
 
-## 成熟度与边界
+- [数据集契约 / Dataset schema](docs/DATASET_SCHEMA.md)
+- [港口配置契约 / Port profile schema](docs/PORT_PROFILE_SCHEMA.md)
+- [模块数据边界 / Module data drivers](docs/MODULE_DATA_DRIVERS.md)
+- [训练测试回放指南 / Train-test-replay guide](docs/RL_DATA_TRAINING_POLICY_REPLAY_GUIDE.md)
+- [可复现实验 / Reproducibility](docs/REPRODUCIBILITY.md)
+- [路线图 / Roadmap](docs/ROADMAP.md)
 
-| 领域 | 当前状态 | 进一步达到生产级所需工作 |
-|---|---|---|
-| 仿真与 UI | 可交互 3D、双语 HUD、多面板、场景注入与复盘 | 人因测试、多设备适配、长期稳定性验证 |
-| 动力学 | 参数化二维航行积分与风流作用 | 六自由度模型、船模/实船辨识、浅水与波浪耦合 |
-| 学习与控制 | 四种 SB3 算法 + LOS-PID 统一接口 | 大预算多 seed benchmark、超参数研究、泛化评估 |
-| 数据 | 原生基准、AIS/GeoJSON/天气适配与来源元数据 | 经许可的港区 GIS、测深、潮汐与传感器质量模型 |
-| 安全 | 净距、TCPA、碰撞/地形/近失指标与失败保真 | COLREGs 规则验证、失效保护、人在回路、形式化安全层 |
-| 部署 | 可导出模型和动作轨迹 | 中间件、硬件在环、执行器限幅、冗余通信与认证 |
+## 社区、许可与使用范围 / Community, License, and Scope
 
-- 当前动力学适合算法与软件链路研究，不是经水池试验或实船辨识的六自由度水动力模型。
-- 默认交通、港区几何和训练任务是项目原生基准；接入真实数据时仍需自行校核许可、坐标、精度与隐私。
-- 短预算 CI 只检查回归和闭环，不给出算法优劣或收敛结论。
-- 项目没有船级社认证，也未接入真实执行机构。
+- [参与贡献 / Contributing](CONTRIBUTING.md)
+- [行为准则 / Code of Conduct](CODE_OF_CONDUCT.md)
+- [安全政策 / Security](SECURITY.md)
+- [支持说明 / Support](SUPPORT.md)
+- [资产许可审计 / Asset License Audit](docs/ASSET_LICENSE_AUDIT.md)
+- [第三方清单 / Third-Party Notices](docs/THIRD_PARTY_ASSETS.md)
+- [引用信息 / Citation](CITATION.cff)
 
-路线图见 [ROADMAP.md](docs/ROADMAP.md)。
+项目原生代码、程序化场景、文档和图形使用 [Apache License 2.0](LICENSE)。本系统用于自主航行研究、教学和软件验证，不是经认证的实船导航或控制系统。
 
-## 参与项目
-
-- 提交代码前请阅读 [CONTRIBUTING.md](CONTRIBUTING.md) 与 [行为准则](CODE_OF_CONDUCT.md)。
-- 问题与使用帮助见 [SUPPORT.md](SUPPORT.md)。
-- 安全问题请按 [SECURITY.md](SECURITY.md) 私密报告。
-- 新增二进制资产或数据前必须更新 [资产许可审计](docs/ASSET_LICENSE_AUDIT.md)。
-
-## 许可证与引用
-
-项目原生源代码、程序化场景、文档和图形使用 [Apache License 2.0](LICENSE)。Open-Meteo 缓存等第三方条目见 [THIRD_PARTY_ASSETS.md](docs/THIRD_PARTY_ASSETS.md) 与 [NOTICE](NOTICE)。学术或技术报告中引用本项目时，可使用仓库提供的 [`CITATION.cff`](CITATION.cff)。
+*Project-authored source, procedural scenes, documentation, and graphics are licensed under [Apache License 2.0](LICENSE). The system targets maritime-autonomy research, education, and software validation; it is not a certified real-vessel navigation or control system.*
 
 ---
 
 <div align="center">
-  <strong>复杂可以存在于系统内部，但证据边界必须始终清晰。</strong><br>
-  <sub>Build sophisticated maritime autonomy experiments — and keep every claim traceable to evidence.</sub>
+  <strong>复杂能力进入系统，可信证据留在链路。</strong><br>
+  <strong>Sophisticated capability inside the system. Traceable evidence across the lifecycle.</strong>
 </div>

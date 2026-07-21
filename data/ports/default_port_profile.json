@@ -1,0 +1,96 @@
+{
+  "schema_version": "ship_port_profile_v1",
+  "name": "航行模拟器默认水域配置",
+  "source": {
+    "type": "project_native_geometry",
+    "license": "same_as_project",
+    "observed_port_data": false
+  },
+  "scenario_order": ["open_water", "harbor"],
+  "navigation_missions": [
+    {
+      "name": "开放水域巡航",
+      "code": "OPEN-WATER-PATROL",
+      "objective": "开放水域航线保持、偏航修正和连续航点巡航",
+      "scenario_key": "open_water",
+      "loop": true,
+      "arrival_radius": 16.0,
+      "planned_speed_knots": 12.0,
+      "spawn": {"x": 0.36, "z": -0.05, "heading_degrees": 214.0},
+      "route": [
+        {"x": 0.0, "z": -72.0}, {"x": 72.0, "z": -132.0},
+        {"x": 46.0, "z": -208.0}, {"x": -56.0, "z": -190.0},
+        {"x": -92.0, "z": -96.0}
+      ]
+    },
+    {
+      "name": "港口引航",
+      "code": "HARBOR-PILOTAGE",
+      "objective": "狭水道进港、低速控船和泊位接近",
+      "scenario_key": "harbor",
+      "loop": false,
+      "arrival_radius": 12.0,
+      "planned_speed_knots": 6.0,
+      "spawn": {"x": -148.0, "z": -92.0, "heading_degrees": 84.0},
+      "route": [
+        {"x": -118.0, "z": -86.0}, {"x": -74.0, "z": -76.0},
+        {"x": -34.0, "z": -50.0}, {"x": 14.0, "z": -33.0},
+        {"x": 58.0, "z": -10.0}, {"x": 82.0, "z": 30.0}
+      ]
+    }
+  ],
+  "scenarios": {
+    "open_water": {
+      "name": "开放水域",
+      "description": "OPEN WATER ROUTE",
+      "spawn": {"x": 0.36, "z": -0.05, "heading_degrees": 214.0},
+      "boundary_half_extent": 780.0,
+      "loop_route": true,
+      "route": [
+        {"x": 0.0, "z": -72.0},
+        {"x": 72.0, "z": -132.0},
+        {"x": 46.0, "z": -208.0},
+        {"x": -56.0, "z": -190.0},
+        {"x": -92.0, "z": -96.0}
+      ],
+      "rocks": [
+        {"x": -48.0, "z": -118.0},
+        {"x": 98.0, "z": -88.0},
+        {"x": 112.0, "z": -184.0},
+        {"x": -126.0, "z": -178.0},
+        {"x": -128.0, "z": -42.0}
+      ],
+      "boxes": []
+    },
+    "harbor": {
+      "name": "港口引航水域",
+      "description": "PORT PILOTAGE DATA PROFILE",
+      "spawn": {"x": -148.0, "z": -92.0, "heading_degrees": 84.0},
+      "boundary_half_extent": 180.0,
+      "loop_route": false,
+      "route": [
+        {"x": -118.0, "z": -86.0},
+        {"x": -74.0, "z": -76.0},
+        {"x": -34.0, "z": -50.0},
+        {"x": 14.0, "z": -33.0},
+        {"x": 58.0, "z": -10.0},
+        {"x": 82.0, "z": 30.0}
+      ],
+      "rocks": [
+        {"x": -96.0, "z": -104.0},
+        {"x": -64.0, "z": -52.0},
+        {"x": -10.0, "z": -68.0},
+        {"x": 38.0, "z": -14.0},
+        {"x": 74.0, "z": 20.0}
+      ],
+      "boxes": [
+        {"name": "WestBreakwater", "position": {"x": -144.0, "z": -12.0}, "size": {"x": 16.0, "y": 7.0, "z": 142.0}},
+        {"name": "EastBreakwater", "position": {"x": 132.0, "z": -66.0}, "size": {"x": 16.0, "y": 7.0, "z": 106.0}},
+        {"name": "NorthPier", "position": {"x": 6.0, "z": -92.0}, "size": {"x": 126.0, "y": 5.0, "z": 16.0}},
+        {"name": "SouthPier", "position": {"x": 24.0, "z": 58.0}, "size": {"x": 138.0, "y": 5.0, "z": 16.0}},
+        {"name": "CargoQuay", "position": {"x": 104.0, "z": 18.0}, "size": {"x": 26.0, "y": 6.0, "z": 118.0}},
+        {"name": "BerthFinger", "position": {"x": 64.0, "z": 36.0}, "size": {"x": 72.0, "y": 4.0, "z": 12.0}}
+      ]
+    }
+  }
+}

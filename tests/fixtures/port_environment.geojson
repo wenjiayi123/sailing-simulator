@@ -1,0 +1,18 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {"name": "fixture_cliff", "category": "terrain", "kind": "cliff"},
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[ -118.2710, 33.7300 ], [ -118.2705, 33.7300 ], [ -118.2705, 33.7304 ], [ -118.2710, 33.7304 ], [ -118.2710, 33.7300 ]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {"name": "fixture_pier", "category": "obstacle", "kind": "pier", "shape": "box", "width_m": 18.0, "length_m": 54.0},
+      "geometry": {"type": "Point", "coordinates": [ -118.2695, 33.7295 ]}
+    }
+  ]
+}

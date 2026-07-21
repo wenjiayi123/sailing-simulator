@@ -1,0 +1,209 @@
+[gd_scene load_steps=19 format=3 uid="uid://1puthffyfgaa"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_player"]
+[ext_resource type="Script" path="res://scripts/ui/ship_telemetry_hud.gd" id="2_hud"]
+[ext_resource type="Script" path="res://scripts/visual/ship_wake_trail.gd" id="3_wake"]
+[ext_resource type="Script" path="res://scripts/world/ship_route_system.gd" id="4_route"]
+[ext_resource type="Script" path="res://scripts/world/ship_navigation_obstacles.gd" id="5_obstacles"]
+[ext_resource type="Script" path="res://scripts/audio/ship_ambient_audio.gd" id="6_audio"]
+[ext_resource type="Script" path="res://scripts/rl/ship_fleet_manager.gd" id="7_fleet"]
+[ext_resource type="Script" path="res://scripts/ui/ship_rl_control_panel.gd" id="8_rl_panel"]
+[ext_resource type="Script" path="res://scripts/world/ship_weather_time_controller.gd" id="9_weather"]
+[ext_resource type="Script" path="res://scripts/world/ship_scenario_controller.gd" id="10_scenario"]
+[ext_resource type="Script" path="res://scripts/integration/malacca_validation_bridge.gd" id="11_bridge"]
+[ext_resource type="Script" path="res://scripts/ui/ship_risk_decision_panel.gd" id="12_risk"]
+[ext_resource type="Script" path="res://scripts/ui/ship_navigation_planning_panel.gd" id="13_navigation"]
+[ext_resource type="Script" path="res://scripts/ui/ship_weather_sea_panel.gd" id="14_weather_panel"]
+[ext_resource type="Script" path="res://scripts/ui/ship_simulation_review_panel.gd" id="15_review"]
+[ext_resource type="Script" path="res://scripts/ui/ship_ais_fleet_panel.gd" id="16_ais"]
+[ext_resource type="Script" path="res://scripts/ui/ship_instructor_console_panel.gd" id="17_instructor"]
+[ext_resource type="Script" path="res://scripts/rl/ship_policy_replay_controller.gd" id="18_replay"]
+
+[sub_resource type="StandardMaterial3D" id="OceanMaterial"]
+albedo_color = Color(0.025, 0.20, 0.31, 1)
+metallic = 0.18
+roughness = 0.28
+
+[sub_resource type="PlaneMesh" id="OceanMesh"]
+material = SubResource("OceanMaterial")
+size = Vector2(1600, 1600)
+subdivide_width = 64
+subdivide_depth = 64
+
+[sub_resource type="StandardMaterial3D" id="HullMaterial"]
+albedo_color = Color(0.025, 0.10, 0.18, 1)
+metallic = 0.55
+roughness = 0.28
+
+[sub_resource type="CapsuleMesh" id="HullMesh"]
+material = SubResource("HullMaterial")
+radius = 1.15
+height = 6.4
+radial_segments = 20
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="DeckMaterial"]
+albedo_color = Color(0.72, 0.84, 0.90, 1)
+metallic = 0.25
+roughness = 0.34
+
+[sub_resource type="BoxMesh" id="DeckMesh"]
+material = SubResource("DeckMaterial")
+size = Vector3(1.75, 0.22, 3.9)
+
+[sub_resource type="StandardMaterial3D" id="CabinMaterial"]
+albedo_color = Color(0.15, 0.64, 0.78, 0.86)
+metallic = 0.35
+roughness = 0.16
+transparency = 1
+
+[sub_resource type="BoxMesh" id="CabinMesh"]
+material = SubResource("CabinMaterial")
+size = Vector3(1.45, 0.85, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="AccentMaterial"]
+albedo_color = Color(0.22, 0.95, 1, 1)
+emission_enabled = true
+emission = Color(0.12, 0.72, 0.95, 1)
+emission_energy_multiplier = 1.8
+
+[sub_resource type="CylinderMesh" id="MastMesh"]
+material = SubResource("AccentMaterial")
+top_radius = 0.07
+bottom_radius = 0.10
+height = 2.2
+radial_segments = 10
+
+[sub_resource type="SphereMesh" id="SensorMesh"]
+material = SubResource("AccentMaterial")
+radius = 0.18
+height = 0.36
+radial_segments = 12
+rings = 6
+
+[sub_resource type="CapsuleShape3D" id="ShipCollision"]
+radius = 1.15
+height = 6.4
+
+[sub_resource type="Environment" id="WorldEnvironment"]
+background_mode = 1
+background_color = Color(0.48, 0.82, 1, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.76, 0.88, 1, 1)
+ambient_light_energy = 0.86
+tonemap_mode = 2
+fog_enabled = true
+fog_light_color = Color(0.62, 0.82, 0.92, 1)
+fog_light_energy = 0.72
+fog_density = 0.0015
+fog_sky_affect = 0.35
+
+[node name="Main" type="Node3D"]
+
+[node name="Ocean" type="MeshInstance3D" parent="."]
+position = Vector3(0, -140.05, 0)
+mesh = SubResource("OceanMesh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-52, -36, 0)
+light_color = Color(1, 0.94, 0.78, 1)
+light_energy = 1.18
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("WorldEnvironment")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+position = Vector3(0.36, -140.73, -0.05)
+script = ExtResource("1_player")
+
+[node name="ShipVisual" type="Node3D" parent="Player"]
+position = Vector3(0, 1.15, 0)
+
+[node name="Hull" type="MeshInstance3D" parent="Player/ShipVisual"]
+rotation_degrees = Vector3(90, 0, 0)
+mesh = SubResource("HullMesh")
+
+[node name="Deck" type="MeshInstance3D" parent="Player/ShipVisual"]
+position = Vector3(0, 0.58, 0.20)
+mesh = SubResource("DeckMesh")
+
+[node name="Cabin" type="MeshInstance3D" parent="Player/ShipVisual"]
+position = Vector3(0, 1.04, 0.82)
+mesh = SubResource("CabinMesh")
+
+[node name="Mast" type="MeshInstance3D" parent="Player/ShipVisual"]
+position = Vector3(0, 2.24, 0.45)
+mesh = SubResource("MastMesh")
+
+[node name="Sensor" type="MeshInstance3D" parent="Player/ShipVisual"]
+position = Vector3(0, 3.35, 0.45)
+mesh = SubResource("SensorMesh")
+
+[node name="BowMarker" type="MeshInstance3D" parent="Player/ShipVisual"]
+position = Vector3(0, 0.74, -2.45)
+scale = Vector3(0.65, 0.22, 0.24)
+mesh = SubResource("SensorMesh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+position = Vector3(0, 1.15, 0)
+rotation_degrees = Vector3(90, 0, 0)
+shape = SubResource("ShipCollision")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+position = Vector3(0, 7.5, 16.8)
+current = true
+fov = 65.0
+near = 0.1
+far = 5000.0
+
+[node name="ShipWeatherTimeController" type="Node" parent="."]
+script = ExtResource("9_weather")
+
+[node name="ShipRouteSystem" type="Node3D" parent="."]
+script = ExtResource("4_route")
+
+[node name="ShipNavigationObstacles" type="Node3D" parent="."]
+script = ExtResource("5_obstacles")
+
+[node name="ShipScenarioController" type="Node" parent="."]
+script = ExtResource("10_scenario")
+
+[node name="ShipAmbientAudio" type="Node" parent="."]
+script = ExtResource("6_audio")
+
+[node name="ShipFleetManager" type="Node3D" parent="."]
+script = ExtResource("7_fleet")
+
+[node name="ShipPolicyReplayController" type="Node" parent="."]
+script = ExtResource("18_replay")
+
+[node name="MalaccaValidationBridge" type="Node" parent="."]
+script = ExtResource("11_bridge")
+
+[node name="ShipTelemetryHUD" type="CanvasLayer" parent="."]
+script = ExtResource("2_hud")
+
+[node name="ShipRLControlPanel" type="CanvasLayer" parent="."]
+script = ExtResource("8_rl_panel")
+
+[node name="ShipRiskDecisionPanel" type="CanvasLayer" parent="."]
+script = ExtResource("12_risk")
+
+[node name="ShipNavigationPlanningPanel" type="CanvasLayer" parent="."]
+script = ExtResource("13_navigation")
+
+[node name="ShipWeatherSeaPanel" type="CanvasLayer" parent="."]
+script = ExtResource("14_weather_panel")
+
+[node name="ShipSimulationReviewPanel" type="CanvasLayer" parent="."]
+script = ExtResource("15_review")
+
+[node name="ShipAISFleetPanel" type="CanvasLayer" parent="."]
+script = ExtResource("16_ais")
+
+[node name="ShipInstructorConsolePanel" type="CanvasLayer" parent="."]
+script = ExtResource("17_instructor")
+
+[node name="ShipWakeTrail" type="Node3D" parent="."]
+script = ExtResource("3_wake")

@@ -1,0 +1,73 @@
+{
+  "schema_version": "ship_training_experiment_v3",
+  "headless": true,
+  "render": false,
+  "delta": 0.1,
+  "dataset": {
+    "path": "res://data/rl/default_port_dataset.json",
+    "training_split": "train",
+    "evaluation_split": "test"
+  },
+  "rl_parameters": {
+    "reward_progress": 2.8,
+    "reward_heading": 1.6,
+    "reward_speed": 0.9,
+    "penalty_collision": 36.0,
+    "penalty_terrain_collision": 52.0,
+    "penalty_boundary": 22.0,
+    "penalty_rudder": 1.2,
+    "penalty_proximity": 0.8,
+    "safe_distance": 42.0
+  },
+  "environment_parameters": {
+    "vessel_radius_m": 3.2,
+    "obstacle_inflation_m": 1.5,
+    "cliff_inflation_m": 8.0,
+    "boundary_margin_m": 4.0,
+    "sensor_range_m": 220.0,
+    "tcpa_horizon_seconds": 180.0,
+    "terminate_on_collision": true,
+    "merge_scene_obstacles": true,
+    "domain_randomization": true,
+    "randomize_evaluation": false,
+    "start_position_jitter_m": 3.0,
+    "start_heading_jitter_degrees": 6.0,
+    "obstacle_position_jitter_m": 1.5,
+    "obstacle_size_jitter_m": 0.8,
+    "current_speed_jitter_knots": 0.25,
+    "current_direction_jitter_degrees": 10.0,
+    "wind_speed_jitter_knots": 1.5,
+    "sensor_distance_noise_std_m": 0.35,
+    "sensor_bearing_noise_degrees": 0.6,
+    "generated_traffic_count": 2,
+    "generated_traffic_speed_knots": 5.0,
+    "generated_traffic_radius_m": 6.0
+  },
+  "ships": [
+    {
+      "position": {"x": 0.36, "y": -140.73494, "z": -0.05},
+      "telemetry": {"heading_degrees": 180.0},
+      "performance": {
+        "max_forward_speed": 18.0,
+        "max_reverse_speed": 5.5,
+        "acceleration": 3.6,
+        "deceleration": 2.2,
+        "brake_acceleration": 6.4,
+        "throttle_response": 1.65,
+        "rudder_response": 2.45,
+        "max_turn_rate_degrees": 82.0,
+        "low_speed_turn_factor": 0.18,
+        "reverse_turn_factor": 0.58
+      }
+    }
+  ],
+  "world": {
+    "obstacles": {
+      "boundary_half_extent": 780.0,
+      "rocks": [
+        {"name": "SCENE_CLIFF_WEST_CHANNEL", "kind": "cliff", "shape": "circle", "x": -55.0, "z": -40.0, "radius": 16.0}
+      ],
+      "boxes": []
+    }
+  }
+}

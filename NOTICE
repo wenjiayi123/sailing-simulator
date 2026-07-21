@@ -1,0 +1,11 @@
+航行模拟器
+Copyright 2026 The Sailing Simulator Contributors
+
+The Apache-2.0 license covers the project source code, project-authored
+documentation, procedural Godot scene, shaders, and SVG project icon.
+See docs/THIRD_PARTY_ASSETS.md for external runtimes and public data.
+
+Weather snapshot and live weather integration:
+Weather data by Open-Meteo.com, licensed under CC BY 4.0. Wave forecast data
+includes model products from DWD. See the source metadata embedded in
+data/public_cache/marine_weather_singapore.json.

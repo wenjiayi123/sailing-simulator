@@ -1,0 +1,159 @@
+{
+  "schema_version": "ship_port_dataset_v2",
+  "name": "航行模拟器可复现实验基准集",
+  "description": "项目原生数值基准。生产接入时用 tools/public_data_pipeline.py 从港口 AIS CSV 生成同结构数据集。",
+  "coordinate_system": {
+    "type": "local_cartesian_meters",
+    "axes": "x_east_z_north"
+  },
+  "source": {
+    "type": "project_native_benchmark",
+    "license": "same_as_project",
+    "observed_ais": false
+  },
+  "splits": {
+    "train": [
+      {
+        "id": "train_open_water_westbound",
+        "start": {"x": 0.36, "z": -0.05, "heading_degrees": 180.0},
+        "route": [
+          {"x": 0.0, "z": -72.0},
+          {"x": 72.0, "z": -132.0},
+          {"x": 46.0, "z": -208.0}
+        ],
+        "arrival_radius": 14.0,
+        "boundary_half_extent": 260.0,
+        "obstacles": [
+          {"name": "training_rock_west", "kind": "rock", "shape": "circle", "x": -48.0, "z": -118.0, "radius": 8.0},
+          {"name": "training_rock_east", "kind": "rock", "shape": "circle", "x": 98.0, "z": -88.0, "radius": 8.0},
+          {"name": "training_east_revetment", "kind": "breakwater", "shape": "box", "position": {"x": 142.0, "z": -170.0}, "size": {"x": 24.0, "z": 78.0}}
+        ],
+        "terrain": [
+          {"name": "training_west_cliff", "kind": "cliff", "shape": "circle", "x": -88.0, "z": -174.0, "radius": 18.0}
+        ],
+        "dynamic_obstacles": [
+          {"name": "training_crossing_traffic_01", "kind": "traffic", "shape": "circle", "x": 28.0, "z": -112.0, "radius": 6.0, "course_degrees": 270.0, "speed_knots": 4.5}
+        ],
+        "sea_state": {"wind_speed_knots": 6.0, "current_speed_knots": 0.4, "current_direction_degrees": 65.0}
+      },
+      {
+        "id": "train_harbor_approach_calm",
+        "start": {"x": -148.0, "z": -92.0, "heading_degrees": 84.0},
+        "route": [
+          {"x": -118.0, "z": -86.0},
+          {"x": -74.0, "z": -76.0},
+          {"x": -34.0, "z": -50.0},
+          {"x": 14.0, "z": -33.0},
+          {"x": 58.0, "z": -10.0}
+        ],
+        "arrival_radius": 12.0,
+        "boundary_half_extent": 180.0,
+        "obstacles": [
+          {"name": "west_breakwater", "kind": "breakwater", "shape": "box", "position": {"x": -144.0, "z": -12.0}, "size": {"x": 18.0, "z": 52.0}},
+          {"name": "north_pier", "kind": "pier", "shape": "box", "position": {"x": 6.0, "z": -102.0}, "size": {"x": 58.0, "z": 14.0}},
+          {"name": "cargo_quay", "kind": "quay", "shape": "circle", "x": 104.0, "z": 18.0, "radius": 18.0}
+        ],
+        "terrain": [
+          {"name": "training_harbor_shoreline", "kind": "shoreline", "shape": "polygon", "points": [{"x": -178.0, "z": 38.0}, {"x": -112.0, "z": 48.0}, {"x": -94.0, "z": 90.0}, {"x": -178.0, "z": 104.0}]}
+        ],
+        "sea_state": {"wind_speed_knots": 8.0, "current_speed_knots": 0.5, "current_direction_degrees": 42.0}
+      },
+      {
+        "id": "train_harbor_cross_current",
+        "start": {"x": -145.0, "z": -105.0, "heading_degrees": 76.0},
+        "route": [
+          {"x": -112.0, "z": -88.0},
+          {"x": -65.0, "z": -69.0},
+          {"x": -18.0, "z": -45.0},
+          {"x": 31.0, "z": -18.0},
+          {"x": 76.0, "z": 24.0}
+        ],
+        "arrival_radius": 12.0,
+        "boundary_half_extent": 180.0,
+        "obstacles": [
+          {"name": "approach_buoy_1", "kind": "buoy", "shape": "circle", "x": -92.0, "z": -104.0, "radius": 6.0},
+          {"name": "approach_buoy_2", "kind": "buoy", "shape": "circle", "x": -10.0, "z": -68.0, "radius": 6.0},
+          {"name": "east_breakwater", "kind": "breakwater", "shape": "box", "position": {"x": 132.0, "z": -66.0}, "size": {"x": 22.0, "z": 64.0}}
+        ],
+        "terrain": [
+          {"name": "training_cross_current_cliff", "kind": "cliff", "shape": "circle", "x": 118.0, "z": 16.0, "radius": 16.0}
+        ],
+        "dynamic_obstacles": [
+          {"name": "training_inbound_traffic_02", "kind": "traffic", "shape": "circle", "x": -38.0, "z": -16.0, "radius": 7.0, "course_degrees": 205.0, "speed_knots": 5.5}
+        ],
+        "sea_state": {"wind_speed_knots": 14.0, "current_speed_knots": 1.1, "current_direction_degrees": 102.0}
+      }
+    ],
+    "validation": [
+      {
+        "id": "validation_harbor_offset_start",
+        "start": {"x": -152.0, "z": -82.0, "heading_degrees": 92.0},
+        "route": [
+          {"x": -116.0, "z": -82.0},
+          {"x": -68.0, "z": -70.0},
+          {"x": -22.0, "z": -48.0},
+          {"x": 24.0, "z": -25.0},
+          {"x": 68.0, "z": 12.0}
+        ],
+        "arrival_radius": 12.0,
+        "boundary_half_extent": 180.0,
+        "obstacles": [
+          {"name": "validation_buoy", "kind": "buoy", "shape": "circle", "x": -12.0, "z": -70.0, "radius": 7.0},
+          {"name": "validation_quay", "kind": "quay", "shape": "box", "position": {"x": 106.0, "z": 20.0}, "size": {"x": 34.0, "z": 54.0}}
+        ],
+        "terrain": [
+          {"name": "validation_rocky_shoal", "kind": "terrain", "shape": "polygon", "points": [{"x": 44.0, "z": -88.0}, {"x": 76.0, "z": -78.0}, {"x": 72.0, "z": -52.0}, {"x": 42.0, "z": -58.0}]}
+        ],
+        "sea_state": {"wind_speed_knots": 11.0, "current_speed_knots": 0.8, "current_direction_degrees": 80.0}
+      }
+    ],
+    "test": [
+      {
+        "id": "test_harbor_unseen_current",
+        "start": {"x": -150.0, "z": -98.0, "heading_degrees": 82.0},
+        "route": [
+          {"x": -120.0, "z": -86.0},
+          {"x": -78.0, "z": -72.0},
+          {"x": -38.0, "z": -47.0},
+          {"x": 8.0, "z": -28.0},
+          {"x": 52.0, "z": -4.0},
+          {"x": 80.0, "z": 34.0}
+        ],
+        "arrival_radius": 12.0,
+        "boundary_half_extent": 180.0,
+        "obstacles": [
+          {"name": "test_west_breakwater", "kind": "breakwater", "shape": "box", "position": {"x": -144.0, "z": -12.0}, "size": {"x": 20.0, "z": 54.0}},
+          {"name": "test_channel_buoy", "kind": "buoy", "shape": "circle", "x": -10.0, "z": -67.0, "radius": 7.0},
+          {"name": "test_cargo_quay", "kind": "quay", "shape": "box", "position": {"x": 104.0, "z": 18.0}, "size": {"x": 34.0, "z": 58.0}}
+        ],
+        "terrain": [
+          {"name": "test_unseen_falling_cliff", "kind": "cliff", "shape": "circle", "x": -66.0, "z": -16.0, "radius": 13.0}
+        ],
+        "dynamic_obstacles": [
+          {"name": "test_crossing_ferry", "kind": "traffic", "shape": "circle", "x": 4.0, "z": -8.0, "radius": 7.0, "course_degrees": 250.0, "speed_knots": 5.0}
+        ],
+        "sea_state": {"wind_speed_knots": 16.0, "current_speed_knots": 1.3, "current_direction_degrees": 118.0}
+      },
+      {
+        "id": "test_open_water_reverse_flow",
+        "start": {"x": -86.0, "z": -92.0, "heading_degrees": 140.0},
+        "route": [
+          {"x": -58.0, "z": -132.0},
+          {"x": -12.0, "z": -174.0},
+          {"x": 42.0, "z": -198.0},
+          {"x": 84.0, "z": -154.0}
+        ],
+        "arrival_radius": 14.0,
+        "boundary_half_extent": 260.0,
+        "obstacles": [
+          {"name": "test_open_rock_1", "kind": "rock", "shape": "circle", "x": -34.0, "z": -152.0, "radius": 9.0},
+          {"name": "test_open_rock_2", "kind": "rock", "shape": "circle", "x": 58.0, "z": -170.0, "radius": 8.0}
+        ],
+        "terrain": [
+          {"name": "test_unseen_reef_polygon", "kind": "terrain", "shape": "polygon", "points": [{"x": 8.0, "z": -140.0}, {"x": 30.0, "z": -132.0}, {"x": 38.0, "z": -112.0}, {"x": 12.0, "z": -116.0}]}
+        ],
+        "sea_state": {"wind_speed_knots": 18.0, "current_speed_knots": 1.4, "current_direction_degrees": 310.0}
+      }
+    ]
+  }
+}

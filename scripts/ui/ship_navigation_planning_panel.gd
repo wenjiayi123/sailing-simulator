@@ -573,7 +573,7 @@ func _load_mission_presets() -> void:
 		})
 	if not converted.is_empty():
 		_mission_presets = converted
-		_mission_profile_status = "%s  |  %s" % [String(profile.get("name", "port profile")), loaded_path]
+		_mission_profile_status = "%s  |  %s" % [String(profile.get("name", "port profile")), _display_safe_path(loaded_path)]
 
 
 func _resolve_node(path: NodePath, group_name: StringName) -> Node:
@@ -883,7 +883,21 @@ func _export_plan_snapshot(show_status: bool = true) -> void:
 	file.store_string(JSON.stringify(payload, "\t"))
 	file.close()
 	if show_status:
-		_update_label("mission_footer", "任务快照已导出: " + ProjectSettings.globalize_path(PLAN_EXPORT_PATH), COLOR_GREEN)
+		_update_label("mission_footer", "任务快照已导出: " + PLAN_EXPORT_PATH, COLOR_GREEN)
+
+
+func _display_safe_path(path: String) -> String:
+	if path.is_empty():
+		return "内置任务配置"
+	var project_root := ProjectSettings.globalize_path("res://")
+	if path.begins_with(project_root):
+		return "res://" + path.trim_prefix(project_root)
+	var user_root := ProjectSettings.globalize_path("user://")
+	if path.begins_with(user_root):
+		return "user://" + path.trim_prefix(user_root)
+	if path.begins_with("res://") or path.begins_with("user://"):
+		return path
+	return "%s（外部配置）" % path.get_file()
 
 
 func _ship_snapshot(ship: Node3D) -> Dictionary:

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="480" viewBox="0 0 1600 480" role="img" aria-labelledby="title desc">
+  <title id="title">Sailing Simulator project cover</title>
+  <desc id="desc">A dark maritime engineering cover showing an autonomous vessel, route, radar rings and five algorithm baselines.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#050d18"/>
+      <stop offset="0.55" stop-color="#071c2e"/>
+      <stop offset="1" stop-color="#082e40"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d7692" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#04101d" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="ship" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#effcff"/>
+      <stop offset="1" stop-color="#53dff5"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#49def6" stroke-opacity="0.07" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="480" rx="28" fill="url(#bg)"/>
+  <rect width="1600" height="480" rx="28" fill="url(#grid)"/>
+  <path d="M0 333c175-43 295 36 468 2 169-34 251-99 432-45 196 58 310-6 700-28v218H0z" fill="url(#sea)"/>
+  <g fill="none" stroke="#55e8ff" stroke-opacity="0.28">
+    <circle cx="1278" cy="246" r="70"/><circle cx="1278" cy="246" r="122"/><circle cx="1278" cy="246" r="178"/>
+    <path d="M1100 246h356M1278 68v356"/>
+  </g>
+  <path d="M946 368c91-76 158-96 245-114 75-15 124-7 217-92" fill="none" stroke="#ffd866" stroke-width="4" stroke-dasharray="12 14" filter="url(#glow)"/>
+  <g fill="#ffd866" filter="url(#glow)"><circle cx="946" cy="368" r="7"/><circle cx="1127" cy="274" r="7"/><circle cx="1278" cy="246" r="8"/><circle cx="1408" cy="162" r="7"/></g>
+  <g transform="translate(1190 254) rotate(-25)" filter="url(#glow)">
+    <path d="M-88 31H78L50 61H-54z" fill="url(#ship)"/>
+    <path d="M-46 31l20-50h64l26 50z" fill="#0f5972" stroke="#75efff" stroke-width="3"/>
+    <path d="M5-19v-47m0 10l43 23H5" fill="none" stroke="#79efff" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="5" cy="-72" r="7" fill="#ffd866"/>
+  </g>
+  <g transform="translate(86 86)">
+    <text x="0" y="0" fill="#65e9ff" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700" letter-spacing="5">OPEN AUTONOMOUS NAVIGATION BENCHMARK</text>
+    <text x="0" y="72" fill="#f3fbff" font-family="Inter,Arial,sans-serif" font-size="64" font-weight="800" letter-spacing="1">SAILING SIMULATOR</text>
+    <text x="2" y="118" fill="#b8d6e3" font-family="PingFang SC,Microsoft YaHei,Arial,sans-serif" font-size="25">可训练、可评估、可回放的无人船航行模拟器</text>
+    <g transform="translate(0 166)" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700">
+      <g><rect width="94" height="38" rx="19" fill="#102f42" stroke="#4fe5fb"/><text x="47" y="25" text-anchor="middle" fill="#c9f8ff">PPO</text></g>
+      <g transform="translate(108)"><rect width="94" height="38" rx="19" fill="#102f42" stroke="#4fe5fb"/><text x="47" y="25" text-anchor="middle" fill="#c9f8ff">SAC</text></g>
+      <g transform="translate(216)"><rect width="94" height="38" rx="19" fill="#102f42" stroke="#4fe5fb"/><text x="47" y="25" text-anchor="middle" fill="#c9f8ff">TD3</text></g>
+      <g transform="translate(324)"><rect width="94" height="38" rx="19" fill="#102f42" stroke="#4fe5fb"/><text x="47" y="25" text-anchor="middle" fill="#c9f8ff">DQN</text></g>
+      <g transform="translate(432)"><rect width="122" height="38" rx="19" fill="#2d321f" stroke="#ffd866"/><text x="61" y="25" text-anchor="middle" fill="#ffe9a0">LOS-PID</text></g>
+    </g>
+    <g transform="translate(0 242)" font-family="Inter,Arial,sans-serif">
+      <text fill="#59e7ff" font-size="33" font-weight="800">21D</text><text x="78" y="0" fill="#8eacba" font-size="16">OBSERVATION</text>
+      <text x="238" fill="#59e7ff" font-size="33" font-weight="800">3</text><text x="270" y="0" fill="#8eacba" font-size="16">DATA SPLITS</text>
+      <text x="430" fill="#ffd866" font-size="33" font-weight="800">0</text><text x="462" y="0" fill="#8eacba" font-size="16">RENDER DURING TRAIN</text>
+    </g>
+  </g>
+  <text x="1518" y="438" text-anchor="end" fill="#6d9bad" font-family="Inter,Arial,sans-serif" font-size="14" letter-spacing="2">GODOT 4.7 + PYTHON</text>
+</svg>

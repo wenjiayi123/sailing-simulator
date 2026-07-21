@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+  <title id="title">Sailing Simulator social preview</title>
+  <desc id="desc">Autonomous-vessel simulation and auditable reinforcement-learning benchmark.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#040b14"/><stop offset="0.62" stop-color="#082439"/><stop offset="1" stop-color="#0b4d60"/></linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#16758a" stop-opacity=".45"/><stop offset="1" stop-color="#04101b" stop-opacity=".95"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#58e7ff" stroke-opacity=".06"/></pattern>
+  </defs>
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <rect width="1280" height="640" fill="url(#grid)"/>
+  <path d="M0 428c147-46 281 32 424-8 172-48 274-90 436-33 146 51 259 12 420-13v266H0z" fill="url(#sea)"/>
+  <g fill="none" stroke="#59e8ff" stroke-opacity=".24"><circle cx="1020" cy="354" r="74"/><circle cx="1020" cy="354" r="142"/><circle cx="1020" cy="354" r="210"/><path d="M810 354h420M1020 144v420"/></g>
+  <path d="M790 510c72-90 139-102 230-156 67-40 112-84 164-161" fill="none" stroke="#ffd866" stroke-width="4" stroke-dasharray="12 14" filter="url(#glow)"/>
+  <g fill="#ffd866" filter="url(#glow)"><circle cx="790" cy="510" r="7"/><circle cx="904" cy="411" r="7"/><circle cx="1020" cy="354" r="8"/><circle cx="1184" cy="193" r="7"/></g>
+  <g transform="translate(935 424) rotate(-28)" filter="url(#glow)"><path d="M-86 28H78L50 59H-53z" fill="#8eefff"/><path d="M-43 28l18-50h66l24 50z" fill="#0d5c76" stroke="#7af1ff" stroke-width="3"/><path d="M7-22v-52m0 12l44 23H7" fill="none" stroke="#80f3ff" stroke-width="4"/><circle cx="7" cy="-80" r="7" fill="#ffd866"/></g>
+  <g transform="translate(72 94)" font-family="Inter,Arial,sans-serif">
+    <text fill="#62e9ff" font-size="18" font-weight="700" letter-spacing="5">OPEN MARITIME AUTONOMY BENCHMARK</text>
+    <text y="92" fill="#f3fbff" font-size="62" font-weight="800">SAILING SIMULATOR</text>
+    <text y="140" fill="#c3dbe5" font-family="PingFang SC,Microsoft YaHei,Arial,sans-serif" font-size="25">可训练 · 可评估 · 可回放 · 可替换港口数据</text>
+    <text y="206" fill="#8eb0be" font-size="19">Godot 4.7 + Python · held-out evaluation · recorded replay</text>
+    <g transform="translate(0 250)" font-size="16" font-weight="700">
+      <g><rect width="82" height="36" rx="18" fill="#102f42" stroke="#4fe5fb"/><text x="41" y="24" text-anchor="middle" fill="#d3faff">PPO</text></g>
+      <g transform="translate(94)"><rect width="82" height="36" rx="18" fill="#102f42" stroke="#4fe5fb"/><text x="41" y="24" text-anchor="middle" fill="#d3faff">SAC</text></g>
+      <g transform="translate(188)"><rect width="82" height="36" rx="18" fill="#102f42" stroke="#4fe5fb"/><text x="41" y="24" text-anchor="middle" fill="#d3faff">TD3</text></g>
+      <g transform="translate(282)"><rect width="82" height="36" rx="18" fill="#102f42" stroke="#4fe5fb"/><text x="41" y="24" text-anchor="middle" fill="#d3faff">DQN</text></g>
+      <g transform="translate(376)"><rect width="114" height="36" rx="18" fill="#302f1d" stroke="#ffd866"/><text x="57" y="24" text-anchor="middle" fill="#ffeaa1">LOS-PID</text></g>
+    </g>
+    <text y="362" fill="#59e7ff" font-size="30" font-weight="800">21D</text><text x="72" y="362" fill="#89a9b7" font-size="15">OBS</text>
+    <text x="158" y="362" fill="#59e7ff" font-size="30" font-weight="800">3</text><text x="186" y="362" fill="#89a9b7" font-size="15">SPLITS</text>
+    <text x="292" y="362" fill="#ffd866" font-size="30" font-weight="800">0</text><text x="320" y="362" fill="#89a9b7" font-size="15">TRAINING RENDER</text>
+  </g>
+  <rect x="0" y="628" width="1280" height="12" fill="#55e5fa"/>
+</svg>

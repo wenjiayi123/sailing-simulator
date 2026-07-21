@@ -21,6 +21,16 @@
 - `data/ports/`：可替换的港区场景配置。
 - `tests/`：数据切分、环境、控制器与适配器测试。
 
+## 文档与协作
+
+- `README.md` / `README_EN.md`：中英项目入口、真实截图与快速运行。
+- `docs/images/`：项目自绘 SVG 与当前主场景自动生成的运行截图。
+- `docs/REPRODUCIBILITY.md`：环境、产物、公平比较和结果声明要求。
+- `docs/ROADMAP.md`：短中长期方向与明确不承诺事项。
+- `.github/`：CI、Dependabot、CODEOWNERS、Issue 表单和 PR 模板。
+- `CHANGELOG.md` / `VERSION` / `CITATION.cff`：版本、变化与引用元数据。
+- `CONTRIBUTING.md` / `GOVERNANCE.md` / `SUPPORT.md`：贡献、治理与支持边界。
+
 ## 发布边界
 
-仓库不包含与航行无关的游戏系统，也不包含来源不明的纹理、照片、录音、缓存、申请材料或训练产物。新增二进制资产前必须更新 `ASSET_LICENSE_AUDIT.md` 和 `THIRD_PARTY_ASSETS.md`。
+仓库不包含与航行无关的游戏系统，也不包含来源不明的纹理、照片、录音、缓存、申请材料或训练产物。新增二进制资产前必须更新 `ASSET_LICENSE_AUDIT.md` 和 `THIRD_PARTY_ASSETS.md`。README 截图必须由当前主场景重新生成并目视检查，不得使用无法追溯的宣传图替代运行证据。

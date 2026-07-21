@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "Sailing Simulator"
+type: software
+version: 0.1.0
+date-released: 2026-07-21
+authors:
+  - family-names: Wen
+    given-names: Jiayi
+repository-code: "https://github.com/wenjiayi123/sailing-simulator"
+url: "https://github.com/wenjiayi123/sailing-simulator"
+license: Apache-2.0
+keywords:
+  - autonomous vessel
+  - maritime simulation
+  - reinforcement learning
+  - Godot
+  - control theory
+abstract: >-
+  An auditable Godot and Python benchmark for autonomous-vessel simulation,
+  interchangeable port datasets, render-free training, held-out evaluation,
+  and recorded policy replay.

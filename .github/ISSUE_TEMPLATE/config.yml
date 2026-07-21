@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security report / 安全报告
+    url: https://github.com/wenjiayi123/sailing-simulator/security/advisories/new
+    about: 请私密报告漏洞、凭据泄露或敏感数据问题
+  - name: Usage and support / 使用帮助
+    url: https://github.com/wenjiayi123/sailing-simulator/blob/main/SUPPORT.md
+    about: 提交 Issue 前请先阅读支持说明

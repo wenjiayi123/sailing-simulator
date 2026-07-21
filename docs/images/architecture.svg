@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="680" viewBox="0 0 1500 680" role="img" aria-labelledby="title desc">
+  <title id="title">Sailing Simulator system architecture</title>
+  <desc id="desc">Data adapters feed split datasets into headless training, independent evaluation and Godot replay without rendering during training.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07101b"/><stop offset="1" stop-color="#0a2635"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000" flood-opacity="0.35"/></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0l10 5-10 5z" fill="#55def5"/></marker>
+    <style>
+      .title{font:700 22px Inter,Arial,sans-serif;fill:#eafaff}.small{font:500 15px Inter,Arial,sans-serif;fill:#a9c7d4}.tag{font:700 14px Inter,Arial,sans-serif;fill:#ffe58a}.line{stroke:#55def5;stroke-width:3;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1500" height="680" rx="26" fill="url(#bg)"/>
+  <text x="70" y="68" fill="#57e5fb" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="700" letter-spacing="4">AUDITABLE TRAIN → TEST → REPLAY PIPELINE</text>
+  <g filter="url(#shadow)">
+    <g transform="translate(70 130)"><rect width="300" height="178" rx="18" fill="#102b3c" stroke="#3fbbd2"/><text x="28" y="42" class="title">公开数据适配层</text><text x="28" y="79" class="small">AccessAIS CSV / ZIP</text><text x="28" y="107" class="small">WGS84 GeoJSON</text><text x="28" y="135" class="small">Open-Meteo weather</text><text x="28" y="160" class="tag">SHA-256 + provenance</text></g>
+    <g transform="translate(470 130)"><rect width="300" height="178" rx="18" fill="#102b3c" stroke="#3fbbd2"/><text x="28" y="42" class="title">ship_port_dataset_v2</text><text x="28" y="82" class="small">train — policy fitting only</text><text x="28" y="112" class="small">validation — model selection</text><text x="28" y="142" class="small">test — final evaluation only</text><text x="28" y="164" class="tag">MMSI-level split isolation</text></g>
+    <g transform="translate(870 108)"><rect width="300" height="222" rx="18" fill="#102b3c" stroke="#ffd45f"/><text x="28" y="42" class="title">无渲染训练</text><text x="28" y="82" class="small">PPO · SAC · TD3 · DQN</text><text x="28" y="112" class="small">LOS-PID control baseline</text><text x="28" y="142" class="small">21D observation contract</text><text x="28" y="172" class="small">scene obstacle snapshot</text><text x="28" y="204" class="tag">render=false · train split</text></g>
+    <g transform="translate(1130 390)"><rect width="300" height="178" rx="18" fill="#102b3c" stroke="#56e6a5"/><text x="28" y="42" class="title">独立测试集评估</text><text x="28" y="82" class="small">deterministic rollout</text><text x="28" y="112" class="small">collision / terrain / XTE</text><text x="28" y="142" class="small">clearance / near miss / TCPA</text><text x="28" y="164" class="tag">failure stays failure</text></g>
+    <g transform="translate(650 420)"><rect width="350" height="178" rx="18" fill="#102b3c" stroke="#56e6a5"/><text x="28" y="42" class="title">Godot 3D 测试回放</text><text x="28" y="82" class="small">recorded throttle + rudder</text><text x="28" y="112" class="small">dynamic obstacle positions</text><text x="28" y="142" class="small">measured metrics and outcome</text><text x="28" y="164" class="tag">render after evaluation only</text></g>
+    <g transform="translate(90 420)"><rect width="390" height="178" rx="18" fill="#102b3c" stroke="#3fbbd2"/><text x="28" y="42" class="title">Godot 航行与交互系统</text><text x="28" y="82" class="small">ship dynamics · route · weather</text><text x="28" y="112" class="small">fleet · AIS · instructor console</text><text x="28" y="142" class="small">risk · planning · review panels</text><text x="28" y="164" class="tag">project-native geometry</text></g>
+  </g>
+  <path class="line" d="M370 218h90"/><path class="line" d="M770 218h90"/>
+  <path class="line" d="M1170 218c170 0 170 92 110 162"/>
+  <path class="line" d="M1130 478h-120"/><path class="line" d="M650 510H490"/>
+  <path d="M1020 330v54" stroke="#ffd45f" stroke-width="3" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
+  <text x="1040" y="365" class="tag">checkpoint + fingerprints</text>
+  <text x="750" y="646" text-anchor="middle" fill="#6c96a8" font-family="Inter,Arial,sans-serif" font-size="14">Real interfaces are labelled by source; bundled benchmarks are never presented as production observations.</text>
+</svg>

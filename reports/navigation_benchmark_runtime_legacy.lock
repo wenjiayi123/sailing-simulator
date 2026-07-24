@@ -1,0 +1,7 @@
+# Historical environment record for reports/navigation_benchmark_v1.json.
+# Do not use this lock as the default runtime and never load untrusted model files.
+# The checked-in benchmark uses SHA-256-gated local artifacts; normal CI installs
+# requirements-rl.txt so security fixes are not held back by this legacy record.
+# Python 3.9 plus this lock is retained only for byte-for-byte deep verification.
+-r requirements-rl.txt
+torch==2.2.2

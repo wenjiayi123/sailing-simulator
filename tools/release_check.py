@@ -26,7 +26,7 @@ REQUIRED_FILES = (
     "LICENSE",
     "NOTICE",
     "CONTRIBUTING.md",
-    "requirements-benchmark.txt",
+    "reports/navigation_benchmark_runtime_legacy.lock",
     ".github/workflows/rl-tests.yml",
     "docs/DATA_SOURCES.md",
     "docs/ALGORITHM_PARAMETERS.md",

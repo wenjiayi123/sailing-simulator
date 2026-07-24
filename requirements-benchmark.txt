@@ -1,4 +1,0 @@
-# Exact Python package set recorded by reports/navigation_benchmark_v1.json.
-# Use Python 3.9 for byte-for-byte comparable deterministic deep verification.
--r requirements-rl.txt
-torch==2.2.2

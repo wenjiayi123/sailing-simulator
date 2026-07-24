@@ -56,11 +56,14 @@ cd /path/to/sailing-simulator
 bash tools/setup_rl_env.sh
 ```
 
-需要重跑固定报告时使用报告记录的精确依赖：
+默认开发、测试和 CI 使用 `requirements-rl.txt`。只有对仓库自带、SHA-256
+校验通过的历史模型进行字节级深度复算时，才使用报告保存的旧环境记录：
 
 ```bash
-.venv/bin/python -m pip install -r requirements-benchmark.txt
+.venv/bin/python -m pip install -r reports/navigation_benchmark_runtime_legacy.lock
 ```
+
+旧环境记录不是默认运行依赖，不应用于加载外部或未经哈希校验的模型文件。
 
 运行测试：
 

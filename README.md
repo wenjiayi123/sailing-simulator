@@ -17,6 +17,10 @@
 </p>
 
 <p align="center">
+  <strong>研发作者：</strong>温家懿 · <strong>Research Author:</strong> Wen Jiayi
+</p>
+
+<p align="center">
   <a href="#系统价值--engineering-value">系统价值</a> ·
   <a href="#五种统一基线--five-comparable-baselines">算法矩阵</a> ·
   <a href="#固定公开海况可靠性基准--public-forcing-reliability-benchmark">可靠性基准</a> ·

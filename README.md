@@ -1,10 +1,51 @@
-# 航行模拟器：可训练、可评估的无人船航行基准
+<p align="center">
+  <img src="docs/readme-hero.svg" alt="AI智能船舶自主航行模拟器与强化学习训练平台" width="100%" />
+</p>
 
-这是一个 Godot 4.7 + Python 的无人船航行实验项目。Godot 负责船舶操控、港口场景、遥测和测试结果可视化；Python 负责数据集切分、无渲染训练、模型保存和独立测试集评估。
+<p align="center">
+  <a href="https://github.com/wenjiayi123/sailing-simulator/actions/workflows/rl-tests.yml"><img alt="RL tests" src="https://github.com/wenjiayi123/sailing-simulator/actions/workflows/rl-tests.yml/badge.svg" /></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-22c55e.svg" /></a>
+  <img alt="Godot 4.7" src="https://img.shields.io/badge/Godot-4.7-478cbf?logo=godotengine&logoColor=white" />
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.12-3776ab?logo=python&logoColor=white" />
+  <img alt="Five methods" src="https://img.shields.io/badge/methods-4%20RL%20%2B%20LOS--PID-7957d5" />
+  <img alt="Admission" src="https://img.shields.io/badge/safety%20admission-fail%20closed-e87945" />
+</p>
 
-当前 RL 链路不再使用计时器模拟训练进度，也不再生成写死成功的绕障曲线。界面进度来自 Stable-Baselines3 的实际 `num_timesteps`；测试轨迹来自训练完成后对 `test` split 的确定性 rollout。短训练没有收敛时，界面会如实显示失败。
+<p align="center">
+  <strong>不是“船在场景里会动”，而是一套可训练、可拒绝、可回放、可追溯的自主航行策略准入实验台。</strong><br />
+  <em>Not merely a moving vessel—a trainable, rejectable, replayable, and traceable admission bench for autonomous-navigation policies.</em>
+</p>
 
-## 五种基线
+<p align="center">
+  <a href="#系统价值--engineering-value">系统价值</a> ·
+  <a href="#五种统一基线--five-comparable-baselines">算法矩阵</a> ·
+  <a href="#固定公开海况可靠性基准--public-forcing-reliability-benchmark">可靠性基准</a> ·
+  <a href="#训练与渲染边界--training--rendering-boundary">训练边界</a> ·
+  <a href="#快速开始--quick-start">快速开始</a> ·
+  <a href="reports/simulator_reliability_audit_v1.md">证据报告</a>
+</p>
+
+---
+
+## 系统价值 / Engineering value
+
+Godot 4.7 负责船舶操控、港区环境、风险包络和三维证据回放；Python/Gymnasium 负责时间隔离数据集、无渲染训练、模型固化、独立测试和策略准入。训练进度直接来自 Stable-Baselines3 的实际 `num_timesteps`，测试轨迹只由训练完成后的封存 `test` rollout 生成；失败、碰撞、近失和越界不会被演示层改写。
+
+Godot 4.7 owns vessel control, port geometry, risk envelopes, and 3D evidence replay. Python and Gymnasium own chronological data isolation, headless learning, model persistence, independent evaluation, and policy admission. Training progress comes from actual Stable-Baselines3 timesteps, while visual replay is generated only from sealed post-training test rollouts.
+
+| 可核验维度 / Verifiable dimension | 固定证据 / Pinned evidence | 工程意义 / Why it matters |
+|---|---:|---|
+| 场景合同 / Scenario contracts | **121/121** 完整 | 航线、障碍、地形、动态船与风浪流字段可逐场检查 |
+| 训练执行 / Training execution | **80,480** RL环境步、**167** episodes | 真实 learner 路径，不用计时器模拟进度 |
+| 独立评测 / Independent evaluation | **155** validation + **150** final rollouts | 训练、选型与最终测试严格分离 |
+| 回放一致性 / Replay consistency | **5/5** 回放、**1,723** 采样点 | 后端指标、逐场CSV与Godot轨迹相互校验 |
+| 证据门禁 / Evidence gate | **28/28** 检查通过 | 数据、奖励、模型、轨迹与源码哈希绑定 |
+| 安全准入 / Safety admission | 五方法均被保守门禁拒绝 | 证明系统会暴露安全裕度缺口，而非美化零碰撞 |
+
+> [!IMPORTANT]
+> 当前证据证明的是仿真平台完整性、算法评测能力和失效安全门禁，不是实船海试、COLREGs认证或商业航行许可。公开环境强迫、仿真动力学与真实传感/执行数据始终分层标注。
+
+## 五种统一基线 / Five comparable baselines
 
 | 基线 | 动作空间 | 实现 |
 |---|---|---|
@@ -18,7 +59,7 @@ DQN 只使用离散动作，因为标准 DQN 本身不支持连续动作。四�
 
 数值环境不是二维圆点演示：训练会计算圆形、矩形和多边形障碍，区分悬岩/岸线的额外安全净距，推进动态交通船，并把闭合速度、TCPA/DCPA、动态目标标识、边界净距、前/左/右扇区净距及风浪流相对方向纳入 28 维观测。风、浪、流均实际进入状态转移；当前 Godot 场景中的 `落水悬岩`、导航岩石和临时港区障碍可随训练配置一起合并。
 
-## 固定公开海况可靠性基准
+## 固定公开海况可靠性基准 / Public-forcing reliability benchmark
 
 本项目以模拟器的功能闭环和可靠性为评价对象，不把离线仿真结果包装成港口降本、增收或实船安全收益。
 
@@ -32,7 +73,7 @@ DQN 只使用离散动作，因为标准 DQN 本身不支持连续动作。四�
 
 完整方法、逐算法结果、哈希和边界见 [模拟器可靠性审计](reports/simulator_reliability_audit_v1.md)、[机器可读审计](reports/simulator_reliability_audit_v1.json) 与 [五方法原始基准](reports/navigation_benchmark_v1.json)。
 
-## 训练与渲染边界
+## 训练与渲染边界 / Training & rendering boundary
 
 ```text
 train split -> Python 数值环境 -> 真实训练 -> checkpoint
@@ -47,7 +88,7 @@ test split  -> Python 确定性 rollout -> 真实轨迹/指标 -> Godot 3D 回�
 - 测试失败、碰撞、超时和航线误差不会被改写。
 - Godot 回放使用测试 rollout 记录的油门/舵角序列，而不是内置演示路线。
 
-## 本机启动
+## 快速开始 / Quick start
 
 安装 Python 训练环境：
 

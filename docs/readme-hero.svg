@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="560" viewBox="0 0 1440 560" role="img" aria-labelledby="title desc">
+  <title id="title">Autonomous Vessel Navigation Simulator</title>
+  <desc id="desc">Evidence-driven autonomous vessel simulation, reinforcement learning, safety admission, and Godot replay.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#04101f"/><stop offset=".52" stop-color="#082a43"/><stop offset="1" stop-color="#071726"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#52e7ff"/><stop offset=".55" stop-color="#44a7ff"/><stop offset="1" stop-color="#7d7cff"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#75dfff" stroke-opacity=".055"/>
+    </pattern>
+    <filter id="glow"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1440" height="560" rx="30" fill="url(#bg)"/>
+  <rect width="1440" height="560" rx="30" fill="url(#grid)"/>
+  <circle cx="1218" cy="278" r="216" fill="none" stroke="#54dcff" stroke-opacity=".14" stroke-width="2"/>
+  <circle cx="1218" cy="278" r="148" fill="none" stroke="#54dcff" stroke-opacity=".2" stroke-width="2"/>
+  <circle cx="1218" cy="278" r="78" fill="none" stroke="#54dcff" stroke-opacity=".28" stroke-width="2"/>
+  <path d="M1002 278h432M1218 62v432" stroke="#54dcff" stroke-opacity=".12"/>
+  <path d="M995 420c76-136 159-189 246-158 58 21 84 72 131 24" fill="none" stroke="url(#cyan)" stroke-width="5" stroke-dasharray="13 12" filter="url(#glow)"/>
+  <circle cx="995" cy="420" r="8" fill="#52e7ff"/><circle cx="1372" cy="286" r="8" fill="#817cff"/>
+  <g transform="translate(1162 228)" fill="#0a3550" stroke="#8feaff" stroke-width="3">
+    <path d="M5 65h112l-18 28H22z"/><path d="M51 6h20v59H51z"/><path d="M25 27h73v18H25z"/>
+  </g>
+  <g font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">
+    <text x="78" y="86" fill="#62e2f7" font-size="18" font-weight="700" letter-spacing="5">AUTONOMOUS NAVIGATION · SAFETY ADMISSION · 3D REPLAY</text>
+    <text x="78" y="170" fill="#f4fbff" font-size="54" font-weight="800">AI智能船舶自主航行模拟器</text>
+    <text x="78" y="220" fill="#c6e7f5" font-size="29" font-weight="600">Autonomous Vessel Navigation &amp; RL Training Platform</text>
+    <text x="78" y="268" fill="#8eb5c9" font-size="18">Public forcing → Headless training → Held-out safety evaluation → Godot evidence replay</text>
+  </g>
+  <g transform="translate(78 316)" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">
+    <g><rect width="190" height="88" rx="14" fill="#0a2941" stroke="#35caec" stroke-opacity=".58"/><text x="18" y="31" fill="#78dff1" font-size="13">SCENARIO CONTRACTS</text><text x="18" y="64" fill="#f2fbff" font-size="24" font-weight="800">121 / 121</text></g>
+    <g transform="translate(208)"><rect width="190" height="88" rx="14" fill="#0a2941" stroke="#35caec" stroke-opacity=".58"/><text x="18" y="31" fill="#78dff1" font-size="13">RL ENV STEPS</text><text x="18" y="64" fill="#f2fbff" font-size="24" font-weight="800">80,480</text></g>
+    <g transform="translate(416)"><rect width="190" height="88" rx="14" fill="#0a2941" stroke="#35caec" stroke-opacity=".58"/><text x="18" y="31" fill="#78dff1" font-size="13">FINAL ROLLOUTS</text><text x="18" y="64" fill="#f2fbff" font-size="24" font-weight="800">150</text></g>
+    <g transform="translate(624)"><rect width="190" height="88" rx="14" fill="#0a2941" stroke="#35caec" stroke-opacity=".58"/><text x="18" y="31" fill="#78dff1" font-size="13">EVIDENCE GATES</text><text x="18" y="64" fill="#78f1c0" font-size="24" font-weight="800">28 / 28 PASS</text></g>
+  </g>
+  <path d="M78 445h770" stroke="url(#cyan)" stroke-width="2"/>
+  <text x="78" y="487" fill="#7899ad" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15">PPO · SAC · TD3 · DQN · LOS-PID  |  28-D OBSERVATION  |  SHA-256  |  GODOT 4.7</text>
+  <text x="78" y="521" fill="#607f93" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">RESEARCH BENCHMARK · NOT A COLREGs CERTIFICATION OR FIELD-SAFETY CLAIM</text>
+</svg>

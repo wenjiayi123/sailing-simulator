@@ -35,11 +35,11 @@ Godot 4.7 owns vessel control, port geometry, risk envelopes, and 3D evidence re
 
 | 可核验维度 / Verifiable dimension | 固定证据 / Pinned evidence | 工程意义 / Why it matters |
 |---|---:|---|
-| 场景合同 / Scenario contracts | **121/121** 完整<br><sub>**121/121** complete</sub> | 航线、障碍、地形、动态船与风浪流字段可逐场检查<br><sub>Routes, obstacles, terrain, traffic vessels, and wind–wave–current fields are inspectable per scenario.</sub> |
-| 训练执行 / Training execution | **80,480** RL环境步、**167** episodes<br><sub>**80,480** RL steps and **167** episodes</sub> | 真实 learner 路径，不用计时器模拟进度<br><sub>Real learner execution; no timer-driven progress simulation.</sub> |
-| 独立评测 / Independent evaluation | **155** validation + **150** final rollouts | 训练、选型与最终测试严格分离<br><sub>Training, model selection, and final testing remain strictly separated.</sub> |
-| 回放一致性 / Replay consistency | **5/5** 回放、**1,723** 采样点<br><sub>**5/5** replays and **1,723** samples</sub> | 后端指标、逐场CSV与Godot轨迹相互校验<br><sub>Backend metrics, per-scenario CSV files, and Godot trajectories cross-check one another.</sub> |
-| 证据门禁 / Evidence gate | **28/28** 检查通过<br><sub>**28/28** checks passed</sub> | 数据、奖励、模型、轨迹与源码哈希绑定<br><sub>Dataset, reward, model, trajectory, and source hashes are bound together.</sub> |
+| 场景合同 / Scenario contracts | <strong>121/121</strong> 完整<br><sub><strong>121/121</strong> complete</sub> | 航线、障碍、地形、动态船与风浪流字段可逐场检查<br><sub>Routes, obstacles, terrain, traffic vessels, and wind–wave–current fields are inspectable per scenario.</sub> |
+| 训练执行 / Training execution | <strong>80,480</strong> RL环境步、<strong>167</strong> episodes<br><sub><strong>80,480</strong> RL steps and <strong>167</strong> episodes</sub> | 真实 learner 路径，不用计时器模拟进度<br><sub>Real learner execution; no timer-driven progress simulation.</sub> |
+| 独立评测 / Independent evaluation | <strong>155</strong> validation + <strong>150</strong> final rollouts | 训练、选型与最终测试严格分离<br><sub>Training, model selection, and final testing remain strictly separated.</sub> |
+| 回放一致性 / Replay consistency | <strong>5/5</strong> 回放、<strong>1,723</strong> 采样点<br><sub><strong>5/5</strong> replays and <strong>1,723</strong> samples</sub> | 后端指标、逐场CSV与Godot轨迹相互校验<br><sub>Backend metrics, per-scenario CSV files, and Godot trajectories cross-check one another.</sub> |
+| 证据门禁 / Evidence gate | <strong>28/28</strong> 检查通过<br><sub><strong>28/28</strong> checks passed</sub> | 数据、奖励、模型、轨迹与源码哈希绑定<br><sub>Dataset, reward, model, trajectory, and source hashes are bound together.</sub> |
 | 安全准入 / Safety admission | 五方法均被保守门禁拒绝<br><sub>All five methods rejected by the conservative gate</sub> | 证明系统会暴露安全裕度缺口，而非美化零碰撞<br><sub>The platform exposes safety-margin deficiencies instead of polishing a zero-collision result.</sub> |
 
 > [!IMPORTANT]
@@ -71,20 +71,20 @@ The numerical environment is not a two-dimensional point demo. It evaluates circ
 
 The benchmark evaluates simulator completeness and reliability; it does not present offline simulation results as port cost savings, revenue growth, or proven vessel-safety benefits.
 
-- **环境输入 / Environmental input：**Open-Meteo 长滩邻近水域 2024-01-01 至 2024-04-30 共 2,904 条小时级再分析/模式归档，派生 121 个日级场景。<br>
-  **EN:** 2,904 hourly reanalysis/model archive records for waters near Long Beach from 1 January through 30 April 2024, transformed into 121 daily scenarios.
-- **时间隔离 / Temporal isolation：**1—2 月 60 场训练、3 月 31 场验证、4 月 30 场最终测试；不随机打乱日期。<br>
-  **EN:** 60 January–February training scenarios, 31 March validation scenarios, and 30 April sealed-test scenarios, with no randomized dates.
-- **训练预算 / Training budget：**PPO、SAC、TD3、DQN 各设置 20,000 timestep，LOS-PID 为同环境控制理论基线。<br>
-  **EN:** 20,000 timesteps are configured for each of PPO, SAC, TD3, and DQN; LOS-PID is the control-theory baseline in the same environment.
-- **最终验证 / Final evaluation：**五方法共 150 个方法-场景 rollout。SAC 与 LOS-PID 在各自 30 场测试中实现 100% **无碰撞到达**且碰撞场景率为 0；SAC 平均/P95 最大横向航迹误差为 9.98/15.13 m，但 P05 最小净距仅 0.99 m。<br>
-  **EN:** The five methods complete 150 method-scenario rollouts. SAC and LOS-PID achieve 100% **collision-free arrival** and zero collision scenarios across their respective 30 tests. SAC’s mean/P95 maximum cross-track error is 9.98/15.13 m, while its P05 minimum clearance is only 0.99 m.
-- **安全语义 / Safety semantics：**旧字段 `safe_completion_rate` 不排除近失事件，因此只能解释为“无碰撞到达率”。当前五方法在 32 m 风险包络下均触发过包络侵入，保守离线策略准入门禁拒绝全部方法，不把零碰撞包装成安全认证。<br>
-  **EN:** The legacy `safe_completion_rate` field does not exclude near misses and therefore means only “collision-free arrival rate.” Every method enters the 32 m risk envelope at least once, so the conservative offline admission gate rejects all five instead of treating zero collision as safety certification.
-- **工程验收 / Engineering acceptance：**121/121 场景契约完整，150/150 逐场记录齐全，28/28 项哈希与指标一致性检查、5/5 份代表性 Godot 回放（1,723 个采样点）及 Godot 4.7 解析/短时 headless 启动 2/2 通过。<br>
-  **EN:** 121/121 scenario contracts and 150/150 per-scenario records are complete; 28/28 hash/metric checks, 5/5 representative Godot replays (1,723 samples), and 2/2 Godot 4.7 parse/short headless-start checks pass.
-- **证据边界 / Evidence boundary：**海况来自公开数值产品，航线、障碍、船舶动力学和动作响应来自项目仿真设定；结果不是实船海试、避碰认证或 COLREGs 合规结论。<br>
-  **EN:** Environmental forcing comes from public numerical products, whereas routes, obstacles, vessel dynamics, and action response come from project simulation settings. The result is not a sea trial, collision-avoidance certification, or COLREGs compliance finding.
+- <strong>环境输入 / Environmental input：</strong>Open-Meteo 长滩邻近水域 2024-01-01 至 2024-04-30 共 2,904 条小时级再分析/模式归档，派生 121 个日级场景。<br>
+  <strong>EN:</strong> 2,904 hourly reanalysis/model archive records for waters near Long Beach from 1 January through 30 April 2024, transformed into 121 daily scenarios.
+- <strong>时间隔离 / Temporal isolation：</strong>1—2 月 60 场训练、3 月 31 场验证、4 月 30 场最终测试；不随机打乱日期。<br>
+  <strong>EN:</strong> 60 January–February training scenarios, 31 March validation scenarios, and 30 April sealed-test scenarios, with no randomized dates.
+- <strong>训练预算 / Training budget：</strong>PPO、SAC、TD3、DQN 各设置 20,000 timestep，LOS-PID 为同环境控制理论基线。<br>
+  <strong>EN:</strong> 20,000 timesteps are configured for each of PPO, SAC, TD3, and DQN; LOS-PID is the control-theory baseline in the same environment.
+- <strong>最终验证 / Final evaluation：</strong>五方法共 150 个方法-场景 rollout。SAC 与 LOS-PID 在各自 30 场测试中实现 100% <strong>无碰撞到达</strong>且碰撞场景率为 0；SAC 平均/P95 最大横向航迹误差为 9.98/15.13 m，但 P05 最小净距仅 0.99 m。<br>
+  <strong>EN:</strong> The five methods complete 150 method-scenario rollouts. SAC and LOS-PID achieve 100% <strong>collision-free arrival</strong> and zero collision scenarios across their respective 30 tests. SAC’s mean/P95 maximum cross-track error is 9.98/15.13 m, while its P05 minimum clearance is only 0.99 m.
+- <strong>安全语义 / Safety semantics：</strong>旧字段 `safe_completion_rate` 不排除近失事件，因此只能解释为“无碰撞到达率”。当前五方法在 32 m 风险包络下均触发过包络侵入，保守离线策略准入门禁拒绝全部方法，不把零碰撞包装成安全认证。<br>
+  <strong>EN:</strong> The legacy `safe_completion_rate` field does not exclude near misses and therefore means only “collision-free arrival rate.” Every method enters the 32 m risk envelope at least once, so the conservative offline admission gate rejects all five instead of treating zero collision as safety certification.
+- <strong>工程验收 / Engineering acceptance：</strong>121/121 场景契约完整，150/150 逐场记录齐全，28/28 项哈希与指标一致性检查、5/5 份代表性 Godot 回放（1,723 个采样点）及 Godot 4.7 解析/短时 headless 启动 2/2 通过。<br>
+  <strong>EN:</strong> 121/121 scenario contracts and 150/150 per-scenario records are complete; 28/28 hash/metric checks, 5/5 representative Godot replays (1,723 samples), and 2/2 Godot 4.7 parse/short headless-start checks pass.
+- <strong>证据边界 / Evidence boundary：</strong>海况来自公开数值产品，航线、障碍、船舶动力学和动作响应来自项目仿真设定；结果不是实船海试、避碰认证或 COLREGs 合规结论。<br>
+  <strong>EN:</strong> Environmental forcing comes from public numerical products, whereas routes, obstacles, vessel dynamics, and action response come from project simulation settings. The result is not a sea trial, collision-avoidance certification, or COLREGs compliance finding.
 
 完整方法、逐算法结果、哈希和边界见 [模拟器可靠性审计](reports/simulator_reliability_audit_v1.md)、[机器可读审计](reports/simulator_reliability_audit_v1.json) 与 [五方法原始基准](reports/navigation_benchmark_v1.json)。
 

@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://shaders/floating_rock_3a_demo_rock.gdshader" id="1_shader"]
+
+[resource]
+resource_name = "Moss_Region"
+shader = ExtResource("1_shader")
+shader_parameter/base_color = Color(0.10, 0.27, 0.12, 1)
+shader_parameter/detail_color = Color(0.26, 0.46, 0.19, 1)
+shader_parameter/accent_color = Color(0.34, 0.55, 0.22, 1)
+shader_parameter/strata_scale = 1.1
+shader_parameter/strata_strength = 0.11
+shader_parameter/noise_scale = 1.65
+shader_parameter/crack_strength = 0.04
+shader_parameter/roughness_value = 0.99
+shader_parameter/specular_value = 0.04
+

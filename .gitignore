@@ -1,0 +1,23 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+.DS_Store
+**/.DS_Store
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+/output/rl_runs/
+/backups/
+/soft_copyright_materials/
+/soft_copyright_template_work/
+/草稿/
+/tools/*soft_copyright*
+/tools/analyze_soft_copyright_template.py
+/tools/build_*soft_copyright_materials.py
+/tools/qa_strict_soft_copyright_materials.py
+*.zip
+!/reports/artifacts/navigation_benchmark_v1/**/*.zip
+/data/public_cache/*.json
+!/data/public_cache/.gitkeep
+!/data/public_cache/marine_weather_singapore.json

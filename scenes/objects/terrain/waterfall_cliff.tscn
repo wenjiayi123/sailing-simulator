@@ -1,0 +1,123 @@
+[gd_scene format=3]
+
+[sub_resource type="StandardMaterial3D" id="mat_rock"]
+albedo_color = Color(0.22, 0.24, 0.22, 1)
+roughness = 0.96
+
+[sub_resource type="StandardMaterial3D" id="mat_grass"]
+albedo_color = Color(0.35, 0.57, 0.30, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="mat_water"]
+albedo_color = Color(0.13, 0.58, 0.78, 1)
+roughness = 0.22
+
+[sub_resource type="StandardMaterial3D" id="mat_foam"]
+albedo_color = Color(0.82, 0.94, 0.96, 1)
+roughness = 0.5
+
+[sub_resource type="BoxMesh" id="mesh_upper_ledge"]
+material = SubResource("mat_rock")
+size = Vector3(16.0, 1.0, 9.0)
+
+[sub_resource type="BoxMesh" id="mesh_upper_grass"]
+material = SubResource("mat_grass")
+size = Vector3(15.4, 0.08, 8.4)
+
+[sub_resource type="BoxMesh" id="mesh_cliff_wall"]
+material = SubResource("mat_rock")
+size = Vector3(16.0, 8.0, 1.0)
+
+[sub_resource type="BoxMesh" id="mesh_side_face"]
+material = SubResource("mat_rock")
+size = Vector3(1.0, 5.4, 6.2)
+
+[sub_resource type="BoxMesh" id="mesh_waterfall"]
+material = SubResource("mat_water")
+size = Vector3(4.0, 7.8, 0.12)
+
+[sub_resource type="CylinderMesh" id="mesh_pool_bed"]
+material = SubResource("mat_rock")
+top_radius = 8.0
+bottom_radius = 8.0
+height = 0.1
+radial_segments = 48
+
+[sub_resource type="CylinderMesh" id="mesh_pool"]
+material = SubResource("mat_water")
+top_radius = 7.1
+bottom_radius = 7.1
+height = 0.12
+radial_segments = 48
+
+[sub_resource type="CylinderMesh" id="mesh_foam"]
+material = SubResource("mat_foam")
+top_radius = 2.4
+bottom_radius = 2.4
+height = 0.09
+radial_segments = 32
+
+[sub_resource type="BoxShape3D" id="shape_upper_ledge"]
+size = Vector3(16.0, 0.8, 9.0)
+
+[sub_resource type="BoxShape3D" id="shape_cliff_wall"]
+size = Vector3(16.0, 8.0, 1.0)
+
+[node name="WaterfallCliff" type="Node3D"]
+
+[node name="Visual" type="Node3D" parent="."]
+
+[node name="UpperLedge" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.46, 0)
+mesh = SubResource("mesh_upper_ledge")
+
+[node name="UpperGrass" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
+mesh = SubResource("mesh_upper_grass")
+
+[node name="CliffWall" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.0, 4.5)
+mesh = SubResource("mesh_cliff_wall")
+
+[node name="SideFace_L" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, -2.7, 1.8)
+mesh = SubResource("mesh_side_face")
+
+[node name="SideFace_R" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, -2.7, 1.8)
+mesh = SubResource("mesh_side_face")
+
+[node name="Waterfall" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.8, 5.08)
+mesh = SubResource("mesh_waterfall")
+
+[node name="PoolBed" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.72, 0, -4.78, 12.4)
+mesh = SubResource("mesh_pool_bed")
+
+[node name="LowerPool" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.72, 0, -4.68, 12.4)
+mesh = SubResource("mesh_pool")
+
+[node name="Foam" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, -4.6, 11.0)
+mesh = SubResource("mesh_foam")
+
+[node name="Collision" type="StaticBody3D" parent="."]
+
+[node name="UpperLedgeCollision" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+shape = SubResource("shape_upper_ledge")
+
+[node name="CliffWallCollision" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.0, 4.5)
+shape = SubResource("shape_cliff_wall")
+disabled = true
+
+[node name="FutureHooks" type="Node3D" parent="."]
+
+[node name="UpperWaterPoint" type="Marker3D" parent="FutureHooks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -2.0)
+
+[node name="WaterfallBottomPoint" type="Marker3D" parent="FutureHooks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.4, 12.4)

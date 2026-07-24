@@ -1,0 +1,34 @@
+{
+  "format": "ship_marine_weather_v1",
+  "source": {
+    "provider": "Open-Meteo",
+    "upstream_models": "national weather services including DWD/NOAA/ECMWF as selected by Open-Meteo",
+    "license": "CC BY 4.0; attribution required",
+    "documentation": "https://open-meteo.com/en/docs/marine-weather-api",
+    "attribution": "Weather data by Open-Meteo.com; wave data includes DWD model products",
+    "request_urls": [
+      "https://api.open-meteo.com/v1/forecast?latitude=1.2644&longitude=103.8223&current=wind_speed_10m%2Cwind_direction_10m%2Cvisibility&wind_speed_unit=kn&timezone=UTC&forecast_days=1",
+      "https://marine-api.open-meteo.com/v1/marine?latitude=1.2644&longitude=103.8223&hourly=wave_height%2Cwave_direction%2Cwave_period%2Cocean_current_velocity%2Cocean_current_direction%2Csea_surface_temperature&wind_speed_unit=kn&timezone=UTC&forecast_days=1"
+    ]
+  },
+  "fetched_at": "2026-07-20T02:30:02.582549+00:00",
+  "observed_at": "2026-07-20T02:15",
+  "location": {
+    "latitude": 1.2644,
+    "longitude": 103.8223,
+    "crs": "WGS84"
+  },
+  "sea_state": {
+    "wind_speed_knots": 5.2,
+    "wind_direction_degrees": 126.0,
+    "wave_height_meters": 0.12,
+    "wave_direction_degrees": 131.0,
+    "wave_period_seconds": 2.85,
+    "visibility_km": 10.26,
+    "current_speed_knots": 0.2,
+    "current_direction_degrees": 117.0,
+    "sea_surface_temperature_celsius": 29.7,
+    "tide_meters": 0.0,
+    "time_scale": 1.0
+  }
+}

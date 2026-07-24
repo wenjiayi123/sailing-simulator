@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/floating_rock_demo_builder.gd" id="1_builder"]
+
+[node name="FloatingRock_3A_Demo" type="Node3D"]
+script = ExtResource("1_builder")
+
+[node name="Rock_Body" type="Node3D" parent="."]
+
+[node name="Top_Platform_Main" type="MeshInstance3D" parent="Rock_Body"]
+
+[node name="Top_Edge_Cliff" type="MeshInstance3D" parent="Rock_Body"]
+
+[node name="Side_Rock_Large_A" type="MeshInstance3D" parent="Rock_Body"]
+
+[node name="Side_Rock_Large_B" type="MeshInstance3D" parent="Rock_Body"]
+
+[node name="Side_Rock_Large_C" type="MeshInstance3D" parent="Rock_Body"]
+
+[node name="Side_Rock_Protrusion_A" type="MeshInstance3D" parent="Rock_Body"]
+
+[node name="Side_Rock_Protrusion_B" type="MeshInstance3D" parent="Rock_Body"]
+
+[node name="Bottom_Root_Main" type="MeshInstance3D" parent="Rock_Body"]
+
+[node name="Bottom_Root_Sub_A" type="MeshInstance3D" parent="Rock_Body"]
+
+[node name="Bottom_Root_Sub_B" type="MeshInstance3D" parent="Rock_Body"]
+
+[node name="Hollow_Cave_Main" type="MeshInstance3D" parent="Rock_Body"]
+
+[node name="Hollow_Cave_Edge_A" type="MeshInstance3D" parent="Rock_Body"]
+
+[node name="Hollow_Cave_Edge_B" type="MeshInstance3D" parent="Rock_Body"]
+
+[node name="Hanging_Rock_A" type="MeshInstance3D" parent="Rock_Body"]
+
+[node name="Hanging_Rock_B" type="MeshInstance3D" parent="Rock_Body"]
+
+[node name="Hanging_Rock_C" type="MeshInstance3D" parent="Rock_Body"]
+
+[node name="Debris_Cluster_A" type="Node3D" parent="Rock_Body"]
+
+[node name="Debris_Cluster_B" type="Node3D" parent="Rock_Body"]
+
+[node name="FX_Placeholders" type="Node3D" parent="."]
+
+[node name="Waterfall_Channel_A" type="MeshInstance3D" parent="FX_Placeholders"]
+
+[node name="Mist_Point_A" type="Marker3D" parent="FX_Placeholders"]
+
+[node name="Mist_Point_B" type="Marker3D" parent="FX_Placeholders"]
+
+[node name="Floating_Debris_Point_A" type="Marker3D" parent="FX_Placeholders"]
+
+[node name="Floating_Debris_Point_B" type="Marker3D" parent="FX_Placeholders"]
+
+[node name="Vegetation_Placeholders" type="Node3D" parent="."]
+
+[node name="Moss_Area_A" type="MeshInstance3D" parent="Vegetation_Placeholders"]
+
+[node name="Moss_Area_B" type="MeshInstance3D" parent="Vegetation_Placeholders"]
+
+[node name="Root_Vine_Attach_A" type="Marker3D" parent="Vegetation_Placeholders"]
+
+[node name="Root_Vine_Attach_B" type="Marker3D" parent="Vegetation_Placeholders"]
+
+[node name="Collision" type="Node3D" parent="."]
+
+[node name="Walkable_Collision" type="StaticBody3D" parent="Collision"]
+
+[node name="Walkable_CollisionShape" type="CollisionShape3D" parent="Collision/Walkable_Collision"]
+
+[node name="Body_Collision" type="StaticBody3D" parent="Collision"]
+
+[node name="Body_CollisionShape" type="CollisionShape3D" parent="Collision/Body_Collision"]

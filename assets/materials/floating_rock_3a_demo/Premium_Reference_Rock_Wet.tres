@@ -1,0 +1,44 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c5k8d5qqv02rv"]
+
+[ext_resource type="Shader" uid="uid://bgi6o8wl28gn4" path="res://shaders/floating_rock_3a_demo_rock.gdshader" id="1_shader"]
+[ext_resource type="Texture2D" uid="uid://b5wtiyrnhjq87" path="res://assets/art/terrain/premium_reference_cliff_rock_32471782690108.jpg" id="2_ref"]
+
+[resource]
+resource_name = "Premium_Reference_Rock_Wet"
+render_priority = 0
+shader = ExtResource("1_shader")
+shader_parameter/base_color = Color(0.22, 0.28, 0.28, 1)
+shader_parameter/detail_color = Color(0.52, 0.58, 0.52, 1)
+shader_parameter/accent_color = Color(0.08, 0.22, 0.18, 1)
+shader_parameter/strata_scale = 4.45
+shader_parameter/strata_strength = 0.34
+shader_parameter/noise_scale = 0.92
+shader_parameter/crack_strength = 0.09
+shader_parameter/roughness_value = 0.58
+shader_parameter/specular_value = 0.48
+shader_parameter/side_texture = ExtResource("2_ref")
+shader_parameter/side_texture_strength = 0.78
+shader_parameter/side_texture_alpha_boost = 1.0
+shader_parameter/side_texture_detail_mix = 0.86
+shader_parameter/side_texture_uv_scale = Vector2(1.55, 1.05)
+shader_parameter/side_texture_uv_offset = Vector2(0.38, 0.1)
+shader_parameter/side_water_flow_speed = 0.035
+shader_parameter/side_water_flow_strength = 1.5
+shader_parameter/side_water_shimmer_strength = 0.805
+shader_parameter/side_water_surface_sheet_strength = 1.5
+shader_parameter/side_water_surface_sheet_coverage = 0.62
+shader_parameter/side_water_horizontal_suppression = 0.48
+shader_parameter/side_water_extension_strength = 0.0
+shader_parameter/side_water_extension_length = 0.0
+shader_parameter/side_water_soft_line_strength = 0.0
+shader_parameter/side_water_flow_tint = Color(0, 0.6117647, 0.84705883, 1)
+shader_parameter/side_water_line_edge_color = Color(0.3, 0.66, 0.82, 1)
+shader_parameter/side_water_line_core_color = Color(0.68, 0.9, 0.98, 1)
+shader_parameter/side_water_line_core_strength = 0.0
+shader_parameter/side_water_flow_time = 3808.289
+shader_parameter/side_water_bend_amount = 8.7
+shader_parameter/side_water_lane_randomness = 5.8
+shader_parameter/side_water_lane_count = 4.0
+shader_parameter/side_water_channel_edge_softness = 0.0
+shader_parameter/side_water_channel_edge_noise = 0.0
+shader_parameter/side_water_channel_rock_fade = 0.0

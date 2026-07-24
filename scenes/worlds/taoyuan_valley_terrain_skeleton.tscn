@@ -1,0 +1,609 @@
+[gd_scene format=4 uid="uid://uhjadkgq7nd0"]
+
+[ext_resource type="Texture2D" uid="uid://cmtjpfj6aqfkw" path="res://assets/textures/backgrounds/background_candidates/taoyuan_far_paradise_eye_level_v6_sky_extended_2048_v2.png" id="18_far_bg"]
+[ext_resource type="Texture2D" uid="uid://bbkk4xuoft0p8" path="res://assets/textures/backgrounds/taoyuan_lake_rock_floor_v1.png" id="19_lake_floor"]
+[ext_resource type="Shader" path="res://shaders/taoyuan_lake_floor.gdshader" id="20_lake_shader"]
+[ext_resource type="Script" uid="uid://cnmvpqgadjod8" path="res://scripts/world/soft_cloud_ladder.gd" id="22_soft_cloud_ladder"]
+[ext_resource type="PackedScene" path="res://scenes/objects/terrain/floating_rock_3a_demo.tscn" id="31_floating_rock_3a"]
+[ext_resource type="PackedScene" path="res://scenes/objects/terrain/grounded_rock_plate_3a_demo.tscn" id="32_grounded_rock_plate_3a"]
+[ext_resource type="Script" uid="uid://cwewgx255qxn1" path="res://scripts/world/rock3a_water_flow_global_control.gd" id="34_water_flow_control"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lake_floor_static"]
+resource_name = "mat_navigation_water_floor_static"
+shading_mode = 0
+albedo_color = Color(0.72, 0.96, 1, 0.82)
+albedo_texture = ExtResource("19_lake_floor")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lake_surface_dynamic"]
+resource_name = "mat_navigation_water_surface_dynamic"
+shader = ExtResource("20_lake_shader")
+shader_parameter/lake_texture = ExtResource("19_lake_floor")
+shader_parameter/shallow_tint = Color(0.34, 0.88, 0.86, 1)
+shader_parameter/deep_tint = Color(0.02, 0.23, 0.34, 1)
+shader_parameter/surface_tint = Color(0.30, 0.78, 1, 1)
+shader_parameter/texture_scale = 1.0
+shader_parameter/flow_direction = Vector2(0.82, 0.34)
+shader_parameter/flow_speed = 0.035
+shader_parameter/wave_speed = 0.22
+shader_parameter/directional_wave_frequency = 31.0
+shader_parameter/directional_wave_strength = 0.34
+shader_parameter/distortion_strength = 0.015
+shader_parameter/caustic_strength = 0.34
+shader_parameter/shimmer_strength = 0.26
+shader_parameter/transparent_layer_alpha = 0.44
+shader_parameter/depth_contrast = 0.42
+shader_parameter/normal_strength = 0.62
+shader_parameter/emission_strength = 0.20
+shader_parameter/vertex_wave_height = 0.18
+shader_parameter/vertex_wave_scale = 0.045
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lake_floor"]
+material = SubResource("StandardMaterial3D_lake_floor_static")
+size = Vector2(816, 816)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lake_surface_dynamic"]
+material = SubResource("ShaderMaterial_lake_surface_dynamic")
+size = Vector2(816, 816)
+subdivide_width = 96
+subdivide_depth = 96
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_far_bg"]
+resource_name = "mat_navigation_far_background"
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("18_far_bg")
+
+[sub_resource type="QuadMesh" id="QuadMesh_far_bg"]
+material = SubResource("StandardMaterial3D_far_bg")
+size = Vector2(816, 816)
+
+[node name="NavigationEnvironment" type="Node3D" unique_id=1072811063]
+
+[node name="NavigationWaterFlowControl" type="Node" parent="." unique_id=612420838]
+script = ExtResource("34_water_flow_control")
+"自然弯曲程度" = 8.7
+"水流间距随机度" = 5.8
+"水流数量倍率" = 0.4
+"岩体流速" = 0.035
+"岩体蓝色强度" = 1.5
+"表面水膜强度" = 1.5
+"岩体流光强度" = 0.805
+"柔和水痕强度" = 0.0
+"水痕亮芯强度" = 0.0
+"水痕下延强度" = 0.0
+"水痕下延长度" = 0.0
+"水流蓝色染色" = Color(0, 0.6117647, 0.84705883, 1)
+
+[node name="EmergencyAccessBridge" type="Node3D" parent="." unique_id=1872270240]
+transform = Transform3D(1.5286433, -0.068084136, -0.46756396, 0.05581165, 1.5982366, -0.050257225, 0.46918717, 0.031706147, 1.5293329, -35.58182, 70.92385, -1.2495003)
+script = ExtResource("22_soft_cloud_ladder")
+
+[node name="BackgroundWalls" type="Node3D" parent="." unique_id=1036583732]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="LakeFloor" type="MeshInstance3D" parent="BackgroundWalls" unique_id=1936081888]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -70, 0)
+mesh = SubResource("PlaneMesh_lake_floor")
+
+[node name="LakeSurfaceMotion" type="MeshInstance3D" parent="BackgroundWalls" unique_id=1197602475]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -69.92, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_lake_surface_dynamic")
+
+[node name="FarBackground_North" type="MeshInstance3D" parent="BackgroundWalls" unique_id=896771652]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 338, -408)
+mesh = SubResource("QuadMesh_far_bg")
+
+[node name="FarBackground_South" type="MeshInstance3D" parent="BackgroundWalls" unique_id=1619103208]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 338, 408)
+mesh = SubResource("QuadMesh_far_bg")
+
+[node name="FarBackground_East" type="MeshInstance3D" parent="BackgroundWalls" unique_id=455116799]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 408, 338, 0)
+mesh = SubResource("QuadMesh_far_bg")
+
+[node name="FarBackground_West" type="MeshInstance3D" parent="BackgroundWalls" unique_id=1839518581]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -408, 338, 0)
+mesh = SubResource("QuadMesh_far_bg")
+
+[node name="TerrainUpperWalkableRegions" type="Node3D" parent="." unique_id=1949883704]
+
+[node name="FloatingPlates" type="Node3D" parent="TerrainUpperWalkableRegions" unique_id=793526014]
+
+[node name="Rock3A_Comparison_Set" type="Node3D" parent="TerrainUpperWalkableRegions/FloatingPlates" unique_id=889106962]
+
+[node name="Rock3A_01_BroadAncientRoot" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=954116657 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(4.886402, 0, 1.778505, 0, 6.1, 0, -1.778505, 0, 4.886402, -376.82202, 106.86864, -153.82887)
+variant_seed = 101.0
+silhouette_x = 1.06
+silhouette_z = 0.96
+root_width_scale = 1.05
+protrusion_scale = 1.08
+
+[node name="Rock3A_02_TallNeedleRoot" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=1525937786 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(4.026727, 0, -1.003976, 0, 7.6, 0, 1.003976, 0, 4.026727, -30.298012, 222.04218, -314.2568)
+variant_seed = 137.0
+silhouette_x = 0.86
+silhouette_z = 1.12
+root_depth_scale = 1.3
+root_width_scale = 0.82
+protrusion_scale = 1.18
+cave_angle_offset = -0.35
+cave_vertical_offset = 0.04
+cave_scale = 0.94
+waterfall_angle_offset = 0.38
+debris_density = 1.06
+hanging_rock_scale = 1.16
+
+[node name="Rock3A_03_WideMossShelf" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=1466069450 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(4.067552, 0, 2.641499, 0, 5.35, 0, -2.641499, 0, 4.067552, 284.0095, 111.99838, 170.2163)
+variant_seed = 173.0
+silhouette_x = 1.22
+silhouette_z = 0.88
+root_depth_scale = 0.92
+root_width_scale = 1.18
+protrusion_scale = 0.92
+cave_angle_offset = 0.42
+cave_vertical_offset = -0.03
+cave_scale = 1.16
+waterfall_angle_offset = -0.22
+debris_density = 1.18
+hanging_rock_scale = 0.88
+
+[node name="Rock3A_04_FracturedTwinRibs" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=935022274 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(2.489294, 0, -2.669441, 0, 6.8, 0, 2.669441, 0, 2.489294, 111.90617, 164.85033, -356.5587)
+variant_seed = 211.0
+silhouette_x = 0.95
+silhouette_z = 1.28
+root_depth_scale = 1.18
+root_width_scale = 1.02
+protrusion_scale = 1.32
+cave_angle_offset = -0.74
+cave_vertical_offset = 0.08
+cave_scale = 0.82
+waterfall_angle_offset = 0.64
+debris_density = 0.92
+hanging_rock_scale = 1.28
+
+[node name="Rock3A_05_CaveBellyHeavy" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=653912102 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(4.406693, 0, 0.61932, 0, 7, 0, -0.61932, 0, 4.406693, -292.88272, 147.60991, 405.18533)
+variant_seed = 257.0
+silhouette_x = 1.1
+silhouette_z = 1.04
+root_depth_scale = 1.24
+root_width_scale = 1.26
+protrusion_scale = 0.84
+cave_angle_offset = 0.18
+cave_vertical_offset = -0.09
+cave_scale = 1.28
+waterfall_angle_offset = -0.46
+debris_density = 1.08
+hanging_rock_scale = 1.06
+
+[node name="Rock3A_06_SlenderSideSpire" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=308763512 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(1.77523, 0, 2.840961, 0, 8.2, 0, -2.840961, 0, 1.77523, -286.7837, 190.63986, -1.5943375)
+variant_seed = 293.0
+silhouette_x = 0.78
+silhouette_z = 1.18
+root_depth_scale = 1.35
+root_width_scale = 0.78
+protrusion_scale = 1.4
+cave_angle_offset = 0.62
+cave_vertical_offset = 0.05
+cave_scale = 0.88
+waterfall_angle_offset = 0.18
+debris_density = 0.86
+hanging_rock_scale = 1.34
+
+[node name="Rock3A_07_StackedCliffPlate" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=374927190 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(4.458885, 0, -2.370831, 0, 5.9, 0, 2.370831, 0, 4.458885, 266.75693, 203.02338, -283.10394)
+variant_seed = 331.0
+silhouette_x = 1.3
+silhouette_z = 0.82
+root_depth_scale = 0.96
+root_width_scale = 1.34
+protrusion_scale = 0.96
+cave_angle_offset = -0.15
+cave_vertical_offset = 0.02
+cave_scale = 1.08
+waterfall_angle_offset = 0.72
+debris_density = 1.24
+hanging_rock_scale = 0.9
+
+[node name="Rock3A_08_HollowMoonCut" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=1173761725 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(3.492781, 0, 3.144914, 0, 6.55, 0, -3.144914, 0, 3.492781, 203.01834, 80.397964, 104.36876)
+variant_seed = 367.0
+silhouette_x = 0.9
+silhouette_z = 1.18
+root_depth_scale = 1.08
+root_width_scale = 0.98
+protrusion_scale = 1.22
+cave_angle_offset = -0.95
+cave_vertical_offset = 0.11
+cave_scale = 1.32
+waterfall_angle_offset = -0.12
+debris_density = 1.02
+hanging_rock_scale = 1.2
+
+[node name="Rock3A_09_OverhangWaterGroove" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=317934712 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(2.018728, 0, -3.796675, 0, 6.2, 0, 3.796675, 0, 2.018728, 67.39755, 2.5000153, 131.02866)
+variant_seed = 409.0
+silhouette_x = 1.18
+silhouette_z = 0.92
+root_depth_scale = 1.12
+root_width_scale = 1.08
+protrusion_scale = 1.34
+cave_angle_offset = 0.34
+cave_vertical_offset = -0.04
+cave_scale = 0.98
+waterfall_angle_offset = 0.95
+debris_density = 1.12
+hanging_rock_scale = 0.98
+
+[node name="Rock3A_09_OverhangWaterGroove2" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=863388484 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(2.018728, 0, -3.796675, 0, 6.2, 0, 3.796675, 0, 2.018728, 8.516472, 42.726646, 119.08272)
+variant_seed = 409.0
+silhouette_x = 1.18
+silhouette_z = 0.92
+root_depth_scale = 1.12
+root_width_scale = 1.08
+protrusion_scale = 1.34
+cave_angle_offset = 0.34
+cave_vertical_offset = -0.04
+cave_scale = 0.98
+waterfall_angle_offset = 0.95
+debris_density = 1.12
+hanging_rock_scale = 0.98
+
+[node name="Rock3A_10_DenseBottomShard" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=693489828 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(3.608505, 0, 1.60661, 0, 7.3, 0, -1.60661, 0, 3.608505, -93.88628, 94.519424, -147.9371)
+variant_seed = 443.0
+silhouette_x = 0.88
+silhouette_z = 1.24
+root_depth_scale = 1.28
+root_width_scale = 1.3
+protrusion_scale = 0.88
+cave_angle_offset = -0.42
+cave_vertical_offset = 0.07
+cave_scale = 0.92
+waterfall_angle_offset = -0.72
+debris_density = 0.96
+hanging_rock_scale = 1.3
+
+[node name="Rock3A_11_RoundedGardenTop" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=1824722909 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(5.409377, 0, -0.664188, 0, 5.1, 0, 0.664188, 0, 5.409377, -185.74391, 11.913132, -33.306313)
+variant_seed = 479.0
+silhouette_x = 1.04
+silhouette_z = 1.02
+root_depth_scale = 0.88
+root_width_scale = 1.1
+protrusion_scale = 0.76
+cave_angle_offset = 0.05
+cave_vertical_offset = -0.02
+cave_scale = 1.04
+waterfall_angle_offset = 0.24
+debris_density = 1.3
+hanging_rock_scale = 0.82
+
+[node name="Rock3A_11_RoundedGardenTop2" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=28257593 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(5.409377, 0, -0.664188, 0, 5.1, 0, 0.664188, 0, 5.409377, -175.86871, 203.23679, -152.24266)
+variant_seed = 479.0
+silhouette_x = 1.04
+silhouette_z = 1.02
+root_depth_scale = 0.88
+root_width_scale = 1.1
+protrusion_scale = 0.76
+cave_angle_offset = 0.05
+cave_vertical_offset = -0.02
+cave_scale = 1.04
+waterfall_angle_offset = 0.24
+debris_density = 1.3
+hanging_rock_scale = 0.82
+
+[node name="Rock3A_12_AsymmetricBrokenWing" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=227662011 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(1.318551, 0, 3.82935, 0, 6.95, 0, -3.82935, 0, 1.318551, 249.68268, 255.56445, -24.842178)
+variant_seed = 521.0
+silhouette_x = 1.26
+silhouette_z = 0.74
+root_depth_scale = 1.18
+root_width_scale = 0.92
+protrusion_scale = 1.42
+cave_angle_offset = 0.82
+cave_vertical_offset = 0.04
+cave_scale = 1.18
+waterfall_angle_offset = -0.52
+debris_density = 0.9
+hanging_rock_scale = 1.24
+
+[node name="Rock3A_13_LowBroadSanctumBase" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=236291854 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(5.505777, 0, 1.475269, 0, 4.6, 0, -1.475269, 0, 5.505777, -230, -4, 45)
+variant_seed = 557.0
+silhouette_x = 1.34
+silhouette_z = 0.9
+root_depth_scale = 0.82
+root_width_scale = 1.22
+protrusion_scale = 0.8
+cave_angle_offset = -0.1
+cave_vertical_offset = -0.07
+cave_scale = 0.86
+waterfall_angle_offset = 0.16
+debris_density = 1.22
+hanging_rock_scale = 0.78
+
+[node name="Rock3A_14_DeepRootOldMountain" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=1884626052 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(5.052311, 0, -3.6707191, 0, 11.05, 0, 3.6707191, 0, 5.052311, -68.5435, -5.752632, 112.31653)
+variant_seed = 593.0
+silhouette_x = 0.94
+silhouette_z = 1.14
+root_depth_scale = 1.35
+root_width_scale = 1.18
+protrusion_scale = 1.08
+cave_angle_offset = 0.55
+cave_vertical_offset = 0.09
+cave_scale = 1.1
+waterfall_angle_offset = -0.32
+debris_density = 1.04
+hanging_rock_scale = 1.38
+
+[node name="Rock3A_15_SideCaveFang" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=410782104 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(2.460221, 0, 2.830161, 0, 7.55, 0, -2.830161, 0, 2.460221, -21.355263, 2.4438934, -170.48863)
+variant_seed = 631.0
+silhouette_x = 0.82
+silhouette_z = 1.3
+root_depth_scale = 1.24
+root_width_scale = 0.88
+protrusion_scale = 1.36
+cave_angle_offset = -1.02
+cave_vertical_offset = 0.12
+cave_scale = 1.22
+waterfall_angle_offset = 0.56
+debris_density = 0.92
+hanging_rock_scale = 1.18
+
+[node name="Rock3A_16_MossyBrokenCrown" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=1565398742 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(2.985958, 0, -3.821852, 0, 6.15, 0, 3.821852, 0, 2.985958, 152.75237, 201.28337, 246.41367)
+variant_seed = 677.0
+silhouette_x = 1.16
+silhouette_z = 1.08
+root_depth_scale = 1.05
+root_width_scale = 1.04
+protrusion_scale = 0.96
+cave_angle_offset = 0.22
+cave_vertical_offset = -0.11
+waterfall_angle_offset = -0.86
+debris_density = 1.35
+hanging_rock_scale = 1.02
+
+[node name="Rock3A_17_PairedSubRoots" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=1891404391 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(3.642961, 0, 2.188912, 0, 7.85, 0, -2.188912, 0, 3.642961, -93.00845, 161.0458, 259.94214)
+variant_seed = 719.0
+silhouette_x = 0.98
+silhouette_z = 1.2
+root_depth_scale = 1.3
+root_width_scale = 1.36
+protrusion_scale = 1.12
+cave_angle_offset = -0.58
+cave_vertical_offset = 0.03
+cave_scale = 0.9
+waterfall_angle_offset = 0.42
+debris_density = 1.08
+hanging_rock_scale = 1.42
+
+[node name="Rock3A_18_LightFloatingShard" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=790000766 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(2.931108, 0, -1.009261, 0, 4.85, 0, 1.009261, 0, 2.931108, -98.67134, 65.94647, 129.17862)
+variant_seed = 761.0
+silhouette_x = 0.76
+silhouette_z = 1.08
+root_depth_scale = 0.88
+root_width_scale = 0.82
+protrusion_scale = 1.2
+cave_angle_offset = 0.72
+cave_vertical_offset = -0.05
+cave_scale = 0.84
+waterfall_angle_offset = -0.18
+debris_density = 0.82
+hanging_rock_scale = 1.18
+
+[node name="Rock3A_18_LightFloatingShard2" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=2079462058 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(2.931108, 0, -1.009261, 0, 4.85, 0, 1.009261, 0, 2.931108, 91.885826, 44.2901, 37.313232)
+variant_seed = 761.0
+silhouette_x = 0.76
+silhouette_z = 1.08
+root_depth_scale = 0.88
+root_width_scale = 0.82
+protrusion_scale = 1.2
+cave_angle_offset = 0.72
+cave_vertical_offset = -0.05
+cave_scale = 0.84
+waterfall_angle_offset = -0.18
+debris_density = 0.82
+hanging_rock_scale = 1.18
+
+[node name="Rock3A_19_GrandTerraceRoot" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=1428373771 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(2.345286, 0, 4.808548, 0, 6.7, 0, -4.808548, 0, 2.345286, 149.95076, -13.655762, 43.66838)
+variant_seed = 809.0
+silhouette_x = 1.24
+silhouette_z = 0.98
+root_depth_scale = 1.16
+root_width_scale = 1.26
+protrusion_scale = 0.9
+cave_angle_offset = -0.26
+cave_vertical_offset = 0.06
+cave_scale = 1.06
+waterfall_angle_offset = 0.88
+debris_density = 1.18
+hanging_rock_scale = 0.94
+
+[node name="Rock3A_20_AncientSplitPeak" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=1075793203 instance=ExtResource("31_floating_rock_3a")]
+transform = Transform3D(3.5094, 0, -3.050674, 0, 8.35, 0, 3.050674, 0, 3.5094, -218.40262, 200.46605, 147.75645)
+variant_seed = 857.0
+silhouette_x = 1.02
+silhouette_z = 1.26
+root_depth_scale = 1.34
+root_width_scale = 0.96
+protrusion_scale = 1.3
+cave_angle_offset = 0.96
+cave_vertical_offset = 0.1
+cave_scale = 1.24
+waterfall_angle_offset = -0.64
+debris_density = 0.98
+hanging_rock_scale = 1.32
+
+[node name="Rock3A_Comparison_Label" type="Label3D" parent="TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set" unique_id=128726677]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -305, 66, -37)
+pixel_size = 0.055
+billboard = 1
+no_depth_test = true
+modulate = Color(0.74, 1, 0.72, 1)
+outline_modulate = Color(0.03, 0.04, 0.03, 1)
+text = "3A悬岩样板群 x20
+comparison_set"
+font_size = 44
+
+[node name="GroundedRockPlate_Comparison_Set" type="Node3D" parent="TerrainUpperWalkableRegions/FloatingPlates" unique_id=1388876529]
+
+[node name="GroundedPlate_01_BroadLandMass" parent="TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set" unique_id=1965394396 instance=ExtResource("32_grounded_rock_plate_3a")]
+transform = Transform3D(7.9130087, 0, -5.5407486, 0, 8.919, 0, 5.5407486, 0, 7.9130087, -227.04617, -24.71473, 150.14545)
+variant_seed = 911.0
+plate_length_scale = 1.26
+plate_width_scale = 0.94
+grounded_mass_scale = 1.24
+ground_depth_scale = 1.02
+wall_irregularity = 1.12
+buttress_scale = 1.18
+primary_cave_angle_offset = -0.32
+secondary_cave_angle_offset = 0.24
+cave_scale = 1.08
+waterfall_angle_offset = 0.42
+debris_density = 1.18
+
+[node name="GroundedPlate_02_CrookedStoneMesa" parent="TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set" unique_id=1458123513 instance=ExtResource("32_grounded_rock_plate_3a")]
+transform = Transform3D(4.679112, 0, -2.876554, 0, 6.9, 0, 2.876554, 0, 4.679112, 81.4774, 22.445908, -107.50325)
+variant_seed = 947.0
+plate_length_scale = 0.92
+plate_width_scale = 1.18
+grounded_mass_scale = 1.12
+ground_depth_scale = 1.08
+wall_irregularity = 1.34
+buttress_scale = 1.28
+primary_cave_angle_offset = 0.48
+secondary_cave_angle_offset = -0.28
+cave_scale = 0.94
+waterfall_angle_offset = -0.22
+debris_density = 0.96
+
+[node name="GroundedPlate_02_CrookedStoneMesa2" parent="TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set" unique_id=2099573071 instance=ExtResource("32_grounded_rock_plate_3a")]
+transform = Transform3D(6.383241, 0, -3.9241922, 0, 9.412, 0, 3.9241922, 0, 6.383241, 14.14138, -13.826401, -281.45706)
+variant_seed = 947.0
+plate_length_scale = 0.92
+plate_width_scale = 1.18
+grounded_mass_scale = 1.12
+ground_depth_scale = 1.08
+wall_irregularity = 1.34
+buttress_scale = 1.28
+primary_cave_angle_offset = 0.48
+secondary_cave_angle_offset = -0.28
+cave_scale = 0.94
+waterfall_angle_offset = -0.22
+debris_density = 0.96
+
+[node name="GroundedPlate_03_ForkedGroundPillar" parent="TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set" unique_id=459455670 instance=ExtResource("32_grounded_rock_plate_3a")]
+transform = Transform3D(3.653294, 0, 4.266269, 0, 7.4, 0, -4.266269, 0, 3.653294, 150.41829, -35.955658, 250.10446)
+variant_seed = 991.0
+plate_length_scale = 0.84
+plate_width_scale = 1.32
+grounded_mass_scale = 1.34
+ground_depth_scale = 1.14
+wall_irregularity = 1.22
+buttress_scale = 1.42
+primary_cave_angle_offset = -0.74
+secondary_cave_angle_offset = 0.52
+cave_scale = 1.18
+waterfall_angle_offset = 0.72
+debris_density = 1.08
+
+[node name="GroundedPlate_03_ForkedGroundPillar2" parent="TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set" unique_id=774888880 instance=ExtResource("32_grounded_rock_plate_3a")]
+transform = Transform3D(3.653294, 0, 4.266269, 0, 7.4, 0, -4.266269, 0, 3.653294, 152.36841, -1.28479, -43.593002)
+variant_seed = 991.0
+plate_length_scale = 0.84
+plate_width_scale = 1.32
+grounded_mass_scale = 1.34
+ground_depth_scale = 1.14
+wall_irregularity = 1.22
+buttress_scale = 1.42
+primary_cave_angle_offset = -0.74
+secondary_cave_angle_offset = 0.52
+cave_scale = 1.18
+waterfall_angle_offset = 0.72
+debris_density = 1.08
+
+[node name="GroundedPlate_04_WideBridgeSlab" parent="TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set" unique_id=699266010 instance=ExtResource("32_grounded_rock_plate_3a")]
+transform = Transform3D(8.3198185, 0, -8.3198185, 0, 8.862, 0, 8.3198185, 0, 8.3198185, -161.67674, -35.739677, -147.91895)
+variant_seed = 1031.0
+plate_length_scale = 1.42
+plate_width_scale = 0.78
+grounded_mass_scale = 1.18
+ground_depth_scale = 0.96
+wall_irregularity = 1.06
+buttress_scale = 1.02
+primary_cave_angle_offset = 0.18
+secondary_cave_angle_offset = -0.62
+cave_scale = 0.86
+waterfall_angle_offset = -0.54
+debris_density = 1.24
+
+[node name="GroundedPlate_05_CaveCutLandRoot" parent="TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set" unique_id=1668913403 instance=ExtResource("32_grounded_rock_plate_3a")]
+transform = Transform3D(-3.9745495, 0, 5.826471, 0, 8.389, 0, -5.826471, 0, -3.9745495, 200.49957, -15.891289, -234.32158)
+variant_seed = 1069.0
+plate_length_scale = 1.08
+plate_width_scale = 1.06
+grounded_mass_scale = 1.38
+ground_depth_scale = 1.18
+wall_irregularity = 1.28
+buttress_scale = 1.32
+primary_cave_angle_offset = 0.82
+secondary_cave_angle_offset = -0.18
+cave_scale = 1.3
+waterfall_angle_offset = 0.08
+debris_density = 1.04
+
+[node name="GroundedPlate_06_TwistedButtressMesa" parent="TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set" unique_id=1845205392 instance=ExtResource("32_grounded_rock_plate_3a")]
+transform = Transform3D(3.5399923, 0, -7.681551, 0, 8.71, 0, 7.681551, 0, 3.5399923, 301.7817, -24.94445, -37.76657)
+variant_seed = 1103.0
+plate_length_scale = 0.98
+plate_width_scale = 1.24
+grounded_mass_scale = 1.28
+ground_depth_scale = 1.06
+wall_irregularity = 1.42
+buttress_scale = 1.45
+primary_cave_angle_offset = -0.46
+secondary_cave_angle_offset = 0.74
+cave_scale = 1.04
+waterfall_angle_offset = -0.82
+debris_density = 0.92
+
+[node name="GroundedPlate_07_AncientWallPlate" parent="TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set" unique_id=125430647 instance=ExtResource("32_grounded_rock_plate_3a")]
+transform = Transform3D(8.332239, 0, 3.8147972, 0, 8.122, 0, -3.8147972, 0, 8.332239, -19.077904, -39.053867, 264.87888)
+variant_seed = 1151.0
+plate_length_scale = 1.3
+plate_width_scale = 0.88
+grounded_mass_scale = 1.2
+ground_depth_scale = 1.04
+wall_irregularity = 1.18
+buttress_scale = 1.16
+primary_cave_angle_offset = 0.34
+secondary_cave_angle_offset = -0.84
+cave_scale = 0.98
+waterfall_angle_offset = 0.58
+debris_density = 1.14
+
+[node name="GroundedRockPlate_Comparison_Label" type="Label3D" parent="TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set" unique_id=1055241582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 76, -286)
+pixel_size = 0.055
+billboard = 1
+no_depth_test = true
+modulate = Color(0.78, 0.94, 1, 1)
+outline_modulate = Color(0.03, 0.04, 0.03, 1)
+text = "粗壮陆地板块悬岩 x7
+grounded_plate_set"
+font_size = 44

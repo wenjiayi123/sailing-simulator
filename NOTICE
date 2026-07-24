@@ -1,0 +1,18 @@
+航行模拟器
+Copyright 2026 The Sailing Simulator Contributors
+
+The Apache-2.0 license covers source code and project-authored documentation.
+It does not automatically relicense third-party datasets, fonts, images,
+textures, audio, or other assets. See docs/DATA_SOURCES.md and
+docs/ASSET_LICENSE_AUDIT.md before redistributing a release bundle.
+
+Weather snapshot and live weather integration:
+Weather data by Open-Meteo.com, licensed under CC BY 4.0. Wave forecast data
+includes model products from DWD. See the source metadata embedded in
+data/public_cache/marine_weather_singapore.json.
+
+Fixed Long Beach public-weather reliability benchmark:
+Weather and marine model/reanalysis data by Open-Meteo.com, licensed under
+CC BY 4.0. See the exact request URLs, retrieval timestamp, evidence boundary,
+and SHA-256 in
+data/public/long_beach_open_meteo_2024_01_04.provenance.json.

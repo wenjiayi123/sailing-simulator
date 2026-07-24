@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://shaders/floating_rock_3a_demo_rock.gdshader" id="1_shader"]
+
+[resource]
+resource_name = "Cliff_Rock_Wet"
+shader = ExtResource("1_shader")
+shader_parameter/base_color = Color(0.18, 0.21, 0.20, 1)
+shader_parameter/detail_color = Color(0.28, 0.33, 0.31, 1)
+shader_parameter/accent_color = Color(0.08, 0.20, 0.17, 1)
+shader_parameter/strata_scale = 3.9
+shader_parameter/strata_strength = 0.42
+shader_parameter/noise_scale = 0.94
+shader_parameter/crack_strength = 0.16
+shader_parameter/roughness_value = 0.58
+shader_parameter/specular_value = 0.34
+

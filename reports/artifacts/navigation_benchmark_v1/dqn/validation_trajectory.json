@@ -1,0 +1,6653 @@
+{
+  "format": "ship_policy_validation_rollout_v1",
+  "source": "deterministic_policy_rollout",
+  "algorithm": "dqn",
+  "checkpoint": "/Users/apple/Desktop/航行模拟器/reports/artifacts/navigation_benchmark_v1/dqn/checkpoint.json",
+  "dataset_path": "/Users/apple/Desktop/航行模拟器/data/rl/long_beach_public_weather_benchmark_v1.json",
+  "dataset_sha256": "e05ea1305583681d9245644a1782c05a2392aa82d3318188f8dd7f3e04f4dc4e",
+  "experiment_sha256": "2d0c7c34b9be719161370e652a2c0da98913e441b672d9cc154c74f73e810388",
+  "observation_size": 28,
+  "environment_parameters": {
+    "vessel_radius_m": 3.2,
+    "obstacle_inflation_m": 1.5,
+    "cliff_inflation_m": 8.0,
+    "boundary_margin_m": 4.0,
+    "sensor_range_m": 220.0,
+    "tcpa_horizon_seconds": 180.0,
+    "terminate_on_collision": true,
+    "merge_scene_obstacles": false,
+    "domain_randomization": true,
+    "randomize_evaluation": false,
+    "start_position_jitter_m": 2.0,
+    "start_heading_jitter_degrees": 4.0,
+    "obstacle_position_jitter_m": 1.0,
+    "obstacle_size_jitter_m": 0.5,
+    "current_speed_jitter_knots": 0.12,
+    "current_direction_jitter_degrees": 6.0,
+    "wind_speed_jitter_knots": 1.0,
+    "wind_direction_jitter_degrees": 6.0,
+    "wave_height_jitter_m": 0.12,
+    "wave_direction_jitter_degrees": 6.0,
+    "wind_leeway_factor": 0.012,
+    "wave_drift_mps_per_meter": 0.08,
+    "sensor_distance_noise_std_m": 0.25,
+    "sensor_bearing_noise_degrees": 0.4,
+    "generated_traffic_count": 1,
+    "generated_traffic_speed_knots": 4.0,
+    "generated_traffic_radius_m": 5.0
+  },
+  "dataset_split": "validation",
+  "task_id": "2024-03-01_harbor_approach",
+  "playback_mode": "recorded_test_rollout",
+  "start": {
+    "x": -140.0,
+    "z": -100.0,
+    "heading_degrees": 58.0
+  },
+  "goal": {
+    "x": 100.0,
+    "z": 45.0
+  },
+  "route_points": [
+    {
+      "x": -100.0,
+      "z": -75.0
+    },
+    {
+      "x": -50.0,
+      "z": -45.0
+    },
+    {
+      "x": 0.0,
+      "z": -20.0
+    },
+    {
+      "x": 55.0,
+      "z": 10.0
+    },
+    {
+      "x": 100.0,
+      "z": 45.0
+    }
+  ],
+  "evaluation_obstacles": [
+    {
+      "name": "east_breakwater",
+      "kind": "breakwater",
+      "shape": "box",
+      "position": {
+        "x": 12.0,
+        "z": 34.0
+      },
+      "dynamic": false,
+      "velocity": {
+        "x": 0.0,
+        "z": 0.0
+      },
+      "source": "dataset",
+      "size": {
+        "x": 18.0,
+        "y": 7.0,
+        "z": 38.0
+      },
+      "radius": 21.02379604162864
+    },
+    {
+      "name": "west_shoal",
+      "kind": "shoal",
+      "shape": "circle",
+      "position": {
+        "x": -62.0,
+        "z": 4.0
+      },
+      "dynamic": false,
+      "velocity": {
+        "x": 0.0,
+        "z": 0.0
+      },
+      "source": "dataset_terrain",
+      "radius": 16.0,
+      "size": {
+        "x": 32.0,
+        "y": 7.0,
+        "z": 32.0
+      }
+    },
+    {
+      "name": "crossing_service_vessel",
+      "kind": "traffic",
+      "shape": "circle",
+      "position": {
+        "x": 21.138239499320576,
+        "z": 4.742458782691543
+      },
+      "dynamic": true,
+      "velocity": {
+        "x": -0.3573290524467455,
+        "z": -2.0265137587624493
+      },
+      "source": "dataset_dynamic",
+      "radius": 5.0,
+      "size": {
+        "x": 10.0,
+        "y": 7.0,
+        "z": 10.0
+      }
+    }
+  ],
+  "samples": [
+    {
+      "index": 0,
+      "time": 0.0,
+      "x": -140.0,
+      "z": -100.0,
+      "heading_degrees": 58.0,
+      "speed_mps": 0.0,
+      "throttle": 0.0,
+      "rudder": 0.0,
+      "reward": 0.0,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 109.3,
+      "nearest_tcpa_seconds": 180.0,
+      "nearest_dcpa_meters": 109.3,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 30.0,
+          "z": 55.0
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "time": 0.1,
+      "x": -139.98604,
+      "z": -99.98533,
+      "heading_degrees": 58.0,
+      "speed_mps": 0.28,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 0.05594,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 109.27989,
+      "nearest_tcpa_seconds": 180.0,
+      "nearest_dcpa_meters": 64.23506,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.96427,
+          "z": 54.79735
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "time": 0.2,
+      "x": -139.94849,
+      "z": -99.95556,
+      "heading_degrees": 57.6763,
+      "speed_mps": 0.56,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 0.143721,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 109.23354,
+      "nearest_tcpa_seconds": 180.0,
+      "nearest_dcpa_meters": 29.87723,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.92853,
+          "z": 54.5947
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "time": 0.3,
+      "x": -139.88784,
+      "z": -99.90995,
+      "heading_degrees": 56.9779,
+      "speed_mps": 0.84,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 0.271455,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 109.16067,
+      "nearest_tcpa_seconds": 145.1582,
+      "nearest_dcpa_meters": 23.97845,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.8928,
+          "z": 54.39205
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "time": 0.4,
+      "x": -139.80493,
+      "z": -99.84725,
+      "heading_degrees": 55.854,
+      "speed_mps": 1.12,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 0.358992,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 109.06077,
+      "nearest_tcpa_seconds": 109.53749,
+      "nearest_dcpa_meters": 21.57277,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.85707,
+          "z": 54.18939
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "time": 0.5,
+      "x": -139.70109,
+      "z": -99.76563,
+      "heading_degrees": 54.2535,
+      "speed_mps": 1.4,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 0.44597,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 108.93319,
+      "nearest_tcpa_seconds": 88.34487,
+      "nearest_dcpa_meters": 18.12431,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.82134,
+          "z": 53.98674
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "time": 0.6,
+      "x": -139.57791,
+      "z": -99.66311,
+      "heading_degrees": 52.3191,
+      "speed_mps": 1.68,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 0.532768,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 108.7773,
+      "nearest_tcpa_seconds": 74.26351,
+      "nearest_dcpa_meters": 13.92139,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.7856,
+          "z": 53.78409
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "time": 0.7,
+      "x": -139.43696,
+      "z": -99.53799,
+      "heading_degrees": 50.269,
+      "speed_mps": 1.96,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 0.619132,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 108.59268,
+      "nearest_tcpa_seconds": 64.1495,
+      "nearest_dcpa_meters": 9.42986,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.74987,
+          "z": 53.58144
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "time": 0.8,
+      "x": -139.28,
+      "z": -99.38858,
+      "heading_degrees": 48.1031,
+      "speed_mps": 2.24,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 0.703396,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 108.37903,
+      "nearest_tcpa_seconds": 56.50235,
+      "nearest_dcpa_meters": 4.65016,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.71414,
+          "z": 53.37879
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "time": 0.9,
+      "x": -139.10906,
+      "z": -99.21313,
+      "heading_degrees": 45.8215,
+      "speed_mps": 2.52,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 0.784873,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 108.13616,
+      "nearest_tcpa_seconds": 50.48781,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.6784,
+          "z": 53.17614
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "time": 1.0,
+      "x": -138.92637,
+      "z": -99.00994,
+      "heading_degrees": 43.4242,
+      "speed_mps": 2.8,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 0.86276,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 107.86404,
+      "nearest_tcpa_seconds": 45.60473,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.64267,
+          "z": 52.97349
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "time": 1.1,
+      "x": -138.73444,
+      "z": -98.77734,
+      "heading_degrees": 40.9111,
+      "speed_mps": 3.08,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 0.936135,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 107.56284,
+      "nearest_tcpa_seconds": 41.53376,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.60694,
+          "z": 52.77083
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "time": 1.2,
+      "x": -138.53341,
+      "z": -98.51587,
+      "heading_degrees": 38.8607,
+      "speed_mps": 3.36,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 0.969781,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 107.23306,
+      "nearest_tcpa_seconds": 38.04932,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.57121,
+          "z": 52.56818
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "time": 1.3,
+      "x": -138.32249,
+      "z": -98.22658,
+      "heading_degrees": 37.3237,
+      "speed_mps": 3.64,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 1.083287,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 106.87506,
+      "nearest_tcpa_seconds": 35.04631,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.53547,
+          "z": 52.36553
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "time": 1.4,
+      "x": -138.09992,
+      "z": -97.91103,
+      "heading_degrees": 36.3513,
+      "speed_mps": 3.92,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 1.158516,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 106.48906,
+      "nearest_tcpa_seconds": 32.4454,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.49974,
+          "z": 52.16288
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "time": 1.5,
+      "x": -137.86286,
+      "z": -97.57139,
+      "heading_degrees": 35.9941,
+      "speed_mps": 4.2,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 1.237486,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 106.07508,
+      "nearest_tcpa_seconds": 30.18188,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.46401,
+          "z": 51.96023
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "time": 1.6,
+      "x": -137.60935,
+      "z": -97.20909,
+      "heading_degrees": 35.9941,
+      "speed_mps": 4.48,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 1.318147,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 105.63311,
+      "nearest_tcpa_seconds": 28.19682,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.42827,
+          "z": 51.75758
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "time": 1.7,
+      "x": -137.33939,
+      "z": -96.82414,
+      "heading_degrees": 35.9941,
+      "speed_mps": 4.76,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 1.397174,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 105.16314,
+      "nearest_tcpa_seconds": 26.43942,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.39254,
+          "z": 51.55493
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "time": 1.8,
+      "x": -137.05297,
+      "z": -96.41653,
+      "heading_degrees": 35.9941,
+      "speed_mps": 5.04,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 1.47559,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 104.66518,
+      "nearest_tcpa_seconds": 24.87173,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.35681,
+          "z": 51.35228
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "time": 1.9,
+      "x": -136.75009,
+      "z": -95.98627,
+      "heading_degrees": 35.9941,
+      "speed_mps": 5.32,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 1.55333,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 104.13922,
+      "nearest_tcpa_seconds": 23.4638,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.32107,
+          "z": 51.14962
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "time": 2.0,
+      "x": -136.43076,
+      "z": -95.53336,
+      "heading_degrees": 35.9941,
+      "speed_mps": 5.6,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 1.630326,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 103.58526,
+      "nearest_tcpa_seconds": 22.19166,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.28534,
+          "z": 50.94697
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "time": 2.1,
+      "x": -136.09497,
+      "z": -95.05779,
+      "heading_degrees": 35.9941,
+      "speed_mps": 5.88,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 1.706497,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 103.00331,
+      "nearest_tcpa_seconds": 21.03592,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.24961,
+          "z": 50.74432
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "time": 2.2,
+      "x": -135.74273,
+      "z": -94.55956,
+      "heading_degrees": 35.9941,
+      "speed_mps": 6.16,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 1.781755,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 102.39337,
+      "nearest_tcpa_seconds": 19.98069,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.21388,
+          "z": 50.54167
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "time": 2.3,
+      "x": -135.37403,
+      "z": -94.03869,
+      "heading_degrees": 35.9941,
+      "speed_mps": 6.44,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 1.856001,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 101.75543,
+      "nearest_tcpa_seconds": 19.01288,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.17814,
+          "z": 50.33902
+        }
+      ]
+    },
+    {
+      "index": 24,
+      "time": 2.4,
+      "x": -134.98887,
+      "z": -93.49515,
+      "heading_degrees": 35.9941,
+      "speed_mps": 6.72,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 1.929122,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 101.08949,
+      "nearest_tcpa_seconds": 18.12155,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.14241,
+          "z": 50.13637
+        }
+      ]
+    },
+    {
+      "index": 25,
+      "time": 2.5,
+      "x": -134.58726,
+      "z": -92.92897,
+      "heading_degrees": 35.9941,
+      "speed_mps": 7.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 2.000993,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 100.39556,
+      "nearest_tcpa_seconds": 17.29753,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.10668,
+          "z": 49.93372
+        }
+      ]
+    },
+    {
+      "index": 26,
+      "time": 2.6,
+      "x": -134.16919,
+      "z": -92.34013,
+      "heading_degrees": 35.9941,
+      "speed_mps": 7.28,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 2.071469,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 99.67364,
+      "nearest_tcpa_seconds": 16.53305,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.07094,
+          "z": 49.73106
+        }
+      ]
+    },
+    {
+      "index": 27,
+      "time": 2.7,
+      "x": -133.73467,
+      "z": -91.72863,
+      "heading_degrees": 35.9941,
+      "speed_mps": 7.56,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 2.140385,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 98.92372,
+      "nearest_tcpa_seconds": 15.82149,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 29.03521,
+          "z": 49.52841
+        }
+      ]
+    },
+    {
+      "index": 28,
+      "time": 2.8,
+      "x": -133.28369,
+      "z": -91.09449,
+      "heading_degrees": 35.9941,
+      "speed_mps": 7.84,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 2.207556,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 98.14581,
+      "nearest_tcpa_seconds": 15.15719,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.99948,
+          "z": 49.32576
+        }
+      ]
+    },
+    {
+      "index": 29,
+      "time": 2.9,
+      "x": -132.81626,
+      "z": -90.43768,
+      "heading_degrees": 35.9941,
+      "speed_mps": 8.12,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 2.272767,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 97.3399,
+      "nearest_tcpa_seconds": 14.53525,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.96375,
+          "z": 49.12311
+        }
+      ]
+    },
+    {
+      "index": 30,
+      "time": 3.0,
+      "x": -132.33237,
+      "z": -89.75823,
+      "heading_degrees": 35.9941,
+      "speed_mps": 8.4,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 2.335771,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 96.50601,
+      "nearest_tcpa_seconds": 13.95145,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.92801,
+          "z": 48.92046
+        }
+      ]
+    },
+    {
+      "index": 31,
+      "time": 3.1,
+      "x": -131.83203,
+      "z": -89.05612,
+      "heading_degrees": 35.9941,
+      "speed_mps": 8.68,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 2.396286,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 95.64411,
+      "nearest_tcpa_seconds": 13.40208,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.89228,
+          "z": 48.71781
+        }
+      ]
+    },
+    {
+      "index": 32,
+      "time": 3.2,
+      "x": -131.30156,
+      "z": -88.34148,
+      "heading_degrees": 37.0817,
+      "speed_mps": 8.96,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 2.439945,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 94.75412,
+      "nearest_tcpa_seconds": 12.88543,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.85655,
+          "z": 48.51516
+        }
+      ]
+    },
+    {
+      "index": 33,
+      "time": 3.3,
+      "x": -130.726,
+      "z": -87.62669,
+      "heading_degrees": 39.3077,
+      "speed_mps": 9.24,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 2.592129,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 93.83696,
+      "nearest_tcpa_seconds": 12.38458,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.82081,
+          "z": 48.3125
+        }
+      ]
+    },
+    {
+      "index": 34,
+      "time": 3.4,
+      "x": -130.11819,
+      "z": -86.90238,
+      "heading_degrees": 40.4462,
+      "speed_mps": 9.52,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 2.641655,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 92.89282,
+      "nearest_tcpa_seconds": 11.90847,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.78508,
+          "z": 48.10985
+        }
+      ]
+    },
+    {
+      "index": 35,
+      "time": 3.5,
+      "x": -129.46244,
+      "z": -86.18319,
+      "heading_degrees": 42.7741,
+      "speed_mps": 9.8,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 2.75688,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 91.9241,
+      "nearest_tcpa_seconds": 11.42981,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.74935,
+          "z": 47.9072
+        }
+      ]
+    },
+    {
+      "index": 36,
+      "time": 3.6,
+      "x": -128.77247,
+      "z": -85.45782,
+      "heading_degrees": 43.9635,
+      "speed_mps": 10.08,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 2.848271,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 90.93003,
+      "nearest_tcpa_seconds": 10.98647,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.71362,
+          "z": 47.70455
+        }
+      ]
+    },
+    {
+      "index": 37,
+      "time": 3.7,
+      "x": -128.06306,
+      "z": -84.71229,
+      "heading_degrees": 43.9635,
+      "speed_mps": 10.36,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 2.948297,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 89.90831,
+      "nearest_tcpa_seconds": 10.5902,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.67788,
+          "z": 47.5019
+        }
+      ]
+    },
+    {
+      "index": 38,
+      "time": 3.8,
+      "x": -127.31781,
+      "z": -83.96278,
+      "heading_degrees": 45.2039,
+      "speed_mps": 10.64,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 2.994569,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 88.86216,
+      "nearest_tcpa_seconds": 10.18121,
+      "nearest_dcpa_meters": 0.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.64215,
+          "z": 47.29925
+        }
+      ]
+    },
+    {
+      "index": 39,
+      "time": 3.9,
+      "x": -126.51945,
+      "z": -83.22852,
+      "heading_degrees": 47.7354,
+      "speed_mps": 10.92,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.154687,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 87.79689,
+      "nearest_tcpa_seconds": 9.74482,
+      "nearest_dcpa_meters": 0.46036,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.60642,
+          "z": 47.0966
+        }
+      ]
+    },
+    {
+      "index": 40,
+      "time": 4.0,
+      "x": -125.65139,
+      "z": -82.53314,
+      "heading_degrees": 51.6092,
+      "speed_mps": 11.2,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.307431,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 86.72199,
+      "nearest_tcpa_seconds": 9.25254,
+      "nearest_dcpa_meters": 7.59519,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.57068,
+          "z": 46.89394
+        }
+      ]
+    },
+    {
+      "index": 41,
+      "time": 4.1,
+      "x": -124.72957,
+      "z": -81.86247,
+      "heading_degrees": 54.2426,
+      "speed_mps": 11.48,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.392987,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 85.63608,
+      "nearest_tcpa_seconds": 8.8048,
+      "nearest_dcpa_meters": 12.32103,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.53495,
+          "z": 46.69129
+        }
+      ]
+    },
+    {
+      "index": 42,
+      "time": 4.2,
+      "x": -123.76919,
+      "z": -81.19798,
+      "heading_degrees": 55.5848,
+      "speed_mps": 11.76,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.529501,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 84.53369,
+      "nearest_tcpa_seconds": 8.42772,
+      "nearest_dcpa_meters": 14.67418,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.49922,
+          "z": 46.48864
+        }
+      ]
+    },
+    {
+      "index": 43,
+      "time": 4.3,
+      "x": -122.78902,
+      "z": -80.51993,
+      "heading_degrees": 55.5848,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.582062,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 83.41015,
+      "nearest_tcpa_seconds": 8.15985,
+      "nearest_dcpa_meters": 14.66879,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.46349,
+          "z": 46.28599
+        }
+      ]
+    },
+    {
+      "index": 44,
+      "time": 4.4,
+      "x": -121.79298,
+      "z": -79.86563,
+      "heading_degrees": 56.9488,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.548001,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 82.29827,
+      "nearest_tcpa_seconds": 7.98807,
+      "nearest_dcpa_meters": 16.98442,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.42775,
+          "z": 46.08334
+        }
+      ]
+    },
+    {
+      "index": 45,
+      "time": 4.5,
+      "x": -120.79694,
+      "z": -79.21133,
+      "heading_degrees": 56.9488,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.524097,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 81.1882,
+      "nearest_tcpa_seconds": 7.88876,
+      "nearest_dcpa_meters": 16.97923,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.39202,
+          "z": 45.88069
+        }
+      ]
+    },
+    {
+      "index": 46,
+      "time": 4.6,
+      "x": -119.7856,
+      "z": -78.58116,
+      "heading_degrees": 58.3128,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.526873,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 80.09099,
+      "nearest_tcpa_seconds": 7.71248,
+      "nearest_dcpa_meters": 19.21697,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.35629,
+          "z": 45.67804
+        }
+      ]
+    },
+    {
+      "index": 47,
+      "time": 4.7,
+      "x": -118.74543,
+      "z": -78.00031,
+      "heading_degrees": 61.0408,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.601,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 79.02008,
+      "nearest_tcpa_seconds": 7.44614,
+      "nearest_dcpa_meters": 23.57201,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.32055,
+          "z": 45.47539
+        }
+      ]
+    },
+    {
+      "index": 48,
+      "time": 4.8,
+      "x": -117.69172,
+      "z": -77.44461,
+      "heading_degrees": 62.4048,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.566965,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 77.96505,
+      "nearest_tcpa_seconds": 7.25694,
+      "nearest_dcpa_meters": 25.68206,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.28482,
+          "z": 45.27273
+        }
+      ]
+    },
+    {
+      "index": 49,
+      "time": 4.9,
+      "x": -116.63801,
+      "z": -76.88891,
+      "heading_degrees": 62.4048,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.579286,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 76.91315,
+      "nearest_tcpa_seconds": 7.15767,
+      "nearest_dcpa_meters": 25.67768,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.24909,
+          "z": 45.07008
+        }
+      ]
+    },
+    {
+      "index": 50,
+      "time": 5.0,
+      "x": -115.57137,
+      "z": -76.35869,
+      "heading_degrees": 63.7688,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.535889,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 75.87852,
+      "nearest_tcpa_seconds": 6.96438,
+      "nearest_dcpa_meters": 27.70495,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.21335,
+          "z": 44.86743
+        }
+      ]
+    },
+    {
+      "index": 51,
+      "time": 5.1,
+      "x": -114.4807,
+      "z": -75.88029,
+      "heading_degrees": 66.4968,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.602791,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 74.87764,
+      "nearest_tcpa_seconds": 6.66526,
+      "nearest_dcpa_meters": 31.62395,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.17762,
+          "z": 44.66478
+        }
+      ]
+    },
+    {
+      "index": 52,
+      "time": 5.2,
+      "x": -113.37896,
+      "z": -75.42823,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 6.562924,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 73.89726,
+      "nearest_tcpa_seconds": 6.46033,
+      "nearest_dcpa_meters": 33.50951,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.14189,
+          "z": 44.46213
+        }
+      ]
+    },
+    {
+      "index": 53,
+      "time": 5.3,
+      "x": -112.27721,
+      "z": -74.97617,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.821418,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 72.92176,
+      "nearest_tcpa_seconds": 6.36109,
+      "nearest_dcpa_meters": 33.50598,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.10616,
+          "z": 44.25948
+        }
+      ]
+    },
+    {
+      "index": 54,
+      "time": 5.4,
+      "x": -111.17547,
+      "z": -74.52411,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.821857,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 71.9513,
+      "nearest_tcpa_seconds": 6.26185,
+      "nearest_dcpa_meters": 33.50245,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.07042,
+          "z": 44.05683
+        }
+      ]
+    },
+    {
+      "index": 55,
+      "time": 5.5,
+      "x": -110.07372,
+      "z": -74.07205,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.822284,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 70.98603,
+      "nearest_tcpa_seconds": 6.16261,
+      "nearest_dcpa_meters": 33.49892,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 28.03469,
+          "z": 43.85417
+        }
+      ]
+    },
+    {
+      "index": 56,
+      "time": 5.6,
+      "x": -108.97198,
+      "z": -73.61999,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.822698,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 70.02612,
+      "nearest_tcpa_seconds": 6.06337,
+      "nearest_dcpa_meters": 33.49539,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.99896,
+          "z": 43.65152
+        }
+      ]
+    },
+    {
+      "index": 57,
+      "time": 5.7,
+      "x": -107.87024,
+      "z": -73.16793,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.823097,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 69.07175,
+      "nearest_tcpa_seconds": 5.96413,
+      "nearest_dcpa_meters": 33.49186,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.96322,
+          "z": 43.44887
+        }
+      ]
+    },
+    {
+      "index": 58,
+      "time": 5.8,
+      "x": -106.76849,
+      "z": -72.71587,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.823482,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 68.12309,
+      "nearest_tcpa_seconds": 5.86489,
+      "nearest_dcpa_meters": 33.48833,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.92749,
+          "z": 43.24622
+        }
+      ]
+    },
+    {
+      "index": 59,
+      "time": 5.9,
+      "x": -105.66675,
+      "z": -72.2638,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.823849,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 67.18033,
+      "nearest_tcpa_seconds": 5.76566,
+      "nearest_dcpa_meters": 33.4848,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.89176,
+          "z": 43.04357
+        }
+      ]
+    },
+    {
+      "index": 60,
+      "time": 6.0,
+      "x": -104.565,
+      "z": -71.81174,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.824199,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 66.24366,
+      "nearest_tcpa_seconds": 5.66642,
+      "nearest_dcpa_meters": 33.48127,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.85603,
+          "z": 42.84092
+        }
+      ]
+    },
+    {
+      "index": 61,
+      "time": 6.1,
+      "x": -103.46326,
+      "z": -71.35968,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.824529,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 65.31327,
+      "nearest_tcpa_seconds": 5.56718,
+      "nearest_dcpa_meters": 33.47774,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.82029,
+          "z": 42.63827
+        }
+      ]
+    },
+    {
+      "index": 62,
+      "time": 6.2,
+      "x": -102.36151,
+      "z": -70.90762,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.824838,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 64.38938,
+      "nearest_tcpa_seconds": 5.46794,
+      "nearest_dcpa_meters": 33.47421,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.78456,
+          "z": 42.43561
+        }
+      ]
+    },
+    {
+      "index": 63,
+      "time": 6.3,
+      "x": -101.25977,
+      "z": -70.45556,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.825125,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 63.4722,
+      "nearest_tcpa_seconds": 5.3687,
+      "nearest_dcpa_meters": 33.47068,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.74883,
+          "z": 42.23296
+        }
+      ]
+    },
+    {
+      "index": 64,
+      "time": 6.4,
+      "x": -100.15802,
+      "z": -70.0035,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.825388,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 62.56195,
+      "nearest_tcpa_seconds": 5.26946,
+      "nearest_dcpa_meters": 33.46715,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.71309,
+          "z": 42.03031
+        }
+      ]
+    },
+    {
+      "index": 65,
+      "time": 6.5,
+      "x": -99.05628,
+      "z": -69.55144,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.825623,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 61.65886,
+      "nearest_tcpa_seconds": 5.17022,
+      "nearest_dcpa_meters": 33.46362,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.67736,
+          "z": 41.82766
+        }
+      ]
+    },
+    {
+      "index": 66,
+      "time": 6.6,
+      "x": -97.95454,
+      "z": -69.09938,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.82583,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 60.76317,
+      "nearest_tcpa_seconds": 5.07098,
+      "nearest_dcpa_meters": 33.46009,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.64163,
+          "z": 41.62501
+        }
+      ]
+    },
+    {
+      "index": 67,
+      "time": 6.7,
+      "x": -96.85279,
+      "z": -68.64731,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.826005,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 59.87512,
+      "nearest_tcpa_seconds": 4.97174,
+      "nearest_dcpa_meters": 33.45656,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.6059,
+          "z": 41.42236
+        }
+      ]
+    },
+    {
+      "index": 68,
+      "time": 6.8,
+      "x": -95.75105,
+      "z": -68.19525,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.826146,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 58.99497,
+      "nearest_tcpa_seconds": 4.8725,
+      "nearest_dcpa_meters": 33.45303,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.57016,
+          "z": 41.21971
+        }
+      ]
+    },
+    {
+      "index": 69,
+      "time": 6.9,
+      "x": -94.6493,
+      "z": -67.74319,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.826249,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 58.12298,
+      "nearest_tcpa_seconds": 4.77326,
+      "nearest_dcpa_meters": 33.4495,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.53443,
+          "z": 41.01706
+        }
+      ]
+    },
+    {
+      "index": 70,
+      "time": 7.0,
+      "x": -93.54756,
+      "z": -67.29113,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.826311,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 57.25944,
+      "nearest_tcpa_seconds": 4.67402,
+      "nearest_dcpa_meters": 33.44597,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.4987,
+          "z": 40.8144
+        }
+      ]
+    },
+    {
+      "index": 71,
+      "time": 7.1,
+      "x": -92.44581,
+      "z": -66.83907,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.826327,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 56.40461,
+      "nearest_tcpa_seconds": 4.57478,
+      "nearest_dcpa_meters": 33.44244,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.46296,
+          "z": 40.61175
+        }
+      ]
+    },
+    {
+      "index": 72,
+      "time": 7.2,
+      "x": -91.34407,
+      "z": -66.38701,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.826293,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 55.5588,
+      "nearest_tcpa_seconds": 4.47554,
+      "nearest_dcpa_meters": 33.4389,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.42723,
+          "z": 40.4091
+        }
+      ]
+    },
+    {
+      "index": 73,
+      "time": 7.3,
+      "x": -90.24233,
+      "z": -65.93495,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.826203,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 54.72232,
+      "nearest_tcpa_seconds": 4.3763,
+      "nearest_dcpa_meters": 33.43537,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.3915,
+          "z": 40.20645
+        }
+      ]
+    },
+    {
+      "index": 74,
+      "time": 7.4,
+      "x": -89.14058,
+      "z": -65.48288,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.826052,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 53.89546,
+      "nearest_tcpa_seconds": 4.27706,
+      "nearest_dcpa_meters": 33.43184,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.35577,
+          "z": 40.0038
+        }
+      ]
+    },
+    {
+      "index": 75,
+      "time": 7.5,
+      "x": -88.03884,
+      "z": -65.03082,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.825833,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 53.07856,
+      "nearest_tcpa_seconds": 4.17782,
+      "nearest_dcpa_meters": 33.42831,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.32003,
+          "z": 39.80115
+        }
+      ]
+    },
+    {
+      "index": 76,
+      "time": 7.6,
+      "x": -86.93709,
+      "z": -64.57876,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.825539,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 52.27195,
+      "nearest_tcpa_seconds": 4.07858,
+      "nearest_dcpa_meters": 33.42478,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.2843,
+          "z": 39.5985
+        }
+      ]
+    },
+    {
+      "index": 77,
+      "time": 7.7,
+      "x": -85.83535,
+      "z": -64.1267,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.825159,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 51.47597,
+      "nearest_tcpa_seconds": 3.97934,
+      "nearest_dcpa_meters": 33.42125,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.24857,
+          "z": 39.39584
+        }
+      ]
+    },
+    {
+      "index": 78,
+      "time": 7.8,
+      "x": -84.7336,
+      "z": -63.67464,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.824685,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 50.69099,
+      "nearest_tcpa_seconds": 3.8801,
+      "nearest_dcpa_meters": 33.41772,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.21283,
+          "z": 39.19319
+        }
+      ]
+    },
+    {
+      "index": 79,
+      "time": 7.9,
+      "x": -83.63186,
+      "z": -63.22258,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.824104,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 49.91737,
+      "nearest_tcpa_seconds": 3.78086,
+      "nearest_dcpa_meters": 33.41419,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.1771,
+          "z": 38.99054
+        }
+      ]
+    },
+    {
+      "index": 80,
+      "time": 8.0,
+      "x": -82.53012,
+      "z": -62.77052,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.823404,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 49.15548,
+      "nearest_tcpa_seconds": 3.68162,
+      "nearest_dcpa_meters": 33.41066,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.14137,
+          "z": 38.78789
+        }
+      ]
+    },
+    {
+      "index": 81,
+      "time": 8.1,
+      "x": -81.42837,
+      "z": -62.31846,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.822567,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 48.40571,
+      "nearest_tcpa_seconds": 3.58238,
+      "nearest_dcpa_meters": 33.40713,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.10563,
+          "z": 38.58524
+        }
+      ]
+    },
+    {
+      "index": 82,
+      "time": 8.2,
+      "x": -80.32663,
+      "z": -61.86639,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.821576,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 47.66847,
+      "nearest_tcpa_seconds": 3.48314,
+      "nearest_dcpa_meters": 33.4036,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.0699,
+          "z": 38.38259
+        }
+      ]
+    },
+    {
+      "index": 83,
+      "time": 8.3,
+      "x": -79.22488,
+      "z": -61.41433,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.820409,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 46.94415,
+      "nearest_tcpa_seconds": 3.3839,
+      "nearest_dcpa_meters": 33.40007,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 27.03417,
+          "z": 38.17994
+        }
+      ]
+    },
+    {
+      "index": 84,
+      "time": 8.4,
+      "x": -78.12314,
+      "z": -60.96227,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.81904,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 46.23319,
+      "nearest_tcpa_seconds": 3.28466,
+      "nearest_dcpa_meters": 33.39654,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.99844,
+          "z": 37.97728
+        }
+      ]
+    },
+    {
+      "index": 85,
+      "time": 8.5,
+      "x": -77.02139,
+      "z": -60.51021,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.817439,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 45.53601,
+      "nearest_tcpa_seconds": 3.18542,
+      "nearest_dcpa_meters": 33.39301,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.9627,
+          "z": 37.77463
+        }
+      ]
+    },
+    {
+      "index": 86,
+      "time": 8.6,
+      "x": -75.93073,
+      "z": -60.03182,
+      "heading_degrees": 66.4968,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.785222,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 44.82968,
+      "nearest_tcpa_seconds": 3.19258,
+      "nearest_dcpa_meters": 32.46403,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.92697,
+          "z": 37.57198
+        }
+      ]
+    },
+    {
+      "index": 87,
+      "time": 8.7,
+      "x": -74.84006,
+      "z": -59.55343,
+      "heading_degrees": 66.4968,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.785854,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 44.13753,
+      "nearest_tcpa_seconds": 3.09333,
+      "nearest_dcpa_meters": 32.46028,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.89124,
+          "z": 37.36933
+        }
+      ]
+    },
+    {
+      "index": 88,
+      "time": 8.8,
+      "x": -73.7494,
+      "z": -59.07503,
+      "heading_degrees": 66.4968,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.82426,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 43.46002,
+      "nearest_tcpa_seconds": 2.99408,
+      "nearest_dcpa_meters": 32.45653,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.8555,
+          "z": 37.16668
+        }
+      ]
+    },
+    {
+      "index": 89,
+      "time": 8.9,
+      "x": -72.65874,
+      "z": -58.59664,
+      "heading_degrees": 66.4968,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.822366,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 42.79762,
+      "nearest_tcpa_seconds": 2.89483,
+      "nearest_dcpa_meters": 32.45279,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.81977,
+          "z": 36.96403
+        }
+      ]
+    },
+    {
+      "index": 90,
+      "time": 9.0,
+      "x": -71.56807,
+      "z": -58.11825,
+      "heading_degrees": 66.4968,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.819006,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 42.15082,
+      "nearest_tcpa_seconds": 2.79559,
+      "nearest_dcpa_meters": 32.44904,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.78404,
+          "z": 36.76138
+        }
+      ]
+    },
+    {
+      "index": 91,
+      "time": 9.1,
+      "x": -70.47741,
+      "z": -57.63986,
+      "heading_degrees": 66.4968,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.815234,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 41.52008,
+      "nearest_tcpa_seconds": 2.69634,
+      "nearest_dcpa_meters": 32.44529,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.74831,
+          "z": 36.55872
+        }
+      ]
+    },
+    {
+      "index": 92,
+      "time": 9.2,
+      "x": -69.38674,
+      "z": -57.16147,
+      "heading_degrees": 66.4968,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.810966,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 40.90592,
+      "nearest_tcpa_seconds": 2.59709,
+      "nearest_dcpa_meters": 32.44155,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.71257,
+          "z": 36.35607
+        }
+      ]
+    },
+    {
+      "index": 93,
+      "time": 9.3,
+      "x": -68.29608,
+      "z": -56.68308,
+      "heading_degrees": 66.4968,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.806095,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 40.30882,
+      "nearest_tcpa_seconds": 2.49785,
+      "nearest_dcpa_meters": 32.4378,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.67684,
+          "z": 36.15342
+        }
+      ]
+    },
+    {
+      "index": 94,
+      "time": 9.4,
+      "x": -67.20541,
+      "z": -56.20468,
+      "heading_degrees": 66.4968,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.800483,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 39.7293,
+      "nearest_tcpa_seconds": 2.3986,
+      "nearest_dcpa_meters": 32.43406,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.64111,
+          "z": 35.95077
+        }
+      ]
+    },
+    {
+      "index": 95,
+      "time": 9.5,
+      "x": -66.11475,
+      "z": -55.72629,
+      "heading_degrees": 66.4968,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.793952,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 39.16786,
+      "nearest_tcpa_seconds": 2.29935,
+      "nearest_dcpa_meters": 32.43031,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.60537,
+          "z": 35.74812
+        }
+      ]
+    },
+    {
+      "index": 96,
+      "time": 9.6,
+      "x": -65.02408,
+      "z": -55.2479,
+      "heading_degrees": 66.4968,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.786265,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 38.62503,
+      "nearest_tcpa_seconds": 2.20011,
+      "nearest_dcpa_meters": 32.42656,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.56964,
+          "z": 35.54547
+        }
+      ]
+    },
+    {
+      "index": 97,
+      "time": 9.7,
+      "x": -63.93342,
+      "z": -54.76951,
+      "heading_degrees": 66.4968,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.777106,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 38.1013,
+      "nearest_tcpa_seconds": 2.10086,
+      "nearest_dcpa_meters": 32.42282,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.53391,
+          "z": 35.34282
+        }
+      ]
+    },
+    {
+      "index": 98,
+      "time": 9.8,
+      "x": -62.84275,
+      "z": -54.29112,
+      "heading_degrees": 66.4968,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.766046,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 37.59721,
+      "nearest_tcpa_seconds": 2.00161,
+      "nearest_dcpa_meters": 32.41907,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.49818,
+          "z": 35.14017
+        }
+      ]
+    },
+    {
+      "index": 99,
+      "time": 9.9,
+      "x": -61.76379,
+      "z": -53.78666,
+      "heading_degrees": 65.1328,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.730796,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 37.08715,
+      "nearest_tcpa_seconds": 2.00716,
+      "nearest_dcpa_meters": 31.8283,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.46244,
+          "z": 34.93751
+        }
+      ]
+    },
+    {
+      "index": 100,
+      "time": 10.0,
+      "x": -60.68483,
+      "z": -53.28221,
+      "heading_degrees": 65.1328,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 6.720214,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 36.59731,
+      "nearest_tcpa_seconds": 1.90791,
+      "nearest_dcpa_meters": 31.82434,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.42671,
+          "z": 34.73486
+        }
+      ]
+    },
+    {
+      "index": 101,
+      "time": 10.1,
+      "x": -59.60587,
+      "z": -52.77776,
+      "heading_degrees": 65.1328,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.834319,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 36.12822,
+      "nearest_tcpa_seconds": 1.80865,
+      "nearest_dcpa_meters": 31.82038,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.39098,
+          "z": 34.53221
+        }
+      ]
+    },
+    {
+      "index": 102,
+      "time": 10.2,
+      "x": -58.52691,
+      "z": -52.27331,
+      "heading_degrees": 65.1328,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.833913,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 35.68038,
+      "nearest_tcpa_seconds": 1.7094,
+      "nearest_dcpa_meters": 31.81642,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.35524,
+          "z": 34.32956
+        }
+      ]
+    },
+    {
+      "index": 103,
+      "time": 10.3,
+      "x": -57.44795,
+      "z": -51.76886,
+      "heading_degrees": 65.1328,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.833491,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 35.25433,
+      "nearest_tcpa_seconds": 1.61014,
+      "nearest_dcpa_meters": 31.81246,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.31951,
+          "z": 34.12691
+        }
+      ]
+    },
+    {
+      "index": 104,
+      "time": 10.4,
+      "x": -56.36899,
+      "z": -51.26441,
+      "heading_degrees": 65.1328,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.833053,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 34.85054,
+      "nearest_tcpa_seconds": 1.51089,
+      "nearest_dcpa_meters": 31.8085,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.28378,
+          "z": 33.92426
+        }
+      ]
+    },
+    {
+      "index": 105,
+      "time": 10.5,
+      "x": -55.29003,
+      "z": -50.75996,
+      "heading_degrees": 65.1328,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.832597,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 34.46953,
+      "nearest_tcpa_seconds": 1.41163,
+      "nearest_dcpa_meters": 31.80454,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.24804,
+          "z": 33.72161
+        }
+      ]
+    },
+    {
+      "index": 106,
+      "time": 10.6,
+      "x": -54.21107,
+      "z": -50.2555,
+      "heading_degrees": 65.1328,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.832121,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 34.11174,
+      "nearest_tcpa_seconds": 1.31238,
+      "nearest_dcpa_meters": 31.80058,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.21231,
+          "z": 33.51895
+        }
+      ]
+    },
+    {
+      "index": 107,
+      "time": 10.7,
+      "x": -53.13211,
+      "z": -49.75105,
+      "heading_degrees": 65.1328,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.831624,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 33.77766,
+      "nearest_tcpa_seconds": 1.21312,
+      "nearest_dcpa_meters": 31.79662,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.17658,
+          "z": 33.3163
+        }
+      ]
+    },
+    {
+      "index": 108,
+      "time": 10.8,
+      "x": -52.05314,
+      "z": -49.2466,
+      "heading_degrees": 65.1328,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.831105,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 33.46771,
+      "nearest_tcpa_seconds": 1.11387,
+      "nearest_dcpa_meters": 31.79266,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.14085,
+          "z": 33.11365
+        }
+      ]
+    },
+    {
+      "index": 109,
+      "time": 10.9,
+      "x": -50.97418,
+      "z": -48.74215,
+      "heading_degrees": 65.1328,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.830561,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 33.18231,
+      "nearest_tcpa_seconds": 1.01461,
+      "nearest_dcpa_meters": 31.7887,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.10511,
+          "z": 32.911
+        }
+      ]
+    },
+    {
+      "index": 110,
+      "time": 11.0,
+      "x": -49.89522,
+      "z": -48.2377,
+      "heading_degrees": 65.1328,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.82999,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 32.92185,
+      "nearest_tcpa_seconds": 0.91536,
+      "nearest_dcpa_meters": 31.78474,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.06938,
+          "z": 32.70835
+        }
+      ]
+    },
+    {
+      "index": 111,
+      "time": 11.1,
+      "x": -48.81626,
+      "z": -47.73325,
+      "heading_degrees": 65.1328,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.829391,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 32.6867,
+      "nearest_tcpa_seconds": 0.81611,
+      "nearest_dcpa_meters": 31.78078,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 26.03365,
+          "z": 32.5057
+        }
+      ]
+    },
+    {
+      "index": 112,
+      "time": 11.2,
+      "x": -47.7373,
+      "z": -47.2288,
+      "heading_degrees": 65.1328,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.828761,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 32.4772,
+      "nearest_tcpa_seconds": 0.71685,
+      "nearest_dcpa_meters": 31.77682,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.99791,
+          "z": 32.30305
+        }
+      ]
+    },
+    {
+      "index": 113,
+      "time": 11.3,
+      "x": -46.65834,
+      "z": -46.72434,
+      "heading_degrees": 65.1328,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.828097,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 32.29364,
+      "nearest_tcpa_seconds": 0.6176,
+      "nearest_dcpa_meters": 31.77285,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.96218,
+          "z": 32.10039
+        }
+      ]
+    },
+    {
+      "index": 114,
+      "time": 11.4,
+      "x": -45.57938,
+      "z": -46.21989,
+      "heading_degrees": 65.1328,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.827395,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 32.1363,
+      "nearest_tcpa_seconds": 0.51834,
+      "nearest_dcpa_meters": 31.76889,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.92645,
+          "z": 31.89774
+        }
+      ]
+    },
+    {
+      "index": 115,
+      "time": 11.5,
+      "x": -44.50042,
+      "z": -45.71544,
+      "heading_degrees": 65.1328,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.826653,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 32.00541,
+      "nearest_tcpa_seconds": 0.41909,
+      "nearest_dcpa_meters": 31.76493,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.89072,
+          "z": 31.69509
+        }
+      ]
+    },
+    {
+      "index": 116,
+      "time": 11.6,
+      "x": -43.42146,
+      "z": -45.21099,
+      "heading_degrees": 65.1328,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.82247,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 31.90118,
+      "nearest_tcpa_seconds": 0.31983,
+      "nearest_dcpa_meters": 31.76097,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.85498,
+          "z": 31.49244
+        }
+      ]
+    },
+    {
+      "index": 117,
+      "time": 11.7,
+      "x": -42.35482,
+      "z": -44.68077,
+      "heading_degrees": 63.7688,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.783679,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 31.79524,
+      "nearest_tcpa_seconds": 0.32454,
+      "nearest_dcpa_meters": 31.65058,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.81925,
+          "z": 31.28979
+        }
+      ]
+    },
+    {
+      "index": 118,
+      "time": 11.8,
+      "x": -41.28817,
+      "z": -44.15054,
+      "heading_degrees": 63.7688,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.78252,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 31.71616,
+      "nearest_tcpa_seconds": 0.22528,
+      "nearest_dcpa_meters": 31.6464,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.78352,
+          "z": 31.08714
+        }
+      ]
+    },
+    {
+      "index": 119,
+      "time": 11.9,
+      "x": -40.22153,
+      "z": -43.62032,
+      "heading_degrees": 63.7688,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.820277,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 31.66407,
+      "nearest_tcpa_seconds": 0.12602,
+      "nearest_dcpa_meters": 31.64223,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.74778,
+          "z": 30.88449
+        }
+      ]
+    },
+    {
+      "index": 120,
+      "time": 12.0,
+      "x": -39.15489,
+      "z": -43.09009,
+      "heading_degrees": 63.7688,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.818929,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 31.63904,
+      "nearest_tcpa_seconds": 0.02676,
+      "nearest_dcpa_meters": 31.63806,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.71205,
+          "z": 30.68183
+        }
+      ]
+    },
+    {
+      "index": 121,
+      "time": 12.1,
+      "x": -38.08825,
+      "z": -42.55987,
+      "heading_degrees": 63.7688,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.818475,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 31.64112,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 31.64112,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.67632,
+          "z": 30.47918
+        }
+      ]
+    },
+    {
+      "index": 122,
+      "time": 12.2,
+      "x": -37.02161,
+      "z": -42.02964,
+      "heading_degrees": 63.7688,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.818909,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 31.67029,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 31.67029,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.64059,
+          "z": 30.27653
+        }
+      ]
+    },
+    {
+      "index": 123,
+      "time": 12.3,
+      "x": -35.9679,
+      "z": -41.47394,
+      "heading_degrees": 62.4048,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.783722,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 31.69799,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 31.69799,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.60485,
+          "z": 30.07388
+        }
+      ]
+    },
+    {
+      "index": 124,
+      "time": 12.4,
+      "x": -34.91419,
+      "z": -40.91825,
+      "heading_degrees": 62.4048,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.787374,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 31.75274,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 31.75274,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.56912,
+          "z": 29.87123
+        }
+      ]
+    },
+    {
+      "index": 125,
+      "time": 12.5,
+      "x": -33.86048,
+      "z": -40.36255,
+      "heading_degrees": 62.4048,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.829945,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 31.83445,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 31.83445,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.53339,
+          "z": 29.66858
+        }
+      ]
+    },
+    {
+      "index": 126,
+      "time": 12.6,
+      "x": -32.80677,
+      "z": -39.80685,
+      "heading_degrees": 62.4048,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.833407,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 31.94299,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 31.94299,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.49765,
+          "z": 29.46593
+        }
+      ]
+    },
+    {
+      "index": 127,
+      "time": 12.7,
+      "x": -31.75306,
+      "z": -39.25115,
+      "heading_degrees": 62.4048,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.835063,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 32.07821,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 32.07821,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.46192,
+          "z": 29.26328
+        }
+      ]
+    },
+    {
+      "index": 128,
+      "time": 12.8,
+      "x": -30.69935,
+      "z": -38.69545,
+      "heading_degrees": 62.4048,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.834719,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 32.23989,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 32.23989,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.42619,
+          "z": 29.06062
+        }
+      ]
+    },
+    {
+      "index": 129,
+      "time": 12.9,
+      "x": -29.64564,
+      "z": -38.13976,
+      "heading_degrees": 62.4048,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.83433,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 32.4278,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 32.4278,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.39046,
+          "z": 28.85797
+        }
+      ]
+    },
+    {
+      "index": 130,
+      "time": 13.0,
+      "x": -28.59193,
+      "z": -37.58406,
+      "heading_degrees": 62.4048,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.833889,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 32.64166,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 32.64166,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.35472,
+          "z": 28.65532
+        }
+      ]
+    },
+    {
+      "index": 131,
+      "time": 13.1,
+      "x": -27.53822,
+      "z": -37.02836,
+      "heading_degrees": 62.4048,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.833389,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 32.88116,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 32.88116,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.31899,
+          "z": 28.45267
+        }
+      ]
+    },
+    {
+      "index": 132,
+      "time": 13.2,
+      "x": -26.49805,
+      "z": -36.44751,
+      "heading_degrees": 61.0408,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.796707,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 33.11812,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 33.11812,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.28326,
+          "z": 28.25002
+        }
+      ]
+    },
+    {
+      "index": 133,
+      "time": 13.3,
+      "x": -25.45787,
+      "z": -35.86665,
+      "heading_degrees": 61.0408,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.758576,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 33.38028,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 33.38028,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.24752,
+          "z": 28.04737
+        }
+      ]
+    },
+    {
+      "index": 134,
+      "time": 13.4,
+      "x": -24.40416,
+      "z": -35.31095,
+      "heading_degrees": 62.4048,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.830224,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 33.69484,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 33.69484,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.21179,
+          "z": 27.84472
+        }
+      ]
+    },
+    {
+      "index": 135,
+      "time": 13.5,
+      "x": -23.35045,
+      "z": -34.75525,
+      "heading_degrees": 62.4048,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.751405,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 34.03351,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 34.03351,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.17606,
+          "z": 27.64206
+        }
+      ]
+    },
+    {
+      "index": 136,
+      "time": 13.6,
+      "x": -22.31027,
+      "z": -34.1744,
+      "heading_degrees": 61.0408,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.835345,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 34.36868,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 34.36868,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.14032,
+          "z": 27.43941
+        }
+      ]
+    },
+    {
+      "index": 137,
+      "time": 13.7,
+      "x": -21.2701,
+      "z": -33.59354,
+      "heading_degrees": 61.0408,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.75697,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 34.72743,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 34.72743,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.10459,
+          "z": 27.23676
+        }
+      ]
+    },
+    {
+      "index": 138,
+      "time": 13.8,
+      "x": -20.21638,
+      "z": -33.03785,
+      "heading_degrees": 62.4048,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.82719,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 35.13612,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 35.13612,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.06886,
+          "z": 27.03411
+        }
+      ]
+    },
+    {
+      "index": 139,
+      "time": 13.9,
+      "x": -19.16267,
+      "z": -32.48215,
+      "heading_degrees": 62.4048,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.747806,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 35.56707,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 35.56707,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 25.03313,
+          "z": 26.83146
+        }
+      ]
+    },
+    {
+      "index": 140,
+      "time": 14.0,
+      "x": -18.1225,
+      "z": -31.90129,
+      "heading_degrees": 61.0408,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.832463,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 35.99337,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 35.99337,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.99739,
+          "z": 26.62881
+        }
+      ]
+    },
+    {
+      "index": 141,
+      "time": 14.1,
+      "x": -17.08232,
+      "z": -31.32044,
+      "heading_degrees": 61.0408,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.753554,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 36.44133,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 36.44133,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.96166,
+          "z": 26.42616
+        }
+      ]
+    },
+    {
+      "index": 142,
+      "time": 14.2,
+      "x": -16.02861,
+      "z": -30.76474,
+      "heading_degrees": 62.4048,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.821422,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 36.93641,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 36.93641,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.92593,
+          "z": 26.2235
+        }
+      ]
+    },
+    {
+      "index": 143,
+      "time": 14.3,
+      "x": -14.9749,
+      "z": -30.20904,
+      "heading_degrees": 62.4048,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.740822,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 37.45168,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 37.45168,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.89019,
+          "z": 26.02085
+        }
+      ]
+    },
+    {
+      "index": 144,
+      "time": 14.4,
+      "x": -13.93472,
+      "z": -29.62819,
+      "heading_degrees": 61.0408,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.826122,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 37.96111,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 37.96111,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.85446,
+          "z": 25.8182
+        }
+      ]
+    },
+    {
+      "index": 145,
+      "time": 14.5,
+      "x": -12.89455,
+      "z": -29.04733,
+      "heading_degrees": 61.0408,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.745837,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 38.49013,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 38.49013,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.81873,
+          "z": 25.61555
+        }
+      ]
+    },
+    {
+      "index": 146,
+      "time": 14.6,
+      "x": -11.8685,
+      "z": -28.44165,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.750488,
+      "collision": false,
+      "nearest_obstacle_name": "west_shoal",
+      "nearest_obstacle_kind": "shoal",
+      "nearest_clearance_meters": 39.01288,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 39.01288,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.783,
+          "z": 25.4129
+        }
+      ]
+    },
+    {
+      "index": 147,
+      "time": 14.7,
+      "x": -10.84245,
+      "z": -27.83596,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 6.750658,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 39.21653,
+      "nearest_tcpa_seconds": 2.26214,
+      "nearest_dcpa_meters": 28.30282,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.74726,
+          "z": 25.21025
+        }
+      ]
+    },
+    {
+      "index": 148,
+      "time": 14.8,
+      "x": -9.8164,
+      "z": -27.23028,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.8073,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 38.39789,
+      "nearest_tcpa_seconds": 2.16285,
+      "nearest_dcpa_meters": 28.29802,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.71153,
+          "z": 25.0076
+        }
+      ]
+    },
+    {
+      "index": 149,
+      "time": 14.9,
+      "x": -8.79035,
+      "z": -26.62459,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.847443,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 37.59918,
+      "nearest_tcpa_seconds": 2.06356,
+      "nearest_dcpa_meters": 28.29323,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.6758,
+          "z": 24.80494
+        }
+      ]
+    },
+    {
+      "index": 150,
+      "time": 15.0,
+      "x": -7.7643,
+      "z": -26.01891,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.847586,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 36.82172,
+      "nearest_tcpa_seconds": 1.96427,
+      "nearest_dcpa_meters": 28.28844,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.64006,
+          "z": 24.60229
+        }
+      ]
+    },
+    {
+      "index": 151,
+      "time": 15.1,
+      "x": -6.73826,
+      "z": -25.41322,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.847728,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 36.06686,
+      "nearest_tcpa_seconds": 1.86498,
+      "nearest_dcpa_meters": 28.28364,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.60433,
+          "z": 24.39964
+        }
+      ]
+    },
+    {
+      "index": 152,
+      "time": 15.2,
+      "x": -5.71221,
+      "z": -24.80754,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.847869,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 35.33606,
+      "nearest_tcpa_seconds": 1.76569,
+      "nearest_dcpa_meters": 28.27885,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.5686,
+          "z": 24.19699
+        }
+      ]
+    },
+    {
+      "index": 153,
+      "time": 15.3,
+      "x": -4.68616,
+      "z": -24.20186,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.84801,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 34.63084,
+      "nearest_tcpa_seconds": 1.6664,
+      "nearest_dcpa_meters": 28.27406,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.53287,
+          "z": 23.99434
+        }
+      ]
+    },
+    {
+      "index": 154,
+      "time": 15.4,
+      "x": -3.66011,
+      "z": -23.59617,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.848151,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 33.9528,
+      "nearest_tcpa_seconds": 1.56711,
+      "nearest_dcpa_meters": 28.26927,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.49713,
+          "z": 23.79169
+        }
+      ]
+    },
+    {
+      "index": 155,
+      "time": 15.5,
+      "x": -2.63406,
+      "z": -22.99049,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.84829,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 33.30359,
+      "nearest_tcpa_seconds": 1.46782,
+      "nearest_dcpa_meters": 28.26447,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.4614,
+          "z": 23.58904
+        }
+      ]
+    },
+    {
+      "index": 156,
+      "time": 15.6,
+      "x": -1.60801,
+      "z": -22.3848,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.84843,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 32.6848,
+      "nearest_tcpa_seconds": 1.37515,
+      "nearest_dcpa_meters": 28.21324,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.42567,
+          "z": 23.38639
+        }
+      ]
+    },
+    {
+      "index": 157,
+      "time": 15.7,
+      "x": -0.58196,
+      "z": -21.77912,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.848568,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 32.07912,
+      "nearest_tcpa_seconds": 1.34967,
+      "nearest_dcpa_meters": 27.69042,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.38993,
+          "z": 23.18373
+        }
+      ]
+    },
+    {
+      "index": 158,
+      "time": 15.8,
+      "x": 0.44408,
+      "z": -21.17344,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.830605,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 31.47344,
+      "nearest_tcpa_seconds": 1.32418,
+      "nearest_dcpa_meters": 27.16759,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.3542,
+          "z": 22.98108
+        }
+      ]
+    },
+    {
+      "index": 159,
+      "time": 15.9,
+      "x": 1.47013,
+      "z": -20.56775,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.809922,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 30.86775,
+      "nearest_tcpa_seconds": 1.2987,
+      "nearest_dcpa_meters": 26.64477,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.31847,
+          "z": 22.77843
+        }
+      ]
+    },
+    {
+      "index": 160,
+      "time": 16.0,
+      "x": 2.49618,
+      "z": -19.96207,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.789238,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 30.26207,
+      "nearest_tcpa_seconds": 1.27322,
+      "nearest_dcpa_meters": 26.12195,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.28274,
+          "z": 22.57578
+        }
+      ]
+    },
+    {
+      "index": 161,
+      "time": 16.1,
+      "x": 3.52223,
+      "z": -19.35638,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.768552,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 29.65638,
+      "nearest_tcpa_seconds": 1.24774,
+      "nearest_dcpa_meters": 25.59913,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.247,
+          "z": 22.37313
+        }
+      ]
+    },
+    {
+      "index": 162,
+      "time": 16.2,
+      "x": 4.54828,
+      "z": -18.7507,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.747866,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 29.0507,
+      "nearest_tcpa_seconds": 1.22225,
+      "nearest_dcpa_meters": 25.07631,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.21127,
+          "z": 22.17048
+        }
+      ]
+    },
+    {
+      "index": 163,
+      "time": 16.3,
+      "x": 5.57433,
+      "z": -18.14501,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.727179,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 28.44501,
+      "nearest_tcpa_seconds": 1.19677,
+      "nearest_dcpa_meters": 24.55349,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.17554,
+          "z": 21.96783
+        }
+      ]
+    },
+    {
+      "index": 164,
+      "time": 16.4,
+      "x": 6.60038,
+      "z": -17.53933,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.70649,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 27.83933,
+      "nearest_tcpa_seconds": 1.17129,
+      "nearest_dcpa_meters": 24.03067,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.1398,
+          "z": 21.76517
+        }
+      ]
+    },
+    {
+      "index": 165,
+      "time": 16.5,
+      "x": 7.62642,
+      "z": -16.93365,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.6858,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 27.23365,
+      "nearest_tcpa_seconds": 1.1458,
+      "nearest_dcpa_meters": 23.50785,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.10407,
+          "z": 21.56252
+        }
+      ]
+    },
+    {
+      "index": 166,
+      "time": 16.6,
+      "x": 8.65247,
+      "z": -16.32796,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.665109,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 26.62796,
+      "nearest_tcpa_seconds": 1.12032,
+      "nearest_dcpa_meters": 22.98502,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.06834,
+          "z": 21.35987
+        }
+      ]
+    },
+    {
+      "index": 167,
+      "time": 16.7,
+      "x": 9.67852,
+      "z": -15.72228,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.644416,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 26.02228,
+      "nearest_tcpa_seconds": 1.09484,
+      "nearest_dcpa_meters": 22.4622,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 24.0326,
+          "z": 21.15722
+        }
+      ]
+    },
+    {
+      "index": 168,
+      "time": 16.8,
+      "x": 10.70457,
+      "z": -15.11659,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.623722,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 25.41659,
+      "nearest_tcpa_seconds": 1.06935,
+      "nearest_dcpa_meters": 21.93938,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.99687,
+          "z": 20.95457
+        }
+      ]
+    },
+    {
+      "index": 169,
+      "time": 16.9,
+      "x": 11.73062,
+      "z": -14.51091,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.603026,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 24.81091,
+      "nearest_tcpa_seconds": 1.04387,
+      "nearest_dcpa_meters": 21.41656,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.96114,
+          "z": 20.75192
+        }
+      ]
+    },
+    {
+      "index": 170,
+      "time": 17.0,
+      "x": 12.75667,
+      "z": -13.90522,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.582328,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 24.20522,
+      "nearest_tcpa_seconds": 1.01839,
+      "nearest_dcpa_meters": 20.89374,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.92541,
+          "z": 20.54927
+        }
+      ]
+    },
+    {
+      "index": 171,
+      "time": 17.1,
+      "x": 13.78272,
+      "z": -13.29954,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.561627,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 23.59954,
+      "nearest_tcpa_seconds": 0.99291,
+      "nearest_dcpa_meters": 20.37092,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.88967,
+          "z": 20.34661
+        }
+      ]
+    },
+    {
+      "index": 172,
+      "time": 17.2,
+      "x": 14.80876,
+      "z": -12.69386,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.540924,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 22.99386,
+      "nearest_tcpa_seconds": 0.96742,
+      "nearest_dcpa_meters": 19.8481,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.85394,
+          "z": 20.14396
+        }
+      ]
+    },
+    {
+      "index": 173,
+      "time": 17.3,
+      "x": 15.83481,
+      "z": -12.08817,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.520219,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 22.38817,
+      "nearest_tcpa_seconds": 0.94194,
+      "nearest_dcpa_meters": 19.32527,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.81821,
+          "z": 19.94131
+        }
+      ]
+    },
+    {
+      "index": 174,
+      "time": 17.4,
+      "x": 16.86086,
+      "z": -11.48249,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.49951,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 21.78249,
+      "nearest_tcpa_seconds": 0.91646,
+      "nearest_dcpa_meters": 18.80245,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.78247,
+          "z": 19.73866
+        }
+      ]
+    },
+    {
+      "index": 175,
+      "time": 17.5,
+      "x": 17.88691,
+      "z": -10.8768,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.478798,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 21.1768,
+      "nearest_tcpa_seconds": 0.89097,
+      "nearest_dcpa_meters": 18.27963,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.74674,
+          "z": 19.53601
+        }
+      ]
+    },
+    {
+      "index": 176,
+      "time": 17.6,
+      "x": 18.91296,
+      "z": -10.27112,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 2.409962,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 20.29077,
+      "nearest_tcpa_seconds": 1.61365,
+      "nearest_dcpa_meters": 11.04246,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.71101,
+          "z": 19.33336
+        }
+      ]
+    },
+    {
+      "index": 177,
+      "time": 17.7,
+      "x": 19.95314,
+      "z": -9.69026,
+      "heading_degrees": 61.0408,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 2.357998,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 19.36033,
+      "nearest_tcpa_seconds": 1.48518,
+      "nearest_dcpa_meters": 11.49052,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.67528,
+          "z": 19.13071
+        }
+      ]
+    },
+    {
+      "index": 178,
+      "time": 17.8,
+      "x": 21.01978,
+      "z": -9.16004,
+      "heading_degrees": 63.7688,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 2.400659,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 18.51,
+      "nearest_tcpa_seconds": 1.3247,
+      "nearest_dcpa_meters": 12.31032,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.63954,
+          "z": 18.92806
+        }
+      ]
+    },
+    {
+      "index": 179,
+      "time": 17.9,
+      "x": 22.12152,
+      "z": -8.70798,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 2.399119,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 17.7734,
+      "nearest_tcpa_seconds": 1.12696,
+      "nearest_dcpa_meters": 13.39023,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.60381,
+          "z": 18.7254
+        }
+      ]
+    },
+    {
+      "index": 180,
+      "time": 18.0,
+      "x": 23.24353,
+      "z": -8.30933,
+      "heading_degrees": 70.5888,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 2.296766,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 17.13405,
+      "nearest_tcpa_seconds": 0.95761,
+      "nearest_dcpa_meters": 14.00428,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.56808,
+          "z": 18.52275
+        }
+      ]
+    },
+    {
+      "index": 181,
+      "time": 18.1,
+      "x": 24.37471,
+      "z": -7.93774,
+      "heading_degrees": 71.9528,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 2.34829,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 16.57135,
+      "nearest_tcpa_seconds": 0.82188,
+      "nearest_dcpa_meters": 14.26597,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.53234,
+          "z": 18.3201
+        }
+      ]
+    },
+    {
+      "index": 182,
+      "time": 18.2,
+      "x": 25.50589,
+      "z": -7.56615,
+      "heading_degrees": 71.9528,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 2.325514,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 16.06207,
+      "nearest_tcpa_seconds": 0.72256,
+      "nearest_dcpa_meters": 14.26183,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.49661,
+          "z": 18.11745
+        }
+      ]
+    },
+    {
+      "index": 183,
+      "time": 18.3,
+      "x": 26.6279,
+      "z": -7.1675,
+      "heading_degrees": 70.5888,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 2.308924,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 15.58145,
+      "nearest_tcpa_seconds": 0.66026,
+      "nearest_dcpa_meters": 14.0478,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.46088,
+          "z": 17.9148
+        }
+      ]
+    },
+    {
+      "index": 184,
+      "time": 18.4,
+      "x": 27.72964,
+      "z": -6.71544,
+      "heading_degrees": 67.8608,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 2.298934,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 15.10395,
+      "nearest_tcpa_seconds": 0.63372,
+      "nearest_dcpa_meters": 13.64854,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.42515,
+          "z": 17.71215
+        }
+      ]
+    },
+    {
+      "index": 185,
+      "time": 18.5,
+      "x": 28.79628,
+      "z": -6.18521,
+      "heading_degrees": 63.7688,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 2.283202,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 14.60378,
+      "nearest_tcpa_seconds": 0.64005,
+      "nearest_dcpa_meters": 13.05939,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.38941,
+          "z": 17.5095
+        }
+      ]
+    },
+    {
+      "index": 186,
+      "time": 18.6,
+      "x": 29.83646,
+      "z": -5.60436,
+      "heading_degrees": 61.0408,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 2.181244,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 14.11071,
+      "nearest_tcpa_seconds": 0.60889,
+      "nearest_dcpa_meters": 12.67139,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.35368,
+          "z": 17.30684
+        }
+      ]
+    },
+    {
+      "index": 187,
+      "time": 18.7,
+      "x": 30.86251,
+      "z": -4.99868,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 2.241511,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 13.65503,
+      "nearest_tcpa_seconds": 0.54307,
+      "nearest_dcpa_meters": 12.48813,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.31795,
+          "z": 17.10419
+        }
+      ]
+    },
+    {
+      "index": 188,
+      "time": 18.8,
+      "x": 31.88856,
+      "z": -4.39299,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 2.229427,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 13.26794,
+      "nearest_tcpa_seconds": 0.44366,
+      "nearest_dcpa_meters": 12.48237,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.28221,
+          "z": 16.90154
+        }
+      ]
+    },
+    {
+      "index": 189,
+      "time": 18.9,
+      "x": 32.92874,
+      "z": -3.81214,
+      "heading_degrees": 61.0408,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 2.218777,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 12.98145,
+      "nearest_tcpa_seconds": 0.31023,
+      "nearest_dcpa_meters": 12.59782,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.24648,
+          "z": 16.69889
+        }
+      ]
+    },
+    {
+      "index": 190,
+      "time": 19.0,
+      "x": 33.99538,
+      "z": -3.28191,
+      "heading_degrees": 63.7688,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 2.202572,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 12.82739,
+      "nearest_tcpa_seconds": 0.14114,
+      "nearest_dcpa_meters": 12.74881,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.21075,
+          "z": 16.49624
+        }
+      ]
+    },
+    {
+      "index": 191,
+      "time": 19.1,
+      "x": 35.07434,
+      "z": -2.77746,
+      "heading_degrees": 65.1328,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 2.110052,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 12.77885,
+      "nearest_tcpa_seconds": 0.00611,
+      "nearest_dcpa_meters": 12.7787,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.17502,
+          "z": 16.29359
+        }
+      ]
+    },
+    {
+      "index": 192,
+      "time": 19.2,
+      "x": 36.1533,
+      "z": -2.27301,
+      "heading_degrees": 65.1328,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 2.190759,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 12.80775,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 12.80775,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.13928,
+          "z": 16.09094
+        }
+      ]
+    },
+    {
+      "index": 193,
+      "time": 19.3,
+      "x": 37.21994,
+      "z": -1.74278,
+      "heading_degrees": 63.7688,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 2.203974,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 12.88599,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 12.88599,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.10355,
+          "z": 15.88828
+        }
+      ]
+    },
+    {
+      "index": 194,
+      "time": 19.4,
+      "x": 38.26012,
+      "z": -1.16193,
+      "heading_degrees": 61.0408,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 2.227121,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 12.98582,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 12.98582,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.06782,
+          "z": 15.68563
+        }
+      ]
+    },
+    {
+      "index": 195,
+      "time": 19.5,
+      "x": 39.28616,
+      "z": -0.55624,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 2.167361,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 13.13532,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 13.13532,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 23.03208,
+          "z": 15.48298
+        }
+      ]
+    },
+    {
+      "index": 196,
+      "time": 19.6,
+      "x": 40.31221,
+      "z": 0.04944,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 2.267725,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 13.3612,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 13.3612,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.99635,
+          "z": 15.28033
+        }
+      ]
+    },
+    {
+      "index": 197,
+      "time": 19.7,
+      "x": 41.35239,
+      "z": 0.6303,
+      "heading_degrees": 61.0408,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 2.284637,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 13.68769,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 13.68769,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.96062,
+          "z": 15.07768
+        }
+      ]
+    },
+    {
+      "index": 198,
+      "time": 19.8,
+      "x": 42.39257,
+      "z": 1.21115,
+      "heading_degrees": 61.0408,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 2.237753,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 14.08428,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 14.08428,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.92488,
+          "z": 14.87503
+        }
+      ]
+    },
+    {
+      "index": 199,
+      "time": 19.9,
+      "x": 43.41862,
+      "z": 1.81684,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 2.359031,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 14.52238,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 14.52238,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.88915,
+          "z": 14.67238
+        }
+      ]
+    },
+    {
+      "index": 200,
+      "time": 20.0,
+      "x": 44.44466,
+      "z": 2.42252,
+      "heading_degrees": 59.6768,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 5.321252,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 15.02482,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 15.02482,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.85342,
+          "z": 14.46972
+        }
+      ]
+    },
+    {
+      "index": 201,
+      "time": 20.1,
+      "x": 45.456,
+      "z": 3.05269,
+      "heading_degrees": 58.3128,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 2.365616,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 15.56372,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 15.56372,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.81769,
+          "z": 14.26707
+        }
+      ]
+    },
+    {
+      "index": 202,
+      "time": 20.2,
+      "x": 46.46733,
+      "z": 3.68286,
+      "heading_degrees": 58.3128,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 2.417783,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 16.16066,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 16.16066,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.78195,
+          "z": 14.06442
+        }
+      ]
+    },
+    {
+      "index": 203,
+      "time": 20.3,
+      "x": 47.46337,
+      "z": 4.33716,
+      "heading_degrees": 56.9488,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 2.477136,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 16.78879,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 16.78879,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.74622,
+          "z": 13.86177
+        }
+      ]
+    },
+    {
+      "index": 204,
+      "time": 20.4,
+      "x": 48.45941,
+      "z": 4.99146,
+      "heading_degrees": 56.9488,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 2.536422,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 17.46865,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 17.46865,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.71049,
+          "z": 13.65912
+        }
+      ]
+    },
+    {
+      "index": 205,
+      "time": 20.5,
+      "x": 49.47074,
+      "z": 5.62162,
+      "heading_degrees": 58.3128,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 2.668304,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 18.21791,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 18.21791,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.67475,
+          "z": 13.45647
+        }
+      ]
+    },
+    {
+      "index": 206,
+      "time": 20.6,
+      "x": 50.48208,
+      "z": 6.25179,
+      "heading_degrees": 58.3128,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 2.65587,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 19.01,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 19.01,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.63902,
+          "z": 13.25382
+        }
+      ]
+    },
+    {
+      "index": 207,
+      "time": 20.7,
+      "x": 51.47812,
+      "z": 6.90609,
+      "heading_degrees": 56.9488,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 2.810465,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 19.82148,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 19.82148,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.60329,
+          "z": 13.05117
+        }
+      ]
+    },
+    {
+      "index": 208,
+      "time": 20.8,
+      "x": 52.47415,
+      "z": 7.56039,
+      "heading_degrees": 56.9488,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 2.803199,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 20.67053,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 20.67053,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.56756,
+          "z": 12.84851
+        }
+      ]
+    },
+    {
+      "index": 209,
+      "time": 20.9,
+      "x": 53.48549,
+      "z": 8.19056,
+      "heading_degrees": 58.3128,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 2.946708,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 21.57266,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 21.57266,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.53182,
+          "z": 12.64586
+        }
+      ]
+    },
+    {
+      "index": 210,
+      "time": 21.0,
+      "x": 54.49682,
+      "z": 8.82073,
+      "heading_degrees": 58.3128,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 2.945931,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 22.50511,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 22.50511,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.49609,
+          "z": 12.44321
+        }
+      ]
+    },
+    {
+      "index": 211,
+      "time": 21.1,
+      "x": 55.49286,
+      "z": 9.47503,
+      "heading_degrees": 56.9488,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.112159,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 23.44807,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 23.44807,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.46036,
+          "z": 12.24056
+        }
+      ]
+    },
+    {
+      "index": 212,
+      "time": 21.2,
+      "x": 56.4889,
+      "z": 10.12932,
+      "heading_degrees": 56.9488,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.114908,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 24.4177,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 24.4177,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.42462,
+          "z": 12.03791
+        }
+      ]
+    },
+    {
+      "index": 213,
+      "time": 21.3,
+      "x": 57.46908,
+      "z": 10.80738,
+      "heading_degrees": 55.5848,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.202597,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 25.39524,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 25.39524,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.38889,
+          "z": 11.83526
+        }
+      ]
+    },
+    {
+      "index": 214,
+      "time": 21.4,
+      "x": 58.44925,
+      "z": 11.48543,
+      "heading_degrees": 55.5848,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.288365,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 26.39639,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 26.39639,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.35316,
+          "z": 11.63261
+        }
+      ]
+    },
+    {
+      "index": 215,
+      "time": 21.5,
+      "x": 59.44529,
+      "z": 12.13973,
+      "heading_degrees": 56.9488,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.444692,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 27.43465,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 27.43465,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.31743,
+          "z": 11.42995
+        }
+      ]
+    },
+    {
+      "index": 216,
+      "time": 21.6,
+      "x": 60.44133,
+      "z": 12.79403,
+      "heading_degrees": 56.9488,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.454639,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 28.49179,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 28.49179,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.28169,
+          "z": 11.2273
+        }
+      ]
+    },
+    {
+      "index": 217,
+      "time": 21.7,
+      "x": 61.42151,
+      "z": 13.47208,
+      "heading_degrees": 55.5848,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.629834,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 29.55192,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 29.55192,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.24596,
+          "z": 11.02465
+        }
+      ]
+    },
+    {
+      "index": 218,
+      "time": 21.8,
+      "x": 62.40168,
+      "z": 14.15014,
+      "heading_degrees": 55.5848,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.641855,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 30.62902,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 30.62902,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.21023,
+          "z": 10.822
+        }
+      ]
+    },
+    {
+      "index": 219,
+      "time": 21.9,
+      "x": 63.39772,
+      "z": 14.80443,
+      "heading_degrees": 56.9488,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.802933,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 31.73512,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 31.73512,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.17449,
+          "z": 10.61935
+        }
+      ]
+    },
+    {
+      "index": 220,
+      "time": 22.0,
+      "x": 64.39376,
+      "z": 15.45873,
+      "heading_degrees": 56.9488,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.745769,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 32.85475,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 32.85475,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.13876,
+          "z": 10.4167
+        }
+      ]
+    },
+    {
+      "index": 221,
+      "time": 22.1,
+      "x": 65.37394,
+      "z": 16.13679,
+      "heading_degrees": 55.5848,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.832118,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 33.97437,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 33.97437,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.10303,
+          "z": 10.21405
+        }
+      ]
+    },
+    {
+      "index": 222,
+      "time": 22.2,
+      "x": 66.35411,
+      "z": 16.81484,
+      "heading_degrees": 55.5848,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.753031,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 35.10635,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 35.10635,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.0673,
+          "z": 10.01139
+        }
+      ]
+    },
+    {
+      "index": 223,
+      "time": 22.3,
+      "x": 67.35015,
+      "z": 17.46914,
+      "heading_degrees": 56.9488,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.819542,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 36.26146,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 36.26146,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 22.03156,
+          "z": 9.80874
+        }
+      ]
+    },
+    {
+      "index": 224,
+      "time": 22.4,
+      "x": 68.34619,
+      "z": 18.12344,
+      "heading_degrees": 56.9488,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.739641,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 37.42644,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 37.42644,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.99583,
+          "z": 9.60609
+        }
+      ]
+    },
+    {
+      "index": 225,
+      "time": 22.5,
+      "x": 69.32637,
+      "z": 18.80149,
+      "heading_degrees": 55.5848,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.826662,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 38.58961,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 38.58961,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.9601,
+          "z": 9.40344
+        }
+      ]
+    },
+    {
+      "index": 226,
+      "time": 22.6,
+      "x": 70.30654,
+      "z": 19.47955,
+      "heading_degrees": 55.5848,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.747218,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 39.76198,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 39.76198,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.92436,
+          "z": 9.20079
+        }
+      ]
+    },
+    {
+      "index": 227,
+      "time": 22.7,
+      "x": 71.27029,
+      "z": 20.18097,
+      "heading_degrees": 54.2208,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.753054,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 40.93205,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 40.93205,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.88863,
+          "z": 8.99814
+        }
+      ]
+    },
+    {
+      "index": 228,
+      "time": 22.8,
+      "x": 72.23404,
+      "z": 20.8824,
+      "heading_degrees": 54.2208,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.754052,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 42.11074,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 42.11074,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.8529,
+          "z": 8.79549
+        }
+      ]
+    },
+    {
+      "index": 229,
+      "time": 22.9,
+      "x": 73.21422,
+      "z": 21.56046,
+      "heading_degrees": 55.5848,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 3.821141,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 43.3077,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 43.3077,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.81716,
+          "z": 8.59283
+        }
+      ]
+    },
+    {
+      "index": 230,
+      "time": 23.0,
+      "x": 74.19439,
+      "z": 22.23851,
+      "heading_degrees": 55.5848,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.74121,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 44.51157,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 44.51157,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.78143,
+          "z": 8.39018
+        }
+      ]
+    },
+    {
+      "index": 231,
+      "time": 23.1,
+      "x": 75.15814,
+      "z": 22.93994,
+      "heading_degrees": 54.2208,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.827749,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 45.7123,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 45.7123,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.7457,
+          "z": 8.18753
+        }
+      ]
+    },
+    {
+      "index": 232,
+      "time": 23.2,
+      "x": 76.12189,
+      "z": 23.64136,
+      "heading_degrees": 54.2208,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.788287,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 46.91964,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 46.91964,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.70997,
+          "z": 7.98488
+        }
+      ]
+    },
+    {
+      "index": 233,
+      "time": 23.3,
+      "x": 77.08564,
+      "z": 24.34279,
+      "heading_degrees": 54.2208,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.826696,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 48.13318,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 48.13318,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.67423,
+          "z": 7.78223
+        }
+      ]
+    },
+    {
+      "index": 234,
+      "time": 23.4,
+      "x": 78.0494,
+      "z": 25.04422,
+      "heading_degrees": 54.2208,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.824931,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 49.35254,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 49.35254,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.6385,
+          "z": 7.57958
+        }
+      ]
+    },
+    {
+      "index": 235,
+      "time": 23.5,
+      "x": 79.01315,
+      "z": 25.74565,
+      "heading_degrees": 54.2208,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.822963,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 50.57737,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 50.57737,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.60277,
+          "z": 7.37693
+        }
+      ]
+    },
+    {
+      "index": 236,
+      "time": 23.6,
+      "x": 79.9769,
+      "z": 26.44707,
+      "heading_degrees": 54.2208,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.820758,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 51.80734,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 51.80734,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.56703,
+          "z": 7.17428
+        }
+      ]
+    },
+    {
+      "index": 237,
+      "time": 23.7,
+      "x": 80.94065,
+      "z": 27.1485,
+      "heading_degrees": 54.2208,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.818272,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 53.04214,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 53.04214,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.5313,
+          "z": 6.97162
+        }
+      ]
+    },
+    {
+      "index": 238,
+      "time": 23.8,
+      "x": 81.9044,
+      "z": 27.84993,
+      "heading_degrees": 54.2208,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.815453,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 54.28151,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 54.28151,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.49557,
+          "z": 6.76897
+        }
+      ]
+    },
+    {
+      "index": 239,
+      "time": 23.9,
+      "x": 82.85117,
+      "z": 28.57433,
+      "heading_degrees": 52.8568,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.782153,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 55.51694,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 55.51694,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.45984,
+          "z": 6.56632
+        }
+      ]
+    },
+    {
+      "index": 240,
+      "time": 24.0,
+      "x": 83.79795,
+      "z": 29.29873,
+      "heading_degrees": 52.8568,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.781728,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 56.75685,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 56.75685,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.4241,
+          "z": 6.36367
+        }
+      ]
+    },
+    {
+      "index": 241,
+      "time": 24.1,
+      "x": 84.74472,
+      "z": 30.02314,
+      "heading_degrees": 52.8568,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.818928,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 58.00102,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 58.00102,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.38837,
+          "z": 6.16102
+        }
+      ]
+    },
+    {
+      "index": 242,
+      "time": 24.2,
+      "x": 85.69149,
+      "z": 30.74754,
+      "heading_degrees": 52.8568,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.815643,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 59.24919,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 59.24919,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.35264,
+          "z": 5.95837
+        }
+      ]
+    },
+    {
+      "index": 243,
+      "time": 24.3,
+      "x": 86.63827,
+      "z": 31.47194,
+      "heading_degrees": 52.8568,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.811751,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 60.50117,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 60.50117,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.3169,
+          "z": 5.75572
+        }
+      ]
+    },
+    {
+      "index": 244,
+      "time": 24.4,
+      "x": 87.58504,
+      "z": 32.19635,
+      "heading_degrees": 52.8568,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.807092,
+      "collision": false,
+      "nearest_obstacle_name": "crossing_service_vessel",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 61.75675,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 61.75675,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.28117,
+          "z": 5.55306
+        }
+      ]
+    },
+    {
+      "index": 245,
+      "time": 24.5,
+      "x": 88.53181,
+      "z": 32.92075,
+      "heading_degrees": 52.8568,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0,
+      "reward": 3.801451,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 62.83181,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 62.83181,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.24544,
+          "z": 5.35041
+        }
+      ]
+    },
+    {
+      "index": 246,
+      "time": 24.6,
+      "x": 89.46107,
+      "z": 33.66772,
+      "heading_degrees": 51.4928,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.767585,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 63.76107,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 63.76107,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.20971,
+          "z": 5.14776
+        }
+      ]
+    },
+    {
+      "index": 247,
+      "time": 24.7,
+      "x": 90.3537,
+      "z": 34.45853,
+      "heading_degrees": 48.7648,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -1.0,
+      "reward": 3.82469,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 64.6537,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 64.6537,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.17397,
+          "z": 4.94511
+        }
+      ]
+    },
+    {
+      "index": 248,
+      "time": 24.8,
+      "x": 91.22725,
+      "z": 35.2706,
+      "heading_degrees": 47.4008,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 1.0,
+      "reward": 15.75334,
+      "collision": false,
+      "nearest_obstacle_name": "east_breakwater",
+      "nearest_obstacle_kind": "breakwater",
+      "nearest_clearance_meters": 65.52725,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 65.52725,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "crossing_service_vessel",
+          "x": 21.13824,
+          "z": 4.74246
+        }
+      ]
+    }
+  ],
+  "evaluation_metrics": {
+    "task_id": "2024-03-01_harbor_approach",
+    "success": true,
+    "goal_reached": true,
+    "collisions": 0,
+    "terrain_collisions": 0,
+    "near_misses": 2,
+    "dynamic_obstacle_count": 1,
+    "minimum_clearance_meters": 12.778849337049802,
+    "minimum_dcpa_meters": 11.042461062444033,
+    "max_cross_track_error_meters": 7.4511523948256695,
+    "path_length_meters": 270.423153205628,
+    "reference_route_length_meters": 281.03971573189597,
+    "path_efficiency": 1.0,
+    "elapsed_seconds": 24.8,
+    "reward": 823.0304018855577,
+    "steps": 248,
+    "last_collision": {}
+  },
+  "aggregate_metrics": {
+    "episodes": 31,
+    "success_rate": 0.8064516129032258,
+    "safe_completion_rate": 0.8064516129032258,
+    "collision_episode_rate": 0.1935483870967742,
+    "terrain_collision_episode_rate": 0.1935483870967742,
+    "near_miss_episode_rate": 1.0,
+    "mean_reward": 798.5483060062999,
+    "total_collisions": 6,
+    "total_terrain_collisions": 6,
+    "total_near_misses": 41,
+    "mean_max_cross_track_error_meters": 7.924325539572016,
+    "p95_max_cross_track_error_meters": 11.80623894372756,
+    "mean_minimum_clearance_meters": 8.011587183163384,
+    "p05_minimum_clearance_meters": -0.21755216749754247,
+    "mean_minimum_dcpa_meters": 22.1372794650798,
+    "p05_minimum_dcpa_meters": 3.577642934485864,
+    "mean_path_efficiency": 1.0,
+    "mean_elapsed_seconds": 24.745161290322578
+  }
+}

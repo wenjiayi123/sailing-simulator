@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://shaders/floating_rock_3a_demo_rock.gdshader" id="1_shader"]
+
+[resource]
+resource_name = "Cave_Inner_Rock"
+shader = ExtResource("1_shader")
+shader_parameter/base_color = Color(0.08, 0.075, 0.065, 1)
+shader_parameter/detail_color = Color(0.18, 0.16, 0.13, 1)
+shader_parameter/accent_color = Color(0.05, 0.12, 0.10, 1)
+shader_parameter/strata_scale = 2.8
+shader_parameter/strata_strength = 0.24
+shader_parameter/noise_scale = 1.2
+shader_parameter/crack_strength = 0.32
+shader_parameter/roughness_value = 0.98
+shader_parameter/specular_value = 0.06
+

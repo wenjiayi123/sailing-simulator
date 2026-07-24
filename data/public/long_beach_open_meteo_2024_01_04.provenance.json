@@ -1,0 +1,33 @@
+{
+  "schema_version": "ship_public_environment_provenance_v1",
+  "dataset_id": "open_meteo_long_beach_2024_01_04_hourly",
+  "provider": "Open-Meteo",
+  "upstream": "ERA5/ECMWF historical weather reanalysis and archived marine forecast/model products selected by Open-Meteo",
+  "license": "CC BY 4.0; attribution required",
+  "documentation": [
+    "https://open-meteo.com/en/docs/historical-weather-api",
+    "https://open-meteo.com/en/docs/marine-weather-api",
+    "https://open-meteo.com/en/license"
+  ],
+  "request_urls": [
+    "https://archive-api.open-meteo.com/v1/archive?latitude=33.73&longitude=-118.27&start_date=2024-01-01&end_date=2024-04-30&timezone=UTC&cell_selection=sea&hourly=wind_speed_10m%2Cwind_direction_10m&wind_speed_unit=kn",
+    "https://marine-api.open-meteo.com/v1/marine?latitude=33.73&longitude=-118.27&start_date=2024-01-01&end_date=2024-04-30&timezone=UTC&cell_selection=sea&hourly=wave_height%2Cwave_direction%2Cwave_period%2Cocean_current_velocity%2Cocean_current_direction&wind_speed_unit=kn"
+  ],
+  "location": {
+    "name": "Long Beach adjacent waters",
+    "latitude": 33.73,
+    "longitude": -118.27,
+    "crs": "WGS84"
+  },
+  "period": {
+    "start": "2024-01-01",
+    "end": "2024-04-30",
+    "hours": 2904
+  },
+  "evidence_level": "public_model_reanalysis_and_archive",
+  "live_data_verified": false,
+  "navigation_suitability": "not suitable for coastal navigation; used only as offline environmental forcing for a simulator benchmark",
+  "retrieved_at": "2026-07-24T03:14:53+00:00",
+  "hourly_csv": "long_beach_open_meteo_2024_01_04_hourly.csv",
+  "hourly_sha256": "cdc9c9ddc22b0cd83cafb56a9cc4d46c6670bbb0280f0465a0c20533ed0e38bd"
+}

@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "RoofMainRidgeMaterial"
+albedo_color = Color(1, 0.62, 0.08, 1)
+roughness = 0.78

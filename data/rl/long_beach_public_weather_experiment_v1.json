@@ -1,0 +1,79 @@
+{
+  "schema_version": "ship_training_experiment_v3",
+  "headless": true,
+  "render": false,
+  "delta": 0.1,
+  "dataset": {
+    "path": "res://data/rl/long_beach_public_weather_benchmark_v1.json",
+    "training_split": "train",
+    "validation_split": "validation",
+    "evaluation_split": "test"
+  },
+  "rl_parameters": {
+    "reward_progress": 3.2,
+    "reward_heading": 1.8,
+    "reward_speed": 0.8,
+    "penalty_collision": 48.0,
+    "penalty_terrain_collision": 68.0,
+    "penalty_boundary": 36.0,
+    "penalty_rudder": 0.9,
+    "penalty_proximity": 1.1,
+    "penalty_predicted_collision": 1.6,
+    "penalty_cross_track": 0.12,
+    "penalty_action_slew": 0.04,
+    "penalty_step": 0.003,
+    "safe_distance": 32.0
+  },
+  "environment_parameters": {
+    "vessel_radius_m": 3.2,
+    "obstacle_inflation_m": 1.5,
+    "cliff_inflation_m": 8.0,
+    "boundary_margin_m": 4.0,
+    "sensor_range_m": 220.0,
+    "tcpa_horizon_seconds": 180.0,
+    "terminate_on_collision": true,
+    "merge_scene_obstacles": false,
+    "domain_randomization": true,
+    "randomize_evaluation": false,
+    "start_position_jitter_m": 2.0,
+    "start_heading_jitter_degrees": 4.0,
+    "obstacle_position_jitter_m": 1.0,
+    "obstacle_size_jitter_m": 0.5,
+    "current_speed_jitter_knots": 0.12,
+    "current_direction_jitter_degrees": 6.0,
+    "wind_speed_jitter_knots": 1.0,
+    "wind_direction_jitter_degrees": 6.0,
+    "wave_height_jitter_m": 0.12,
+    "wave_direction_jitter_degrees": 6.0,
+    "wind_leeway_factor": 0.012,
+    "wave_drift_mps_per_meter": 0.08,
+    "sensor_distance_noise_std_m": 0.25,
+    "sensor_bearing_noise_degrees": 0.4,
+    "generated_traffic_count": 1,
+    "generated_traffic_speed_knots": 4.0,
+    "generated_traffic_radius_m": 5.0
+  },
+  "ships": [
+    {
+      "performance": {
+        "max_forward_speed": 12.0,
+        "max_reverse_speed": 4.0,
+        "acceleration": 2.8,
+        "deceleration": 2.0,
+        "brake_acceleration": 5.0,
+        "throttle_response": 1.5,
+        "rudder_response": 2.2,
+        "max_turn_rate_degrees": 62.0,
+        "low_speed_turn_factor": 0.2,
+        "reverse_turn_factor": 0.55
+      }
+    }
+  ],
+  "world": {
+    "obstacles": {
+      "boundary_half_extent": 220.0,
+      "rocks": [],
+      "boxes": []
+    }
+  }
+}

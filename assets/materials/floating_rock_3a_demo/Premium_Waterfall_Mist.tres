@@ -1,0 +1,29 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://vwubupmktj5j"]
+
+[ext_resource type="Shader" uid="uid://b17aqykvitd66" path="res://shaders/taoyuan_premium_waterfall_ribbon.gdshader" id="1_shader"]
+
+[resource]
+resource_name = "Premium_Waterfall_Mist"
+render_priority = 0
+shader = ExtResource("1_shader")
+shader_parameter/water_color = Color(0.52, 0.82, 0.94, 1)
+shader_parameter/foam_color = Color(0.88, 0.97, 1, 1)
+shader_parameter/flow_tint = Color(0.48, 0.82, 1, 1)
+shader_parameter/alpha = 0.36
+shader_parameter/edge_fade = 0.34
+shader_parameter/flow_speed = 0.32
+shader_parameter/flow_strength = 0.252
+shader_parameter/shimmer_strength = 0.26880000000000004
+shader_parameter/horizontal_suppression = 0.42
+shader_parameter/emission_strength = 0.01
+shader_parameter/core_strength = 0.1104
+shader_parameter/mist_strength = 0.62
+shader_parameter/thread_strength = 0.13440000000000002
+shader_parameter/pulse_strength = 0.252
+shader_parameter/pulse_speed = 1.0
+shader_parameter/tail_fade_start = 0.48
+shader_parameter/head_fade = 0.055
+shader_parameter/flow_time = 2181.478
+shader_parameter/flow_bend_amount = 8.7
+shader_parameter/flow_lane_randomness = 5.8
+shader_parameter/flow_lane_count = 13.600000000000001

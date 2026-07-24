@@ -1,0 +1,6243 @@
+{
+  "format": "ship_policy_test_rollout_v3",
+  "source": "deterministic_policy_rollout",
+  "algorithm": "td3",
+  "checkpoint": "/Users/apple/Desktop/航行模拟器/reports/artifacts/navigation_benchmark_v1/td3/checkpoint.json",
+  "dataset_path": "/Users/apple/Desktop/航行模拟器/data/rl/long_beach_public_weather_benchmark_v1.json",
+  "dataset_sha256": "e05ea1305583681d9245644a1782c05a2392aa82d3318188f8dd7f3e04f4dc4e",
+  "experiment_sha256": "35a277d790eeab31c0670f0568646bd83deb01359814efc6ca837845a463eafc",
+  "observation_size": 21,
+  "environment_parameters": {
+    "vessel_radius_m": 3.2,
+    "obstacle_inflation_m": 1.5,
+    "cliff_inflation_m": 8.0,
+    "boundary_margin_m": 4.0,
+    "sensor_range_m": 220.0,
+    "tcpa_horizon_seconds": 180.0,
+    "terminate_on_collision": true,
+    "merge_scene_obstacles": false,
+    "domain_randomization": true,
+    "randomize_evaluation": false,
+    "start_position_jitter_m": 2.0,
+    "start_heading_jitter_degrees": 4.0,
+    "obstacle_position_jitter_m": 1.0,
+    "obstacle_size_jitter_m": 0.5,
+    "current_speed_jitter_knots": 0.12,
+    "current_direction_jitter_degrees": 6.0,
+    "wind_speed_jitter_knots": 1.0,
+    "sensor_distance_noise_std_m": 0.25,
+    "sensor_bearing_noise_degrees": 0.4,
+    "generated_traffic_count": 1,
+    "generated_traffic_speed_knots": 4.0,
+    "generated_traffic_radius_m": 5.0
+  },
+  "dataset_split": "test",
+  "task_id": "2024-04-01_channel_turn",
+  "playback_mode": "recorded_test_rollout",
+  "start": {
+    "x": -130.0,
+    "z": 85.0,
+    "heading_degrees": 122.0
+  },
+  "goal": {
+    "x": 102.0,
+    "z": -88.0
+  },
+  "route_points": [
+    {
+      "x": -92.0,
+      "z": 60.0
+    },
+    {
+      "x": -48.0,
+      "z": 28.0
+    },
+    {
+      "x": -5.0,
+      "z": -5.0
+    },
+    {
+      "x": 48.0,
+      "z": -48.0
+    },
+    {
+      "x": 102.0,
+      "z": -88.0
+    }
+  ],
+  "evaluation_obstacles": [
+    {
+      "name": "north_pier",
+      "kind": "pier",
+      "shape": "box",
+      "position": {
+        "x": -18.0,
+        "z": 52.0
+      },
+      "dynamic": false,
+      "velocity": {
+        "x": 0.0,
+        "z": 0.0
+      },
+      "source": "dataset",
+      "size": {
+        "x": 38.0,
+        "y": 7.0,
+        "z": 14.0
+      },
+      "radius": 20.248456731316587
+    },
+    {
+      "name": "south_reef",
+      "kind": "reef",
+      "shape": "circle",
+      "position": {
+        "x": 34.0,
+        "z": -96.0
+      },
+      "dynamic": false,
+      "velocity": {
+        "x": 0.0,
+        "z": 0.0
+      },
+      "source": "dataset_terrain",
+      "radius": 14.0,
+      "size": {
+        "x": 28.0,
+        "y": 7.0,
+        "z": 28.0
+      }
+    },
+    {
+      "name": "outbound_ferry",
+      "kind": "traffic",
+      "shape": "circle",
+      "position": {
+        "x": -35.41513283679498,
+        "z": 34.80209374321633
+      },
+      "dynamic": true,
+      "velocity": {
+        "x": -2.1070392713610304,
+        "z": 1.4753647811108879
+      },
+      "source": "dataset_dynamic",
+      "radius": 6.0,
+      "size": {
+        "x": 12.0,
+        "y": 7.0,
+        "z": 12.0
+      }
+    }
+  ],
+  "samples": [
+    {
+      "index": 0,
+      "time": 0.0,
+      "x": -130.0,
+      "z": 85.0,
+      "heading_degrees": 122.0,
+      "speed_mps": 0.0,
+      "throttle": 0.0,
+      "rudder": 0.0,
+      "reward": 0.0,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 90.8327,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 20.0,
+          "z": -4.0
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "time": 0.1,
+      "x": -130.00192,
+      "z": 85.0023,
+      "heading_degrees": 122.2983,
+      "speed_mps": 0.28,
+      "throttle": 1.0,
+      "rudder": 0.99904,
+      "reward": -0.057946,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 90.83511,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 19.7893,
+          "z": -3.85246
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "time": 0.2,
+      "x": -129.98052,
+      "z": 84.9891,
+      "heading_degrees": 122.9457,
+      "speed_mps": 0.56,
+      "throttle": 1.0,
+      "rudder": 0.99886,
+      "reward": 0.109828,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 90.81121,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 19.57859,
+          "z": -3.70493
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "time": 0.3,
+      "x": -129.93646,
+      "z": 84.9594,
+      "heading_degrees": 123.9933,
+      "speed_mps": 0.84,
+      "throttle": 1.0,
+      "rudder": 0.99141,
+      "reward": 0.197332,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 90.76142,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 19.36789,
+          "z": -3.55739
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "time": 0.4,
+      "x": -129.87068,
+      "z": 84.9119,
+      "heading_degrees": 125.3281,
+      "speed_mps": 1.12,
+      "throttle": 1.0,
+      "rudder": 0.78384,
+      "reward": 0.277776,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 90.68634,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 19.15718,
+          "z": -3.40985
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "time": 0.5,
+      "x": -129.78351,
+      "z": 84.84617,
+      "heading_degrees": 126.3535,
+      "speed_mps": 1.4,
+      "throttle": 1.0,
+      "rudder": 0.23401,
+      "reward": 0.355391,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 90.58623,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 18.94648,
+          "z": -3.26232
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "time": 0.6,
+      "x": -129.67496,
+      "z": 84.76228,
+      "heading_degrees": 127.0187,
+      "speed_mps": 1.68,
+      "throttle": 1.0,
+      "rudder": 0.33326,
+      "reward": 0.464621,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 90.46112,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 18.73578,
+          "z": -3.11478
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "time": 0.7,
+      "x": -129.54521,
+      "z": 84.66003,
+      "heading_degrees": 127.573,
+      "speed_mps": 1.96,
+      "throttle": 1.0,
+      "rudder": 0.27038,
+      "reward": 0.555826,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 90.31115,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 18.52507,
+          "z": -2.96724
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "time": 0.8,
+      "x": -129.39447,
+      "z": 84.53915,
+      "heading_degrees": 128.0756,
+      "speed_mps": 2.24,
+      "throttle": 1.0,
+      "rudder": 0.23208,
+      "reward": 0.646081,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 90.1365,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 18.31437,
+          "z": -2.81971
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "time": 0.9,
+      "x": -129.22355,
+      "z": 84.39864,
+      "heading_degrees": 128.7593,
+      "speed_mps": 2.52,
+      "throttle": 1.0,
+      "rudder": 0.29966,
+      "reward": 0.732751,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 89.93779,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 18.10366,
+          "z": -2.67217
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "time": 1.0,
+      "x": -129.03198,
+      "z": 84.23915,
+      "heading_degrees": 129.142,
+      "speed_mps": 2.8,
+      "throttle": 1.0,
+      "rudder": 0.15963,
+      "reward": 0.81971,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 89.71472,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 17.89296,
+          "z": -2.52464
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "time": 1.1,
+      "x": -128.82196,
+      "z": 84.05804,
+      "heading_degrees": 130.096,
+      "speed_mps": 3.08,
+      "throttle": 1.0,
+      "rudder": 0.42591,
+      "reward": 0.89987,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 89.46891,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 17.68226,
+          "z": -2.3771
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "time": 1.2,
+      "x": -128.59211,
+      "z": 83.85702,
+      "heading_degrees": 130.5157,
+      "speed_mps": 3.36,
+      "throttle": 1.0,
+      "rudder": 0.03464,
+      "reward": 0.984693,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 89.19946,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 17.47155,
+          "z": -2.22956
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "time": 1.3,
+      "x": -128.34513,
+      "z": 83.63303,
+      "heading_degrees": 131.5118,
+      "speed_mps": 3.64,
+      "throttle": 1.0,
+      "rudder": 0.36294,
+      "reward": 1.071178,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 88.9084,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 17.26085,
+          "z": -2.08203
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "time": 1.4,
+      "x": -128.07904,
+      "z": 83.38839,
+      "heading_degrees": 131.9207,
+      "speed_mps": 3.92,
+      "throttle": 1.0,
+      "rudder": 0.01492,
+      "reward": 1.159323,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 88.59442,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 17.05015,
+          "z": -1.93449
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "time": 1.5,
+      "x": -127.79657,
+      "z": 83.12018,
+      "heading_degrees": 132.8203,
+      "speed_mps": 4.2,
+      "throttle": 1.0,
+      "rudder": 0.30229,
+      "reward": 1.244867,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 88.25963,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 16.83944,
+          "z": -1.78695
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "time": 1.6,
+      "x": -127.49491,
+      "z": 82.83148,
+      "heading_degrees": 133.0747,
+      "speed_mps": 4.48,
+      "throttle": 1.0,
+      "rudder": 0.07834,
+      "reward": 1.335952,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 87.9021,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 16.62874,
+          "z": -1.63942
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "time": 1.7,
+      "x": -127.17835,
+      "z": 82.51781,
+      "heading_degrees": 134.0443,
+      "speed_mps": 4.76,
+      "throttle": 1.0,
+      "rudder": 0.38088,
+      "reward": 1.413304,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 87.52519,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 16.41803,
+          "z": -1.49188
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "time": 1.8,
+      "x": -126.84334,
+      "z": 82.18296,
+      "heading_degrees": 134.3177,
+      "speed_mps": 5.04,
+      "throttle": 1.0,
+      "rudder": 0.02286,
+      "reward": 1.498395,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 87.12639,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 16.20733,
+          "z": -1.34434
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "time": 1.9,
+      "x": -126.49477,
+      "z": 81.82203,
+      "heading_degrees": 135.3067,
+      "speed_mps": 5.32,
+      "throttle": 1.0,
+      "rudder": 0.28757,
+      "reward": 1.580377,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 86.70963,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 15.99663,
+          "z": -1.19681
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "time": 2.0,
+      "x": -126.12817,
+      "z": 81.43955,
+      "heading_degrees": 135.5468,
+      "speed_mps": 5.6,
+      "throttle": 1.0,
+      "rudder": 0.0059,
+      "reward": 1.665778,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 86.27171,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 15.78592,
+          "z": -1.04927
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "time": 2.1,
+      "x": -125.74862,
+      "z": 81.03066,
+      "heading_degrees": 136.4475,
+      "speed_mps": 5.88,
+      "throttle": 1.0,
+      "rudder": 0.24539,
+      "reward": 1.743967,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 85.81679,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 15.57522,
+          "z": -0.90173
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "time": 2.2,
+      "x": -125.35052,
+      "z": 80.60077,
+      "heading_degrees": 136.5437,
+      "speed_mps": 6.16,
+      "throttle": 1.0,
+      "rudder": 0.01532,
+      "reward": 1.830019,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 85.34076,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 15.36451,
+          "z": -0.7542
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "time": 2.3,
+      "x": -124.94104,
+      "z": 80.14322,
+      "heading_degrees": 137.5012,
+      "speed_mps": 6.44,
+      "throttle": 1.0,
+      "rudder": 0.27382,
+      "reward": 1.901567,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 84.84958,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 15.15381,
+          "z": -0.60666
+        }
+      ]
+    },
+    {
+      "index": 24,
+      "time": 2.4,
+      "x": -124.51353,
+      "z": 79.66421,
+      "heading_degrees": 137.6032,
+      "speed_mps": 6.72,
+      "throttle": 1.0,
+      "rudder": 0.01988,
+      "reward": 1.985546,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 84.33823,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 14.94311,
+          "z": -0.45912
+        }
+      ]
+    },
+    {
+      "index": 25,
+      "time": 2.5,
+      "x": -124.07634,
+      "z": 79.15627,
+      "heading_degrees": 138.6151,
+      "speed_mps": 7.0,
+      "throttle": 1.0,
+      "rudder": 0.24483,
+      "reward": 2.055055,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 83.81383,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 14.7324,
+          "z": -0.31159
+        }
+      ]
+    },
+    {
+      "index": 26,
+      "time": 2.6,
+      "x": -123.62164,
+      "z": 78.62644,
+      "heading_degrees": 138.7207,
+      "speed_mps": 7.28,
+      "throttle": 1.0,
+      "rudder": 0.02381,
+      "reward": 2.136547,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 83.27037,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 14.5217,
+          "z": -0.16405
+        }
+      ]
+    },
+    {
+      "index": 27,
+      "time": 2.7,
+      "x": -123.15916,
+      "z": 78.06636,
+      "heading_degrees": 139.7893,
+      "speed_mps": 7.56,
+      "throttle": 1.0,
+      "rudder": 0.25445,
+      "reward": 2.198957,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 82.7163,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 14.31099,
+          "z": -0.01652
+        }
+      ]
+    },
+    {
+      "index": 28,
+      "time": 2.8,
+      "x": -122.67976,
+      "z": 77.48392,
+      "heading_degrees": 139.9006,
+      "speed_mps": 7.84,
+      "throttle": 1.0,
+      "rudder": -0.01061,
+      "reward": 2.275589,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 82.1445,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 14.10029,
+          "z": 0.13102
+        }
+      ]
+    },
+    {
+      "index": 29,
+      "time": 2.9,
+      "x": -122.19463,
+      "z": 76.8699,
+      "heading_degrees": 141.0259,
+      "speed_mps": 8.12,
+      "throttle": 1.0,
+      "rudder": 0.2487,
+      "reward": 2.33152,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 81.56489,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 13.88959,
+          "z": 0.27856
+        }
+      ]
+    },
+    {
+      "index": 30,
+      "time": 3.0,
+      "x": -121.69322,
+      "z": 76.23304,
+      "heading_degrees": 141.1429,
+      "speed_mps": 8.4,
+      "throttle": 1.0,
+      "rudder": -0.12858,
+      "reward": 2.400333,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 80.96908,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 13.67888,
+          "z": 0.42609
+        }
+      ]
+    },
+    {
+      "index": 31,
+      "time": 3.1,
+      "x": -121.18561,
+      "z": 75.56538,
+      "heading_degrees": 142.1003,
+      "speed_mps": 8.68,
+      "throttle": 1.0,
+      "rudder": 0.19831,
+      "reward": 2.453879,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 80.36635,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 13.46818,
+          "z": 0.57363
+        }
+      ]
+    },
+    {
+      "index": 32,
+      "time": 3.2,
+      "x": -120.65948,
+      "z": 74.87665,
+      "heading_degrees": 141.9931,
+      "speed_mps": 8.96,
+      "throttle": 1.0,
+      "rudder": -0.19072,
+      "reward": 2.523748,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 79.74658,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 13.25747,
+          "z": 0.72117
+        }
+      ]
+    },
+    {
+      "index": 33,
+      "time": 3.3,
+      "x": -120.12895,
+      "z": 74.156,
+      "heading_degrees": 142.9963,
+      "speed_mps": 9.24,
+      "throttle": 1.0,
+      "rudder": 0.23572,
+      "reward": 2.564264,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 79.12287,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 13.04677,
+          "z": 0.8687
+        }
+      ]
+    },
+    {
+      "index": 34,
+      "time": 3.4,
+      "x": -119.58007,
+      "z": 73.41412,
+      "heading_degrees": 142.8841,
+      "speed_mps": 9.52,
+      "throttle": 1.0,
+      "rudder": -0.27352,
+      "reward": 2.62716,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 78.48357,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 12.83607,
+          "z": 1.01624
+        }
+      ]
+    },
+    {
+      "index": 35,
+      "time": 3.5,
+      "x": -119.02623,
+      "z": 72.64103,
+      "heading_degrees": 143.7539,
+      "speed_mps": 9.8,
+      "throttle": 1.0,
+      "rudder": 0.1644,
+      "reward": 2.664828,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 77.84143,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 12.62536,
+          "z": 1.16378
+        }
+      ]
+    },
+    {
+      "index": 36,
+      "time": 3.6,
+      "x": -118.45158,
+      "z": 71.84849,
+      "heading_degrees": 143.4533,
+      "speed_mps": 10.08,
+      "throttle": 1.0,
+      "rudder": -0.28367,
+      "reward": 2.727044,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 77.18292,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 12.41466,
+          "z": 1.31131
+        }
+      ]
+    },
+    {
+      "index": 37,
+      "time": 3.7,
+      "x": -117.87311,
+      "z": 71.02409,
+      "heading_degrees": 144.3328,
+      "speed_mps": 10.36,
+      "throttle": 0.99999,
+      "rudder": 0.15926,
+      "reward": 2.749424,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 76.5244,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 12.20395,
+          "z": 1.45885
+        }
+      ]
+    },
+    {
+      "index": 38,
+      "time": 3.8,
+      "x": -117.27315,
+      "z": 70.18066,
+      "heading_degrees": 143.9904,
+      "speed_mps": 10.64,
+      "throttle": 1.0,
+      "rudder": -0.33863,
+      "reward": 2.800954,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 75.85051,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 11.99325,
+          "z": 1.60639
+        }
+      ]
+    },
+    {
+      "index": 39,
+      "time": 3.9,
+      "x": -116.66606,
+      "z": 69.30787,
+      "heading_degrees": 144.5937,
+      "speed_mps": 10.92,
+      "throttle": 0.99998,
+      "rudder": 0.10487,
+      "reward": 2.818711,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 75.17552,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 11.78255,
+          "z": 1.75392
+        }
+      ]
+    },
+    {
+      "index": 40,
+      "time": 4.0,
+      "x": -116.03204,
+      "z": 68.41997,
+      "heading_degrees": 143.918,
+      "speed_mps": 11.2,
+      "throttle": 0.99998,
+      "rudder": -0.22828,
+      "reward": 2.874787,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 74.48174,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 11.57184,
+          "z": 1.90146
+        }
+      ]
+    },
+    {
+      "index": 41,
+      "time": 4.1,
+      "x": -115.39173,
+      "z": 67.5021,
+      "heading_degrees": 144.5457,
+      "speed_mps": 11.48,
+      "throttle": 0.99994,
+      "rudder": 0.11628,
+      "reward": 2.8711,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 73.78974,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 11.36114,
+          "z": 2.049
+        }
+      ]
+    },
+    {
+      "index": 42,
+      "time": 4.2,
+      "x": -114.72348,
+      "z": 66.56985,
+      "heading_degrees": 143.8433,
+      "speed_mps": 11.76,
+      "throttle": 0.99995,
+      "rudder": -0.24833,
+      "reward": 2.907103,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 73.07985,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 11.15044,
+          "z": 2.19653
+        }
+      ]
+    },
+    {
+      "index": 43,
+      "time": 4.3,
+      "x": -114.04073,
+      "z": 65.61878,
+      "heading_degrees": 143.8144,
+      "speed_mps": 11.99754,
+      "throttle": 0.99979,
+      "rudder": -0.00466,
+      "reward": 2.902401,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 72.36617,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 10.93973,
+          "z": 2.34407
+        }
+      ]
+    },
+    {
+      "index": 44,
+      "time": 4.4,
+      "x": -113.33797,
+      "z": 64.68271,
+      "heading_degrees": 142.62,
+      "speed_mps": 11.99717,
+      "throttle": 0.99976,
+      "rudder": -0.19268,
+      "reward": 2.873575,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 71.64471,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 10.72903,
+          "z": 2.49161
+        }
+      ]
+    },
+    {
+      "index": 45,
+      "time": 4.5,
+      "x": -112.63309,
+      "z": 63.74887,
+      "heading_degrees": 142.4745,
+      "speed_mps": 11.99237,
+      "throttle": 0.99936,
+      "rudder": -0.02347,
+      "reward": 2.793433,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 70.93311,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 10.51832,
+          "z": 2.63914
+        }
+      ]
+    },
+    {
+      "index": 46,
+      "time": 4.6,
+      "x": -111.9033,
+      "z": 62.83446,
+      "heading_degrees": 140.9656,
+      "speed_mps": 11.99421,
+      "throttle": 0.99952,
+      "rudder": -0.25884,
+      "reward": 2.761321,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 70.2033,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 10.30762,
+          "z": 2.78668
+        }
+      ]
+    },
+    {
+      "index": 47,
+      "time": 4.7,
+      "x": -111.16616,
+      "z": 61.92759,
+      "heading_degrees": 140.4654,
+      "speed_mps": 11.98242,
+      "throttle": 0.99854,
+      "rudder": -0.08078,
+      "reward": 2.681293,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 69.46616,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 10.09692,
+          "z": 2.93421
+        }
+      ]
+    },
+    {
+      "index": 48,
+      "time": 4.8,
+      "x": -110.40447,
+      "z": 61.04134,
+      "heading_degrees": 138.9326,
+      "speed_mps": 11.98394,
+      "throttle": 0.99866,
+      "rudder": -0.24748,
+      "reward": 2.639178,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 68.70447,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 9.88621,
+          "z": 3.08175
+        }
+      ]
+    },
+    {
+      "index": 49,
+      "time": 4.9,
+      "x": -109.63645,
+      "z": 60.16396,
+      "heading_degrees": 138.4248,
+      "speed_mps": 11.959,
+      "throttle": 0.99658,
+      "rudder": -0.08214,
+      "reward": 2.535238,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 67.93645,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 9.67551,
+          "z": 3.22929
+        }
+      ]
+    },
+    {
+      "index": 50,
+      "time": 5.0,
+      "x": -108.83978,
+      "z": 59.31302,
+      "heading_degrees": 136.5568,
+      "speed_mps": 11.95784,
+      "throttle": 0.99649,
+      "rudder": -0.33098,
+      "reward": 2.486075,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 67.13978,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 9.4648,
+          "z": 3.37682
+        }
+      ]
+    },
+    {
+      "index": 51,
+      "time": 5.1,
+      "x": -108.0419,
+      "z": 58.47599,
+      "heading_degrees": 136.0521,
+      "speed_mps": 11.86555,
+      "throttle": 0.9888,
+      "rudder": -0.02565,
+      "reward": 2.343153,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 66.3419,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 9.2541,
+          "z": 3.52436
+        }
+      ]
+    },
+    {
+      "index": 52,
+      "time": 5.2,
+      "x": -107.21449,
+      "z": 57.66399,
+      "heading_degrees": 134.1918,
+      "speed_mps": 11.8965,
+      "throttle": 0.99137,
+      "rudder": -0.37339,
+      "reward": 2.279522,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 65.51449,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 9.0434,
+          "z": 3.6719
+        }
+      ]
+    },
+    {
+      "index": 53,
+      "time": 5.3,
+      "x": -106.39437,
+      "z": 56.87327,
+      "heading_degrees": 133.6928,
+      "speed_mps": 11.6965,
+      "throttle": 0.96589,
+      "rudder": -0.05774,
+      "reward": 2.091874,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 64.69437,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 8.83269,
+          "z": 3.81943
+        }
+      ]
+    },
+    {
+      "index": 54,
+      "time": 5.4,
+      "x": -105.54802,
+      "z": 56.10939,
+      "heading_degrees": 131.8562,
+      "speed_mps": 11.70658,
+      "throttle": 0.97555,
+      "rudder": -0.42948,
+      "reward": 1.996098,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 63.84802,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 8.62199,
+          "z": 3.96697
+        }
+      ]
+    },
+    {
+      "index": 55,
+      "time": 5.5,
+      "x": -104.71001,
+      "z": 55.36625,
+      "heading_degrees": 131.3637,
+      "speed_mps": 11.50658,
+      "throttle": 0.85397,
+      "rudder": -0.07099,
+      "reward": 4.793905,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 63.01001,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 8.41128,
+          "z": 4.11451
+        }
+      ]
+    },
+    {
+      "index": 56,
+      "time": 5.6,
+      "x": -103.86253,
+      "z": 54.59169,
+      "heading_degrees": 132.2063,
+      "speed_mps": 11.78658,
+      "throttle": 1.0,
+      "rudder": 0.89916,
+      "reward": 3.467712,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 62.16253,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 8.20058,
+          "z": 4.26204
+        }
+      ]
+    },
+    {
+      "index": 57,
+      "time": 5.7,
+      "x": -103.03112,
+      "z": 53.76898,
+      "heading_degrees": 134.4251,
+      "speed_mps": 11.99999,
+      "throttle": 1.0,
+      "rudder": 0.73292,
+      "reward": 3.515732,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 61.33112,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 7.98988,
+          "z": 4.40958
+        }
+      ]
+    },
+    {
+      "index": 58,
+      "time": 5.8,
+      "x": -102.23375,
+      "z": 52.91289,
+      "heading_degrees": 136.7012,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.36712,
+      "reward": 3.443776,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 60.53375,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 7.77917,
+          "z": 4.55712
+        }
+      ]
+    },
+    {
+      "index": 59,
+      "time": 5.9,
+      "x": -101.45148,
+      "z": 52.04282,
+      "heading_degrees": 137.6842,
+      "speed_mps": 11.99999,
+      "throttle": 1.0,
+      "rudder": 0.15855,
+      "reward": 3.414349,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 59.75148,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 7.56847,
+          "z": 4.70465
+        }
+      ]
+    },
+    {
+      "index": 60,
+      "time": 6.0,
+      "x": -100.70405,
+      "z": 51.14224,
+      "heading_degrees": 139.8951,
+      "speed_mps": 11.99995,
+      "throttle": 1.0,
+      "rudder": 0.3566,
+      "reward": 3.336211,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 59.00405,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 7.35776,
+          "z": 4.85219
+        }
+      ]
+    },
+    {
+      "index": 61,
+      "time": 6.1,
+      "x": -99.97026,
+      "z": 50.23034,
+      "heading_degrees": 140.7421,
+      "speed_mps": 11.99997,
+      "throttle": 1.0,
+      "rudder": -0.16529,
+      "reward": 3.282523,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 58.27026,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 7.14706,
+          "z": 4.99973
+        }
+      ]
+    },
+    {
+      "index": 62,
+      "time": 6.2,
+      "x": -99.24108,
+      "z": 49.31472,
+      "heading_degrees": 141.0246,
+      "speed_mps": 11.99982,
+      "throttle": 0.99998,
+      "rudder": 0.04556,
+      "reward": 3.268224,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 57.54108,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 6.93636,
+          "z": 5.14726
+        }
+      ]
+    },
+    {
+      "index": 63,
+      "time": 6.3,
+      "x": -98.52177,
+      "z": 48.39122,
+      "heading_degrees": 141.6276,
+      "speed_mps": 11.99961,
+      "throttle": 0.99997,
+      "rudder": 0.09727,
+      "reward": 3.234244,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 56.82177,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 6.72565,
+          "z": 5.2948
+        }
+      ]
+    },
+    {
+      "index": 64,
+      "time": 6.4,
+      "x": -97.79713,
+      "z": 47.47197,
+      "heading_degrees": 141.3019,
+      "speed_mps": 11.99955,
+      "throttle": 0.99996,
+      "rudder": -0.05254,
+      "reward": 3.220122,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 56.09713,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 6.51495,
+          "z": 5.44233
+        }
+      ]
+    },
+    {
+      "index": 65,
+      "time": 6.5,
+      "x": -97.08191,
+      "z": 46.54535,
+      "heading_degrees": 141.8736,
+      "speed_mps": 11.99878,
+      "throttle": 0.9999,
+      "rudder": 0.09222,
+      "reward": 3.177462,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 55.38191,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 6.30424,
+          "z": 5.58987
+        }
+      ]
+    },
+    {
+      "index": 66,
+      "time": 6.6,
+      "x": -96.3537,
+      "z": 45.62903,
+      "heading_degrees": 141.0814,
+      "speed_mps": 11.99912,
+      "throttle": 0.99993,
+      "rudder": -0.17707,
+      "reward": 3.175824,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 54.6537,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 6.09354,
+          "z": 5.73741
+        }
+      ]
+    },
+    {
+      "index": 67,
+      "time": 6.7,
+      "x": -95.63495,
+      "z": 44.70537,
+      "heading_degrees": 141.6531,
+      "speed_mps": 11.99737,
+      "throttle": 0.99978,
+      "rudder": 0.11149,
+      "reward": 3.129682,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 53.93495,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 5.88284,
+          "z": 5.88494
+        }
+      ]
+    },
+    {
+      "index": 68,
+      "time": 6.8,
+      "x": -94.90318,
+      "z": 43.79201,
+      "heading_degrees": 140.8609,
+      "speed_mps": 11.9985,
+      "throttle": 0.99988,
+      "rudder": -0.25839,
+      "reward": 3.128459,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 53.20318,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 5.67213,
+          "z": 6.03248
+        }
+      ]
+    },
+    {
+      "index": 69,
+      "time": 6.9,
+      "x": -94.17349,
+      "z": 42.87735,
+      "heading_degrees": 140.9769,
+      "speed_mps": 11.99554,
+      "throttle": 0.99963,
+      "rudder": 0.01872,
+      "reward": 3.100806,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 52.47349,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 5.46143,
+          "z": 6.18002
+        }
+      ]
+    },
+    {
+      "index": 70,
+      "time": 7.0,
+      "x": -93.4236,
+      "z": 41.97924,
+      "heading_degrees": 139.7293,
+      "speed_mps": 11.99697,
+      "throttle": 0.99975,
+      "rudder": -0.22384,
+      "reward": 3.11827,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 51.7236,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 5.25073,
+          "z": 6.32755
+        }
+      ]
+    },
+    {
+      "index": 71,
+      "time": 7.1,
+      "x": -92.67591,
+      "z": 41.07998,
+      "heading_degrees": 139.8453,
+      "speed_mps": 11.99155,
+      "throttle": 0.9993,
+      "rudder": 0.10058,
+      "reward": 3.082102,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 50.97591,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 5.04002,
+          "z": 6.47509
+        }
+      ]
+    },
+    {
+      "index": 72,
+      "time": 7.2,
+      "x": -91.90816,
+      "z": 40.19745,
+      "heading_degrees": 138.5977,
+      "speed_mps": 11.99586,
+      "throttle": 0.99966,
+      "rudder": -0.25893,
+      "reward": 3.096444,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 50.20827,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 4.82932,
+          "z": 6.62263
+        }
+      ]
+    },
+    {
+      "index": 73,
+      "time": 7.3,
+      "x": -91.1427,
+      "z": 39.31384,
+      "heading_degrees": 138.7136,
+      "speed_mps": 11.98885,
+      "throttle": 0.99907,
+      "rudder": 0.04923,
+      "reward": 3.063398,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 49.45253,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 4.61861,
+          "z": 6.77016
+        }
+      ]
+    },
+    {
+      "index": 74,
+      "time": 7.4,
+      "x": -90.3574,
+      "z": 38.44723,
+      "heading_degrees": 137.4661,
+      "speed_mps": 11.99491,
+      "throttle": 0.99958,
+      "rudder": -0.31236,
+      "reward": 3.076179,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 48.69266,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 4.40791,
+          "z": 6.9177
+        }
+      ]
+    },
+    {
+      "index": 75,
+      "time": 7.5,
+      "x": -89.56733,
+      "z": 37.58585,
+      "heading_degrees": 137.1288,
+      "speed_mps": 11.98878,
+      "throttle": 0.99907,
+      "rudder": -0.05445,
+      "reward": 3.060381,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 47.94422,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 4.19721,
+          "z": 7.06524
+        }
+      ]
+    },
+    {
+      "index": 76,
+      "time": 7.6,
+      "x": -88.75122,
+      "z": 36.74873,
+      "heading_degrees": 135.428,
+      "speed_mps": 11.9934,
+      "throttle": 0.99945,
+      "rudder": -0.2796,
+      "reward": 3.091614,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 47.18505,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 3.9865,
+          "z": 7.21277
+        }
+      ]
+    },
+    {
+      "index": 77,
+      "time": 7.7,
+      "x": -87.93049,
+      "z": 35.91699,
+      "heading_degrees": 135.0907,
+      "speed_mps": 11.98771,
+      "throttle": 0.99898,
+      "rudder": -0.01181,
+      "reward": 3.06994,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 46.4378,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 3.7758,
+          "z": 7.36031
+        }
+      ]
+    },
+    {
+      "index": 78,
+      "time": 7.8,
+      "x": -87.08445,
+      "z": 35.11029,
+      "heading_degrees": 133.3897,
+      "speed_mps": 11.99444,
+      "throttle": 0.99954,
+      "rudder": -0.32098,
+      "reward": 3.097534,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 45.6802,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 3.56509,
+          "z": 7.50785
+        }
+      ]
+    },
+    {
+      "index": 79,
+      "time": 7.9,
+      "x": -86.23363,
+      "z": 34.30931,
+      "heading_degrees": 133.0343,
+      "speed_mps": 11.99001,
+      "throttle": 0.99917,
+      "rudder": -0.05736,
+      "reward": 3.079397,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 44.93476,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 3.35439,
+          "z": 7.65538
+        }
+      ]
+    },
+    {
+      "index": 80,
+      "time": 8.0,
+      "x": -85.35827,
+      "z": 33.53464,
+      "heading_degrees": 131.3152,
+      "speed_mps": 11.99532,
+      "throttle": 0.99961,
+      "rudder": -0.33647,
+      "reward": 3.106962,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 44.17934,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 3.14369,
+          "z": 7.80292
+        }
+      ]
+    },
+    {
+      "index": 81,
+      "time": 8.1,
+      "x": -84.47512,
+      "z": 32.76948,
+      "heading_degrees": 130.7285,
+      "speed_mps": 11.99156,
+      "throttle": 0.9993,
+      "rudder": -0.09468,
+      "reward": 3.095817,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 43.43294,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 2.93298,
+          "z": 7.95045
+        }
+      ]
+    },
+    {
+      "index": 82,
+      "time": 8.2,
+      "x": -83.56554,
+      "z": 32.03543,
+      "heading_degrees": 128.778,
+      "speed_mps": 11.99593,
+      "throttle": 0.99966,
+      "rudder": -0.3254,
+      "reward": 3.131181,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 42.67348,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 2.72228,
+          "z": 8.09799
+        }
+      ]
+    },
+    {
+      "index": 83,
+      "time": 8.3,
+      "x": -82.64853,
+      "z": 31.3112,
+      "heading_degrees": 128.1902,
+      "speed_mps": 11.99284,
+      "throttle": 0.9994,
+      "rudder": -0.09485,
+      "reward": 3.118334,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 41.92351,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 2.51157,
+          "z": 8.24553
+        }
+      ]
+    },
+    {
+      "index": 84,
+      "time": 8.4,
+      "x": -81.70648,
+      "z": 30.61925,
+      "heading_degrees": 126.2386,
+      "speed_mps": 11.99718,
+      "throttle": 0.99977,
+      "rudder": -0.32863,
+      "reward": 3.151562,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 41.16109,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 2.30087,
+          "z": 8.39306
+        }
+      ]
+    },
+    {
+      "index": 85,
+      "time": 8.5,
+      "x": -80.75264,
+      "z": 29.94414,
+      "heading_degrees": 125.257,
+      "speed_mps": 11.9944,
+      "throttle": 0.99953,
+      "rudder": -0.15837,
+      "reward": 3.153953,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 40.40238,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 2.09017,
+          "z": 8.5406
+        }
+      ]
+    },
+    {
+      "index": 86,
+      "time": 8.6,
+      "x": -79.77578,
+      "z": 29.30224,
+      "heading_degrees": 123.3268,
+      "speed_mps": 11.99742,
+      "throttle": 0.99978,
+      "rudder": -0.31138,
+      "reward": 3.185854,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 39.63226,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 1.87946,
+          "z": 8.68814
+        }
+      ]
+    },
+    {
+      "index": 87,
+      "time": 8.7,
+      "x": -78.78402,
+      "z": 28.68387,
+      "heading_degrees": 121.9968,
+      "speed_mps": 11.99596,
+      "throttle": 0.99966,
+      "rudder": -0.21458,
+      "reward": 3.198998,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 38.86076,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 1.66876,
+          "z": 8.83567
+        }
+      ]
+    },
+    {
+      "index": 88,
+      "time": 8.8,
+      "x": -77.77094,
+      "z": 28.10062,
+      "heading_degrees": 120.0346,
+      "speed_mps": 11.99767,
+      "throttle": 0.99981,
+      "rudder": -0.31653,
+      "reward": 3.22954,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 38.07805,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 1.45805,
+          "z": 8.98321
+        }
+      ]
+    },
+    {
+      "index": 89,
+      "time": 8.9,
+      "x": -76.74133,
+      "z": 27.54702,
+      "heading_degrees": 118.4132,
+      "speed_mps": 11.99722,
+      "throttle": 0.99977,
+      "rudder": -0.26157,
+      "reward": 3.250949,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 37.28986,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 1.24735,
+          "z": 9.13075
+        }
+      ]
+    },
+    {
+      "index": 90,
+      "time": 9.0,
+      "x": -75.69259,
+      "z": 27.03009,
+      "heading_degrees": 116.4381,
+      "speed_mps": 11.99807,
+      "throttle": 0.99984,
+      "rudder": -0.31861,
+      "reward": 3.280525,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 36.49092,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 1.03665,
+          "z": 9.27828
+        }
+      ]
+    },
+    {
+      "index": 91,
+      "time": 9.1,
+      "x": -74.62793,
+      "z": 26.54635,
+      "heading_degrees": 114.68,
+      "speed_mps": 11.99851,
+      "throttle": 0.99988,
+      "rudder": -0.28358,
+      "reward": 3.304119,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 35.68489,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 0.82594,
+          "z": 9.42582
+        }
+      ]
+    },
+    {
+      "index": 92,
+      "time": 9.2,
+      "x": -73.5449,
+      "z": 26.1046,
+      "heading_degrees": 112.4917,
+      "speed_mps": 11.99898,
+      "throttle": 0.99991,
+      "rudder": -0.35298,
+      "reward": 3.336992,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 34.86555,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 0.61524,
+          "z": 9.57336
+        }
+      ]
+    },
+    {
+      "index": 93,
+      "time": 9.3,
+      "x": -72.44537,
+      "z": 25.70484,
+      "heading_degrees": 110.3369,
+      "speed_mps": 11.99909,
+      "throttle": 0.99992,
+      "rudder": -0.34756,
+      "reward": 3.372369,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 34.03376,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 0.40453,
+          "z": 9.72089
+        }
+      ]
+    },
+    {
+      "index": 94,
+      "time": 9.4,
+      "x": -71.32955,
+      "z": 25.35191,
+      "heading_degrees": 107.9694,
+      "speed_mps": 11.9994,
+      "throttle": 0.99995,
+      "rudder": -0.38188,
+      "reward": 3.408736,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 33.18668,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": 0.19383,
+          "z": 9.86843
+        }
+      ]
+    },
+    {
+      "index": 95,
+      "time": 9.5,
+      "x": -70.19927,
+      "z": 25.04695,
+      "heading_degrees": 105.5767,
+      "speed_mps": 11.99945,
+      "throttle": 0.99995,
+      "rudder": -0.38593,
+      "reward": 3.447071,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 32.32436,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -0.01687,
+          "z": 10.01597
+        }
+      ]
+    },
+    {
+      "index": 96,
+      "time": 9.6,
+      "x": -69.05628,
+      "z": 24.7916,
+      "heading_degrees": 103.1313,
+      "speed_mps": 11.99955,
+      "throttle": 0.99996,
+      "rudder": -0.39442,
+      "reward": 3.464959,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 31.44641,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -0.22758,
+          "z": 10.1635
+        }
+      ]
+    },
+    {
+      "index": 97,
+      "time": 9.7,
+      "x": -67.90291,
+      "z": 24.58531,
+      "heading_degrees": 100.737,
+      "speed_mps": 11.99965,
+      "throttle": 0.99997,
+      "rudder": -0.38619,
+      "reward": 3.468879,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 30.55396,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -0.43828,
+          "z": 10.31104
+        }
+      ]
+    },
+    {
+      "index": 98,
+      "time": 9.8,
+      "x": -66.74083,
+      "z": 24.43113,
+      "heading_degrees": 98.2137,
+      "speed_mps": 11.99978,
+      "throttle": 0.99998,
+      "rudder": -0.407,
+      "reward": 3.472948,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 29.64565,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -0.64898,
+          "z": 10.45857
+        }
+      ]
+    },
+    {
+      "index": 99,
+      "time": 9.9,
+      "x": -65.57245,
+      "z": 24.32855,
+      "heading_degrees": 95.7318,
+      "speed_mps": 11.99978,
+      "throttle": 0.99998,
+      "rudder": -0.4003,
+      "reward": 3.475238,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 28.72248,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -0.85969,
+          "z": 10.60611
+        }
+      ]
+    },
+    {
+      "index": 100,
+      "time": 10.0,
+      "x": -64.40018,
+      "z": 24.27441,
+      "heading_degrees": 93.411,
+      "speed_mps": 11.99985,
+      "throttle": 0.99999,
+      "rudder": -0.37433,
+      "reward": 3.471257,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 27.787,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -1.07039,
+          "z": 10.75365
+        }
+      ]
+    },
+    {
+      "index": 101,
+      "time": 10.1,
+      "x": -63.22605,
+      "z": 24.26608,
+      "heading_degrees": 91.2218,
+      "speed_mps": 11.99991,
+      "throttle": 0.99999,
+      "rudder": -0.3531,
+      "reward": 3.464128,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 26.84133,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -1.2811,
+          "z": 10.90118
+        }
+      ]
+    },
+    {
+      "index": 102,
+      "time": 10.2,
+      "x": -62.05176,
+      "z": 24.30046,
+      "heading_degrees": 89.1827,
+      "speed_mps": 11.99995,
+      "throttle": 1.0,
+      "rudder": -0.3289,
+      "reward": 3.452783,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 25.88783,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -1.4918,
+          "z": 11.04872
+        }
+      ]
+    },
+    {
+      "index": 103,
+      "time": 10.3,
+      "x": -60.87871,
+      "z": 24.37467,
+      "heading_degrees": 87.2797,
+      "speed_mps": 11.99997,
+      "throttle": 1.0,
+      "rudder": -0.30693,
+      "reward": 6.434295,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 24.92868,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -1.7025,
+          "z": 11.19626
+        }
+      ]
+    },
+    {
+      "index": 104,
+      "time": 10.4,
+      "x": -59.70624,
+      "z": 24.46016,
+      "heading_degrees": 86.7407,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.99862,
+      "reward": 2.853549,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 23.98177,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -1.91321,
+          "z": 11.34379
+        }
+      ]
+    },
+    {
+      "index": 105,
+      "time": 10.5,
+      "x": -58.53291,
+      "z": 24.52839,
+      "heading_degrees": 87.5658,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.99544,
+      "reward": 2.885312,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 23.06709,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -2.12391,
+          "z": 11.49133
+        }
+      ]
+    },
+    {
+      "index": 106,
+      "time": 10.6,
+      "x": -57.35851,
+      "z": 24.55078,
+      "heading_degrees": 89.7548,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.98735,
+      "reward": 2.911465,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 22.20871,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -2.33462,
+          "z": 11.63887
+        }
+      ]
+    },
+    {
+      "index": 107,
+      "time": 10.7,
+      "x": -56.1861,
+      "z": 24.4988,
+      "heading_degrees": 93.3079,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.97683,
+      "reward": 2.980752,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 21.43654,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -2.54532,
+          "z": 11.7864
+        }
+      ]
+    },
+    {
+      "index": 108,
+      "time": 10.8,
+      "x": -55.02403,
+      "z": 24.34439,
+      "heading_degrees": 98.2249,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.95536,
+      "reward": 3.081089,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 20.78729,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -2.75602,
+          "z": 11.93394
+        }
+      ]
+    },
+    {
+      "index": 109,
+      "time": 10.9,
+      "x": -53.8846,
+      "z": 24.07404,
+      "heading_degrees": 103.8673,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.91007,
+      "reward": 3.181279,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 20.29153,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -2.96673,
+          "z": 12.08148
+        }
+      ]
+    },
+    {
+      "index": 110,
+      "time": 11.0,
+      "x": -52.77812,
+      "z": 23.69329,
+      "heading_degrees": 109.3705,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.88761,
+      "reward": 3.258245,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 19.96265,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -3.17743,
+          "z": 12.22901
+        }
+      ]
+    },
+    {
+      "index": 111,
+      "time": 11.1,
+      "x": -51.71242,
+      "z": 23.21146,
+      "heading_degrees": 114.5766,
+      "speed_mps": 11.99999,
+      "throttle": 1.0,
+      "rudder": 0.83969,
+      "reward": 3.306204,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 19.80572,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -3.38814,
+          "z": 12.37655
+        }
+      ]
+    },
+    {
+      "index": 112,
+      "time": 11.2,
+      "x": -50.69333,
+      "z": 22.63826,
+      "heading_degrees": 119.4755,
+      "speed_mps": 11.99999,
+      "throttle": 1.0,
+      "rudder": 0.79016,
+      "reward": 3.330798,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 19.81961,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -3.59884,
+          "z": 12.52409
+        }
+      ]
+    },
+    {
+      "index": 113,
+      "time": 11.3,
+      "x": -49.72385,
+      "z": 21.98483,
+      "heading_degrees": 123.9801,
+      "speed_mps": 11.99998,
+      "throttle": 1.0,
+      "rudder": 0.72655,
+      "reward": 3.334009,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 19.99568,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -3.80954,
+          "z": 12.67162
+        }
+      ]
+    },
+    {
+      "index": 114,
+      "time": 11.4,
+      "x": -48.80221,
+      "z": 21.26538,
+      "heading_degrees": 127.8743,
+      "speed_mps": 11.99996,
+      "throttle": 1.0,
+      "rudder": 0.6281,
+      "reward": 3.321618,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 20.31645,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -4.02025,
+          "z": 12.81916
+        }
+      ]
+    },
+    {
+      "index": 115,
+      "time": 11.5,
+      "x": -47.91402,
+      "z": 20.50483,
+      "heading_degrees": 130.4045,
+      "speed_mps": 11.99996,
+      "throttle": 1.0,
+      "rudder": 0.35145,
+      "reward": 3.304795,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 20.7476,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -4.23095,
+          "z": 12.96669
+        }
+      ]
+    },
+    {
+      "index": 116,
+      "time": 11.6,
+      "x": -47.04185,
+      "z": 19.72584,
+      "heading_degrees": 131.5707,
+      "speed_mps": 11.99995,
+      "throttle": 1.0,
+      "rudder": 0.01544,
+      "reward": 3.304572,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 21.25633,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -4.44166,
+          "z": 13.11423
+        }
+      ]
+    },
+    {
+      "index": 117,
+      "time": 11.7,
+      "x": -46.16693,
+      "z": 18.94995,
+      "heading_degrees": 131.373,
+      "speed_mps": 11.99996,
+      "throttle": 1.0,
+      "rudder": -0.30136,
+      "reward": 3.324685,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 21.81234,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -4.65236,
+          "z": 13.26177
+        }
+      ]
+    },
+    {
+      "index": 118,
+      "time": 11.8,
+      "x": -45.27073,
+      "z": 18.1989,
+      "heading_degrees": 129.8112,
+      "speed_mps": 11.99998,
+      "throttle": 1.0,
+      "rudder": -0.44608,
+      "reward": 3.365131,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 22.38769,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -4.86306,
+          "z": 13.4093
+        }
+      ]
+    },
+    {
+      "index": 119,
+      "time": 11.9,
+      "x": -44.33902,
+      "z": 17.49258,
+      "heading_degrees": 127.0842,
+      "speed_mps": 11.99999,
+      "throttle": 1.0,
+      "rudder": -0.43983,
+      "reward": 3.413771,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 22.9596,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -5.07377,
+          "z": 13.55684
+        }
+      ]
+    },
+    {
+      "index": 120,
+      "time": 12.0,
+      "x": -43.38668,
+      "z": 16.81438,
+      "heading_degrees": 125.4185,
+      "speed_mps": 11.99999,
+      "throttle": 1.0,
+      "rudder": -0.26867,
+      "reward": 3.440494,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 23.5461,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -5.28447,
+          "z": 13.70438
+        }
+      ]
+    },
+    {
+      "index": 121,
+      "time": 12.1,
+      "x": -42.4273,
+      "z": 16.1462,
+      "heading_degrees": 124.8342,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.09425,
+      "reward": 3.46627,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 24.16475,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -5.49518,
+          "z": 13.85191
+        }
+      ]
+    },
+    {
+      "index": 122,
+      "time": 12.2,
+      "x": -41.46624,
+      "z": 15.48044,
+      "heading_degrees": 124.6934,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.02271,
+      "reward": 3.493749,
+      "collision": false,
+      "nearest_obstacle_name": "north_pier",
+      "nearest_obstacle_kind": "pier",
+      "nearest_clearance_meters": 24.81956,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -5.70588,
+          "z": 13.99945
+        }
+      ]
+    },
+    {
+      "index": 123,
+      "time": 12.3,
+      "x": -40.50364,
+      "z": 14.8169,
+      "heading_degrees": 124.5643,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.02082,
+      "reward": 3.464842,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 23.89355,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -5.91658,
+          "z": 14.14699
+        }
+      ]
+    },
+    {
+      "index": 124,
+      "time": 12.4,
+      "x": -39.57197,
+      "z": 14.1442,
+      "heading_degrees": 125.7827,
+      "speed_mps": 11.8,
+      "throttle": 0.94116,
+      "rudder": 0.33835,
+      "reward": 3.333709,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 22.74502,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -6.12729,
+          "z": 14.29452
+        }
+      ]
+    },
+    {
+      "index": 125,
+      "time": 12.5,
+      "x": -38.63914,
+      "z": 13.45359,
+      "heading_degrees": 126.4488,
+      "speed_mps": 11.9149,
+      "throttle": 0.99291,
+      "rudder": 0.10805,
+      "reward": 3.330539,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 21.61627,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -6.33799,
+          "z": 14.44206
+        }
+      ]
+    },
+    {
+      "index": 126,
+      "time": 12.6,
+      "x": -37.73063,
+      "z": 12.76386,
+      "heading_degrees": 127.1212,
+      "speed_mps": 11.7149,
+      "throttle": 0.96678,
+      "rudder": 0.11054,
+      "reward": 3.231525,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 20.53534,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -6.54869,
+          "z": 14.5896
+        }
+      ]
+    },
+    {
+      "index": 127,
+      "time": 12.7,
+      "x": -36.84708,
+      "z": 12.07344,
+      "heading_degrees": 127.8974,
+      "speed_mps": 11.52104,
+      "throttle": 0.96009,
+      "rudder": 0.12932,
+      "reward": 3.123873,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 19.50536,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -6.7594,
+          "z": 14.73713
+        }
+      ]
+    },
+    {
+      "index": 128,
+      "time": 12.8,
+      "x": -35.98016,
+      "z": 11.37357,
+      "heading_degrees": 128.7818,
+      "speed_mps": 11.44924,
+      "throttle": 0.9541,
+      "rudder": 0.14808,
+      "reward": 3.053501,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 18.52176,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -6.9701,
+          "z": 14.88467
+        }
+      ]
+    },
+    {
+      "index": 129,
+      "time": 12.9,
+      "x": -35.12692,
+      "z": 10.6676,
+      "heading_degrees": 129.4525,
+      "speed_mps": 11.38155,
+      "throttle": 0.94846,
+      "rudder": 0.11283,
+      "reward": 2.986628,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 17.58489,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -7.18081,
+          "z": 15.03221
+        }
+      ]
+    },
+    {
+      "index": 130,
+      "time": 13.0,
+      "x": -34.296,
+      "z": 9.96606,
+      "heading_degrees": 130.0043,
+      "speed_mps": 11.18155,
+      "throttle": 0.93106,
+      "rudder": 0.09414,
+      "reward": 2.881118,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 16.705,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -7.39151,
+          "z": 15.17974
+        }
+      ]
+    },
+    {
+      "index": 131,
+      "time": 13.1,
+      "x": -33.48045,
+      "z": 9.26572,
+      "heading_degrees": 130.4685,
+      "speed_mps": 11.0566,
+      "throttle": 0.92138,
+      "rudder": 0.0799,
+      "reward": 2.801311,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 15.87867,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -7.60221,
+          "z": 15.32728
+        }
+      ]
+    },
+    {
+      "index": 132,
+      "time": 13.2,
+      "x": -32.66827,
+      "z": 8.56389,
+      "heading_degrees": 130.6406,
+      "speed_mps": 11.04059,
+      "throttle": 0.92005,
+      "rudder": 0.02965,
+      "reward": 2.759027,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 15.09824,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -7.81292,
+          "z": 15.47482
+        }
+      ]
+    },
+    {
+      "index": 133,
+      "time": 13.3,
+      "x": -31.88907,
+      "z": 7.85486,
+      "heading_degrees": 132.065,
+      "speed_mps": 10.84059,
+      "throttle": 0.88374,
+      "rudder": 0.24898,
+      "reward": 2.631028,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 14.39768,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -8.02362,
+          "z": 15.62235
+        }
+      ]
+    },
+    {
+      "index": 134,
+      "time": 13.4,
+      "x": -31.09407,
+      "z": 7.12718,
+      "heading_degrees": 132.2337,
+      "speed_mps": 11.08292,
+      "throttle": 0.92358,
+      "rudder": 0.00598,
+      "reward": 2.670053,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 13.73899,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -8.23433,
+          "z": 15.76989
+        }
+      ]
+    },
+    {
+      "index": 135,
+      "time": 13.5,
+      "x": -30.30769,
+      "z": 6.41981,
+      "heading_degrees": 131.7471,
+      "speed_mps": 10.88292,
+      "throttle": 0.87706,
+      "rudder": -0.0848,
+      "reward": 2.590563,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 13.13654,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -8.44503,
+          "z": 15.91742
+        }
+      ]
+    },
+    {
+      "index": 136,
+      "time": 13.6,
+      "x": -29.50793,
+      "z": 5.71605,
+      "heading_degrees": 131.1398,
+      "speed_mps": 10.95934,
+      "throttle": 0.91328,
+      "rudder": -0.10526,
+      "reward": 2.59692,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 12.57904,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -8.65573,
+          "z": 16.06496
+        }
+      ]
+    },
+    {
+      "index": 137,
+      "time": 13.7,
+      "x": -28.67253,
+      "z": 5.01087,
+      "heading_degrees": 129.9998,
+      "speed_mps": 11.23934,
+      "throttle": 0.93685,
+      "rudder": -0.19369,
+      "reward": 2.670157,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 12.05429,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -8.86644,
+          "z": 16.2125
+        }
+      ]
+    },
+    {
+      "index": 138,
+      "time": 13.8,
+      "x": -27.80254,
+      "z": 4.31584,
+      "heading_degrees": 128.4965,
+      "speed_mps": 11.44303,
+      "throttle": 0.95359,
+      "rudder": -0.2518,
+      "reward": 2.73161,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 11.56439,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -9.07714,
+          "z": 16.36003
+        }
+      ]
+    },
+    {
+      "index": 139,
+      "time": 13.9,
+      "x": -26.89951,
+      "z": 3.63426,
+      "heading_degrees": 126.9634,
+      "speed_mps": 11.62195,
+      "throttle": 0.9685,
+      "rudder": -0.25368,
+      "reward": 2.788482,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 11.11496,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -9.28785,
+          "z": 16.50757
+        }
+      ]
+    },
+    {
+      "index": 140,
+      "time": 14.0,
+      "x": -25.96618,
+      "z": 2.97214,
+      "heading_degrees": 125.3172,
+      "speed_mps": 11.75202,
+      "throttle": 0.97933,
+      "rudder": -0.26996,
+      "reward": 2.830512,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 10.71043,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -9.49855,
+          "z": 16.65511
+        }
+      ]
+    },
+    {
+      "index": 141,
+      "time": 14.1,
+      "x": -25.00622,
+      "z": 2.3297,
+      "heading_degrees": 123.7974,
+      "speed_mps": 11.85957,
+      "throttle": 0.9883,
+      "rudder": -0.24744,
+      "reward": 2.865497,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 10.35857,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -9.70925,
+          "z": 16.80264
+        }
+      ]
+    },
+    {
+      "index": 142,
+      "time": 14.2,
+      "x": -24.02428,
+      "z": 1.70889,
+      "heading_degrees": 122.346,
+      "speed_mps": 11.92589,
+      "throttle": 0.99382,
+      "rudder": -0.23527,
+      "reward": 2.888855,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 10.06605,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -9.91996,
+          "z": 16.95018
+        }
+      ]
+    },
+    {
+      "index": 143,
+      "time": 14.3,
+      "x": -23.02444,
+      "z": 1.11011,
+      "heading_degrees": 120.9959,
+      "speed_mps": 11.9624,
+      "throttle": 0.99687,
+      "rudder": -0.21831,
+      "reward": 2.90268,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 9.83906,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -10.13066,
+          "z": 17.09772
+        }
+      ]
+    },
+    {
+      "index": 144,
+      "time": 14.4,
+      "x": -22.00791,
+      "z": 0.53603,
+      "heading_degrees": 119.5725,
+      "speed_mps": 11.98212,
+      "throttle": 0.99851,
+      "rudder": -0.22984,
+      "reward": 2.914292,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 9.67907,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -10.34137,
+          "z": 17.24525
+        }
+      ]
+    },
+    {
+      "index": 145,
+      "time": 14.5,
+      "x": -20.97824,
+      "z": -0.01574,
+      "heading_degrees": 118.3349,
+      "speed_mps": 11.98904,
+      "throttle": 0.99909,
+      "rudder": -0.19976,
+      "reward": 2.920966,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 9.59192,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -10.55207,
+          "z": 17.39279
+        }
+      ]
+    },
+    {
+      "index": 146,
+      "time": 14.6,
+      "x": -19.93706,
+      "z": -0.54667,
+      "heading_degrees": 117.1975,
+      "speed_mps": 11.99372,
+      "throttle": 0.99948,
+      "rudder": -0.18354,
+      "reward": 2.929108,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 9.5807,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -10.76277,
+          "z": 17.54033
+        }
+      ]
+    },
+    {
+      "index": 147,
+      "time": 14.7,
+      "x": -18.88508,
+      "z": -1.05662,
+      "heading_degrees": 116.0706,
+      "speed_mps": 11.99626,
+      "throttle": 0.99969,
+      "rudder": -0.18181,
+      "reward": 2.938636,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 9.64574,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -10.97348,
+          "z": 17.68786
+        }
+      ]
+    },
+    {
+      "index": 148,
+      "time": 14.8,
+      "x": -17.82173,
+      "z": -1.54305,
+      "heading_degrees": 114.8233,
+      "speed_mps": 11.99792,
+      "throttle": 0.99983,
+      "rudder": -0.20119,
+      "reward": 5.949882,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 9.78369,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -11.18418,
+          "z": 17.8354
+        }
+      ]
+    },
+    {
+      "index": 149,
+      "time": 14.9,
+      "x": -16.75922,
+      "z": -2.03179,
+      "heading_degrees": 114.9399,
+      "speed_mps": 11.99999,
+      "throttle": 1.0,
+      "rudder": 0.91538,
+      "reward": 2.899655,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 10.02114,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -11.39489,
+          "z": 17.98294
+        }
+      ]
+    },
+    {
+      "index": 150,
+      "time": 15.0,
+      "x": -15.71015,
+      "z": -2.54848,
+      "heading_degrees": 116.4205,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.93002,
+      "reward": 2.970358,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 10.38237,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -11.60559,
+          "z": 18.13047
+        }
+      ]
+    },
+    {
+      "index": 151,
+      "time": 15.1,
+      "x": -14.6889,
+      "z": -3.11784,
+      "heading_degrees": 119.2651,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.91966,
+      "reward": 3.011261,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 10.88783,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -11.81629,
+          "z": 18.27801
+        }
+      ]
+    },
+    {
+      "index": 152,
+      "time": 15.2,
+      "x": -13.71352,
+      "z": -3.76245,
+      "heading_degrees": 123.4737,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.87291,
+      "reward": 3.051691,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 11.552,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -12.027,
+          "z": 18.42554
+        }
+      ]
+    },
+    {
+      "index": 153,
+      "time": 15.3,
+      "x": -12.79725,
+      "z": -4.48876,
+      "heading_degrees": 128.29,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.77681,
+      "reward": 3.075436,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 12.36862,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -12.2377,
+          "z": 18.57308
+        }
+      ]
+    },
+    {
+      "index": 154,
+      "time": 15.4,
+      "x": -11.93198,
+      "z": -5.27547,
+      "heading_degrees": 132.0652,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.6089,
+      "reward": 3.084999,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 13.30164,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -12.4484,
+          "z": 18.72062
+        }
+      ]
+    },
+    {
+      "index": 155,
+      "time": 15.5,
+      "x": -11.10132,
+      "z": -6.09894,
+      "heading_degrees": 134.4764,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.27731,
+      "reward": 3.091548,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 14.31565,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -12.65911,
+          "z": 18.86815
+        }
+      ]
+    },
+    {
+      "index": 156,
+      "time": 15.6,
+      "x": -10.28617,
+      "z": -6.93793,
+      "heading_degrees": 135.5236,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.00189,
+      "reward": 3.118033,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 15.3819,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -12.86981,
+          "z": 19.01569
+        }
+      ]
+    },
+    {
+      "index": 157,
+      "time": 15.7,
+      "x": -9.4663,
+      "z": -7.77225,
+      "heading_degrees": 135.2068,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.16457,
+      "reward": 3.162639,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 16.47688,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -13.08052,
+          "z": 19.16323
+        }
+      ]
+    },
+    {
+      "index": 158,
+      "time": 15.8,
+      "x": -8.6246,
+      "z": -8.58434,
+      "heading_degrees": 133.7188,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.24,
+      "reward": 3.216819,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 17.58275,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -13.29122,
+          "z": 19.31076
+        }
+      ]
+    },
+    {
+      "index": 159,
+      "time": 15.9,
+      "x": -7.76399,
+      "z": -9.37618,
+      "heading_degrees": 132.3961,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.21334,
+      "reward": 3.268537,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 18.69985,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -13.50192,
+          "z": 19.4583
+        }
+      ]
+    },
+    {
+      "index": 160,
+      "time": 16.0,
+      "x": -6.89254,
+      "z": -10.15599,
+      "heading_degrees": 131.6228,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.12472,
+      "reward": 3.31114,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 19.83326,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -13.71263,
+          "z": 19.60584
+        }
+      ]
+    },
+    {
+      "index": 161,
+      "time": 16.1,
+      "x": -6.01561,
+      "z": -10.92958,
+      "heading_degrees": 131.2273,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.06379,
+      "reward": 3.354419,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 20.98558,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -13.92333,
+          "z": 19.75337
+        }
+      ]
+    },
+    {
+      "index": 162,
+      "time": 16.2,
+      "x": -5.13617,
+      "z": -11.70031,
+      "heading_degrees": 131.0453,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.02935,
+      "reward": 3.396367,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 22.15725,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -14.13404,
+          "z": 19.90091
+        }
+      ]
+    },
+    {
+      "index": 163,
+      "time": 16.3,
+      "x": -4.25521,
+      "z": -12.46929,
+      "heading_degrees": 130.9351,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.01778,
+      "reward": 3.438019,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 23.34705,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -14.34474,
+          "z": 20.04845
+        }
+      ]
+    },
+    {
+      "index": 164,
+      "time": 16.4,
+      "x": -3.37047,
+      "z": -13.23389,
+      "heading_degrees": 130.6582,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.04466,
+      "reward": 3.479605,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 24.55138,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -14.55544,
+          "z": 20.19598
+        }
+      ]
+    },
+    {
+      "index": 165,
+      "time": 16.5,
+      "x": -2.48025,
+      "z": -13.99206,
+      "heading_degrees": 130.2551,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.06502,
+      "reward": 3.523482,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 25.76745,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -14.76615,
+          "z": 20.34352
+        }
+      ]
+    },
+    {
+      "index": 166,
+      "time": 16.6,
+      "x": -1.58292,
+      "z": -14.74175,
+      "heading_degrees": 129.7269,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.0852,
+      "reward": 3.568275,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 26.99281,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -14.97685,
+          "z": 20.49106
+        }
+      ]
+    },
+    {
+      "index": 167,
+      "time": 16.7,
+      "x": -0.67812,
+      "z": -15.48237,
+      "heading_degrees": 129.1656,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.09053,
+      "reward": 3.61416,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 28.22618,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -15.18756,
+          "z": 20.63859
+        }
+      ]
+    },
+    {
+      "index": 168,
+      "time": 16.8,
+      "x": 0.23336,
+      "z": -16.2147,
+      "heading_degrees": 128.6573,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.08199,
+      "reward": 3.659246,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 29.46726,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -15.39826,
+          "z": 20.78613
+        }
+      ]
+    },
+    {
+      "index": 169,
+      "time": 16.9,
+      "x": 1.15041,
+      "z": -16.94003,
+      "heading_degrees": 128.2303,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.06887,
+      "reward": 3.704017,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 30.7161,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -15.60896,
+          "z": 20.93366
+        }
+      ]
+    },
+    {
+      "index": 170,
+      "time": 17.0,
+      "x": 2.07169,
+      "z": -17.65995,
+      "heading_degrees": 127.9028,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.05283,
+      "reward": 3.748563,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 31.97291,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -15.81967,
+          "z": 21.0812
+        }
+      ]
+    },
+    {
+      "index": 171,
+      "time": 17.1,
+      "x": 2.99629,
+      "z": -18.37558,
+      "heading_degrees": 127.643,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.0419,
+      "reward": 3.750745,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 33.23764,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -16.03037,
+          "z": 21.22874
+        }
+      ]
+    },
+    {
+      "index": 172,
+      "time": 17.2,
+      "x": 3.92368,
+      "z": -19.08759,
+      "heading_degrees": 127.4252,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.03513,
+      "reward": 3.75171,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 34.50997,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -16.24108,
+          "z": 21.37627
+        }
+      ]
+    },
+    {
+      "index": 173,
+      "time": 17.3,
+      "x": 4.85333,
+      "z": -19.79664,
+      "heading_degrees": 127.2476,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.02865,
+      "reward": 3.752323,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 35.78965,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -16.45178,
+          "z": 21.52381
+        }
+      ]
+    },
+    {
+      "index": 174,
+      "time": 17.4,
+      "x": 5.7851,
+      "z": -20.50288,
+      "heading_degrees": 127.0788,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.02722,
+      "reward": 3.753045,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 37.07614,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -16.66248,
+          "z": 21.67135
+        }
+      ]
+    },
+    {
+      "index": 175,
+      "time": 17.5,
+      "x": 6.71933,
+      "z": -21.20586,
+      "heading_degrees": 126.8843,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.03137,
+      "reward": 3.753532,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 38.36868,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -16.87319,
+          "z": 21.81888
+        }
+      ]
+    },
+    {
+      "index": 176,
+      "time": 17.6,
+      "x": 7.65661,
+      "z": -21.90476,
+      "heading_degrees": 126.641,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.03925,
+      "reward": 3.754172,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 39.66638,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -17.08389,
+          "z": 21.96642
+        }
+      ]
+    },
+    {
+      "index": 177,
+      "time": 17.7,
+      "x": 8.59758,
+      "z": -22.59867,
+      "heading_degrees": 126.3447,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.04778,
+      "reward": 3.755153,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 40.9684,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -17.2946,
+          "z": 22.11396
+        }
+      ]
+    },
+    {
+      "index": 178,
+      "time": 17.8,
+      "x": 9.54217,
+      "z": -23.28763,
+      "heading_degrees": 126.0523,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.04716,
+      "reward": 3.756529,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 42.27441,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -17.5053,
+          "z": 22.26149
+        }
+      ]
+    },
+    {
+      "index": 179,
+      "time": 17.9,
+      "x": 10.48956,
+      "z": -23.97273,
+      "heading_degrees": 125.8239,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.03684,
+      "reward": 3.757031,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 43.58463,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -17.716,
+          "z": 22.40903
+        }
+      ]
+    },
+    {
+      "index": 180,
+      "time": 18.0,
+      "x": 11.43889,
+      "z": -24.65514,
+      "heading_degrees": 125.6659,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.02549,
+      "reward": 3.757627,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 44.89931,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -17.92671,
+          "z": 22.55657
+        }
+      ]
+    },
+    {
+      "index": 181,
+      "time": 18.1,
+      "x": 12.38991,
+      "z": -25.33518,
+      "heading_degrees": 125.5272,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.02237,
+      "reward": 3.758454,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 46.21828,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -18.13741,
+          "z": 22.7041
+        }
+      ]
+    },
+    {
+      "index": 182,
+      "time": 18.2,
+      "x": 13.34289,
+      "z": -26.01247,
+      "heading_degrees": 125.3654,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.0261,
+      "reward": 3.758955,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 47.54106,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -18.34811,
+          "z": 22.85164
+        }
+      ]
+    },
+    {
+      "index": 183,
+      "time": 18.3,
+      "x": 14.29892,
+      "z": -26.68544,
+      "heading_degrees": 125.1133,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.04066,
+      "reward": 3.759265,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 48.86671,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -18.55882,
+          "z": 22.99918
+        }
+      ]
+    },
+    {
+      "index": 184,
+      "time": 18.4,
+      "x": 15.25884,
+      "z": -27.35285,
+      "heading_degrees": 124.7891,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.0523,
+      "reward": 3.760372,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 50.19446,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -18.76952,
+          "z": 23.14671
+        }
+      ]
+    },
+    {
+      "index": 185,
+      "time": 18.5,
+      "x": 16.2233,
+      "z": -28.01367,
+      "heading_degrees": 124.4071,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.06161,
+      "reward": 3.761604,
+      "collision": false,
+      "nearest_obstacle_name": "outbound_ferry",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 51.52372,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -18.98023,
+          "z": 23.29425
+        }
+      ]
+    },
+    {
+      "index": 186,
+      "time": 18.6,
+      "x": 17.19304,
+      "z": -28.66673,
+      "heading_degrees": 123.959,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.07227,
+      "reward": 3.762762,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 50.69915,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -19.19093,
+          "z": 23.44178
+        }
+      ]
+    },
+    {
+      "index": 187,
+      "time": 18.7,
+      "x": 18.15149,
+      "z": -29.3353,
+      "heading_degrees": 124.8746,
+      "speed_mps": 11.99454,
+      "throttle": 0.99954,
+      "rudder": 0.14899,
+      "reward": 3.749507,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 49.82268,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -19.40163,
+          "z": 23.58932
+        }
+      ]
+    },
+    {
+      "index": 188,
+      "time": 18.8,
+      "x": 19.11568,
+      "z": -29.99643,
+      "heading_degrees": 124.4265,
+      "speed_mps": 11.99949,
+      "throttle": 0.99996,
+      "rudder": -0.12238,
+      "reward": 3.751246,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 48.96103,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -19.61234,
+          "z": 23.73686
+        }
+      ]
+    },
+    {
+      "index": 189,
+      "time": 18.9,
+      "x": 20.0768,
+      "z": -30.66093,
+      "heading_degrees": 124.6425,
+      "speed_mps": 11.99331,
+      "throttle": 0.99944,
+      "rudder": 0.03486,
+      "reward": 3.753564,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 48.10606,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -19.82304,
+          "z": 23.88439
+        }
+      ]
+    },
+    {
+      "index": 190,
+      "time": 19.0,
+      "x": 21.04578,
+      "z": -31.31482,
+      "heading_degrees": 124.0118,
+      "speed_mps": 11.99839,
+      "throttle": 0.99987,
+      "rudder": -0.10174,
+      "reward": 3.757401,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 47.26957,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -20.03375,
+          "z": 24.03193
+        }
+      ]
+    },
+    {
+      "index": 191,
+      "time": 19.1,
+      "x": 22.0114,
+      "z": -31.97261,
+      "heading_degrees": 124.2565,
+      "speed_mps": 11.9925,
+      "throttle": 0.99938,
+      "rudder": 0.03948,
+      "reward": 3.755325,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 46.4401,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -20.24445,
+          "z": 24.17947
+        }
+      ]
+    },
+    {
+      "index": 192,
+      "time": 19.2,
+      "x": 22.98561,
+      "z": -32.61877,
+      "heading_degrees": 123.5663,
+      "speed_mps": 11.99885,
+      "throttle": 0.9999,
+      "rudder": -0.11133,
+      "reward": 3.758355,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 45.63115,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -20.45515,
+          "z": 24.327
+        }
+      ]
+    },
+    {
+      "index": 193,
+      "time": 19.3,
+      "x": 23.95839,
+      "z": -33.26608,
+      "heading_degrees": 123.6501,
+      "speed_mps": 11.99332,
+      "throttle": 0.99944,
+      "rudder": 0.01352,
+      "reward": 3.75853,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 44.8325,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -20.66586,
+          "z": 24.47454
+        }
+      ]
+    },
+    {
+      "index": 194,
+      "time": 19.4,
+      "x": 24.94005,
+      "z": -33.90088,
+      "heading_degrees": 122.9179,
+      "speed_mps": 11.99883,
+      "throttle": 0.9999,
+      "rudder": -0.11811,
+      "reward": 3.760943,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 44.05654,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -20.87656,
+          "z": 24.62208
+        }
+      ]
+    },
+    {
+      "index": 195,
+      "time": 19.5,
+      "x": 25.91946,
+      "z": -34.53852,
+      "heading_degrees": 123.0897,
+      "speed_mps": 11.99548,
+      "throttle": 0.99962,
+      "rudder": 0.02773,
+      "reward": 3.760143,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 43.29039,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -21.08727,
+          "z": 24.76961
+        }
+      ]
+    },
+    {
+      "index": 196,
+      "time": 19.6,
+      "x": 26.90855,
+      "z": -35.16177,
+      "heading_degrees": 122.2622,
+      "speed_mps": 11.99932,
+      "throttle": 0.99994,
+      "rudder": -0.13348,
+      "reward": 3.761514,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 42.55013,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -21.29797,
+          "z": 24.91715
+        }
+      ]
+    },
+    {
+      "index": 197,
+      "time": 19.7,
+      "x": 27.89491,
+      "z": -35.78884,
+      "heading_degrees": 122.4854,
+      "speed_mps": 11.99665,
+      "throttle": 0.99972,
+      "rudder": 0.03601,
+      "reward": 3.761381,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 41.81988,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -21.50867,
+          "z": 25.06469
+        }
+      ]
+    },
+    {
+      "index": 198,
+      "time": 19.8,
+      "x": 28.8913,
+      "z": -36.40044,
+      "heading_degrees": 121.6058,
+      "speed_mps": 11.99962,
+      "throttle": 0.99997,
+      "rudder": -0.14187,
+      "reward": 3.762379,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 41.11811,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -21.71938,
+          "z": 25.21222
+        }
+      ]
+    },
+    {
+      "index": 199,
+      "time": 19.9,
+      "x": 29.88273,
+      "z": -37.01974,
+      "heading_degrees": 122.0426,
+      "speed_mps": 11.99803,
+      "throttle": 0.99984,
+      "rudder": 0.07046,
+      "reward": 3.761367,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 40.4238,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -21.93008,
+          "z": 25.35976
+        }
+      ]
+    },
+    {
+      "index": 200,
+      "time": 20.0,
+      "x": 30.88447,
+      "z": -37.62259,
+      "heading_degrees": 121.1155,
+      "speed_mps": 11.99983,
+      "throttle": 0.99999,
+      "rudder": -0.20633,
+      "reward": 3.759638,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 39.76049,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -22.14079,
+          "z": 25.5073
+        }
+      ]
+    },
+    {
+      "index": 201,
+      "time": 20.1,
+      "x": 31.9102,
+      "z": -38.18387,
+      "heading_degrees": 118.8244,
+      "speed_mps": 11.9999,
+      "throttle": 0.99999,
+      "rudder": -0.40897,
+      "reward": 3.757803,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 39.15388,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -22.35149,
+          "z": 25.65483
+        }
+      ]
+    },
+    {
+      "index": 202,
+      "time": 20.2,
+      "x": 32.94554,
+      "z": -38.72728,
+      "heading_degrees": 117.8551,
+      "speed_mps": 11.99969,
+      "throttle": 0.99997,
+      "rudder": -0.15634,
+      "reward": 3.754268,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 38.58242,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -22.56219,
+          "z": 25.80237
+        }
+      ]
+    },
+    {
+      "index": 203,
+      "time": 20.3,
+      "x": 33.98804,
+      "z": -39.25698,
+      "heading_degrees": 117.1165,
+      "speed_mps": 11.99999,
+      "throttle": 1.0,
+      "rudder": -0.11913,
+      "reward": 3.759172,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 38.04302,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -22.7729,
+          "z": 25.94991
+        }
+      ]
+    },
+    {
+      "index": 204,
+      "time": 20.4,
+      "x": 35.03198,
+      "z": -39.78389,
+      "heading_degrees": 116.9665,
+      "speed_mps": 11.99999,
+      "throttle": 1.0,
+      "rudder": -0.02419,
+      "reward": 3.755647,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 37.52559,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -22.9836,
+          "z": 26.09744
+        }
+      ]
+    },
+    {
+      "index": 205,
+      "time": 20.5,
+      "x": 36.07765,
+      "z": -40.30738,
+      "heading_degrees": 116.7839,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.02945,
+      "reward": 3.756118,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 37.03136,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -23.19431,
+          "z": 26.24498
+        }
+      ]
+    },
+    {
+      "index": 206,
+      "time": 20.6,
+      "x": 37.12206,
+      "z": -40.83335,
+      "heading_degrees": 116.9164,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.02136,
+      "reward": 6.752397,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 36.55493,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -23.40501,
+          "z": 26.39251
+        }
+      ]
+    },
+    {
+      "index": 207,
+      "time": 20.7,
+      "x": 38.15192,
+      "z": -41.38707,
+      "heading_degrees": 118.4128,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.45157,
+      "reward": 3.72625,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 36.07053,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -23.61571,
+          "z": 26.54005
+        }
+      ]
+    },
+    {
+      "index": 208,
+      "time": 20.8,
+      "x": 39.17642,
+      "z": -41.95059,
+      "heading_degrees": 118.9459,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.08598,
+      "reward": 3.734524,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 35.59672,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -23.82642,
+          "z": 26.68759
+        }
+      ]
+    },
+    {
+      "index": 209,
+      "time": 20.9,
+      "x": 40.18553,
+      "z": -42.54112,
+      "heading_degrees": 120.4303,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.23942,
+      "reward": 3.752792,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 35.11555,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -24.03712,
+          "z": 26.83512
+        }
+      ]
+    },
+    {
+      "index": 210,
+      "time": 21.0,
+      "x": 41.19335,
+      "z": -43.13382,
+      "heading_degrees": 120.5507,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.05509,
+      "reward": 3.749806,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 34.65333,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -24.24782,
+          "z": 26.98266
+        }
+      ]
+    },
+    {
+      "index": 211,
+      "time": 21.1,
+      "x": 42.19179,
+      "z": -43.74215,
+      "heading_degrees": 121.4214,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.14044,
+      "reward": 3.75811,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 34.19601,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -24.45853,
+          "z": 27.1302
+        }
+      ]
+    },
+    {
+      "index": 212,
+      "time": 21.2,
+      "x": 43.19304,
+      "z": -44.34586,
+      "heading_degrees": 121.1631,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.04165,
+      "reward": 3.7573,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 33.76582,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -24.66923,
+          "z": 27.27773
+        }
+      ]
+    },
+    {
+      "index": 213,
+      "time": 21.3,
+      "x": 44.18963,
+      "z": -44.9572,
+      "heading_degrees": 121.5897,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0688,
+      "reward": 3.761649,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 33.34994,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -24.87994,
+          "z": 27.42527
+        }
+      ]
+    },
+    {
+      "index": 214,
+      "time": 21.4,
+      "x": 45.18825,
+      "z": -45.56525,
+      "heading_degrees": 121.4054,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.02973,
+      "reward": 3.760445,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 32.96083,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -25.09064,
+          "z": 27.57281
+        }
+      ]
+    },
+    {
+      "index": 215,
+      "time": 21.5,
+      "x": 46.18503,
+      "z": -46.17628,
+      "heading_degrees": 121.5727,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.02698,
+      "reward": 3.76226,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 32.59208,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -25.30134,
+          "z": 27.72034
+        }
+      ]
+    },
+    {
+      "index": 216,
+      "time": 21.6,
+      "x": 47.18191,
+      "z": -46.78716,
+      "heading_degrees": 121.5638,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.00143,
+      "reward": 3.762633,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 32.24768,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -25.51205,
+          "z": 27.86788
+        }
+      ]
+    },
+    {
+      "index": 217,
+      "time": 21.7,
+      "x": 48.17967,
+      "z": -47.39659,
+      "heading_degrees": 121.483,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.01303,
+      "reward": 3.759287,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 31.92958,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -25.72275,
+          "z": 28.01542
+        }
+      ]
+    },
+    {
+      "index": 218,
+      "time": 21.8,
+      "x": 49.17735,
+      "z": -48.00617,
+      "heading_degrees": 121.4911,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0013,
+      "reward": 3.748243,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 31.63646,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -25.93346,
+          "z": 28.16295
+        }
+      ]
+    },
+    {
+      "index": 219,
+      "time": 21.9,
+      "x": 50.17471,
+      "z": -48.61627,
+      "heading_degrees": 121.5203,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.00472,
+      "reward": 3.738583,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 31.36834,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -26.14416,
+          "z": 28.31049
+        }
+      ]
+    },
+    {
+      "index": 220,
+      "time": 22.0,
+      "x": 51.1705,
+      "z": -49.22891,
+      "heading_degrees": 121.6625,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.02293,
+      "reward": 3.729303,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 31.1233,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -26.35486,
+          "z": 28.45803
+        }
+      ]
+    },
+    {
+      "index": 221,
+      "time": 22.1,
+      "x": 52.1656,
+      "z": -49.84268,
+      "heading_degrees": 121.7259,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.01022,
+      "reward": 3.721442,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 30.9033,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -26.56557,
+          "z": 28.60556
+        }
+      ]
+    },
+    {
+      "index": 222,
+      "time": 22.2,
+      "x": 53.15928,
+      "z": -50.45873,
+      "heading_degrees": 121.8544,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.02073,
+      "reward": 3.714498,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 30.70734,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -26.77627,
+          "z": 28.7531
+        }
+      ]
+    },
+    {
+      "index": 223,
+      "time": 22.3,
+      "x": 54.15155,
+      "z": -51.07705,
+      "heading_degrees": 121.9818,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.02054,
+      "reward": 3.708803,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 30.53572,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -26.98698,
+          "z": 28.90063
+        }
+      ]
+    },
+    {
+      "index": 224,
+      "time": 22.4,
+      "x": 55.14231,
+      "z": -51.69779,
+      "heading_degrees": 122.118,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.02197,
+      "reward": 3.70353,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 30.38852,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -27.19768,
+          "z": 29.04817
+        }
+      ]
+    },
+    {
+      "index": 225,
+      "time": 22.5,
+      "x": 56.13241,
+      "z": -52.31957,
+      "heading_degrees": 122.1767,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.00947,
+      "reward": 3.698368,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 30.26758,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -27.40838,
+          "z": 29.19571
+        }
+      ]
+    },
+    {
+      "index": 226,
+      "time": 22.6,
+      "x": 57.12098,
+      "z": -52.94378,
+      "heading_degrees": 122.314,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.02214,
+      "reward": 3.694784,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 30.17144,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -27.61909,
+          "z": 29.34324
+        }
+      ]
+    },
+    {
+      "index": 227,
+      "time": 22.7,
+      "x": 58.1092,
+      "z": -53.56853,
+      "heading_degrees": 122.3444,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.00491,
+      "reward": 3.691499,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 30.1025,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -27.82979,
+          "z": 29.49078
+        }
+      ]
+    },
+    {
+      "index": 228,
+      "time": 22.8,
+      "x": 59.09658,
+      "z": -54.19462,
+      "heading_degrees": 122.4205,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.01228,
+      "reward": 3.689758,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 30.0599,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -28.0405,
+          "z": 29.63832
+        }
+      ]
+    },
+    {
+      "index": 229,
+      "time": 22.9,
+      "x": 60.08292,
+      "z": -54.82234,
+      "heading_degrees": 122.5126,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.01484,
+      "reward": 3.688847,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 30.04339,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -28.2512,
+          "z": 29.78585
+        }
+      ]
+    },
+    {
+      "index": 230,
+      "time": 23.0,
+      "x": 61.06935,
+      "z": -55.44991,
+      "heading_degrees": 122.5039,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.00139,
+      "reward": 3.687581,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 30.0551,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -28.4619,
+          "z": 29.93339
+        }
+      ]
+    },
+    {
+      "index": 231,
+      "time": 23.1,
+      "x": 62.05373,
+      "z": -56.0807,
+      "heading_degrees": 122.6865,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.02945,
+      "reward": 3.688049,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 30.091,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -28.67261,
+          "z": 30.08093
+        }
+      ]
+    },
+    {
+      "index": 232,
+      "time": 23.2,
+      "x": 63.038,
+      "z": -56.71166,
+      "heading_degrees": 122.6961,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.00154,
+      "reward": 3.689442,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 30.15467,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -28.88331,
+          "z": 30.22846
+        }
+      ]
+    },
+    {
+      "index": 233,
+      "time": 23.3,
+      "x": 64.02076,
+      "z": -57.34495,
+      "heading_degrees": 122.8284,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.02135,
+      "reward": 3.692313,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 30.24343,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -29.09402,
+          "z": 30.376
+        }
+      ]
+    },
+    {
+      "index": 234,
+      "time": 23.4,
+      "x": 65.00237,
+      "z": -57.98003,
+      "heading_degrees": 122.9304,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.01645,
+      "reward": 3.696323,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 30.35777,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -29.30472,
+          "z": 30.52354
+        }
+      ]
+    },
+    {
+      "index": 235,
+      "time": 23.5,
+      "x": 65.98219,
+      "z": -58.61787,
+      "heading_degrees": 123.0872,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.02528,
+      "reward": 3.700665,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 30.49638,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -29.51542,
+          "z": 30.67107
+        }
+      ]
+    },
+    {
+      "index": 236,
+      "time": 23.6,
+      "x": 66.96046,
+      "z": -59.25808,
+      "heading_degrees": 123.2223,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.02179,
+      "reward": 3.706163,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 30.65951,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -29.72613,
+          "z": 30.81861
+        }
+      ]
+    },
+    {
+      "index": 237,
+      "time": 23.7,
+      "x": 67.93691,
+      "z": -59.90106,
+      "heading_degrees": 123.3812,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.02563,
+      "reward": 3.712339,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 30.84641,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -29.93683,
+          "z": 30.96615
+        }
+      ]
+    },
+    {
+      "index": 238,
+      "time": 23.8,
+      "x": 68.91114,
+      "z": -60.5474,
+      "heading_degrees": 123.5727,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0309,
+      "reward": 3.719468,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 31.05615,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -30.14753,
+          "z": 31.11368
+        }
+      ]
+    },
+    {
+      "index": 239,
+      "time": 23.9,
+      "x": 69.88395,
+      "z": -61.19587,
+      "heading_degrees": 123.6956,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.01981,
+      "reward": 3.726882,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 31.28985,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -30.35824,
+          "z": 31.26122
+        }
+      ]
+    },
+    {
+      "index": 240,
+      "time": 24.0,
+      "x": 70.85426,
+      "z": -61.84808,
+      "heading_degrees": 123.9097,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.03454,
+      "reward": 3.735537,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 31.5453,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -30.56894,
+          "z": 31.40875
+        }
+      ]
+    },
+    {
+      "index": 241,
+      "time": 24.1,
+      "x": 71.82308,
+      "z": -62.5025,
+      "heading_degrees": 124.0374,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.02059,
+      "reward": 3.744785,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 31.82393,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -30.77965,
+          "z": 31.55629
+        }
+      ]
+    },
+    {
+      "index": 242,
+      "time": 24.2,
+      "x": 72.78848,
+      "z": -63.16194,
+      "heading_degrees": 124.3273,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.04676,
+      "reward": 3.750775,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 32.12209,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -30.99035,
+          "z": 31.70383
+        }
+      ]
+    },
+    {
+      "index": 243,
+      "time": 24.3,
+      "x": 73.75273,
+      "z": -63.82308,
+      "heading_degrees": 124.4254,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.01583,
+      "reward": 3.750143,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 32.44327,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -31.20105,
+          "z": 31.85136
+        }
+      ]
+    },
+    {
+      "index": 244,
+      "time": 24.4,
+      "x": 74.71338,
+      "z": -64.48944,
+      "heading_degrees": 124.728,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0488,
+      "reward": 3.750478,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 32.78296,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -31.41176,
+          "z": 31.9989
+        }
+      ]
+    },
+    {
+      "index": 245,
+      "time": 24.5,
+      "x": 75.67338,
+      "z": -65.15672,
+      "heading_degrees": 124.7821,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.00872,
+      "reward": 3.749474,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 33.14572,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -31.62246,
+          "z": 32.14644
+        }
+      ]
+    },
+    {
+      "index": 246,
+      "time": 24.6,
+      "x": 76.62806,
+      "z": -65.83161,
+      "heading_degrees": 125.225,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.07143,
+      "reward": 3.749664,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 33.5234,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -31.83317,
+          "z": 32.29397
+        }
+      ]
+    },
+    {
+      "index": 247,
+      "time": 24.7,
+      "x": 77.58349,
+      "z": -66.50543,
+      "heading_degrees": 125.163,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.01,
+      "reward": 3.747534,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 33.92557,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -32.04387,
+          "z": 32.44151
+        }
+      ]
+    },
+    {
+      "index": 248,
+      "time": 24.8,
+      "x": 78.53199,
+      "z": -67.189,
+      "heading_degrees": 125.734,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.0921,
+      "reward": 3.748468,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 34.33934,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -32.25457,
+          "z": 32.58905
+        }
+      ]
+    },
+    {
+      "index": 249,
+      "time": 24.9,
+      "x": 79.48268,
+      "z": -67.8695,
+      "heading_degrees": 125.5537,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.02908,
+      "reward": 3.745459,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 34.77896,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -32.46528,
+          "z": 32.73658
+        }
+      ]
+    },
+    {
+      "index": 250,
+      "time": 25.0,
+      "x": 80.42391,
+      "z": -68.56306,
+      "heading_degrees": 126.324,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.12425,
+      "reward": 3.747127,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 35.22555,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -32.67598,
+          "z": 32.88412
+        }
+      ]
+    },
+    {
+      "index": 251,
+      "time": 25.1,
+      "x": 81.37157,
+      "z": -69.24779,
+      "heading_degrees": 125.8025,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.08412,
+      "reward": 3.739958,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 35.70355,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -32.88669,
+          "z": 33.03166
+        }
+      ]
+    },
+    {
+      "index": 252,
+      "time": 25.2,
+      "x": 82.3088,
+      "z": -69.94676,
+      "heading_degrees": 126.645,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.19285,
+      "reward": 3.741042,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 36.18635,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -33.09739,
+          "z": 33.17919
+        }
+      ]
+    },
+    {
+      "index": 253,
+      "time": 25.3,
+      "x": 83.2511,
+      "z": -70.63885,
+      "heading_degrees": 126.2372,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.06577,
+      "reward": 3.737645,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 36.69728,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -33.30809,
+          "z": 33.32673
+        }
+      ]
+    },
+    {
+      "index": 254,
+      "time": 25.4,
+      "x": 84.18143,
+      "z": -71.347,
+      "heading_degrees": 127.1934,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.16519,
+      "reward": 3.742971,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 37.21016,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -33.5188,
+          "z": 33.47427
+        }
+      ]
+    },
+    {
+      "index": 255,
+      "time": 25.5,
+      "x": 85.1169,
+      "z": -72.04833,
+      "heading_degrees": 126.7856,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.09317,
+      "reward": 3.737786,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 37.75015,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -33.7295,
+          "z": 33.6218
+        }
+      ]
+    },
+    {
+      "index": 256,
+      "time": 25.6,
+      "x": 86.04056,
+      "z": -72.76518,
+      "heading_degrees": 127.7172,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.15026,
+      "reward": 3.74234,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 38.2919,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -33.94021,
+          "z": 33.76934
+        }
+      ]
+    },
+    {
+      "index": 257,
+      "time": 25.7,
+      "x": 86.96973,
+      "z": -73.47486,
+      "heading_degrees": 127.2848,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.09556,
+      "reward": 3.737626,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 38.86018,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -34.15091,
+          "z": 33.91687
+        }
+      ]
+    },
+    {
+      "index": 258,
+      "time": 25.8,
+      "x": 87.88695,
+      "z": -74.19996,
+      "heading_degrees": 128.2165,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.15738,
+      "reward": 3.741196,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 39.42956,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -34.36161,
+          "z": 34.06441
+        }
+      ]
+    },
+    {
+      "index": 259,
+      "time": 25.9,
+      "x": 88.80975,
+      "z": -74.91792,
+      "heading_degrees": 127.7841,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.07858,
+      "reward": 3.736783,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 40.02447,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -34.57232,
+          "z": 34.21195
+        }
+      ]
+    },
+    {
+      "index": 260,
+      "time": 26.0,
+      "x": 89.72048,
+      "z": -75.65121,
+      "heading_degrees": 128.7157,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.16643,
+      "reward": 3.740068,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 40.61985,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -34.78302,
+          "z": 34.35948
+        }
+      ]
+    },
+    {
+      "index": 261,
+      "time": 26.1,
+      "x": 90.63683,
+      "z": -76.37741,
+      "heading_degrees": 128.2833,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.07484,
+      "reward": 3.73436,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 41.23978,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -34.99372,
+          "z": 34.50702
+        }
+      ]
+    },
+    {
+      "index": 262,
+      "time": 26.2,
+      "x": 91.54098,
+      "z": -77.11883,
+      "heading_degrees": 129.2149,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": 0.18252,
+      "reward": 3.736998,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 41.85958,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -35.20443,
+          "z": 34.65456
+        }
+      ]
+    },
+    {
+      "index": 263,
+      "time": 26.3,
+      "x": 92.44732,
+      "z": -77.85754,
+      "heading_degrees": 129.0487,
+      "speed_mps": 12.0,
+      "throttle": 1.0,
+      "rudder": -0.02681,
+      "reward": 15.734639,
+      "collision": false,
+      "nearest_obstacle_name": "south_reef",
+      "nearest_obstacle_kind": "reef",
+      "nearest_clearance_meters": 42.49835,
+      "waypoint_index": 4,
+      "dynamic_obstacles": [
+        {
+          "name": "outbound_ferry",
+          "x": -35.41513,
+          "z": 34.80209
+        }
+      ]
+    }
+  ],
+  "evaluation_metrics": {
+    "task_id": "2024-04-01_channel_turn",
+    "success": true,
+    "goal_reached": true,
+    "collisions": 0,
+    "terrain_collisions": 0,
+    "near_misses": 2,
+    "dynamic_obstacle_count": 1,
+    "minimum_clearance_meters": 9.58070242941973,
+    "max_cross_track_error_meters": 17.706914177611708,
+    "path_length_meters": 281.2019830415844,
+    "reference_route_length_meters": 289.546197217241,
+    "path_efficiency": 1.0,
+    "elapsed_seconds": 26.3,
+    "reward": 840.778253297181,
+    "steps": 263,
+    "last_collision": {}
+  },
+  "aggregate_metrics": {
+    "episodes": 30,
+    "success_rate": 0.9333333333333333,
+    "safe_completion_rate": 0.9333333333333333,
+    "collision_episode_rate": 0.03333333333333333,
+    "terrain_collision_episode_rate": 0.0,
+    "near_miss_episode_rate": 1.0,
+    "mean_reward": 788.5598555388223,
+    "total_collisions": 1,
+    "total_terrain_collisions": 0,
+    "total_near_misses": 39,
+    "mean_max_cross_track_error_meters": 25.829418696498085,
+    "p95_max_cross_track_error_meters": 76.67699960584164,
+    "mean_minimum_clearance_meters": 9.366903088125946,
+    "p05_minimum_clearance_meters": 3.3266573283841048,
+    "mean_path_efficiency": 0.9189720206571769,
+    "mean_elapsed_seconds": 40.20333333333334
+  }
+}

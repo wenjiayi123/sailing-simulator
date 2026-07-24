@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bq5ok20osrerg"
+
+[deps]
+
+files=["res://tests/fixtures/ais_sample.BaseDateTime.translation", "res://tests/fixtures/ais_sample.LAT.translation", "res://tests/fixtures/ais_sample.LON.translation", "res://tests/fixtures/ais_sample.SOG.translation", "res://tests/fixtures/ais_sample.COG.translation", "res://tests/fixtures/ais_sample.VesselName.translation", "res://tests/fixtures/ais_sample.VesselType.translation", "res://tests/fixtures/ais_sample.Length.translation", "res://tests/fixtures/ais_sample.Width.translation"]
+
+source_file="res://tests/fixtures/ais_sample.csv"
+dest_files=["res://tests/fixtures/ais_sample.BaseDateTime.translation", "res://tests/fixtures/ais_sample.LAT.translation", "res://tests/fixtures/ais_sample.LON.translation", "res://tests/fixtures/ais_sample.SOG.translation", "res://tests/fixtures/ais_sample.COG.translation", "res://tests/fixtures/ais_sample.VesselName.translation", "res://tests/fixtures/ais_sample.VesselType.translation", "res://tests/fixtures/ais_sample.Length.translation", "res://tests/fixtures/ais_sample.Width.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

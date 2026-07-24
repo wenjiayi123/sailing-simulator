@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://shaders/floating_rock_3a_demo_rock.gdshader" id="1_shader"]
+
+[resource]
+resource_name = "Bottom_Rock_Dense"
+shader = ExtResource("1_shader")
+shader_parameter/base_color = Color(0.24, 0.22, 0.19, 1)
+shader_parameter/detail_color = Color(0.43, 0.39, 0.32, 1)
+shader_parameter/accent_color = Color(0.12, 0.17, 0.14, 1)
+shader_parameter/strata_scale = 4.35
+shader_parameter/strata_strength = 0.46
+shader_parameter/noise_scale = 0.82
+shader_parameter/crack_strength = 0.24
+shader_parameter/roughness_value = 0.96
+shader_parameter/specular_value = 0.10
+

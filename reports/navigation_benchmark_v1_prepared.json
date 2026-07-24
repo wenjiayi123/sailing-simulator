@@ -1,0 +1,284 @@
+{
+  "schema_version": "1.0",
+  "benchmark_id": "ship_navigation_public_weather_v1",
+  "prepared_at": "2026-07-24T10:52:27+00:00",
+  "test_split_accessed": false,
+  "software": {
+    "python": "3.9.6",
+    "platform": "macOS-14.1-x86_64-i386-64bit",
+    "numpy": "1.26.4",
+    "gymnasium": "1.0.0",
+    "stable_baselines3": "2.4.1",
+    "torch": "2.2.2"
+  },
+  "evidence_sha256": {
+    "data/public/long_beach_open_meteo_2024_01_04_hourly.csv": "cdc9c9ddc22b0cd83cafb56a9cc4d46c6670bbb0280f0465a0c20533ed0e38bd",
+    "data/public/long_beach_open_meteo_2024_01_04.provenance.json": "1e381410d4b3eed5bcabab2229b30a4a5f58b87b83fabdb3a3896860c88f8f6a",
+    "data/rl/long_beach_public_weather_benchmark_v1.json": "459709e85178aea650f8913aa3913dd31e5e0a801a02e075262a2d3132097e11",
+    "data/rl/long_beach_public_weather_experiment_v1.json": "4f248803100c2f9b226a9df2a1d8434c327281ff5c3ed72c707c35c8b4b33652",
+    "tools/build_public_navigation_benchmark.py": "e41a1e1543829101e3a8fa624cbcd6404f0b58f3064f85cb558920323f7979d2",
+    "tools/ship_rl/environment.py": "4d77c791b296d814c9c4e70d890bbbbc6f05b1464329022c765af8bee0c68fe8",
+    "tools/ship_rl/trainer.py": "bd82de5ed61ca2bcf9d014040bf6b5f261e4067094a0dbda68eea384e232f331",
+    "tools/rl_train_baselines.py": "e6e120e1ed5424ce92a3ad9c08fc00a35a36742528aa7fba9d4ade24c76cc108",
+    "tools/run_navigation_benchmark.py": "6c87f25658718c4360956a89291c2e03a0ae1fcc7a4d85ea1bfe03ff80c06dd7"
+  },
+  "data": {
+    "hourly_rows": 2904,
+    "source_period": "2024-01-01..2024-04-30",
+    "split_sizes": {
+      "train": 60,
+      "validation": 31,
+      "test": 30
+    },
+    "split_policy": {
+      "method": "chronological_by_source_date_no_shuffle",
+      "train": "2024-01-01..2024-02-29",
+      "validation": "2024-03-01..2024-03-31",
+      "test": "2024-04-01..2024-04-30"
+    },
+    "source_boundary": {
+      "type": "public_environment_forcing_plus_simulator_scenarios",
+      "provider": "Open-Meteo",
+      "hourly_file": "long_beach_open_meteo_2024_01_04_hourly.csv",
+      "hourly_sha256": "cdc9c9ddc22b0cd83cafb56a9cc4d46c6670bbb0280f0465a0c20533ed0e38bd",
+      "hourly_rows": 2904,
+      "period": {
+        "start": "2024-01-01",
+        "end": "2024-04-30"
+      },
+      "license": "CC BY 4.0; attribution required",
+      "observed_ais": false,
+      "route_geometry": "project_native_synthetic",
+      "counterfactual_actions": "simulator_only",
+      "live_data_verified": false
+    }
+  },
+  "experiment": {
+    "seed": 240705,
+    "rl_timesteps_per_algorithm": 20000,
+    "max_steps_per_episode": 1000,
+    "observation_size": 28,
+    "algorithms": [
+      "ppo",
+      "sac",
+      "td3",
+      "dqn",
+      "los_pid"
+    ],
+    "training_render_mode": null,
+    "validation_render_ready": false,
+    "test_render_mode": "recorded_test_rollout"
+  },
+  "artifacts": [
+    {
+      "algorithm": "ppo",
+      "seed": 240705,
+      "training": {
+        "split": "train",
+        "render": false,
+        "requested_timesteps": 20000,
+        "actual_timesteps": 20480,
+        "episodes_completed": 37,
+        "elapsed_seconds": 43.935278194
+      },
+      "validation": {
+        "split": "validation",
+        "render": false,
+        "render_ready": false,
+        "metrics": {
+          "episodes": 31,
+          "success_rate": 0.5483870967741935,
+          "safe_completion_rate": 0.5483870967741935,
+          "collision_episode_rate": 0.3870967741935484,
+          "terrain_collision_episode_rate": 0.25806451612903225,
+          "near_miss_episode_rate": 1.0,
+          "mean_reward": 681.9370249133896,
+          "total_collisions": 12,
+          "total_terrain_collisions": 8,
+          "total_near_misses": 43,
+          "mean_max_cross_track_error_meters": 10.991418612961272,
+          "p95_max_cross_track_error_meters": 21.09586982520512,
+          "mean_minimum_clearance_meters": 3.255770586158398,
+          "p05_minimum_clearance_meters": -0.31230988946838956,
+          "mean_minimum_dcpa_meters": 18.201320879637706,
+          "p05_minimum_dcpa_meters": 0.0,
+          "mean_path_efficiency": 0.9930739704749002,
+          "mean_elapsed_seconds": 37.53225806451612
+        }
+      },
+      "checkpoint": "reports/artifacts/navigation_benchmark_v1/ppo/checkpoint.json",
+      "checkpoint_sha256": "b1839678c673dbbbca048775dfb1276f67bd97fa3e71e198602af992dae8bd2e",
+      "model": "reports/artifacts/navigation_benchmark_v1/ppo/ppo_policy.zip",
+      "model_sha256": "d1f559006ee5bc8f20abc3816a4ecf1a2f5d82c9c5d6511599644d0768acf5d0",
+      "validation_trajectory": "reports/artifacts/navigation_benchmark_v1/ppo/validation_trajectory.json"
+    },
+    {
+      "algorithm": "sac",
+      "seed": 240705,
+      "training": {
+        "split": "train",
+        "render": false,
+        "requested_timesteps": 20000,
+        "actual_timesteps": 20000,
+        "episodes_completed": 50,
+        "elapsed_seconds": 228.74138659
+      },
+      "validation": {
+        "split": "validation",
+        "render": false,
+        "render_ready": false,
+        "metrics": {
+          "episodes": 31,
+          "success_rate": 1.0,
+          "safe_completion_rate": 1.0,
+          "collision_episode_rate": 0.0,
+          "terrain_collision_episode_rate": 0.0,
+          "near_miss_episode_rate": 1.0,
+          "mean_reward": 820.7402562669366,
+          "total_collisions": 0,
+          "total_terrain_collisions": 0,
+          "total_near_misses": 42,
+          "mean_max_cross_track_error_meters": 10.622131337618143,
+          "p95_max_cross_track_error_meters": 13.578684426299988,
+          "mean_minimum_clearance_meters": 8.744141510489406,
+          "p05_minimum_clearance_meters": 1.8573045658747613,
+          "mean_minimum_dcpa_meters": 18.267358675741647,
+          "p05_minimum_dcpa_meters": 0.0,
+          "mean_path_efficiency": 0.9999441359791434,
+          "mean_elapsed_seconds": 28.8
+        }
+      },
+      "checkpoint": "reports/artifacts/navigation_benchmark_v1/sac/checkpoint.json",
+      "checkpoint_sha256": "4870649eb68a218a8772ead5ae29a21189eb539edda5b8b43244508a6350607e",
+      "model": "reports/artifacts/navigation_benchmark_v1/sac/sac_policy.zip",
+      "model_sha256": "ee018a187ddeec8477b7ccf0d2ac4a87291069fbf1de1b0155bd84f21f4e4198",
+      "validation_trajectory": "reports/artifacts/navigation_benchmark_v1/sac/validation_trajectory.json"
+    },
+    {
+      "algorithm": "td3",
+      "seed": 240705,
+      "training": {
+        "split": "train",
+        "render": false,
+        "requested_timesteps": 20000,
+        "actual_timesteps": 20000,
+        "episodes_completed": 33,
+        "elapsed_seconds": 146.83482199000002
+      },
+      "validation": {
+        "split": "validation",
+        "render": false,
+        "render_ready": false,
+        "metrics": {
+          "episodes": 31,
+          "success_rate": 0.41935483870967744,
+          "safe_completion_rate": 0.41935483870967744,
+          "collision_episode_rate": 0.4838709677419355,
+          "terrain_collision_episode_rate": 0.22580645161290322,
+          "near_miss_episode_rate": 1.0,
+          "mean_reward": 491.29104370854236,
+          "total_collisions": 15,
+          "total_terrain_collisions": 7,
+          "total_near_misses": 56,
+          "mean_max_cross_track_error_meters": 26.29638291033652,
+          "p95_max_cross_track_error_meters": 52.81062614630174,
+          "mean_minimum_clearance_meters": 9.699104828256514,
+          "p05_minimum_clearance_meters": -0.871079477254872,
+          "mean_minimum_dcpa_meters": 25.741073494169726,
+          "p05_minimum_dcpa_meters": 0.0,
+          "mean_path_efficiency": 0.9387493351526371,
+          "mean_elapsed_seconds": 36.306451612903224
+        }
+      },
+      "checkpoint": "reports/artifacts/navigation_benchmark_v1/td3/checkpoint.json",
+      "checkpoint_sha256": "dda9217a890c2785dd4e7cff205c5c0d4c5d886c3e6d5659e2613c2b54dae887",
+      "model": "reports/artifacts/navigation_benchmark_v1/td3/td3_policy.zip",
+      "model_sha256": "1cdc2b011fef228fe8cda3178be78f41a8b2c087c6ebd805cf63b86dcd12657c",
+      "validation_trajectory": "reports/artifacts/navigation_benchmark_v1/td3/validation_trajectory.json"
+    },
+    {
+      "algorithm": "dqn",
+      "seed": 240705,
+      "training": {
+        "split": "train",
+        "render": false,
+        "requested_timesteps": 20000,
+        "actual_timesteps": 20000,
+        "episodes_completed": 47,
+        "elapsed_seconds": 39.44441201500001
+      },
+      "validation": {
+        "split": "validation",
+        "render": false,
+        "render_ready": false,
+        "metrics": {
+          "episodes": 31,
+          "success_rate": 0.8064516129032258,
+          "safe_completion_rate": 0.8064516129032258,
+          "collision_episode_rate": 0.1935483870967742,
+          "terrain_collision_episode_rate": 0.1935483870967742,
+          "near_miss_episode_rate": 1.0,
+          "mean_reward": 798.5483060062999,
+          "total_collisions": 6,
+          "total_terrain_collisions": 6,
+          "total_near_misses": 41,
+          "mean_max_cross_track_error_meters": 7.924325539572016,
+          "p95_max_cross_track_error_meters": 11.80623894372756,
+          "mean_minimum_clearance_meters": 8.011587183163384,
+          "p05_minimum_clearance_meters": -0.21755216749754247,
+          "mean_minimum_dcpa_meters": 22.1372794650798,
+          "p05_minimum_dcpa_meters": 3.577642934485864,
+          "mean_path_efficiency": 1.0,
+          "mean_elapsed_seconds": 24.745161290322578
+        }
+      },
+      "checkpoint": "reports/artifacts/navigation_benchmark_v1/dqn/checkpoint.json",
+      "checkpoint_sha256": "171f2233a8af081c030fd89b061feaebe9db604740dcabc8e4c9dde5c59ffebb",
+      "model": "reports/artifacts/navigation_benchmark_v1/dqn/dqn_policy.zip",
+      "model_sha256": "a613e0b24b3b7cca6301301f2c1eeb9fc3f983431d53d1ce805608b1a89c5a97",
+      "validation_trajectory": "reports/artifacts/navigation_benchmark_v1/dqn/validation_trajectory.json"
+    },
+    {
+      "algorithm": "los_pid",
+      "seed": 240705,
+      "training": {
+        "split": "train",
+        "render": false,
+        "requested_timesteps": 0,
+        "actual_timesteps": 0,
+        "episodes_completed": 0,
+        "elapsed_seconds": 0.0009615200000325785
+      },
+      "validation": {
+        "split": "validation",
+        "render": false,
+        "render_ready": false,
+        "metrics": {
+          "episodes": 31,
+          "success_rate": 1.0,
+          "safe_completion_rate": 1.0,
+          "collision_episode_rate": 0.0,
+          "terrain_collision_episode_rate": 0.0,
+          "near_miss_episode_rate": 1.0,
+          "mean_reward": 681.8204372182204,
+          "total_collisions": 0,
+          "total_terrain_collisions": 0,
+          "total_near_misses": 59,
+          "mean_max_cross_track_error_meters": 36.57282276615072,
+          "p95_max_cross_track_error_meters": 69.20332171921473,
+          "mean_minimum_clearance_meters": 11.49657624125633,
+          "p05_minimum_clearance_meters": 3.582485788953557,
+          "mean_minimum_dcpa_meters": 19.761993788761874,
+          "p05_minimum_dcpa_meters": 0.0,
+          "mean_path_efficiency": 0.906700776402771,
+          "mean_elapsed_seconds": 58.24193548387097
+        }
+      },
+      "checkpoint": "reports/artifacts/navigation_benchmark_v1/los_pid/checkpoint.json",
+      "checkpoint_sha256": "718ddd449c8c0dd4c1e539821f999a1d9dbc3524bdb06d6858670a7208c28ac6",
+      "model": null,
+      "model_sha256": null,
+      "validation_trajectory": "reports/artifacts/navigation_benchmark_v1/los_pid/validation_trajectory.json"
+    }
+  ]
+}

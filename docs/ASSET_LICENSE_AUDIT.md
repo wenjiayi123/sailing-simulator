@@ -8,6 +8,7 @@
 - `characters/ChatGPT Image 2026年6月21日 15_30_22.png`：需要记录生成账号、生成日期与使用条款依据。
 - `assets/art/terrain/premium_reference_cliff_rock_32471782690108.jpg`：当前没有来源和许可证记录。
 - `characters/` 下其余角色序列帧：需要确认是自制、委托、生成式产物还是第三方素材。
+- `assets/ui/xiaoyi/xiaoyi-maritime-officer.png`：来自作者现有“小懿”项目的指定 Q 版海事形象，文件 SHA-256 为 `8f56a569dcb098ef08cd2bed92ffc098474c7d6ef911141760982e9323ffe714`；发布前仍应在资产台账中确认创作/委托/生成来源与再分发依据。
 
 正式公开 GitHub 仓库前，逐项选择以下处理之一：
 
@@ -16,4 +17,3 @@
 3. 从公开版本中排除，并提供占位资源或下载脚本。
 
 `soft_copyright_materials/`、`soft_copyright_template_work/`、`backups/`、`草稿/` 和 ZIP 已加入 `.gitignore`，不应进入公开仓库。
-

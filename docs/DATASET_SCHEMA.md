@@ -1,6 +1,6 @@
 # 港口训练数据与环境交互契约
 
-## `ship_port_dataset_v2`
+## `ship_port_dataset_v2` 与 `ship_port_dataset_v3`
 
 顶层必须包含互不混用的 `train`、`validation`、`test` 三个非空 split：
 
@@ -18,6 +18,8 @@
 ```
 
 同一 AIS 船舶或航次不得跨 split。公开 AIS 适配器按 MMSI 的 SHA-256 稳定分组，小数据下载也只会移动完整任务，不会复制观测到多个 split。
+
+v3 是真实港口研究包，除上述基本结构外还要求港口身份与时区、原始文件 URL/SHA-256、来源时间、水深区、航道、船长/船宽/吃水、能见度、潮位、速度约束及显式 `live_integration` 状态。正式接入优先使用 [v3 清单模板](../data/ports/port_package_manifest_v3.example.json) 与 [港口替换门禁](PORT_ADAPTER_GUIDE.md)。
 
 ## 任务结构
 
@@ -52,6 +54,8 @@
 观测按顺序包含：目标距离；航向误差正余弦；航速；油门；舵角；横向误差；最近障碍净距与方位正余弦；海流速度与相对方向正余弦；风速与相对方向正余弦；浪高与浪向正余弦；航点进度；最近目标闭合速度、TCPA、DCPA 与动态目标标识；边界净距；前、左舷、右舷三个扇区净距。所有分量归一化到 `[-1, 1]`。
 
 PPO、SAC、TD3、LOS-PID 使用连续 `Box(-1, 1, shape=(2,))` 油门/舵角；DQN 使用相同控制量的 9 个离散组合。
+
+v3 港口环境在前 28 维后新增 17 维港口因素，总计 45 维。PPO、SAC、TD3、A2C、DDPG、TRPO、LOS-PID、LQR、MPC 使用连续动作；DQN 继续使用九离散组合。具体顺序和目标函数见 [算法参数映射](ALGORITHM_PARAMETERS.md)。
 
 ## `ship_training_experiment_v3`
 

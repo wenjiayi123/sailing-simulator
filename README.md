@@ -4,10 +4,10 @@
 
 <p align="center">
   <a href="https://github.com/wenjiayi123/sailing-simulator/actions/workflows/rl-tests.yml"><img alt="RL tests" src="https://github.com/wenjiayi123/sailing-simulator/actions/workflows/rl-tests.yml/badge.svg" /></a>
-  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-22c55e.svg" /></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-Apache--2.0-22c55e.svg" /></a>
   <img alt="Godot 4.7" src="https://img.shields.io/badge/Godot-4.7-478cbf?logo=godotengine&logoColor=white" />
   <img alt="Python" src="https://img.shields.io/badge/Python-3.12-3776ab?logo=python&logoColor=white" />
-  <img alt="Five methods" src="https://img.shields.io/badge/methods-4%20RL%20%2B%20LOS--PID-7957d5" />
+  <img alt="Ten methods" src="https://img.shields.io/badge/v2%20methods-7%20RL%20%2B%203%20control-7957d5" />
   <img alt="Admission" src="https://img.shields.io/badge/safety%20admission-fail%20closed-e87945" />
 </p>
 
@@ -22,7 +22,7 @@
 
 <p align="center">
   <a href="#系统价值--engineering-value">系统价值</a> ·
-  <a href="#五种统一基线--five-comparable-baselines">算法矩阵</a> ·
+  <a href="#真实港口十算法覆盖基准--real-port-ten-method-coverage-benchmark">十算法矩阵</a> ·
   <a href="#固定公开海况可靠性基准--public-forcing-reliability-benchmark">可靠性基准</a> ·
   <a href="#训练与渲染边界--training--rendering-boundary">训练边界</a> ·
   <a href="#快速开始--quick-start">快速开始</a> ·
@@ -30,6 +30,23 @@
 </p>
 
 ---
+
+## 同屏证据与真实联动 / Evidence-first UI
+
+<p align="center">
+  <img src="docs/screenshots/01-port-ai-evidence-center.png" alt="同屏展示训练数据、十算法矩阵、小懿训练顾问和模块按钮联动" width="100%" />
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/02-training-center-ten-methods.png" alt="45维港口训练中心与十算法后端入口" width="49%" />
+  <img src="docs/screenshots/03-xiaoyi-system-assistant.png" alt="使用既有小懿Q版形象的全系统助手" width="49%" />
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/04-navigation-runtime.png" alt="主船真实油门舵角航行、尾迹、航线和遥测同屏" width="100%" />
+</p>
+
+证据中心不是静态海报：按钮分别调用训练中心、航线规划/风险/海况、AIS、结果复盘和小懿全系统助手；自动验收同时验证对应快捷键与主船人工/后端控制航行。
 
 ## 系统价值 / Engineering value
 
@@ -51,7 +68,41 @@ Godot 4.7 owns vessel control, port geometry, risk envelopes, and 3D evidence re
 >
 > The evidence demonstrates simulator integrity, algorithm-evaluation capability, and fail-closed admission—not sea-trial performance, COLREGs certification, or commercial navigation authorization. Public environmental forcing, simulated dynamics, and real sensing/actuation data are always labelled as distinct evidence layers.
 
-## 五种统一基线 / Five comparable baselines
+## 真实港口十算法覆盖基准 / Real-port ten-method coverage benchmark
+
+v2 在不改写 v1 已冻结模型和指标的前提下，新增 `ship_port_dataset_v3` 港口数据契约与 45 维港口环境。数据包由 NOAA 2025-01-01 至 2025-01-07 七个全国 AccessAIS 日档流式筛选构建，叠加 NOAA ENC Direct 派生岸线/固定危险/水深/航道/限制区/TSS，以及同期 Open-Meteo 风、浪、流、能见度和模式海平面。
+
+The v2 benchmark adds a `ship_port_dataset_v3` contract and a 45-dimensional port environment without rewriting any frozen v1 model or metric. It streams seven nationwide NOAA AccessAIS daily archives from 1–7 January 2025 and combines the retained tracks with derived NOAA ENC geometry and co-temporal Open-Meteo forcing.
+
+| 可核验项 | v2 固定数据 |
+|---|---:|
+| NOAA 原档扫描规模 | **47,958,624** 行 / **1.335 GB** 压缩数据 |
+| 港区 AIS 运动记录 | **85,435** |
+| 真实航迹任务 | **409**（207 train / 72 validation / 130 test） |
+| 任务内唯一 MMSI | **137** |
+| 航迹点 / 动态目标实例 | **2,280 / 646** |
+| ENC 派生几何 | 11 地形、50 固定障碍、32 水深区、12 航道、3 限制区、1 TSS |
+| 任务字段覆盖 | 船长/船宽/吃水/风浪流/能见度/潮位/速度代理均 **100%** |
+| 算法 | **7 RL + 3 control** |
+
+| 方法 | 类型 | 动作空间 | 实现 |
+|---|---|---|---|
+| PPO / SAC / TD3 | RL | 连续油门 + 舵角 | Stable-Baselines3 |
+| DQN | RL | 9 个离散油门/舵角组合 | Stable-Baselines3 |
+| A2C / DDPG | RL | 连续油门 + 舵角 | Stable-Baselines3 |
+| TRPO | RL | 连续油门 + 舵角 | sb3-contrib |
+| LOS-PID | 控制 | 连续油门 + 舵角 | 视线制导 + PID |
+| LQR | 控制 | 连续油门 + 舵角 | 三状态离散 LQR / DARE |
+| MPC | 控制 | 连续油门 + 舵角 | 8 步滚动时域低阶运动学优化 |
+
+45 维观测覆盖相对目标与航向、速度/油门/舵角、障碍扇区、闭合速度、TCPA/DCPA、风浪流、边界/XTE，以及能见度、潮位、水深、UKC、航道、速度余量、船型尺度、会遇类型、让路责任和交通密度。目标函数同时记录推进、航向、经济航速、碰撞、搁浅、净距、航道、超速与保守 COLREG 会遇代理。完整字段、适配步骤和未上线因素见 [港口替换与上线门禁](docs/PORT_ADAPTER_GUIDE.md)。
+
+> [!NOTE]
+> v2 的 2,000 步/算法运行是“公开数据与全算法执行覆盖”证据，不宣称七个 RL 已收敛。历史 AIS 不是实时交通，ENC Direct 不是船载认证海图；VTS、引航/拖轮/泊位、实时传感、船型标定和认证控制链未验证时，`live_control_ready=false`。
+
+十方法已完整完成 **720 个 validation + 1,300 个 sealed test rollout**，覆盖完整性为 **PASS**，安全准入为 **FAIL-CLOSED**。LOS-PID/LQR/MPC 在 130 场 test 的无碰撞到达率分别为 **86.9% / 70.0% / 73.8%**，但碰撞场景率仍为 **13.1% / 18.5% / 16.9%**，因此不以较高到达率替代安全结论。逐方法完整指标、哈希和边界见 [v2 十方法报告](reports/port_ops_benchmark_v2.md) 与 [机器可读报告](reports/port_ops_benchmark_v2.json)。
+
+## v1 五种冻结基线 / Frozen v1 five-method benchmark
 
 | 基线 / Baseline | 动作空间 / Action space | 实现 / Implementation |
 |---|---|---|
@@ -160,6 +211,22 @@ Open the project in Godot:
 运行主场景后按 `C` 打开训练页。“算法/环境设置”可配置船体半径、悬岩净距、感知范围、碰撞时间窗、域随机化和生成交通船；“预览安全边界”会把有效包络直接画回场景。选择算法和预算后点击“启动训练”，完成后再点击“运行测试集并渲染”。<br>
 Run the main scene and press `C` to open the training page. “Algorithm / Environment Settings” configures hull radius, overhang clearance, sensing range, collision horizon, domain randomization, and generated traffic. “Preview Safety Boundary” draws the effective envelope into the scene. Select an algorithm and budget, start training, and only after completion run the held-out test set with rendering.
 
+### 前端按钮与快捷键 / UI linkage and hotkeys
+
+| 键 | 实际模块 | 同屏按钮入口 |
+|---|---|---|
+| `M` | 可落地证据中心 | 主入口；可继续打开训练、航线/风险/海况、AIS、复盘与小懿助手 |
+| `Z` / `X` / `C` | RL 控制台 / 船队页 / 训练中心 | 证据中心“打开训练中心” |
+| `N` | 航线规划 | “航线规划 / 风险决策 / 海况” |
+| `V` | 风险与策略准入 | “航线规划 / 风险决策 / 海况” |
+| `W` | 风浪流与能见度 | “航线规划 / 风险决策 / 海况” |
+| `I` | AIS 船队态势 | “AIS 船队态势” |
+| `P` | 仿真/训练结果复盘 | “打开训练结果复盘” |
+| `O` | 小懿全系统助手 | “小懿全系统助手” |
+| `G` / `K` / `T` | 场景切换 / 测试轨迹回放 / 昼夜天气循环 | 主 HUD 快捷键提示 |
+
+主船使用方向键产生航行输入，`A/D` 环绕相机、`R/F` 调整俯仰。发布门禁会加载真实 `main.tscn`，检查十个核心 UI 字母键、所有证据中心按钮连接、十算法前端/后端清单，并分别通过后端指令与方向键驱动主船。当前自动冒烟 **36/36** 通过；结果写入 `reports/godot_ui_navigation_smoke_v1.json`。
+
 ## 命令行训练 / Command-line training
 
 ```bash
@@ -203,15 +270,28 @@ Reproduce the pinned benchmark:
 
 # 深度复算 / rerun 150 deterministic sealed-test rollouts across five methods
 .venv/bin/python tools/run_navigation_benchmark.py verify --deep
+
+# v2 十方法报告与港口契约核验 / verify the v2 ten-method port benchmark
+make port-contract-verify
+make port-benchmark-verify
+
+# Godot 前端联动与主船航行回归 / UI linkage and navigation regression
+make godot-ui-navigation-smoke \
+  GODOT=/absolute/path/to/Godot
 ```
 
 ## 接入真实港口 / Bring your own port
 
-项目接受包含 `train`、`validation`、`test` 的 `ship_port_dataset_v2` JSON。只需把环境变量指向新数据集，无需修改算法代码。<br>
-The platform accepts a `ship_port_dataset_v2` JSON contract containing `train`, `validation`, and `test`. Point the environment variable to a new dataset without changing algorithm code:
+项目接受包含 `train`、`validation`、`test` 的 `ship_port_dataset_v3` JSON。复制 [港口包清单模板](data/ports/port_package_manifest_v3.example.json)，对齐历史 AIS、授权水深/航道/限制区 GIS 与逐小时环境输入，通过契约后只需让实验 JSON 指向新数据包，无需修改十种算法代码。<br>
+The platform accepts a `ship_port_dataset_v3` JSON contract with chronological `train`, `validation`, and `test` splits. Fill the [port package manifest](data/ports/port_package_manifest_v3.example.json), align AIS, authorized chart/GIS layers, and hourly forcing, then point an experiment file at the new package without modifying any of the ten algorithms:
 
 ```bash
-export SHIP_RL_DATASET=/absolute/path/to/port_training_dataset.json
+.venv/bin/python tools/validate_port_package.py \
+  /absolute/path/to/port_dataset.json \
+  --require-research-ready \
+  --report /absolute/path/to/port_contract_report.json
+
+SHIP_PORT_EXPERIMENT=/absolute/path/to/experiment.json godot --path .
 ```
 
 NOAA/BOEM AccessAIS CSV 或 ZIP 可直接规范化：<br>
@@ -258,8 +338,8 @@ python3 tools/public_data_pipeline.py weather \
 
 ## 关键目录 / Key directories
 
-- `tools/ship_rl/`：Gymnasium 环境、五基线训练和测试。<br>
-  *Gymnasium environment plus five-baseline training and evaluation.*
+- `tools/ship_rl/`：v1/v2 Gymnasium 环境、十算法训练/控制和测试。<br>
+  *v1/v2 Gymnasium environments plus ten-method RL/control evaluation.*
 - `tools/rl_train_baselines.py`：Godot 与命令行共用入口。<br>
   *Shared entry point for Godot and command-line workflows.*
 - `data/rl/long_beach_public_weather_benchmark_v1.json`：固定公开海况可靠性基准，明确区分公开环境输入与仿真场景。<br>
@@ -270,6 +350,8 @@ python3 tools/public_data_pipeline.py weather \
   *Adapters for public weather and NOAA AIS data.*
 - `tools/run_navigation_benchmark.py`：五方法准备、冻结测试集、最终测试和深度复核。<br>
   *Five-method preparation, test sealing, final evaluation, and deep verification.*
+- `tools/run_port_ops_benchmark.py`：十方法真实港口数据覆盖测试、冻结测试集与哈希复核。<br>
+  *Ten-method real-port data coverage, sealed-test evaluation, and hash verification.*
 - `tools/run_simulator_reliability_audit.py`：场景覆盖、逐场指标、回放一致性、证据完整性和控制策略准入双门禁。<br>
   *Dual reliability/admission gate for coverage, per-scenario metrics, replay consistency, and evidence integrity.*
 - `tools/run_godot_acceptance.py`：Godot 版本、解析和短时 headless 启动验收，回执绑定脚本/场景源文件树。<br>
@@ -286,8 +368,8 @@ python3 tools/public_data_pipeline.py weather \
   *Godot port-scene and navigation-task profile.*
 - `docs/MODULE_DATA_DRIVERS.md`：每个面板的数据源、计算边界和替换入口。<br>
   *Source, computation boundary, and replacement entry for each panel.*
-- `docs/ALGORITHM_PARAMETERS.md`：训练面板参数到五种基线后端的实际映射。<br>
-  *Exact mapping from UI parameters to all five backend methods.*
+- `docs/ALGORITHM_PARAMETERS.md`：训练面板参数与 v1 五方法、v2 十方法后端的实际映射。<br>
+  *Exact mapping from UI parameters to the frozen v1 and extended v2 backends.*
 - `docs/LEGACY_ASSET_COMPATIBILITY.md`：旧场景/资源路径的保留边界与航行模拟器命名规则。<br>
   *Retention boundaries and naming rules for legacy scenes and assets.*
 

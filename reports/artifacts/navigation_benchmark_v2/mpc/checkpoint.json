@@ -1,0 +1,52 @@
+{
+  "format": "ship_port_ops_checkpoint_v1",
+  "algorithm": "mpc",
+  "controller": {
+    "type": "receding_horizon_mpc",
+    "horizon_steps": 8,
+    "candidate_actions": 20,
+    "model": "low_order_vessel_kinematics"
+  },
+  "trained": false,
+  "training_note": "control-theory baseline has no learned parameters",
+  "dataset_split_used": "train",
+  "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+  "experiment_sha256": "b3ce96edb6a995c3d5fd9787fbae05d00a7f760f133b3910604bd740fcbf2da1",
+  "dataset_path": "/Users/apple/Desktop/航行模拟器/data/rl/long_beach_ais_port_ops_benchmark_v2.json",
+  "config_path": "/Users/apple/Desktop/航行模拟器/data/rl/long_beach_ais_port_ops_experiment_v2.json",
+  "observation_size": 45,
+  "environment_parameters": {
+    "vessel_radius_m": 4.0,
+    "obstacle_inflation_m": 2.0,
+    "cliff_inflation_m": 8.0,
+    "boundary_margin_m": 20.0,
+    "sensor_range_m": 1500.0,
+    "tcpa_horizon_seconds": 900.0,
+    "terminate_on_collision": true,
+    "merge_scene_obstacles": false,
+    "domain_randomization": true,
+    "randomize_evaluation": false,
+    "start_position_jitter_m": 4.0,
+    "start_heading_jitter_degrees": 3.0,
+    "obstacle_position_jitter_m": 0.0,
+    "obstacle_size_jitter_m": 0.0,
+    "current_speed_jitter_knots": 0.08,
+    "current_direction_jitter_degrees": 3.0,
+    "wind_speed_jitter_knots": 0.5,
+    "wind_direction_jitter_degrees": 3.0,
+    "wave_height_jitter_m": 0.05,
+    "wave_direction_jitter_degrees": 3.0,
+    "wind_leeway_factor": 0.008,
+    "wave_drift_mps_per_meter": 0.05,
+    "sensor_distance_noise_std_m": 1.5,
+    "sensor_bearing_noise_degrees": 0.8,
+    "generated_traffic_count": 0,
+    "generated_traffic_speed_knots": 0.0,
+    "generated_traffic_radius_m": 5.0
+  },
+  "seed": 250107,
+  "port_contract": {
+    "research_training_ready": true,
+    "live_control_ready": false
+  }
+}

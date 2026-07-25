@@ -36,5 +36,9 @@ jobs:
       - name: Verify fixed benchmark hashes and release evidence
         run: |
           python tools/run_navigation_benchmark.py verify
+          python tools/validate_port_package.py \
+            data/rl/long_beach_ais_port_ops_benchmark_v2.json \
+            --require-research-ready
+          python tools/run_port_ops_benchmark.py verify
           python tools/run_simulator_reliability_audit.py verify
           python tools/release_check.py

@@ -193,6 +193,12 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 
 
+func show_panel() -> void:
+	_root.visible = true
+	_refresh_timer = 0.0
+	_refresh_fleet_view()
+
+
 func _build_interface() -> void:
 	_root = Control.new()
 	_root.name = "ShipAISFleetRoot"

@@ -3,7 +3,7 @@
 ## 操作闭环
 
 1. 按 `C` 打开训练页。
-2. 选择 PPO、SAC、TD3、DQN 或 LOS-PID。
+2. 选择数据档案：v1 当前场景提供 PPO、SAC、TD3、DQN、LOS-PID；v2 港口档案提供 PPO、SAC、TD3、DQN、A2C、DDPG、TRPO、LOS-PID、LQR、MPC。
 3. 打开“算法/环境设置”，设置船体包络、悬岩净距、感知/TCPA、域随机化和交通船；可先点击“预览安全边界”核对场景反馈，再点“应用”。
 4. 设置训练轮数、每轮步数、并行数值环境和测试回合数。
 5. 点击“启动训练”。Godot 暂停世界物理和相机渲染，Python 只读取 `train` split；当前场景岩石、`落水悬岩` 和矩形障碍数值快照参与训练。
@@ -26,11 +26,11 @@ Godot 默认写到 `user://rl_runs/`：
 - `<algorithm>_test_episodes.csv`：测试回合指标；
 - `policy_evaluation_result.json`：Godot 可视化回放产生的运行指标。
 
-LOS-PID 没有可学习参数，因此 checkpoint 会明确写入 `trained=false` 和控制器增益；测试流程与四种 RL 相同。
+LOS-PID、LQR、MPC 没有学习阶段，checkpoint 会明确写入 `trained=false`、控制器类型和参数；测试流程与七种 RL 相同。
 
 ## 真实性边界
 
-- 默认基准是项目原生数值数据，不冒充实测 AIS。
+- v1 默认场景是项目原生数值数据，不冒充实测 AIS；v2 长滩包使用来源和 SHA-256 明确的历史 NOAA AIS，但仍不是实时数据。
 - 公开 AIS 必须通过数据适配器生成数据集并保留来源；岸线、悬岩、礁石、码头需由 GeoJSON 一并转换，AIS 本身不提供这些几何。
 - Godot 回放是测试 rollout 的记录结果，不是实船控制认证。
 - 实船接入前必须增加传感器质量、电子海图、COLREGs、失效保护、人机接管和港口审批链路。

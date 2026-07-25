@@ -10,6 +10,10 @@ const COLOR_MUTED := Color(0.56, 0.70, 0.76, 0.92)
 const TOGGLE_PANEL_KEY := KEY_Z
 const FLEET_TAB_KEY := KEY_X
 const TRAINING_TAB_KEY := KEY_C
+const SCENE_V1_ALGORITHMS := ["ppo", "sac", "td3", "dqn", "los_pid"]
+const PORT_V2_ALGORITHMS := [
+	"ppo", "sac", "td3", "dqn", "a2c", "ddpg", "trpo", "los_pid", "lqr", "mpc"
+]
 
 const TRAINING_STAGES := [
 	{
@@ -110,6 +114,8 @@ const RL_PARAMETER_DEFS := [
 @export var fleet_manager_path: NodePath = NodePath("../ShipFleetManager")
 @export var policy_replay_controller_path: NodePath = NodePath("../ShipPolicyReplayController")
 @export var training_script_path: String = "res://tools/rl_train_baselines.py"
+@export var port_ops_training_script_path: String = "res://tools/port_ops_train_baselines.py"
+@export var port_ops_config_path: String = "res://data/rl/long_beach_ais_port_ops_experiment_v2.json"
 @export var start_visible: bool = false
 
 var _root: Control
@@ -120,6 +126,7 @@ var _ship_option: OptionButton
 var _control_button: Button
 var _next_control_button: Button
 var _algorithm_option: OptionButton
+var _dataset_profile_option: OptionButton
 var _status_label: Label
 var _training_status_label: Label
 var _training_overlay: Control
@@ -202,6 +209,16 @@ func _unhandled_input(event: InputEvent) -> void:
 			_root.visible = true
 			_tabs.current_tab = 1
 			get_viewport().set_input_as_handled()
+
+
+func show_training_center() -> void:
+	_root.visible = true
+	_tabs.current_tab = 1
+	if _dataset_profile_option != null and FileAccess.file_exists(_configured_port_ops_path()):
+		_dataset_profile_option.selected = 1
+		_on_dataset_profile_changed(1)
+	_refresh_ship_list()
+	_sync_selected_config()
 
 
 func _resolve_manager() -> void:
@@ -347,13 +364,24 @@ func _build_training_tab() -> Control:
 	root.name = "训练"
 	root.add_theme_constant_override("separation", 8)
 
+	var dataset_row := HBoxContainer.new()
+	dataset_row.add_theme_constant_override("separation", 8)
+	root.add_child(dataset_row)
+	dataset_row.add_child(_make_fixed_label("数据", 58.0))
+	_dataset_profile_option = OptionButton.new()
+	_dataset_profile_option.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_dataset_profile_option.add_item("v1 当前场景 / 28维")
+	_dataset_profile_option.add_item("v2 长滩 NOAA AIS+ENC / 45维")
+	_dataset_profile_option.item_selected.connect(_on_dataset_profile_changed)
+	dataset_row.add_child(_dataset_profile_option)
+
 	var algorithm_row := HBoxContainer.new()
 	algorithm_row.add_theme_constant_override("separation", 8)
 	root.add_child(algorithm_row)
 	algorithm_row.add_child(_make_fixed_label("算法", 58.0))
 	_algorithm_option = OptionButton.new()
 	_algorithm_option.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	for algorithm in ["ppo", "sac", "td3", "dqn", "los_pid"]:
+	for algorithm in SCENE_V1_ALGORITHMS:
 		_algorithm_option.add_item(algorithm)
 	algorithm_row.add_child(_algorithm_option)
 
@@ -401,7 +429,7 @@ func _build_training_tab() -> Control:
 	baseline_margin.add_theme_constant_override("margin_right", 10)
 	baseline_margin.add_theme_constant_override("margin_bottom", 8)
 	baseline_box.add_child(baseline_margin)
-	var baseline_text := _make_label("真实基线：PPO / SAC / TD3 / DQN + LOS-PID 控制器", 12, COLOR_TEXT)
+	var baseline_text := _make_label("v2 十基线：PPO / SAC / TD3 / DQN / A2C / DDPG / TRPO + LOS-PID / LQR / MPC", 12, COLOR_TEXT)
 	baseline_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	baseline_margin.add_child(baseline_text)
 	return root
@@ -842,10 +870,66 @@ func _on_next_control_pressed() -> void:
 
 
 func _on_export_training_config_pressed() -> void:
+	if _port_ops_selected():
+		var path := ProjectSettings.globalize_path(port_ops_config_path)
+		_training_status_label.text = "v2 固定实验配置: %s" % path
+		return
 	if _fleet_manager == null:
 		return
 	var path := _fleet_manager.export_training_config("", _collect_rl_training_parameters())
 	_training_status_label.text = "已导出: %s" % path
+
+
+func _on_dataset_profile_changed(_index: int) -> void:
+	if _training_status_label == null:
+		return
+	var previous := ""
+	if _algorithm_option != null and _algorithm_option.item_count > 0:
+		previous = _algorithm_option.get_item_text(_algorithm_option.selected)
+	_algorithm_option.clear()
+	var choices: Array = PORT_V2_ALGORITHMS if _port_ops_selected() else SCENE_V1_ALGORITHMS
+	for algorithm in choices:
+		_algorithm_option.add_item(String(algorithm))
+		if String(algorithm) == previous:
+			_algorithm_option.selected = _algorithm_option.item_count - 1
+	if _port_ops_selected():
+		_training_status_label.text = (
+			"v2 真实港口数据契约：NOAA 历史 AIS + ENC + 公开海况，"
+			+ "45维观测，7 RL + 3控制，训练 split=train，实船控制 fail-closed"
+		)
+	else:
+		_training_status_label.text = "v1 当前 Godot 场景：28维观测，训练 split=train"
+	_refresh_policy_replay_buttons()
+
+
+func _port_ops_selected() -> bool:
+	return _dataset_profile_option != null and _dataset_profile_option.selected == 1
+
+
+func _training_backend_script(checkpoint: Dictionary = {}) -> String:
+	if String(checkpoint.get("format", "")) == "ship_port_ops_checkpoint_v1":
+		return port_ops_training_script_path
+	return port_ops_training_script_path if _port_ops_selected() else training_script_path
+
+
+func _active_training_config() -> String:
+	if _port_ops_selected():
+		return _configured_port_ops_path()
+	if _fleet_manager == null:
+		return ""
+	return _fleet_manager.export_training_config("", _collect_rl_training_parameters())
+
+
+func _configured_port_ops_path() -> String:
+	var override_path := OS.get_environment("SHIP_PORT_EXPERIMENT").strip_edges()
+	if not override_path.is_empty():
+		return override_path
+	return ProjectSettings.globalize_path(port_ops_config_path)
+
+
+func _active_run_directory() -> String:
+	var profile := "port_ops_v2" if _port_ops_selected() else "scene_v1"
+	return ProjectSettings.globalize_path("user://rl_runs").path_join(profile)
 
 
 func _initialize_rl_parameter_values() -> void:
@@ -970,12 +1054,13 @@ func _update_training_settings_summary() -> void:
 
 
 func _on_start_training_pressed() -> void:
-	if _fleet_manager == null:
-		return
 	var parameters := _collect_rl_training_parameters()
-	var config_path := _fleet_manager.export_training_config("", parameters)
+	var config_path := _active_training_config()
 	if config_path.is_empty():
 		_training_status_label.text = "训练配置导出失败"
+		return
+	if not FileAccess.file_exists(config_path):
+		_training_status_label.text = "训练配置不存在：%s" % config_path
 		return
 	var algorithm := _algorithm_option.get_item_text(_algorithm_option.selected)
 	_start_training_run(config_path, algorithm)
@@ -997,7 +1082,7 @@ func _start_training_run(config_path: String, algorithm: String) -> void:
 	_training_run_agent_count = int(_agent_spin.value)
 	_training_run_parameter_path = _write_rl_training_parameter_snapshot(config_path, algorithm, _training_run_parameters)
 	_training_run_final_reward = 0.0
-	_training_output_dir = ProjectSettings.globalize_path("user://rl_runs")
+	_training_output_dir = _active_run_directory()
 	DirAccess.make_dir_recursive_absolute(_training_output_dir)
 	_training_progress_path = _training_output_dir.path_join("training_progress.json")
 	_training_checkpoint_path = _training_output_dir.path_join("policy_checkpoint.json")
@@ -1007,7 +1092,7 @@ func _start_training_run(config_path: String, algorithm: String) -> void:
 			DirAccess.remove_absolute(stale_path)
 
 	var python_executable := _resolve_python_executable()
-	var training_script := ProjectSettings.globalize_path(training_script_path)
+	var training_script := ProjectSettings.globalize_path(_training_backend_script())
 	var arguments := PackedStringArray([
 		training_script,
 		"--mode", "train",
@@ -1304,7 +1389,7 @@ func _start_policy_evaluation(checkpoint_path: String) -> void:
 		if FileAccess.file_exists(stale_path):
 			DirAccess.remove_absolute(stale_path)
 	var python_executable := _resolve_python_executable()
-	var training_script := ProjectSettings.globalize_path(training_script_path)
+	var training_script := ProjectSettings.globalize_path(_training_backend_script(checkpoint))
 	var arguments := PackedStringArray([
 		training_script,
 		"--mode", "evaluate",
@@ -1395,6 +1480,7 @@ func _resolve_available_policy_checkpoint_path() -> String:
 	var candidates: Array[String] = []
 	if not _training_checkpoint_path.is_empty():
 		candidates.append(_training_checkpoint_path)
+	candidates.append(_active_run_directory().path_join("policy_checkpoint.json"))
 	candidates.append(ProjectSettings.globalize_path("user://rl_runs/policy_checkpoint.json"))
 	for candidate in candidates:
 		if FileAccess.file_exists(candidate):
@@ -1406,6 +1492,7 @@ func _resolve_available_policy_trajectory_path() -> String:
 	var candidates: Array[String] = []
 	if not _training_trajectory_path.is_empty():
 		candidates.append(_training_trajectory_path)
+	candidates.append(_active_run_directory().path_join("policy_test_trajectory.json"))
 	candidates.append(ProjectSettings.globalize_path("user://rl_runs/policy_test_trajectory.json"))
 	for candidate in candidates:
 		if FileAccess.file_exists(candidate) or FileAccess.file_exists(ProjectSettings.globalize_path(candidate)):

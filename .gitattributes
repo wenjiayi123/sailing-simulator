@@ -1,2 +1,6 @@
 # Normalize EOL for all files that Git considers text files.
 * text=auto eol=lf
+
+# Preserve generated CSV bytes so published SHA-256 evidence remains reproducible.
+data/public/long_beach_open_meteo_2025_w01_hourly.csv -text -eol -diff
+reports/artifacts/navigation_benchmark_v2/**/*.csv -text -eol -diff

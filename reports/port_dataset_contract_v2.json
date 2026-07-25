@@ -1,0 +1,83 @@
+{
+  "schema_version": "ship_port_contract_report_v1",
+  "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+  "port": {
+    "id": "us_lgb_long_beach",
+    "name": "Port of Long Beach research area",
+    "country": "United States",
+    "timezone": "America/Los_Angeles",
+    "jurisdiction": [
+      "United States Coast Guard",
+      "Port of Long Beach",
+      "Los Angeles-Long Beach Vessel Traffic Service"
+    ]
+  },
+  "split_sizes": {
+    "train": 207,
+    "validation": 72,
+    "test": 130
+  },
+  "task_count": 409,
+  "route_point_count": 2280,
+  "filtered_ais_rows": 85435,
+  "distinct_mmsi": 137,
+  "dynamic_target_instances": 646,
+  "shared_feature_counts": {
+    "terrain": 11,
+    "obstacles": 50,
+    "depth_areas": 32,
+    "fairways": 12,
+    "restricted_areas": 3,
+    "traffic_separation": 1
+  },
+  "task_field_coverage": {
+    "vessel_dimensions": 1.0,
+    "draft": 1.0,
+    "wind_wave_current": 1.0,
+    "visibility": 1.0,
+    "tide": 1.0,
+    "speed_limit": 1.0
+  },
+  "factor_coverage": {
+    "historical_ais": true,
+    "shoreline_and_fixed_hazards": true,
+    "bathymetry_or_depth_areas": true,
+    "fairways_and_restricted_areas": true,
+    "wind_wave_current": true,
+    "visibility_and_tide": true,
+    "vessel_dimensions_and_draft": true,
+    "dynamic_traffic": true,
+    "speed_limits": true,
+    "colreg_encounter_context": true
+  },
+  "deployment_factor_coverage": {
+    "hydrographic_datum_and_ukc": false,
+    "current_official_charts_and_notices": false,
+    "local_vts_and_regulatory_rules": false,
+    "pilotage_tug_and_berth_constraints": false,
+    "live_traffic_weather_and_sensor_latency": false,
+    "calibrated_vessel_manoeuvring": false,
+    "certified_control_and_communications": false,
+    "failsafe_redundancy_and_human_authority": false
+  },
+  "research_training_ready": true,
+  "live_control_ready": false,
+  "errors": [],
+  "warnings": [
+    "live control remains fail-closed until telemetry, chart updates, vessel calibration, control certification, and human authority are verified"
+  ],
+  "candidate_task_counts_by_day": {
+    "2025-01-01": 45,
+    "2025-01-02": 107,
+    "2025-01-03": 62,
+    "2025-01-04": 28,
+    "2025-01-05": 135,
+    "2025-01-06": 58,
+    "2025-01-07": 80
+  },
+  "generated_at": "2026-07-25T10:10:40+00:00",
+  "dataset_path": "data/rl/long_beach_ais_port_ops_benchmark_v2.json",
+  "dataset_file_sha256": "1d676e7446f22206f6113777524d46724545e58e55c1df73a9d359795a415a1f",
+  "experiment_path": "data/rl/long_beach_ais_port_ops_experiment_v2.json",
+  "experiment_file_sha256": "cc549e731e0d1adeb9e8a5d71446350df95d8b84af07d90dd596a6144630a0c8"
+}

@@ -11,6 +11,8 @@ import json
 from pathlib import Path
 from typing import Any
 
+from ship_rl.port_contract import validate_port_dataset
+
 
 ROOT = Path(__file__).resolve().parents[1]
 HOURLY = ROOT / "data/public/long_beach_open_meteo_2024_01_04_hourly.csv"
@@ -19,7 +21,28 @@ DATASET = ROOT / "data/rl/long_beach_public_weather_benchmark_v1.json"
 EXPERIMENT = ROOT / "data/rl/long_beach_public_weather_experiment_v1.json"
 PREPARED = ROOT / "reports/navigation_benchmark_v1_prepared.json"
 REPORT = ROOT / "reports/navigation_benchmark_v1.json"
+PORT_DATASET = ROOT / "data/rl/long_beach_ais_port_ops_benchmark_v2.json"
+PORT_EXPERIMENT = ROOT / "data/rl/long_beach_ais_port_ops_experiment_v2.json"
+PORT_CONTRACT_REPORT = ROOT / "reports/port_dataset_contract_v2.json"
+PORT_PREPARED = ROOT / "reports/port_ops_benchmark_v2_prepared.json"
+PORT_REPORT = ROOT / "reports/port_ops_benchmark_v2.json"
+XIAOYI_PORTRAIT = ROOT / "assets/ui/xiaoyi/xiaoyi-maritime-officer.png"
+XIAOYI_PORTRAIT_SHA256 = (
+    "8f56a569dcb098ef08cd2bed92ffc098474c7d6ef911141760982e9323ffe714"
+)
 ALGORITHMS = ("ppo", "sac", "td3", "dqn", "los_pid")
+PORT_ALGORITHMS = (
+    "ppo",
+    "sac",
+    "td3",
+    "dqn",
+    "a2c",
+    "ddpg",
+    "trpo",
+    "los_pid",
+    "lqr",
+    "mpc",
+)
 EXPECTED_SPLITS = {"train": 60, "validation": 31, "test": 30}
 REQUIRED_FILES = (
     "README.md",
@@ -30,12 +53,16 @@ REQUIRED_FILES = (
     ".github/workflows/rl-tests.yml",
     "docs/DATA_SOURCES.md",
     "docs/ALGORITHM_PARAMETERS.md",
+    "docs/PORT_ADAPTER_GUIDE.md",
     "docs/RESUME_CLAIMS.md",
     "docs/SIMULATOR_METRICS.md",
     "reports/navigation_benchmark_v1.md",
     "reports/godot_acceptance_v1.json",
+    "reports/godot_ui_navigation_smoke_v1.json",
     "reports/simulator_reliability_audit_v1.json",
     "reports/simulator_reliability_audit_v1.md",
+    "data/ports/port_package_manifest_v3.example.json",
+    "reports/port_ops_benchmark_v2.md",
 )
 UNRESOLVED_ASSETS = (
     "characters/download.png",
@@ -187,6 +214,77 @@ def _verify_report(errors: list[str]) -> None:
                 errors.append(f"model hash failed: {algorithm}")
 
 
+def _verify_port_ops_v2(errors: list[str]) -> None:
+    dataset = _load_json(PORT_DATASET)
+    experiment = _load_json(PORT_EXPERIMENT)
+    contract = validate_port_dataset(dataset)
+    checked_contract = _load_json(PORT_CONTRACT_REPORT)
+    prepared = _load_json(PORT_PREPARED)
+    report = _load_json(PORT_REPORT)
+    if contract.get("errors"):
+        errors.append(f"v2 port contract errors: {contract['errors']}")
+    if contract.get("research_training_ready") is not True:
+        errors.append("v2 dataset is not research-training ready")
+    if contract.get("live_control_ready") is not False:
+        errors.append("v2 dataset must remain fail-closed for live control")
+    if checked_contract.get("dataset_file_sha256") != _sha256(PORT_DATASET):
+        errors.append("v2 contract report dataset file hash changed")
+    source = dataset.get("source", {})
+    if source.get("observed_ais") is not True:
+        errors.append("v2 dataset does not declare observed historical AIS")
+    raw_files = source.get("raw_files", [])
+    if len(raw_files) != 7 or any(
+        len(str(item.get("sha256", ""))) != 64 for item in raw_files
+    ):
+        errors.append("v2 AIS seven-day source inventory is incomplete")
+    if (
+        experiment.get("headless") is not True
+        or experiment.get("render") is not False
+        or experiment.get("dataset", {}).get("observation_profile")
+        != "port_ops_45"
+    ):
+        errors.append("v2 experiment headless/45-D boundary failed")
+    if prepared.get("test_split_accessed") is not False:
+        errors.append("v2 prepared report must freeze before test access")
+    if report.get("test_split_accessed") is not True:
+        errors.append("v2 final report does not record fixed-test access")
+    if report.get("benchmark_complete") is not True:
+        errors.append("v2 ten-method benchmark is incomplete")
+    if report.get("experiment", {}).get("algorithms") != list(PORT_ALGORITHMS):
+        errors.append("v2 report does not contain the ten declared methods")
+    if int(report.get("experiment", {}).get("observation_size", 0)) != 45:
+        errors.append("v2 report observation size is not 45")
+    if int(report.get("experiment", {}).get("rl_timesteps_per_algorithm", 0)) < 2_000:
+        errors.append("v2 coverage run is below 2,000 steps per RL method")
+    if (
+        report.get("experiment", {}).get("evaluation_intent")
+        != "simulator factor and ten-baseline execution coverage; not an algorithm-convergence claim"
+    ):
+        errors.append("v2 report does not preserve its non-convergence evidence boundary")
+    evidence = report.get("evidence_sha256", {})
+    for relative, expected_hash in evidence.items():
+        path = ROOT / relative
+        if not path.is_file() or _sha256(path) != expected_hash:
+            errors.append(f"v2 report evidence changed: {relative}")
+    if prepared.get("evidence_sha256") != evidence:
+        errors.append("v2 prepared and final evidence inventories differ")
+    test_results = report.get("test_results", [])
+    if [item.get("algorithm") for item in test_results] != list(PORT_ALGORITHMS):
+        errors.append("v2 final result inventory is incomplete or reordered")
+    expected_test = int(report.get("data", {}).get("split_sizes", {}).get("test", 0))
+    completed = sum(int(item.get("episodes", 0)) for item in test_results)
+    if completed != expected_test * len(PORT_ALGORITHMS):
+        errors.append("v2 final test rollout count is incomplete")
+    for result in test_results:
+        trajectory = ROOT / str(result.get("trajectory", ""))
+        if not trajectory.is_file() or _sha256(trajectory) != result.get(
+            "trajectory_sha256"
+        ):
+            errors.append(f"v2 trajectory hash failed: {result.get('algorithm')}")
+        elif _load_json(trajectory).get("format") != "ship_port_policy_test_rollout_v1":
+            errors.append(f"v2 trajectory format failed: {result.get('algorithm')}")
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -202,15 +300,37 @@ def main() -> int:
     errors: list[str] = []
     for relative in REQUIRED_FILES:
         _require_file(relative, errors)
-    for path in (HOURLY, PROVENANCE, DATASET, EXPERIMENT, PREPARED, REPORT):
+    if not XIAOYI_PORTRAIT.is_file():
+        errors.append("missing Xiaoyi maritime Q-style portrait")
+    elif _sha256(XIAOYI_PORTRAIT) != XIAOYI_PORTRAIT_SHA256:
+        errors.append("Xiaoyi portrait differs from the approved established identity")
+    for path in (
+        HOURLY,
+        PROVENANCE,
+        DATASET,
+        EXPERIMENT,
+        PREPARED,
+        REPORT,
+        PORT_DATASET,
+        PORT_EXPERIMENT,
+        PORT_CONTRACT_REPORT,
+        PORT_PREPARED,
+        PORT_REPORT,
+    ):
         if not path.is_file():
             errors.append(f"missing benchmark evidence: {path.relative_to(ROOT)}")
     if not errors:
         _verify_hourly_and_splits(errors)
         _verify_report(errors)
+        _verify_port_ops_v2(errors)
         reliability = _load_json(
             ROOT / "reports/simulator_reliability_audit_v1.json"
         )
+        ui_navigation = _load_json(
+            ROOT / "reports/godot_ui_navigation_smoke_v1.json"
+        )
+        if ui_navigation.get("passed") is not True:
+            errors.append("Godot UI/navigation smoke is not PASS")
         if reliability.get("status") != "PASS":
             errors.append("simulator reliability audit is not PASS")
         if (

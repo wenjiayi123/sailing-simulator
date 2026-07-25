@@ -1,0 +1,2 @@
+episode,reward,length,collisions,terrain_collisions,groundings,near_misses,speed_limit_violations,channel_departures,colreg_give_way_violations,minimum_clearance_meters,minimum_dcpa_meters,under_keel_clearance_meters,success,port_compliant_success,task_id
+1,-1388.799205,1600,0,0,0,1,2,0,0,59.802456609686814,61.293318108884336,5.939999999999998,False,False,ais_2025-01-01_477030700_00_03_0142

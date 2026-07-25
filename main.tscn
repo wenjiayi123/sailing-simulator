@@ -46,6 +46,7 @@
 [ext_resource type="Script" uid="uid://dvtv8dheacq54" path="res://scripts/ui/ship_ais_fleet_panel.gd" id="78_ais_panel"]
 [ext_resource type="Script" uid="uid://bn1sed4lgl08u" path="res://scripts/ui/ship_instructor_console_panel.gd" id="79_instructor_console"]
 [ext_resource type="Script" path="res://scripts/rl/ship_policy_replay_controller.gd" id="80_policy_replay"]
+[ext_resource type="Script" path="res://scripts/ui/ship_hr_evidence_center.gd" id="81_hr_evidence"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig7tw"]
 albedo_color = Color(0.43529412, 0.65882355, 0.41568628, 1)
@@ -3120,6 +3121,9 @@ script = ExtResource("78_ais_panel")
 
 [node name="ShipInstructorConsolePanel" type="CanvasLayer" parent="." unique_id=1254809368]
 script = ExtResource("79_instructor_console")
+
+[node name="ShipHREvidenceCenter" type="CanvasLayer" parent="."]
+script = ExtResource("81_hr_evidence")
 
 [node name="ShipWakeTrail" type="Node3D" parent="." unique_id=613481520]
 script = ExtResource("65_ship_wake")

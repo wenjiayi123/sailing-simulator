@@ -11,7 +11,7 @@
 - `scripts/world/`：航线、障碍、场景、海况与水流控制。
 - `scripts/ui/`：遥测、RL、风险、规划、海况、AIS 和教员面板。
 - `scripts/rl/`：船队状态与测试策略回放。
-- `tools/ship_rl/`：数值环境、五种基线和训练/测试实现。
+- `tools/ship_rl/`：v1/v2 数值环境、七种 RL、LOS-PID/LQR/MPC 与训练/测试实现。
 - `data/ports/`、`data/rl/`：港口场景配置和训练数据集。
 
 ## 保留的兼容路径

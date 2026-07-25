@@ -16,3 +16,16 @@ Weather and marine model/reanalysis data by Open-Meteo.com, licensed under
 CC BY 4.0. See the exact request URLs, retrieval timestamp, evidence boundary,
 and SHA-256 in
 data/public/long_beach_open_meteo_2024_01_04.provenance.json.
+
+Long Beach AIS + ENC port-operations benchmark:
+Historical AIS source inventory is from NOAA Office for Coastal Management,
+BOEM, and the U.S. Coast Guard AccessAIS/Vessel Traffic Data services. Derived
+chart geometry is from NOAA ENC Direct to GIS. The bundled 2025 hourly weather
+and marine forcing is attributed to Open-Meteo under CC BY 4.0. Exact URLs,
+retrieval timestamps, source hashes, and research-only boundaries are recorded
+under data/public and docs/DATA_SOURCES.md.
+
+Xiaoyi visual identity:
+assets/ui/xiaoyi/xiaoyi-maritime-officer.png reuses the established Xiaoyi
+maritime Q-style identity supplied with the author's related project. Its
+SHA-256 and release-review status are recorded in docs/ASSET_LICENSE_AUDIT.md.

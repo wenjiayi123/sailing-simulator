@@ -1,11 +1,11 @@
 {
   "schema_version": "godot_runtime_acceptance_v1",
-  "generated_at": "2026-07-24T04:50:20+00:00",
+  "generated_at": "2026-07-25T11:32:53+00:00",
   "project": "AI autonomous-vessel navigation simulator",
   "godot_version": "4.7.stable.official.5b4e0cb0f",
   "source_inventory": {
-    "file_count": 33,
-    "tree_sha256": "64e0884ff96d3e6fce2159f1649933fcd79c1ca4ca7417b1adffc22007b145d6",
+    "file_count": 34,
+    "tree_sha256": "9a67105cf0d070b2577d3387ee270aacef3495dac60881122639a867295a61f9",
     "entrypoint_sha256": "c1a7e869214ae38b00d8dcd2b8cff0b14d33a153aa0cc52c2021c6e5d958cf41"
   },
   "checks": {
@@ -17,7 +17,7 @@
         "--quit"
       ],
       "exit_code": 0,
-      "elapsed_seconds": 8.292,
+      "elapsed_seconds": 8.46,
       "output": "Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org\nVulkan 1.2.334 - Forward Mobile - Using Device #0: AMD - AMD Radeon Pro 560X",
       "passed": true
     },
@@ -30,7 +30,7 @@
         "8"
       ],
       "exit_code": 0,
-      "elapsed_seconds": 6.89,
+      "elapsed_seconds": 6.915,
       "output": "Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org",
       "passed": true
     }

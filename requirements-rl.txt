@@ -3,3 +3,5 @@
 numpy==1.26.4
 gymnasium==1.0.0
 stable-baselines3==2.4.1
+sb3-contrib==2.4.0
+zstandard==0.23.0

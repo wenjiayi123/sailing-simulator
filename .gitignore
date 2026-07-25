@@ -21,3 +21,8 @@ __pycache__/
 /data/public_cache/*.json
 !/data/public_cache/.gitkeep
 !/data/public_cache/marine_weather_singapore.json
+/data/raw_cache/
+!/reports/artifacts/navigation_benchmark_v2/**/*.zip
+*.csv.import
+*.svg.import
+*.translation

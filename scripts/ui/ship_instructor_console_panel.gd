@@ -80,6 +80,12 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 
 
+func show_panel() -> void:
+	_root.visible = true
+	_refresh_timer = 0.0
+	_refresh_status()
+
+
 func _on_root_gui_input(event: InputEvent) -> void:
 	if not _root.visible:
 		return
@@ -137,7 +143,13 @@ func _build_interface() -> void:
 	var header := HBoxContainer.new()
 	header.add_theme_constant_override("separation", 8)
 	stack.add_child(header)
-	var title := _make_label("教员控制台 / Instructor", 16, COLOR_ACCENT)
+	var portrait := TextureRect.new()
+	portrait.texture = load("res://assets/ui/xiaoyi/xiaoyi-maritime-officer.png")
+	portrait.custom_minimum_size = Vector2(42.0, 48.0)
+	portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	header.add_child(portrait)
+	var title := _make_label("小懿全系统助手 / Instructor", 16, COLOR_ACCENT)
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(title)
 	var hide_button := _make_button("收起")

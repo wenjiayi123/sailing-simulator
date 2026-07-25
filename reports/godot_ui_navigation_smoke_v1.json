@@ -1,0 +1,173 @@
+{
+	"boundary": "Headless UI linkage and low-speed main-scene navigation regression smoke; not a long-duration performance or sea-trial result.",
+	"checks": {
+		"basic_navigation_forward_motion": {
+			"detail": {
+				"displacement_m": 8.0483226776123,
+				"speed_mps": 10.74
+			},
+			"passed": true
+		},
+		"basic_navigation_rudder_response": {
+			"detail": {
+				"heading_change_radians": 0.63061711499235
+			},
+			"passed": true
+		},
+		"button_ais": {
+			"detail": "evidence center -> AIS",
+			"passed": true
+		},
+		"button_evidence_boundary": {
+			"detail": "边界审查：历史 AIS + 公开 ENC 可做研究训练；实船控制需实时数据、官方航海产品、硬件联调与人工授权。",
+			"passed": true
+		},
+		"button_navigation_group": {
+			"detail": "evidence center -> navigation/risk/weather",
+			"passed": true
+		},
+		"button_port_contract_validator": {
+			"detail": "已启动真实契约校验进程 PID 25175；结果写入终端与报告。",
+			"passed": true
+		},
+		"button_review": {
+			"detail": "evidence center -> review",
+			"passed": true
+		},
+		"button_training_center": {
+			"detail": "evidence center -> training center",
+			"passed": true
+		},
+		"button_xiaoyi_advisor": {
+			"detail": "小懿建议：先比较 held-out test 的安全完成、碰撞/搁浅/COLREG/航道违例，再比较效率。",
+			"passed": true
+		},
+		"button_xiaoyi_assistant": {
+			"detail": "evidence center -> Xiaoyi assistant",
+			"passed": true
+		},
+		"evidence_center_buttons_have_handlers": {
+			"detail": "all evidence-center buttons",
+			"passed": true
+		},
+		"frontend_backend_algorithm_inventory": {
+			"detail": [
+				"ppo",
+				"sac",
+				"td3",
+				"dqn",
+				"a2c",
+				"ddpg",
+				"trpo",
+				"los_pid",
+				"lqr",
+				"mpc"
+			],
+			"passed": true
+		},
+		"hotkey_ais_I": {
+			"detail": "panel root must become visible",
+			"passed": true
+		},
+		"hotkey_assistant_O": {
+			"detail": "panel root must become visible",
+			"passed": true
+		},
+		"hotkey_evidence_M": {
+			"detail": "panel root must become visible",
+			"passed": true
+		},
+		"hotkey_fleet_X": {
+			"detail": "panel root must become visible",
+			"passed": true
+		},
+		"hotkey_navigation_N": {
+			"detail": "panel root must become visible",
+			"passed": true
+		},
+		"hotkey_review_P": {
+			"detail": "panel root must become visible",
+			"passed": true
+		},
+		"hotkey_risk_V": {
+			"detail": "panel root must become visible",
+			"passed": true
+		},
+		"hotkey_rl_Z": {
+			"detail": "panel root must become visible",
+			"passed": true
+		},
+		"hotkey_training_C": {
+			"detail": "panel root must become visible",
+			"passed": true
+		},
+		"hotkey_weather_W": {
+			"detail": "panel root must become visible",
+			"passed": true
+		},
+		"human_control_remains_available": {
+			"detail": "human_control_enabled",
+			"passed": true
+		},
+		"human_navigation_input_motion": {
+			"detail": {
+				"displacement_m": 2.76102256774902
+			},
+			"passed": true
+		},
+		"main_scene_load_request": {
+			"detail": 0,
+			"passed": true
+		},
+		"main_scene_ready": {
+			"detail": "Main",
+			"passed": true
+		},
+		"panel_ShipAISFleetPanel_present": {
+			"detail": "ShipAISFleetPanel",
+			"passed": true
+		},
+		"panel_ShipHREvidenceCenter_present": {
+			"detail": "ShipHREvidenceCenter",
+			"passed": true
+		},
+		"panel_ShipInstructorConsolePanel_present": {
+			"detail": "ShipInstructorConsolePanel",
+			"passed": true
+		},
+		"panel_ShipNavigationPlanningPanel_present": {
+			"detail": "ShipNavigationPlanningPanel",
+			"passed": true
+		},
+		"panel_ShipRLControlPanel_present": {
+			"detail": "ShipRLControlPanel",
+			"passed": true
+		},
+		"panel_ShipRiskDecisionPanel_present": {
+			"detail": "ShipRiskDecisionPanel",
+			"passed": true
+		},
+		"panel_ShipSimulationReviewPanel_present": {
+			"detail": "ShipSimulationReviewPanel",
+			"passed": true
+		},
+		"panel_ShipWeatherSeaPanel_present": {
+			"detail": "ShipWeatherSeaPanel",
+			"passed": true
+		},
+		"player_present": {
+			"detail": "Player",
+			"passed": true
+		},
+		"training_buttons_have_handlers": {
+			"detail": "export/train/settings/test replay/stop replay",
+			"passed": true
+		}
+	},
+	"errors": [],
+	"generated_at": "2026-07-25T11:32:37",
+	"passed": true,
+	"passed_checks": 36,
+	"schema_version": "godot_ui_navigation_smoke_v1",
+	"total_checks": 36
+}

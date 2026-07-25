@@ -1,0 +1,70 @@
+{
+  "schema_version": "ship_port_manifest_v3",
+  "port": {
+    "id": "country_unlocode_port",
+    "name": "Port name",
+    "country": "Country",
+    "timezone": "Area/City",
+    "jurisdiction": [
+      "port authority",
+      "coast guard or maritime administration",
+      "vessel traffic service"
+    ]
+  },
+  "coordinate_system": {
+    "type": "local_cartesian_meters",
+    "axes": "x_east_z_north",
+    "origin_wgs84": {
+      "latitude": 0.0,
+      "longitude": 0.0
+    },
+    "source_crs": "EPSG:4326"
+  },
+  "required_inputs": {
+    "historical_ais": {
+      "path": "/absolute/path/to/ais.csv.zst",
+      "source_url": "https://official-provider.example/data",
+      "sha256": "replace-with-64-character-sha256"
+    },
+    "hydrography_and_port_geometry": {
+      "path": "/absolute/path/to/official-or-authorized-port.geojson",
+      "source_url": "https://official-provider.example/charts",
+      "sha256": "replace-with-64-character-sha256",
+      "vertical_datum": "declare chart datum",
+      "navigation_certified": false
+    },
+    "hourly_environment": {
+      "path": "/absolute/path/to/weather-wave-current-tide.csv",
+      "source_url": "https://provider.example/documentation",
+      "sha256": "replace-with-64-character-sha256"
+    },
+    "local_rules": {
+      "sources": [
+        "https://port-authority.example/mariner-guide",
+        "https://maritime-administration.example/notices"
+      ],
+      "machine_verified": false
+    }
+  },
+  "split_policy": {
+    "method": "chronological_source_time_no_shuffle",
+    "train_end": "YYYY-MM-DD",
+    "validation_end": "YYYY-MM-DD",
+    "test_end": "YYYY-MM-DD"
+  },
+  "live_integration": {
+    "telemetry_verified": false,
+    "chart_update_verified": false,
+    "vessel_model_calibrated": false,
+    "control_interface_certified": false,
+    "human_authority_configured": false,
+    "hydrographic_datum_verified": false,
+    "regulatory_rules_verified": false,
+    "pilotage_and_tug_rules_verified": false,
+    "berth_geometry_verified": false,
+    "notices_to_mariners_current": false,
+    "sensor_latency_validated": false,
+    "communications_verified": false,
+    "failsafe_redundancy_verified": false
+  }
+}

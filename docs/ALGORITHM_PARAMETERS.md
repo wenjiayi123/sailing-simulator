@@ -1,6 +1,6 @@
 # 算法参数实际映射
 
-训练面板只保留已接入训练器或环境的参数。不同算法不使用的参数会被忽略，不会写入伪指标。
+训练面板只保留已接入训练器或环境的参数。v1 冻结证据保持原五方法；v2 港口环境提供七种 RL 与三种控制算法。不同算法不使用的参数会被忽略，不会写入伪指标。
 
 | 界面参数 | PPO | SAC | TD3 | DQN | LOS-PID | 后端映射 |
 |---|:---:|:---:|:---:|:---:|:---:|---|
@@ -18,6 +18,23 @@
 | 随机种子 | √ | √ | √ | √ | √ | 数据任务采样与算法随机源 |
 
 PPO 的实际 rollout 长度会受总 timestep 预算上限约束；训练器会选择能整除 rollout size 的 mini-batch，避免 Stable-Baselines3 的截断 batch。DQN 的 epsilon 衰减步数会换算为占总训练步数的 `exploration_fraction`。
+
+## v2 十算法实现矩阵
+
+| 方法 | 类别 | 动作 | 真实后端 |
+|---|---|---|---|
+| PPO | on-policy RL | 连续油门/舵角 | Stable-Baselines3 PPO |
+| SAC | off-policy RL | 连续油门/舵角 | Stable-Baselines3 SAC |
+| TD3 | off-policy RL | 连续油门/舵角 | Stable-Baselines3 TD3 + NormalActionNoise |
+| DQN | value-based RL | 九离散油门/舵角组合 | Stable-Baselines3 DQN |
+| A2C | on-policy RL | 连续油门/舵角 | Stable-Baselines3 A2C |
+| DDPG | off-policy RL | 连续油门/舵角 | Stable-Baselines3 DDPG + NormalActionNoise |
+| TRPO | trust-region RL | 连续油门/舵角 | sb3-contrib TRPO |
+| LOS-PID | 控制 | 连续油门/舵角 | LOS 航向误差 + PID |
+| LQR | 控制 | 连续油门/舵角 | 三状态离散 LQR，迭代求解 DARE |
+| MPC | 控制 | 连续油门/舵角 | 8 步低阶运动学滚动优化、20 个候选动作 |
+
+LQR 状态为横向误差、航向误差和航速误差；MPC 代价包含目标距离、航向、航速、控制量、动作变化与近障风险。三种控制器都输出真实动作并经过相同碰撞、搁浅、航道、速度与保守 COLREG 代理评测，不是静态标签或复用 RL 结果。
 
 ## 环境交互参数
 
@@ -84,3 +101,29 @@ PPO 的实际 rollout 长度会受总 timestep 预算上限约束；训练器会
 - DCPA：动态目标在固定相对速度假设下的预测最近会遇距离；报告均值与 P05，不能替代 COLREGs 责任判断。
 - 路径效率：参考航线长度除以实际航迹长度，上限截断为 1。
 - 安全距离侵入：净距落入 `0—32 m` 的保守事件计数。固定场景航路本身会进入该包络，因此报告中的原始 `near_miss` 字段不应对外翻译为真实“险情率”。
+
+## v2 真实港口扩展
+
+`data/rl/long_beach_ais_port_ops_experiment_v2.json` 使用独立的 `PortOpsNavigationEnv`，不改写 v1 的 28 维环境和已冻结证据。它在同一动力学内新增 17 个观测量，总计 45 维：
+
+| 新观测 | 归一化或编码 |
+|---|---|
+| 能见度、潮位、水深、UKC | 连续值缩放并裁剪 |
+| 航道内外、距航道边缘 | 二值 + 连续边距 |
+| 经验速度上限余量 | 当前 SOG 相对任务上限 |
+| 船长、吃水 | 船型尺度归一化 |
+| 最近动态目标方位 | `sin/cos` |
+| head-on / crossing starboard / crossing port / overtaking | one-hot 会遇上下文 |
+| give-way | 保守让路责任二值 |
+| traffic density | 感知范围内动态目标密度 |
+
+v2 目标函数沿用 v1 的推进、航向、经济航速、航点、碰撞、地形、边界、净距、TCPA/DCPA、XTE、舵角、动作变化和时间项，新增：
+
+```text
+- penalty_under_keel_clearance × UKC不足
+- penalty_speed_limit × 超过任务速度上限
+- penalty_channel_departure × 航道偏离
+- penalty_colreg_give_way × 保守让路违例
+```
+
+速度上限来自 AIS 历史航速分布的经验代理，不是当地法规限速。COLREG 项只用于离线研究的保守会遇代理，不能解释为合规认证。港口合规完成率同时要求到达、无碰撞、无搁浅、无航道/速度/保守让路违例。

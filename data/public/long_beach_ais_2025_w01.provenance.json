@@ -1,0 +1,71 @@
+{
+  "schema_version": "ship_public_ais_provenance_v1",
+  "dataset_id": "long_beach_ais_enc_port_ops_benchmark_v2",
+  "provider": "NOAA OCM / BOEM / U.S. Coast Guard Marine Cadastre",
+  "catalog": "https://coast.noaa.gov/digitalcoast/data/vesseltraffic.html",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-01-07"
+  },
+  "coverage_bbox_wgs84": [
+    -118.35,
+    33.65,
+    -118.15,
+    33.82
+  ],
+  "raw_files": [
+    {
+      "file": "ais-2025-01-01.csv.zst",
+      "url": "https://coast.noaa.gov/htdata/CMSP/AISDataHandler/2025/ais-2025-01-01.csv.zst",
+      "bytes": 202190247,
+      "sha256": "36c07f4abad24f86fdd2ae8722b5a1d9422f3a223efc3482a568665275bdde53"
+    },
+    {
+      "file": "ais-2025-01-02.csv.zst",
+      "url": "https://coast.noaa.gov/htdata/CMSP/AISDataHandler/2025/ais-2025-01-02.csv.zst",
+      "bytes": 186214844,
+      "sha256": "9a82be237a58e4be26b0919ab5caa18fa40a092b55279e4605a9b13359fe33ee"
+    },
+    {
+      "file": "ais-2025-01-03.csv.zst",
+      "url": "https://coast.noaa.gov/htdata/CMSP/AISDataHandler/2025/ais-2025-01-03.csv.zst",
+      "bytes": 183328957,
+      "sha256": "08798d9069e41ee8527f8d320054b99b03b89ee69d2b660b6c5272d82480f002"
+    },
+    {
+      "file": "ais-2025-01-04.csv.zst",
+      "url": "https://coast.noaa.gov/htdata/CMSP/AISDataHandler/2025/ais-2025-01-04.csv.zst",
+      "bytes": 193641307,
+      "sha256": "6f5cdd9982414c172afe7e7545fe7a7b056da4491e4433774f306ecfcd6d3eda"
+    },
+    {
+      "file": "ais-2025-01-05.csv.zst",
+      "url": "https://coast.noaa.gov/htdata/CMSP/AISDataHandler/2025/ais-2025-01-05.csv.zst",
+      "bytes": 213642240,
+      "sha256": "d2d73ed9b547875f0b378aee942cf7bc6de4979870daa31f8e09754be98e0a0a"
+    },
+    {
+      "file": "ais-2025-01-06.csv.zst",
+      "url": "https://coast.noaa.gov/htdata/CMSP/AISDataHandler/2025/ais-2025-01-06.csv.zst",
+      "bytes": 175909907,
+      "sha256": "c159d650ea1a282203b45228db09b1f188ab2cdd293581ecb5e70c1379391d98"
+    },
+    {
+      "file": "ais-2025-01-07.csv.zst",
+      "url": "https://coast.noaa.gov/htdata/CMSP/AISDataHandler/2025/ais-2025-01-07.csv.zst",
+      "bytes": 180779744,
+      "sha256": "4b5d7a6f6089885b870de7391495f389762c3ce7c4c79ab442aeb1814956bfbd"
+    }
+  ],
+  "raw_ais_rows_scanned": 47958624,
+  "filtered_ais_rows": 85435,
+  "rejected_missing_position_or_time": 0,
+  "rejected_motion_outlier": 582986,
+  "distinct_mmsi": 385,
+  "derived_dataset": "data/rl/long_beach_ais_port_ops_benchmark_v2.json",
+  "derived_dataset_sha256": "1d676e7446f22206f6113777524d46724545e58e55c1df73a9d359795a415a1f",
+  "contract_report": "reports/port_dataset_contract_v2.json",
+  "contract_report_sha256": "3cff3ecea2d27995852ab7a8a619f80984afe98a08e4397bcacdba72480abece",
+  "generated_at": "2026-07-25T10:10:40+00:00",
+  "redistribution_boundary": "Git contains the normalized derivative and hashes, not the nationwide daily archives. Rebuild from the official URLs."
+}

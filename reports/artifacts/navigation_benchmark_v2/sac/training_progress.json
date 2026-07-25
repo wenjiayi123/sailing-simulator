@@ -1,0 +1,25 @@
+{
+  "status": "complete",
+  "ok": true,
+  "operation": "train",
+  "stage": "port_checkpoint_ready",
+  "algorithm": "sac",
+  "progress": 1.0,
+  "completed_timesteps": 2000,
+  "total_timesteps": 2000,
+  "episodes_completed": 1,
+  "mean_reward_20": 959.808998,
+  "success_rate_20": 0.0,
+  "elapsed_seconds": 34.073681182,
+  "checkpoint_json": "/Users/apple/Desktop/航行模拟器/reports/artifacts/navigation_benchmark_v2/sac/checkpoint.json",
+  "model_path": "/Users/apple/Desktop/航行模拟器/reports/artifacts/navigation_benchmark_v2/sac/sac_policy.zip",
+  "render": false,
+  "dataset_split": "train",
+  "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+  "experiment_sha256": "b3ce96edb6a995c3d5fd9787fbae05d00a7f760f133b3910604bd740fcbf2da1",
+  "observation_size": 45,
+  "port_contract": {
+    "research_training_ready": true,
+    "live_control_ready": false
+  }
+}

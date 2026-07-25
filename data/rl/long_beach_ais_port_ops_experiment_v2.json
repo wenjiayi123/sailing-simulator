@@ -1,0 +1,85 @@
+{
+  "schema_version": "ship_training_experiment_v3",
+  "headless": true,
+  "render": false,
+  "delta": 0.5,
+  "dataset": {
+    "path": "res://data/rl/long_beach_ais_port_ops_benchmark_v2.json",
+    "training_split": "train",
+    "validation_split": "validation",
+    "evaluation_split": "test",
+    "observation_profile": "port_ops_45"
+  },
+  "rl_parameters": {
+    "reward_progress": 2.8,
+    "reward_heading": 1.4,
+    "reward_speed": 0.5,
+    "penalty_collision": 72.0,
+    "penalty_terrain_collision": 96.0,
+    "penalty_boundary": 64.0,
+    "penalty_rudder": 0.35,
+    "penalty_proximity": 1.6,
+    "penalty_predicted_collision": 2.4,
+    "penalty_cross_track": 0.08,
+    "penalty_action_slew": 0.06,
+    "penalty_step": 0.002,
+    "penalty_under_keel_clearance": 3.0,
+    "penalty_speed_limit": 1.0,
+    "penalty_channel_departure": 1.8,
+    "penalty_colreg_give_way": 2.2,
+    "minimum_under_keel_clearance_meters": 1.0,
+    "safe_distance": 80.0
+  },
+  "environment_parameters": {
+    "vessel_radius_m": 4.0,
+    "obstacle_inflation_m": 2.0,
+    "cliff_inflation_m": 8.0,
+    "boundary_margin_m": 20.0,
+    "sensor_range_m": 1500.0,
+    "tcpa_horizon_seconds": 900.0,
+    "terminate_on_collision": true,
+    "merge_scene_obstacles": false,
+    "domain_randomization": true,
+    "randomize_evaluation": false,
+    "start_position_jitter_m": 4.0,
+    "start_heading_jitter_degrees": 3.0,
+    "obstacle_position_jitter_m": 0.0,
+    "obstacle_size_jitter_m": 0.0,
+    "current_speed_jitter_knots": 0.08,
+    "current_direction_jitter_degrees": 3.0,
+    "wind_speed_jitter_knots": 0.5,
+    "wind_direction_jitter_degrees": 3.0,
+    "wave_height_jitter_m": 0.05,
+    "wave_direction_jitter_degrees": 3.0,
+    "wind_leeway_factor": 0.008,
+    "wave_drift_mps_per_meter": 0.05,
+    "sensor_distance_noise_std_m": 1.5,
+    "sensor_bearing_noise_degrees": 0.8,
+    "generated_traffic_count": 0,
+    "generated_traffic_speed_knots": 0.0,
+    "generated_traffic_radius_m": 5.0
+  },
+  "ships": [
+    {
+      "performance": {
+        "max_forward_speed": 8.0,
+        "max_reverse_speed": 2.0,
+        "acceleration": 0.2,
+        "deceleration": 0.15,
+        "brake_acceleration": 0.35,
+        "throttle_response": 0.32,
+        "rudder_response": 0.55,
+        "max_turn_rate_degrees": 8.0,
+        "low_speed_turn_factor": 0.12,
+        "reverse_turn_factor": 0.45
+      }
+    }
+  ],
+  "world": {
+    "obstacles": {
+      "boundary_half_extent": 15000.0,
+      "rocks": [],
+      "boxes": []
+    }
+  }
+}

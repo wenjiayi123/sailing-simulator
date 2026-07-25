@@ -37,15 +37,6 @@
   <img src="docs/screenshots/01-port-ai-evidence-center.png" alt="同屏展示训练数据、十算法矩阵、小懿训练顾问和模块按钮联动" width="100%" />
 </p>
 
-<p align="center">
-  <img src="docs/screenshots/02-training-center-ten-methods.png" alt="45维港口训练中心与十算法后端入口" width="49%" />
-  <img src="docs/screenshots/03-xiaoyi-system-assistant.png" alt="使用既有小懿Q版形象的全系统助手" width="49%" />
-</p>
-
-<p align="center">
-  <img src="docs/screenshots/04-navigation-runtime.png" alt="主船真实油门舵角航行、尾迹、航线和遥测同屏" width="100%" />
-</p>
-
 证据中心不是静态海报：按钮分别调用训练中心、航线规划/风险/海况、AIS、结果复盘和小懿全系统助手；自动验收同时验证对应快捷键与主船人工/后端控制航行。
 
 ## 系统价值 / Engineering value
@@ -62,6 +53,11 @@ Godot 4.7 owns vessel control, port geometry, risk envelopes, and 3D evidence re
 | 回放一致性 / Replay consistency | <strong>5/5</strong> 回放、<strong>1,723</strong> 采样点<br><sub><strong>5/5</strong> replays and <strong>1,723</strong> samples</sub> | 后端指标、逐场CSV与Godot轨迹相互校验<br><sub>Backend metrics, per-scenario CSV files, and Godot trajectories cross-check one another.</sub> |
 | 证据门禁 / Evidence gate | <strong>28/28</strong> 检查通过<br><sub><strong>28/28</strong> checks passed</sub> | 数据、奖励、模型、轨迹与源码哈希绑定<br><sub>Dataset, reward, model, trajectory, and source hashes are bound together.</sub> |
 | 安全准入 / Safety admission | 五方法均被保守门禁拒绝<br><sub>All five methods rejected by the conservative gate</sub> | 证明系统会暴露安全裕度缺口，而非美化零碰撞<br><sub>The platform exposes safety-margin deficiencies instead of polishing a zero-collision result.</sub> |
+
+<p align="center">
+  <img src="docs/screenshots/04-navigation-runtime.png" alt="晴天20公里能见度下的主船油门舵角航行、尾迹、航线和遥测" width="100%" />
+  <br /><sub>晴天航行运行态：真实油门/舵角输入、航迹尾流、目标航线、雷达、风险状态和遥测同屏。</sub>
+</p>
 
 > [!IMPORTANT]
 > 当前证据证明的是仿真平台完整性、算法评测能力和失效安全门禁，不是实船海试、COLREGs认证或商业航行许可。公开环境强迫、仿真动力学与真实传感/执行数据始终分层标注。
@@ -85,6 +81,11 @@ The v2 benchmark adds a `ship_port_dataset_v3` contract and a 45-dimensional por
 | 任务字段覆盖 | 船长/船宽/吃水/风浪流/能见度/潮位/速度代理均 **100%** |
 | 算法 | **7 RL + 3 control** |
 
+<p align="center">
+  <img src="docs/screenshots/02-training-center-ten-methods.png" alt="晴天场景中的45维港口训练中心与十算法后端入口" width="100%" />
+  <br /><sub>训练中心：v2 NOAA AIS + ENC 数据档、45 维环境和 7 RL + 3 控制后端在同一真实入口中选择。</sub>
+</p>
+
 | 方法 | 类型 | 动作空间 | 实现 |
 |---|---|---|---|
 | PPO / SAC / TD3 | RL | 连续油门 + 舵角 | Stable-Baselines3 |
@@ -96,6 +97,11 @@ The v2 benchmark adds a `ship_port_dataset_v3` contract and a 45-dimensional por
 | MPC | 控制 | 连续油门 + 舵角 | 8 步滚动时域低阶运动学优化 |
 
 45 维观测覆盖相对目标与航向、速度/油门/舵角、障碍扇区、闭合速度、TCPA/DCPA、风浪流、边界/XTE，以及能见度、潮位、水深、UKC、航道、速度余量、船型尺度、会遇类型、让路责任和交通密度。目标函数同时记录推进、航向、经济航速、碰撞、搁浅、净距、航道、超速与保守 COLREG 会遇代理。完整字段、适配步骤和未上线因素见 [港口替换与上线门禁](docs/PORT_ADAPTER_GUIDE.md)。
+
+<p align="center">
+  <img src="docs/screenshots/05-algorithm-environment-settings.png" alt="算法优化器、采样器、探索策略与船舶环境安全参数设置" width="100%" />
+  <br /><sub>算法与环境交互设置：优化器、采样器、探索预算、船体/悬岩净距、感知范围和动态交通参数均映射到真实后端配置。</sub>
+</p>
 
 > [!NOTE]
 > v2 的 2,000 步/算法运行是“公开数据与全算法执行覆盖”证据，不宣称七个 RL 已收敛。历史 AIS 不是实时交通，ENC Direct 不是船载认证海图；VTS、引航/拖轮/泊位、实时传感、船型标定和认证控制链未验证时，`live_control_ready=false`。
@@ -210,6 +216,11 @@ Open the project in Godot:
 
 运行主场景后按 `C` 打开训练页。“算法/环境设置”可配置船体半径、悬岩净距、感知范围、碰撞时间窗、域随机化和生成交通船；“预览安全边界”会把有效包络直接画回场景。选择算法和预算后点击“启动训练”，完成后再点击“运行测试集并渲染”。<br>
 Run the main scene and press `C` to open the training page. “Algorithm / Environment Settings” configures hull radius, overhang clearance, sensing range, collision horizon, domain randomization, and generated traffic. “Preview Safety Boundary” draws the effective envelope into the scene. Select an algorithm and budget, start training, and only after completion run the held-out test set with rendering.
+
+<p align="center">
+  <img src="docs/screenshots/03-xiaoyi-system-assistant.png" alt="晴天场景中的小懿全系统助手与场景、天气、事故、障碍和报告按钮" width="100%" />
+  <br /><sub>小懿全系统助手：场景、天气、事故、临时障碍、播放速度、重置与报告按钮均调用实际系统模块。</sub>
+</p>
 
 ### 前端按钮与快捷键 / UI linkage and hotkeys
 

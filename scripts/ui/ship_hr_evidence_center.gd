@@ -58,6 +58,12 @@ func _prepare_capture_mode() -> void:
 		var training := _node(rl_panel_path)
 		if training != null and training.has_method("show_training_center"):
 			training.call("show_training_center")
+	elif mode == "settings":
+		_root.visible = false
+		var training := _node(rl_panel_path)
+		if training != null and training.has_method("show_training_center"):
+			training.call("show_training_center")
+			training.call("_on_training_parameters_pressed")
 	elif mode == "assistant":
 		_root.visible = false
 		var assistant := _node(instructor_panel_path)

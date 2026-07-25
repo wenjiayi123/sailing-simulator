@@ -126,6 +126,11 @@ func _ready() -> void:
 	_resolve_targets()
 	_build_overlay()
 	apply_mode(start_mode_index)
+	if OS.get_environment("SHIP_CAPTURE_WEATHER") == "clear":
+		public_weather_enabled = false
+		set_process(true)
+		set_process_unhandled_input(true)
+		return
 	_load_public_weather_cache()
 	_build_public_weather_requests()
 	if public_weather_enabled:

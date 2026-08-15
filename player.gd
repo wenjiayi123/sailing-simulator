@@ -71,9 +71,6 @@ const SHIP_SELECTION_RING_COLOR := Color(0.28, 0.96, 1.0, 0.74)
 @export var camera_turn_back_offset: float = 1.15
 @export var camera_turn_focus_offset: float = 0.82
 @export var camera_turn_response: float = 3.7
-@export_group("Ship Camera Autopilot")
-@export var camera_heading_follow_resume_delay: float = 1.25
-@export var camera_heading_follow_response: float = 8.0
 @export_group("")
 @export var idle_action_delay: float = 5.0
 @export var idle_action_interval: float = 5.0
@@ -184,8 +181,6 @@ var camera_base_fov: float = 65.0
 var camera_follow_position: Vector3 = Vector3.ZERO
 var camera_focus_position: Vector3 = Vector3.ZERO
 var camera_turn_sway: float = 0.0
-var camera_heading_follow_enabled: bool = false
-var camera_manual_override_time_left: float = 0.0
 var player_visual_base_position: Vector3 = Vector3.ZERO
 var ship_visual_heading_roll: float = 0.0
 var ship_heading_yaw: float = 0.0
@@ -211,8 +206,7 @@ var _selection_indicator: MeshInstance3D
 
 
 @onready var player_camera: Camera3D = $Camera3D
-@onready var player_visual: AnimatedSprite3D = $LegacyAnimationStateDriver
-@onready var procedural_usv_visual: Node3D = $ProceduralUSVVisual
+@onready var player_visual: AnimatedSprite3D = $PlayerVisual
 @onready var action_lock: PlayerActionLock = $ActionLock
 
 
@@ -221,11 +215,6 @@ func _ready() -> void:
 	if human_control_enabled:
 		add_to_group(&"player")
 	_configure_ship_visual_rendering()
-	# The former image ship is retained only as an invisible animation-state
-	# driver for legacy action code. The 3D twin-hull USV is the sole renderer.
-	player_visual.visible = false
-	if procedural_usv_visual != null:
-		procedural_usv_visual.call("set_active", true)
 	player_visual.position = SHIP_VISUAL_DEFAULT_POSITION
 	normal_visual_scale = player_visual.scale
 	player_visual_base_position = player_visual.position
@@ -434,36 +423,14 @@ func _update_camera_orbit(delta: float) -> void:
 	if Input.is_key_pressed(KEY_F):
 		pitch_input += 1.0
 
-	apply_ship_camera_orbit_input(yaw_input, pitch_input, delta)
-	_apply_camera_orbit(delta)
-
-
-func apply_ship_camera_orbit_input(yaw_input: float, pitch_input: float, delta: float) -> void:
-	var has_manual_input := not is_zero_approx(yaw_input) or not is_zero_approx(pitch_input)
-	if has_manual_input:
-		camera_manual_override_time_left = maxf(camera_heading_follow_resume_delay, 0.0)
+	if not is_zero_approx(yaw_input) or not is_zero_approx(pitch_input):
 		camera_yaw += yaw_input * camera_yaw_speed * delta
 
 		var min_pitch := deg_to_rad(camera_min_pitch_degrees)
 		var max_pitch := deg_to_rad(camera_max_pitch_degrees)
 		camera_pitch = clampf(camera_pitch + pitch_input * camera_pitch_speed * delta, min_pitch, max_pitch)
-		return
-	if not camera_heading_follow_enabled:
-		return
-	camera_manual_override_time_left = maxf(camera_manual_override_time_left - delta, 0.0)
-	if camera_manual_override_time_left > 0.0:
-		return
-	camera_yaw = lerp_angle(
-		camera_yaw,
-		_get_camera_heading_follow_yaw(),
-		_damping_alpha(camera_heading_follow_response, delta)
-	)
 
-
-func _get_camera_heading_follow_yaw() -> float:
-	# camera_yaw is the camera's offset around the ship. Adding PI places the
-	# camera behind the bow so look_at() faces along the recorded ship heading.
-	return wrapf(ship_heading_yaw + PI, -PI, PI)
+	_apply_camera_orbit(delta)
 
 
 func _apply_camera_orbit(delta: float = 0.0, immediate: bool = false) -> void:
@@ -553,9 +520,6 @@ func _update_visual_camera_facing() -> void:
 	player_visual.position = camera_facing_basis * player_visual_base_position
 	var heading_roll := ship_visual_heading_roll if use_continuous_ship_turn_visual else 0.0
 	player_visual.rotation = Vector3(0.0, camera_yaw, heading_roll)
-	if procedural_usv_visual != null:
-		procedural_usv_visual.rotation = Vector3(0.0, ship_heading_yaw, 0.0)
-		procedural_usv_visual.call("set_navigation_state", ship_throttle, ship_rudder, ship_forward_speed)
 
 
 func _get_camera_relative_direction(input_direction: Vector3) -> Vector3:
@@ -976,30 +940,6 @@ func set_ship_camera_enabled(enabled: bool) -> void:
 			_apply_camera_orbit(0.0, true)
 
 
-func set_ship_camera_heading_follow_enabled(enabled: bool, align_immediately: bool = false) -> void:
-	camera_heading_follow_enabled = enabled
-	camera_manual_override_time_left = 0.0
-	if enabled and align_immediately:
-		camera_yaw = _get_camera_heading_follow_yaw()
-		_apply_camera_orbit(0.0, true)
-
-
-func get_ship_camera_heading_follow_status() -> Dictionary:
-	var target_yaw := _get_camera_heading_follow_yaw()
-	return {
-		"enabled": camera_heading_follow_enabled,
-		"manual_override_active": camera_manual_override_time_left > 0.0,
-		"manual_override_seconds_left": camera_manual_override_time_left,
-		"camera_yaw_degrees": fposmod(rad_to_deg(camera_yaw), 360.0),
-		"target_yaw_degrees": fposmod(rad_to_deg(target_yaw), 360.0),
-		"heading_alignment_error_degrees": absf(rad_to_deg(wrapf(target_yaw - camera_yaw, -PI, PI))),
-	}
-
-
-func get_procedural_usv_component_summary() -> Dictionary:
-	return procedural_usv_visual.call("get_component_summary") as Dictionary if procedural_usv_visual != null else {}
-
-
 func set_ship_selection_highlight(selected: bool) -> void:
 	player_visual.modulate = Color.WHITE
 	_ensure_ship_selection_indicator()
@@ -1055,31 +995,6 @@ func set_ship_navigation_spawn(world_position: Vector3, heading_degrees: float) 
 	_apply_camera_orbit(0.0, true)
 
 
-func apply_recorded_ship_state(
-	world_position: Vector3,
-	heading_degrees: float,
-	speed_mps: float,
-	actual_throttle: float,
-	actual_rudder: float
-) -> void:
-	# Test-only visualization API. The numeric RL environment already integrated
-	# these states headlessly; Godot interpolates the immutable held-out rollout.
-	global_position = world_position
-	ship_heading_yaw = deg_to_rad(heading_degrees)
-	ship_course_yaw = ship_heading_yaw
-	ship_target_heading_yaw = ship_heading_yaw
-	ship_forward_speed = speed_mps
-	ship_throttle = clampf(actual_throttle, -1.0, 1.0)
-	ship_target_throttle = ship_throttle
-	ship_rudder = clampf(actual_rudder, -1.0, 1.0)
-	ship_target_rudder = ship_rudder
-	var forward := _get_ship_forward_vector()
-	velocity = forward * speed_mps
-	last_direction = forward
-	visual_direction = _get_ship_visual_direction()
-	_apply_continuous_ship_heading(visual_direction)
-
-
 func _reset_ship_clone_mounts() -> void:
 	player_camera.top_level = false
 	player_camera.current = false
@@ -1108,12 +1023,6 @@ func _reset_ship_clone_mounts() -> void:
 	player_visual.flip_h = false
 	player_visual.play(&"idle_up")
 	player_visual.frame = 0
-	player_visual.visible = false
-	if procedural_usv_visual != null:
-		procedural_usv_visual.top_level = false
-		procedural_usv_visual.call("set_active", true)
-		procedural_usv_visual.rotation = Vector3(0.0, ship_heading_yaw, 0.0)
-		procedural_usv_visual.call("set_navigation_state", ship_throttle, ship_rudder, ship_forward_speed)
 
 
 func _config_float(config: Dictionary, key: String, fallback: float, min_value: float, max_value: float) -> float:

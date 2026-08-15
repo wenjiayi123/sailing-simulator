@@ -84,13 +84,12 @@ func _unhandled_input(event: InputEvent) -> void:
 				select_ship(picked_ship)
 
 
-func start_drag_new_ship(config: Dictionary = {}) -> bool:
+func start_drag_new_ship(config: Dictionary = {}) -> void:
 	if _ships.size() >= max_ship_count:
-		return false
+		return
 	_dragging_new_ship = true
 	_drag_config = config.duplicate(true)
 	_ensure_preview()
-	return true
 
 
 func cancel_drag_new_ship() -> void:
@@ -202,9 +201,9 @@ func cycle_controlled_ship(direction: int = 1) -> void:
 	take_control_of_ship(_ships[next_index])
 
 
-func delete_selected_ship() -> bool:
+func delete_selected_ship() -> void:
 	if _selected_ship == null or _selected_ship == _prototype_ship:
-		return false
+		return
 	var ship_to_delete := _selected_ship
 	var deleting_controlled := ship_to_delete == _controlled_ship
 	var delete_index := _ships.find(ship_to_delete)
@@ -221,7 +220,6 @@ func delete_selected_ship() -> bool:
 		if _selected_ship != null:
 			select_ship(_selected_ship)
 	fleet_changed.emit()
-	return true
 
 
 func get_selected_ship() -> Node3D:

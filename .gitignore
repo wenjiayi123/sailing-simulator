@@ -23,10 +23,6 @@ __pycache__/
 !/data/public_cache/marine_weather_singapore.json
 /data/raw_cache/
 !/reports/artifacts/navigation_benchmark_v2/**/*.zip
-!/reports/artifacts/cargo_circuit_rl_v1/
-!/reports/artifacts/cargo_circuit_rl_v1/**/*.zip
-!/reports/artifacts/cargo_circuit_dynamic_rl_v2/
-!/reports/artifacts/cargo_circuit_dynamic_rl_v2/**/*.zip
 *.csv.import
 *.svg.import
 *.translation

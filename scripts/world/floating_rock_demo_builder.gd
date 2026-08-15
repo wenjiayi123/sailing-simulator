@@ -162,8 +162,6 @@ func _build_vegetation_placeholders() -> void:
 
 
 func _build_collision() -> void:
-	_configure_navigation_collision_body(get_node_or_null("Collision/Walkable_Collision") as StaticBody3D)
-	_configure_navigation_collision_body(get_node_or_null("Collision/Body_Collision") as StaticBody3D)
 	var walk_shape := get_node_or_null("Collision/Walkable_Collision/Walkable_CollisionShape") as CollisionShape3D
 	if walk_shape != null:
 		var top_shape := ConcavePolygonShape3D.new()
@@ -175,18 +173,6 @@ func _build_collision() -> void:
 		var coarse_shape := ConcavePolygonShape3D.new()
 		coarse_shape.set_faces(_body_collision_faces)
 		body_shape.shape = coarse_shape
-
-
-func _configure_navigation_collision_body(body: StaticBody3D) -> void:
-	if body == null:
-		return
-	# Keep layer 1 for normal CharacterBody3D navigation. Layer 2 lets recorded
-	# replay sweeps isolate large-rock geometry without mistaking the water/floor
-	# body for an obstacle.
-	body.collision_layer |= 2
-	body.collision_mask = 1
-	body.add_to_group(&"large_rock_exact_collision")
-	body.set_meta("source_large_rock", String(name))
 
 
 func _build_preview_setup() -> void:

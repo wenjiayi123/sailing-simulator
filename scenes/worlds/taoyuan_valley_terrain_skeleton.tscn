@@ -463,7 +463,7 @@ font_size = 44
 [node name="GroundedRockPlate_Comparison_Set" type="Node3D" parent="TerrainUpperWalkableRegions/FloatingPlates" unique_id=1388876529]
 
 [node name="GroundedPlate_01_BroadLandMass" parent="TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set" unique_id=1965394396 instance=ExtResource("32_grounded_rock_plate_3a")]
-transform = Transform3D(7.9130087, 0, -5.5407486, 0, 8.919, 0, 5.5407486, 0, 7.9130087, -460, -24.71473, 280)
+transform = Transform3D(7.9130087, 0, -5.5407486, 0, 8.919, 0, 5.5407486, 0, 7.9130087, -227.04617, -24.71473, 150.14545)
 variant_seed = 911.0
 plate_length_scale = 1.26
 plate_width_scale = 0.94
@@ -538,7 +538,7 @@ waterfall_angle_offset = 0.72
 debris_density = 1.08
 
 [node name="GroundedPlate_04_WideBridgeSlab" parent="TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set" unique_id=699266010 instance=ExtResource("32_grounded_rock_plate_3a")]
-transform = Transform3D(8.3198185, 0, -8.3198185, 0, 8.862, 0, 8.3198185, 0, 8.3198185, -520, -35.739677, -200)
+transform = Transform3D(8.3198185, 0, -8.3198185, 0, 8.862, 0, 8.3198185, 0, 8.3198185, -161.67674, -35.739677, -147.91895)
 variant_seed = 1031.0
 plate_length_scale = 1.42
 plate_width_scale = 0.78
@@ -583,7 +583,7 @@ waterfall_angle_offset = -0.82
 debris_density = 0.92
 
 [node name="GroundedPlate_07_AncientWallPlate" parent="TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set" unique_id=125430647 instance=ExtResource("32_grounded_rock_plate_3a")]
-transform = Transform3D(8.332239, 0, 3.8147972, 0, 8.122, 0, -3.8147972, 0, 8.332239, -120, -39.053867, 520)
+transform = Transform3D(8.332239, 0, 3.8147972, 0, 8.122, 0, -3.8147972, 0, 8.332239, -19.077904, -39.053867, 264.87888)
 variant_seed = 1151.0
 plate_length_scale = 1.3
 plate_width_scale = 0.88

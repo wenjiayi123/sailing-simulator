@@ -47,10 +47,6 @@
 [ext_resource type="Script" uid="uid://bn1sed4lgl08u" path="res://scripts/ui/ship_instructor_console_panel.gd" id="79_instructor_console"]
 [ext_resource type="Script" path="res://scripts/rl/ship_policy_replay_controller.gd" id="80_policy_replay"]
 [ext_resource type="Script" path="res://scripts/ui/ship_hr_evidence_center.gd" id="81_hr_evidence"]
-[ext_resource type="Script" path="res://scripts/rl/cargo_circuit_replay_controller.gd" id="82_cargo_replay"]
-[ext_resource type="Script" path="res://scripts/ui/cargo_circuit_rl_panel.gd" id="83_cargo_panel"]
-[ext_resource type="Script" path="res://scripts/world/large_rock_collision_guard.gd" id="84_large_rock_guard"]
-[ext_resource type="Script" path="res://scripts/visual/procedural_usv_visual.gd" id="85_procedural_usv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig7tw"]
 albedo_color = Color(0.43529412, 0.65882355, 0.41568628, 1)
@@ -3042,9 +3038,6 @@ transform = Transform3D(0.81915206, -0.46984634, 0.32898995, 0, 0.57357645, 0.81
 [node name="NavigationEnvironment" parent="." unique_id=1373737335 instance=ExtResource("63_navigation_environment")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35661614, -0.18494618, -0.047016352)
 
-[node name="LargeRockCollisionGuard" type="Node3D" parent="."]
-script = ExtResource("84_large_rock_guard")
-
 [node name="Player" type="CharacterBody3D" parent="." unique_id=928115363]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35661614, -140.73494, -0.047016352)
 script = ExtResource("1_ig7tw")
@@ -3065,9 +3058,8 @@ fov = 65.3
 near = 0.1
 far = 5000.0
 
-[node name="LegacyAnimationStateDriver" type="AnimatedSprite3D" parent="Player" unique_id=66101255]
+[node name="PlayerVisual" type="AnimatedSprite3D" parent="Player" unique_id=66101255]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, 0)
-visible = false
 pixel_size = 0.007
 no_depth_test = true
 alpha_cut = 1
@@ -3075,9 +3067,6 @@ alpha_scissor_threshold = 0.35
 render_priority = 8
 sprite_frames = SubResource("SpriteFrames_jh35h")
 animation = &"待机面向主角_down"
-
-[node name="ProceduralUSVVisual" type="Node3D" parent="Player"]
-script = ExtResource("85_procedural_usv")
 
 [node name="ActionLock" type="Node" parent="Player" unique_id=1297060851]
 script = ExtResource("57_action_lock")
@@ -3105,9 +3094,6 @@ script = ExtResource("69_fleet_manager")
 
 [node name="ShipPolicyReplayController" type="Node" parent="."]
 script = ExtResource("80_policy_replay")
-
-[node name="CargoCircuitReplayController" type="Node" parent="."]
-script = ExtResource("82_cargo_replay")
 
 [node name="MalaccaValidationBridge" type="Node" parent="." unique_id=1887236491]
 script = ExtResource("73_malacca_bridge")
@@ -3138,9 +3124,6 @@ script = ExtResource("79_instructor_console")
 
 [node name="ShipHREvidenceCenter" type="CanvasLayer" parent="."]
 script = ExtResource("81_hr_evidence")
-
-[node name="CargoCircuitRLPanel" type="CanvasLayer" parent="."]
-script = ExtResource("83_cargo_panel")
 
 [node name="ShipWakeTrail" type="Node3D" parent="." unique_id=613481520]
 script = ExtResource("65_ship_wake")

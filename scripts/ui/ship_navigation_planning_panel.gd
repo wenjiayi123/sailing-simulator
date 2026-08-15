@@ -143,8 +143,6 @@ var _player: Node3D
 var _mission_presets: Array = []
 var _mission_profile_status := "built-in fallback"
 var _refresh_timer := 0.0
-var _pending_mission_changes := false
-var _pending_route_settings := false
 var _active_mission_name := "开放水域巡航"
 var _active_mission_code := "OPEN-WATER-PATROL"
 var _active_objective := "开放水域航线保持、偏航修正和连续航点巡航"
@@ -403,12 +401,10 @@ func _build_mission_tab() -> Control:
 	_sync_scenario_check = CheckBox.new()
 	_sync_scenario_check.text = "联动场景"
 	_sync_scenario_check.button_pressed = true
-	_sync_scenario_check.toggled.connect(_on_mission_option_toggled)
 	check_row.add_child(_sync_scenario_check)
 	_teleport_check = CheckBox.new()
 	_teleport_check.text = "重定位船舶"
 	_teleport_check.button_pressed = true
-	_teleport_check.toggled.connect(_on_mission_option_toggled)
 	check_row.add_child(_teleport_check)
 	_loop_check = CheckBox.new()
 	_loop_check.text = "循环航线"
@@ -617,21 +613,7 @@ func _update_panel() -> void:
 	_update_label("scenario_status", _scenario_weather_text())
 	_update_label("route_status", "%s  radius %.0fm  %s" % ["ACTIVE" if route_active else "STANDBY", _current_arrival_radius(route_radar), "LOOP" if loop_active else "ONE-WAY"], COLOR_GREEN if route_active else COLOR_AMBER)
 	_update_label("route_source", _mission_profile_status)
-	var pending_text := ""
-	if _pending_mission_changes:
-		pending_text = "  |  待点击“应用任务”"
-	elif _pending_route_settings:
-		pending_text = "  |  待点击“应用航线参数”"
-	var footer_text := (
-		"N 打开航行任务面板  |  当前计划航速 %.1fkn  |  到达半径 %.0fm  |  航点 %d%s"
-		% [planned_speed_knots, arrival_radius_meters, route_points.size(), pending_text]
-	)
-	var footer_color := (
-		COLOR_AMBER
-		if _pending_mission_changes or _pending_route_settings
-		else COLOR_MUTED
-	)
-	_update_label("mission_footer", footer_text, footer_color)
+	_update_label("mission_footer", "N 打开航行任务面板  |  当前计划航速 %.1fkn  |  到达半径 %.0fm  |  航点 %d" % [planned_speed_knots, arrival_radius_meters, route_points.size()])
 	_update_chart_labels(route_data, route_radar, obstacle_points.size() + obstacle_boxes.size())
 	_update_waypoint_manifest(route_points, active_index)
 	if _chart != null:
@@ -677,14 +659,6 @@ func _get_obstacle_data() -> Dictionary:
 func _on_mission_selected(index: int) -> void:
 	var preset := _preset_by_index(index)
 	_apply_preset_values_to_controls(preset)
-	_pending_mission_changes = true
-	_pending_route_settings = false
-	_update_panel()
-
-
-func _on_mission_option_toggled(_enabled: bool) -> void:
-	_pending_mission_changes = true
-	_update_panel()
 
 
 func _on_apply_mission_pressed() -> void:
@@ -701,26 +675,19 @@ func _on_apply_mission_pressed() -> void:
 	var leg_start := ship.global_position if ship != null else preset.get("spawn", Vector3.ZERO) as Vector3
 	_apply_route_to_system(preset.get("points", []) as Array, loop_route_enabled, leg_start)
 	_export_plan_snapshot(false)
-	_pending_mission_changes = false
-	_pending_route_settings = false
 	_update_panel()
 
 
 func _on_loop_toggled(enabled: bool) -> void:
 	loop_route_enabled = enabled
-	_pending_route_settings = true
-	_update_panel()
 
 
 func _on_arrival_radius_changed(value: float) -> void:
 	arrival_radius_meters = value
-	_pending_route_settings = true
-	_update_panel()
 
 
 func _on_planned_speed_changed(value: float) -> void:
 	planned_speed_knots = value
-	_pending_route_settings = true
 	_update_panel()
 
 
@@ -730,7 +697,6 @@ func _on_apply_route_settings_pressed() -> void:
 	var ship := _get_active_ship()
 	var leg_start := ship.global_position if ship != null else Vector3.ZERO
 	_apply_route_to_system(_current_route_points_for_config(), loop_route_enabled, leg_start)
-	_pending_route_settings = false
 	_update_panel()
 
 

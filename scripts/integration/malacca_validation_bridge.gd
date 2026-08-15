@@ -57,12 +57,17 @@ var _grounding_count := 0
 var _last_collision_active := false
 var _min_clearance_meters := 1.0e9
 var _route_points: Array[Vector3] = []
+var _route_snapshot: Dictionary = {}
 var _risk_zone_count := 0
 var _temporary_obstacle_count := 0
 var _obstacle_snapshot: Dictionary = {}
 
 
 func _ready() -> void:
+	var xiaoyi_bridge_dir := OS.get_environment("XIAOYI_SIM_BRIDGE_DIR").strip_edges()
+	if not xiaoyi_bridge_dir.is_empty():
+		request_file_path = xiaoyi_bridge_dir.path_join("malacca_validation_request.json")
+		result_file_path = xiaoyi_bridge_dir.path_join("malacca_validation_result.json")
 	add_to_group(&"malacca_validation_bridge")
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_resolve_targets()
@@ -134,6 +139,7 @@ func apply_validation_request(request: Dictionary) -> Dictionary:
 	_last_collision_active = false
 	_min_clearance_meters = 1.0e9
 
+	_route_snapshot = _snapshot_route_system()
 	_route_points = _apply_route_from_request(request, ship)
 	_load_validation_scene_from_request(request, ship, _route_points)
 	_apply_speed_from_request(request, ship)
@@ -164,6 +170,9 @@ func _poll_request_file(force: bool) -> void:
 
 	_last_request_signature = signature
 	process_validation_payload(raw_payload)
+	# The bridge file is a single-use command envelope. Removing it after
+	# ingestion prevents the same maneuver from being replayed after a restart.
+	DirAccess.remove_absolute(request_file_path)
 
 
 func _update_active_validation(delta: float) -> void:
@@ -209,11 +218,51 @@ func _should_finalize_immediately() -> bool:
 
 
 func _clear_active_validation() -> void:
+	var completed_ship := _active_ship
+	if completed_ship != null and is_instance_valid(completed_ship):
+		if completed_ship.has_method("clear_ship_agent_command"):
+			completed_ship.call("clear_ship_agent_command")
+		if completed_ship.has_method("reset_ship_motion_state"):
+			completed_ship.call("reset_ship_motion_state")
+	_restore_route_snapshot(completed_ship)
 	_restore_obstacle_snapshot()
 	_active_request.clear()
 	_active_ship = null
 	_validation_elapsed = 0.0
 	_last_collision_active = false
+
+
+func _snapshot_route_system() -> Dictionary:
+	if _route_system == null:
+		return {}
+	var points: Array[Vector3] = []
+	var raw_points: Variant = _route_system.get("waypoint_positions")
+	if raw_points is Array:
+		for raw_point in raw_points:
+			if raw_point is Vector3:
+				points.append(raw_point as Vector3)
+	return {
+		"points": points,
+		"loop": bool(_route_system.get("loop_route"))
+	}
+
+
+func _restore_route_snapshot(ship: Node3D) -> void:
+	if _route_snapshot.is_empty():
+		return
+	if _route_system != null and _route_system.has_method("configure_route"):
+		var points: Array[Vector3] = []
+		for raw_point in _route_snapshot.get("points", []):
+			if raw_point is Vector3:
+				points.append(raw_point as Vector3)
+		var leg_start := ship.global_position if ship != null and is_instance_valid(ship) else Vector3.ZERO
+		_route_system.call(
+			"configure_route",
+			points,
+			bool(_route_snapshot.get("loop", false)),
+			leg_start
+		)
+	_route_snapshot.clear()
 
 
 func _reset_validation_scene() -> void:

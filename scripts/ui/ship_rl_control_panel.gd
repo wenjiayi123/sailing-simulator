@@ -125,6 +125,7 @@ var _policy_replay_controller: Node
 var _ship_option: OptionButton
 var _control_button: Button
 var _next_control_button: Button
+var _delete_button: Button
 var _algorithm_option: OptionButton
 var _dataset_profile_option: OptionButton
 var _status_label: Label
@@ -326,9 +327,9 @@ func _build_fleet_tab() -> Control:
 	clone_button.pressed.connect(_on_clone_ship_pressed)
 	top_row.add_child(clone_button)
 
-	var delete_button := _make_button("删除")
-	delete_button.pressed.connect(_on_delete_ship_pressed)
-	top_row.add_child(delete_button)
+	_delete_button = _make_button("删除")
+	_delete_button.pressed.connect(_on_delete_ship_pressed)
+	top_row.add_child(_delete_button)
 
 	var control_row := HBoxContainer.new()
 	control_row.add_theme_constant_override("separation", 6)
@@ -383,6 +384,7 @@ func _build_training_tab() -> Control:
 	_algorithm_option.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	for algorithm in SCENE_V1_ALGORITHMS:
 		_algorithm_option.add_item(algorithm)
+	_algorithm_option.item_selected.connect(_on_algorithm_option_changed)
 	algorithm_row.add_child(_algorithm_option)
 
 	_episode_spin = _make_training_spin(root, "训练轮数", 1.0, 20000.0, 25.0, 1.0)
@@ -785,6 +787,14 @@ func _refresh_ship_list() -> void:
 		_ship_option.select(selected_index)
 	if _control_button != null:
 		_control_button.disabled = selected_ship == null or selected_ship == controlled_ship
+	if _delete_button != null:
+		var prototype_ship: Node3D = _ship_nodes[0] if not _ship_nodes.is_empty() else null
+		_delete_button.disabled = selected_ship == null or selected_ship == prototype_ship
+		_delete_button.tooltip_text = (
+			"原型船 Player 必须保留，请先选择克隆船"
+			if _delete_button.disabled
+			else "删除当前选中的克隆船"
+		)
 	if _next_control_button != null:
 		_next_control_button.disabled = _ship_nodes.size() <= 1
 	if _status_label != null:
@@ -842,21 +852,34 @@ func _on_ship_option_selected(index: int) -> void:
 
 func _on_add_ship_pressed() -> void:
 	if _fleet_manager == null:
+		_status_label.text = "船队系统未就绪，无法放置新船"
 		return
-	_fleet_manager.start_drag_new_ship(_fleet_manager.get_selected_ship_config())
-	_status_label.text = "拖到水面点击放置新船"
+	var started := _fleet_manager.start_drag_new_ship(_fleet_manager.get_selected_ship_config())
+	_status_label.text = (
+		"拖到水面左键放置新船；右键取消"
+		if started
+		else "船队已达到上限 %d 艘，无法继续添加" % _fleet_manager.max_ship_count
+	)
 
 
 func _on_clone_ship_pressed() -> void:
-	if _fleet_manager != null:
-		var ship := _fleet_manager.duplicate_selected_ship_nearby()
-		if ship != null:
-			_status_label.text = "已克隆并选中 %s，点击 接管选中 可操作" % ship.name
+	if _fleet_manager == null:
+		_status_label.text = "船队系统未就绪，无法克隆"
+		return
+	var ship := _fleet_manager.duplicate_selected_ship_nearby()
+	_status_label.text = (
+		"已克隆并选中 %s，点击 接管选中 可操作" % ship.name
+		if ship != null
+		else "无法克隆：请确认已选中船舶且船队未达到上限"
+	)
 
 
 func _on_delete_ship_pressed() -> void:
-	if _fleet_manager != null:
-		_fleet_manager.delete_selected_ship()
+	if _fleet_manager == null:
+		_status_label.text = "船队系统未就绪，无法删除"
+		return
+	if not _fleet_manager.delete_selected_ship():
+		_status_label.text = "原型船 Player 必须保留；只能删除新增或克隆的船舶"
 
 
 func _on_take_control_pressed() -> void:
@@ -865,8 +888,25 @@ func _on_take_control_pressed() -> void:
 
 
 func _on_next_control_pressed() -> void:
-	if _fleet_manager != null:
-		_fleet_manager.cycle_controlled_ship(1)
+	if _fleet_manager == null:
+		_status_label.text = "船队系统未就绪，无法切换"
+		return
+	if _fleet_manager.get_ship_records().size() <= 1:
+		_status_label.text = "当前只有 1 艘船，请先新增或克隆船舶"
+		return
+	_fleet_manager.cycle_controlled_ship(1)
+
+
+func _on_algorithm_option_changed(index: int) -> void:
+	if _algorithm_option == null or _algorithm_option.item_count == 0:
+		return
+	var safe_index := clampi(index, 0, _algorithm_option.item_count - 1)
+	var algorithm := _algorithm_option.get_item_text(safe_index)
+	var profile := "v2 港口数据" if _port_ops_selected() else "v1 当前场景"
+	_training_status_label.text = (
+		"%s：已选择 %s；启动训练读取 train，测试按钮读取已训练 checkpoint 的 test"
+		% [profile, algorithm]
+	)
 
 
 func _on_export_training_config_pressed() -> void:
@@ -929,6 +969,9 @@ func _configured_port_ops_path() -> String:
 
 func _active_run_directory() -> String:
 	var profile := "port_ops_v2" if _port_ops_selected() else "scene_v1"
+	var override_root := OS.get_environment("SHIP_RL_RUN_ROOT").strip_edges()
+	if not override_root.is_empty():
+		return ProjectSettings.globalize_path(override_root).path_join(profile)
 	return ProjectSettings.globalize_path("user://rl_runs").path_join(profile)
 
 
@@ -1557,9 +1600,9 @@ func _format_large_int(value: int) -> String:
 
 
 func _write_rl_training_parameter_snapshot(config_path: String, algorithm: String, parameters: Dictionary) -> String:
-	var output_dir := "user://rl_runs"
-	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(output_dir))
-	var output_path := "%s/training_parameters.json" % output_dir
+	var output_dir := _active_run_directory()
+	DirAccess.make_dir_recursive_absolute(output_dir)
+	var output_path := output_dir.path_join("training_parameters.json")
 	var payload := {
 		"algorithm": algorithm,
 		"fleet_config": config_path,

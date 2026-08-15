@@ -1,0 +1,77 @@
+{
+  "format": "cargo_circuit_rl_evidence_v1",
+  "module": "cargo_circuit_rl",
+  "boundary": "project-native numeric simulation; not real-port or production evidence",
+  "algorithm_decision": {
+    "primary": "sac",
+    "reason": "continuous throttle/rudder control, off-policy sample reuse, entropy-driven exploration",
+    "benchmarks": [
+      "ppo",
+      "td3",
+      "los_pid"
+    ]
+  },
+  "training": {
+    "trained": true,
+    "algorithm": "sac",
+    "timesteps": 300000,
+    "render": false,
+    "dataset_split": "train",
+    "seed": 260815
+  },
+  "evaluation": {
+    "dataset_split": "test",
+    "render": false,
+    "metrics": {
+      "task_id": "cargo_test_held_out_circuit",
+      "success": true,
+      "cargo_retrieved": true,
+      "checkpoints_passed": 7,
+      "total_checkpoints": 7,
+      "checkpoint_completion_ratio": 1.0,
+      "collisions": 0,
+      "terrain_collisions": 0,
+      "near_misses": 9,
+      "minimum_clearance_meters": 2.4793280875477173,
+      "max_cross_track_error_meters": 40.528924590880365,
+      "path_length_meters": 1366.5756316102745,
+      "reference_route_length_meters": 1245.5593925838257,
+      "path_efficiency": 0.9114456337232855,
+      "elapsed_seconds": 177.75,
+      "reward": 3310.084381650494,
+      "steps": 711,
+      "maximum_actual_rudder_normalized": 0.93423,
+      "maximum_yaw_rate_degrees_per_second": 17.7053,
+      "maximum_speed_mps": 8.44968,
+      "reverse_steps": 0,
+      "minimum_boundary_clearance_meters": 6.271080000000012
+    },
+    "aggregate": {
+      "episodes": 1,
+      "success_rate": 1.0,
+      "safe_completion_rate": 1.0,
+      "mean_checkpoint_completion_ratio": 1.0,
+      "total_collisions": 0,
+      "mean_minimum_clearance_meters": 2.4793280875477173,
+      "mean_path_efficiency": 0.9114456337232855,
+      "mean_elapsed_seconds": 177.75,
+      "mean_reward": 3310.084381650494
+    }
+  },
+  "acceptance_gate": {
+    "passed": true,
+    "requires_trained_rl": true,
+    "requires_test_split": true,
+    "requires_all_checkpoints": true,
+    "requires_zero_collision": true,
+    "requires_positive_safety_envelope_clearance": true,
+    "requires_positive_boundary_clearance": true,
+    "requires_dynamics_limits_respected": true
+  },
+  "artifacts": {
+    "checkpoint": "/Users/apple/Desktop/航行模拟器/reports/artifacts/cargo_circuit_rl_v1/cargo_policy_checkpoint.json",
+    "trajectory": "/Users/apple/Desktop/航行模拟器/reports/artifacts/cargo_circuit_rl_v1/cargo_policy_test_trajectory.json",
+    "dataset_sha256": "5fb5900203e4ad3be2d6e2cc38246a90096a783874a70e0417d6387b7d57e885",
+    "experiment_sha256": "6665bb102af8401168e13fae5a173c1390640800d402c7d9ea27351c356e0ccc"
+  }
+}

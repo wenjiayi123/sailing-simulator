@@ -1,0 +1,189 @@
+{
+  "schema_version": "cargo_circuit_dynamic_experiment_v2",
+  "module": "cargo_circuit_dynamic_rl",
+  "headless": true,
+  "render": false,
+  "delta": 0.25,
+  "dataset": {
+    "path": "res://data/rl/cargo_circuit_dataset_v1.json",
+    "training_split": "train",
+    "validation_split": "validation",
+    "evaluation_split": "test"
+  },
+  "algorithm_decision": {
+    "primary": "sac",
+    "reason": "continuous throttle/rudder control with dedicated relative-motion, TCPA and DCPA observations",
+    "initialization": "residual SAC around the frozen accepted static SAC v1",
+    "benchmarks": ["ppo", "td3", "los_pid"]
+  },
+  "pretraining_feasibility_gate": {
+    "required": true,
+    "path": "res://reports/cargo_circuit_dynamic_manual_feasibility_v2.json",
+    "requires_matching_dataset_and_experiment_sha256": true
+  },
+  "demonstration_initialization": {
+    "enabled_for_sac": true,
+    "source": "dynamic_manual_feasibility_controller",
+    "fixed_seed": 260815,
+    "actor_behavior_cloning_epochs": 5,
+    "replay_buffer_prefill": true,
+    "note": "Successful train-split transitions initialize the actor by behavior cloning and seed replay; no manual controller or bypass is available at evaluation."
+  },
+  "cargo_parameters": {
+    "checkpoint_bonus": 35.0,
+    "destination_bonus": 150.0,
+    "reverse_penalty": 1.25,
+    "overspeed_penalty": 0.18,
+    "boundary_proximity_penalty": 1.5,
+    "boundary_warning_distance_m": 30.0,
+    "safe_speed_ratio": 0.68,
+    "dynamic_safe_distance_m": 28.0,
+    "dynamic_proximity_penalty": 2.0,
+    "forward_motion_bonus": 0.08,
+    "incomplete_mission_penalty": 500.0,
+    "residual_policy": true,
+    "frozen_static_policy_path": "res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip",
+    "residual_throttle_scale": 2.0,
+    "residual_rudder_scale": 2.0,
+    "residual_action_penalty": 0.18,
+    "throttle_action_min": -0.35,
+    "throttle_action_max": 1.0,
+    "curriculum_route_lengths": [8],
+    "curriculum_obstacles_enabled": [true],
+    "curriculum_randomization_enabled": [true],
+    "curriculum_random_segment": [false],
+    "curriculum_max_steps": [2600],
+    "curriculum_fractions": [1.0]
+  },
+  "rl_parameters": {
+    "reward_progress": 2.8,
+    "reward_heading": 1.2,
+    "reward_speed": 0.7,
+    "penalty_collision": 1000.0,
+    "penalty_terrain_collision": 900.0,
+    "penalty_boundary": 750.0,
+    "penalty_rudder": 0.42,
+    "penalty_proximity": 2.8,
+    "penalty_predicted_collision": 4.0,
+    "penalty_cross_track": 0.014,
+    "penalty_action_slew": 0.025,
+    "penalty_step": 0.006,
+    "safe_distance": 36.0
+  },
+  "environment_parameters": {
+    "vessel_radius_m": 3.2,
+    "obstacle_inflation_m": 1.8,
+    "cliff_inflation_m": 3.0,
+    "boundary_margin_m": 5.0,
+    "sensor_range_m": 140.0,
+    "tcpa_horizon_seconds": 90.0,
+    "terminate_on_collision": true,
+    "merge_scene_obstacles": false,
+    "domain_randomization": true,
+    "randomize_evaluation": false,
+    "start_position_jitter_m": 3.0,
+    "start_heading_jitter_degrees": 7.0,
+    "obstacle_position_jitter_m": 4.0,
+    "obstacle_size_jitter_m": 1.0,
+    "current_speed_jitter_knots": 0.18,
+    "current_direction_jitter_degrees": 8.0,
+    "wind_speed_jitter_knots": 1.0,
+    "wind_direction_jitter_degrees": 8.0,
+    "wave_height_jitter_m": 0.12,
+    "wave_direction_jitter_degrees": 8.0,
+    "wind_leeway_factor": 0.01,
+    "wave_drift_mps_per_meter": 0.05,
+    "sensor_distance_noise_std_m": 0.3,
+    "sensor_bearing_noise_degrees": 0.5,
+    "generated_traffic_count": 0,
+    "generated_traffic_speed_knots": 5.0,
+    "generated_traffic_radius_m": 5.0
+  },
+  "ships": [
+    {
+      "performance": {
+        "max_forward_speed": 8.5,
+        "max_reverse_speed": 2.2,
+        "acceleration": 0.9,
+        "deceleration": 0.65,
+        "brake_acceleration": 1.6,
+        "throttle_response": 0.55,
+        "rudder_response": 0.7,
+        "max_turn_rate_degrees": 20.0,
+        "low_speed_turn_factor": 0.12,
+        "reverse_turn_factor": 0.45
+      }
+    }
+  ],
+  "world": {
+    "obstacles": {"boundary_half_extent": 240.0, "rocks": [], "boxes": []}
+  },
+  "dynamic_scenarios": {
+    "train": [
+      {
+        "base_task_id": "cargo_train_circuit_calm",
+        "id": "cargo_dynamic_train_calm",
+        "dynamic_obstacles": [
+          {"name": "训练交通 1", "kind": "traffic", "shape": "circle", "dynamic": true, "x": -142.0, "z": -42.0, "radius": 5.0, "speed_knots": 5.8, "course_degrees": 270.0},
+          {"name": "训练交通 2", "kind": "traffic", "shape": "circle", "dynamic": true, "x": -118.0, "z": 112.0, "radius": 5.5, "speed_knots": 5.2, "course_degrees": 135.0},
+          {"name": "训练交通 3", "kind": "traffic", "shape": "circle", "dynamic": true, "x": 18.0, "z": 142.0, "radius": 5.0, "speed_knots": 6.2, "course_degrees": 0.0},
+          {"name": "训练交通 4", "kind": "traffic", "shape": "circle", "dynamic": true, "x": 148.0, "z": 74.0, "radius": 5.5, "speed_knots": 5.6, "course_degrees": 225.0},
+          {"name": "训练交通 5", "kind": "traffic", "shape": "circle", "dynamic": true, "x": 142.0, "z": -68.0, "radius": 5.0, "speed_knots": 6.0, "course_degrees": 90.0},
+          {"name": "训练交通 6", "kind": "traffic", "shape": "circle", "dynamic": true, "x": -8.0, "z": -142.0, "radius": 5.5, "speed_knots": 5.4, "course_degrees": 180.0}
+        ]
+      },
+      {
+        "base_task_id": "cargo_train_circuit_cross_current",
+        "id": "cargo_dynamic_train_cross_current",
+        "dynamic_obstacles": [
+          {"name": "训练横流交通 1", "kind": "traffic", "shape": "circle", "dynamic": true, "x": -136.0, "z": -48.0, "radius": 5.5, "speed_knots": 6.4, "course_degrees": 265.0},
+          {"name": "训练横流交通 2", "kind": "traffic", "shape": "circle", "dynamic": true, "x": -112.0, "z": 118.0, "radius": 5.0, "speed_knots": 5.8, "course_degrees": 140.0},
+          {"name": "训练横流交通 3", "kind": "traffic", "shape": "circle", "dynamic": true, "x": 24.0, "z": 138.0, "radius": 5.5, "speed_knots": 6.0, "course_degrees": 5.0},
+          {"name": "训练横流交通 4", "kind": "traffic", "shape": "circle", "dynamic": true, "x": 152.0, "z": 68.0, "radius": 5.0, "speed_knots": 6.2, "course_degrees": 230.0},
+          {"name": "训练横流交通 5", "kind": "traffic", "shape": "circle", "dynamic": true, "x": 138.0, "z": -74.0, "radius": 5.5, "speed_knots": 5.6, "course_degrees": 85.0},
+          {"name": "训练横流交通 6", "kind": "traffic", "shape": "circle", "dynamic": true, "x": -14.0, "z": -138.0, "radius": 5.0, "speed_knots": 6.4, "course_degrees": 175.0}
+        ]
+      },
+      {
+        "base_task_id": "cargo_train_circuit_reverse_current",
+        "id": "cargo_dynamic_train_reverse_current",
+        "dynamic_obstacles": [
+          {"name": "训练逆流交通 1", "kind": "traffic", "shape": "circle", "dynamic": true, "x": -148.0, "z": -36.0, "radius": 5.0, "speed_knots": 5.4, "course_degrees": 275.0},
+          {"name": "训练逆流交通 2", "kind": "traffic", "shape": "circle", "dynamic": true, "x": -124.0, "z": 106.0, "radius": 5.5, "speed_knots": 6.0, "course_degrees": 130.0},
+          {"name": "训练逆流交通 3", "kind": "traffic", "shape": "circle", "dynamic": true, "x": 12.0, "z": 148.0, "radius": 5.0, "speed_knots": 5.6, "course_degrees": 355.0},
+          {"name": "训练逆流交通 4", "kind": "traffic", "shape": "circle", "dynamic": true, "x": 142.0, "z": 80.0, "radius": 5.5, "speed_knots": 6.4, "course_degrees": 220.0},
+          {"name": "训练逆流交通 5", "kind": "traffic", "shape": "circle", "dynamic": true, "x": 148.0, "z": -62.0, "radius": 5.0, "speed_knots": 5.8, "course_degrees": 95.0},
+          {"name": "训练逆流交通 6", "kind": "traffic", "shape": "circle", "dynamic": true, "x": -2.0, "z": -148.0, "radius": 5.5, "speed_knots": 6.0, "course_degrees": 185.0}
+        ]
+      }
+    ],
+    "validation": [
+      {
+        "base_task_id": "cargo_validation_offset_rocks",
+        "id": "cargo_dynamic_validation_unseen_traffic",
+        "dynamic_obstacles": [
+          {"name": "验证交通 A", "kind": "traffic", "shape": "circle", "dynamic": true, "x": -139.0, "z": -45.0, "radius": 5.3, "speed_knots": 6.1, "course_degrees": 268.0},
+          {"name": "验证交通 B", "kind": "traffic", "shape": "circle", "dynamic": true, "x": -115.0, "z": 115.0, "radius": 5.2, "speed_knots": 5.7, "course_degrees": 138.0},
+          {"name": "验证交通 C", "kind": "traffic", "shape": "circle", "dynamic": true, "x": 21.0, "z": 145.0, "radius": 5.4, "speed_knots": 6.3, "course_degrees": 2.0},
+          {"name": "验证交通 D", "kind": "traffic", "shape": "circle", "dynamic": true, "x": 146.0, "z": 71.0, "radius": 5.1, "speed_knots": 5.9, "course_degrees": 228.0},
+          {"name": "验证交通 E", "kind": "traffic", "shape": "circle", "dynamic": true, "x": 145.0, "z": -71.0, "radius": 5.3, "speed_knots": 6.2, "course_degrees": 88.0},
+          {"name": "验证交通 F", "kind": "traffic", "shape": "circle", "dynamic": true, "x": -11.0, "z": -145.0, "radius": 5.2, "speed_knots": 5.8, "course_degrees": 178.0}
+        ]
+      }
+    ],
+    "test": [
+      {
+        "base_task_id": "cargo_test_held_out_circuit",
+        "id": "cargo_dynamic_test_held_out_traffic",
+        "dynamic_obstacles": [
+          {"name": "测试交通 A", "kind": "traffic", "shape": "circle", "dynamic": true, "x": -145.0, "z": -39.0, "radius": 5.4, "speed_knots": 6.3, "course_degrees": 272.0},
+          {"name": "测试交通 B", "kind": "traffic", "shape": "circle", "dynamic": true, "x": -121.0, "z": 109.0, "radius": 5.1, "speed_knots": 5.9, "course_degrees": 133.0},
+          {"name": "测试交通 C", "kind": "traffic", "shape": "circle", "dynamic": true, "x": 15.0, "z": 151.0, "radius": 5.5, "speed_knots": 6.1, "course_degrees": 358.0},
+          {"name": "测试交通 D", "kind": "traffic", "shape": "circle", "dynamic": true, "x": 140.0, "z": 77.0, "radius": 5.2, "speed_knots": 6.5, "course_degrees": 223.0},
+          {"name": "测试交通 E", "kind": "traffic", "shape": "circle", "dynamic": true, "x": 151.0, "z": -65.0, "radius": 5.4, "speed_knots": 5.7, "course_degrees": 92.0},
+          {"name": "测试交通 F", "kind": "traffic", "shape": "circle", "dynamic": true, "x": -5.0, "z": -151.0, "radius": 5.1, "speed_knots": 6.2, "course_degrees": 182.0}
+        ]
+      }
+    ]
+  }
+}

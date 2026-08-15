@@ -217,6 +217,43 @@ Open the project in Godot:
 运行主场景后按 `C` 打开训练页。“算法/环境设置”可配置船体半径、悬岩净距、感知范围、碰撞时间窗、域随机化和生成交通船；“预览安全边界”会把有效包络直接画回场景。选择算法和预算后点击“启动训练”，完成后再点击“运行测试集并渲染”。<br>
 Run the main scene and press `C` to open the training page. “Algorithm / Environment Settings” configures hull radius, overhang clearance, sensing range, collision horizon, domain randomization, and generated traffic. “Preview Safety Boundary” draws the effective envelope into the scene. Select an algorithm and budget, start training, and only after completion run the held-out test set with rendering.
 
+### 独立环图取货 SAC / Independent cargo-circuit SAC
+
+按 `H` 打开全系统总控核心；RL 训练、航线、风险、海况、AIS、复盘、小懿和证据中心均从这里进入，并可一键返回 H。环图任务仍按“人工可达性 → 无渲染训练 → 无渲染验证 → 独立测试 → Godot 回放”执行。算法下拉提供 SAC / PPO / TD3 / A2C / DDPG / TQC / TRPO 七个真实训练入口；只有随项目交付的静态 SAC 与动态 Residual SAC 标记为 `TEST PASS`，新增算法不冒充已训练结果。策略下拉以 `SAC-S1`、`RES-SAC-D2`、`MANUAL-F0` 和 `PERSONAL-LATEST` 清晰区分来源与验收状态。完整设计、真实指标、命令和按钮说明见 [H 总控与环图取货 RL 说明](docs/cargo_circuit_rl.md)。
+
+```bash
+# 训练前物理可达性门槛（人工绕岩点与人工舵令，不是 RL 证据）
+PYTHONPATH=tools .venv/bin/python tools/cargo_rl_manual_feasibility.py
+
+# 真实 SAC 无渲染课程训练
+PYTHONPATH=tools .venv/bin/python tools/cargo_rl_train.py \
+  --mode train --algorithm sac --total-timesteps 300000 \
+  --output-dir output/cargo_rl \
+  --progress-json output/cargo_rl/progress.json \
+  --checkpoint-json output/cargo_rl/cargo_policy_checkpoint.json
+
+# 模型冻结后才读取 test split，生成可视化准入轨迹
+PYTHONPATH=tools .venv/bin/python tools/cargo_rl_train.py \
+  --mode evaluate --algorithm sac --eval-split test --eval-episodes 1 \
+  --output-dir output/cargo_rl \
+  --progress-json output/cargo_rl/test_progress.json \
+  --checkpoint-json output/cargo_rl/cargo_policy_checkpoint.json \
+  --trajectory-json output/cargo_rl/cargo_policy_test_trajectory.json
+
+# 动态交通物理可达性（非 RL）与已冻结策略重测
+PYTHONPATH=tools .venv/bin/python tools/cargo_dynamic_manual_feasibility.py
+PYTHONPATH=tools .venv/bin/python tools/cargo_rl_train.py \
+  --config data/rl/cargo_circuit_dynamic_experiment_v2.json \
+  --mode evaluate --algorithm sac --eval-split test --eval-episodes 1 --steps 2600 \
+  --output-dir output/cargo_dynamic_rl \
+  --progress-json output/cargo_dynamic_rl/test_progress.json \
+  --checkpoint-json reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_policy_checkpoint.json \
+  --trajectory-json output/cargo_dynamic_rl/cargo_dynamic_policy_test_trajectory.json \
+  --evidence-json output/cargo_dynamic_rl/cargo_dynamic_rl_evidence.json
+```
+
+冻结 test 结果：静态策略 7/7 检查点、取货成功、零碰撞，悬岩安全包络最小净距 2.48 m；动态策略同样 7/7、取货成功、零碰撞，6 艘交通船最小动态净距 6.66 m。两者训练/评估都不渲染，只有通过 test 门槛后才在 Godot 中展示。
+
 <p align="center">
   <img src="docs/screenshots/03-xiaoyi-system-assistant.png" alt="晴天场景中的小懿全系统助手与场景、天气、事故、障碍和报告按钮" width="100%" />
   <br /><sub>小懿全系统助手：场景、天气、事故、临时障碍、播放速度、重置与报告按钮均调用实际系统模块。</sub>
@@ -234,9 +271,12 @@ Run the main scene and press `C` to open the training page. “Algorithm / Envir
 | `I` | AIS 船队态势 | “AIS 船队态势” |
 | `P` | 仿真/训练结果复盘 | “打开训练结果复盘” |
 | `O` | 小懿全系统助手 | “小懿全系统助手” |
+| `H` | 全系统 RL 总控核心 | 七算法训练入口、策略选择、镜头、环图验收/回放及全部子模块入口 |
 | `G` / `K` / `T` | 场景切换 / 测试轨迹回放 / 昼夜天气循环 | 主 HUD 快捷键提示 |
 
 主船使用方向键产生航行输入，`A/D` 环绕相机、`R/F` 调整俯仰。发布门禁会加载真实 `main.tscn`，检查十个核心 UI 字母键、所有证据中心按钮连接、十算法前端/后端清单，并分别通过后端指令与方向键驱动主船。当前自动冒烟 **36/36** 通过；结果写入 `reports/godot_ui_navigation_smoke_v1.json`。
+
+全部 9 个交互面板的 116 个按钮/菜单及快捷键见 [全部按钮与菜单清单](docs/button_menu_inventory.md)。运行时信号绑定检查 116/116、实际交互回归 151/151、页面导航 36/36 均通过。
 
 ## 命令行训练 / Command-line training
 

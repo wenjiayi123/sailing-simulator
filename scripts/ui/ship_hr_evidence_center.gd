@@ -476,6 +476,12 @@ func _validate_port_contract() -> void:
 	var python_path := ProjectSettings.globalize_path("res://.venv/bin/python")
 	var script_path := ProjectSettings.globalize_path("res://tools/validate_port_package.py")
 	var data_path := ProjectSettings.globalize_path("res://data/rl/long_beach_ais_port_ops_benchmark_v2.json")
+	if not FileAccess.file_exists(python_path):
+		_status_label.text = "契约校验不可用：项目 Python 环境不存在。"
+		return
+	if not FileAccess.file_exists(script_path):
+		_status_label.text = "契约校验不可用：校验脚本不存在。"
+		return
 	if not FileAccess.file_exists(data_path):
 		_status_label.text = "v2 数据包尚未生成；请先运行公开数据构建命令。"
 		return
@@ -483,7 +489,11 @@ func _validate_port_contract() -> void:
 		python_path,
 		PackedStringArray([script_path, data_path, "--require-research-ready"])
 	)
-	_status_label.text = "已启动真实契约校验进程 PID %d；结果写入终端与报告。" % process_id
+	_status_label.text = (
+		"已启动真实契约校验进程 PID %d；结果写入终端与报告。" % process_id
+		if process_id > 0
+		else "契约校验进程启动失败；请检查 Python 环境与执行权限。"
+	)
 
 
 func _capture_current_view() -> void:

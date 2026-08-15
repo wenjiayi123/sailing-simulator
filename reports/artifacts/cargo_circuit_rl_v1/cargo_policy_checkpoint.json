@@ -1,0 +1,175 @@
+{
+  "format": "cargo_circuit_checkpoint_v1",
+  "module": "cargo_circuit_rl",
+  "algorithm": "sac",
+  "library": "stable-baselines3",
+  "model_path": "cargo_sac_policy.zip",
+  "model_path_base": "checkpoint_directory",
+  "trained": true,
+  "requested_timesteps": 300000,
+  "actual_timesteps": 300000,
+  "parallel_envs": 1,
+  "observation_size": 36,
+  "observation_contract": "cargo_circuit_continuous_v1_36d",
+  "action_contract": {
+    "type": "continuous_box",
+    "shape": 2,
+    "order": [
+      "throttle",
+      "rudder"
+    ],
+    "range": [
+      -1.0,
+      1.0
+    ],
+    "physical_throttle_mapping": [
+      -0.35,
+      1.0
+    ],
+    "physical_rudder_mapping": [
+      -1.0,
+      1.0
+    ]
+  },
+  "seed": 260815,
+  "curriculum": [
+    {
+      "phase": 1,
+      "route_length": 1,
+      "obstacles_enabled": false,
+      "randomization_enabled": false,
+      "random_segment": false,
+      "max_steps": 700,
+      "requested_timesteps": 15000,
+      "actual_timesteps": 15000
+    },
+    {
+      "phase": 2,
+      "route_length": 1,
+      "obstacles_enabled": true,
+      "randomization_enabled": true,
+      "random_segment": true,
+      "max_steps": 700,
+      "requested_timesteps": 45000,
+      "actual_timesteps": 45000
+    },
+    {
+      "phase": 3,
+      "route_length": 2,
+      "obstacles_enabled": true,
+      "randomization_enabled": true,
+      "random_segment": true,
+      "max_steps": 1000,
+      "requested_timesteps": 75000,
+      "actual_timesteps": 75000
+    },
+    {
+      "phase": 4,
+      "route_length": 4,
+      "obstacles_enabled": true,
+      "randomization_enabled": true,
+      "random_segment": true,
+      "max_steps": 1700,
+      "requested_timesteps": 75000,
+      "actual_timesteps": 75000
+    },
+    {
+      "phase": 5,
+      "route_length": 8,
+      "obstacles_enabled": true,
+      "randomization_enabled": true,
+      "random_segment": false,
+      "max_steps": 2400,
+      "requested_timesteps": 90000,
+      "actual_timesteps": 90000
+    }
+  ],
+  "hyperparameters": {
+    "learning_rate": 0.0003,
+    "gamma": 0.995,
+    "batch_size": 256,
+    "buffer_size": 350000,
+    "warmup_steps": 0,
+    "rollout_horizon": 1024,
+    "minibatch_size": 128
+  },
+  "initialization": {
+    "checkpoint": {
+      "path": "/Users/apple/Desktop/航行模拟器/output/cargo_rl_final2/checkpoint.json",
+      "model_path": "/Users/apple/Desktop/航行模拟器/output/cargo_rl_final2/cargo_sac_policy.zip",
+      "source_experiment_sha256": "2e6b8b27bbef45856b740780799e96ccbf5155a9a0b16f40e882677eb7ecaafa",
+      "source_timesteps": 300000,
+      "weights_only": true
+    },
+    "demonstrations": {
+      "enabled": true,
+      "source": "manual_feasibility_controller_on_train_split_only",
+      "episodes": 3,
+      "successful_episodes": 3,
+      "samples": 6470,
+      "actor_behavior_cloning": {
+        "epochs": 3,
+        "samples": 6470,
+        "final_loss": 0.44493481516838074
+      },
+      "replay_buffer_prefill_samples": 6470,
+      "bypass_points_available_to_released_policy": false
+    }
+  },
+  "dataset_split_used": "train",
+  "dataset_sha256": "5fb5900203e4ad3be2d6e2cc38246a90096a783874a70e0417d6387b7d57e885",
+  "experiment_sha256": "6665bb102af8401168e13fae5a173c1390640800d402c7d9ea27351c356e0ccc",
+  "dataset_path": "/Users/apple/Desktop/航行模拟器/data/rl/cargo_circuit_dataset_v1.json",
+  "config_path": "/Users/apple/Desktop/航行模拟器/data/rl/cargo_circuit_experiment_v1.json",
+  "render": false,
+  "environment_parameters": {
+    "vessel_radius_m": 3.2,
+    "obstacle_inflation_m": 1.8,
+    "cliff_inflation_m": 3.0,
+    "boundary_margin_m": 5.0,
+    "sensor_range_m": 120.0,
+    "tcpa_horizon_seconds": 120.0,
+    "terminate_on_collision": true,
+    "merge_scene_obstacles": false,
+    "domain_randomization": true,
+    "randomize_evaluation": false,
+    "start_position_jitter_m": 3.0,
+    "start_heading_jitter_degrees": 7.0,
+    "obstacle_position_jitter_m": 3.5,
+    "obstacle_size_jitter_m": 1.2,
+    "current_speed_jitter_knots": 0.18,
+    "current_direction_jitter_degrees": 8.0,
+    "wind_speed_jitter_knots": 1.0,
+    "wind_direction_jitter_degrees": 8.0,
+    "wave_height_jitter_m": 0.12,
+    "wave_direction_jitter_degrees": 8.0,
+    "wind_leeway_factor": 0.01,
+    "wave_drift_mps_per_meter": 0.05,
+    "sensor_distance_noise_std_m": 0.3,
+    "sensor_bearing_noise_degrees": 0.5,
+    "generated_traffic_count": 0,
+    "generated_traffic_speed_knots": 0.0,
+    "generated_traffic_radius_m": 5.0
+  },
+  "ship_performance": {
+    "max_forward_speed": 8.5,
+    "max_reverse_speed": 2.2,
+    "acceleration": 0.9,
+    "deceleration": 0.65,
+    "brake_acceleration": 1.6,
+    "throttle_response": 0.55,
+    "rudder_response": 0.7,
+    "max_turn_rate_degrees": 20.0,
+    "low_speed_turn_factor": 0.12,
+    "reverse_turn_factor": 0.45
+  },
+  "pretraining_feasibility_gate": {
+    "required": true,
+    "passed": true,
+    "path": "/Users/apple/Desktop/航行模拟器/reports/cargo_circuit_manual_feasibility_v1.json",
+    "episodes": 5,
+    "success_rate": 1.0,
+    "total_collisions": 0,
+    "minimum_safety_envelope_clearance_meters": 8.529639566100784
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "schema_version": "cargo_circuit_dataset_v1",
+  "name": "独立环图取货悬岩避障基准",
+  "description": "本地笛卡尔数值任务。训练、验证、测试严格分离；测试轨迹仅在训练结束后生成并供 Godot 回放。",
+  "coordinate_system": {
+    "type": "local_cartesian_meters",
+    "axes": "x_east_z_north"
+  },
+  "source": {
+    "type": "project_native_synthetic_benchmark",
+    "license": "same_as_project",
+    "observed_ais": false,
+    "simulation_only": true
+  },
+  "mission_contract": {
+    "ordered_checkpoints": true,
+    "checkpoint_count": 7,
+    "destination": "返航取货站",
+    "minimum_intermediate_checkpoint_spacing_meters": 140.0,
+    "minimum_final_approach_length_meters": 100.0,
+    "obstacle_type": "floating_cliff",
+    "training_render": false,
+    "test_only_render": true
+  },
+  "splits": {
+    "train": [
+      {
+        "id": "cargo_train_circuit_calm",
+        "start": {"x": -180.0, "z": -120.0, "heading_degrees": 0.0},
+        "route": [
+          {"name": "检查点 1 · 西北航门", "x": -180.0, "z": 80.0},
+          {"name": "检查点 2 · 北西航门", "x": -80.0, "z": 180.0},
+          {"name": "检查点 3 · 北东航门", "x": 100.0, "z": 180.0},
+          {"name": "检查点 4 · 东北航门", "x": 185.0, "z": 60.0},
+          {"name": "检查点 5 · 东南航门", "x": 185.0, "z": -100.0},
+          {"name": "检查点 6 · 南东航门", "x": 70.0, "z": -185.0},
+          {"name": "检查点 7 · 南西航门", "x": -100.0, "z": -185.0},
+          {"name": "返航取货站", "x": -180.0, "z": -120.0}
+        ],
+        "arrival_radius": 14.0,
+        "boundary_half_extent": 240.0,
+        "terrain": [
+          {"name": "悬岩 A · 西航道", "kind": "cliff", "shape": "circle", "x": -180.0, "z": -18.0, "radius": 15.0},
+          {"name": "悬岩 B · 西北弯", "kind": "cliff", "shape": "circle", "x": -130.0, "z": 130.0, "radius": 14.0},
+          {"name": "悬岩 C · 北航道", "kind": "cliff", "shape": "circle", "x": 10.0, "z": 180.0, "radius": 17.0},
+          {"name": "悬岩 D · 东北弯", "kind": "cliff", "shape": "circle", "x": 144.0, "z": 122.0, "radius": 14.0},
+          {"name": "悬岩 E · 东航道", "kind": "cliff", "shape": "circle", "x": 185.0, "z": -20.0, "radius": 16.0},
+          {"name": "悬岩 F · 东南弯", "kind": "cliff", "shape": "circle", "x": 126.0, "z": -143.0, "radius": 14.0},
+          {"name": "悬岩 G · 南航道", "kind": "cliff", "shape": "circle", "x": -15.0, "z": -185.0, "radius": 17.0},
+          {"name": "悬岩 H · 西南弯", "kind": "cliff", "shape": "circle", "x": -142.0, "z": -153.0, "radius": 13.0}
+        ],
+        "sea_state": {"wind_speed_knots": 4.0, "wind_direction_degrees": 40.0, "current_speed_knots": 0.25, "current_direction_degrees": 85.0, "wave_height_meters": 0.35, "wave_direction_degrees": 30.0}
+      },
+      {
+        "id": "cargo_train_circuit_cross_current",
+        "start": {"x": -176.0, "z": -124.0, "heading_degrees": 4.0},
+        "route": [
+          {"name": "检查点 1 · 西北航门", "x": -180.0, "z": 80.0},
+          {"name": "检查点 2 · 北西航门", "x": -80.0, "z": 180.0},
+          {"name": "检查点 3 · 北东航门", "x": 100.0, "z": 180.0},
+          {"name": "检查点 4 · 东北航门", "x": 185.0, "z": 60.0},
+          {"name": "检查点 5 · 东南航门", "x": 185.0, "z": -100.0},
+          {"name": "检查点 6 · 南东航门", "x": 70.0, "z": -185.0},
+          {"name": "检查点 7 · 南西航门", "x": -100.0, "z": -185.0},
+          {"name": "返航取货站", "x": -180.0, "z": -120.0}
+        ],
+        "arrival_radius": 14.0,
+        "boundary_half_extent": 240.0,
+        "terrain": [
+          {"name": "悬岩 A · 西航道", "kind": "cliff", "shape": "circle", "x": -177.0, "z": -16.0, "radius": 16.0},
+          {"name": "悬岩 B · 西北弯", "kind": "cliff", "shape": "circle", "x": -127.0, "z": 127.0, "radius": 15.0},
+          {"name": "悬岩 C · 北航道", "kind": "cliff", "shape": "circle", "x": 8.0, "z": 177.0, "radius": 16.0},
+          {"name": "悬岩 D · 东北弯", "kind": "cliff", "shape": "circle", "x": 147.0, "z": 119.0, "radius": 15.0},
+          {"name": "悬岩 E · 东航道", "kind": "cliff", "shape": "circle", "x": 182.0, "z": -23.0, "radius": 15.0},
+          {"name": "悬岩 F · 东南弯", "kind": "cliff", "shape": "circle", "x": 129.0, "z": -140.0, "radius": 15.0},
+          {"name": "悬岩 G · 南航道", "kind": "cliff", "shape": "circle", "x": -12.0, "z": -182.0, "radius": 16.0},
+          {"name": "悬岩 H · 西南弯", "kind": "cliff", "shape": "circle", "x": -145.0, "z": -150.0, "radius": 14.0}
+        ],
+        "sea_state": {"wind_speed_knots": 8.0, "wind_direction_degrees": 120.0, "current_speed_knots": 0.55, "current_direction_degrees": 155.0, "wave_height_meters": 0.65, "wave_direction_degrees": 130.0}
+      },
+      {
+        "id": "cargo_train_circuit_reverse_current",
+        "start": {"x": -183.0, "z": -117.0, "heading_degrees": -3.0},
+        "route": [
+          {"name": "检查点 1 · 西北航门", "x": -180.0, "z": 80.0},
+          {"name": "检查点 2 · 北西航门", "x": -80.0, "z": 180.0},
+          {"name": "检查点 3 · 北东航门", "x": 100.0, "z": 180.0},
+          {"name": "检查点 4 · 东北航门", "x": 185.0, "z": 60.0},
+          {"name": "检查点 5 · 东南航门", "x": 185.0, "z": -100.0},
+          {"name": "检查点 6 · 南东航门", "x": 70.0, "z": -185.0},
+          {"name": "检查点 7 · 南西航门", "x": -100.0, "z": -185.0},
+          {"name": "返航取货站", "x": -180.0, "z": -120.0}
+        ],
+        "arrival_radius": 14.0,
+        "boundary_half_extent": 240.0,
+        "terrain": [
+          {"name": "悬岩 A · 西航道", "kind": "cliff", "shape": "circle", "x": -183.0, "z": -20.0, "radius": 14.0},
+          {"name": "悬岩 B · 西北弯", "kind": "cliff", "shape": "circle", "x": -133.0, "z": 133.0, "radius": 13.0},
+          {"name": "悬岩 C · 北航道", "kind": "cliff", "shape": "circle", "x": 13.0, "z": 183.0, "radius": 18.0},
+          {"name": "悬岩 D · 东北弯", "kind": "cliff", "shape": "circle", "x": 141.0, "z": 125.0, "radius": 13.0},
+          {"name": "悬岩 E · 东航道", "kind": "cliff", "shape": "circle", "x": 188.0, "z": -17.0, "radius": 17.0},
+          {"name": "悬岩 F · 东南弯", "kind": "cliff", "shape": "circle", "x": 123.0, "z": -146.0, "radius": 13.0},
+          {"name": "悬岩 G · 南航道", "kind": "cliff", "shape": "circle", "x": -18.0, "z": -188.0, "radius": 18.0},
+          {"name": "悬岩 H · 西南弯", "kind": "cliff", "shape": "circle", "x": -139.0, "z": -156.0, "radius": 12.0}
+        ],
+        "sea_state": {"wind_speed_knots": 7.0, "wind_direction_degrees": 300.0, "current_speed_knots": 0.5, "current_direction_degrees": 270.0, "wave_height_meters": 0.55, "wave_direction_degrees": 290.0}
+      }
+    ],
+    "validation": [
+      {
+        "id": "cargo_validation_offset_rocks",
+        "start": {"x": -178.0, "z": -122.0, "heading_degrees": 2.0},
+        "route": [
+          {"name": "检查点 1 · 西北航门", "x": -180.0, "z": 80.0},
+          {"name": "检查点 2 · 北西航门", "x": -80.0, "z": 180.0},
+          {"name": "检查点 3 · 北东航门", "x": 100.0, "z": 180.0},
+          {"name": "检查点 4 · 东北航门", "x": 185.0, "z": 60.0},
+          {"name": "检查点 5 · 东南航门", "x": 185.0, "z": -100.0},
+          {"name": "检查点 6 · 南东航门", "x": 70.0, "z": -185.0},
+          {"name": "检查点 7 · 南西航门", "x": -100.0, "z": -185.0},
+          {"name": "返航取货站", "x": -180.0, "z": -120.0}
+        ],
+        "arrival_radius": 14.0,
+        "boundary_half_extent": 240.0,
+        "terrain": [
+          {"name": "验证悬岩 A", "kind": "cliff", "shape": "circle", "x": -176.0, "z": -22.0, "radius": 15.5},
+          {"name": "验证悬岩 B", "kind": "cliff", "shape": "circle", "x": -134.0, "z": 126.0, "radius": 14.5},
+          {"name": "验证悬岩 C", "kind": "cliff", "shape": "circle", "x": 4.0, "z": 184.0, "radius": 16.5},
+          {"name": "验证悬岩 D", "kind": "cliff", "shape": "circle", "x": 149.0, "z": 126.0, "radius": 14.5},
+          {"name": "验证悬岩 E", "kind": "cliff", "shape": "circle", "x": 181.0, "z": -14.0, "radius": 16.5},
+          {"name": "验证悬岩 F", "kind": "cliff", "shape": "circle", "x": 132.0, "z": -147.0, "radius": 14.5},
+          {"name": "验证悬岩 G", "kind": "cliff", "shape": "circle", "x": -20.0, "z": -181.0, "radius": 16.5},
+          {"name": "验证悬岩 H", "kind": "cliff", "shape": "circle", "x": -138.0, "z": -158.0, "radius": 13.5}
+        ],
+        "sea_state": {"wind_speed_knots": 9.0, "wind_direction_degrees": 210.0, "current_speed_knots": 0.65, "current_direction_degrees": 195.0, "wave_height_meters": 0.75, "wave_direction_degrees": 200.0}
+      }
+    ],
+    "test": [
+      {
+        "id": "cargo_test_held_out_circuit",
+        "start": {"x": -181.0, "z": -121.0, "heading_degrees": 1.0},
+        "route": [
+          {"name": "检查点 1 · 西北航门", "x": -180.0, "z": 80.0},
+          {"name": "检查点 2 · 北西航门", "x": -80.0, "z": 180.0},
+          {"name": "检查点 3 · 北东航门", "x": 100.0, "z": 180.0},
+          {"name": "检查点 4 · 东北航门", "x": 185.0, "z": 60.0},
+          {"name": "检查点 5 · 东南航门", "x": 185.0, "z": -100.0},
+          {"name": "检查点 6 · 南东航门", "x": 70.0, "z": -185.0},
+          {"name": "检查点 7 · 南西航门", "x": -100.0, "z": -185.0},
+          {"name": "返航取货站", "x": -180.0, "z": -120.0}
+        ],
+        "arrival_radius": 14.0,
+        "boundary_half_extent": 240.0,
+        "terrain": [
+          {"name": "测试悬岩 A · 西航道", "kind": "cliff", "shape": "circle", "x": -184.0, "z": -15.0, "radius": 15.0},
+          {"name": "测试悬岩 B · 西北弯", "kind": "cliff", "shape": "circle", "x": -126.0, "z": 135.0, "radius": 14.0},
+          {"name": "测试悬岩 C · 北航道", "kind": "cliff", "shape": "circle", "x": 16.0, "z": 176.0, "radius": 17.0},
+          {"name": "测试悬岩 D · 东北弯", "kind": "cliff", "shape": "circle", "x": 139.0, "z": 117.0, "radius": 14.0},
+          {"name": "测试悬岩 E · 东航道", "kind": "cliff", "shape": "circle", "x": 189.0, "z": -25.0, "radius": 16.0},
+          {"name": "测试悬岩 F · 东南弯", "kind": "cliff", "shape": "circle", "x": 121.0, "z": -138.0, "radius": 14.0},
+          {"name": "测试悬岩 G · 南航道", "kind": "cliff", "shape": "circle", "x": -9.0, "z": -190.0, "radius": 17.0},
+          {"name": "测试悬岩 H · 西南弯", "kind": "cliff", "shape": "circle", "x": -148.0, "z": -148.0, "radius": 13.0}
+        ],
+        "sea_state": {"wind_speed_knots": 10.0, "wind_direction_degrees": 160.0, "current_speed_knots": 0.7, "current_direction_degrees": 225.0, "wave_height_meters": 0.8, "wave_direction_degrees": 170.0}
+      }
+    ]
+  }
+}

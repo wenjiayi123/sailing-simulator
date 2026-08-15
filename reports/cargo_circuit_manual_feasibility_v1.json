@@ -1,0 +1,235 @@
+{
+  "format": "cargo_circuit_manual_feasibility_v1",
+  "module": "cargo_circuit_rl",
+  "purpose": "pre-training physical reachability gate",
+  "controller": {
+    "type": "human_authored_bypass_points_and_helm_law",
+    "learned": false,
+    "rl_evidence": false,
+    "note": "This proves task feasibility only and must never be presented as a trained policy."
+  },
+  "dynamic_obstacles": {
+    "included": false,
+    "phase": "future_advanced_goal_after_static_policy_acceptance"
+  },
+  "dataset_path": "/Users/apple/Desktop/航行模拟器/data/rl/cargo_circuit_dataset_v1.json",
+  "dataset_sha256": "5fb5900203e4ad3be2d6e2cc38246a90096a783874a70e0417d6387b7d57e885",
+  "experiment_sha256": "6665bb102af8401168e13fae5a173c1390640800d402c7d9ea27351c356e0ccc",
+  "ship_performance": {
+    "max_forward_speed": 8.5,
+    "max_reverse_speed": 2.2,
+    "acceleration": 0.9,
+    "deceleration": 0.65,
+    "brake_acceleration": 1.6,
+    "throttle_response": 0.55,
+    "rudder_response": 0.7,
+    "max_turn_rate_degrees": 20.0,
+    "low_speed_turn_factor": 0.12,
+    "reverse_turn_factor": 0.45
+  },
+  "manual_bypasses": [
+    [
+      {
+        "x": -130.0,
+        "z": -15.0
+      }
+    ],
+    [
+      {
+        "x": -75.0,
+        "z": 80.0
+      }
+    ],
+    [
+      {
+        "x": 10.0,
+        "z": 125.0
+      }
+    ],
+    [
+      {
+        "x": 75.0,
+        "z": 65.0
+      }
+    ],
+    [
+      {
+        "x": 140.0,
+        "z": 55.0
+      },
+      {
+        "x": 120.0,
+        "z": -25.0
+      }
+    ],
+    [
+      {
+        "x": 200.0,
+        "z": -160.0
+      },
+      {
+        "x": 150.0,
+        "z": -215.0
+      }
+    ],
+    [
+      {
+        "x": 0.0,
+        "z": -125.0
+      }
+    ],
+    [
+      {
+        "x": -170.0,
+        "z": -205.0
+      },
+      {
+        "x": -205.0,
+        "z": -170.0
+      }
+    ]
+  ],
+  "episodes": [
+    {
+      "task_id": "cargo_train_circuit_calm",
+      "dataset_split": "train",
+      "seed": 260815,
+      "success": true,
+      "cargo_retrieved": true,
+      "checkpoints_passed": 7,
+      "total_checkpoints": 7,
+      "collisions": 0,
+      "terrain_collisions": 0,
+      "minimum_safety_envelope_clearance_meters": 11.939740613247611,
+      "minimum_boundary_clearance_meters": 18.356390000000005,
+      "minimum_checkpoint_spacing_meters": 103.07764064044152,
+      "maximum_checkpoint_spacing_meters": 200.0,
+      "path_length_meters": 1729.2707291392137,
+      "elapsed_simulation_seconds": 547.25,
+      "steps": 2189,
+      "maximum_commanded_rudder_normalized": 1.0,
+      "maximum_actual_rudder_normalized": 1.0,
+      "maximum_yaw_rate_degrees_per_second": 7.879046571659362,
+      "maximum_speed_mps": 5.2700000405311584,
+      "braking_steps": 48,
+      "headless": true,
+      "render": false
+    },
+    {
+      "task_id": "cargo_train_circuit_cross_current",
+      "dataset_split": "train",
+      "seed": 260816,
+      "success": true,
+      "cargo_retrieved": true,
+      "checkpoints_passed": 7,
+      "total_checkpoints": 7,
+      "collisions": 0,
+      "terrain_collisions": 0,
+      "minimum_safety_envelope_clearance_meters": 8.529639566100784,
+      "minimum_boundary_clearance_meters": 15.858870000000024,
+      "minimum_checkpoint_spacing_meters": 103.07764064044152,
+      "maximum_checkpoint_spacing_meters": 204.0392119177096,
+      "path_length_meters": 1714.361661602745,
+      "elapsed_simulation_seconds": 525.5,
+      "steps": 2102,
+      "maximum_commanded_rudder_normalized": 1.0,
+      "maximum_actual_rudder_normalized": 1.0,
+      "maximum_yaw_rate_degrees_per_second": 7.787215477023579,
+      "maximum_speed_mps": 5.2700000405311584,
+      "braking_steps": 48,
+      "headless": true,
+      "render": false
+    },
+    {
+      "task_id": "cargo_train_circuit_reverse_current",
+      "dataset_split": "train",
+      "seed": 260817,
+      "success": true,
+      "cargo_retrieved": true,
+      "checkpoints_passed": 7,
+      "total_checkpoints": 7,
+      "collisions": 0,
+      "terrain_collisions": 0,
+      "minimum_safety_envelope_clearance_meters": 20.03703483364381,
+      "minimum_boundary_clearance_meters": 18.26923000000002,
+      "minimum_checkpoint_spacing_meters": 103.07764064044152,
+      "maximum_checkpoint_spacing_meters": 197.02284131541703,
+      "path_length_meters": 1719.1778673790252,
+      "elapsed_simulation_seconds": 543.75,
+      "steps": 2175,
+      "maximum_commanded_rudder_normalized": 1.0,
+      "maximum_actual_rudder_normalized": 1.0,
+      "maximum_yaw_rate_degrees_per_second": 7.895490065365099,
+      "maximum_speed_mps": 5.2700000405311584,
+      "braking_steps": 48,
+      "headless": true,
+      "render": false
+    },
+    {
+      "task_id": "cargo_validation_offset_rocks",
+      "dataset_split": "validation",
+      "seed": 260815,
+      "success": true,
+      "cargo_retrieved": true,
+      "checkpoints_passed": 7,
+      "total_checkpoints": 7,
+      "collisions": 0,
+      "terrain_collisions": 0,
+      "minimum_safety_envelope_clearance_meters": 14.795606954254872,
+      "minimum_boundary_clearance_meters": 15.358850000000018,
+      "minimum_checkpoint_spacing_meters": 103.07764064044152,
+      "maximum_checkpoint_spacing_meters": 202.00990074746338,
+      "path_length_meters": 1690.8469214437416,
+      "elapsed_simulation_seconds": 509.5,
+      "steps": 2038,
+      "maximum_commanded_rudder_normalized": 1.0,
+      "maximum_actual_rudder_normalized": 1.0,
+      "maximum_yaw_rate_degrees_per_second": 7.878468232586137,
+      "maximum_speed_mps": 5.2700000405311584,
+      "braking_steps": 42,
+      "headless": true,
+      "render": false
+    },
+    {
+      "task_id": "cargo_test_held_out_circuit",
+      "dataset_split": "test",
+      "seed": 260815,
+      "success": true,
+      "cargo_retrieved": true,
+      "checkpoints_passed": 7,
+      "total_checkpoints": 7,
+      "collisions": 0,
+      "terrain_collisions": 0,
+      "minimum_safety_envelope_clearance_meters": 17.894221467439444,
+      "minimum_boundary_clearance_meters": 15.37312,
+      "minimum_checkpoint_spacing_meters": 103.07764064044152,
+      "maximum_checkpoint_spacing_meters": 201.0024875467963,
+      "path_length_meters": 1687.374294241013,
+      "elapsed_simulation_seconds": 506.5,
+      "steps": 2026,
+      "maximum_commanded_rudder_normalized": 1.0,
+      "maximum_actual_rudder_normalized": 1.0,
+      "maximum_yaw_rate_degrees_per_second": 7.904477673341546,
+      "maximum_speed_mps": 5.2700000405311584,
+      "braking_steps": 42,
+      "headless": true,
+      "render": false
+    }
+  ],
+  "aggregate": {
+    "episodes": 5,
+    "success_rate": 1.0,
+    "total_collisions": 0,
+    "minimum_safety_envelope_clearance_meters": 8.529639566100784,
+    "minimum_boundary_clearance_meters": 15.358850000000018,
+    "maximum_yaw_rate_degrees_per_second": 7.904477673341546,
+    "maximum_actual_rudder_normalized": 1.0
+  },
+  "acceptance_gate": {
+    "passed": true,
+    "requires_all_splits": true,
+    "requires_all_checkpoints": true,
+    "requires_zero_collisions": true,
+    "requires_positive_obstacle_and_boundary_clearance": true
+  }
+}

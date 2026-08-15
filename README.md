@@ -59,6 +59,12 @@ Godot 4.7 owns vessel control, port geometry, risk envelopes, and 3D evidence re
   <br /><sub>晴天航行运行态：真实油门/舵角输入、航迹尾流、目标航线、雷达、风险状态和遥测同屏。</sub>
 </p>
 
+### 环航取货 RL：技术审阅入口 / Curated cargo-circuit RL evidence
+
+为便于技术面试核验，仓库公开了实际运行的 [36维连续控制环境](tools/cargo_rl/environment.py)、[44维动态交通与Residual SAC环境](tools/cargo_rl/dynamic_environment.py)、[脱敏证据清单](reports/cargo_circuit_public_evidence_v1.json)及[自动合同测试](tests/test_cargo_circuit_public_evidence.py)。静态SAC-S1完成30万步无渲染训练；动态RES-SAC-D2在冻结静态策略上融合相对运动、TCPA/DCPA和6艘移动交通船。两者在各自固定留出任务中均完成7/7检查点和取货且零碰撞，完整口径见[技术证据说明](docs/CARGO_RL_TECHNICAL_EVIDENCE.md)。
+
+This is a deliberately curated verification surface, not a full project dump. Exact map geometry, training configuration, model weights, per-step trajectories, demonstration pipeline, and complete Godot integration remain private; their frozen SHA-256 commitments are published so the demonstrated artifacts can be checked without making the complete system clonable.
+
 > [!IMPORTANT]
 > 当前证据证明的是仿真平台完整性、算法评测能力和失效安全门禁，不是实船海试、COLREGs认证或商业航行许可。公开环境强迫、仿真动力学与真实传感/执行数据始终分层标注。
 >

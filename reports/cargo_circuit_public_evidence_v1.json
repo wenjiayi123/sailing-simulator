@@ -1,0 +1,100 @@
+{
+  "schema_version": "cargo_circuit_public_evidence_v1",
+  "module": "cargo_circuit_rl",
+  "release_scope": {
+    "purpose": "technical HR verification without publishing the complete project",
+    "public_source_files": [
+      "tools/cargo_rl/environment.py",
+      "tools/cargo_rl/dynamic_environment.py"
+    ],
+    "public_source_sha256": {
+      "tools/cargo_rl/environment.py": "a17854820da539dd919f684cdb2da03d49fc8d21197b6eee17c5d07153b43629",
+      "tools/cargo_rl/dynamic_environment.py": "5db2ba3ce968cf56d8c658e5bfb2809b69b0340bf22ae8b1f923410a6fe87f15"
+    },
+    "withheld_assets": [
+      "exact route and cliff coordinates",
+      "training and dynamic-scenario configuration",
+      "trained model weights",
+      "full per-step held-out trajectories",
+      "behavior-cloning and replay-buffer implementation",
+      "complete Godot control-hub and replay integration"
+    ]
+  },
+  "implementation_contract": {
+    "library": "Stable-Baselines3",
+    "static_policy": {
+      "id": "SAC-S1",
+      "algorithm": "SAC",
+      "observation_size": 36,
+      "action": "continuous throttle and rudder in [-1, 1]",
+      "headless_training_timesteps": 300000
+    },
+    "dynamic_policy": {
+      "id": "RES-SAC-D2",
+      "algorithm": "Residual SAC around frozen SAC-S1",
+      "observation_size": 44,
+      "relative_motion_features": [
+        "clearance",
+        "bearing_sin",
+        "bearing_cos",
+        "closing_speed",
+        "tcpa",
+        "dcpa",
+        "relative_lateral_speed",
+        "relative_forward_speed"
+      ],
+      "dynamic_traffic_count": 6,
+      "behavior_cloning_samples": 6474,
+      "behavior_cloning_epochs": 5,
+      "residual_training_timesteps": 500
+    },
+    "render_boundary": "training and numeric evaluation use render=false; Godot only replays accepted held-out test trajectories"
+  },
+  "held_out_results": {
+    "static_sac_s1": {
+      "dataset_split": "test",
+      "accepted": true,
+      "cargo_retrieved": true,
+      "checkpoints_passed": 7,
+      "total_checkpoints": 7,
+      "collisions": 0,
+      "terrain_collisions": 0,
+      "near_misses": 9,
+      "reverse_steps": 0,
+      "minimum_safety_envelope_clearance_meters": 2.4793280875477173,
+      "minimum_boundary_clearance_meters": 6.271080000000012,
+      "path_efficiency": 0.9114456337232855,
+      "elapsed_seconds": 177.75
+    },
+    "dynamic_res_sac_d2": {
+      "dataset_split": "test",
+      "accepted": true,
+      "cargo_retrieved": true,
+      "checkpoints_passed": 7,
+      "total_checkpoints": 7,
+      "dynamic_traffic_count": 6,
+      "collisions": 0,
+      "terrain_collisions": 0,
+      "near_misses": 8,
+      "reverse_steps": 0,
+      "minimum_clearance_meters": 3.051357956303768,
+      "minimum_dynamic_clearance_meters": 6.663154168939917,
+      "minimum_boundary_clearance_meters": 3.276530000000008,
+      "path_efficiency": 0.8954785368052649,
+      "elapsed_seconds": 173.75,
+      "released_policy_has_manual_bypass_points": false
+    }
+  },
+  "frozen_artifact_commitments": {
+    "dataset_contract_sha256": "5fb5900203e4ad3be2d6e2cc38246a90096a783874a70e0417d6387b7d57e885",
+    "static_experiment_contract_sha256": "6665bb102af8401168e13fae5a173c1390640800d402c7d9ea27351c356e0ccc",
+    "static_model_file_sha256": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+    "static_checkpoint_file_sha256": "3944e1046c0624c9d118322aef668860dca7acabcd610e9c32b34c518e2ce939",
+    "static_test_trajectory_file_sha256": "af37f5a816c731b7f877515c7a747a3807e6a49142bfe199fc059c96a7da5033",
+    "dynamic_experiment_contract_sha256": "7a1b4497bfde1ea68c294df27a93ee2e28bb131fc6579d081d2058cdb3c42573",
+    "dynamic_model_file_sha256": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+    "dynamic_checkpoint_file_sha256": "5476104966aef1672bbe0c8f60447ba1cd61462a3609d499dd815a8860ba277c",
+    "dynamic_test_trajectory_file_sha256": "e896748229fcdf917ebc8bd091c035546ea28ed8d3ac5cc4ecdb5db48b8b94a7"
+  },
+  "acceptance_boundary": "project-native numeric simulation and one fixed held-out route per policy; not a sea trial, COLREGs certification, or production-control claim"
+}

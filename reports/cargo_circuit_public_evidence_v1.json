@@ -34,12 +34,15 @@
     "dataset_split": "test",
     "path": "docs/media/cargo-circuit-sac-heldout-test.mp4",
     "poster": "docs/media/cargo-circuit-sac-heldout-test-poster.jpg",
-    "duration_seconds": 71.266667,
-    "resolution": "1920x1080",
+    "duration_seconds": 22.266667,
+    "source_clip_window_seconds": [49.0, 71.266667],
+    "resolution": "1600x900",
     "frame_rate": 30,
+    "file_size_bytes": 5024639,
     "audio_tracks": 0,
     "external_audio_removed": true,
-    "video_sha256": "58862d083b2701444edb7d4b773f58cd942876d8602844ad44850e96ce04c52d",
+    "publication_edit": "Concise excerpt preserving checkpoint, pickup, and mission-completion stages for online preview.",
+    "video_sha256": "e5cd213972e04c81edeaa24cb193090fc99c48d7ab1d79bcb0aef8ea200e2782",
     "poster_sha256": "01c26d490c52d6f9752e16cb4da49c21476636b74f9bffe6801fc79c0ed30527"
   },
   "implementation_contract": {

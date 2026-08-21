@@ -9,9 +9,9 @@
     <img src="docs/media/cargo-circuit-sac-heldout-test-poster.jpg" alt="SAC-S1静态悬岩环航取货held-out test回放，7/7检查点并返航取货" width="100%" />
   </a>
   <br />
-  <strong>▶ 点击画面播放完整 71 秒无声视频 / Click the image to play the full 71-second silent video</strong>
+  <strong>▶ 点击画面在线播放 22 秒无声精华片段 / Click the image to play the 22-second silent excerpt online</strong>
   <br />
-  <sub>SAC-S1 · 36维连续控制 · 300,000 timestep · held-out test · 7/7检查点 · 零碰撞 · 返航取货完成。视频来自真实 Godot 测试轨迹回放；外部录音已全部移除。</sub>
+  <sub>SAC-S1 · 36维连续控制 · 300,000 timestep · held-out test · 7/7检查点 · 零碰撞 · 返航取货完成。精华片段保留检查点、取货与任务完成阶段；外部录音已全部移除。</sub>
 </p>
 
 <p align="center">

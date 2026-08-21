@@ -66,7 +66,10 @@ class CargoCircuitPublicEvidenceTests(unittest.TestCase):
         self.assertEqual(video["dataset_split"], "test")
         self.assertEqual(video["audio_tracks"], 0)
         self.assertTrue(video["external_audio_removed"])
-        self.assertLess(video_path.stat().st_size, 100 * 1024 * 1024)
+        self.assertEqual(video["file_size_bytes"], video_path.stat().st_size)
+        self.assertLess(video_path.stat().st_size, 10 * 1024 * 1024)
+        self.assertLess(video["duration_seconds"], 30)
+        self.assertEqual(video["resolution"], "1600x900")
         self.assertEqual(video_path.read_bytes()[4:8], b"ftyp")
         self.assertEqual(poster_path.read_bytes()[:2], b"\xff\xd8")
         self.assertEqual(

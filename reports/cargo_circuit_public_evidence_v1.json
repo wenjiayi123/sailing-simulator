@@ -5,20 +5,42 @@
     "purpose": "technical HR verification without publishing the complete project",
     "public_source_files": [
       "tools/cargo_rl/environment.py",
-      "tools/cargo_rl/dynamic_environment.py"
+      "tools/cargo_rl/dynamic_environment.py",
+      "tools/cargo_rl/demonstration.py",
+      "tools/cargo_rl/trainer.py",
+      "tools/cargo_rl_train.py",
+      "examples/cargo_circuit_godot/cargo_circuit_replay_controller.gd",
+      "examples/cargo_circuit_godot/cargo_circuit_rl_panel.gd"
     ],
     "public_source_sha256": {
       "tools/cargo_rl/environment.py": "a17854820da539dd919f684cdb2da03d49fc8d21197b6eee17c5d07153b43629",
-      "tools/cargo_rl/dynamic_environment.py": "5db2ba3ce968cf56d8c658e5bfb2809b69b0340bf22ae8b1f923410a6fe87f15"
+      "tools/cargo_rl/dynamic_environment.py": "5db2ba3ce968cf56d8c658e5bfb2809b69b0340bf22ae8b1f923410a6fe87f15",
+      "tools/cargo_rl/demonstration.py": "108b8f6b9068ee1fb2a61ad6d0e91a7aa8b42afbaf8f9b6f381112ab3fd6b7e0",
+      "tools/cargo_rl/trainer.py": "231daa2a6a17c648f74b912b4e922bb419fcf9c3b6015118cce006f452a6b376",
+      "tools/cargo_rl_train.py": "2de9e32b28c66f4304f45f1e4a6b210370c10e5c058210149ada2ab5917b98b1",
+      "examples/cargo_circuit_godot/cargo_circuit_replay_controller.gd": "42d2e31a95fc3a3ac82f34cf8cd793fd4f531ede49bdae5a2a318ec07cd84294",
+      "examples/cargo_circuit_godot/cargo_circuit_rl_panel.gd": "532f3ed09b4504aa380ef7240d946afacc86e17089ecc0912817636bc251264d"
     },
     "withheld_assets": [
       "exact route and cliff coordinates",
       "training and dynamic-scenario configuration",
       "trained model weights",
       "full per-step held-out trajectories",
-      "behavior-cloning and replay-buffer implementation",
-      "complete Godot control-hub and replay integration"
+      "complete Godot scene and visual-asset package"
     ]
+  },
+  "render_video": {
+    "policy_id": "SAC-S1",
+    "dataset_split": "test",
+    "path": "docs/media/cargo-circuit-sac-heldout-test.mp4",
+    "poster": "docs/media/cargo-circuit-sac-heldout-test-poster.jpg",
+    "duration_seconds": 71.266667,
+    "resolution": "1920x1080",
+    "frame_rate": 30,
+    "audio_tracks": 0,
+    "external_audio_removed": true,
+    "video_sha256": "58862d083b2701444edb7d4b773f58cd942876d8602844ad44850e96ce04c52d",
+    "poster_sha256": "01c26d490c52d6f9752e16cb4da49c21476636b74f9bffe6801fc79c0ed30527"
   },
   "implementation_contract": {
     "library": "Stable-Baselines3",

@@ -58,6 +58,26 @@ class CargoCircuitPublicEvidenceTests(unittest.TestCase):
         self.assertIn("trained model weights", withheld)
         self.assertIn("full per-step held-out trajectories", withheld)
 
+    def test_render_video_is_silent_small_and_hash_bound(self) -> None:
+        video = self.payload["render_video"]
+        video_path = ROOT / video["path"]
+        poster_path = ROOT / video["poster"]
+        self.assertEqual(video["policy_id"], "SAC-S1")
+        self.assertEqual(video["dataset_split"], "test")
+        self.assertEqual(video["audio_tracks"], 0)
+        self.assertTrue(video["external_audio_removed"])
+        self.assertLess(video_path.stat().st_size, 100 * 1024 * 1024)
+        self.assertEqual(video_path.read_bytes()[4:8], b"ftyp")
+        self.assertEqual(poster_path.read_bytes()[:2], b"\xff\xd8")
+        self.assertEqual(
+            hashlib.sha256(video_path.read_bytes()).hexdigest(),
+            video["video_sha256"],
+        )
+        self.assertEqual(
+            hashlib.sha256(poster_path.read_bytes()).hexdigest(),
+            video["poster_sha256"],
+        )
+
     def test_public_source_hashes_match_the_reviewed_runtime_files(self) -> None:
         expected = self.payload["release_scope"]["public_source_sha256"]
         self.assertEqual(set(expected), set(self.payload["release_scope"]["public_source_files"]))

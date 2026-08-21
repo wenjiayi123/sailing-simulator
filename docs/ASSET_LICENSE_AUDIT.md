@@ -17,3 +17,7 @@
 3. 从公开版本中排除，并提供占位资源或下载脚本。
 
 `soft_copyright_materials/`、`soft_copyright_template_work/`、`backups/`、`草稿/` 和 ZIP 已加入 `.gitignore`，不应进入公开仓库。
+
+## 公开录屏边界
+
+`docs/media/cargo-circuit-sac-heldout-test.mp4` 是项目作者提供并明确要求公开的屏幕录制成片；公开版仅包含渲染画面，外部录音已全部移除。发布该成片不等于允许从仓库分发其画面中可能出现的原始纹理、角色序列帧或三维资源，完整视觉资产包仍受上述门禁约束。

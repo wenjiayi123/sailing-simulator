@@ -5,13 +5,11 @@
 <h2 align="center">实际策略渲染视频 / Real Policy Rendering</h2>
 
 <p align="center">
-  <a href="docs/media/cargo-circuit-sac-heldout-test.mp4">
-    <img src="docs/media/cargo-circuit-sac-heldout-test-poster.jpg" alt="SAC-S1静态悬岩环航取货held-out test回放，7/7检查点并返航取货" width="100%" />
-  </a>
+  <img src="docs/media/cargo-circuit-sac-inline-preview.gif" alt="SAC-S1静态悬岩环航取货held-out test动态预览，展示检查点、取货与任务完成" width="100%" />
   <br />
-  <strong>▶ 点击画面在线播放 22 秒无声精华片段 / Click the image to play the 22-second silent excerpt online</strong>
+  <strong>▶ README 内直接播放 12 秒无声动态预览，无需跳转或下载 / 12-second silent preview plays inline</strong>
   <br />
-  <sub>SAC-S1 · 36维连续控制 · 300,000 timestep · held-out test · 7/7检查点 · 零碰撞 · 返航取货完成。精华片段保留检查点、取货与任务完成阶段；外部录音已全部移除。</sub>
+  <sub>SAC-S1 · 36维连续控制 · 300,000 timestep · held-out test · 7/7检查点 · 零碰撞 · 返航取货完成。主页项目 README 提供可暂停、拖动的22秒H.264播放器；外部录音已全部移除。</sub>
 </p>
 
 <p align="center">

@@ -62,6 +62,7 @@ class CargoCircuitPublicEvidenceTests(unittest.TestCase):
         video = self.payload["render_video"]
         video_path = ROOT / video["path"]
         poster_path = ROOT / video["poster"]
+        preview_path = ROOT / video["inline_preview"]
         self.assertEqual(video["policy_id"], "SAC-S1")
         self.assertEqual(video["dataset_split"], "test")
         self.assertEqual(video["audio_tracks"], 0)
@@ -72,6 +73,9 @@ class CargoCircuitPublicEvidenceTests(unittest.TestCase):
         self.assertEqual(video["resolution"], "1600x900")
         self.assertEqual(video_path.read_bytes()[4:8], b"ftyp")
         self.assertEqual(poster_path.read_bytes()[:2], b"\xff\xd8")
+        self.assertEqual(video["inline_preview_size_bytes"], preview_path.stat().st_size)
+        self.assertLess(preview_path.stat().st_size, 10 * 1024 * 1024)
+        self.assertEqual(preview_path.read_bytes()[:6], b"GIF89a")
         self.assertEqual(
             hashlib.sha256(video_path.read_bytes()).hexdigest(),
             video["video_sha256"],
@@ -79,6 +83,10 @@ class CargoCircuitPublicEvidenceTests(unittest.TestCase):
         self.assertEqual(
             hashlib.sha256(poster_path.read_bytes()).hexdigest(),
             video["poster_sha256"],
+        )
+        self.assertEqual(
+            hashlib.sha256(preview_path.read_bytes()).hexdigest(),
+            video["inline_preview_sha256"],
         )
 
     def test_public_source_hashes_match_the_reviewed_runtime_files(self) -> None:

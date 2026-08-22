@@ -30,6 +30,14 @@
   <strong>研发作者：</strong>温家懿 · <strong>Research Author:</strong> Wen Jiayi
 </p>
 
+## 学术顾问 / Academic Advisor
+
+**Prof. Hamid Reza Karimi**
+
+衷心感谢 Hamid Reza Karimi 教授对本项目的学术支持与指导。
+
+We sincerely thank Prof. Hamid Reza Karimi for his academic support and guidance.
+
 <p align="center">
   <a href="#系统价值--engineering-value">系统价值</a> ·
   <a href="#真实港口十算法覆盖基准--real-port-ten-method-coverage-benchmark">十算法矩阵</a> ·

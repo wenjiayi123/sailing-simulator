@@ -26,6 +26,11 @@ PORT_EXPERIMENT = ROOT / "data/rl/long_beach_ais_port_ops_experiment_v2.json"
 PORT_CONTRACT_REPORT = ROOT / "reports/port_dataset_contract_v2.json"
 PORT_PREPARED = ROOT / "reports/port_ops_benchmark_v2_prepared.json"
 PORT_REPORT = ROOT / "reports/port_ops_benchmark_v2.json"
+SAFETY_PREPARED = ROOT / "reports/safety_supervisor_benchmark_v3_prepared.json"
+SAFETY_REPORT = ROOT / "reports/safety_supervisor_benchmark_v3.json"
+SAFETY_UTILITY_AUDIT = ROOT / "reports/safety_supervisor_utility_audit_v3.json"
+RELIABILITY_CURRENT = ROOT / "reports/simulator_reliability_audit_v3.json"
+MARITIME_ASSURANCE = ROOT / "reports/maritime_assurance_v1.json"
 XIAOYI_PORTRAIT = ROOT / "assets/ui/xiaoyi/xiaoyi-maritime-officer.png"
 XIAOYI_PORTRAIT_SHA256 = (
     "8f56a569dcb098ef08cd2bed92ffc098474c7d6ef911141760982e9323ffe714"
@@ -49,20 +54,52 @@ REQUIRED_FILES = (
     "LICENSE",
     "NOTICE",
     "CONTRIBUTING.md",
+    "SECURITY.md",
     "reports/navigation_benchmark_runtime_legacy.lock",
     ".github/workflows/rl-tests.yml",
+    ".github/workflows/codeql.yml",
+    ".github/workflows/dependency-review.yml",
+    ".github/workflows/scorecard.yml",
+    ".github/workflows/sbom.yml",
     "docs/DATA_SOURCES.md",
     "docs/ALGORITHM_PARAMETERS.md",
     "docs/PORT_ADAPTER_GUIDE.md",
     "docs/RESUME_CLAIMS.md",
     "docs/SIMULATOR_METRICS.md",
+    "docs/THREAT_MODEL.md",
+    "docs/PRODUCTION_READINESS.md",
+    "docs/MODEL_CARD.md",
+    "docs/DATA_CARD.md",
+    "docs/OBSERVATION_ACTION_REWARD_SPEC.md",
+    "docs/TOP_SYSTEM_GAP_AUDIT.md",
+    "docs/MARITIME_ASSURANCE_GUIDE.md",
+    "data/verification/vessel_dynamics_reference_v1.json",
+    "data/verification/colreg_encounter_catalog_v1.json",
+    "data/verification/hil_loopback_profile_v1.json",
+    "data/verification/sea_trial_protocol_v1.json",
+    "data/verification/sea_trial_evidence_manifest.template.json",
     "reports/navigation_benchmark_v1.md",
     "reports/godot_acceptance_v1.json",
+    "reports/godot_acceptance_v3.json",
     "reports/godot_ui_navigation_smoke_v1.json",
+    "reports/godot_safety_strategy_smoke_v3.json",
     "reports/simulator_reliability_audit_v1.json",
     "reports/simulator_reliability_audit_v1.md",
+    "reports/simulator_reliability_audit_v3.json",
+    "reports/simulator_reliability_audit_v3.md",
+    "reports/maritime_assurance_v1.json",
+    "reports/maritime_assurance_v1.md",
     "data/ports/port_package_manifest_v3.example.json",
     "reports/port_ops_benchmark_v2.md",
+    "reports/safety_supervisor_benchmark_v3.md",
+    "reports/safety_supervisor_utility_audit_v3.json",
+    "reports/safety_supervisor_utility_audit_v3.md",
+    "tools/build_research_core_release.py",
+    "tools/run_nonmutating_deep_verify.py",
+    "tools/audit_safety_supervisor_utility_v3.py",
+    "tools/run_maritime_assurance.py",
+    "tools/evaluate_sea_trial.py",
+    "tests/test_maritime_assurance.py",
 )
 UNRESOLVED_ASSETS = (
     "characters/download.png",
@@ -285,6 +322,136 @@ def _verify_port_ops_v2(errors: list[str]) -> None:
             errors.append(f"v2 trajectory format failed: {result.get('algorithm')}")
 
 
+def _verify_safety_supervisor_v3(errors: list[str]) -> None:
+    prepared = _load_json(SAFETY_PREPARED)
+    report = _load_json(SAFETY_REPORT)
+    if prepared.get("test_split_accessed") is not False:
+        errors.append("V3 safety prepared report must freeze before test access")
+    if report.get("test_split_accessed") is not True:
+        errors.append("V3 safety final report does not record test access")
+    if report.get("benchmark_complete") is not True:
+        errors.append("V3 safety ten-strategy benchmark is incomplete")
+    experiment = report.get("experiment", {})
+    expected_strategies = [f"{algorithm}+safety_v3" for algorithm in PORT_ALGORITHMS]
+    if experiment.get("algorithms") != list(PORT_ALGORITHMS):
+        errors.append("V3 safety base algorithm inventory changed")
+    if experiment.get("strategy_inventory") != expected_strategies:
+        errors.append("V3 additive safety strategy inventory is incomplete")
+    if experiment.get("base_strategy_count") != 10 or experiment.get(
+        "additive_strategy_count"
+    ) != 10:
+        errors.append("V3 must preserve ten base and add ten supervised strategies")
+    if report.get("live_control_authorized") is not False:
+        errors.append("V3 must remain unauthorized for live control")
+    if report.get("deployment_decision") != "offline_research_only_fail_closed_for_live_control":
+        errors.append("V3 deployment boundary changed")
+    evidence = report.get("evidence_sha256", {})
+    for relative, expected_hash in evidence.items():
+        path = ROOT / relative
+        if not path.is_file() or _sha256(path) != expected_hash:
+            errors.append(f"V3 safety evidence changed: {relative}")
+    if prepared.get("evidence_sha256") != evidence:
+        errors.append("V3 prepared/final evidence inventories differ")
+    base_artifacts = report.get("base_artifacts", [])
+    if [item.get("algorithm") for item in base_artifacts] != list(PORT_ALGORITHMS):
+        errors.append("V3 base policy preservation inventory is incomplete")
+    for artifact in base_artifacts:
+        checkpoint = ROOT / str(artifact.get("checkpoint", ""))
+        if not checkpoint.is_file() or _sha256(checkpoint) != artifact.get(
+            "checkpoint_sha256"
+        ):
+            errors.append(f"V3 base checkpoint changed: {artifact.get('algorithm')}")
+        model_value = artifact.get("model")
+        if model_value:
+            model = ROOT / str(model_value)
+            if not model.is_file() or _sha256(model) != artifact.get("model_sha256"):
+                errors.append(f"V3 base model changed: {artifact.get('algorithm')}")
+    test_results = report.get("test_results", [])
+    if [item.get("algorithm") for item in test_results] != list(PORT_ALGORITHMS):
+        errors.append("V3 test result inventory is incomplete")
+    for result in test_results:
+        trajectory = ROOT / str(result.get("trajectory", ""))
+        if not trajectory.is_file() or _sha256(trajectory) != result.get(
+            "trajectory_sha256"
+        ):
+            errors.append(f"V3 trajectory hash failed: {result.get('algorithm')}")
+        else:
+            payload = _load_json(trajectory)
+            expected_format = "ship_port_policy_test_safety_v3"
+            if payload.get("format") != expected_format:
+                errors.append(f"V3 trajectory format failed: {result.get('algorithm')}")
+            if payload.get("port_contract", {}).get("deployment_authority") is not False:
+                errors.append(f"V3 trajectory authority failed: {result.get('algorithm')}")
+
+
+def _verify_safety_utility_audit_v3(errors: list[str]) -> None:
+    audit = _load_json(SAFETY_UTILITY_AUDIT)
+    if audit.get("schema_version") != "ship_port_safety_utility_audit_v3":
+        errors.append("V3 utility-aware safety audit schema changed")
+    methods = audit.get("methods", [])
+    if [item.get("algorithm") for item in methods] != list(PORT_ALGORITHMS):
+        errors.append("V3 utility-aware safety audit strategy inventory is incomplete")
+    if audit.get("live_control_authorized") is not False:
+        errors.append("V3 utility-aware audit must not authorize live control")
+    expected_decision = (
+        "offline_research_candidate"
+        if bool(audit.get("passed", False))
+        else "rejected_fail_closed"
+    )
+    if audit.get("deployment_decision") != expected_decision:
+        errors.append("V3 utility-aware admission decision is inconsistent")
+    expected_sources = {
+        "reports/port_ops_benchmark_v2.json": _sha256(PORT_REPORT),
+        "reports/safety_supervisor_benchmark_v3.json": _sha256(SAFETY_REPORT),
+    }
+    if audit.get("source_reports") != expected_sources:
+        errors.append("V3 utility-aware audit source hashes changed")
+
+
+def _verify_maritime_assurance_v1(errors: list[str]) -> None:
+    report = _load_json(MARITIME_ASSURANCE)
+    if report.get("schema_version") != "maritime_assurance_report_v1":
+        errors.append("maritime assurance schema changed")
+    if report.get("overall", {}).get("software_assurance_passed") is not True:
+        errors.append("maritime software assurance is not PASS")
+    if report.get("overall", {}).get("production_authority") is not False:
+        errors.append("maritime assurance must not grant production authority")
+    claims = report.get("claim_matrix", {})
+    required_true = (
+        "three_dof_software_model_verified",
+        "three_dof_rl_environment_connected",
+        "colreg_scenario_regression_verified",
+        "software_hil_loopback_verified",
+        "sea_trial_protocol_and_refusal_gate_verified",
+    )
+    required_false = (
+        "named_vessel_dynamics_calibrated",
+        "colreg_certified",
+        "physical_hil_verified",
+        "real_vessel_sea_trial_completed",
+    )
+    for name in required_true:
+        if claims.get(name) is not True:
+            errors.append(f"maritime assurance claim must be true: {name}")
+    for name in required_false:
+        if claims.get(name) is not False:
+            errors.append(f"maritime external-evidence boundary changed: {name}")
+    for relative, expected_hash in report.get("inputs_sha256", {}).items():
+        path = ROOT / str(relative)
+        if not path.is_file() or _sha256(path) != expected_hash:
+            errors.append(f"maritime assurance input changed: {relative}")
+    if report.get("dynamics", {}).get("passed") is not True:
+        errors.append("3-DOF dynamics acceptance is not PASS")
+    if report.get("connected_environment", {}).get("passed") is not True:
+        errors.append("3-DOF/COLREG RL environment connection is not PASS")
+    if report.get("colreg", {}).get("passed") is not True:
+        errors.append("COLREG scenario regression is not PASS")
+    if report.get("hil", {}).get("passed") is not True:
+        errors.append("HIL software loopback is not PASS")
+    if report.get("sea_trial", {}).get("evidence_completeness_refusal_gate_passed") is not True:
+        errors.append("sea-trial evidence-completeness refusal gate is not PASS")
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -316,6 +483,11 @@ def main() -> int:
         PORT_CONTRACT_REPORT,
         PORT_PREPARED,
         PORT_REPORT,
+        SAFETY_PREPARED,
+        SAFETY_REPORT,
+        SAFETY_UTILITY_AUDIT,
+        RELIABILITY_CURRENT,
+        MARITIME_ASSURANCE,
     ):
         if not path.is_file():
             errors.append(f"missing benchmark evidence: {path.relative_to(ROOT)}")
@@ -323,14 +495,31 @@ def main() -> int:
         _verify_hourly_and_splits(errors)
         _verify_report(errors)
         _verify_port_ops_v2(errors)
-        reliability = _load_json(
-            ROOT / "reports/simulator_reliability_audit_v1.json"
-        )
+        _verify_safety_supervisor_v3(errors)
+        _verify_safety_utility_audit_v3(errors)
+        _verify_maritime_assurance_v1(errors)
+        reliability = _load_json(RELIABILITY_CURRENT)
         ui_navigation = _load_json(
             ROOT / "reports/godot_ui_navigation_smoke_v1.json"
         )
+        safety_ui = _load_json(
+            ROOT / "reports/godot_safety_strategy_smoke_v3.json"
+        )
+        godot_v3 = _load_json(ROOT / "reports/godot_acceptance_v3.json")
         if ui_navigation.get("passed") is not True:
             errors.append("Godot UI/navigation smoke is not PASS")
+        if safety_ui.get("passed") is not True:
+            errors.append("Godot Safety V3 strategy smoke is not PASS")
+        if godot_v3.get("passed") is not True:
+            errors.append("Godot V3 acceptance is not PASS")
+        if reliability.get("schema_version") != "simulator_reliability_audit_v3":
+            errors.append("current simulator reliability audit is not V3")
+        if reliability.get("errors") != []:
+            errors.append("current simulator reliability audit records errors")
+        if reliability.get("godot_runtime_acceptance", {}).get(
+            "receipt_source_hash_matches"
+        ) is not True:
+            errors.append("current simulator reliability audit is not bound to Godot V3")
         if reliability.get("status") != "PASS":
             errors.append("simulator reliability audit is not PASS")
         if (

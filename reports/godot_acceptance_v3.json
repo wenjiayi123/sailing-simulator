@@ -1,0 +1,42 @@
+{
+  "schema_version": "godot_runtime_acceptance_v1",
+  "generated_at": "2026-08-20T16:26:03+00:00",
+  "project": "AI autonomous-vessel navigation simulator",
+  "godot_version": "4.7.1.stable.official.a13da4feb",
+  "source_inventory": {
+    "file_count": 38,
+    "tree_sha256": "e642c14d72cfd5f3479c75c4f2e922675e552a9e20a53e6dcf46aa4ea93435fb",
+    "entrypoint_sha256": "80fadf3b4a4d8d9aa07cbb38b9c2d55d3ba0019a4b6a55e9cad265008af65ac0"
+  },
+  "checks": {
+    "parser_check": {
+      "arguments": [
+        "--path",
+        ".",
+        "--check-only",
+        "--quit"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 13.295,
+      "output": "Godot Engine v4.7.1.stable.official.a13da4feb - https://godotengine.org\nOpenGL API 4.1 ATI-5.1.35 - Compatibility - Using Device: ATI Technologies Inc. - AMD Radeon Pro 560X OpenGL Engine",
+      "passed": true
+    },
+    "headless_start_8_frames": {
+      "arguments": [
+        "--headless",
+        "--path",
+        ".",
+        "--quit-after",
+        "8"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 7.568,
+      "output": "Godot Engine v4.7.1.stable.official.a13da4feb - https://godotengine.org",
+      "passed": true
+    }
+  },
+  "passed_checks": 2,
+  "total_checks": 2,
+  "passed": true,
+  "boundary": "Parser and eight-frame headless startup acceptance; this is not an FPS, long-duration stability, hardware-in-the-loop, or sea-trial result."
+}

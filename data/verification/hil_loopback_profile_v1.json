@@ -1,0 +1,22 @@
+{
+  "schema_version": "hil_loopback_profile_v1",
+  "profile_id": "sailing_simulator_hil_loopback_v1",
+  "transport": ["UDP JSON with SHA-256", "NMEA 0183 proprietary telemetry sentence"],
+  "cycle_period_ms": 50,
+  "cycles": 160,
+  "maximum_frame_age_ms": 120,
+  "watchdog_timeout_ms": 150,
+  "throttle_limit": 0.8,
+  "rudder_limit": 0.7,
+  "maximum_throttle_slew_per_s": 0.8,
+  "maximum_rudder_slew_per_s": 1.2,
+  "production_authority": false,
+  "required_physical_extensions": [
+    "target controller and real-time operating system",
+    "GNSS/INS, AIS, radar or approved sensor interfaces",
+    "steering and propulsion I/O or certified plant emulator",
+    "independent emergency stop and manual-priority interlock",
+    "PTP/NTP clock trace and worst-case execution-time evidence",
+    "class/authority-witnessed failure and recovery campaign"
+  ]
+}

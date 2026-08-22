@@ -4,6 +4,7 @@ import unittest
 
 import numpy as np
 
+from tools.ship_rl.environment import DISCRETE_ACTIONS
 from tools.ship_rl.port_contract import validate_port_dataset
 from tools.ship_rl.port_ops_environment import (
     PORT_OPS_OBSERVATION_SIZE,
@@ -14,6 +15,10 @@ from tools.ship_rl.port_ops_trainer import (
     CONTROL_ALGORITHMS,
     RL_ALGORITHMS,
     _load_policy,
+)
+from tools.ship_rl.safety_supervisor import (
+    ModelPredictiveSafetySupervisor,
+    SafetySupervisorConfig,
 )
 
 
@@ -179,6 +184,69 @@ def _config() -> dict:
 
 
 class PortOperationsContractTests(unittest.TestCase):
+
+    def test_safety_supervisor_passes_through_clear_low_risk_action(self) -> None:
+        dataset = _dataset()
+        dataset["splits"]["test"][0]["dynamic_obstacles"] = []
+        env = PortOpsNavigationEnv(
+            _config(), dataset, split="test", discrete_actions=False,
+            max_steps=80, seed=17, task_index=0, render_mode=None,
+        )
+        env.reset(options={"task_index": 0})
+        supervisor = ModelPredictiveSafetySupervisor(
+            SafetySupervisorConfig(trigger_clearance_meters=40.0)
+        )
+        decision = supervisor.project(env, np.asarray([0.25, 0.0], dtype=np.float32))
+        self.assertFalse(decision.intervened)
+        self.assertTrue(decision.feasible)
+        self.assertEqual(decision.reason, "pass_through")
+
+    def test_safety_supervisor_intervenes_on_immediate_collision_course(self) -> None:
+        dataset = _dataset()
+        task = dataset["splits"]["test"][0]
+        task["dynamic_obstacles"] = []
+        task["obstacles"] = [
+            {
+                "name": "blocking_buoy",
+                "kind": "buoy",
+                "shape": "circle",
+                "x": 0.0,
+                "z": 45.0,
+                "radius": 6.0,
+            }
+        ]
+        env = PortOpsNavigationEnv(
+            _config(), dataset, split="test", discrete_actions=False,
+            max_steps=80, seed=19, task_index=0, render_mode=None,
+        )
+        env.reset(options={"task_index": 0})
+        env.state[3] = 5.0
+        supervisor = ModelPredictiveSafetySupervisor(
+            SafetySupervisorConfig(
+                trigger_clearance_meters=80.0,
+                target_clearance_meters=36.0,
+                hard_clearance_meters=2.0,
+                horizon_steps=12,
+            )
+        )
+        decision = supervisor.project(env, np.asarray([1.0, 0.0], dtype=np.float32))
+        self.assertTrue(decision.intervened)
+        self.assertLess(decision.applied_action[0], 1.0)
+        self.assertGreater(decision.candidates_evaluated, 1)
+        self.assertFalse(decision.predicted_collision)
+
+    def test_safety_supervisor_maps_projected_action_back_to_dqn_space(self) -> None:
+        env = PortOpsNavigationEnv(
+            _config(), _dataset(), split="test", discrete_actions=True,
+            max_steps=80, seed=23, task_index=0, render_mode=None,
+        )
+        env.reset(options={"task_index": 0})
+        supervisor = ModelPredictiveSafetySupervisor()
+        decision = supervisor.project(env, 8)
+        action = supervisor.environment_action(env, decision)
+        self.assertIsInstance(action, int)
+        self.assertGreaterEqual(action, 0)
+        self.assertLess(action, len(DISCRETE_ACTIONS))
     def test_real_port_contract_is_research_ready_and_live_fail_closed(self) -> None:
         report = validate_port_dataset(_dataset())
         self.assertEqual(report["errors"], [])

@@ -1,0 +1,39 @@
+{
+  "schema_version": "sea_trial_protocol_v1",
+  "protocol_id": "autonomous_navigation_progressive_sea_trial_v1",
+  "principle": "shore simulation -> software loopback -> physical HIL -> dockside -> shadow mode -> supervised low-speed trial -> expanded envelope",
+  "required_phases": [
+    {"id": "ST-00", "name": "document and risk review", "actuation_allowed": false},
+    {"id": "ST-01", "name": "dockside sensor and actuator checks", "actuation_allowed": true},
+    {"id": "ST-02", "name": "shadow-mode voyage", "actuation_allowed": false},
+    {"id": "ST-03", "name": "supervised low-speed protected-water trial", "actuation_allowed": true},
+    {"id": "ST-04", "name": "bounded encounter and degraded-mode trials", "actuation_allowed": true}
+  ],
+  "abort_conditions": [
+    "loss of independent position or heading integrity",
+    "watchdog timeout or command/feedback disagreement",
+    "manual override or emergency stop request",
+    "departure from approved geofence, speed or weather envelope",
+    "CPA/TCPA safety threshold breach",
+    "unplanned traffic, authority instruction or watchkeeper concern"
+  ],
+  "acceptance_limits": {
+    "minimum_duration_s": 300,
+    "minimum_gnss_valid_ratio": 0.995,
+    "maximum_p95_cross_track_error_m": 15.0,
+    "minimum_dcpa_m": 100.0,
+    "maximum_p95_command_latency_ms": 100.0
+  },
+  "mandatory_evidence": [
+    "named vessel and loading condition",
+    "trial area and authority or port permission",
+    "master/operator and independent witness",
+    "sensor and actuator calibration reports",
+    "approved risk assessment and abort plan",
+    "physical HIL report",
+    "immutable raw telemetry log and SHA-256",
+    "manual override and emergency stop demonstrations",
+    "signed trial record"
+  ],
+  "production_authority": false
+}

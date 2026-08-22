@@ -136,7 +136,7 @@ func _build_interface() -> void:
 	data_column.add_child(_action_button("航线规划 / 风险决策 / 海况", COLOR_AMBER, _open_navigation))
 	data_column.add_child(_action_button("AIS 船队态势", COLOR_CYAN, _open_ais))
 
-	var matrix_column := _column("十算法基准矩阵", "7 RL + 3 CONTROL BASELINES", COLOR_GREEN)
+	var matrix_column := _column("十算法基准矩阵", "10 BASE POLICIES + ADDITIVE SAFETY V3", COLOR_GREEN)
 	matrix_column.custom_minimum_size.x = 500.0
 	matrix_column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	columns.add_child(matrix_column)
@@ -144,7 +144,7 @@ func _build_interface() -> void:
 	_matrix_box.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_matrix_box.add_theme_constant_override("separation", 7)
 	matrix_column.add_child(_matrix_box)
-	matrix_column.add_child(_small_note("每个模型保留 checkpoint、模型 SHA-256、训练日志、独立验证与测试轨迹。训练阶段不渲染；测试完成后才回放。"))
+	matrix_column.add_child(_small_note("原十策略与失败记录保留；Safety V3 仅作为并列组合策略。每个产物保留 checkpoint、SHA-256、独立验证与测试轨迹。"))
 	matrix_column.add_child(_action_button("打开训练结果复盘", COLOR_GREEN, _open_review))
 
 	var xiaoyi_column := _column("小懿训练顾问", "XIAOYI SYSTEM ADVISOR", COLOR_AMBER)
@@ -198,6 +198,7 @@ func _build_header() -> Control:
 	header.add_child(pills)
 	pills.add_child(_pill("v1 已冻结", COLOR_GREEN))
 	pills.add_child(_pill("v2 AIS + ENC", COLOR_CYAN))
+	pills.add_child(_pill("v3 安全监督", COLOR_GREEN))
 	pills.add_child(_pill("实船控制未授权", COLOR_AMBER))
 	var close_button := Button.new()
 	close_button.text = "关闭  M"
@@ -285,6 +286,8 @@ func _refresh_evidence() -> void:
 	var v1 := _read_json("res://reports/navigation_benchmark_v1.json")
 	var v2_contract := _read_json("res://reports/port_dataset_contract_v2.json")
 	var v2 := _read_json("res://reports/port_ops_benchmark_v2.json")
+	var v3 := _read_json("res://reports/safety_supervisor_benchmark_v3.json")
+	var v3_utility := _read_json("res://reports/safety_supervisor_utility_audit_v3.json")
 	var v1_data: Dictionary = v1.get("data", {})
 	var split_sizes: Dictionary = v1_data.get("split_sizes", {})
 	var contract_status := "构建中"
@@ -325,7 +328,8 @@ func _refresh_evidence() -> void:
 			str(int(v2_splits.get("validation", 0))),
 			str(int(v2_splits.get("test", 0)))
 		]
-		+ "数据契约：%s · 10/10研究因素覆盖\n\n" % contract_status
+		+ "数据契约：%s · 10/10研究因素覆盖\n" % contract_status
+		+ "策略库：10 原策略 + 10 Safety-V3 组合策略\n\n"
 		+ "[color=#ffbd40]部署边界[/color]\n"
 		+ "研究训练可用；实船控制默认 fail-closed。\n"
 		+ "换港需通过数据契约与当地主管机关校核。"
@@ -335,21 +339,36 @@ func _refresh_evidence() -> void:
 	var artifacts: Array = v1.get("artifacts", [])
 	for algorithm in ["ppo", "sac", "td3", "dqn", "a2c", "ddpg", "trpo", "los_pid", "lqr", "mpc"]:
 		var artifact := _find_artifact(artifacts, algorithm)
-		_matrix_box.add_child(_algorithm_row(algorithm, artifact, v2))
+		_matrix_box.add_child(_algorithm_row(algorithm, artifact, v2, v3))
 	var v2_state := "待构建/训练"
 	if not v2.is_empty():
 		v2_state = "独立测试报告已生成"
+	var v3_state := "验证中；原 V2 产物不变"
+	if not v3.is_empty():
+		var admission_source := v3_utility if not v3_utility.is_empty() else v3
+		var admitted: Array = admission_source.get("admitted_offline_strategies", [])
+		var passed := bool(admission_source.get("passed", v3.get("safety_effectiveness_gate", false)))
+		v3_state = "%s · 离线准入 %d/10" % [
+			"PASS" if passed else "FAIL-CLOSED",
+			admitted.size()
+		]
 	_advisor_label.text = (
 		"[b]当前建议[/b]\n"
 		+ "v1 用于证明完整训练与可复核证据链；v2 用于证明真实港口数据适配能力。\n\n"
 		+ "[b]算法选择[/b]\n"
 		+ "v2 覆盖 PPO / SAC / TD3 / DQN / A2C / DDPG / TRPO，与 LOS-PID / LQR / MPC；不用单一“最好分数”代替安全门槛。\n\n"
 		+ "[b]v2 状态[/b]\n%s\n\n" % v2_state
+		+ "[b]Safety V3 状态[/b]\n%s\n\n" % v3_state
 		+ "[color=#ffbd40]小懿不会把历史 AIS 回放描述成实时调度或实船控制。[/color]"
 	)
 
 
-func _algorithm_row(algorithm: String, artifact: Dictionary, v2_report: Dictionary) -> Control:
+func _algorithm_row(
+	algorithm: String,
+	artifact: Dictionary,
+	v2_report: Dictionary,
+	v3_report: Dictionary
+) -> Control:
 	var panel := PanelContainer.new()
 	var style := StyleBoxFlat.new()
 	style.bg_color = COLOR_ROW
@@ -383,8 +402,10 @@ func _algorithm_row(algorithm: String, artifact: Dictionary, v2_report: Dictiona
 		details.add_theme_color_override("font_color", COLOR_TEXT)
 	row.add_child(details)
 	var badge := Label.new()
-	badge.text = "v2 已测" if _v2_has_algorithm(v2_report, algorithm) else "v2 待测"
-	badge.add_theme_color_override("font_color", COLOR_GREEN if _v2_has_algorithm(v2_report, algorithm) else COLOR_MUTED)
+	var has_v2 := _v2_has_algorithm(v2_report, algorithm)
+	var has_v3 := _v3_has_algorithm(v3_report, algorithm)
+	badge.text = "V2✓ V3✓" if has_v3 else ("V2✓ V3…" if has_v2 else "V2… V3…")
+	badge.add_theme_color_override("font_color", COLOR_GREEN if has_v3 else (COLOR_AMBER if has_v2 else COLOR_MUTED))
 	row.add_child(badge)
 	return panel
 
@@ -399,6 +420,11 @@ func _find_artifact(artifacts: Array, algorithm: String) -> Dictionary:
 func _v2_has_algorithm(report: Dictionary, algorithm: String) -> bool:
 	var artifacts: Array = report.get("artifacts", [])
 	return not _find_artifact(artifacts, algorithm).is_empty()
+
+
+func _v3_has_algorithm(report: Dictionary, algorithm: String) -> bool:
+	var results: Array = report.get("test_results", [])
+	return not _find_artifact(results, algorithm).is_empty()
 
 
 func _format_integer(value: int) -> String:

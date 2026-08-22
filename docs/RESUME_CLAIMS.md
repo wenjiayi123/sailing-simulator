@@ -54,11 +54,11 @@ make benchmark-deep-verify
 make godot-acceptance GODOT=/path/to/Godot
 ```
 
-- `reports/simulator_reliability_audit_v1.json`：场景覆盖、执行规模、五方法指标、回放一致性、双门禁及声明边界。
+- `reports/simulator_reliability_audit_v3.json`：绑定当前 Godot 源码的场景覆盖、执行规模、五方法指标、回放一致性、双门禁及声明边界；V1 历史审计原样保留。
 - `reports/navigation_benchmark_v1.json`：软件版本、数据切分、训练摘要、逐方法聚合指标和证据哈希。
 - `reports/artifacts/navigation_benchmark_v1/*/*_test_episodes.csv`：150 条逐场测试结果。
 - `reports/artifacts/navigation_benchmark_v1/*/checkpoint.json`：算法、训练步数、数据/实验指纹和模型路径。
-- `reports/godot_acceptance_v1.json`：Godot 版本、解析/启动结果及源文件树指纹。
+- `reports/godot_acceptance_v3.json`：当前 Godot 版本、解析/启动结果及源文件树指纹；V1 回执作为历史快照保留。
 - `data/public/*.provenance.json`：公开输入请求 URL、许可、抓取时间和 CSV SHA-256。
 - `reports/port_ops_benchmark_v2.json`：45 维、十方法、409 个真实 AIS 航迹任务的覆盖性运行报告。
 - `reports/port_dataset_contract_v2.json`：现实因素覆盖、数据量、字段完整率与实船 fail-closed 状态。

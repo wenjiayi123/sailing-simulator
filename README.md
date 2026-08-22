@@ -16,7 +16,7 @@
   <a href="https://github.com/wenjiayi123/sailing-simulator/actions/workflows/rl-tests.yml"><img alt="RL tests" src="https://github.com/wenjiayi123/sailing-simulator/actions/workflows/rl-tests.yml/badge.svg" /></a>
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-Apache--2.0-22c55e.svg" /></a>
   <img alt="Godot 4.7" src="https://img.shields.io/badge/Godot-4.7-478cbf?logo=godotengine&logoColor=white" />
-  <img alt="Python" src="https://img.shields.io/badge/Python-3.12-3776ab?logo=python&logoColor=white" />
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.9%2B-3776ab?logo=python&logoColor=white" />
   <img alt="Ten methods" src="https://img.shields.io/badge/v2%20methods-7%20RL%20%2B%203%20control-7957d5" />
   <img alt="Admission" src="https://img.shields.io/badge/safety%20admission-fail%20closed-e87945" />
 </p>
@@ -36,7 +36,7 @@
   <a href="#固定公开海况可靠性基准--public-forcing-reliability-benchmark">可靠性基准</a> ·
   <a href="#训练与渲染边界--training--rendering-boundary">训练边界</a> ·
   <a href="#快速开始--quick-start">快速开始</a> ·
-  <a href="reports/simulator_reliability_audit_v1.md">证据报告</a>
+  <a href="reports/simulator_reliability_audit_v3.md">证据报告</a>
 </p>
 
 ---
@@ -112,7 +112,7 @@ The v2 benchmark adds a `ship_port_dataset_v3` contract and a 45-dimensional por
 | LQR | 控制 | 连续油门 + 舵角 | 三状态离散 LQR / DARE |
 | MPC | 控制 | 连续油门 + 舵角 | 8 步滚动时域低阶运动学优化 |
 
-45 维观测覆盖相对目标与航向、速度/油门/舵角、障碍扇区、闭合速度、TCPA/DCPA、风浪流、边界/XTE，以及能见度、潮位、水深、UKC、航道、速度余量、船型尺度、会遇类型、让路责任和交通密度。目标函数同时记录推进、航向、经济航速、碰撞、搁浅、净距、航道、超速与保守 COLREG 会遇代理。完整字段、适配步骤和未上线因素见 [港口替换与上线门禁](docs/PORT_ADAPTER_GUIDE.md)。
+45 维观测覆盖相对目标与航向、速度/油门/舵角、障碍扇区、闭合速度、TCPA/DCPA、风浪流、边界/XTE，以及能见度、潮位、水深、UKC、航道、速度余量、船型尺度、会遇类型、让路责任和交通密度。目标函数同时记录推进、航向、经济航速、碰撞、搁浅、净距、航道、超速与保守 COLREG 会遇代理。逐维定义、二维油门/舵令及当前 V2 奖励公式见 [观测、动作与奖励规格](docs/OBSERVATION_ACTION_REWARD_SPEC.md)；适配步骤和未上线因素见 [港口替换与上线门禁](docs/PORT_ADAPTER_GUIDE.md)。
 
 <p align="center">
   <img src="docs/screenshots/05-algorithm-environment-settings.png" alt="算法优化器、采样器、探索策略与船舶环境安全参数设置" width="100%" />
@@ -123,6 +123,20 @@ The v2 benchmark adds a `ship_port_dataset_v3` contract and a 45-dimensional por
 > v2 的 2,000 步/算法运行是“公开数据与全算法执行覆盖”证据，不宣称七个 RL 已收敛。历史 AIS 不是实时交通，ENC Direct 不是船载认证海图；VTS、引航/拖轮/泊位、实时传感、船型标定和认证控制链未验证时，`live_control_ready=false`。
 
 十方法已完整完成 **720 个 validation + 1,300 个 sealed test rollout**，覆盖完整性为 **PASS**，安全准入为 **FAIL-CLOSED**。LOS-PID/LQR/MPC 在 130 场 test 的无碰撞到达率分别为 **86.9% / 70.0% / 73.8%**，但碰撞场景率仍为 **13.1% / 18.5% / 16.9%**，因此不以较高到达率替代安全结论。逐方法完整指标、哈希和边界见 [v2 十方法报告](reports/port_ops_benchmark_v2.md) 与 [机器可读报告](reports/port_ops_benchmark_v2.json)。
+
+## 运行时安全监督 V3 / Runtime Safety Supervisor V3
+
+Safety V3 不删除、不重训、不覆盖 V2 原有十策略；它把原策略提出的二维油门/舵令与少量备选动作向前预测，必要时投影为较低风险指令。配置在 72 场 validation 冻结后才访问 130 场 test，共完成 **720 validation + 1,300 test** 个监督后 rollout。
+
+| 组合结果 | V2 原策略宏平均 | Safety V3 宏平均 | 结论 |
+|---|---:|---:|---|
+| 碰撞场景率 | 18.69% | 15.46% | 改善 |
+| 搁浅场景率 | 6.15% | 6.23% | 略微退化 |
+| 干预步占比 | — | 55.7%–86.6% | 过高 |
+| fail-closed 回合占比 | — | 11.5%–20.0% | 过高 |
+| 离线准入 | — | **0/10** | **REJECT / FAIL-CLOSED** |
+
+监督器降低了宏平均碰撞，但它过度干预，并将 LOS-PID/LQR/MPC 的无碰撞到达率从 86.9%/70.0%/73.8% 降为 70.0%/37.7%/62.3%。因此系统不以“少撞”单一指标给予准入，而是通过效用保真审计将当前 V3 拒绝。完整证据见 [Safety V3 基准](reports/safety_supervisor_benchmark_v3.md) 与 [效用保真准入审计](reports/safety_supervisor_utility_audit_v3.md)。这些结果不是 COLREG 认证或实船控制授权。
 
 ## v1 五种冻结基线 / Frozen v1 five-method benchmark
 
@@ -163,9 +177,9 @@ The benchmark evaluates simulator completeness and reliability; it does not pres
 - <strong>证据边界 / Evidence boundary：</strong>海况来自公开数值产品，航线、障碍、船舶动力学和动作响应来自项目仿真设定；结果不是实船海试、避碰认证或 COLREGs 合规结论。<br>
   <strong>EN:</strong> Environmental forcing comes from public numerical products, whereas routes, obstacles, vessel dynamics, and action response come from project simulation settings. The result is not a sea trial, collision-avoidance certification, or COLREGs compliance finding.
 
-完整方法、逐算法结果、哈希和边界见 [模拟器可靠性审计](reports/simulator_reliability_audit_v1.md)、[机器可读审计](reports/simulator_reliability_audit_v1.json) 与 [五方法原始基准](reports/navigation_benchmark_v1.json)。
+完整方法、逐算法结果、哈希和边界见绑定当前 Godot 源码的 [V3 模拟器可靠性审计](reports/simulator_reliability_audit_v3.md)、[机器可读审计](reports/simulator_reliability_audit_v3.json) 与 [五方法原始基准](reports/navigation_benchmark_v1.json)。历史 [V1 审计](reports/simulator_reliability_audit_v1.md) 原样保留，不因当前源码演进而覆盖。
 
-See the [simulator reliability audit](reports/simulator_reliability_audit_v1.md), [machine-readable audit](reports/simulator_reliability_audit_v1.json), and [raw five-method benchmark](reports/navigation_benchmark_v1.json) for the complete protocol, per-method results, hashes, and evidence boundaries.
+See the current-source-bound [V3 simulator reliability audit](reports/simulator_reliability_audit_v3.md), [machine-readable audit](reports/simulator_reliability_audit_v3.json), and [raw five-method benchmark](reports/navigation_benchmark_v1.json) for the complete protocol, per-method results, hashes, and evidence boundaries. The historical [V1 audit](reports/simulator_reliability_audit_v1.md) remains unchanged.
 
 ## 训练与渲染边界 / Training & rendering boundary
 
@@ -188,6 +202,14 @@ test split  -> Python 确定性 rollout / deterministic rollout
   *Failures, collisions, timeouts, and route errors are never rewritten by the presentation layer.*
 - Godot 回放使用测试 rollout 记录的油门/舵角序列，而不是内置演示路线。<br>
   *Godot replay consumes the throttle/rudder sequence captured by the test rollout, not a built-in demonstration route.*
+
+## 动力学、COLREG、HIL 与海试保障 / Maritime assurance
+
+在不覆盖历史 V1/V2/V3 checkpoint、指标和失败记录的前提下，项目新增一套独立的 V1 航海保障链：可标定三自由度 surge–sway–yaw 动力学（附加质量、非线性阻尼、桨/舵执行器与 RK4），并已接入包含 sway/yaw/实舵角的下一版本 48 维 RL 环境；带 Rule 5/6/7/8/13/14/15/16/17/19 追踪的正反 COLREG 场景；UDP/NMEA HIL 软件回环与故障注入；以及带原始日志哈希和外部见证要求的海试证据完整性拒绝门禁。新环境必须重新训练和冻结，旧模型不会被改名冒充兼容。当前软件验收结果见 [中英双语报告](reports/maritime_assurance_v1.md) 和 [机器可读报告](reports/maritime_assurance_v1.json)，完整接口及替换指定船舶参数的方法见 [航海保障指南](docs/MARITIME_ASSURANCE_GUIDE.md)。<br>
+Without overwriting historic V1/V2/V3 checkpoints, metrics, or failures, the project now includes an independent maritime-assurance chain: a calibratable 3-DOF surge–sway–yaw plant with added mass, nonlinear damping, propeller/rudder actuators and RK4, connected to a next-version 48-D RL environment exposing sway, yaw rate, and actual rudder angle; positive/negative COLREG scenarios with Rule 5/6/7/8/13/14/15/16/17/19 traces; UDP/NMEA HIL software loopback and fault injection; and a sea-trial refusal gate requiring raw-log hashes and external evidence. The new contract requires new training and sealing; historic models are never relabelled as compatible. See the [bilingual report](reports/maritime_assurance_v1.md), [machine-readable report](reports/maritime_assurance_v1.json), and [assurance guide](docs/MARITIME_ASSURANCE_GUIDE.md).
+
+> 当前明确状态：`named_vessel_dynamics_calibrated=false`、`colreg_certified=false`、`physical_hil_verified=false`、`real_vessel_sea_trial_completed=false`、`production_authority=false`。软件层完善不冒充指定船舶标定、正式法规认证、真实硬件或实船证据。<br>
+> Explicit current status: `named_vessel_dynamics_calibrated=false`, `colreg_certified=false`, `physical_hil_verified=false`, `real_vessel_sea_trial_completed=false`, and `production_authority=false`. Software assurance is never represented as named-vessel calibration, formal certification, physical hardware, or real-vessel evidence.
 
 ## 快速开始 / Quick start
 
@@ -216,12 +238,15 @@ Run the verification gates:
 ```bash
 make test
 make benchmark-verify
+make port-benchmark-verify
+make safety-benchmark-verify
 make reliability-audit
 make release-check
+make research-release
 ```
 
 GitHub Actions 会在 push 和 pull request 上运行环境契约、split 隔离、LOS-PID 闭环、AIS 转换、公开数据完整性、实验哈希和报告一致性检查。贡献数据或算法前请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。<br>
-On every push and pull request, GitHub Actions verifies the environment contract, split isolation, LOS-PID loop, AIS conversion, public-data integrity, experiment hashes, and report consistency. Read [CONTRIBUTING.md](CONTRIBUTING.md) before contributing data or algorithms.
+On every push and pull request, GitHub Actions verifies the environment contract, split isolation, LOS-PID loop, AIS conversion, public-data integrity, experiment hashes, V3 safety-supervisor evidence, and report consistency. CodeQL, dependency review, OpenSSF Scorecard, and an SPDX SBOM provide additional supply-chain checks. Read [CONTRIBUTING.md](CONTRIBUTING.md) before contributing data or algorithms.
 
 打开 Godot：<br>
 Open the project in Godot:
@@ -296,7 +321,8 @@ Reproduce the pinned benchmark:
 .venv/bin/python tools/run_navigation_benchmark.py verify
 
 # 深度复算 / rerun 150 deterministic sealed-test rollouts across five methods
-.venv/bin/python tools/run_navigation_benchmark.py verify --deep
+# 复算只写临时目录，不覆盖冻结轨迹 / writes only to an isolated temporary directory
+make benchmark-deep-verify
 
 # v2 十方法报告与港口契约核验 / verify the v2 ten-method port benchmark
 make port-contract-verify
@@ -381,6 +407,10 @@ python3 tools/public_data_pipeline.py weather \
   *Ten-method real-port data coverage, sealed-test evaluation, and hash verification.*
 - `tools/run_simulator_reliability_audit.py`：场景覆盖、逐场指标、回放一致性、证据完整性和控制策略准入双门禁。<br>
   *Dual reliability/admission gate for coverage, per-scenario metrics, replay consistency, and evidence integrity.*
+- `tools/ship_assurance/`：三自由度动力学、COLREG 规则追踪、HIL 协议/故障注入和海试证据门禁。<br>
+  *3-DOF dynamics, COLREG rule tracing, HIL protocol/fault injection, and sea-trial evidence gating.*
+- `tools/run_maritime_assurance.py`：生成并确定性复核航海保障报告。<br>
+  *Generate and deterministically verify the maritime-assurance report.*
 - `tools/run_godot_acceptance.py`：Godot 版本、解析和短时 headless 启动验收，回执绑定脚本/场景源文件树。<br>
   *Godot version, parse, and short headless-start acceptance bound to the script/scene source tree.*
 - `tools/release_check.py`：数据、模型、轨迹、报告和开源边界门禁。<br>

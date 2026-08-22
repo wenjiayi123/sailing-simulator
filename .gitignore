@@ -8,6 +8,7 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 /output/
+/dist/
 /backups/
 /soft_copyright_materials/
 /soft_copyright_template_work/

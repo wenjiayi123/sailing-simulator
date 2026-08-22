@@ -1,0 +1,89 @@
+{
+  "boundary": "Godot dropdown inventory and frozen trajectory linkage; not live vessel authority.",
+  "checks": {
+    "additive_inventory_count": {
+      "detail": 21,
+      "passed": true
+    },
+    "base_artifacts_selectable": {
+      "detail": "10 checkpoint + test trajectories",
+      "passed": true
+    },
+    "base_inventory_preserved": {
+      "detail": [
+        "ppo",
+        "sac",
+        "td3",
+        "dqn",
+        "a2c",
+        "ddpg",
+        "trpo",
+        "los_pid",
+        "lqr",
+        "mpc"
+      ],
+      "passed": true
+    },
+    "base_selection_remains_available": {
+      "detail": "checkpoint 已就绪：点击“运行测试集并渲染”",
+      "passed": true
+    },
+    "main_scene_load": {
+      "detail": 0,
+      "passed": true
+    },
+    "personal_latest_slot_preserved": {
+      "detail": "PERSONAL-LATEST｜本次新增训练产物",
+      "passed": true
+    },
+    "recorded_incident_marker_present": {
+      "detail": "RecordedTestIncidentMarker",
+      "passed": true
+    },
+    "replay_controller_present": {
+      "detail": "ShipPolicyReplayController",
+      "passed": true
+    },
+    "rl_panel_present": {
+      "detail": "ShipRLControlPanel",
+      "passed": true
+    },
+    "safety_artifacts_selectable": {
+      "detail": "10 preserved checkpoints + V3 trajectories",
+      "passed": true
+    },
+    "safety_inventory_additive": {
+      "detail": [
+        "ppo",
+        "sac",
+        "td3",
+        "dqn",
+        "a2c",
+        "ddpg",
+        "trpo",
+        "los_pid",
+        "lqr",
+        "mpc"
+      ],
+      "passed": true
+    },
+    "safety_selection_maps_to_base_algorithm": {
+      "detail": "checkpoint 已就绪：点击“运行测试集并渲染”",
+      "passed": true
+    },
+    "safety_trajectory_loads_as_recorded_evidence": {
+      "detail": "res://reports/artifacts/safety_supervisor_v3/ppo/test_trajectory.json",
+      "passed": true
+    },
+    "strategy_dropdown_present": {
+      "detail": "OptionButton",
+      "passed": true
+    }
+  },
+  "errors": [],
+  "generated_at": "2026-08-21T04:54:56",
+  "passed": true,
+  "passed_checks": 14,
+  "schema_version": "godot_safety_strategy_smoke_v3",
+  "total_checks": 14
+}

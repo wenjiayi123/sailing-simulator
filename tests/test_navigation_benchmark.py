@@ -12,7 +12,7 @@ HOURLY = ROOT / "data/public/long_beach_open_meteo_2024_01_04_hourly.csv"
 PROVENANCE = ROOT / "data/public/long_beach_open_meteo_2024_01_04.provenance.json"
 DATASET = ROOT / "data/rl/long_beach_public_weather_benchmark_v1.json"
 REPORT = ROOT / "reports/navigation_benchmark_v1.json"
-RELIABILITY = ROOT / "reports/simulator_reliability_audit_v1.json"
+RELIABILITY = ROOT / "reports/simulator_reliability_audit_v3.json"
 ALGORITHMS = ["ppo", "sac", "td3", "dqn", "los_pid"]
 
 
@@ -97,6 +97,7 @@ class PublicNavigationBenchmarkTests(unittest.TestCase):
 
     def test_simulator_reliability_audit_preserves_metric_semantics(self) -> None:
         audit = json.loads(RELIABILITY.read_text(encoding="utf-8"))
+        self.assertEqual(audit["schema_version"], "simulator_reliability_audit_v3")
         self.assertEqual(audit["status"], "PASS")
         self.assertEqual(
             audit["scenario_coverage"]["complete_scenario_contracts"],

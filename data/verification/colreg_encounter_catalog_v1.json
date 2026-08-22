@@ -1,0 +1,75 @@
+{
+  "schema_version": "colreg_encounter_catalog_v1",
+  "safe_dcpa_m": 500.0,
+  "tcpa_horizon_s": 900.0,
+  "boundary": "Powered-vessel deterministic regression cases; not a complete legal or certification test suite.",
+  "scenarios": [
+    {
+      "id": "COLREG-14-HEAD-ON",
+      "own": {"vessel_id": "own", "east_m": 0, "north_m": 0, "heading_deg": 0, "speed_mps": 5},
+      "target": {"vessel_id": "target", "east_m": 0, "north_m": 1000, "heading_deg": 180, "speed_mps": 5},
+      "expected_encounter": "head_on",
+      "expected_role": "both_give_way",
+      "actions": [
+        {"id": "starboard-substantial", "course_change_deg": 20, "speed_ratio": 1.0, "expected_passed": true},
+        {"id": "port-alteration", "course_change_deg": -20, "speed_ratio": 1.0, "expected_passed": false}
+      ]
+    },
+    {
+      "id": "COLREG-15-CROSSING-STARBOARD",
+      "own": {"vessel_id": "own", "east_m": 0, "north_m": 0, "heading_deg": 0, "speed_mps": 5},
+      "target": {"vessel_id": "target", "east_m": 500, "north_m": 500, "heading_deg": 270, "speed_mps": 5},
+      "expected_encounter": "crossing_starboard",
+      "expected_role": "give_way",
+      "actions": [
+        {"id": "starboard-substantial", "course_change_deg": 20, "speed_ratio": 0.9, "expected_passed": true},
+        {"id": "maintain-unsafe", "course_change_deg": 0, "speed_ratio": 1.0, "expected_passed": false}
+      ]
+    },
+    {
+      "id": "COLREG-15-CROSSING-PORT",
+      "own": {"vessel_id": "own", "east_m": 0, "north_m": 0, "heading_deg": 0, "speed_mps": 5},
+      "target": {"vessel_id": "target", "east_m": -500, "north_m": 500, "heading_deg": 90, "speed_mps": 5},
+      "expected_encounter": "crossing_port",
+      "expected_role": "stand_on",
+      "actions": [
+        {"id": "maintain-course-speed", "course_change_deg": 0, "speed_ratio": 1.0, "expected_passed": true},
+        {"id": "unnecessary-large-change", "course_change_deg": 20, "speed_ratio": 1.0, "expected_passed": false}
+      ]
+    },
+    {
+      "id": "COLREG-13-OVERTAKING",
+      "own": {"vessel_id": "own", "east_m": 0, "north_m": 0, "heading_deg": 0, "speed_mps": 6},
+      "target": {"vessel_id": "target", "east_m": 0, "north_m": 500, "heading_deg": 0, "speed_mps": 3},
+      "expected_encounter": "overtaking",
+      "expected_role": "give_way",
+      "actions": [
+        {"id": "substantial-passing-change", "course_change_deg": 15, "speed_ratio": 0.9, "expected_passed": true},
+        {"id": "continue-closing", "course_change_deg": 0, "speed_ratio": 1.0, "expected_passed": false}
+      ]
+    },
+    {
+      "id": "COLREG-19-RESTRICTED-VISIBILITY",
+      "visibility_nm": 0.5,
+      "vessels_in_sight": false,
+      "own": {"vessel_id": "own", "east_m": 0, "north_m": 0, "heading_deg": 0, "speed_mps": 5},
+      "target": {"vessel_id": "target", "east_m": 100, "north_m": 600, "heading_deg": 180, "speed_mps": 4},
+      "expected_encounter": "restricted_visibility",
+      "expected_role": "safe_speed_and_avoidance",
+      "actions": [
+        {"id": "reduce-speed", "course_change_deg": 0, "speed_ratio": 0.6, "expected_passed": true},
+        {"id": "port-forward-of-beam", "course_change_deg": -20, "speed_ratio": 1.0, "expected_passed": false}
+      ]
+    },
+    {
+      "id": "COLREG-07-NO-CURRENT-RISK",
+      "own": {"vessel_id": "own", "east_m": 0, "north_m": 0, "heading_deg": 0, "speed_mps": 5},
+      "target": {"vessel_id": "target", "east_m": 800, "north_m": 500, "heading_deg": 0, "speed_mps": 5},
+      "expected_encounter": "no_risk",
+      "expected_role": "monitor",
+      "actions": [
+        {"id": "monitor", "course_change_deg": 0, "speed_ratio": 1.0, "expected_passed": true}
+      ]
+    }
+  ]
+}

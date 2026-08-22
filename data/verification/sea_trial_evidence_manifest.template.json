@@ -1,0 +1,19 @@
+{
+  "schema_version": "sea_trial_evidence_manifest_v1",
+  "execution_context": "simulation_or_real_vessel",
+  "raw_log_path": "/absolute/path/to/immutable_trial_telemetry.csv",
+  "raw_log_sha256": "replace_with_sha256",
+  "vessel_identifier": "replace_with_registered_or_project_vessel_identifier",
+  "trial_area": "replace_with_authorized_trial_area",
+  "authority_or_port_permission_reference": "replace_with_permission_reference",
+  "master_or_operator_name": "replace_with_responsible_operator",
+  "independent_witness_name": "replace_with_witness_name",
+  "independent_witness_organization": "replace_with_witness_organization",
+  "sensor_calibration_report_reference": "replace_with_sensor_calibration_reference",
+  "actuator_calibration_report_reference": "replace_with_actuator_calibration_reference",
+  "risk_assessment_reference": "replace_with_approved_risk_assessment_reference",
+  "signed_trial_record_reference": "replace_with_signed_record_reference",
+  "physical_hil_report_reference": "replace_with_physical_hil_report_reference",
+  "physical_hil_verified": false,
+  "declaration": "Completeness checks do not authenticate external documents. The operator and independent reviewer remain responsible for verifying permissions, identities, signatures, calibration and raw-log provenance."
+}

@@ -60,6 +60,9 @@ var _control_tick := 0
 
 var _avoidance_marker: Node3D
 var _avoidance_marker_label: Label3D
+var _incident_marker: Node3D
+var _incident_marker_label: Label3D
+var _recorded_incident_seen := false
 
 var _hud_layer: CanvasLayer
 var _hud_panel: PanelContainer
@@ -80,6 +83,7 @@ func _ready() -> void:
 	_resolve_sources()
 	_build_status_hud()
 	_build_avoidance_marker()
+	_build_incident_marker()
 	set_physics_process(true)
 	set_process_unhandled_input(true)
 
@@ -105,7 +109,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	_elapsed += delta
-	if String(_trajectory.get("playback_mode", "")) == "recorded_test_rollout":
+	if _is_recorded_rollout():
 		_process_recorded_test_rollout()
 		return
 	_rejoin_time_left = maxf(_rejoin_time_left - delta, 0.0)
@@ -196,10 +200,19 @@ func _process_recorded_test_rollout() -> void:
 	}
 	_policy_phase = String(guidance["phase"])
 	_update_runtime_metrics(goal_distance)
+	var expected := _trajectory.get("evaluation_metrics", {}) as Dictionary
+	var sample_collision := bool(sample.get("collision", false))
+	if sample_collision:
+		_collision_count = maxi(_collision_count, int(expected.get("collisions", 1)))
+		if not _recorded_incident_seen:
+			_recorded_incident_seen = true
+			_show_recorded_incident(sample, expected)
+	var recorded_clearance := float(sample.get("nearest_clearance_meters", INF))
+	if is_finite(recorded_clearance):
+		_minimum_clearance = minf(_minimum_clearance, recorded_clearance)
 	_update_status_hud(goal_distance, guidance, telemetry)
 	if _sample_index >= _samples.size() - 1:
-		var metrics := _trajectory.get("evaluation_metrics", {}) as Dictionary
-		var succeeded := bool(metrics.get("success", metrics.get("goal_reached", false)))
+		var succeeded := bool(expected.get("success", expected.get("goal_reached", false)))
 		_finish_replay(succeeded, "测试集记录回放完成")
 
 
@@ -253,13 +266,19 @@ func start_latest_replay(path_override: String = "") -> bool:
 	_event_log.clear()
 	_last_guidance.clear()
 	_control_tick = 0
+	_recorded_incident_seen = false
 	_active = true
 	_hud_layer.visible = true
 	_hud_panel.visible = true
 	_avoidance_marker.visible = false
-	_append_event("自动驾驶接管，人工输入已锁定")
+	if _incident_marker != null:
+		_incident_marker.visible = false
+	var aggregate := _trajectory.get("aggregate_metrics", {}) as Dictionary
+	var task_id := String(_trajectory.get("task_id", "unknown"))
+	var episode_count := int(aggregate.get("episodes", 1))
+	_append_event("加载 TEST 任务 %s；本轨迹仅代表总体%d场中的1场" % [task_id, episode_count])
 	_title_label.text = "%s 自动驾驶运行监控 · 执行中" % String(_trajectory.get("algorithm", "RL")).to_upper()
-	_status_label.text = "● 测试结果回放  |  人工操控锁定  |  recorded test actions"
+	_status_label.text = "● 冻结TEST单场回放  |  %s  |  总体%d场" % [task_id, episode_count]
 	replay_started.emit(get_replay_status())
 	return true
 
@@ -272,6 +291,8 @@ func stop_replay(clear_evaluation_obstacles: bool = true) -> void:
 	_last_guidance.clear()
 	if _avoidance_marker != null:
 		_avoidance_marker.visible = false
+	if _incident_marker != null:
+		_incident_marker.visible = false
 	if clear_evaluation_obstacles:
 		_clear_evaluation_obstacles()
 	if was_active:
@@ -314,6 +335,11 @@ func has_replay_trajectory(path_override: String = "") -> bool:
 
 func is_replay_active() -> bool:
 	return _active
+
+
+func _is_recorded_rollout() -> bool:
+	var mode := String(_trajectory.get("playback_mode", ""))
+	return mode == "recorded_test_rollout" or mode == "recorded_safety_supervised_test_rollout"
 
 
 func get_replay_status() -> Dictionary:
@@ -647,11 +673,19 @@ func _finish_replay(success: bool, message: String) -> void:
 	_last_guidance.clear()
 	if _avoidance_marker != null:
 		_avoidance_marker.visible = false
+	var expected := _trajectory.get("evaluation_metrics", {}) as Dictionary
+	var recorded_collision_count := (
+		int(expected.get("collisions", _collision_count))
+		if _is_recorded_rollout()
+		else _collision_count
+	)
+	var recorded_groundings := int(expected.get("groundings", 0)) if _is_recorded_rollout() else 0
 	_last_result = {
 		"success": success,
 		"message": message,
 		"elapsed_seconds": _elapsed,
-		"collision_count": _collision_count,
+		"collision_count": recorded_collision_count,
+		"grounding_count": recorded_groundings,
 		"minimum_clearance_meters": _minimum_clearance,
 		"max_route_deviation_meters": _max_route_deviation,
 		"avoidance_events": _avoidance_event_count,
@@ -665,10 +699,10 @@ func _finish_replay(success: bool, message: String) -> void:
 	_title_label.text = "自动驾驶运行监控 · %s" % ("任务成功" if success else "任务终止")
 	_status_label.text = "%s  |  AI 全程接管记录已生成  |  K 重新播放" % ["GOAL REACHED" if success else "EVAL STOP"]
 	_decision_label.text = "结果  %s  |  避障 %d  |  重规划 %d" % ["SUCCESS" if success else "FAILED", _avoidance_event_count, _policy_replan_count]
-	_metrics_label.text = "collision %d  |  min_clearance %.1fm  |  max_XTE %.1fm  |  elapsed %.1fs" % [
-		_collision_count,
+	_metrics_label.text = "collision %d  |  grounding %d  |  min_clearance %.1fm  |  elapsed %.1fs" % [
+		recorded_collision_count,
+		recorded_groundings,
 		_minimum_clearance,
-		_max_route_deviation,
 		_elapsed,
 	]
 	_progress_bar.value = 100.0 if success else float(_sample_index) / float(maxi(_samples.size() - 1, 1)) * 100.0
@@ -691,11 +725,23 @@ func _update_status_hud(goal_distance: float, guidance: Dictionary, telemetry: D
 	var algorithm := String(_checkpoint_metadata.get("algorithm", _trajectory.get("algorithm", "RL"))).to_upper()
 	var pulse := "●" if int(_elapsed * 2.0) % 2 == 0 else "◉"
 	_title_label.text = "%s %s 自动驾驶运行监控" % [pulse, algorithm]
-	_status_label.text = "AI 已接管 · 人工输入已锁定 · 实时时钟 %05.1fs" % _elapsed
+	if _is_recorded_rollout():
+		var status_aggregate := _trajectory.get("aggregate_metrics", {}) as Dictionary
+		_status_label.text = "冻结TEST单场 · %s · 总体%d场不由本画面代替" % [
+			String(_trajectory.get("task_id", "unknown")),
+			int(status_aggregate.get("episodes", 1)),
+		]
+	else:
+		_status_label.text = "AI 已接管 · 人工输入已锁定 · 实时时钟 %05.1fs" % _elapsed
 
 	var threat_active := bool(guidance.get("threat_active", false))
 	var avoidance_side := String(guidance.get("avoidance_side", "--"))
-	_decision_label.text = "决策 %s · %s" % [_compact_policy_phase(_policy_phase), _compact_maneuver(avoidance_side) if threat_active else "平滑跟踪"]
+	if _is_recorded_rollout():
+		var result_metrics := _trajectory.get("evaluation_metrics", {}) as Dictionary
+		var expected_success := bool(result_metrics.get("success", result_metrics.get("goal_reached", false)))
+		_decision_label.text = "本场固定结果 %s · 记录动作回放" % ("SUCCESS" if expected_success else "FAILED")
+	else:
+		_decision_label.text = "决策 %s · %s" % [_compact_policy_phase(_policy_phase), _compact_maneuver(avoidance_side) if threat_active else "平滑跟踪"]
 
 	var nearest_name := String(guidance.get("nearest_name", "--"))
 	var nearest_clearance := float(guidance.get("nearest_clearance", INF))
@@ -726,18 +772,35 @@ func _update_status_hud(goal_distance: float, guidance: Dictionary, telemetry: D
 	]
 
 	var minimum_clearance_text := "采集中" if _minimum_clearance >= 9000.0 else "%.1fm" % _minimum_clearance
-	_safety_label.text = "安全 净距%s · 碰撞%d · 避障%d · 重规划%d" % [
-		minimum_clearance_text,
-		_collision_count,
-		_avoidance_event_count,
-		_policy_replan_count,
-	]
+	if _is_recorded_rollout():
+		var safety_metrics := _trajectory.get("evaluation_metrics", {}) as Dictionary
+		_safety_label.text = "本场证据 碰撞%d · 搁浅%d · COLREG%d · 航道%d" % [
+			int(safety_metrics.get("collisions", 0)),
+			int(safety_metrics.get("groundings", 0)),
+			int(safety_metrics.get("colreg_give_way_violations", 0)),
+			int(safety_metrics.get("channel_departures", 0)),
+		]
+	else:
+		_safety_label.text = "安全 净距%s · 碰撞%d · 避障%d · 重规划%d" % [
+			minimum_clearance_text,
+			_collision_count,
+			_avoidance_event_count,
+			_policy_replan_count,
+		]
 	_event_log_label.text = "事件 %s" % (_event_log[0] if not _event_log.is_empty() else "自动驾驶系统已就绪")
-	_metrics_label.text = "实时控制帧 #%05d · 轨迹样本 %03d/%03d · K 停止自动驾驶" % [
-		_control_tick,
-		_sample_index + 1,
-		_samples.size(),
-	]
+	if _is_recorded_rollout():
+		var summary_metrics := _trajectory.get("aggregate_metrics", {}) as Dictionary
+		_metrics_label.text = "轨迹 %03d/%03d · 总体碰撞场景 %.1f%% · K 停止" % [
+			_sample_index + 1,
+			_samples.size(),
+			float(summary_metrics.get("collision_episode_rate", 0.0)) * 100.0,
+		]
+	else:
+		_metrics_label.text = "实时控制帧 #%05d · 轨迹样本 %03d/%03d · K 停止自动驾驶" % [
+			_control_tick,
+			_sample_index + 1,
+			_samples.size(),
+		]
 
 
 func _compact_obstacle_name(value: String) -> String:
@@ -949,6 +1012,58 @@ func _build_avoidance_marker() -> void:
 	_avoidance_marker_label.modulate = Color(1.0, 0.86, 0.34, 1.0)
 	_avoidance_marker_label.outline_modulate = Color(0.03, 0.01, 0.0, 0.94)
 	_avoidance_marker.add_child(_avoidance_marker_label)
+
+
+func _build_incident_marker() -> void:
+	_incident_marker = Node3D.new()
+	_incident_marker.name = "RecordedTestIncidentMarker"
+	_incident_marker.visible = false
+	add_child(_incident_marker)
+
+	var core := MeshInstance3D.new()
+	var core_mesh := SphereMesh.new()
+	core_mesh.radius = 2.2
+	core_mesh.height = 4.4
+	core.mesh = core_mesh
+	core.material_override = _make_avoidance_marker_material(Color(1.0, 0.12, 0.08, 0.92))
+	_incident_marker.add_child(core)
+
+	var beacon := MeshInstance3D.new()
+	var beacon_mesh := CylinderMesh.new()
+	beacon_mesh.top_radius = 0.35
+	beacon_mesh.bottom_radius = 0.65
+	beacon_mesh.height = 12.0
+	beacon.mesh = beacon_mesh
+	beacon.position.y = 6.0
+	beacon.material_override = _make_avoidance_marker_material(Color(1.0, 0.18, 0.08, 0.48))
+	_incident_marker.add_child(beacon)
+
+	_incident_marker_label = Label3D.new()
+	_incident_marker_label.position.y = 8.0
+	_incident_marker_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	_incident_marker_label.fixed_size = true
+	_incident_marker_label.pixel_size = 0.0012
+	_incident_marker_label.font_size = 28
+	_incident_marker_label.outline_size = 8
+	_incident_marker_label.modulate = Color(1.0, 0.34, 0.22, 1.0)
+	_incident_marker_label.outline_modulate = Color(0.08, 0.0, 0.0, 0.98)
+	_incident_marker.add_child(_incident_marker_label)
+
+
+func _show_recorded_incident(sample: Dictionary, metrics: Dictionary) -> void:
+	if _incident_marker == null:
+		return
+	var incident := "COLLISION / 碰撞"
+	if int(metrics.get("groundings", 0)) > 0:
+		incident = "GROUNDING / 搁浅"
+	else:
+		var last_collision := metrics.get("last_collision", {}) as Dictionary
+		if String(last_collision.get("kind", "")) == "boundary":
+			incident = "BOUNDARY / 越界"
+	_incident_marker.global_position = _sample_position(sample) + Vector3.UP * 2.0
+	_incident_marker_label.text = "%s\nTEST EVIDENCE" % incident
+	_incident_marker.visible = true
+	_append_event("冻结轨迹记录事故：%s" % incident)
 
 
 func _update_avoidance_marker(guidance: Dictionary) -> void:

@@ -14,6 +14,7 @@ const SCENE_V1_ALGORITHMS := ["ppo", "sac", "td3", "dqn", "los_pid"]
 const PORT_V2_ALGORITHMS := [
 	"ppo", "sac", "td3", "dqn", "a2c", "ddpg", "trpo", "los_pid", "lqr", "mpc"
 ]
+const SAFETY_SUPERVISOR_ID := "safety_v3"
 
 const TRAINING_STAGES := [
 	{
@@ -126,6 +127,7 @@ var _ship_option: OptionButton
 var _control_button: Button
 var _next_control_button: Button
 var _algorithm_option: OptionButton
+var _strategy_option: OptionButton
 var _dataset_profile_option: OptionButton
 var _status_label: Label
 var _training_status_label: Label
@@ -370,8 +372,8 @@ func _build_training_tab() -> Control:
 	dataset_row.add_child(_make_fixed_label("数据", 58.0))
 	_dataset_profile_option = OptionButton.new()
 	_dataset_profile_option.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_dataset_profile_option.add_item("v1 当前场景 / 28维")
-	_dataset_profile_option.add_item("v2 长滩 NOAA AIS+ENC / 45维")
+	_dataset_profile_option.add_item("v1 动态避障基准 / 28维")
+	_dataset_profile_option.add_item("v2 港口作业扩展 / 45维 AIS+ENC")
 	_dataset_profile_option.item_selected.connect(_on_dataset_profile_changed)
 	dataset_row.add_child(_dataset_profile_option)
 
@@ -384,6 +386,16 @@ func _build_training_tab() -> Control:
 	for algorithm in SCENE_V1_ALGORITHMS:
 		_algorithm_option.add_item(algorithm)
 	algorithm_row.add_child(_algorithm_option)
+
+	var strategy_row := HBoxContainer.new()
+	strategy_row.add_theme_constant_override("separation", 8)
+	root.add_child(strategy_row)
+	strategy_row.add_child(_make_fixed_label("策略", 58.0))
+	_strategy_option = OptionButton.new()
+	_strategy_option.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_strategy_option.item_selected.connect(_on_strategy_option_changed)
+	strategy_row.add_child(_strategy_option)
+	_populate_strategy_options()
 
 	_episode_spin = _make_training_spin(root, "训练轮数", 1.0, 20000.0, 25.0, 1.0)
 	_step_spin = _make_training_spin(root, "steps", 100.0, 20000.0, 800.0, 50.0)
@@ -869,6 +881,84 @@ func _on_next_control_pressed() -> void:
 		_fleet_manager.cycle_controlled_ship(1)
 
 
+func _strategy_records() -> Array[Dictionary]:
+	var records: Array[Dictionary] = []
+	var algorithms: Array = PORT_V2_ALGORITHMS if _port_ops_selected() else SCENE_V1_ALGORITHMS
+	var artifact_version := "navigation_benchmark_v2" if _port_ops_selected() else "navigation_benchmark_v1"
+	var profile_label := "V2-PORT" if _port_ops_selected() else "V1-NAV"
+	for raw_algorithm in algorithms:
+		var algorithm := String(raw_algorithm)
+		var kind := "原控制基线" if algorithm in ["los_pid", "lqr", "mpc"] else "原训练策略"
+		records.append({
+			"label": "%s %s｜%s｜冻结证据保留" % [profile_label, algorithm.to_upper().replace("_", "-"), kind],
+			"algorithm": algorithm,
+			"safety_profile": "",
+			"frozen": true,
+			"checkpoint": "res://reports/artifacts/%s/%s/checkpoint.json" % [artifact_version, algorithm],
+			"trajectory": "res://reports/artifacts/%s/%s/test_trajectory.json" % [artifact_version, algorithm],
+		})
+	if _port_ops_selected():
+		for raw_algorithm in PORT_V2_ALGORITHMS:
+			var algorithm := String(raw_algorithm)
+			records.append({
+				"label": "V2-PORT %s+SAFETY-V3｜新增组合策略｜基础产物不覆盖" % algorithm.to_upper().replace("_", "-"),
+				"algorithm": algorithm,
+				"safety_profile": SAFETY_SUPERVISOR_ID,
+				"frozen": true,
+				"checkpoint": "res://reports/artifacts/navigation_benchmark_v2/%s/checkpoint.json" % algorithm,
+				"trajectory": "res://reports/artifacts/safety_supervisor_v3/%s/test_trajectory.json" % algorithm,
+			})
+	records.append({
+		"label": "PERSONAL-LATEST｜本次新增训练产物",
+		"algorithm": "",
+		"safety_profile": "",
+		"frozen": false,
+		"checkpoint": "",
+		"trajectory": "",
+	})
+	return records
+
+
+func _populate_strategy_options() -> void:
+	if _strategy_option == null:
+		return
+	_strategy_option.clear()
+	for record in _strategy_records():
+		_strategy_option.add_item(String(record.get("label", "unknown")))
+		_strategy_option.set_item_metadata(_strategy_option.item_count - 1, record)
+	_strategy_option.selected = 0
+
+
+func _selected_strategy() -> Dictionary:
+	if _strategy_option == null or _strategy_option.item_count == 0:
+		return {}
+	var metadata = _strategy_option.get_item_metadata(_strategy_option.selected)
+	return metadata as Dictionary if metadata is Dictionary else {}
+
+
+func _strategy_absolute_path(key: String) -> String:
+	var path := String(_selected_strategy().get(key, ""))
+	return ProjectSettings.globalize_path(path) if path.begins_with("res://") or path.begins_with("user://") else path
+
+
+func _on_strategy_option_changed(_index: int) -> void:
+	var strategy := _selected_strategy()
+	if strategy.is_empty():
+		return
+	var algorithm := String(strategy.get("algorithm", ""))
+	for index in range(_algorithm_option.item_count):
+		if _algorithm_option.get_item_text(index) == algorithm:
+			_algorithm_option.selected = index
+			break
+	var safety := String(strategy.get("safety_profile", ""))
+	_training_status_label.text = (
+		"已选择新增安全组合策略：基础 checkpoint 保持不变，播放冻结 V3 test 轨迹"
+		if safety == SAFETY_SUPERVISOR_ID
+		else "已选择冻结原策略：模型、checkpoint、指标与失败记录均保留"
+	)
+	_refresh_policy_replay_buttons()
+
+
 func _on_export_training_config_pressed() -> void:
 	if _port_ops_selected():
 		var path := ProjectSettings.globalize_path(port_ops_config_path)
@@ -899,6 +989,7 @@ func _on_dataset_profile_changed(_index: int) -> void:
 		)
 	else:
 		_training_status_label.text = "v1 当前 Godot 场景：28维观测，训练 split=train"
+	_populate_strategy_options()
 	_refresh_policy_replay_buttons()
 
 
@@ -1357,6 +1448,16 @@ func _on_play_policy_pressed() -> void:
 	if _training_run_active:
 		_training_status_label.text = "训练或测试进程尚未完成"
 		return
+	var strategy := _selected_strategy()
+	if bool(strategy.get("frozen", false)):
+		var frozen_trajectory := _strategy_absolute_path("trajectory")
+		if frozen_trajectory.is_empty() or not FileAccess.file_exists(frozen_trajectory):
+			_training_status_label.text = "所选冻结策略轨迹尚未生成或校验失败，未回退到其他策略"
+			return
+		_training_trajectory_path = frozen_trajectory
+		_training_status_label.text = "播放所选冻结 test 策略：%s" % String(strategy.get("label", ""))
+		_play_evaluation_trajectory()
+		return
 	var checkpoint_path := _resolve_available_policy_checkpoint_path()
 	if checkpoint_path.is_empty():
 		_training_status_label.text = "未找到训练完成的 checkpoint，请先启动训练"
@@ -1466,10 +1567,21 @@ func _on_close_training_overlay_pressed() -> void:
 
 func _refresh_policy_replay_buttons() -> void:
 	var checkpoint_path := _resolve_available_policy_checkpoint_path()
-	var available := not checkpoint_path.is_empty()
+	var strategy := _selected_strategy()
+	var frozen := bool(strategy.get("frozen", false))
+	var trajectory_path := _strategy_absolute_path("trajectory") if frozen else ""
+	var available := (
+		not trajectory_path.is_empty() and FileAccess.file_exists(trajectory_path)
+		if frozen
+		else not checkpoint_path.is_empty()
+	)
 	if _policy_play_button != null:
 		_policy_play_button.disabled = not available
-		_policy_play_button.tooltip_text = "使用该 checkpoint 运行 test split：%s" % checkpoint_path if available else "未找到训练 checkpoint"
+		_policy_play_button.tooltip_text = (
+			"播放所选冻结 test 轨迹：%s" % trajectory_path
+			if frozen and available
+			else ("使用该 checkpoint 运行 test split：%s" % checkpoint_path if available else "所选策略产物尚未就绪")
+		)
 	if _overlay_policy_play_button != null:
 		_overlay_policy_play_button.disabled = not available
 	if _training_status_label != null and available and not _training_run_active:
@@ -1478,6 +1590,9 @@ func _refresh_policy_replay_buttons() -> void:
 
 func _resolve_available_policy_checkpoint_path() -> String:
 	var candidates: Array[String] = []
+	var strategy_checkpoint := _strategy_absolute_path("checkpoint")
+	if not strategy_checkpoint.is_empty():
+		candidates.append(strategy_checkpoint)
 	if not _training_checkpoint_path.is_empty():
 		candidates.append(_training_checkpoint_path)
 	candidates.append(_active_run_directory().path_join("policy_checkpoint.json"))
@@ -1490,6 +1605,9 @@ func _resolve_available_policy_checkpoint_path() -> String:
 
 func _resolve_available_policy_trajectory_path() -> String:
 	var candidates: Array[String] = []
+	var strategy_trajectory := _strategy_absolute_path("trajectory")
+	if not strategy_trajectory.is_empty():
+		candidates.append(strategy_trajectory)
 	if not _training_trajectory_path.is_empty():
 		candidates.append(_training_trajectory_path)
 	candidates.append(_active_run_directory().path_join("policy_test_trajectory.json"))

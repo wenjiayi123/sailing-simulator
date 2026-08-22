@@ -1,0 +1,447 @@
+{
+  "schema_version": "ship_port_safety_utility_audit_v3",
+  "generated_at": "2026-08-20T16:22:25+00:00",
+  "source_reports": {
+    "reports/port_ops_benchmark_v2.json": "733c5ac99e6255070fbd8b03ac0eaf064b603fe30c2259be4566fac6f934fe72",
+    "reports/safety_supervisor_benchmark_v3.json": "52fe49df7a91496e3d14227e6b0d3df8ec2c22e2256885f5f478121effefa377"
+  },
+  "thresholds": {
+    "minimum_collision_free_arrival_rate": 0.8,
+    "minimum_port_compliant_completion_rate": 0.75,
+    "maximum_collision_episode_rate": 0.1,
+    "maximum_grounding_episode_rate": 0.05,
+    "maximum_colreg_violation_episode_rate": 0.1,
+    "maximum_intervention_step_rate": 0.2,
+    "maximum_fail_closed_episode_rate": 0.05,
+    "maximum_decision_p95_ms": 250.0,
+    "maximum_replan_p95_ms": 250.0
+  },
+  "methods": [
+    {
+      "algorithm": "ppo",
+      "strategy_id": "ppo+safety_v3",
+      "base": {
+        "collision_free_arrival_rate": 0.0,
+        "port_compliant_completion_rate": 0.0,
+        "collision_episode_rate": 0.2153846153846154,
+        "grounding_episode_rate": 0.05384615384615385,
+        "colreg_violation_episode_rate": 0.0
+      },
+      "supervised": {
+        "collision_free_arrival_rate": 0.0,
+        "port_compliant_completion_rate": 0.0,
+        "collision_episode_rate": 0.18461538461538463,
+        "grounding_episode_rate": 0.05384615384615385,
+        "colreg_violation_episode_rate": 0.0
+      },
+      "runtime": {
+        "intervention_step_rate": 0.7547868200294041,
+        "fail_closed_episode_rate": 0.2,
+        "decision_p95_ms": 0.18543020009929018,
+        "replan_p95_ms": 139.44398070002387
+      },
+      "checks": {
+        "arrival_threshold": false,
+        "port_compliance_threshold": false,
+        "collision_threshold": false,
+        "grounding_threshold": false,
+        "colreg_proxy_threshold": true,
+        "intervention_budget": false,
+        "fail_closed_budget": false,
+        "latency_budget": true,
+        "replan_latency_budget": true,
+        "arrival_not_worse_than_base": true,
+        "port_compliance_not_worse_than_base": true,
+        "collision_not_worse_than_base": true,
+        "grounding_not_worse_than_base": true
+      },
+      "admitted": false
+    },
+    {
+      "algorithm": "sac",
+      "strategy_id": "sac+safety_v3",
+      "base": {
+        "collision_free_arrival_rate": 0.0,
+        "port_compliant_completion_rate": 0.0,
+        "collision_episode_rate": 0.23076923076923078,
+        "grounding_episode_rate": 0.09230769230769231,
+        "colreg_violation_episode_rate": 0.1
+      },
+      "supervised": {
+        "collision_free_arrival_rate": 0.06923076923076923,
+        "port_compliant_completion_rate": 0.06923076923076923,
+        "collision_episode_rate": 0.16153846153846155,
+        "grounding_episode_rate": 0.09230769230769231,
+        "colreg_violation_episode_rate": 0.046153846153846156
+      },
+      "runtime": {
+        "intervention_step_rate": 0.8663843539310191,
+        "fail_closed_episode_rate": 0.13846153846153847,
+        "decision_p95_ms": 0.20084865000740135,
+        "replan_p95_ms": 133.04674820000028
+      },
+      "checks": {
+        "arrival_threshold": false,
+        "port_compliance_threshold": false,
+        "collision_threshold": false,
+        "grounding_threshold": false,
+        "colreg_proxy_threshold": true,
+        "intervention_budget": false,
+        "fail_closed_budget": false,
+        "latency_budget": true,
+        "replan_latency_budget": true,
+        "arrival_not_worse_than_base": true,
+        "port_compliance_not_worse_than_base": true,
+        "collision_not_worse_than_base": true,
+        "grounding_not_worse_than_base": true
+      },
+      "admitted": false
+    },
+    {
+      "algorithm": "td3",
+      "strategy_id": "td3+safety_v3",
+      "base": {
+        "collision_free_arrival_rate": 0.007692307692307693,
+        "port_compliant_completion_rate": 0.0,
+        "collision_episode_rate": 0.13846153846153847,
+        "grounding_episode_rate": 0.06153846153846154,
+        "colreg_violation_episode_rate": 0.12307692307692308
+      },
+      "supervised": {
+        "collision_free_arrival_rate": 0.0,
+        "port_compliant_completion_rate": 0.0,
+        "collision_episode_rate": 0.12307692307692308,
+        "grounding_episode_rate": 0.06153846153846154,
+        "colreg_violation_episode_rate": 0.05384615384615385
+      },
+      "runtime": {
+        "intervention_step_rate": 0.7675166787019174,
+        "fail_closed_episode_rate": 0.11538461538461539,
+        "decision_p95_ms": 0.20369250009366624,
+        "replan_p95_ms": 129.98834199993325
+      },
+      "checks": {
+        "arrival_threshold": false,
+        "port_compliance_threshold": false,
+        "collision_threshold": false,
+        "grounding_threshold": false,
+        "colreg_proxy_threshold": true,
+        "intervention_budget": false,
+        "fail_closed_budget": false,
+        "latency_budget": true,
+        "replan_latency_budget": true,
+        "arrival_not_worse_than_base": false,
+        "port_compliance_not_worse_than_base": true,
+        "collision_not_worse_than_base": true,
+        "grounding_not_worse_than_base": true
+      },
+      "admitted": false
+    },
+    {
+      "algorithm": "dqn",
+      "strategy_id": "dqn+safety_v3",
+      "base": {
+        "collision_free_arrival_rate": 0.0,
+        "port_compliant_completion_rate": 0.0,
+        "collision_episode_rate": 0.12307692307692308,
+        "grounding_episode_rate": 0.046153846153846156,
+        "colreg_violation_episode_rate": 0.2230769230769231
+      },
+      "supervised": {
+        "collision_free_arrival_rate": 0.13076923076923078,
+        "port_compliant_completion_rate": 0.007692307692307693,
+        "collision_episode_rate": 0.15384615384615385,
+        "grounding_episode_rate": 0.07692307692307693,
+        "colreg_violation_episode_rate": 0.2153846153846154
+      },
+      "runtime": {
+        "intervention_step_rate": 0.5566112157174362,
+        "fail_closed_episode_rate": 0.14615384615384616,
+        "decision_p95_ms": 0.20397680004862118,
+        "replan_p95_ms": 238.36043039997034
+      },
+      "checks": {
+        "arrival_threshold": false,
+        "port_compliance_threshold": false,
+        "collision_threshold": false,
+        "grounding_threshold": false,
+        "colreg_proxy_threshold": false,
+        "intervention_budget": false,
+        "fail_closed_budget": false,
+        "latency_budget": true,
+        "replan_latency_budget": true,
+        "arrival_not_worse_than_base": true,
+        "port_compliance_not_worse_than_base": true,
+        "collision_not_worse_than_base": false,
+        "grounding_not_worse_than_base": false
+      },
+      "admitted": false
+    },
+    {
+      "algorithm": "a2c",
+      "strategy_id": "a2c+safety_v3",
+      "base": {
+        "collision_free_arrival_rate": 0.0,
+        "port_compliant_completion_rate": 0.0,
+        "collision_episode_rate": 0.2153846153846154,
+        "grounding_episode_rate": 0.05384615384615385,
+        "colreg_violation_episode_rate": 0.0
+      },
+      "supervised": {
+        "collision_free_arrival_rate": 0.0,
+        "port_compliant_completion_rate": 0.0,
+        "collision_episode_rate": 0.17692307692307693,
+        "grounding_episode_rate": 0.046153846153846156,
+        "colreg_violation_episode_rate": 0.0
+      },
+      "runtime": {
+        "intervention_step_rate": 0.7954272932712263,
+        "fail_closed_episode_rate": 0.18461538461538463,
+        "decision_p95_ms": 0.19136505001569068,
+        "replan_p95_ms": 134.0011632000738
+      },
+      "checks": {
+        "arrival_threshold": false,
+        "port_compliance_threshold": false,
+        "collision_threshold": false,
+        "grounding_threshold": true,
+        "colreg_proxy_threshold": true,
+        "intervention_budget": false,
+        "fail_closed_budget": false,
+        "latency_budget": true,
+        "replan_latency_budget": true,
+        "arrival_not_worse_than_base": true,
+        "port_compliance_not_worse_than_base": true,
+        "collision_not_worse_than_base": true,
+        "grounding_not_worse_than_base": true
+      },
+      "admitted": false
+    },
+    {
+      "algorithm": "ddpg",
+      "strategy_id": "ddpg+safety_v3",
+      "base": {
+        "collision_free_arrival_rate": 0.0,
+        "port_compliant_completion_rate": 0.0,
+        "collision_episode_rate": 0.23076923076923078,
+        "grounding_episode_rate": 0.07692307692307693,
+        "colreg_violation_episode_rate": 0.007692307692307693
+      },
+      "supervised": {
+        "collision_free_arrival_rate": 0.0,
+        "port_compliant_completion_rate": 0.0,
+        "collision_episode_rate": 0.16153846153846155,
+        "grounding_episode_rate": 0.06923076923076923,
+        "colreg_violation_episode_rate": 0.046153846153846156
+      },
+      "runtime": {
+        "intervention_step_rate": 0.8651077830597094,
+        "fail_closed_episode_rate": 0.13076923076923078,
+        "decision_p95_ms": 0.20564639994518072,
+        "replan_p95_ms": 132.135624
+      },
+      "checks": {
+        "arrival_threshold": false,
+        "port_compliance_threshold": false,
+        "collision_threshold": false,
+        "grounding_threshold": false,
+        "colreg_proxy_threshold": true,
+        "intervention_budget": false,
+        "fail_closed_budget": false,
+        "latency_budget": true,
+        "replan_latency_budget": true,
+        "arrival_not_worse_than_base": true,
+        "port_compliance_not_worse_than_base": true,
+        "collision_not_worse_than_base": true,
+        "grounding_not_worse_than_base": true
+      },
+      "admitted": false
+    },
+    {
+      "algorithm": "trpo",
+      "strategy_id": "trpo+safety_v3",
+      "base": {
+        "collision_free_arrival_rate": 0.0,
+        "port_compliant_completion_rate": 0.0,
+        "collision_episode_rate": 0.23076923076923078,
+        "grounding_episode_rate": 0.06923076923076923,
+        "colreg_violation_episode_rate": 0.11538461538461539
+      },
+      "supervised": {
+        "collision_free_arrival_rate": 0.0,
+        "port_compliant_completion_rate": 0.0,
+        "collision_episode_rate": 0.17692307692307693,
+        "grounding_episode_rate": 0.05384615384615385,
+        "colreg_violation_episode_rate": 0.0
+      },
+      "runtime": {
+        "intervention_step_rate": 0.8133890016872086,
+        "fail_closed_episode_rate": 0.16923076923076924,
+        "decision_p95_ms": 0.1874815999940437,
+        "replan_p95_ms": 132.59365225001144
+      },
+      "checks": {
+        "arrival_threshold": false,
+        "port_compliance_threshold": false,
+        "collision_threshold": false,
+        "grounding_threshold": false,
+        "colreg_proxy_threshold": true,
+        "intervention_budget": false,
+        "fail_closed_budget": false,
+        "latency_budget": true,
+        "replan_latency_budget": true,
+        "arrival_not_worse_than_base": true,
+        "port_compliance_not_worse_than_base": true,
+        "collision_not_worse_than_base": true,
+        "grounding_not_worse_than_base": true
+      },
+      "admitted": false
+    },
+    {
+      "algorithm": "los_pid",
+      "strategy_id": "los_pid+safety_v3",
+      "base": {
+        "collision_free_arrival_rate": 0.8692307692307693,
+        "port_compliant_completion_rate": 0.6692307692307692,
+        "collision_episode_rate": 0.13076923076923078,
+        "grounding_episode_rate": 0.046153846153846156,
+        "colreg_violation_episode_rate": 0.2076923076923077
+      },
+      "supervised": {
+        "collision_free_arrival_rate": 0.7,
+        "port_compliant_completion_rate": 0.5846153846153846,
+        "collision_episode_rate": 0.1,
+        "grounding_episode_rate": 0.05384615384615385,
+        "colreg_violation_episode_rate": 0.13076923076923078
+      },
+      "runtime": {
+        "intervention_step_rate": 0.7270916931185243,
+        "fail_closed_episode_rate": 0.11538461538461539,
+        "decision_p95_ms": 0.17203575001190075,
+        "replan_p95_ms": 134.31757820000172
+      },
+      "checks": {
+        "arrival_threshold": false,
+        "port_compliance_threshold": false,
+        "collision_threshold": true,
+        "grounding_threshold": false,
+        "colreg_proxy_threshold": false,
+        "intervention_budget": false,
+        "fail_closed_budget": false,
+        "latency_budget": true,
+        "replan_latency_budget": true,
+        "arrival_not_worse_than_base": false,
+        "port_compliance_not_worse_than_base": false,
+        "collision_not_worse_than_base": true,
+        "grounding_not_worse_than_base": false
+      },
+      "admitted": false
+    },
+    {
+      "algorithm": "lqr",
+      "strategy_id": "lqr+safety_v3",
+      "base": {
+        "collision_free_arrival_rate": 0.7,
+        "port_compliant_completion_rate": 0.5846153846153846,
+        "collision_episode_rate": 0.18461538461538463,
+        "grounding_episode_rate": 0.06153846153846154,
+        "colreg_violation_episode_rate": 0.13846153846153847
+      },
+      "supervised": {
+        "collision_free_arrival_rate": 0.3769230769230769,
+        "port_compliant_completion_rate": 0.36153846153846153,
+        "collision_episode_rate": 0.16153846153846155,
+        "grounding_episode_rate": 0.05384615384615385,
+        "colreg_violation_episode_rate": 0.13076923076923078
+      },
+      "runtime": {
+        "intervention_step_rate": 0.7224118832148941,
+        "fail_closed_episode_rate": 0.15384615384615385,
+        "decision_p95_ms": 0.15712240015091097,
+        "replan_p95_ms": 127.50791430004254
+      },
+      "checks": {
+        "arrival_threshold": false,
+        "port_compliance_threshold": false,
+        "collision_threshold": false,
+        "grounding_threshold": false,
+        "colreg_proxy_threshold": false,
+        "intervention_budget": false,
+        "fail_closed_budget": false,
+        "latency_budget": true,
+        "replan_latency_budget": true,
+        "arrival_not_worse_than_base": false,
+        "port_compliance_not_worse_than_base": false,
+        "collision_not_worse_than_base": true,
+        "grounding_not_worse_than_base": true
+      },
+      "admitted": false
+    },
+    {
+      "algorithm": "mpc",
+      "strategy_id": "mpc+safety_v3",
+      "base": {
+        "collision_free_arrival_rate": 0.7384615384615385,
+        "port_compliant_completion_rate": 0.5153846153846153,
+        "collision_episode_rate": 0.16923076923076924,
+        "grounding_episode_rate": 0.05384615384615385,
+        "colreg_violation_episode_rate": 0.24615384615384617
+      },
+      "supervised": {
+        "collision_free_arrival_rate": 0.6230769230769231,
+        "port_compliant_completion_rate": 0.49230769230769234,
+        "collision_episode_rate": 0.14615384615384616,
+        "grounding_episode_rate": 0.06153846153846154,
+        "colreg_violation_episode_rate": 0.15384615384615385
+      },
+      "runtime": {
+        "intervention_step_rate": 0.5793696923947915,
+        "fail_closed_episode_rate": 0.16153846153846155,
+        "decision_p95_ms": 0.1361232000135713,
+        "replan_p95_ms": 99.1730316001622
+      },
+      "checks": {
+        "arrival_threshold": false,
+        "port_compliance_threshold": false,
+        "collision_threshold": false,
+        "grounding_threshold": false,
+        "colreg_proxy_threshold": false,
+        "intervention_budget": false,
+        "fail_closed_budget": false,
+        "latency_budget": true,
+        "replan_latency_budget": true,
+        "arrival_not_worse_than_base": false,
+        "port_compliance_not_worse_than_base": false,
+        "collision_not_worse_than_base": true,
+        "grounding_not_worse_than_base": false
+      },
+      "admitted": false
+    }
+  ],
+  "macro_metrics": {
+    "base_collision_free_arrival_rate": 0.23153846153846153,
+    "supervised_collision_free_arrival_rate": 0.19,
+    "base_port_compliant_completion_rate": 0.1769230769230769,
+    "supervised_port_compliant_completion_rate": 0.15153846153846154,
+    "base_collision_episode_rate": 0.18692307692307694,
+    "supervised_collision_episode_rate": 0.15461538461538463,
+    "base_grounding_episode_rate": 0.06153846153846154,
+    "supervised_grounding_episode_rate": 0.062307692307692314
+  },
+  "portfolio_checks": {
+    "benchmark_complete": true,
+    "collision_not_worse": true,
+    "grounding_not_worse": false,
+    "arrival_not_worse": false,
+    "port_compliance_not_worse": false,
+    "intervention_budget": false,
+    "latency_budget": true,
+    "replan_latency_budget": true,
+    "at_least_one_strategy_admitted": false
+  },
+  "admitted_offline_strategies": [],
+  "passed": false,
+  "deployment_decision": "rejected_fail_closed",
+  "live_control_authorized": false,
+  "boundary": "Utility-aware offline simulator admission only. A PASS would not be COLREGs certification, class approval, type approval, or live-vessel authority."
+}

@@ -1,0 +1,333 @@
+{
+  "schema_version": "simulator_reliability_audit_v3",
+  "audit_id": "ship_simulator_public_weather_fixed_test_v3",
+  "audit_revision": "v3",
+  "evidence_snapshot_generated_at": "2026-07-24T10:54:39+00:00",
+  "status": "PASS",
+  "simulator_scope": {
+    "observation_dimensions": 28,
+    "continuous_action_dimensions": 2,
+    "discrete_action_count": 9,
+    "algorithms": [
+      "ppo",
+      "sac",
+      "td3",
+      "dqn",
+      "los_pid"
+    ],
+    "supported_hazard_shapes": [
+      "circle",
+      "box",
+      "polygon"
+    ],
+    "risk_state": [
+      "closing_speed",
+      "tcpa",
+      "boundary_clearance",
+      "front_clearance",
+      "port_clearance",
+      "starboard_clearance"
+    ]
+  },
+  "data_contract": {
+    "provider": "Open-Meteo",
+    "evidence_level": "public_model_reanalysis_and_archive",
+    "hourly_rows": 2904,
+    "continuous_hourly_rows": 2904,
+    "numeric_complete_rows": 2904,
+    "source_period": {
+      "start": "2024-01-01",
+      "end": "2024-04-30"
+    },
+    "scenario_count": 121,
+    "split_sizes": {
+      "train": 60,
+      "validation": 31,
+      "test": 30
+    },
+    "temporal_leakage_count": 0,
+    "forcing_ranges": {
+      "wind_speed_knots": {
+        "minimum": 5.5,
+        "maximum": 23.7
+      },
+      "wave_height_meters": {
+        "minimum": 0.58,
+        "maximum": 2.94
+      },
+      "wave_period_seconds": {
+        "minimum": 7.15,
+        "maximum": 15.0
+      },
+      "current_speed_knots": {
+        "minimum": 0.1,
+        "maximum": 1.2
+      }
+    },
+    "observed_ais": false,
+    "counterfactual_actions": "simulator_only"
+  },
+  "scenario_coverage": {
+    "complete_scenario_contracts": 121,
+    "total_scenarios": 121,
+    "contract_completion_rate": 1.0,
+    "route_template_counts": {
+      "harbor_approach": 41,
+      "channel_turn": 40,
+      "s_curve": 40
+    },
+    "test_route_template_counts": {
+      "channel_turn": 10,
+      "s_curve": 10,
+      "harbor_approach": 10
+    },
+    "waypoints_per_scenario": 5,
+    "static_obstacles_per_scenario": 1,
+    "terrain_hazards_per_scenario": 1,
+    "dynamic_traffic_per_scenario": 1,
+    "hazard_kinds": [
+      "breakwater",
+      "buoy",
+      "cliff",
+      "pier",
+      "reef",
+      "shoal",
+      "traffic"
+    ]
+  },
+  "experiment_execution": {
+    "rl_requested_timesteps_per_method": 20000,
+    "actual_training_timesteps_total": 80480,
+    "training_episodes_total": 167,
+    "validation_rollouts": 155,
+    "fixed_test_rollouts": 150,
+    "training_render": false,
+    "test_only_recorded_replay": true,
+    "fixed_seed": 240705
+  },
+  "evidence_integrity_gate": {
+    "passed": true,
+    "verified_core_model_replay_hashes": 23,
+    "expected_core_model_replay_hashes": 23,
+    "csv_aggregate_consistency": "5/5",
+    "passed_checks": 28,
+    "total_checks": 28,
+    "episode_records_complete": "150/150"
+  },
+  "replay_reliability": {
+    "representative_rollouts_checked": 5,
+    "passed_rollouts": 5,
+    "total_samples_checked": 1723,
+    "checks": [
+      {
+        "algorithm": "ppo",
+        "passed": true,
+        "samples": 391,
+        "task_id": "2024-04-01_channel_turn",
+        "steps": 390
+      },
+      {
+        "algorithm": "sac",
+        "passed": true,
+        "samples": 279,
+        "task_id": "2024-04-01_channel_turn",
+        "steps": 278
+      },
+      {
+        "algorithm": "td3",
+        "passed": true,
+        "samples": 280,
+        "task_id": "2024-04-01_channel_turn",
+        "steps": 279
+      },
+      {
+        "algorithm": "dqn",
+        "passed": true,
+        "samples": 264,
+        "task_id": "2024-04-01_channel_turn",
+        "steps": 263
+      },
+      {
+        "algorithm": "los_pid",
+        "passed": true,
+        "samples": 509,
+        "task_id": "2024-04-01_channel_turn",
+        "steps": 508
+      }
+    ]
+  },
+  "godot_runtime_acceptance": {
+    "passed": true,
+    "version": "4.7.1.stable.official.a13da4feb",
+    "passed_checks": 2,
+    "total_checks": 2,
+    "source_file_count": 38,
+    "source_tree_sha256": "e642c14d72cfd5f3479c75c4f2e922675e552a9e20a53e6dcf46aa4ea93435fb",
+    "receipt_source_hash_matches": true
+  },
+  "algorithm_test_metrics": [
+    {
+      "algorithm": "ppo",
+      "test_episodes": 30,
+      "collision_free_arrival_rate": 0.6333333333333333,
+      "collision_episode_rate": 0.3,
+      "terrain_collision_episode_rate": 0.3,
+      "near_miss_episode_rate": 1.0,
+      "mean_max_cross_track_error_meters": 10.051364278224156,
+      "p95_max_cross_track_error_meters": 16.393425783589162,
+      "mean_minimum_clearance_meters": 4.7471506324430495,
+      "p05_minimum_clearance_meters": -0.20274715590028106,
+      "mean_minimum_dcpa_meters": 19.714824440493818,
+      "p05_minimum_dcpa_meters": 2.3730464607882116,
+      "mean_path_efficiency": 0.9986606961853578,
+      "mean_elapsed_seconds": 34.876666666666665,
+      "total_near_misses": 38,
+      "admission_passed": false,
+      "admission_failures": [
+        "collision_free_arrival_rate",
+        "collision_episode_rate",
+        "terrain_collision_episode_rate",
+        "near_miss_episode_rate",
+        "p95_cross_track_error",
+        "p05_minimum_clearance",
+        "p05_minimum_dcpa"
+      ]
+    },
+    {
+      "algorithm": "sac",
+      "test_episodes": 30,
+      "collision_free_arrival_rate": 1.0,
+      "collision_episode_rate": 0.0,
+      "terrain_collision_episode_rate": 0.0,
+      "near_miss_episode_rate": 1.0,
+      "mean_max_cross_track_error_meters": 9.977360905091903,
+      "p95_max_cross_track_error_meters": 15.133801419836741,
+      "mean_minimum_clearance_meters": 8.505010681726402,
+      "p05_minimum_clearance_meters": 0.986124208680928,
+      "mean_minimum_dcpa_meters": 18.8167659051718,
+      "p05_minimum_dcpa_meters": 0.0,
+      "mean_path_efficiency": 0.9988108065549729,
+      "mean_elapsed_seconds": 29.14333333333333,
+      "total_near_misses": 41,
+      "admission_passed": false,
+      "admission_failures": [
+        "near_miss_episode_rate",
+        "p95_cross_track_error",
+        "p05_minimum_clearance",
+        "p05_minimum_dcpa"
+      ]
+    },
+    {
+      "algorithm": "td3",
+      "test_episodes": 30,
+      "collision_free_arrival_rate": 0.26666666666666666,
+      "collision_episode_rate": 0.7,
+      "terrain_collision_episode_rate": 0.3333333333333333,
+      "near_miss_episode_rate": 1.0,
+      "mean_max_cross_track_error_meters": 20.357015822143715,
+      "p95_max_cross_track_error_meters": 37.73131655305708,
+      "mean_minimum_clearance_meters": 1.5414969616320462,
+      "p05_minimum_clearance_meters": -0.9041519458337443,
+      "mean_minimum_dcpa_meters": 51.84720311977581,
+      "p05_minimum_dcpa_meters": 0.0,
+      "mean_path_efficiency": 0.9798779508157213,
+      "mean_elapsed_seconds": 28.216666666666665,
+      "total_near_misses": 35,
+      "admission_passed": false,
+      "admission_failures": [
+        "collision_free_arrival_rate",
+        "collision_episode_rate",
+        "terrain_collision_episode_rate",
+        "near_miss_episode_rate",
+        "p95_cross_track_error",
+        "p05_minimum_clearance",
+        "p05_minimum_dcpa"
+      ]
+    },
+    {
+      "algorithm": "dqn",
+      "test_episodes": 30,
+      "collision_free_arrival_rate": 0.7,
+      "collision_episode_rate": 0.3,
+      "terrain_collision_episode_rate": 0.3,
+      "near_miss_episode_rate": 1.0,
+      "mean_max_cross_track_error_meters": 8.338510000003781,
+      "p95_max_cross_track_error_meters": 11.845217038528,
+      "mean_minimum_clearance_meters": 8.190281784602579,
+      "p05_minimum_clearance_meters": -0.43457045737791516,
+      "mean_minimum_dcpa_meters": 22.845697869235195,
+      "p05_minimum_dcpa_meters": 3.4506932359708,
+      "mean_path_efficiency": 1.0,
+      "mean_elapsed_seconds": 24.35333333333334,
+      "total_near_misses": 36,
+      "admission_passed": false,
+      "admission_failures": [
+        "collision_free_arrival_rate",
+        "collision_episode_rate",
+        "terrain_collision_episode_rate",
+        "near_miss_episode_rate",
+        "p95_cross_track_error",
+        "p05_minimum_clearance",
+        "p05_minimum_dcpa"
+      ]
+    },
+    {
+      "algorithm": "los_pid",
+      "test_episodes": 30,
+      "collision_free_arrival_rate": 1.0,
+      "collision_episode_rate": 0.0,
+      "terrain_collision_episode_rate": 0.0,
+      "near_miss_episode_rate": 1.0,
+      "mean_max_cross_track_error_meters": 34.465175470810344,
+      "p95_max_cross_track_error_meters": 60.65175135168424,
+      "mean_minimum_clearance_meters": 12.012998286909854,
+      "p05_minimum_clearance_meters": 5.528109634397666,
+      "mean_minimum_dcpa_meters": 20.492902071440202,
+      "p05_minimum_dcpa_meters": 0.0,
+      "mean_path_efficiency": 0.9219522376820655,
+      "mean_elapsed_seconds": 56.53333333333334,
+      "total_near_misses": 57,
+      "admission_passed": false,
+      "admission_failures": [
+        "near_miss_episode_rate",
+        "p95_cross_track_error",
+        "p05_minimum_dcpa"
+      ]
+    }
+  ],
+  "policy_admission_gate": {
+    "policy_version": "conservative_offline_gate_v1",
+    "thresholds": {
+      "minimum_collision_free_arrival_rate": 0.95,
+      "maximum_collision_episode_rate": 0.0,
+      "maximum_terrain_collision_episode_rate": 0.0,
+      "maximum_near_miss_episode_rate": 0.05,
+      "maximum_p95_cross_track_error_meters": 10.0,
+      "minimum_p05_clearance_meters": 5.0,
+      "minimum_p05_dcpa_meters": 5.0,
+      "minimum_mean_path_efficiency": 0.9
+    },
+    "evaluated_methods": 5,
+    "admitted_methods": [],
+    "admitted_count": 0,
+    "status": "REJECTED_ALL",
+    "interpretation": "The evidence package may pass while every controller is rejected. Zero collision is not treated as safety certification when near-miss or clearance/tracking gates fail."
+  },
+  "claim_boundary": {
+    "public_input_role": "offline environmental forcing only",
+    "synthetic_components": [
+      "route geometry",
+      "hazard layout",
+      "vessel dynamics",
+      "counterfactual control actions"
+    ],
+    "not_claimed": [
+      "real-vessel sea trial",
+      "COLREGs compliance or class approval",
+      "production SLA",
+      "fuel, accident, or commercial-return improvement"
+    ],
+    "safe_completion_metric_alias": "collision_free_arrival_rate; it excludes collision and terrain collision but does not exclude near-miss events"
+  },
+  "errors": []
+}

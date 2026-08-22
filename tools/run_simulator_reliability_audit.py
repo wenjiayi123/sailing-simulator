@@ -21,9 +21,9 @@ ROOT = Path(__file__).resolve().parents[1]
 DATASET = ROOT / "data/rl/long_beach_public_weather_benchmark_v1.json"
 HOURLY = ROOT / "data/public/long_beach_open_meteo_2024_01_04_hourly.csv"
 BENCHMARK = ROOT / "reports/navigation_benchmark_v1.json"
-GODOT_REPORT = ROOT / "reports/godot_acceptance_v1.json"
-OUTPUT_JSON = ROOT / "reports/simulator_reliability_audit_v1.json"
-OUTPUT_MARKDOWN = ROOT / "reports/simulator_reliability_audit_v1.md"
+GODOT_REPORT = ROOT / "reports/godot_acceptance_v3.json"
+OUTPUT_JSON = ROOT / "reports/simulator_reliability_audit_v3.json"
+OUTPUT_MARKDOWN = ROOT / "reports/simulator_reliability_audit_v3.md"
 ALGORITHMS = ("ppo", "sac", "td3", "dqn", "los_pid")
 ROUTE_TEMPLATES = ("harbor_approach", "channel_turn", "s_curve")
 NUMERIC_EPISODE_FIELDS = (
@@ -357,11 +357,14 @@ def _source_tree_fingerprint() -> tuple[int, str]:
     return len(files), digest.hexdigest()
 
 
-def build_report() -> tuple[dict[str, Any], list[str]]:
+def build_report(
+    godot_report: Path = GODOT_REPORT,
+    revision: str = "v3",
+) -> tuple[dict[str, Any], list[str]]:
     errors: list[str] = []
     dataset = _load_json(DATASET)
     benchmark = _load_json(BENCHMARK)
-    godot = _load_json(GODOT_REPORT)
+    godot = _load_json(godot_report)
     tasks = [
         task
         for split in ("train", "validation", "test")
@@ -574,8 +577,9 @@ def build_report() -> tuple[dict[str, Any], list[str]]:
     )
 
     report = {
-        "schema_version": "simulator_reliability_audit_v1",
-        "audit_id": "ship_simulator_public_weather_fixed_test_v1",
+        "schema_version": f"simulator_reliability_audit_{revision}",
+        "audit_id": f"ship_simulator_public_weather_fixed_test_{revision}",
+        "audit_revision": revision,
         "evidence_snapshot_generated_at": benchmark["generated_at"],
         "status": "PASS" if not errors else "FAIL",
         "simulator_scope": {
@@ -740,7 +744,8 @@ def _render_markdown(report: Mapping[str, Any]) -> str:
     scenarios = report["scenario_coverage"]
     data = report["data_contract"]
     admission = report["policy_admission_gate"]
-    return f"""# 航行模拟器功能完整性与可靠性审计 v1
+    revision = str(report.get("audit_revision", "v1"))
+    return f"""# 航行模拟器功能完整性与可靠性审计 {revision}
 
 ## 审计结论
 
@@ -772,24 +777,37 @@ def _render_markdown(report: Mapping[str, Any]) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("command", choices=("generate", "verify"))
+    parser.add_argument("--godot-report", type=Path, default=GODOT_REPORT)
+    parser.add_argument("--output-json", type=Path, default=OUTPUT_JSON)
+    parser.add_argument("--output-markdown", type=Path, default=OUTPUT_MARKDOWN)
+    parser.add_argument("--revision", default="v3")
     arguments = parser.parse_args()
-    report, errors = build_report()
+    godot_report = arguments.godot_report
+    if not godot_report.is_absolute():
+        godot_report = ROOT / godot_report
+    output_json = arguments.output_json
+    if not output_json.is_absolute():
+        output_json = ROOT / output_json
+    output_markdown = arguments.output_markdown
+    if not output_markdown.is_absolute():
+        output_markdown = ROOT / output_markdown
+    report, errors = build_report(godot_report, str(arguments.revision))
     markdown = _render_markdown(report)
     if arguments.command == "generate":
-        _write_json(OUTPUT_JSON, report)
-        _write_text(OUTPUT_MARKDOWN, markdown)
+        _write_json(output_json, report)
+        _write_text(output_markdown, markdown)
         print(f"simulator reliability audit: {report['status']}")
-        print(f"report: {OUTPUT_JSON}")
+        print(f"report: {output_json}")
         return 0 if not errors else 1
 
-    if not OUTPUT_JSON.is_file() or not OUTPUT_MARKDOWN.is_file():
+    if not output_json.is_file() or not output_markdown.is_file():
         print("ERROR: reliability audit report is missing; run generate")
         return 1
-    current = _load_json(OUTPUT_JSON)
+    current = _load_json(output_json)
     if current != report:
         print("ERROR: simulator reliability JSON is stale; run generate")
         return 1
-    if OUTPUT_MARKDOWN.read_text(encoding="utf-8") != markdown:
+    if output_markdown.read_text(encoding="utf-8") != markdown:
         print("ERROR: simulator reliability Markdown is stale; run generate")
         return 1
     if errors:

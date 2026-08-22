@@ -1,0 +1,600 @@
+{
+  "schema_version": "maritime_assurance_report_v1",
+  "inputs_sha256": {
+    "data/verification/vessel_dynamics_reference_v1.json": "2fad66ad14c77ec0383755d90979177389deb56d2a9dcfb8cf15fd9ccdaa7737",
+    "data/verification/colreg_encounter_catalog_v1.json": "d349f4420292e0ca90f735320e3e14cc8a5dcd54dc95aa38972454546a0144fb",
+    "data/verification/hil_loopback_profile_v1.json": "9f84378f9c36e100f82e7077d12df4ad46955db3bb231a37dc83bed089bbc169",
+    "data/verification/sea_trial_protocol_v1.json": "b470b23153d51a57e5289a7afc7414365a94a40b5f20f3678897a0aa54582786",
+    "tools/ship_assurance/dynamics.py": "c5a68cb450082b2a380c6ca9d1effb692597e7f6e944769ba7d7787a58b7904d",
+    "tools/ship_assurance/__init__.py": "a7c11f0f8fe4016fb57fd6e867ac0ed225332ea614dc8fdcf9c1a23c4f5f81b1",
+    "tools/ship_assurance/environment.py": "7d9a67aef075c531d5822f652dcc6b332a3a6528a0a59ca25bc69a5e775b110c",
+    "tools/ship_assurance/colreg.py": "ed5efd3829eb06cc1cd87daeab65df64ffe9fc367f9162173f5d518c74f2f7c2",
+    "tools/ship_assurance/hil.py": "202c4b980504798faf76185609d48517b3d1784ca8e6f081594ac7e1578c0ecc",
+    "tools/ship_assurance/sea_trial.py": "c1ad8c85784f80073ee908b391e9e4a5c4126916c4667a7f9ff5b3ae45aef11c",
+    "tools/run_maritime_assurance.py": "89f61e9e5ad012b8b8b5236923ed0ed0d07df2c3f129648fa8fcbc6e4f6c4185",
+    "tests/test_maritime_assurance.py": "d3b333d8d9b0ff6336abbf948e6927e0526d1a42cc2a74375b3b58f79a476b48"
+  },
+  "overall": {
+    "software_assurance_passed": true,
+    "production_readiness": "BLOCKED_EXTERNAL_EVIDENCE_REQUIRED",
+    "production_authority": false
+  },
+  "claim_matrix": {
+    "three_dof_software_model_verified": true,
+    "three_dof_rl_environment_connected": true,
+    "named_vessel_dynamics_calibrated": false,
+    "colreg_scenario_regression_verified": true,
+    "colreg_certified": false,
+    "software_hil_loopback_verified": true,
+    "physical_hil_verified": false,
+    "sea_trial_protocol_and_refusal_gate_verified": true,
+    "real_vessel_sea_trial_completed": false
+  },
+  "dynamics": {
+    "model_id": "generic_displacement_vessel_3dof_v1",
+    "model_family": "3-DOF surge-sway-yaw with added mass, nonlinear drag, rudder/propeller dynamics and RK4",
+    "check_count": 6,
+    "passed_count": 6,
+    "passed": true,
+    "checks": [
+      {
+        "id": "DYN-DET-001",
+        "passed": true,
+        "value": 0.0,
+        "limit": 1e-12
+      },
+      {
+        "id": "DYN-DAMP-002",
+        "passed": true,
+        "value": 0.018605924156369573,
+        "limit": 0.02
+      },
+      {
+        "id": "DYN-YAW-003",
+        "passed": true,
+        "starboard_yaw_rate_deg_s": 0.744756072366927,
+        "port_yaw_rate_deg_s": -0.744756072366927
+      },
+      {
+        "id": "DYN-SYM-004",
+        "passed": true,
+        "value_deg_s": 0.0,
+        "limit_deg_s": 0.02
+      },
+      {
+        "id": "DYN-ACT-005",
+        "passed": true,
+        "max_throttle": 0.9999999980278396,
+        "max_rudder_angle_deg": 34.99999977007269
+      },
+      {
+        "id": "DYN-NUM-006",
+        "passed": true,
+        "position_error_m": 0.11627712484978465,
+        "limit_m": 3.0
+      }
+    ],
+    "vessel_specific_calibration_verified": false,
+    "boundary": "Software plant-model verification only; parameters are a generic reference until identified against a named vessel."
+  },
+  "connected_environment": {
+    "module": "assured_port_ops_v4",
+    "observation_size": 48,
+    "checks": {
+      "observation_contract_48d": true,
+      "three_dof_transition_connected": true,
+      "colreg_crossing_trace_connected": true,
+      "trajectory_contains_plant_state": true,
+      "historic_artifacts_left_unmodified": true
+    },
+    "passed": true,
+    "new_training_required": true,
+    "historic_checkpoints_compatible": false,
+    "boundary": "Connected next-version environment smoke only; no V1/V2/V3 checkpoint is relabelled as compatible with the 48-D contract."
+  },
+  "colreg": {
+    "scenario_count": 6,
+    "scenario_passed_count": 6,
+    "action_case_count": 11,
+    "action_case_passed_count": 11,
+    "passed": true,
+    "results": [
+      {
+        "id": "COLREG-14-HEAD-ON",
+        "classification_passed": true,
+        "assessment": {
+          "encounter": "head_on",
+          "role": "both_give_way",
+          "risk_of_collision": true,
+          "relative_bearing_deg": 0.0,
+          "target_aspect_deg": 0.0,
+          "tcpa_s": 100.0,
+          "dcpa_m": 6.123233995736766e-14,
+          "range_m": 1000.0,
+          "rules": [
+            "Rule 5",
+            "Rule 6",
+            "Rule 7",
+            "Rule 8",
+            "Rule 14"
+          ],
+          "reasons": [
+            "relative bearing 0.00 deg",
+            "DCPA 0.0 m",
+            "TCPA 100.0 s",
+            "nearly reciprocal courses with target nearly ahead"
+          ]
+        },
+        "actions": [
+          {
+            "passed": true,
+            "encounter": "head_on",
+            "role": "both_give_way",
+            "rules": [
+              "Rule 5",
+              "Rule 6",
+              "Rule 7",
+              "Rule 8",
+              "Rule 14"
+            ],
+            "action": {
+              "course_change_deg": 20.0,
+              "speed_ratio": 1.0
+            },
+            "reason": "substantial starboard alteration or marked speed reduction",
+            "id": "starboard-substantial",
+            "expected_passed": true,
+            "matched": true
+          },
+          {
+            "passed": false,
+            "encounter": "head_on",
+            "role": "both_give_way",
+            "rules": [
+              "Rule 5",
+              "Rule 6",
+              "Rule 7",
+              "Rule 8",
+              "Rule 14"
+            ],
+            "action": {
+              "course_change_deg": -20.0,
+              "speed_ratio": 1.0
+            },
+            "reason": "give-way action is not early/substantial or alters to port",
+            "id": "port-alteration",
+            "expected_passed": false,
+            "matched": true
+          }
+        ],
+        "passed": true
+      },
+      {
+        "id": "COLREG-15-CROSSING-STARBOARD",
+        "classification_passed": true,
+        "assessment": {
+          "encounter": "crossing_starboard",
+          "role": "give_way",
+          "risk_of_collision": true,
+          "relative_bearing_deg": 45.0,
+          "target_aspect_deg": -45.0,
+          "tcpa_s": 99.99999999999997,
+          "dcpa_m": 1.2710574864626038e-13,
+          "range_m": 707.1067811865476,
+          "rules": [
+            "Rule 5",
+            "Rule 6",
+            "Rule 7",
+            "Rule 8",
+            "Rule 15",
+            "Rule 16"
+          ],
+          "reasons": [
+            "relative bearing 45.00 deg",
+            "DCPA 0.0 m",
+            "TCPA 100.0 s",
+            "target is on own starboard side"
+          ]
+        },
+        "actions": [
+          {
+            "passed": true,
+            "encounter": "crossing_starboard",
+            "role": "give_way",
+            "rules": [
+              "Rule 5",
+              "Rule 6",
+              "Rule 7",
+              "Rule 8",
+              "Rule 15",
+              "Rule 16"
+            ],
+            "action": {
+              "course_change_deg": 20.0,
+              "speed_ratio": 0.9
+            },
+            "reason": "substantial starboard alteration or marked speed reduction",
+            "id": "starboard-substantial",
+            "expected_passed": true,
+            "matched": true
+          },
+          {
+            "passed": false,
+            "encounter": "crossing_starboard",
+            "role": "give_way",
+            "rules": [
+              "Rule 5",
+              "Rule 6",
+              "Rule 7",
+              "Rule 8",
+              "Rule 15",
+              "Rule 16"
+            ],
+            "action": {
+              "course_change_deg": 0.0,
+              "speed_ratio": 1.0
+            },
+            "reason": "give-way action is not early/substantial or alters to port",
+            "id": "maintain-unsafe",
+            "expected_passed": false,
+            "matched": true
+          }
+        ],
+        "passed": true
+      },
+      {
+        "id": "COLREG-15-CROSSING-PORT",
+        "classification_passed": true,
+        "assessment": {
+          "encounter": "crossing_port",
+          "role": "stand_on",
+          "risk_of_collision": true,
+          "relative_bearing_deg": -45.0,
+          "target_aspect_deg": 45.0,
+          "tcpa_s": 100.0,
+          "dcpa_m": 0.0,
+          "range_m": 707.1067811865476,
+          "rules": [
+            "Rule 5",
+            "Rule 6",
+            "Rule 7",
+            "Rule 8",
+            "Rule 15",
+            "Rule 17"
+          ],
+          "reasons": [
+            "relative bearing -45.00 deg",
+            "DCPA 0.0 m",
+            "TCPA 100.0 s",
+            "target is on own port side"
+          ]
+        },
+        "actions": [
+          {
+            "passed": true,
+            "encounter": "crossing_port",
+            "role": "stand_on",
+            "rules": [
+              "Rule 5",
+              "Rule 6",
+              "Rule 7",
+              "Rule 8",
+              "Rule 15",
+              "Rule 17"
+            ],
+            "action": {
+              "course_change_deg": 0.0,
+              "speed_ratio": 1.0
+            },
+            "reason": "stand-on course and speed maintained",
+            "id": "maintain-course-speed",
+            "expected_passed": true,
+            "matched": true
+          },
+          {
+            "passed": false,
+            "encounter": "crossing_port",
+            "role": "stand_on",
+            "rules": [
+              "Rule 5",
+              "Rule 6",
+              "Rule 7",
+              "Rule 8",
+              "Rule 15",
+              "Rule 17"
+            ],
+            "action": {
+              "course_change_deg": 20.0,
+              "speed_ratio": 1.0
+            },
+            "reason": "stand-on vessel changes course/speed without the verifier's immediate-danger trigger",
+            "id": "unnecessary-large-change",
+            "expected_passed": false,
+            "matched": true
+          }
+        ],
+        "passed": true
+      },
+      {
+        "id": "COLREG-13-OVERTAKING",
+        "classification_passed": true,
+        "assessment": {
+          "encounter": "overtaking",
+          "role": "give_way",
+          "risk_of_collision": true,
+          "relative_bearing_deg": 0.0,
+          "target_aspect_deg": -180.0,
+          "tcpa_s": 166.66666666666666,
+          "dcpa_m": 0.0,
+          "range_m": 500.0,
+          "rules": [
+            "Rule 5",
+            "Rule 6",
+            "Rule 7",
+            "Rule 8",
+            "Rule 13"
+          ],
+          "reasons": [
+            "relative bearing 0.00 deg",
+            "DCPA 0.0 m",
+            "TCPA 166.7 s",
+            "own vessel approaches from more than 22.5 deg abaft target beam"
+          ]
+        },
+        "actions": [
+          {
+            "passed": true,
+            "encounter": "overtaking",
+            "role": "give_way",
+            "rules": [
+              "Rule 5",
+              "Rule 6",
+              "Rule 7",
+              "Rule 8",
+              "Rule 13"
+            ],
+            "action": {
+              "course_change_deg": 15.0,
+              "speed_ratio": 0.9
+            },
+            "reason": "overtaking vessel takes substantial action to keep clear",
+            "id": "substantial-passing-change",
+            "expected_passed": true,
+            "matched": true
+          },
+          {
+            "passed": false,
+            "encounter": "overtaking",
+            "role": "give_way",
+            "rules": [
+              "Rule 5",
+              "Rule 6",
+              "Rule 7",
+              "Rule 8",
+              "Rule 13"
+            ],
+            "action": {
+              "course_change_deg": 0.0,
+              "speed_ratio": 1.0
+            },
+            "reason": "overtaking vessel has not taken substantial action",
+            "id": "continue-closing",
+            "expected_passed": false,
+            "matched": true
+          }
+        ],
+        "passed": true
+      },
+      {
+        "id": "COLREG-19-RESTRICTED-VISIBILITY",
+        "classification_passed": true,
+        "assessment": {
+          "encounter": "restricted_visibility",
+          "role": "safe_speed_and_avoidance",
+          "risk_of_collision": true,
+          "relative_bearing_deg": 9.462322208025626,
+          "target_aspect_deg": 9.462322208025626,
+          "tcpa_s": 66.66666666666667,
+          "dcpa_m": 100.00000000000003,
+          "range_m": 608.2762530298219,
+          "rules": [
+            "Rule 5",
+            "Rule 6",
+            "Rule 7",
+            "Rule 8",
+            "Rule 19"
+          ],
+          "reasons": [
+            "relative bearing 9.46 deg",
+            "DCPA 100.0 m",
+            "TCPA 66.7 s",
+            "restricted visibility or vessels not in sight"
+          ]
+        },
+        "actions": [
+          {
+            "passed": true,
+            "encounter": "restricted_visibility",
+            "role": "safe_speed_and_avoidance",
+            "rules": [
+              "Rule 5",
+              "Rule 6",
+              "Rule 7",
+              "Rule 8",
+              "Rule 19"
+            ],
+            "action": {
+              "course_change_deg": 0.0,
+              "speed_ratio": 0.6
+            },
+            "reason": "safe-speed/avoidance action avoids a port alteration for a vessel forward of the beam",
+            "id": "reduce-speed",
+            "expected_passed": true,
+            "matched": true
+          },
+          {
+            "passed": false,
+            "encounter": "restricted_visibility",
+            "role": "safe_speed_and_avoidance",
+            "rules": [
+              "Rule 5",
+              "Rule 6",
+              "Rule 7",
+              "Rule 8",
+              "Rule 19"
+            ],
+            "action": {
+              "course_change_deg": -20.0,
+              "speed_ratio": 1.0
+            },
+            "reason": "restricted-visibility action is insufficient or alters to port for a vessel forward of the beam",
+            "id": "port-forward-of-beam",
+            "expected_passed": false,
+            "matched": true
+          }
+        ],
+        "passed": true
+      },
+      {
+        "id": "COLREG-07-NO-CURRENT-RISK",
+        "classification_passed": true,
+        "assessment": {
+          "encounter": "no_risk",
+          "role": "monitor",
+          "risk_of_collision": false,
+          "relative_bearing_deg": 57.994616791916485,
+          "target_aspect_deg": -122.0053832080835,
+          "tcpa_s": null,
+          "dcpa_m": 943.3981132056604,
+          "range_m": 943.3981132056604,
+          "rules": [
+            "Rule 5",
+            "Rule 6",
+            "Rule 7",
+            "Rule 8"
+          ],
+          "reasons": [
+            "relative bearing 57.99 deg",
+            "DCPA 943.4 m",
+            "TCPA unavailable",
+            "CPA thresholds do not establish current collision risk"
+          ]
+        },
+        "actions": [
+          {
+            "passed": true,
+            "encounter": "no_risk",
+            "role": "monitor",
+            "rules": [
+              "Rule 5",
+              "Rule 6",
+              "Rule 7",
+              "Rule 8"
+            ],
+            "action": {
+              "course_change_deg": 0.0,
+              "speed_ratio": 1.0
+            },
+            "reason": "continued monitoring is consistent with the current no-risk assessment",
+            "id": "monitor",
+            "expected_passed": true,
+            "matched": true
+          }
+        ],
+        "passed": true
+      }
+    ],
+    "colreg_certified": false,
+    "boundary": "Deterministic rule-trace regression for powered-vessel encounters; not flag-state, class, or legal COLREG certification."
+  },
+  "hil": {
+    "profile_id": "sailing_simulator_hil_loopback_v1",
+    "cycles": 160,
+    "accepted_frames": 150,
+    "invalid_frames_rejected": 5,
+    "fault_injections": {
+      "dropout": 5,
+      "authorized_restart": 1,
+      "unauthorized_session_change": 1,
+      "corruption": 1,
+      "replay": 1,
+      "stale": 1,
+      "out_of_range": 1
+    },
+    "watchdog_neutralized": true,
+    "receipt_count": 150,
+    "receipt_chain_head_sha256": "950b553362e7a83607b38cf146730c0b7737dc5e1ab20c2874c4de9f174ce3ef",
+    "rejections": {
+      "integrity": 1,
+      "range": 1,
+      "replay_or_reorder": 1,
+      "session_change": 1,
+      "stale_or_future": 1
+    },
+    "checks": {
+      "valid_frames_accepted": true,
+      "invalid_frames_rejected": true,
+      "watchdog_neutralized_after_dropout": true,
+      "authorized_restart_after_timeout": true,
+      "unauthorized_session_change_rejected": true,
+      "bounded_slew_limited_output": true,
+      "nmea_checksum_roundtrip": true,
+      "receipt_chain_complete": true
+    },
+    "passed": true,
+    "failures": [],
+    "software_loopback_verified": true,
+    "physical_hardware_verified": false,
+    "production_authority": false,
+    "boundary": "UDP/NMEA codec, logical-time loopback, watchdog and fault-injection evidence only; no physical controller, actuator, bridge bus or class-witnessed HIL was connected."
+  },
+  "sea_trial": {
+    "status": "BLOCKED_NO_REAL_VESSEL_EVIDENCE",
+    "evidence_package_complete": false,
+    "sea_trial_completed": false,
+    "external_authentication_required": true,
+    "provenance_checks": {
+      "real_vessel_context": false,
+      "named_vessel": false,
+      "trial_area_recorded": false,
+      "authority_permission": false,
+      "master_or_operator": false,
+      "independent_witness": false,
+      "sensor_calibration": false,
+      "actuator_calibration": false,
+      "risk_assessment": false,
+      "signed_trial_record": false,
+      "physical_hil_prerequisite": false,
+      "raw_log_exists": false,
+      "raw_log_hash_matches": false
+    },
+    "telemetry_evaluation": {
+      "metrics": {
+        "duration_s": 300.0,
+        "sample_count": 301,
+        "gnss_valid_ratio": 1.0,
+        "p95_cross_track_error_m": 2.4940841169385,
+        "minimum_dcpa_m": 1000.0,
+        "p95_command_latency_ms": 20.0,
+        "manual_override_observed": true,
+        "emergency_stop_observed": true
+      },
+      "checks": {
+        "minimum_duration": true,
+        "gnss_availability": true,
+        "cross_track_error": true,
+        "closest_point_of_approach": true,
+        "command_latency": true,
+        "manual_override_demonstrated": true,
+        "emergency_stop_demonstrated": true
+      },
+      "metric_gate_passed": true
+    },
+    "protocol_id": "autonomous_navigation_progressive_sea_trial_v1",
+    "boundary": "Software checks declared completeness, raw-log integrity and metrics only. It cannot authenticate a vessel, permit, person, witness, signature or calibration record, so it never declares the sea trial completed.",
+    "dry_run_metric_gate_passed": true,
+    "evidence_completeness_refusal_gate_passed": true
+  },
+  "boundary": "PASS means the new software verification and anti-overclaim gates executed successfully. It does not mean vessel calibration, COLREG certification, physical HIL, sea trial or production authorization.",
+  "generated_at_utc": "2026-08-22T13:55:43.060207+00:00"
+}

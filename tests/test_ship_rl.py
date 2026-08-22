@@ -10,7 +10,7 @@ from gymnasium.utils.env_checker import check_env
 
 from tools.ship_rl.environment import LosPidController, ShipNavigationEnv, dataset_fingerprint, load_experiment
 from tools.ship_rl.trainer import EvaluateRequest, TrainRequest, evaluate, train
-from tools.public_data_pipeline import normalize_ais
+from tools.public_data_pipeline import normalize_ais, write_public_json_atomic
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -18,6 +18,24 @@ CONFIG = ROOT / "tests" / "fixtures" / "ship_training_config.json"
 
 
 class ShipEnvironmentTests(unittest.TestCase):
+    def test_public_data_writer_rejects_credential_fields(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary) / "public.json"
+            with self.assertRaisesRegex(ValueError, "sensitive field"):
+                write_public_json_atomic(
+                    output,
+                    {"location": {"latitude": 33.73, "api_token": "not-public"}},
+                )
+            self.assertFalse(output.exists())
+            write_public_json_atomic(
+                output,
+                {"location": {"latitude": 33.73, "longitude": -118.27}},
+            )
+            self.assertEqual(
+                json.loads(output.read_text(encoding="utf-8"))["location"]["latitude"],
+                33.73,
+            )
+
     def test_environment_contract_and_split_isolation(self) -> None:
         config, dataset, dataset_path = load_experiment(CONFIG)
         self.assertEqual(dataset_path, ROOT / "data" / "rl" / "default_port_dataset.json")

@@ -27,11 +27,36 @@ from typing import Any, Dict, Iterable, Iterator, List, Mapping, Sequence, TextI
 OPEN_METEO_FORECAST = "https://api.open-meteo.com/v1/forecast"
 OPEN_METEO_MARINE = "https://marine-api.open-meteo.com/v1/marine"
 NOAA_AIS_SOURCE = "https://coast.noaa.gov/digitalcoast/data/vesseltraffic.html"
+SENSITIVE_KEY_MARKERS = (
+    "api_key",
+    "credential",
+    "password",
+    "private_key",
+    "secret",
+    "token",
+)
 
 
-def write_json_atomic(path: Path, payload: Mapping[str, Any]) -> None:
+def _assert_public_payload(value: Any, path: str = "$") -> None:
+    """Reject common credential fields before writing a public-data artifact."""
+    if isinstance(value, Mapping):
+        for key, nested in value.items():
+            normalized = str(key).strip().lower().replace("-", "_")
+            if any(marker in normalized for marker in SENSITIVE_KEY_MARKERS):
+                raise ValueError(f"sensitive field is not allowed in public output: {path}.{key}")
+            _assert_public_payload(nested, f"{path}.{key}")
+    elif isinstance(value, Sequence) and not isinstance(value, (str, bytes, bytearray)):
+        for index, nested in enumerate(value):
+            _assert_public_payload(nested, f"{path}[{index}]")
+
+
+def write_public_json_atomic(path: Path, payload: Mapping[str, Any]) -> None:
+    _assert_public_payload(payload)
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
+    # Coordinates and AIS records are intentionally public; credential-like keys
+    # are rejected above before this documented public-data sink.
+    # codeql[py/clear-text-storage-sensitive-data]
     temporary.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     temporary.replace(path)
 
@@ -106,7 +131,7 @@ def sync_weather(latitude: float, longitude: float, output: Path) -> Dict[str, A
             "time_scale": 1.0,
         },
     }
-    write_json_atomic(output, payload)
+    write_public_json_atomic(output, payload)
     return payload
 
 
@@ -365,8 +390,8 @@ def normalize_ais(
         "coordinate_system": dataset["coordinate_system"],
         "targets": targets,
     }
-    write_json_atomic(dataset_output, dataset)
-    write_json_atomic(targets_output, snapshot)
+    write_public_json_atomic(dataset_output, dataset)
+    write_public_json_atomic(targets_output, snapshot)
     return {"dataset": os.fspath(dataset_output), "targets": os.fspath(targets_output), "split_sizes": {key: len(value) for key, value in splits.items()}}
 
 

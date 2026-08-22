@@ -4,6 +4,7 @@ import hashlib
 import inspect
 import json
 import re
+import sys
 import unittest
 from pathlib import Path
 
@@ -46,7 +47,7 @@ class CargoCircuitPublicEvidenceTests(unittest.TestCase):
         self.assertFalse(dynamic["released_policy_has_manual_bypass_points"])
         self.assertIn("not a sea trial", self.payload["acceptance_boundary"])
 
-    def test_private_assets_are_replaced_by_frozen_hash_commitments(self) -> None:
+    def test_public_artifacts_match_frozen_hash_commitments(self) -> None:
         serialized = json.dumps(self.payload, ensure_ascii=False)
         self.assertNotIn("/Users/", serialized)
         self.assertNotIn("route_points", serialized)
@@ -54,9 +55,46 @@ class CargoCircuitPublicEvidenceTests(unittest.TestCase):
         commitments = self.payload["frozen_artifact_commitments"]
         self.assertEqual(len(commitments), 9)
         self.assertTrue(all(SHA256.fullmatch(value) for value in commitments.values()))
+        public_artifacts = self.payload["release_scope"]["public_artifact_sha256"]
+        self.assertEqual(len(public_artifacts), 11)
+        for relative_path, expected_sha256 in public_artifacts.items():
+            artifact = ROOT / relative_path
+            self.assertTrue(artifact.is_file(), relative_path)
+            self.assertEqual(
+                hashlib.sha256(artifact.read_bytes()).hexdigest(),
+                expected_sha256,
+                relative_path,
+            )
         withheld = self.payload["release_scope"]["withheld_assets"]
-        self.assertIn("trained model weights", withheld)
-        self.assertIn("full per-step held-out trajectories", withheld)
+        self.assertNotIn("trained model weights", withheld)
+        self.assertNotIn("full per-step held-out trajectories", withheld)
+
+    def test_public_models_load_with_declared_space_and_step_contracts(self) -> None:
+        tools_path = str(ROOT / "tools")
+        if tools_path not in sys.path:
+            sys.path.insert(0, tools_path)
+        from stable_baselines3 import SAC
+
+        expected = (
+            (
+                ROOT
+                / "reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip",
+                (36,),
+                300_000,
+            ),
+            (
+                ROOT
+                / "reports/artifacts/cargo_circuit_dynamic_rl_v2/"
+                "cargo_dynamic_sac_policy.zip",
+                (44,),
+                500,
+            ),
+        )
+        for path, observation_shape, timesteps in expected:
+            model = SAC.load(path, device="cpu")
+            self.assertEqual(model.observation_space.shape, observation_shape)
+            self.assertEqual(model.action_space.shape, (2,))
+            self.assertEqual(model.num_timesteps, timesteps)
 
     def test_render_video_is_silent_small_and_hash_bound(self) -> None:
         video = self.payload["render_video"]

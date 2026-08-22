@@ -71,9 +71,14 @@ Godot 4.7 owns vessel control, port geometry, risk envelopes, and 3D evidence re
 
 ### 环航取货 RL：技术审阅入口 / Curated cargo-circuit RL evidence
 
-为便于技术面试核验，仓库公开了实际运行的 [36维连续控制环境](tools/cargo_rl/environment.py)、[44维动态交通与Residual SAC环境](tools/cargo_rl/dynamic_environment.py)、[七算法训练/留出评测实现](tools/cargo_rl/trainer.py)、[训练命令入口](tools/cargo_rl_train.py)、[Godot取货回放控制器](examples/cargo_circuit_godot/cargo_circuit_replay_controller.gd)、[H总控面板](examples/cargo_circuit_godot/cargo_circuit_rl_panel.gd)、[脱敏证据清单](reports/cargo_circuit_public_evidence_v1.json)及[自动合同测试](tests/test_cargo_circuit_public_evidence.py)。静态SAC-S1完成30万步无渲染训练；动态RES-SAC-D2在冻结静态策略上融合相对运动、TCPA/DCPA和6艘移动交通船。两者在各自固定留出任务中均完成7/7检查点和取货且零碰撞，完整口径见[技术证据说明](docs/CARGO_RL_TECHNICAL_EVIDENCE.md)。
+为便于技术面试核验，仓库公开了实际运行的 [36维连续控制环境](tools/cargo_rl/environment.py)、[44维动态交通与Residual SAC环境](tools/cargo_rl/dynamic_environment.py)、[七算法训练/留出评测实现](tools/cargo_rl/trainer.py)、[训练命令入口](tools/cargo_rl_train.py)、[Godot取货回放控制器](examples/cargo_circuit_godot/cargo_circuit_replay_controller.gd)、[H总控面板](examples/cargo_circuit_godot/cargo_circuit_rl_panel.gd)、[证据清单](reports/cargo_circuit_public_evidence_v1.json)及[自动合同测试](tests/test_cargo_circuit_public_evidence.py)。静态SAC-S1完成30万步无渲染训练；动态RES-SAC-D2在冻结静态策略上融合相对运动、TCPA/DCPA和6艘移动交通船。两者在各自固定留出任务中均完成7/7检查点和取货且零碰撞，完整口径见[技术证据说明](docs/CARGO_RL_TECHNICAL_EVIDENCE.md)。
 
-This remains a curated verification surface rather than a full project dump. The environment, trainer, CLI, demonstration logic, replay controller, and control-panel source are reviewable; exact map geometry, frozen experiment configuration, model weights, per-step trajectories, and the complete Godot scene/visual package remain private. Frozen SHA-256 commitments bind the demonstrated artifacts without publishing those withheld files.
+| 冻结策略 / Frozen policy | 已训练权重 / Trained weights | 检查点与留出轨迹 / Checkpoint and held-out trajectory |
+|---|---|---|
+| SAC-S1（36维，300,000步） | [`cargo_sac_policy.zip`](reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip) | [checkpoint](reports/artifacts/cargo_circuit_rl_v1/cargo_policy_checkpoint.json) · [test trajectory](reports/artifacts/cargo_circuit_rl_v1/cargo_policy_test_trajectory.json) |
+| RES-SAC-D2（44维，500步 residual adaptation） | [`cargo_dynamic_sac_policy.zip`](reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip) | [checkpoint](reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_policy_checkpoint.json) · [test trajectory](reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_policy_test_trajectory.json) |
+
+This remains a curated verification surface rather than a full project dump. The runtime source, frozen trained weights, checkpoints, held-out trajectories, episode summaries, replay controller, and control-panel source are reviewable and SHA-256 bound by the evidence manifest. Exact map geometry, frozen experiment configuration, and the complete Godot scene/visual package remain private. Stable-Baselines3 archives may contain Python-serialized objects; load only the hash-matched files from a trusted repository revision.
 
 > [!IMPORTANT]
 > 当前证据证明的是仿真平台完整性、算法评测能力和失效安全门禁，不是实船海试、COLREGs认证或商业航行许可。公开环境强迫、仿真动力学与真实传感/执行数据始终分层标注。

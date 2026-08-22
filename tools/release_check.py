@@ -31,6 +31,7 @@ SAFETY_REPORT = ROOT / "reports/safety_supervisor_benchmark_v3.json"
 SAFETY_UTILITY_AUDIT = ROOT / "reports/safety_supervisor_utility_audit_v3.json"
 RELIABILITY_CURRENT = ROOT / "reports/simulator_reliability_audit_v3.json"
 MARITIME_ASSURANCE = ROOT / "reports/maritime_assurance_v1.json"
+CARGO_EVIDENCE = ROOT / "reports/cargo_circuit_public_evidence_v1.json"
 XIAOYI_PORTRAIT = ROOT / "assets/ui/xiaoyi/xiaoyi-maritime-officer.png"
 XIAOYI_PORTRAIT_SHA256 = (
     "8f56a569dcb098ef08cd2bed92ffc098474c7d6ef911141760982e9323ffe714"
@@ -89,6 +90,7 @@ REQUIRED_FILES = (
     "reports/simulator_reliability_audit_v3.md",
     "reports/maritime_assurance_v1.json",
     "reports/maritime_assurance_v1.md",
+    "reports/cargo_circuit_public_evidence_v1.json",
     "data/ports/port_package_manifest_v3.example.json",
     "reports/port_ops_benchmark_v2.md",
     "reports/safety_supervisor_benchmark_v3.md",
@@ -452,6 +454,20 @@ def _verify_maritime_assurance_v1(errors: list[str]) -> None:
         errors.append("sea-trial evidence-completeness refusal gate is not PASS")
 
 
+def _verify_cargo_public_artifacts(errors: list[str]) -> None:
+    evidence = _load_json(CARGO_EVIDENCE)
+    artifacts = evidence.get("release_scope", {}).get("public_artifact_sha256", {})
+    if len(artifacts) != 11:
+        errors.append("cargo public artifact inventory is incomplete")
+        return
+    for relative, expected_hash in artifacts.items():
+        path = ROOT / str(relative)
+        if not path.is_file():
+            errors.append(f"missing cargo public artifact: {relative}")
+        elif _sha256(path) != expected_hash:
+            errors.append(f"cargo public artifact hash changed: {relative}")
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -488,6 +504,7 @@ def main() -> int:
         SAFETY_UTILITY_AUDIT,
         RELIABILITY_CURRENT,
         MARITIME_ASSURANCE,
+        CARGO_EVIDENCE,
     ):
         if not path.is_file():
             errors.append(f"missing benchmark evidence: {path.relative_to(ROOT)}")
@@ -498,6 +515,7 @@ def main() -> int:
         _verify_safety_supervisor_v3(errors)
         _verify_safety_utility_audit_v3(errors)
         _verify_maritime_assurance_v1(errors)
+        _verify_cargo_public_artifacts(errors)
         reliability = _load_json(RELIABILITY_CURRENT)
         ui_navigation = _load_json(
             ROOT / "reports/godot_ui_navigation_smoke_v1.json"

@@ -21,11 +21,22 @@
       "examples/cargo_circuit_godot/cargo_circuit_replay_controller.gd": "42d2e31a95fc3a3ac82f34cf8cd793fd4f531ede49bdae5a2a318ec07cd84294",
       "examples/cargo_circuit_godot/cargo_circuit_rl_panel.gd": "532f3ed09b4504aa380ef7240d946afacc86e17089ecc0912817636bc251264d"
     },
+    "public_artifact_sha256": {
+      "reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+      "reports/artifacts/cargo_circuit_rl_v1/cargo_policy_checkpoint.json": "3944e1046c0624c9d118322aef668860dca7acabcd610e9c32b34c518e2ce939",
+      "reports/artifacts/cargo_circuit_rl_v1/cargo_policy_test_trajectory.json": "af37f5a816c731b7f877515c7a747a3807e6a49142bfe199fc059c96a7da5033",
+      "reports/artifacts/cargo_circuit_rl_v1/cargo_sac_test_episodes.csv": "25e953b3bd525f5834ced4179003c47de1b220423909a7ba87ff1b7073a27495",
+      "reports/artifacts/cargo_circuit_rl_v1/manual_feasibility_trajectory.json": "363009b9d5000083a52b95d2f02d0c49bfcc385558596f980dbb194c9a0f1bb9",
+      "reports/artifacts/cargo_circuit_rl_v1/test_progress.json": "b1d8317897596a4f4a074b4bf07e2883138f44c5a2612d7a8742122a24ff8d1d",
+      "reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+      "reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_policy_checkpoint.json": "5476104966aef1672bbe0c8f60447ba1cd61462a3609d499dd815a8860ba277c",
+      "reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_policy_test_trajectory.json": "e896748229fcdf917ebc8bd091c035546ea28ed8d3ac5cc4ecdb5db48b8b94a7",
+      "reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_sac_test_episodes.csv": "7b027abb680dca7c31e97fe1083c6c28402204e06d0ead03ce76cfcd1aa7e9cd",
+      "reports/artifacts/cargo_circuit_dynamic_rl_v2/test_progress.json": "c61644748954781fe141ceccc7d777a2e1707f68e2ab34291d91e8097a157430"
+    },
     "withheld_assets": [
       "exact route and cliff coordinates",
       "training and dynamic-scenario configuration",
-      "trained model weights",
-      "full per-step held-out trajectories",
       "complete Godot scene and visual-asset package"
     ]
   },

@@ -1,6 +1,6 @@
 # 环航取货 RL 技术证据（公开审阅版）
 
-这是一份面向技术面试的可核验公开面，不是完整项目转储。公开源码来自实际运行模块，不是演示伪代码；训练权重、精确地图、完整轨迹与完整Godot场景/视觉资产继续保留在私有交付范围。
+这是一份面向技术面试的可核验公开面，不是完整项目转储。公开源码来自实际运行模块，不是演示伪代码；两套冻结训练权重、检查点、留出轨迹和episode摘要已公开并由SHA-256绑定。精确地图、冻结实验配置及完整Godot场景/视觉资产继续保留在私有交付范围。
 
 ## 可检查的真实实现
 
@@ -10,8 +10,9 @@
 - `tools/cargo_rl/demonstration.py`：行为克隆初始化与经验回放预填所使用的透明舵令采集实现；最终test不调用该控制器。
 - `examples/cargo_circuit_godot/cargo_circuit_replay_controller.gd` 与 `examples/cargo_circuit_godot/cargo_circuit_rl_panel.gd`：从实际项目提取的Godot测试轨迹回放、准入检查、策略选择、训练/验证/测试命令和H总控交互源码；示例目录不冒充完整可运行场景。
 - `docs/media/cargo-circuit-sac-heldout-test.mp4`：用户录制的SAC-S1 held-out test Godot回放精华片段；公开版保留检查点、取货和任务完成阶段，为1600×900/30fps、22秒、无声H.264视频，外部录音已移除，文件控制在10MB以内。`docs/media/cargo-circuit-sac-inline-preview.gif` 是README内直接显示的12秒循环预览；主页使用MP4原地播放器。
-- `reports/cargo_circuit_public_evidence_v1.json`：记录两套策略的留出测试结果、诚实边界，以及未公开模型/轨迹的SHA-256承诺。
-- `tests/test_cargo_circuit_public_evidence.py`：自动检查源码继承关系、36D/44D合同、Residual动作链、测试门槛、动态交通和私有资产隔离。
+- `reports/artifacts/cargo_circuit_rl_v1/` 与 `reports/artifacts/cargo_circuit_dynamic_rl_v2/`：公开SAC-S1和RES-SAC-D2冻结权重、检查点、留出测试轨迹及episode摘要。
+- `reports/cargo_circuit_public_evidence_v1.json`：记录两套策略的留出测试结果、公开文件SHA-256及诚实边界。
+- `tests/test_cargo_circuit_public_evidence.py`：自动检查源码继承关系、36D/44D合同、Residual动作链、测试门槛、动态交通和公开产物哈希。
 
 ## 两套已验收策略
 
@@ -24,6 +25,8 @@
 ```bash
 python -m unittest tests.test_cargo_circuit_public_evidence -v
 python -m compileall -q tools/cargo_rl tests/test_cargo_circuit_public_evidence.py
+PYTHONPATH=tools python -c 'from stable_baselines3 import SAC; print(SAC.load("reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip", device="cpu").observation_space)'
+python tools/release_check.py
 ```
 
-完整训练数据、精确任务坐标、冻结超参数配置、模型文件、逐步测试轨迹及完整Godot场景/视觉资产没有公开。公开清单给出冻结产物的SHA-256，可在面试演示或授权审阅时对照本地原件验证。所有结果均为项目原生数值仿真与固定留出任务证据，不代表实船海试、COLREGs认证或生产控制许可。
+两套验收策略的模型文件、检查点、逐步测试轨迹与episode摘要已经公开；完整训练数据、精确任务坐标、冻结实验配置及完整Godot场景/视觉资产没有公开。公开清单逐文件给出SHA-256，发布门禁会拒绝缺失或被改写的产物。Stable-Baselines3压缩包可能包含Python序列化对象，只应从可信仓库版本加载并先核对哈希。所有结果均为项目原生数值仿真与固定留出任务证据，不代表实船海试、COLREGs认证或生产控制许可。

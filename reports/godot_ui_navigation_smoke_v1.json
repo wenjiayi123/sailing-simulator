@@ -27,7 +27,7 @@
 			"passed": true
 		},
 		"button_port_contract_validator": {
-			"detail": "已启动真实契约校验进程 PID 30128；结果写入终端与报告。",
+			"detail": "已启动真实契约校验进程 PID 82556；结果写入终端与报告。",
 			"passed": true
 		},
 		"button_review": {
@@ -165,7 +165,7 @@
 		}
 	},
 	"errors": [],
-	"generated_at": "2026-07-25T12:02:12",
+	"generated_at": "2026-08-22T14:44:32",
 	"passed": true,
 	"passed_checks": 36,
 	"schema_version": "godot_ui_navigation_smoke_v1",

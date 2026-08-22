@@ -43,6 +43,6 @@ jobs:
           python tools/run_safety_supervisor_benchmark.py verify
           python tools/audit_safety_supervisor_utility_v3.py verify
           python tools/run_maritime_assurance.py verify
-          make reliability-audit
+          make PYTHON=python reliability-audit
           python tools/release_check.py
           python tools/build_research_core_release.py build

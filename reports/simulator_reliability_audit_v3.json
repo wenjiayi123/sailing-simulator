@@ -161,8 +161,8 @@
     "version": "4.7.1.stable.official.a13da4feb",
     "passed_checks": 2,
     "total_checks": 2,
-    "source_file_count": 38,
-    "source_tree_sha256": "e642c14d72cfd5f3479c75c4f2e922675e552a9e20a53e6dcf46aa4ea93435fb",
+    "source_file_count": 34,
+    "source_tree_sha256": "a04ecd6964f45f92608d0c423d705dd7ae4fd9e34305509e1beee6cda9c097e8",
     "receipt_source_hash_matches": true
   },
   "algorithm_test_metrics": [

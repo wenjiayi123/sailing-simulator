@@ -81,7 +81,7 @@
     }
   },
   "errors": [],
-  "generated_at": "2026-08-21T04:54:56",
+  "generated_at": "2026-08-22T14:44:40",
   "passed": true,
   "passed_checks": 14,
   "schema_version": "godot_safety_strategy_smoke_v3",

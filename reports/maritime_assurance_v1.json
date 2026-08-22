@@ -11,8 +11,8 @@
     "tools/ship_assurance/colreg.py": "ed5efd3829eb06cc1cd87daeab65df64ffe9fc367f9162173f5d518c74f2f7c2",
     "tools/ship_assurance/hil.py": "202c4b980504798faf76185609d48517b3d1784ca8e6f081594ac7e1578c0ecc",
     "tools/ship_assurance/sea_trial.py": "c1ad8c85784f80073ee908b391e9e4a5c4126916c4667a7f9ff5b3ae45aef11c",
-    "tools/run_maritime_assurance.py": "89f61e9e5ad012b8b8b5236923ed0ed0d07df2c3f129648fa8fcbc6e4f6c4185",
-    "tests/test_maritime_assurance.py": "d3b333d8d9b0ff6336abbf948e6927e0526d1a42cc2a74375b3b58f79a476b48"
+    "tools/run_maritime_assurance.py": "0485abf23d0f07c17c4606c390096e21efb59c78731220eb37a1ffc0c2b82528",
+    "tests/test_maritime_assurance.py": "d9ba295f6a056530da4e45712e25e3816f064bddf435a4fc96ebb88dd8713fbb"
   },
   "overall": {
     "software_assurance_passed": true,
@@ -596,5 +596,5 @@
     "evidence_completeness_refusal_gate_passed": true
   },
   "boundary": "PASS means the new software verification and anti-overclaim gates executed successfully. It does not mean vessel calibration, COLREG certification, physical HIL, sea trial or production authorization.",
-  "generated_at_utc": "2026-08-22T13:55:43.060207+00:00"
+  "generated_at_utc": "2026-08-22T14:21:37.031332+00:00"
 }

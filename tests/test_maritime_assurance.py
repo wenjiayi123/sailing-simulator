@@ -33,6 +33,7 @@ from tools.ship_assurance.sea_trial import (
     run_sea_trial_dry_run,
     sha256_file,
 )
+from tools.run_maritime_assurance import _comparison_differences
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -47,6 +48,25 @@ def _read(path: Path) -> dict:
 
 
 class DynamicsAssuranceTests(unittest.TestCase):
+    def test_report_comparison_is_cross_platform_but_still_strict(self) -> None:
+        recorded = {"metric": 100.0, "nested": [1.0, {"status": "PASS"}]}
+        numerically_equivalent = {
+            "metric": 100.0 + 5e-10,
+            "nested": [1.0 - 5e-10, {"status": "PASS"}],
+        }
+        materially_different = {
+            "metric": 100.0 + 1e-5,
+            "nested": [1.0, {"status": "PASS"}],
+        }
+        self.assertEqual(
+            _comparison_differences(recorded, numerically_equivalent),
+            [],
+        )
+        self.assertEqual(
+            _comparison_differences(recorded, materially_different),
+            ["$.metric"],
+        )
+
     def test_reference_plant_acceptance_and_determinism(self) -> None:
         config = DynamicsConfig.from_mapping(_read(DYNAMICS))
         report = run_dynamics_acceptance(config)

@@ -7,6 +7,7 @@ import argparse
 from datetime import datetime, timezone
 import hashlib
 import json
+import math
 from pathlib import Path
 import sys
 from typing import Any
@@ -54,6 +55,45 @@ def _read(path: Path) -> dict[str, Any]:
 
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _comparison_differences(
+    recorded: Any,
+    current: Any,
+    path: str = "$",
+) -> list[str]:
+    """Compare deterministic evidence with tight cross-platform float tolerance."""
+    if isinstance(recorded, bool) or isinstance(current, bool):
+        return [] if recorded is current else [path]
+    if isinstance(recorded, (int, float)) and isinstance(current, (int, float)):
+        equivalent = math.isclose(
+            float(recorded),
+            float(current),
+            rel_tol=1e-12,
+            abs_tol=1e-9,
+        )
+        return [] if equivalent else [path]
+    if isinstance(recorded, dict) and isinstance(current, dict):
+        differences = [f"{path}.keys"] if set(recorded) != set(current) else []
+        for key in sorted(set(recorded) & set(current)):
+            differences.extend(
+                _comparison_differences(recorded[key], current[key], f"{path}.{key}")
+            )
+        return differences
+    if isinstance(recorded, list) and isinstance(current, list):
+        if len(recorded) != len(current):
+            return [f"{path}.length"]
+        differences: list[str] = []
+        for index, (recorded_item, current_item) in enumerate(zip(recorded, current)):
+            differences.extend(
+                _comparison_differences(
+                    recorded_item,
+                    current_item,
+                    f"{path}[{index}]",
+                )
+            )
+        return differences
+    return [] if recorded == current else [path]
 
 
 def build_payload() -> dict[str, Any]:
@@ -163,10 +203,19 @@ def verify() -> int:
         return 1
     recorded = _read(REPORT)
     current = build_payload()
-    comparable = {key: value for key, value in recorded.items() if key != "generated_at_utc"}
+    comparable = {
+        key: value
+        for key, value in recorded.items()
+        if key != "generated_at_utc"
+    }
     errors: list[str] = []
-    if comparable != current:
-        errors.append("report content differs from a fresh deterministic execution")
+    differences = _comparison_differences(comparable, current)
+    if differences:
+        errors.append(
+            "report content differs from a fresh deterministic execution "
+            "outside the 1e-9 cross-platform numeric tolerance: "
+            + ", ".join(differences[:8])
+        )
     if recorded.get("claim_matrix", {}).get("physical_hil_verified") is not False:
         errors.append("physical HIL boundary changed")
     if recorded.get("claim_matrix", {}).get("real_vessel_sea_trial_completed") is not False:

@@ -406,14 +406,11 @@ python3 tools/public_data_pipeline.py weather \
 
 The code is Apache-2.0 licensed. `make release-check` verifies code, data, experiment, and model evidence; `.venv/bin/python tools/release_check.py --strict-assets` also fails on unresolved asset licenses. Provenance review for all existing images, textures, and character assets is not yet complete, so the full visual package must pass the [asset-license audit](docs/ASSET_LICENSE_AUDIT.md) before public redistribution. See [data sources](docs/DATA_SOURCES.md) for provenance and attribution, [simulator metrics](docs/SIMULATOR_METRICS.md) for evaluation semantics, and [resume evidence and prohibited claims](docs/RESUME_CLAIMS.md) for externally defensible wording.
 
-## 学术顾问 / Academic Advisor
+## Academic Advisor
 
-> **Prof. Dr. Hamid Reza Karimi**<br />
-> MAE · MEASA · MEurASc · MNAAI · DFIIAV · FISCM · FAAIA<br />
-> President-Elect, IIAV<br />
-> Department of Mechanical Engineering, Politecnico di Milano<br />
-> Milan, Italy
+**[Prof. Dr. Hamid Reza Karimi](https://www.ae-info.org/ae/Member/Karimi_Hamid_Reza), MAE, MEASA, MEurASc, MNAAI, DFIIAV, FISCM, FAAIA**<br />
+**President-Elect, IIAV**<br />
+Politecnico di Milano<br />
+Department of Mechanical Engineering
 
-衷心感谢 Hamid Reza Karimi 教授对本项目的学术支持与指导。
-
-We sincerely thank Prof. Dr. Hamid Reza Karimi for his academic support and guidance.
+*With sincere appreciation for his academic support and guidance.*

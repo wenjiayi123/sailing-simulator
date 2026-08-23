@@ -95,8 +95,8 @@
   },
   "initialization": {
     "checkpoint": {
-      "path": "/Users/apple/Desktop/航行模拟器/output/cargo_rl_final2/checkpoint.json",
-      "model_path": "/Users/apple/Desktop/航行模拟器/output/cargo_rl_final2/cargo_sac_policy.zip",
+      "path": "output/cargo_rl_final2/checkpoint.json",
+      "model_path": "output/cargo_rl_final2/cargo_sac_policy.zip",
       "source_experiment_sha256": "2e6b8b27bbef45856b740780799e96ccbf5155a9a0b16f40e882677eb7ecaafa",
       "source_timesteps": 300000,
       "weights_only": true
@@ -119,8 +119,8 @@
   "dataset_split_used": "train",
   "dataset_sha256": "5fb5900203e4ad3be2d6e2cc38246a90096a783874a70e0417d6387b7d57e885",
   "experiment_sha256": "6665bb102af8401168e13fae5a173c1390640800d402c7d9ea27351c356e0ccc",
-  "dataset_path": "/Users/apple/Desktop/航行模拟器/data/rl/cargo_circuit_dataset_v1.json",
-  "config_path": "/Users/apple/Desktop/航行模拟器/data/rl/cargo_circuit_experiment_v1.json",
+  "dataset_path": "data/rl/cargo_circuit_dataset_v1.json",
+  "config_path": "data/rl/cargo_circuit_experiment_v1.json",
   "render": false,
   "environment_parameters": {
     "vessel_radius_m": 3.2,
@@ -166,7 +166,7 @@
   "pretraining_feasibility_gate": {
     "required": true,
     "passed": true,
-    "path": "/Users/apple/Desktop/航行模拟器/reports/cargo_circuit_manual_feasibility_v1.json",
+    "path": "reports/cargo_circuit_manual_feasibility_v1.json",
     "episodes": 5,
     "success_rate": 1.0,
     "total_collisions": 0,

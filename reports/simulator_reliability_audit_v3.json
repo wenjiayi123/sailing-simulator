@@ -2,7 +2,7 @@
   "schema_version": "simulator_reliability_audit_v3",
   "audit_id": "ship_simulator_public_weather_fixed_test_v3",
   "audit_revision": "v3",
-  "evidence_snapshot_generated_at": "2026-07-24T10:54:39+00:00",
+  "evidence_snapshot_generated_at": "2026-08-23T03:32:32+00:00",
   "status": "PASS",
   "simulator_scope": {
     "observation_dimensions": 28,
@@ -161,8 +161,8 @@
     "version": "4.7.1.stable.official.a13da4feb",
     "passed_checks": 2,
     "total_checks": 2,
-    "source_file_count": 34,
-    "source_tree_sha256": "a04ecd6964f45f92608d0c423d705dd7ae4fd9e34305509e1beee6cda9c097e8",
+    "source_file_count": 35,
+    "source_tree_sha256": "847c66228e7d40e3b6731861a0a0aaca64f3cd91ac2242e655b3d63c1fa34136",
     "receipt_source_hash_matches": true
   },
   "algorithm_test_metrics": [

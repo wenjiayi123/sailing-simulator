@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify the checked-in navigation benchmark and open-source release boundary."""
+"""Verify checked-in datasets, model artifacts, and benchmark consistency."""
 
 from __future__ import annotations
 
@@ -65,7 +65,7 @@ REQUIRED_FILES = (
     "docs/DATA_SOURCES.md",
     "docs/ALGORITHM_PARAMETERS.md",
     "docs/PORT_ADAPTER_GUIDE.md",
-    "docs/RESUME_CLAIMS.md",
+    "docs/PROJECT_METRICS.md",
     "docs/SIMULATOR_METRICS.md",
     "docs/THREAT_MODEL.md",
     "docs/PRODUCTION_READINESS.md",
@@ -105,7 +105,7 @@ REQUIRED_FILES = (
 )
 UNRESOLVED_ASSETS = (
     "characters/download.png",
-    "characters/ChatGPT Image 2026年6月21日 15_30_22.png",
+    "characters/maritime_assistant_portrait.png",
     "assets/art/terrain/premium_reference_cliff_rock_32471782690108.jpg",
 )
 
@@ -558,17 +558,17 @@ def main() -> int:
     if errors:
         for error in errors:
             print(f"ERROR: {error}")
-        print("functional/reliability release check: FAIL")
+        print("project integrity check: FAIL")
         return 1
-    print("functional/reliability release check: PASS")
+    print("project integrity check: PASS")
     if unresolved:
         print(
-            "asset-license release scope: WARNING "
-            "(full visual bundle remains blocked; publish the code/data scope or "
-            "resolve docs/ASSET_LICENSE_AUDIT.md)"
+            "third-party asset licensing: WARNING "
+            "(some assets still require source or license review; "
+            "see docs/ASSET_LICENSE_AUDIT.md)"
         )
     else:
-        print("asset-license release scope: PASS")
+        print("third-party asset licensing: PASS")
     return 0
 
 

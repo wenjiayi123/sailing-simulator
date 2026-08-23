@@ -13,8 +13,8 @@
     "data/rl/long_beach_ais_port_ops_benchmark_v2.json": "1d676e7446f22206f6113777524d46724545e58e55c1df73a9d359795a415a1f",
     "data/rl/long_beach_ais_port_ops_experiment_v2.json": "cc549e731e0d1adeb9e8a5d71446350df95d8b84af07d90dd596a6144630a0c8",
     "data/rl/port_ops_safety_supervisor_v3.json": "1edee032e44132c4c15ade0de73ff3f0ba3ed9b2a25206faa0c6ca8a50f26de3",
-    "reports/port_ops_benchmark_v2_prepared.json": "d74ea4cc07181c1b66caaccccd7b0dbf8b81e519fea432643e27e9a023446d41",
-    "reports/port_ops_benchmark_v2.json": "733c5ac99e6255070fbd8b03ac0eaf064b603fe30c2259be4566fac6f934fe72",
+    "reports/port_ops_benchmark_v2_prepared.json": "fec957052fb8be0c3d9732f716812df3f46e8ef9d68b18291342cd2d26a69e59",
+    "reports/port_ops_benchmark_v2.json": "758a448e1389486cd0fb867c77741098ccffc25eec8fcef883f2f835c349071a",
     "tools/ship_rl/safety_supervisor.py": "d70f4253781c28865bebcab21eced53f94e2232a456cf58d5b3ebecf58e60224",
     "tools/run_safety_supervisor_benchmark.py": "500792596baf6504e66da05acba09dbdb529c4dcac5ccbc10f0c8e77920b400c"
   },
@@ -118,7 +118,7 @@
         }
       },
       "checkpoint": "reports/artifacts/navigation_benchmark_v2/ppo/checkpoint.json",
-      "checkpoint_sha256": "4a932c23ab986b26c4d21d161e90f686e54bb43d06c6e912dbc728b003e6962d",
+      "checkpoint_sha256": "ee7553133ae6958eb87f1e54be4c13415e8b1afb1ba4f4efa4afa387250d02ff",
       "model": "reports/artifacts/navigation_benchmark_v2/ppo/ppo_policy.zip",
       "model_sha256": "0040ecb6aaaede4bd425711665145f0c33b737d304cdb770b545da69dddb3570",
       "validation_trajectory": "reports/artifacts/navigation_benchmark_v2/ppo/validation_trajectory.json"
@@ -161,7 +161,7 @@
         }
       },
       "checkpoint": "reports/artifacts/navigation_benchmark_v2/sac/checkpoint.json",
-      "checkpoint_sha256": "f57c694623580b9bf7176848f88ff6d12420d79e213134b0450b08faf35529b1",
+      "checkpoint_sha256": "d8af3a8d52b758adf797f6bd22c219e404bb37561e4ebfe160efbb46f1fb567e",
       "model": "reports/artifacts/navigation_benchmark_v2/sac/sac_policy.zip",
       "model_sha256": "1bc1b3d1ab0a65045d933b7192d5c4a9cc9f17d40b08e5edb7d5b86b8a8c019d",
       "validation_trajectory": "reports/artifacts/navigation_benchmark_v2/sac/validation_trajectory.json"
@@ -204,7 +204,7 @@
         }
       },
       "checkpoint": "reports/artifacts/navigation_benchmark_v2/td3/checkpoint.json",
-      "checkpoint_sha256": "74c47fe5f6e5bc801edd4377a295be2293ef095448202540d4ae1ed41d689c17",
+      "checkpoint_sha256": "700e19a5d5858f24dae17b4b631102495deded832474157c911ea91782ab2cd9",
       "model": "reports/artifacts/navigation_benchmark_v2/td3/td3_policy.zip",
       "model_sha256": "376ea6d2f68f7c0a667eb841b94cd932d76ad5b10935d7115ca82f83f1023b1f",
       "validation_trajectory": "reports/artifacts/navigation_benchmark_v2/td3/validation_trajectory.json"
@@ -247,7 +247,7 @@
         }
       },
       "checkpoint": "reports/artifacts/navigation_benchmark_v2/dqn/checkpoint.json",
-      "checkpoint_sha256": "26b6e2d3762a06428c47b63fe0f1b3597932d73d4fbf6d429d0fdefe4ce179c4",
+      "checkpoint_sha256": "015a06d8dcf6366c9f214795ebb84d04b61b7546ca44f5ef4d6f126f536dea13",
       "model": "reports/artifacts/navigation_benchmark_v2/dqn/dqn_policy.zip",
       "model_sha256": "e72e3d82b7511fae1e9eb3e8f1ca7d8fe14b2d4ce572329d646384172a7a2d33",
       "validation_trajectory": "reports/artifacts/navigation_benchmark_v2/dqn/validation_trajectory.json"
@@ -290,7 +290,7 @@
         }
       },
       "checkpoint": "reports/artifacts/navigation_benchmark_v2/a2c/checkpoint.json",
-      "checkpoint_sha256": "8d06737885cf3e1dac9e28276a63119b70619f33268510453b5768bfa6c59733",
+      "checkpoint_sha256": "484bd05b755fa136d9f2b3a4cd9b57f6f7cd08d7dd062d96c921f7959fb541f9",
       "model": "reports/artifacts/navigation_benchmark_v2/a2c/a2c_policy.zip",
       "model_sha256": "e7fc50cebdf3b56e18acc640bd2e84d9f1ae390f883ee56e98a96b6f93934aea",
       "validation_trajectory": "reports/artifacts/navigation_benchmark_v2/a2c/validation_trajectory.json"
@@ -333,7 +333,7 @@
         }
       },
       "checkpoint": "reports/artifacts/navigation_benchmark_v2/ddpg/checkpoint.json",
-      "checkpoint_sha256": "1de5d8248a08aa9aa598785f12ad75f5ea1c8ddb5d360f5a881f2ed5bb0d93cc",
+      "checkpoint_sha256": "0ae63af060609cac2c88c417369c152cc5f40582336ff7fee271ca88b4b276e1",
       "model": "reports/artifacts/navigation_benchmark_v2/ddpg/ddpg_policy.zip",
       "model_sha256": "44516ae96129451c81c605ccc733bde05d6adbaffa5feff0841e927c48250ec8",
       "validation_trajectory": "reports/artifacts/navigation_benchmark_v2/ddpg/validation_trajectory.json"
@@ -376,7 +376,7 @@
         }
       },
       "checkpoint": "reports/artifacts/navigation_benchmark_v2/trpo/checkpoint.json",
-      "checkpoint_sha256": "a13211d6cc0ba3d8840c07efd7e2e179d76e59b39137341e6d6c11f1b5422aa5",
+      "checkpoint_sha256": "877fcb31f2b2923aa6d82ebc73efd5a1fec4aa2ce802671d00f053d21c5daf92",
       "model": "reports/artifacts/navigation_benchmark_v2/trpo/trpo_policy.zip",
       "model_sha256": "20ebe5448a5a856f29d1840584bfc1111c0cbbd6db00f8c5389948e01b937340",
       "validation_trajectory": "reports/artifacts/navigation_benchmark_v2/trpo/validation_trajectory.json"
@@ -419,7 +419,7 @@
         }
       },
       "checkpoint": "reports/artifacts/navigation_benchmark_v2/los_pid/checkpoint.json",
-      "checkpoint_sha256": "0f9f4952d196edea2e20c3875824d553f1f45e3d8dc13475b7431f996dee18ed",
+      "checkpoint_sha256": "9b53d434f6b4a4efb9062c250374e60f42f03915d5056ad0c03bd22142bd90a8",
       "model": null,
       "model_sha256": null,
       "validation_trajectory": "reports/artifacts/navigation_benchmark_v2/los_pid/validation_trajectory.json"
@@ -462,7 +462,7 @@
         }
       },
       "checkpoint": "reports/artifacts/navigation_benchmark_v2/lqr/checkpoint.json",
-      "checkpoint_sha256": "6fbc02851f903af0242f2c06e0004fd7da77bc367e97c5606019ed2453a099c1",
+      "checkpoint_sha256": "928edd0834908d373407c4ff6e809eed06d3cbf39efb2772ecd5674a23a72678",
       "model": null,
       "model_sha256": null,
       "validation_trajectory": "reports/artifacts/navigation_benchmark_v2/lqr/validation_trajectory.json"
@@ -505,7 +505,7 @@
         }
       },
       "checkpoint": "reports/artifacts/navigation_benchmark_v2/mpc/checkpoint.json",
-      "checkpoint_sha256": "61db19062a08776fef1cde04f5bbb49167648c617475d5b7d104b53e96a873d2",
+      "checkpoint_sha256": "b76420aab25f1eef92c312e063ff7bd987b8ee2e1a9adfe739b991ffc789cde7",
       "model": null,
       "model_sha256": null,
       "validation_trajectory": "reports/artifacts/navigation_benchmark_v2/mpc/validation_trajectory.json"

@@ -5,8 +5,8 @@
   "stage": "trajectory_ready",
   "algorithm": "ppo",
   "progress": 1.0,
-  "elapsed_seconds": 15.774679023,
-  "trajectory_json": "/Users/apple/Desktop/航行模拟器/reports/artifacts/navigation_benchmark_v1/ppo/test_trajectory.json",
+  "elapsed_seconds": 14.183722604999998,
+  "trajectory_json": "reports/artifacts/navigation_benchmark_v1/ppo/test_trajectory.json",
   "evaluation_metrics": {
     "task_id": "2024-04-01_channel_turn",
     "success": true,

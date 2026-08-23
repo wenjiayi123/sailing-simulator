@@ -206,7 +206,8 @@ var _selection_indicator: MeshInstance3D
 
 
 @onready var player_camera: Camera3D = $Camera3D
-@onready var player_visual: AnimatedSprite3D = $PlayerVisual
+@onready var player_visual: AnimatedSprite3D = $LegacyAnimationStateDriver
+@onready var procedural_usv_visual: Node3D = $ProceduralUSVVisual
 @onready var action_lock: PlayerActionLock = $ActionLock
 
 
@@ -215,6 +216,9 @@ func _ready() -> void:
 	if human_control_enabled:
 		add_to_group(&"player")
 	_configure_ship_visual_rendering()
+	player_visual.visible = false
+	if procedural_usv_visual != null:
+		procedural_usv_visual.call("set_active", true)
 	player_visual.position = SHIP_VISUAL_DEFAULT_POSITION
 	normal_visual_scale = player_visual.scale
 	player_visual_base_position = player_visual.position
@@ -520,6 +524,9 @@ func _update_visual_camera_facing() -> void:
 	player_visual.position = camera_facing_basis * player_visual_base_position
 	var heading_roll := ship_visual_heading_roll if use_continuous_ship_turn_visual else 0.0
 	player_visual.rotation = Vector3(0.0, camera_yaw, heading_roll)
+	if procedural_usv_visual != null:
+		procedural_usv_visual.rotation = Vector3(0.0, ship_heading_yaw, 0.0)
+		procedural_usv_visual.call("set_navigation_state", ship_throttle, ship_rudder, ship_forward_speed)
 
 
 func _get_camera_relative_direction(input_direction: Vector3) -> Vector3:
@@ -947,6 +954,10 @@ func set_ship_selection_highlight(selected: bool) -> void:
 		_selection_indicator.visible = selected
 
 
+func get_procedural_usv_component_summary() -> Dictionary:
+	return procedural_usv_visual.call("get_component_summary") as Dictionary if procedural_usv_visual != null else {}
+
+
 func reset_ship_motion_state() -> void:
 	velocity = Vector3.ZERO
 	ship_target_throttle = 0.0
@@ -1023,6 +1034,12 @@ func _reset_ship_clone_mounts() -> void:
 	player_visual.flip_h = false
 	player_visual.play(&"idle_up")
 	player_visual.frame = 0
+	player_visual.visible = false
+	if procedural_usv_visual != null:
+		procedural_usv_visual.top_level = false
+		procedural_usv_visual.call("set_active", true)
+		procedural_usv_visual.rotation = Vector3(0.0, ship_heading_yaw, 0.0)
+		procedural_usv_visual.call("set_navigation_state", ship_throttle, ship_rudder, ship_forward_speed)
 
 
 func _config_float(config: Dictionary, key: String, fallback: float, min_value: float, max_value: float) -> float:

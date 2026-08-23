@@ -15,27 +15,27 @@
 			"passed": true
 		},
 		"button_ais": {
-			"detail": "evidence center -> AIS",
+			"detail": "system overview -> AIS",
 			"passed": true
 		},
-		"button_evidence_boundary": {
+		"button_data_boundary": {
 			"detail": "边界审查：历史 AIS + 公开 ENC 可做研究训练；实船控制需实时数据、官方航海产品、硬件联调与人工授权。",
 			"passed": true
 		},
 		"button_navigation_group": {
-			"detail": "evidence center -> navigation/risk/weather",
+			"detail": "system overview -> navigation/risk/weather",
 			"passed": true
 		},
 		"button_port_contract_validator": {
-			"detail": "已启动真实契约校验进程 PID 82556；结果写入终端与报告。",
+			"detail": "已启动真实契约校验进程 PID 3750；结果写入终端与报告。",
 			"passed": true
 		},
 		"button_review": {
-			"detail": "evidence center -> review",
+			"detail": "system overview -> review",
 			"passed": true
 		},
 		"button_training_center": {
-			"detail": "evidence center -> training center",
+			"detail": "system overview -> training center",
 			"passed": true
 		},
 		"button_xiaoyi_advisor": {
@@ -43,11 +43,15 @@
 			"passed": true
 		},
 		"button_xiaoyi_assistant": {
-			"detail": "evidence center -> Xiaoyi assistant",
+			"detail": "system overview -> Xiaoyi assistant",
 			"passed": true
 		},
-		"evidence_center_buttons_have_handlers": {
-			"detail": "all evidence-center buttons",
+		"default_weather_is_clear": {
+			"detail": {
+				"fog_enabled": false,
+				"visibility_km": 20.0,
+				"weather": "CLEAR SKY"
+			},
 			"passed": true
 		},
 		"frontend_backend_algorithm_inventory": {
@@ -73,15 +77,15 @@
 			"detail": "panel root must become visible",
 			"passed": true
 		},
-		"hotkey_evidence_M": {
-			"detail": "panel root must become visible",
-			"passed": true
-		},
 		"hotkey_fleet_X": {
 			"detail": "panel root must become visible",
 			"passed": true
 		},
 		"hotkey_navigation_N": {
+			"detail": "panel root must become visible",
+			"passed": true
+		},
+		"hotkey_overview_M": {
 			"detail": "panel root must become visible",
 			"passed": true
 		},
@@ -123,12 +127,28 @@
 			"detail": "Main",
 			"passed": true
 		},
-		"panel_ShipAISFleetPanel_present": {
-			"detail": "ShipAISFleetPanel",
+		"original_procedural_usv_visual": {
+			"detail": {
+				"built_in_meshes_only": true,
+				"components": [
+					"双体浮筒",
+					"中央甲板",
+					"防撞船首",
+					"低矮驾驶舱",
+					"双太阳能板",
+					"旋转雷达",
+					"双光电摄像头",
+					"GNSS天线",
+					"红绿航行灯",
+					"双推进器"
+				],
+				"propulsion_animation": "实际航速、油门、实际舵角差速同步",
+				"visual_type": "procedural_unmanned_surface_vessel"
+			},
 			"passed": true
 		},
-		"panel_ShipHREvidenceCenter_present": {
-			"detail": "ShipHREvidenceCenter",
+		"panel_ShipAISFleetPanel_present": {
+			"detail": "ShipAISFleetPanel",
 			"passed": true
 		},
 		"panel_ShipInstructorConsolePanel_present": {
@@ -151,6 +171,10 @@
 			"detail": "ShipSimulationReviewPanel",
 			"passed": true
 		},
+		"panel_ShipSystemOverviewPanel_present": {
+			"detail": "ShipSystemOverviewPanel",
+			"passed": true
+		},
 		"panel_ShipWeatherSeaPanel_present": {
 			"detail": "ShipWeatherSeaPanel",
 			"passed": true
@@ -159,15 +183,19 @@
 			"detail": "Player",
 			"passed": true
 		},
+		"system_overview_buttons_have_handlers": {
+			"detail": "all system-overview buttons",
+			"passed": true
+		},
 		"training_buttons_have_handlers": {
 			"detail": "export/train/settings/test replay/stop replay",
 			"passed": true
 		}
 	},
 	"errors": [],
-	"generated_at": "2026-08-22T14:44:32",
+	"generated_at": "2026-08-23T03:34:16",
 	"passed": true,
-	"passed_checks": 36,
+	"passed_checks": 38,
 	"schema_version": "godot_ui_navigation_smoke_v1",
-	"total_checks": 36
+	"total_checks": 38
 }

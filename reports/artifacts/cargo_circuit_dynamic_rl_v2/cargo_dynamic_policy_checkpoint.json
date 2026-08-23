@@ -78,8 +78,8 @@
   "dataset_split_used": "train",
   "dataset_sha256": "5fb5900203e4ad3be2d6e2cc38246a90096a783874a70e0417d6387b7d57e885",
   "experiment_sha256": "7a1b4497bfde1ea68c294df27a93ee2e28bb131fc6579d081d2058cdb3c42573",
-  "dataset_path": "/Users/apple/Desktop/航行模拟器/data/rl/cargo_circuit_dataset_v1.json",
-  "config_path": "/Users/apple/Desktop/航行模拟器/data/rl/cargo_circuit_dynamic_experiment_v2.json",
+  "dataset_path": "data/rl/cargo_circuit_dataset_v1.json",
+  "config_path": "data/rl/cargo_circuit_dynamic_experiment_v2.json",
   "render": false,
   "environment_parameters": {
     "vessel_radius_m": 3.2,
@@ -125,7 +125,7 @@
   "pretraining_feasibility_gate": {
     "required": true,
     "passed": true,
-    "path": "/Users/apple/Desktop/航行模拟器/reports/cargo_circuit_dynamic_manual_feasibility_v2.json",
+    "path": "reports/cargo_circuit_dynamic_manual_feasibility_v2.json",
     "episodes": 5,
     "success_rate": 1.0,
     "total_collisions": 0,

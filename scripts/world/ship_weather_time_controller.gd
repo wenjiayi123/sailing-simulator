@@ -99,6 +99,7 @@ const MODES := [
 @export_range(-5.0, 5.0, 0.1) var tide_meters: float = 0.2
 @export_range(0.0, 240.0, 1.0) var time_scale: float = 1.0
 @export var public_weather_enabled: bool = true
+@export var apply_public_weather_on_startup: bool = false
 @export_range(-90.0, 90.0, 0.0001) var public_weather_latitude: float = 1.2644
 @export_range(-180.0, 180.0, 0.0001) var public_weather_longitude: float = 103.8223
 @export_file("*.json") var bundled_weather_cache_path: String = "res://data/public_cache/marine_weather_singapore.json"
@@ -131,9 +132,9 @@ func _ready() -> void:
 		set_process(true)
 		set_process_unhandled_input(true)
 		return
-	_load_public_weather_cache()
-	_build_public_weather_requests()
-	if public_weather_enabled:
+	if public_weather_enabled and apply_public_weather_on_startup:
+		_load_public_weather_cache()
+		_build_public_weather_requests()
 		refresh_public_weather.call_deferred()
 	set_process(true)
 	set_process_unhandled_input(true)

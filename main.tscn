@@ -46,7 +46,8 @@
 [ext_resource type="Script" uid="uid://dvtv8dheacq54" path="res://scripts/ui/ship_ais_fleet_panel.gd" id="78_ais_panel"]
 [ext_resource type="Script" uid="uid://bn1sed4lgl08u" path="res://scripts/ui/ship_instructor_console_panel.gd" id="79_instructor_console"]
 [ext_resource type="Script" path="res://scripts/rl/ship_policy_replay_controller.gd" id="80_policy_replay"]
-[ext_resource type="Script" path="res://scripts/ui/ship_hr_evidence_center.gd" id="81_hr_evidence"]
+[ext_resource type="Script" path="res://scripts/ui/ship_system_overview_panel.gd" id="81_hr_evidence"]
+[ext_resource type="Script" path="res://scripts/visual/procedural_usv_visual.gd" id="85_procedural_usv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig7tw"]
 albedo_color = Color(0.43529412, 0.65882355, 0.41568628, 1)
@@ -3058,8 +3059,9 @@ fov = 65.3
 near = 0.1
 far = 5000.0
 
-[node name="PlayerVisual" type="AnimatedSprite3D" parent="Player" unique_id=66101255]
+[node name="LegacyAnimationStateDriver" type="AnimatedSprite3D" parent="Player" unique_id=66101255]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, 0)
+visible = false
 pixel_size = 0.007
 no_depth_test = true
 alpha_cut = 1
@@ -3067,6 +3069,9 @@ alpha_scissor_threshold = 0.35
 render_priority = 8
 sprite_frames = SubResource("SpriteFrames_jh35h")
 animation = &"待机面向主角_down"
+
+[node name="ProceduralUSVVisual" type="Node3D" parent="Player"]
+script = ExtResource("85_procedural_usv")
 
 [node name="ActionLock" type="Node" parent="Player" unique_id=1297060851]
 script = ExtResource("57_action_lock")
@@ -3122,7 +3127,7 @@ script = ExtResource("78_ais_panel")
 [node name="ShipInstructorConsolePanel" type="CanvasLayer" parent="." unique_id=1254809368]
 script = ExtResource("79_instructor_console")
 
-[node name="ShipHREvidenceCenter" type="CanvasLayer" parent="."]
+[node name="ShipSystemOverviewPanel" type="CanvasLayer" parent="."]
 script = ExtResource("81_hr_evidence")
 
 [node name="ShipWakeTrail" type="Node3D" parent="." unique_id=613481520]

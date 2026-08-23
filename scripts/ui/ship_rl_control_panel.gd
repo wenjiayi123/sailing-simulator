@@ -985,7 +985,7 @@ func _on_dataset_profile_changed(_index: int) -> void:
 	if _port_ops_selected():
 		_training_status_label.text = (
 			"v2 真实港口数据契约：NOAA 历史 AIS + ENC + 公开海况，"
-			+ "45维观测，7 RL + 3控制，训练 split=train，实船控制 fail-closed"
+			+ "45维观测，7 RL + 3控制，训练集与测试集按时间隔离，仅用于仿真训练与评测"
 		)
 	else:
 		_training_status_label.text = "v1 当前 Godot 场景：28维观测，训练 split=train"

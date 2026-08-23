@@ -77,6 +77,25 @@ func _run() -> void:
 		_finish()
 		return
 	_record("main_scene_ready", true, main.name)
+	var weather := main.get_node_or_null("ShipWeatherTimeController")
+	var world_environment := main.get_node_or_null("WorldEnvironment") as WorldEnvironment
+	var weather_status: Dictionary = {}
+	if weather != null and weather.has_method("get_weather_time_status"):
+		weather_status = weather.call("get_weather_time_status") as Dictionary
+	var fog_enabled := true
+	if world_environment != null and world_environment.environment != null:
+		fog_enabled = world_environment.environment.fog_enabled
+	_record(
+		"default_weather_is_clear",
+		String(weather_status.get("key", "")) == "clear"
+		and float(weather_status.get("visibility_km", 0.0)) >= 18.0
+		and not fog_enabled,
+		{
+			"weather": weather_status.get("weather", ""),
+			"visibility_km": weather_status.get("visibility_km", 0.0),
+			"fog_enabled": fog_enabled,
+		},
+	)
 
 	var node_names := [
 		"ShipRLControlPanel",
@@ -86,7 +105,7 @@ func _run() -> void:
 		"ShipSimulationReviewPanel",
 		"ShipAISFleetPanel",
 		"ShipInstructorConsolePanel",
-		"ShipHREvidenceCenter",
+		"ShipSystemOverviewPanel",
 	]
 	var panels: Dictionary = {}
 	for node_name in node_names:
@@ -98,7 +117,7 @@ func _run() -> void:
 		return
 
 	var key_checks := {
-		"evidence_M": [panels["ShipHREvidenceCenter"], KEY_M],
+		"overview_M": [panels["ShipSystemOverviewPanel"], KEY_M],
 		"rl_Z": [panels["ShipRLControlPanel"], KEY_Z],
 		"fleet_X": [panels["ShipRLControlPanel"], KEY_X],
 		"training_C": [panels["ShipRLControlPanel"], KEY_C],
@@ -142,17 +161,17 @@ func _run() -> void:
 		"export/train/settings/test replay/stop replay",
 	)
 
-	var center: Node = panels["ShipHREvidenceCenter"]
+	var center: Node = panels["ShipSystemOverviewPanel"]
 	var center_root := _panel_root(center)
-	var evidence_buttons_connected := true
+	var overview_buttons_connected := true
 	for node in center_root.find_children("*", "Button", true, false):
 		var button := node as Button
 		if button != null and button.pressed.get_connections().is_empty():
-			evidence_buttons_connected = false
+			overview_buttons_connected = false
 	_record(
-		"evidence_center_buttons_have_handlers",
-		evidence_buttons_connected,
-		"all evidence-center buttons",
+		"system_overview_buttons_have_handlers",
+		overview_buttons_connected,
+		"all system-overview buttons",
 	)
 	_record(
 		"button_training_center",
@@ -161,7 +180,7 @@ func _run() -> void:
 			"打开训练中心  ·  TRAINING CENTER",
 			[panels["ShipRLControlPanel"]],
 		),
-		"evidence center -> training center",
+		"system overview -> training center",
 	)
 	_record(
 		"button_navigation_group",
@@ -174,7 +193,7 @@ func _run() -> void:
 				panels["ShipWeatherSeaPanel"],
 			],
 		),
-		"evidence center -> navigation/risk/weather",
+		"system overview -> navigation/risk/weather",
 	)
 	_record(
 		"button_ais",
@@ -183,7 +202,7 @@ func _run() -> void:
 			"AIS 船队态势",
 			[panels["ShipAISFleetPanel"]],
 		),
-		"evidence center -> AIS",
+		"system overview -> AIS",
 	)
 	_record(
 		"button_review",
@@ -192,7 +211,7 @@ func _run() -> void:
 			"打开训练结果复盘",
 			[panels["ShipSimulationReviewPanel"]],
 		),
-		"evidence center -> review",
+		"system overview -> review",
 	)
 	_record(
 		"button_xiaoyi_assistant",
@@ -201,7 +220,7 @@ func _run() -> void:
 			"小懿全系统助手",
 			[panels["ShipInstructorConsolePanel"]],
 		),
-		"evidence center -> Xiaoyi assistant",
+		"system overview -> Xiaoyi assistant",
 	)
 	var status_label := center.get("_status_label") as Label
 	var advisor_button := _find_button(
@@ -220,7 +239,7 @@ func _run() -> void:
 	)
 	boundary_button.pressed.emit()
 	_record(
-		"button_evidence_boundary",
+		"button_data_boundary",
 		status_label.text.begins_with("边界审查"),
 		status_label.text,
 	)
@@ -245,6 +264,19 @@ func _run() -> void:
 		_record("player_present", false, "Player")
 	else:
 		_record("player_present", true, player.name)
+		var visual_summary := player.call("get_procedural_usv_component_summary") as Dictionary
+		var components := visual_summary.get("components", []) as Array
+		var legacy_sprite := player.get_node_or_null("LegacyAnimationStateDriver") as AnimatedSprite3D
+		_record(
+			"original_procedural_usv_visual",
+			String(visual_summary.get("visual_type", "")) == "procedural_unmanned_surface_vessel"
+			and components.has("双体浮筒")
+			and components.has("旋转雷达")
+			and components.has("双推进器")
+			and legacy_sprite != null
+			and not legacy_sprite.visible,
+			visual_summary,
+		)
 		var start_position: Vector3 = player.global_position
 		var start_heading := float(player.get("ship_heading_yaw"))
 		player.call("set_ship_agent_command", 0.9, 0.35)

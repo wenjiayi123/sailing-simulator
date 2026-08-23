@@ -308,7 +308,7 @@ def _render_markdown(report: Mapping[str, Any]) -> str:
 - 五方法：PPO、SAC、TD3、DQN、LOS-PID；四种 RL 各真实训练 {report["experiment"]["rl_timesteps_per_algorithm"]:,} 步。
 - 最终测试共 {report["test_episode_count"]} 个方法-场景 rollout。
 - 按预先声明的安全优先排序，最佳方法为 {best["algorithm"].upper().replace("_", "-")}：安全完成率 {metrics["safe_completion_rate"]:.1%}，碰撞场景率 {metrics["collision_episode_rate"]:.1%}，平均最大横向航迹误差 {metrics["mean_max_cross_track_error_meters"]:.2f} m，平均路径效率 {metrics["mean_path_efficiency"]:.1%}。
-- 发布门禁：{"PASS" if report["passed"] else "FAIL"}。
+- 一致性检查：{"PASS" if report["passed"] else "FAIL"}。
 
 ## 五方法最终测试
 
@@ -396,7 +396,7 @@ def finalize() -> int:
     _write_json(FINAL_REPORT, report)
     _write_text(FINAL_MARKDOWN, _render_markdown(report))
     print(f"final report: {FINAL_REPORT}")
-    print(f"release gate: {'PASS' if passed else 'FAIL'}")
+    print(f"benchmark integrity: {'PASS' if passed else 'FAIL'}")
     return 0 if passed else 1
 
 

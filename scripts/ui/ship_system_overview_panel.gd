@@ -34,7 +34,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_build_interface()
 	set_process_unhandled_input(true)
-	if OS.get_environment("SHIP_HR_EVIDENCE") == "1":
+	if OS.get_environment("SHIP_SYSTEM_OVERVIEW") == "1":
 		_root.visible = true
 	var screenshot_output := OS.get_environment("SHIP_SCREENSHOT_OUTPUT")
 	if not screenshot_output.is_empty():
@@ -52,7 +52,7 @@ func _process(_delta: float) -> void:
 
 
 func _prepare_capture_mode() -> void:
-	var mode := OS.get_environment("SHIP_HR_EVIDENCE_MODE")
+	var mode := OS.get_environment("SHIP_SYSTEM_OVERVIEW_MODE")
 	if mode == "training":
 		_root.visible = false
 		var training := _node(rl_panel_path)
@@ -95,7 +95,7 @@ func show_panel() -> void:
 
 func _build_interface() -> void:
 	_root = Control.new()
-	_root.name = "ShipHREvidenceRoot"
+	_root.name = "ShipSystemOverviewRoot"
 	_root.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_root.mouse_filter = Control.MOUSE_FILTER_STOP
 	_root.visible = start_visible
@@ -125,7 +125,7 @@ func _build_interface() -> void:
 	columns.add_theme_constant_override("separation", 12)
 	page.add_child(columns)
 
-	var data_column := _column("训练与数据证据", "DATA + TRAINING", COLOR_CYAN)
+	var data_column := _column("训练与数据", "DATA + TRAINING", COLOR_CYAN)
 	data_column.custom_minimum_size.x = 410.0
 	data_column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	columns.add_child(data_column)
@@ -160,7 +160,7 @@ func _build_interface() -> void:
 	portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	portrait_row.add_child(portrait)
-	var identity := _rich_label("[font_size=19][color=#73f5ff]小懿 / XIAOYI[/color][/font_size]\n\n[color=#86ff9b]● 证据链在线[/color]\n训练顾问 · 系统联动\n港口适配 · 安全审查", 184.0)
+	var identity := _rich_label("[font_size=19][color=#73f5ff]小懿 / XIAOYI[/color][/font_size]\n\n[color=#86ff9b]● 系统在线[/color]\n训练顾问 · 系统联动\n港口适配 · 安全审查", 184.0)
 	identity.custom_minimum_size.x = 185.0
 	portrait_row.add_child(identity)
 	_advisor_label = _rich_label("", 220.0)
@@ -170,7 +170,7 @@ func _build_interface() -> void:
 	xiaoyi_column.add_child(_action_button("运行环境与数据边界审查", COLOR_GREEN, _boundary_review))
 
 	_status_label = Label.new()
-	_status_label.text = "M 打开/关闭证据中心  ·  所有按钮连接实际系统模块"
+	_status_label.text = "M 打开/关闭系统总览  ·  所有按钮连接实际系统模块"
 	_status_label.add_theme_color_override("font_color", COLOR_MUTED)
 	_status_label.add_theme_font_size_override("font_size", 13)
 	page.add_child(_status_label)
@@ -184,7 +184,7 @@ func _build_header() -> Control:
 	title_box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(title_box)
 	var title := Label.new()
-	title.text = "PORT AI  ·  可落地船舶智能航行证据中心"
+	title.text = "PORT AI  ·  船舶智能航行系统总览"
 	title.add_theme_color_override("font_color", COLOR_TEXT)
 	title.add_theme_font_size_override("font_size", 28)
 	title_box.add_child(title)
@@ -331,7 +331,7 @@ func _refresh_evidence() -> void:
 		+ "数据契约：%s · 10/10研究因素覆盖\n" % contract_status
 		+ "策略库：10 原策略 + 10 Safety-V3 组合策略\n\n"
 		+ "[color=#ffbd40]部署边界[/color]\n"
-		+ "研究训练可用；实船控制默认 fail-closed。\n"
+		+ "支持离线训练与评测；未连接实船控制接口。\n"
 		+ "换港需通过数据契约与当地主管机关校核。"
 	)
 	for child in _matrix_box.get_children():

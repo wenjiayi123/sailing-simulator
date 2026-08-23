@@ -282,7 +282,7 @@
         }
       },
       "checkpoint": "reports/artifacts/navigation_benchmark_v2/ppo/checkpoint.json",
-      "checkpoint_sha256": "4a932c23ab986b26c4d21d161e90f686e54bb43d06c6e912dbc728b003e6962d",
+      "checkpoint_sha256": "ee7553133ae6958eb87f1e54be4c13415e8b1afb1ba4f4efa4afa387250d02ff",
       "model": "reports/artifacts/navigation_benchmark_v2/ppo/ppo_policy.zip",
       "model_sha256": "0040ecb6aaaede4bd425711665145f0c33b737d304cdb770b545da69dddb3570",
       "validation_trajectory": "reports/artifacts/navigation_benchmark_v2/ppo/validation_trajectory.json"
@@ -325,7 +325,7 @@
         }
       },
       "checkpoint": "reports/artifacts/navigation_benchmark_v2/sac/checkpoint.json",
-      "checkpoint_sha256": "f57c694623580b9bf7176848f88ff6d12420d79e213134b0450b08faf35529b1",
+      "checkpoint_sha256": "d8af3a8d52b758adf797f6bd22c219e404bb37561e4ebfe160efbb46f1fb567e",
       "model": "reports/artifacts/navigation_benchmark_v2/sac/sac_policy.zip",
       "model_sha256": "1bc1b3d1ab0a65045d933b7192d5c4a9cc9f17d40b08e5edb7d5b86b8a8c019d",
       "validation_trajectory": "reports/artifacts/navigation_benchmark_v2/sac/validation_trajectory.json"
@@ -368,7 +368,7 @@
         }
       },
       "checkpoint": "reports/artifacts/navigation_benchmark_v2/td3/checkpoint.json",
-      "checkpoint_sha256": "74c47fe5f6e5bc801edd4377a295be2293ef095448202540d4ae1ed41d689c17",
+      "checkpoint_sha256": "700e19a5d5858f24dae17b4b631102495deded832474157c911ea91782ab2cd9",
       "model": "reports/artifacts/navigation_benchmark_v2/td3/td3_policy.zip",
       "model_sha256": "376ea6d2f68f7c0a667eb841b94cd932d76ad5b10935d7115ca82f83f1023b1f",
       "validation_trajectory": "reports/artifacts/navigation_benchmark_v2/td3/validation_trajectory.json"
@@ -411,7 +411,7 @@
         }
       },
       "checkpoint": "reports/artifacts/navigation_benchmark_v2/dqn/checkpoint.json",
-      "checkpoint_sha256": "26b6e2d3762a06428c47b63fe0f1b3597932d73d4fbf6d429d0fdefe4ce179c4",
+      "checkpoint_sha256": "015a06d8dcf6366c9f214795ebb84d04b61b7546ca44f5ef4d6f126f536dea13",
       "model": "reports/artifacts/navigation_benchmark_v2/dqn/dqn_policy.zip",
       "model_sha256": "e72e3d82b7511fae1e9eb3e8f1ca7d8fe14b2d4ce572329d646384172a7a2d33",
       "validation_trajectory": "reports/artifacts/navigation_benchmark_v2/dqn/validation_trajectory.json"
@@ -454,7 +454,7 @@
         }
       },
       "checkpoint": "reports/artifacts/navigation_benchmark_v2/a2c/checkpoint.json",
-      "checkpoint_sha256": "8d06737885cf3e1dac9e28276a63119b70619f33268510453b5768bfa6c59733",
+      "checkpoint_sha256": "484bd05b755fa136d9f2b3a4cd9b57f6f7cd08d7dd062d96c921f7959fb541f9",
       "model": "reports/artifacts/navigation_benchmark_v2/a2c/a2c_policy.zip",
       "model_sha256": "e7fc50cebdf3b56e18acc640bd2e84d9f1ae390f883ee56e98a96b6f93934aea",
       "validation_trajectory": "reports/artifacts/navigation_benchmark_v2/a2c/validation_trajectory.json"
@@ -497,7 +497,7 @@
         }
       },
       "checkpoint": "reports/artifacts/navigation_benchmark_v2/ddpg/checkpoint.json",
-      "checkpoint_sha256": "1de5d8248a08aa9aa598785f12ad75f5ea1c8ddb5d360f5a881f2ed5bb0d93cc",
+      "checkpoint_sha256": "0ae63af060609cac2c88c417369c152cc5f40582336ff7fee271ca88b4b276e1",
       "model": "reports/artifacts/navigation_benchmark_v2/ddpg/ddpg_policy.zip",
       "model_sha256": "44516ae96129451c81c605ccc733bde05d6adbaffa5feff0841e927c48250ec8",
       "validation_trajectory": "reports/artifacts/navigation_benchmark_v2/ddpg/validation_trajectory.json"
@@ -540,7 +540,7 @@
         }
       },
       "checkpoint": "reports/artifacts/navigation_benchmark_v2/trpo/checkpoint.json",
-      "checkpoint_sha256": "a13211d6cc0ba3d8840c07efd7e2e179d76e59b39137341e6d6c11f1b5422aa5",
+      "checkpoint_sha256": "877fcb31f2b2923aa6d82ebc73efd5a1fec4aa2ce802671d00f053d21c5daf92",
       "model": "reports/artifacts/navigation_benchmark_v2/trpo/trpo_policy.zip",
       "model_sha256": "20ebe5448a5a856f29d1840584bfc1111c0cbbd6db00f8c5389948e01b937340",
       "validation_trajectory": "reports/artifacts/navigation_benchmark_v2/trpo/validation_trajectory.json"
@@ -583,7 +583,7 @@
         }
       },
       "checkpoint": "reports/artifacts/navigation_benchmark_v2/los_pid/checkpoint.json",
-      "checkpoint_sha256": "0f9f4952d196edea2e20c3875824d553f1f45e3d8dc13475b7431f996dee18ed",
+      "checkpoint_sha256": "9b53d434f6b4a4efb9062c250374e60f42f03915d5056ad0c03bd22142bd90a8",
       "model": null,
       "model_sha256": null,
       "validation_trajectory": "reports/artifacts/navigation_benchmark_v2/los_pid/validation_trajectory.json"
@@ -626,7 +626,7 @@
         }
       },
       "checkpoint": "reports/artifacts/navigation_benchmark_v2/lqr/checkpoint.json",
-      "checkpoint_sha256": "6fbc02851f903af0242f2c06e0004fd7da77bc367e97c5606019ed2453a099c1",
+      "checkpoint_sha256": "928edd0834908d373407c4ff6e809eed06d3cbf39efb2772ecd5674a23a72678",
       "model": null,
       "model_sha256": null,
       "validation_trajectory": "reports/artifacts/navigation_benchmark_v2/lqr/validation_trajectory.json"
@@ -669,7 +669,7 @@
         }
       },
       "checkpoint": "reports/artifacts/navigation_benchmark_v2/mpc/checkpoint.json",
-      "checkpoint_sha256": "61db19062a08776fef1cde04f5bbb49167648c617475d5b7d104b53e96a873d2",
+      "checkpoint_sha256": "b76420aab25f1eef92c312e063ff7bd987b8ee2e1a9adfe739b991ffc789cde7",
       "model": null,
       "model_sha256": null,
       "validation_trajectory": "reports/artifacts/navigation_benchmark_v2/mpc/validation_trajectory.json"
@@ -708,7 +708,7 @@
         "mean_elapsed_seconds": 649.0692307692308
       },
       "trajectory": "reports/artifacts/navigation_benchmark_v2/ppo/test_trajectory.json",
-      "trajectory_sha256": "acf4d87810a705e0a0e937a1f0a33e3dcea01fe5c87335c49ddc07c655b91fbf",
+      "trajectory_sha256": "b8a4df002c7ac2dd75281ad357bc3a9f9284e273c821f1d3216252d374838f99",
       "episode_metrics_csv": "reports/artifacts/navigation_benchmark_v2/ppo/ppo_test_episodes.csv"
     },
     {
@@ -740,7 +740,7 @@
         "mean_elapsed_seconds": 678.7846153846153
       },
       "trajectory": "reports/artifacts/navigation_benchmark_v2/sac/test_trajectory.json",
-      "trajectory_sha256": "8c5575b6169e183f82774680d71acf6b55e2fb248b6b65869765d859045acc24",
+      "trajectory_sha256": "f5cc1e1dc99fd40af216d65204a53cd0ca9895c9452ddaaf6dc72bc99c483bb6",
       "episode_metrics_csv": "reports/artifacts/navigation_benchmark_v2/sac/sac_test_episodes.csv"
     },
     {
@@ -772,7 +772,7 @@
         "mean_elapsed_seconds": 695.7846153846153
       },
       "trajectory": "reports/artifacts/navigation_benchmark_v2/td3/test_trajectory.json",
-      "trajectory_sha256": "f0a48d7d91bc4dbec30f1f5a44f95fdc29202b51c9c1f52cf7f2b5d40600b8b0",
+      "trajectory_sha256": "a73f2f0b44cbda39291c2be62c03368f71199374f142176e5298b7f5c6f6d639",
       "episode_metrics_csv": "reports/artifacts/navigation_benchmark_v2/td3/td3_test_episodes.csv"
     },
     {
@@ -804,7 +804,7 @@
         "mean_elapsed_seconds": 724.5576923076923
       },
       "trajectory": "reports/artifacts/navigation_benchmark_v2/dqn/test_trajectory.json",
-      "trajectory_sha256": "59c7ba7db547a43422c1b54beb069041dbb1377f9083cb1812da7088d513821d",
+      "trajectory_sha256": "a8d9dff860ac882ca6e16b912b881b7d7e4d032c42cfe88bd1c38c3222ba4b7e",
       "episode_metrics_csv": "reports/artifacts/navigation_benchmark_v2/dqn/dqn_test_episodes.csv"
     },
     {
@@ -836,7 +836,7 @@
         "mean_elapsed_seconds": 646.6653846153846
       },
       "trajectory": "reports/artifacts/navigation_benchmark_v2/a2c/test_trajectory.json",
-      "trajectory_sha256": "e0fac39b9c141ee98e5bf68afe44a872a343b7be11cb95343008571b513c56d5",
+      "trajectory_sha256": "62053334fcf3237f0f5d2279442f9c6eeea4e06621189238c2122374a6b0cbf5",
       "episode_metrics_csv": "reports/artifacts/navigation_benchmark_v2/a2c/a2c_test_episodes.csv"
     },
     {
@@ -868,7 +868,7 @@
         "mean_elapsed_seconds": 649.4884615384616
       },
       "trajectory": "reports/artifacts/navigation_benchmark_v2/ddpg/test_trajectory.json",
-      "trajectory_sha256": "638ca383c0cc9588f4bc1351b4ef9c1f18513eec355a52d2103d6f79241adea9",
+      "trajectory_sha256": "0a0b9a78bc534cc2877348d08a7e227ffbe3dece12e475fa4e4e49ea754e9fa8",
       "episode_metrics_csv": "reports/artifacts/navigation_benchmark_v2/ddpg/ddpg_test_episodes.csv"
     },
     {
@@ -900,7 +900,7 @@
         "mean_elapsed_seconds": 661.126923076923
       },
       "trajectory": "reports/artifacts/navigation_benchmark_v2/trpo/test_trajectory.json",
-      "trajectory_sha256": "086d20e9f39327749a73559a10c350e9eb010da74182a8574cdebb3915bb1d4a",
+      "trajectory_sha256": "72ac35443612d1048281ac1e9b4e6bb65738fad14f3531761b78abab83d29482",
       "episode_metrics_csv": "reports/artifacts/navigation_benchmark_v2/trpo/trpo_test_episodes.csv"
     },
     {
@@ -932,7 +932,7 @@
         "mean_elapsed_seconds": 357.6
       },
       "trajectory": "reports/artifacts/navigation_benchmark_v2/los_pid/test_trajectory.json",
-      "trajectory_sha256": "849277052eb762f78c4f8f26e55e376e60870cdb3aea7379e8c5e48d3920c87b",
+      "trajectory_sha256": "fbac3906df46e9dc9136a7e4bfdbcfbfc5bda20919a90a3fa209eef18768dbc2",
       "episode_metrics_csv": "reports/artifacts/navigation_benchmark_v2/los_pid/los_pid_test_episodes.csv"
     },
     {
@@ -964,7 +964,7 @@
         "mean_elapsed_seconds": 488.2076923076923
       },
       "trajectory": "reports/artifacts/navigation_benchmark_v2/lqr/test_trajectory.json",
-      "trajectory_sha256": "fe24631f92c49ae184f99ba72ead5f1b9f3f106946b7a529f19145b9d4c8bf70",
+      "trajectory_sha256": "0007761892f41d959c3dd82a893246eb3410bc746357994feafb52b29012f7ea",
       "episode_metrics_csv": "reports/artifacts/navigation_benchmark_v2/lqr/lqr_test_episodes.csv"
     },
     {
@@ -996,7 +996,7 @@
         "mean_elapsed_seconds": 405.83076923076925
       },
       "trajectory": "reports/artifacts/navigation_benchmark_v2/mpc/test_trajectory.json",
-      "trajectory_sha256": "0ead924ded6c01c49b00259837b53055ee2159de69372e50f7db0471ebc68d22",
+      "trajectory_sha256": "2975a6d8a5d0ca8ada158b4162b2b5160210f97b3c760e9f73312f455aa500a3",
       "episode_metrics_csv": "reports/artifacts/navigation_benchmark_v2/mpc/mpc_test_episodes.csv"
     }
   ],

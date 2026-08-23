@@ -6,7 +6,7 @@
   "algorithm": "ppo",
   "progress": 1.0,
   "elapsed_seconds": 492.042899528,
-  "trajectory_json": "/Users/apple/Desktop/航行模拟器/reports/artifacts/navigation_benchmark_v2/ppo/test_trajectory.json",
+  "trajectory_json": "reports/artifacts/navigation_benchmark_v2/ppo/test_trajectory.json",
   "evaluation_metrics": {
     "task_id": "ais_2025-01-06_249836000_00_01_0911",
     "success": false,

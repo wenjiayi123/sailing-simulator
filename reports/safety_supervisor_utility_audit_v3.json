@@ -1,9 +1,9 @@
 {
   "schema_version": "ship_port_safety_utility_audit_v3",
-  "generated_at": "2026-08-20T16:22:25+00:00",
+  "generated_at": "2026-08-23T02:45:57+00:00",
   "source_reports": {
-    "reports/port_ops_benchmark_v2.json": "733c5ac99e6255070fbd8b03ac0eaf064b603fe30c2259be4566fac6f934fe72",
-    "reports/safety_supervisor_benchmark_v3.json": "52fe49df7a91496e3d14227e6b0d3df8ec2c22e2256885f5f478121effefa377"
+    "reports/port_ops_benchmark_v2.json": "758a448e1389486cd0fb867c77741098ccffc25eec8fcef883f2f835c349071a",
+    "reports/safety_supervisor_benchmark_v3.json": "2c9f0353a7fb65d2aea11e43a4e720b76b3bdbfdfbaceed147c91783106decb6"
   },
   "thresholds": {
     "minimum_collision_free_arrival_rate": 0.8,

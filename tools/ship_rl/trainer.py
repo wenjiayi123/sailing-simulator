@@ -27,12 +27,35 @@ from .environment import (
 RL_ALGORITHMS = ("ppo", "sac", "td3", "dqn")
 CONTROL_ALGORITHMS = ("los_pid",)
 ALGORITHMS = RL_ALGORITHMS + CONTROL_ALGORITHMS
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+
+def _portable_repository_paths(value: Any) -> Any:
+    if isinstance(value, Mapping):
+        return {
+            key: _portable_repository_paths(item)
+            for key, item in value.items()
+        }
+    if isinstance(value, list):
+        return [_portable_repository_paths(item) for item in value]
+    if isinstance(value, tuple):
+        return [_portable_repository_paths(item) for item in value]
+    if not isinstance(value, str) or not os.path.isabs(value):
+        return value
+    try:
+        return Path(value).resolve().relative_to(PROJECT_ROOT).as_posix()
+    except ValueError:
+        return value
 
 
 def write_json_atomic(path: Path, payload: Mapping[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
-    temporary.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    portable_payload = _portable_repository_paths(payload)
+    temporary.write_text(
+        json.dumps(portable_payload, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
     temporary.replace(path)
 
 

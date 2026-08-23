@@ -11,7 +11,7 @@
   "mean_reward_20": 0.0,
   "success_rate_20": 0.0,
   "elapsed_seconds": 0.0012284550000458694,
-  "checkpoint_json": "/Users/apple/Desktop/航行模拟器/reports/artifacts/navigation_benchmark_v2/mpc/checkpoint.json",
+  "checkpoint_json": "reports/artifacts/navigation_benchmark_v2/mpc/checkpoint.json",
   "model_path": "",
   "render": false,
   "dataset_split": "train",

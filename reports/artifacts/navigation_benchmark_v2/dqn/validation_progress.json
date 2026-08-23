@@ -6,7 +6,7 @@
   "algorithm": "dqn",
   "progress": 1.0,
   "elapsed_seconds": 285.517835437,
-  "trajectory_json": "/Users/apple/Desktop/航行模拟器/reports/artifacts/navigation_benchmark_v2/dqn/validation_trajectory.json",
+  "trajectory_json": "reports/artifacts/navigation_benchmark_v2/dqn/validation_trajectory.json",
   "evaluation_metrics": {
     "task_id": "ais_2025-01-05_215137000_01_02_2036",
     "success": false,

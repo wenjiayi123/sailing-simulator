@@ -5,8 +5,8 @@
   "stage": "trajectory_ready",
   "algorithm": "dqn",
   "progress": 1.0,
-  "elapsed_seconds": 11.425093234999963,
-  "trajectory_json": "/Users/apple/Desktop/航行模拟器/reports/artifacts/navigation_benchmark_v1/dqn/validation_trajectory.json",
+  "elapsed_seconds": 9.520008243999996,
+  "trajectory_json": "reports/artifacts/navigation_benchmark_v1/dqn/validation_trajectory.json",
   "evaluation_metrics": {
     "task_id": "2024-03-01_harbor_approach",
     "success": true,

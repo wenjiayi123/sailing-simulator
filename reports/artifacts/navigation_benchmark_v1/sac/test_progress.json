@@ -5,8 +5,8 @@
   "stage": "trajectory_ready",
   "algorithm": "sac",
   "progress": 1.0,
-  "elapsed_seconds": 13.425494655999998,
-  "trajectory_json": "/Users/apple/Desktop/航行模拟器/reports/artifacts/navigation_benchmark_v1/sac/test_trajectory.json",
+  "elapsed_seconds": 13.129097182999999,
+  "trajectory_json": "reports/artifacts/navigation_benchmark_v1/sac/test_trajectory.json",
   "evaluation_metrics": {
     "task_id": "2024-04-01_channel_turn",
     "success": true,

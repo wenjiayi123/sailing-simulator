@@ -57,7 +57,7 @@ LQR 状态为横向误差、航向误差和航速误差；MPC 代价包含目标
 
 ## 固定基准参数
 
-简历与公开报告使用 `data/rl/long_beach_public_weather_experiment_v1.json`，不能用界面临时参数替换后继续沿用原指标。
+项目报告使用 `data/rl/long_beach_public_weather_experiment_v1.json`，不能用界面临时参数替换后继续沿用原指标。
 
 | 项目 | 固定值 |
 |---|---|

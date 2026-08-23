@@ -36,54 +36,54 @@
   <a href="#固定公开海况可靠性基准--public-forcing-reliability-benchmark">可靠性基准</a> ·
   <a href="#训练与渲染边界--training--rendering-boundary">训练边界</a> ·
   <a href="#快速开始--quick-start">快速开始</a> ·
-  <a href="reports/simulator_reliability_audit_v3.md">证据报告</a>
+  <a href="reports/simulator_reliability_audit_v3.md">测试报告</a>
 </p>
 
 ---
 
-## 同屏证据与真实联动 / Evidence-first UI
+## 交互界面与系统联动 / Interface and system integration
 
 <p align="center">
   <img src="docs/screenshots/01-port-ai-evidence-center.png" alt="同屏展示训练数据、十算法矩阵、小懿训练顾问和模块按钮联动" width="100%" />
 </p>
 
-证据中心不是静态海报：按钮分别调用训练中心、航线规划/风险/海况、AIS、结果复盘和小懿全系统助手；自动验收同时验证对应快捷键与主船人工/后端控制航行。
+系统总览可直接打开训练中心、航线规划、风险决策、海况、AIS、结果复盘和小懿全系统助手；自动测试同时覆盖对应快捷键与主船人工/后端控制航行。
 
 ## 系统价值 / Engineering value
 
-Godot 4.7 负责船舶操控、港区环境、风险包络和三维证据回放；Python/Gymnasium 负责时间隔离数据集、无渲染训练、模型固化、独立测试和策略准入。训练进度直接来自 Stable-Baselines3 的实际 `num_timesteps`，测试轨迹只由训练完成后的封存 `test` rollout 生成；失败、碰撞、近失和越界不会被演示层改写。
+Godot 4.7 负责船舶操控、港区环境、风险包络和三维轨迹回放；Python/Gymnasium 负责时间隔离数据集、无渲染训练、模型固化、独立测试和策略准入。训练进度直接来自 Stable-Baselines3 的实际 `num_timesteps`，测试轨迹只由训练完成后的封存 `test` rollout 生成；失败、碰撞、近失和越界不会被界面层改写。
 
-Godot 4.7 owns vessel control, port geometry, risk envelopes, and 3D evidence replay. Python and Gymnasium own chronological data isolation, headless learning, model persistence, independent evaluation, and policy admission. Training progress comes from actual Stable-Baselines3 timesteps, while visual replay is generated only from sealed post-training test rollouts.
+Godot 4.7 owns vessel control, port geometry, risk envelopes, and 3D trajectory replay. Python and Gymnasium own chronological data isolation, headless learning, model persistence, independent evaluation, and policy admission. Training progress comes from actual Stable-Baselines3 timesteps, while visual replay is generated only from sealed post-training test rollouts.
 
-| 可核验维度 / Verifiable dimension | 固定证据 / Pinned evidence | 工程意义 / Why it matters |
+| 测试维度 / Test dimension | 测试结果 / Test result | 工程意义 / Engineering relevance |
 |---|---:|---|
 | 场景合同 / Scenario contracts | <strong>121/121</strong> 完整<br><sub><strong>121/121</strong> complete</sub> | 航线、障碍、地形、动态船与风浪流字段可逐场检查<br><sub>Routes, obstacles, terrain, traffic vessels, and wind–wave–current fields are inspectable per scenario.</sub> |
 | 训练执行 / Training execution | <strong>80,480</strong> RL环境步、<strong>167</strong> episodes<br><sub><strong>80,480</strong> RL steps and <strong>167</strong> episodes</sub> | 真实 learner 路径，不用计时器模拟进度<br><sub>Real learner execution; no timer-driven progress simulation.</sub> |
 | 独立评测 / Independent evaluation | <strong>155</strong> validation + <strong>150</strong> final rollouts | 训练、选型与最终测试严格分离<br><sub>Training, model selection, and final testing remain strictly separated.</sub> |
 | 回放一致性 / Replay consistency | <strong>5/5</strong> 回放、<strong>1,723</strong> 采样点<br><sub><strong>5/5</strong> replays and <strong>1,723</strong> samples</sub> | 后端指标、逐场CSV与Godot轨迹相互校验<br><sub>Backend metrics, per-scenario CSV files, and Godot trajectories cross-check one another.</sub> |
-| 证据门禁 / Evidence gate | <strong>28/28</strong> 检查通过<br><sub><strong>28/28</strong> checks passed</sub> | 数据、奖励、模型、轨迹与源码哈希绑定<br><sub>Dataset, reward, model, trajectory, and source hashes are bound together.</sub> |
-| 安全准入 / Safety admission | 五方法均被保守门禁拒绝<br><sub>All five methods rejected by the conservative gate</sub> | 证明系统会暴露安全裕度缺口，而非美化零碰撞<br><sub>The platform exposes safety-margin deficiencies instead of polishing a zero-collision result.</sub> |
+| 一致性检查 / Integrity checks | <strong>28/28</strong> 检查通过<br><sub><strong>28/28</strong> checks passed</sub> | 数据、奖励、模型、轨迹与源码哈希一致<br><sub>Dataset, reward, model, trajectory, and source hashes remain consistent.</sub> |
+| 安全准入 / Safety admission | 五方法均未达到保守阈值<br><sub>No method meets the conservative threshold</sub> | 零碰撞不等同于足够的安全裕度<br><sub>Zero collision does not imply sufficient safety margin.</sub> |
 
 <p align="center">
   <img src="docs/screenshots/04-navigation-runtime.png" alt="晴天20公里能见度下的主船油门舵角航行、尾迹、航线和遥测" width="100%" />
   <br /><sub>晴天航行运行态：真实油门/舵角输入、航迹尾流、目标航线、雷达、风险状态和遥测同屏。</sub>
 </p>
 
-### 环航取货 RL：技术审阅入口 / Curated cargo-circuit RL evidence
+### 环航取货强化学习 / Cargo-circuit reinforcement learning
 
-为便于技术面试核验，仓库公开了实际运行的 [36维连续控制环境](tools/cargo_rl/environment.py)、[44维动态交通与Residual SAC环境](tools/cargo_rl/dynamic_environment.py)、[七算法训练/留出评测实现](tools/cargo_rl/trainer.py)、[训练命令入口](tools/cargo_rl_train.py)、[Godot取货回放控制器](examples/cargo_circuit_godot/cargo_circuit_replay_controller.gd)、[H总控面板](examples/cargo_circuit_godot/cargo_circuit_rl_panel.gd)、[证据清单](reports/cargo_circuit_public_evidence_v1.json)及[自动合同测试](tests/test_cargo_circuit_public_evidence.py)。静态SAC-S1完成30万步无渲染训练；动态RES-SAC-D2在冻结静态策略上融合相对运动、TCPA/DCPA和6艘移动交通船。两者在各自固定留出任务中均完成7/7检查点和取货且零碰撞，完整口径见[技术证据说明](docs/CARGO_RL_TECHNICAL_EVIDENCE.md)。
+本模块包含 [36维连续控制环境](tools/cargo_rl/environment.py)、[44维动态交通与 Residual SAC 环境](tools/cargo_rl/dynamic_environment.py)、[七算法训练与留出评测](tools/cargo_rl/trainer.py)、[训练入口](tools/cargo_rl_train.py)、[Godot 轨迹回放控制器](examples/cargo_circuit_godot/cargo_circuit_replay_controller.gd)、[控制面板](examples/cargo_circuit_godot/cargo_circuit_rl_panel.gd)、[版本清单](reports/cargo_circuit_public_evidence_v1.json)及[自动测试](tests/test_cargo_circuit_public_evidence.py)。静态 SAC-S1 完成 30 万步无渲染训练；动态 RES-SAC-D2 在冻结静态策略上融合相对运动、TCPA/DCPA 和 6 艘移动交通船。两者在各自固定留出任务中均完成 7/7 检查点和取货且零碰撞，详细方法和指标见[环航取货强化学习说明](docs/CARGO_RL_TECHNICAL_EVIDENCE.md)。
 
 | 冻结策略 / Frozen policy | 已训练权重 / Trained weights | 检查点与留出轨迹 / Checkpoint and held-out trajectory |
 |---|---|---|
 | SAC-S1（36维，300,000步） | [`cargo_sac_policy.zip`](reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip) | [checkpoint](reports/artifacts/cargo_circuit_rl_v1/cargo_policy_checkpoint.json) · [test trajectory](reports/artifacts/cargo_circuit_rl_v1/cargo_policy_test_trajectory.json) |
 | RES-SAC-D2（44维，500步 residual adaptation） | [`cargo_dynamic_sac_policy.zip`](reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip) | [checkpoint](reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_policy_checkpoint.json) · [test trajectory](reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_policy_test_trajectory.json) |
 
-This remains a curated verification surface rather than a full project dump. The runtime source, frozen trained weights, checkpoints, held-out trajectories, episode summaries, replay controller, and control-panel source are reviewable and SHA-256 bound by the evidence manifest. Exact map geometry, frozen experiment configuration, and the complete Godot scene/visual package remain private. Stable-Baselines3 archives may contain Python-serialized objects; load only the hash-matched files from a trusted repository revision.
+The module includes runtime source, frozen weights, checkpoints, held-out trajectories, episode summaries, a replay controller, and control-panel source. The version manifest records SHA-256 hashes for released files. Exact map geometry, frozen experiment configuration, and the complete Godot scene and visual package are not included. Stable-Baselines3 archives may contain Python-serialized objects; load only hash-matched files from a trusted repository revision.
 
 > [!IMPORTANT]
-> 当前证据证明的是仿真平台完整性、算法评测能力和失效安全门禁，不是实船海试、COLREGs认证或商业航行许可。公开环境强迫、仿真动力学与真实传感/执行数据始终分层标注。
+> 当前结果来自数值仿真与固定留出任务，不代表实船海试、COLREGs 认证或商业航行许可。公开环境输入、仿真动力学与真实传感/执行数据始终分层标注。
 >
-> The evidence demonstrates simulator integrity, algorithm-evaluation capability, and fail-closed admission—not sea-trial performance, COLREGs certification, or commercial navigation authorization. Public environmental forcing, simulated dynamics, and real sensing/actuation data are always labelled as distinct evidence layers.
+> Current results come from numerical simulation and fixed held-out tasks; they are not sea-trial results, COLREGs certification, or commercial navigation authorization. Public environmental inputs, simulated dynamics, and real sensing/actuation data are labelled separately.
 
 ## 真实港口十算法覆盖基准 / Real-port ten-method coverage benchmark
 
@@ -238,7 +238,7 @@ Development, tests, and CI use `requirements-rl.txt`. Use the recorded legacy en
 The legacy environment is not a default runtime dependency and must not load external or unhashed model files.
 
 运行测试：<br>
-Run the verification gates:
+Run the tests:
 
 ```bash
 make test
@@ -246,8 +246,6 @@ make benchmark-verify
 make port-benchmark-verify
 make safety-benchmark-verify
 make reliability-audit
-make release-check
-make research-release
 ```
 
 GitHub Actions 会在 push 和 pull request 上运行环境契约、split 隔离、LOS-PID 闭环、AIS 转换、公开数据完整性、实验哈希和报告一致性检查。贡献数据或算法前请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。<br>
@@ -272,8 +270,8 @@ Run the main scene and press `C` to open the training page. “Algorithm / Envir
 
 | 键 | 实际模块 | 同屏按钮入口 |
 |---|---|---|
-| `M` | 可落地证据中心 | 主入口；可继续打开训练、航线/风险/海况、AIS、复盘与小懿助手 |
-| `Z` / `X` / `C` | RL 控制台 / 船队页 / 训练中心 | 证据中心“打开训练中心” |
+| `M` | 系统与指标总览 | 主入口；可继续打开训练、航线/风险/海况、AIS、复盘与小懿助手 |
+| `Z` / `X` / `C` | RL 控制台 / 船队页 / 训练中心 | 系统总览“打开训练中心” |
 | `N` | 航线规划 | “航线规划 / 风险决策 / 海况” |
 | `V` | 风险与策略准入 | “航线规划 / 风险决策 / 海况” |
 | `W` | 风浪流与能见度 | “航线规划 / 风险决策 / 海况” |
@@ -282,7 +280,7 @@ Run the main scene and press `C` to open the training page. “Algorithm / Envir
 | `O` | 小懿全系统助手 | “小懿全系统助手” |
 | `G` / `K` / `T` | 场景切换 / 测试轨迹回放 / 昼夜天气循环 | 主 HUD 快捷键提示 |
 
-主船使用方向键产生航行输入，`A/D` 环绕相机、`R/F` 调整俯仰。发布门禁会加载真实 `main.tscn`，检查十个核心 UI 字母键、所有证据中心按钮连接、十算法前端/后端清单，并分别通过后端指令与方向键驱动主船。当前自动冒烟 **36/36** 通过；结果写入 `reports/godot_ui_navigation_smoke_v1.json`。
+主船使用方向键产生航行输入，`A/D` 环绕相机、`R/F` 调整俯仰。自动化测试会加载 `main.tscn`，检查默认晴天、双体无人艇结构、十个核心 UI 字母键、系统总览中的模块连接、十算法前端/后端清单，并分别通过后端指令与方向键驱动主船。当前 UI 冒烟测试 **38/38** 通过；结果写入 `reports/godot_ui_navigation_smoke_v1.json`。
 
 ## 命令行训练 / Command-line training
 
@@ -418,8 +416,6 @@ python3 tools/public_data_pipeline.py weather \
   *Generate and deterministically verify the maritime-assurance report.*
 - `tools/run_godot_acceptance.py`：Godot 版本、解析和短时 headless 启动验收，回执绑定脚本/场景源文件树。<br>
   *Godot version, parse, and short headless-start acceptance bound to the script/scene source tree.*
-- `tools/release_check.py`：数据、模型、轨迹、报告和开源边界门禁。<br>
-  *Release gate for data, models, trajectories, reports, and open-source boundaries.*
 - `scripts/ui/ship_rl_control_panel.gd`：真实训练/测试任务控制台。<br>
   *Console for real training and evaluation jobs.*
 - `scripts/rl/ship_policy_replay_controller.gd`：测试动作序列可视化回放。<br>
@@ -435,11 +431,11 @@ python3 tools/public_data_pipeline.py weather \
 - `docs/LEGACY_ASSET_COMPATIBILITY.md`：旧场景/资源路径的保留边界与航行模拟器命名规则。<br>
   *Retention boundaries and naming rules for legacy scenes and assets.*
 
-## 开源发布前检查 / Open-source release check
+## 许可证与参考资料 / License & references
 
-代码使用 Apache-2.0。运行 `make release-check` 可验证代码/数据/实验/模型证据；运行 `.venv/bin/python tools/release_check.py --strict-assets` 会把未解决的素材许可也作为失败项。现有图片、纹理和角色素材尚未全部完成来源核验，因此完整视觉包公开前仍必须处理 [资产许可审计](docs/ASSET_LICENSE_AUDIT.md)。公开数据的来源与署名要求见 [数据来源](docs/DATA_SOURCES.md)，评价口径见 [模拟器指标体系](docs/SIMULATOR_METRICS.md)，可对外表述见 [简历证据与禁用口径](docs/RESUME_CLAIMS.md)。
+源代码采用 [Apache License 2.0](LICENSE)。公开数据的来源与署名要求见[数据来源](docs/DATA_SOURCES.md)，模型与模拟结果的计算口径见[模拟器指标体系](docs/SIMULATOR_METRICS.md)。第三方素材不因代码许可证而重新授权，使用时请同时遵循 [NOTICE](NOTICE) 及原始来源条款。
 
-The code is Apache-2.0 licensed. `make release-check` verifies code, data, experiment, and model evidence; `.venv/bin/python tools/release_check.py --strict-assets` also fails on unresolved asset licenses. Provenance review for all existing images, textures, and character assets is not yet complete, so the full visual package must pass the [asset-license audit](docs/ASSET_LICENSE_AUDIT.md) before public redistribution. See [data sources](docs/DATA_SOURCES.md) for provenance and attribution, [simulator metrics](docs/SIMULATOR_METRICS.md) for evaluation semantics, and [resume evidence and prohibited claims](docs/RESUME_CLAIMS.md) for externally defensible wording.
+Source code is available under the [Apache License 2.0](LICENSE). See [data sources](docs/DATA_SOURCES.md) for provenance and attribution, and [simulator metrics](docs/SIMULATOR_METRICS.md) for calculation methods. Third-party assets are not relicensed under Apache-2.0; their original terms and the repository [NOTICE](NOTICE) continue to apply.
 
 ## 学术顾问与致谢 / Academic Advisor & Acknowledgements
 

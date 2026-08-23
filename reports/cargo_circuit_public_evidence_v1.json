@@ -2,7 +2,7 @@
   "schema_version": "cargo_circuit_public_evidence_v1",
   "module": "cargo_circuit_rl",
   "release_scope": {
-    "purpose": "technical HR verification without publishing the complete project",
+    "purpose": "versioned cargo-circuit RL artifacts and held-out evaluation results",
     "public_source_files": [
       "tools/cargo_rl/environment.py",
       "tools/cargo_rl/dynamic_environment.py",
@@ -19,20 +19,20 @@
       "tools/cargo_rl/trainer.py": "231daa2a6a17c648f74b912b4e922bb419fcf9c3b6015118cce006f452a6b376",
       "tools/cargo_rl_train.py": "2de9e32b28c66f4304f45f1e4a6b210370c10e5c058210149ada2ab5917b98b1",
       "examples/cargo_circuit_godot/cargo_circuit_replay_controller.gd": "42d2e31a95fc3a3ac82f34cf8cd793fd4f531ede49bdae5a2a318ec07cd84294",
-      "examples/cargo_circuit_godot/cargo_circuit_rl_panel.gd": "532f3ed09b4504aa380ef7240d946afacc86e17089ecc0912817636bc251264d"
+      "examples/cargo_circuit_godot/cargo_circuit_rl_panel.gd": "a0b765309c99c5d1cdb1779c3376ea95effaeffc1766185f16abac303760519a"
     },
     "public_artifact_sha256": {
       "reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
-      "reports/artifacts/cargo_circuit_rl_v1/cargo_policy_checkpoint.json": "3944e1046c0624c9d118322aef668860dca7acabcd610e9c32b34c518e2ce939",
-      "reports/artifacts/cargo_circuit_rl_v1/cargo_policy_test_trajectory.json": "af37f5a816c731b7f877515c7a747a3807e6a49142bfe199fc059c96a7da5033",
+      "reports/artifacts/cargo_circuit_rl_v1/cargo_policy_checkpoint.json": "89b3c5266125dc7397862b60c74a2e1a522bf51830a8f4a3d6ea8263bacee87d",
+      "reports/artifacts/cargo_circuit_rl_v1/cargo_policy_test_trajectory.json": "e2e0a73e05e9ca0458847e6b05bc01a0772fb1171447ed5ac95471671a1c5df5",
       "reports/artifacts/cargo_circuit_rl_v1/cargo_sac_test_episodes.csv": "25e953b3bd525f5834ced4179003c47de1b220423909a7ba87ff1b7073a27495",
       "reports/artifacts/cargo_circuit_rl_v1/manual_feasibility_trajectory.json": "363009b9d5000083a52b95d2f02d0c49bfcc385558596f980dbb194c9a0f1bb9",
-      "reports/artifacts/cargo_circuit_rl_v1/test_progress.json": "b1d8317897596a4f4a074b4bf07e2883138f44c5a2612d7a8742122a24ff8d1d",
+      "reports/artifacts/cargo_circuit_rl_v1/test_progress.json": "dc6bd28988c2be65c769422ed3519da61834c8c31a78eb4c78f0d39df5b22b1a",
       "reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
-      "reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_policy_checkpoint.json": "5476104966aef1672bbe0c8f60447ba1cd61462a3609d499dd815a8860ba277c",
-      "reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_policy_test_trajectory.json": "e896748229fcdf917ebc8bd091c035546ea28ed8d3ac5cc4ecdb5db48b8b94a7",
+      "reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_policy_checkpoint.json": "3e7d3350d56cd68f7bc8c15c5a3ad127bcb1e8b2bb08fc79a2f20490c2ba7c35",
+      "reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_policy_test_trajectory.json": "8a12fe8be55eb80f0dc3f67d94a0e2b99e675f84879d4157667f0be907a0379b",
       "reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_sac_test_episodes.csv": "7b027abb680dca7c31e97fe1083c6c28402204e06d0ead03ce76cfcd1aa7e9cd",
-      "reports/artifacts/cargo_circuit_dynamic_rl_v2/test_progress.json": "c61644748954781fe141ceccc7d777a2e1707f68e2ab34291d91e8097a157430"
+      "reports/artifacts/cargo_circuit_dynamic_rl_v2/test_progress.json": "eef12608e93a958f1b61d49059a06f5bbd37ad1b216c86b40abb50203d1d16d6"
     },
     "withheld_assets": [
       "exact route and cliff coordinates",
@@ -130,12 +130,12 @@
     "dataset_contract_sha256": "5fb5900203e4ad3be2d6e2cc38246a90096a783874a70e0417d6387b7d57e885",
     "static_experiment_contract_sha256": "6665bb102af8401168e13fae5a173c1390640800d402c7d9ea27351c356e0ccc",
     "static_model_file_sha256": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
-    "static_checkpoint_file_sha256": "3944e1046c0624c9d118322aef668860dca7acabcd610e9c32b34c518e2ce939",
-    "static_test_trajectory_file_sha256": "af37f5a816c731b7f877515c7a747a3807e6a49142bfe199fc059c96a7da5033",
+    "static_checkpoint_file_sha256": "89b3c5266125dc7397862b60c74a2e1a522bf51830a8f4a3d6ea8263bacee87d",
+    "static_test_trajectory_file_sha256": "e2e0a73e05e9ca0458847e6b05bc01a0772fb1171447ed5ac95471671a1c5df5",
     "dynamic_experiment_contract_sha256": "7a1b4497bfde1ea68c294df27a93ee2e28bb131fc6579d081d2058cdb3c42573",
     "dynamic_model_file_sha256": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
-    "dynamic_checkpoint_file_sha256": "5476104966aef1672bbe0c8f60447ba1cd61462a3609d499dd815a8860ba277c",
-    "dynamic_test_trajectory_file_sha256": "e896748229fcdf917ebc8bd091c035546ea28ed8d3ac5cc4ecdb5db48b8b94a7"
+    "dynamic_checkpoint_file_sha256": "3e7d3350d56cd68f7bc8c15c5a3ad127bcb1e8b2bb08fc79a2f20490c2ba7c35",
+    "dynamic_test_trajectory_file_sha256": "8a12fe8be55eb80f0dc3f67d94a0e2b99e675f84879d4157667f0be907a0379b"
   },
   "acceptance_boundary": "project-native numeric simulation and one fixed held-out route per policy; not a sea trial, COLREGs certification, or production-control claim"
 }

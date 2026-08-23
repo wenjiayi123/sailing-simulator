@@ -13,8 +13,8 @@
   "dataset_split_used": "train",
   "dataset_sha256": "e05ea1305583681d9245644a1782c05a2392aa82d3318188f8dd7f3e04f4dc4e",
   "experiment_sha256": "2d0c7c34b9be719161370e652a2c0da98913e441b672d9cc154c74f73e810388",
-  "dataset_path": "/Users/apple/Desktop/航行模拟器/data/rl/long_beach_public_weather_benchmark_v1.json",
-  "config_path": "/Users/apple/Desktop/航行模拟器/data/rl/long_beach_public_weather_experiment_v1.json",
+  "dataset_path": "data/rl/long_beach_public_weather_benchmark_v1.json",
+  "config_path": "data/rl/long_beach_public_weather_experiment_v1.json",
   "environment_parameters": {
     "vessel_radius_m": 3.2,
     "obstacle_inflation_m": 1.5,

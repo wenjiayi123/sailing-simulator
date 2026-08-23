@@ -15,8 +15,8 @@
   "dataset_split_used": "train",
   "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
   "experiment_sha256": "b3ce96edb6a995c3d5fd9787fbae05d00a7f760f133b3910604bd740fcbf2da1",
-  "dataset_path": "/Users/apple/Desktop/航行模拟器/data/rl/long_beach_ais_port_ops_benchmark_v2.json",
-  "config_path": "/Users/apple/Desktop/航行模拟器/data/rl/long_beach_ais_port_ops_experiment_v2.json",
+  "dataset_path": "data/rl/long_beach_ais_port_ops_benchmark_v2.json",
+  "config_path": "data/rl/long_beach_ais_port_ops_experiment_v2.json",
   "observation_size": 45,
   "environment_parameters": {
     "vessel_radius_m": 4.0,

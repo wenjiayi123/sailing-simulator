@@ -28,7 +28,7 @@ const HUB_MODULES := [
 	{"label": "AIS 船队态势", "node": "ShipAISFleetPanel", "method": "show_panel"},
 	{"label": "训练与仿真复盘", "node": "ShipSimulationReviewPanel", "method": "show_panel"},
 	{"label": "小懿系统助手", "node": "ShipInstructorConsolePanel", "method": "show_panel"},
-	{"label": "证据与指标中心", "node": "ShipHREvidenceCenter", "method": "show_panel"},
+	{"label": "系统与指标总览", "node": "ShipSystemOverviewPanel", "method": "show_panel"},
 ]
 
 @export var replay_controller_path: NodePath = NodePath("../CargoCircuitReplayController")

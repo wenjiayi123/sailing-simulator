@@ -7,8 +7,8 @@
   "algorithm": "sac",
   "progress": 1.0,
   "elapsed_seconds": 1.4005043249999996,
-  "trajectory_json": "/Users/apple/Desktop/航行模拟器/reports/artifacts/cargo_circuit_rl_v1/cargo_policy_test_trajectory.json",
-  "evidence_json": "/Users/apple/Desktop/航行模拟器/reports/cargo_circuit_rl_evidence_v1.json",
+  "trajectory_json": "reports/artifacts/cargo_circuit_rl_v1/cargo_policy_test_trajectory.json",
+  "evidence_json": "reports/cargo_circuit_rl_evidence_v1.json",
   "evaluation_metrics": {
     "task_id": "cargo_test_held_out_circuit",
     "success": true,

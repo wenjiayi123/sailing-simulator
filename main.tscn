@@ -47,6 +47,9 @@
 [ext_resource type="Script" uid="uid://bn1sed4lgl08u" path="res://scripts/ui/ship_instructor_console_panel.gd" id="79_instructor_console"]
 [ext_resource type="Script" path="res://scripts/rl/ship_policy_replay_controller.gd" id="80_policy_replay"]
 [ext_resource type="Script" path="res://scripts/ui/ship_system_overview_panel.gd" id="81_hr_evidence"]
+[ext_resource type="Script" path="res://scripts/rl/cargo_circuit_replay_controller.gd" id="82_cargo_replay"]
+[ext_resource type="Script" path="res://scripts/ui/cargo_circuit_rl_panel.gd" id="83_cargo_panel"]
+[ext_resource type="Script" path="res://scripts/world/large_rock_collision_guard.gd" id="84_large_rock_guard"]
 [ext_resource type="Script" path="res://scripts/visual/procedural_usv_visual.gd" id="85_procedural_usv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig7tw"]
@@ -59,7 +62,8 @@ size = Vector2(480, 480)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jh35h"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jh35h"]
+[sub_resource type="BoxShape3D" id="CapsuleShape3D_jh35h"]
+size = Vector3(2.95, 1.5, 5.7)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tcxth"]
 atlas = ExtResource("2_2cqfq")
@@ -3039,6 +3043,9 @@ transform = Transform3D(0.81915206, -0.46984634, 0.32898995, 0, 0.57357645, 0.81
 [node name="NavigationEnvironment" parent="." unique_id=1373737335 instance=ExtResource("63_navigation_environment")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35661614, -0.18494618, -0.047016352)
 
+[node name="LargeRockCollisionGuard" type="Node3D" parent="."]
+script = ExtResource("84_large_rock_guard")
+
 [node name="Player" type="CharacterBody3D" parent="." unique_id=928115363]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35661614, -140.73494, -0.047016352)
 script = ExtResource("1_ig7tw")
@@ -3049,7 +3056,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_jh35h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=167762203]
-transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("CapsuleShape3D_jh35h")
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=1026057117]
@@ -3100,6 +3107,9 @@ script = ExtResource("69_fleet_manager")
 [node name="ShipPolicyReplayController" type="Node" parent="."]
 script = ExtResource("80_policy_replay")
 
+[node name="CargoCircuitReplayController" type="Node" parent="."]
+script = ExtResource("82_cargo_replay")
+
 [node name="MalaccaValidationBridge" type="Node" parent="." unique_id=1887236491]
 script = ExtResource("73_malacca_bridge")
 
@@ -3129,6 +3139,9 @@ script = ExtResource("79_instructor_console")
 
 [node name="ShipSystemOverviewPanel" type="CanvasLayer" parent="."]
 script = ExtResource("81_hr_evidence")
+
+[node name="CargoCircuitRLPanel" type="CanvasLayer" parent="."]
+script = ExtResource("83_cargo_panel")
 
 [node name="ShipWakeTrail" type="Node3D" parent="." unique_id=613481520]
 script = ExtResource("65_ship_wake")

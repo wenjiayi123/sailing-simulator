@@ -1,0 +1,302 @@
+{
+  "checks": {
+    "camera_follows_heading_with_keyboard_override": true,
+    "dynamic_rl_release_loaded": true,
+    "h_panel_camera_modes_switch_runtime": true,
+    "h_panel_is_system_control_hub": true,
+    "independent_controller_present": true,
+    "independent_panel_present": true,
+    "manual_feasibility_artifact_loaded": true,
+    "named_strategy_selector_present": true,
+    "original_world_restored_on_stop": true,
+    "procedural_usv_is_sole_ship_renderer": true,
+    "procedural_usv_uses_builtin_meshes": true,
+    "propellers_reverse_with_reverse_thrust": true,
+    "propellers_scale_with_ship_motion": true,
+    "propellers_use_port_starboard_turn_differential": true,
+    "recorded_replay_large_rock_sweep_enabled": true,
+    "relocated_large_rock_solid_guards_present": true,
+    "seven_algorithm_training_entrypoints_present": true,
+    "six_dynamic_traffic_markers_instantiated": true,
+    "static_rl_release_loaded": true
+  },
+  "errors": [],
+  "format": "cargo_circuit_godot_smoke_v1",
+  "large_rock_guard_status": {
+    "expected_rock_count": 32,
+    "guard_count": 3,
+    "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+    "manifest_schema_version": "large_rock_obstacle_manifest_v1",
+    "missing_manifest_rocks": [],
+    "registered_collision_body_count": 64,
+    "registered_obstacle_count": 32,
+    "restored_transform_count": 0,
+    "rocks": [
+      {
+        "center": {
+          "x": -470.352294921875,
+          "y": -140.734939575195,
+          "z": 282.606811523438
+        },
+        "guard": "WaterlineGuard_GroundedPlate_01_BroadLandMass",
+        "rock": "GroundedPlate_01_BroadLandMass",
+        "size": {
+          "x": 251.529052734375,
+          "y": 10.0,
+          "z": 223.105682373047
+        }
+      },
+      {
+        "center": {
+          "x": -527.353088378906,
+          "y": -140.734939575195,
+          "z": -196.941986083984
+        },
+        "guard": "WaterlineGuard_GroundedPlate_04_WideBridgeSlab",
+        "rock": "GroundedPlate_04_WideBridgeSlab",
+        "size": {
+          "x": 282.304595947266,
+          "y": 10.0,
+          "z": 280.225219726562
+        }
+      },
+      {
+        "center": {
+          "x": -115.591758728027,
+          "y": -140.734939575195,
+          "z": 525.5234375
+        },
+        "guard": "WaterlineGuard_GroundedPlate_07_AncientWallPlate",
+        "rock": "GroundedPlate_07_AncientWallPlate",
+        "size": {
+          "x": 238.29167175293,
+          "y": 10.0,
+          "z": 185.140960693359
+        }
+      }
+    ],
+    "unexpected_scene_rocks": [],
+    "water_level_y": -140.73494
+  },
+  "passed": true,
+  "replay_statuses": {
+    "active_propulsion_link": {
+      "base_target_rad_s": 41.5749822190522,
+      "drive_direction": 1.0,
+      "drive_ratio": 0.0858,
+      "port_current_rad_s": 0.0,
+      "port_target_rad_s": 38.5483235135052,
+      "port_target_rpm": 368.109374104793,
+      "rudder": -0.14,
+      "speed_mps": 0.18,
+      "starboard_current_rad_s": 0.0,
+      "starboard_target_rad_s": -44.6016409245992,
+      "starboard_target_rpm": 425.914297389584,
+      "sync_mode": "actual_speed_throttle_rudder_differential",
+      "throttle": 0.11,
+      "turn_direction": -0.14,
+      "turn_side": "port"
+    },
+    "dynamic_rl": {
+      "active": true,
+      "algorithm": "sac",
+      "camera_mode": "auto_follow",
+      "dataset_split": "test",
+      "dynamic_marker_count": 6,
+      "dynamic_obstacle_count": 6,
+      "elapsed_seconds": 0.15,
+      "format": "cargo_circuit_dynamic_test_rollout_v2",
+      "large_rock_replay_guard_blocks": 0,
+      "last_result": {},
+      "module": "cargo_circuit_dynamic_rl",
+      "playback_speed": 3.0,
+      "progress": 0.0,
+      "sample_count": 696,
+      "sample_index": 0,
+      "trained_rl": true,
+      "visual_mode": "procedural_usv"
+    },
+    "h_hub_algorithms": [
+      "sac",
+      "ppo",
+      "td3",
+      "a2c",
+      "ddpg",
+      "tqc",
+      "trpo"
+    ],
+    "manual_feasibility": {
+      "active": true,
+      "algorithm": "--",
+      "camera_mode": "auto_follow",
+      "dataset_split": "test",
+      "dynamic_marker_count": 0,
+      "dynamic_obstacle_count": 0,
+      "elapsed_seconds": 0.35,
+      "format": "cargo_circuit_manual_feasibility_rollout_v1",
+      "large_rock_replay_guard_blocks": 0,
+      "last_result": {},
+      "module": "cargo_circuit_rl",
+      "playback_speed": 3.0,
+      "progress": 0.000493583415597236,
+      "sample_count": 2027,
+      "sample_index": 1,
+      "trained_rl": false,
+      "visual_mode": "procedural_usv"
+    },
+    "presentation_defaults": {
+      "applied_to_active_replay": false,
+      "camera_auto_follow": true,
+      "camera_mode": "auto_follow",
+      "visual_label": "3D内置模组无人艇（固定）",
+      "visual_mode": "procedural_usv"
+    },
+    "presentation_runtime_switch": {
+      "applied_to_active_replay": true,
+      "camera_auto_follow": true,
+      "camera_mode": "auto_follow",
+      "visual_label": "3D内置模组无人艇（固定）",
+      "visual_mode": "procedural_usv"
+    },
+    "procedural_usv": {
+      "built_in_meshes_only": true,
+      "components": [
+        "双体浮筒",
+        "中央甲板",
+        "防撞船首",
+        "低矮驾驶舱",
+        "双太阳能板",
+        "旋转雷达",
+        "双光电摄像头",
+        "GNSS天线",
+        "红绿航行灯",
+        "双推进器"
+      ],
+      "propulsion_animation": "实际航速、油门、实际舵角差速同步",
+      "visual_type": "procedural_unmanned_surface_vessel"
+    },
+    "propulsion_animation": {
+      "animated": {
+        "base_target_rad_s": 82.2085500087199,
+        "drive_direction": 1.0,
+        "drive_ratio": 0.941176470588235,
+        "port_current_rad_s": 79.2978333906901,
+        "port_target_rad_s": 82.2085500087199,
+        "port_target_rpm": 785.033825898303,
+        "rudder": 0.0,
+        "speed_mps": 8.0,
+        "starboard_current_rad_s": -79.2978333906901,
+        "starboard_target_rad_s": -82.2085500087199,
+        "starboard_target_rpm": 785.033825898303,
+        "sync_mode": "actual_speed_throttle_rudder_differential",
+        "throttle": 0.92,
+        "turn_direction": 0.0,
+        "turn_side": "straight"
+      },
+      "fast": {
+        "base_target_rad_s": 82.2085500087199,
+        "drive_direction": 1.0,
+        "drive_ratio": 0.941176470588235,
+        "port_current_rad_s": 0.0,
+        "port_target_rad_s": 82.2085500087199,
+        "port_target_rpm": 785.033825898303,
+        "rudder": 0.0,
+        "speed_mps": 8.0,
+        "starboard_current_rad_s": 0.0,
+        "starboard_target_rad_s": -82.2085500087199,
+        "starboard_target_rpm": 785.033825898303,
+        "sync_mode": "actual_speed_throttle_rudder_differential",
+        "throttle": 0.92,
+        "turn_direction": 0.0,
+        "turn_side": "straight"
+      },
+      "port_turn": {
+        "base_target_rad_s": 82.2085500087199,
+        "drive_direction": 1.0,
+        "drive_ratio": 0.941176470588235,
+        "port_current_rad_s": 79.2978333906901,
+        "port_target_rad_s": 47.1548242850017,
+        "port_target_rpm": 450.295402535267,
+        "rudder": -0.82,
+        "speed_mps": 8.0,
+        "starboard_current_rad_s": -79.2978333906901,
+        "starboard_target_rad_s": -117.262275732438,
+        "starboard_target_rpm": 1119.77224926134,
+        "sync_mode": "actual_speed_throttle_rudder_differential",
+        "throttle": 0.92,
+        "turn_direction": -0.82,
+        "turn_side": "port"
+      },
+      "reverse": {
+        "base_target_rad_s": 66.722359485403,
+        "drive_direction": -1.0,
+        "drive_ratio": 0.507,
+        "port_current_rad_s": 79.2978333906901,
+        "port_target_rad_s": -66.722359485403,
+        "port_target_rpm": 637.151599611377,
+        "rudder": 0.0,
+        "speed_mps": -1.4,
+        "starboard_current_rad_s": -79.2978333906901,
+        "starboard_target_rad_s": 66.722359485403,
+        "starboard_target_rpm": 637.151599611377,
+        "sync_mode": "actual_speed_throttle_rudder_differential",
+        "throttle": -0.65,
+        "turn_direction": 0.0,
+        "turn_side": "straight"
+      },
+      "slow": {
+        "base_target_rad_s": 53.0241278938748,
+        "drive_direction": 1.0,
+        "drive_ratio": 0.234,
+        "port_current_rad_s": 0.0,
+        "port_target_rad_s": 53.0241278938748,
+        "port_target_rpm": 506.343123446821,
+        "rudder": 0.0,
+        "speed_mps": 1.0,
+        "starboard_current_rad_s": 0.0,
+        "starboard_target_rad_s": -53.0241278938748,
+        "starboard_target_rpm": 506.343123446821,
+        "sync_mode": "actual_speed_throttle_rudder_differential",
+        "throttle": 0.3,
+        "turn_direction": 0.0,
+        "turn_side": "straight"
+      },
+      "starboard_turn": {
+        "base_target_rad_s": 82.2085500087199,
+        "drive_direction": 1.0,
+        "drive_ratio": 0.941176470588235,
+        "port_current_rad_s": 79.2978333906901,
+        "port_target_rad_s": 117.262275732438,
+        "port_target_rpm": 1119.77224926134,
+        "rudder": 0.82,
+        "speed_mps": 8.0,
+        "starboard_current_rad_s": -79.2978333906901,
+        "starboard_target_rad_s": -47.1548242850017,
+        "starboard_target_rpm": 450.295402535267,
+        "sync_mode": "actual_speed_throttle_rudder_differential",
+        "throttle": 0.92,
+        "turn_direction": 0.82,
+        "turn_side": "starboard"
+      }
+    },
+    "static_rl": {
+      "active": true,
+      "algorithm": "sac",
+      "camera_mode": "auto_follow",
+      "dataset_split": "test",
+      "dynamic_marker_count": 0,
+      "dynamic_obstacle_count": 0,
+      "elapsed_seconds": 0.2,
+      "format": "cargo_circuit_test_rollout_v1",
+      "large_rock_replay_guard_blocks": 0,
+      "last_result": {},
+      "module": "cargo_circuit_rl",
+      "playback_speed": 3.0,
+      "progress": 0.0,
+      "sample_count": 712,
+      "sample_index": 0,
+      "trained_rl": true,
+      "visual_mode": "procedural_usv"
+    }
+  }
+}

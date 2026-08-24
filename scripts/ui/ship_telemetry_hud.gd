@@ -17,9 +17,9 @@ const BOTTOM_PANEL_HEIGHT := 58.0
 const KEY_GUIDE_LEFT := 22.0
 const KEY_GUIDE_TOP := 22.0
 const KEY_GUIDE_WIDTH := 242.0
-const KEY_GUIDE_HEIGHT := 112.0
+const KEY_GUIDE_HEIGHT := 124.0
 const DEVELOPER_CREDIT_LEFT := 22.0
-const DEVELOPER_CREDIT_TOP := 138.0
+const DEVELOPER_CREDIT_TOP := 150.0
 const DEVELOPER_CREDIT_WIDTH := 250.0
 const DEVELOPER_CREDIT_HEIGHT := 76.0
 const LEFT_AUX_LEFT := 22.0
@@ -1453,6 +1453,7 @@ func _build_interface() -> void:
 	var key_title := _make_label("快捷键 / HOTKEYS", 10, COLOR_CYAN, HORIZONTAL_ALIGNMENT_LEFT)
 	key_title.add_theme_color_override("font_shadow_color", Color(0.0, 0.8, 1.0, 0.42))
 	key_stack.add_child(key_title)
+	_add_hotkey_line(key_stack, "H", "总控 / 已训练策略")
 	_add_hotkey_line(key_stack, "Z/X/C", "RL / 船队 / 训练")
 	_add_hotkey_line(key_stack, "V/N/W", "风险 / 海图 / 海况")
 	_add_hotkey_line(key_stack, "P/I/O", "复盘 / AIS / 教员")

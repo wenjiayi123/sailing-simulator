@@ -78,6 +78,8 @@ Godot 4.7 owns vessel control, port geometry, risk envelopes, and 3D trajectory 
 | SAC-S1（36维，300,000步） | [`cargo_sac_policy.zip`](reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip) | [checkpoint](reports/artifacts/cargo_circuit_rl_v1/cargo_policy_checkpoint.json) · [test trajectory](reports/artifacts/cargo_circuit_rl_v1/cargo_policy_test_trajectory.json) |
 | RES-SAC-D2（44维，500步 residual adaptation） | [`cargo_dynamic_sac_policy.zip`](reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip) | [checkpoint](reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_policy_checkpoint.json) · [test trajectory](reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_policy_test_trajectory.json) |
 
+当前场景实际包含 **32 个大型悬岩实例**（另外 2 个节点只是说明标签，不再误计为岩石）。它们的完整变换已锁入版本化清单，逐个核验结果为 **32/32 位置匹配、64/64 精确碰撞形状、32/32 雷达障碍、32/32 训练快照障碍**，且扰动恢复探针通过。两份历史冻结策略是在旧障碍契约下训练的，当前都会在 `GroundedPlate_06_TwistedButtressMesa` 触发一次实体碰撞守卫；Godot 会 fail-closed 停止回放而不会继续穿模。要在现地图完整播放，必须按新障碍快照重新训练并冻结新 checkpoint，不能把旧轨迹改写成“兼容”。运行 `make godot-large-rock-training-contract GODOT=/path/to/Godot` 可复核新训练契约；`make godot-cargo-collision-smoke` 会保留并报告旧策略的不兼容失败。
+
 The module includes runtime source, frozen weights, checkpoints, held-out trajectories, episode summaries, a replay controller, and control-panel source. The version manifest records SHA-256 hashes for released files. Exact map geometry, frozen experiment configuration, and the complete Godot scene and visual package are not included. Stable-Baselines3 archives may contain Python-serialized objects; load only hash-matched files from a trusted repository revision.
 
 > [!IMPORTANT]
@@ -213,22 +215,42 @@ test split  -> Python 确定性 rollout / deterministic rollout
 在不覆盖历史 V1/V2/V3 checkpoint、指标和失败记录的前提下，项目新增一套独立的 V1 航海保障链：可标定三自由度 surge–sway–yaw 动力学（附加质量、非线性阻尼、桨/舵执行器与 RK4），并已接入包含 sway/yaw/实舵角的下一版本 48 维 RL 环境；带 Rule 5/6/7/8/13/14/15/16/17/19 追踪的正反 COLREG 场景；UDP/NMEA HIL 软件回环与故障注入；以及带原始日志哈希和外部见证要求的海试证据完整性拒绝门禁。新环境必须重新训练和冻结，旧模型不会被改名冒充兼容。当前软件验收结果见 [中英双语报告](reports/maritime_assurance_v1.md) 和 [机器可读报告](reports/maritime_assurance_v1.json)，完整接口及替换指定船舶参数的方法见 [航海保障指南](docs/MARITIME_ASSURANCE_GUIDE.md)。<br>
 Without overwriting historic V1/V2/V3 checkpoints, metrics, or failures, the project now includes an independent maritime-assurance chain: a calibratable 3-DOF surge–sway–yaw plant with added mass, nonlinear damping, propeller/rudder actuators and RK4, connected to a next-version 48-D RL environment exposing sway, yaw rate, and actual rudder angle; positive/negative COLREG scenarios with Rule 5/6/7/8/13/14/15/16/17/19 traces; UDP/NMEA HIL software loopback and fault injection; and a sea-trial refusal gate requiring raw-log hashes and external evidence. The new contract requires new training and sealing; historic models are never relabelled as compatible. See the [bilingual report](reports/maritime_assurance_v1.md), [machine-readable report](reports/maritime_assurance_v1.json), and [assurance guide](docs/MARITIME_ASSURANCE_GUIDE.md).
 
+Godot 当前双体无人艇还接入了与 5.7 m 程序化船体几何一致的专用 `taoyuan_catamaran_usv_3dof_twin_waterjet_v2`：纵荡、横荡、艏摇、刚体惯量、附加质量、线性/二次阻尼、双喷水推进器差速、推力矢量、执行器迟滞/速率限制、流/风/浪和 RK4 子步积分均进入实时运动与遥测；船体碰撞包络也由旧小胶囊改为 2.95 × 1.5 × 5.7 m 定向实体。16 项软件验收通过，但参数仍是依据当前几何建立的参考值，`named_vessel_dynamics_calibrated=false`，不能替代水池/海试辨识。运行 `make godot-catamaran-hydrodynamics GODOT=/path/to/Godot` 可复核。
+
 > 当前明确状态：`named_vessel_dynamics_calibrated=false`、`colreg_certified=false`、`physical_hil_verified=false`、`real_vessel_sea_trial_completed=false`、`production_authority=false`。软件层完善不冒充指定船舶标定、正式法规认证、真实硬件或实船证据。<br>
 > Explicit current status: `named_vessel_dynamics_calibrated=false`, `colreg_certified=false`, `physical_hil_verified=false`, `real_vessel_sea_trial_completed=false`, and `production_authority=false`. Software assurance is never represented as named-vessel calibration, formal certification, physical hardware, or real-vessel evidence.
 
 ## 快速开始 / Quick start
 
-安装 Python 训练环境：<br>
-Install the Python training environment:
+### 直接运行三维模拟器（无需Python） / Run the 3D simulator without Python
 
 ```bash
-cd /path/to/sailing-simulator
-bash tools/setup_rl_env.sh
+git clone https://github.com/wenjiayi123/sailing-simulator.git
+cd sailing-simulator
+make run
 ```
 
-默认开发、测试和 CI 使用 `requirements-rl.txt`。只有对仓库自带、SHA-256
-校验通过的历史模型进行字节级深度复算时，才使用报告保存的旧环境记录。<br>
-Development, tests, and CI use `requirements-rl.txt`. Use the recorded legacy environment only for byte-level deep recomputation of repository-bundled historical models whose SHA-256 hashes have already been verified:
+`make run` 会自动查找 PATH 或常见macOS安装位置中的Godot。也可以直接用Godot 4.7打开仓库根目录的 `project.godot`。进入场景后按 `H` 打开总控并选择仓库自带的冻结策略；回放不需要Python训练依赖。<br>
+`make run` automatically finds Godot on PATH or in the standard macOS application location. You can also open `project.godot` directly with Godot 4.7. Press `H` in the running scene to open the control hub and select a bundled frozen policy; replay does not require the Python training stack.
+
+```bash
+# Optional: open the editor or run a short startup check
+make editor
+make quick-check
+```
+
+### 训练和完整测试 / Training and full tests
+
+只有重新训练或执行完整Python测试时才需要安装训练环境：<br>
+Install the Python environment only when retraining policies or running the complete test suite:
+
+```bash
+make setup
+make test
+```
+
+默认开发、测试和CI使用 `requirements-rl.txt`。只有对仓库自带且SHA-256校验通过的历史模型进行字节级深度复算时，才使用报告保存的旧环境记录。<br>
+Development, tests, and CI use `requirements-rl.txt`. Use the recorded legacy environment only for byte-level recomputation of repository-bundled historical models whose SHA-256 hashes have already been verified:
 
 ```bash
 .venv/bin/python -m pip install -r reports/navigation_benchmark_runtime_legacy.lock
@@ -237,8 +259,7 @@ Development, tests, and CI use `requirements-rl.txt`. Use the recorded legacy en
 旧环境记录不是默认运行依赖，不应用于加载外部或未经哈希校验的模型文件。<br>
 The legacy environment is not a default runtime dependency and must not load external or unhashed model files.
 
-运行测试：<br>
-Run the tests:
+其他证据核验命令 / Additional evidence checks:
 
 ```bash
 make test
@@ -246,20 +267,14 @@ make benchmark-verify
 make port-benchmark-verify
 make safety-benchmark-verify
 make reliability-audit
+make privacy-scan
 ```
 
 GitHub Actions 会在 push 和 pull request 上运行环境契约、split 隔离、LOS-PID 闭环、AIS 转换、公开数据完整性、实验哈希和报告一致性检查。贡献数据或算法前请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。<br>
 On every push and pull request, GitHub Actions verifies the environment contract, split isolation, LOS-PID loop, AIS conversion, public-data integrity, experiment hashes, V3 safety-supervisor evidence, and report consistency. CodeQL, dependency review, OpenSSF Scorecard, and an SPDX SBOM provide additional supply-chain checks. Read [CONTRIBUTING.md](CONTRIBUTING.md) before contributing data or algorithms.
 
-打开 Godot：<br>
-Open the project in Godot:
-
-```bash
-/path/to/Godot --editor --path /path/to/sailing-simulator
-```
-
-运行主场景后按 `C` 打开训练页。“算法/环境设置”可配置船体半径、悬岩净距、感知范围、碰撞时间窗、域随机化和生成交通船；“预览安全边界”会把有效包络直接画回场景。选择算法和预算后点击“启动训练”，完成后再点击“运行测试集并渲染”。<br>
-Run the main scene and press `C` to open the training page. “Algorithm / Environment Settings” configures hull radius, overhang clearance, sensing range, collision horizon, domain randomization, and generated traffic. “Preview Safety Boundary” draws the effective envelope into the scene. Select an algorithm and budget, start training, and only after completion run the held-out test set with rendering.
+运行主场景后按 `H` 打开总控，可直接选择并播放项目内已冻结的训练策略；按 `C` 可直接打开训练页。“算法/环境设置”可配置船体半径、悬岩净距、感知范围、碰撞时间窗、域随机化和生成交通船；“预览安全边界”会把有效包络直接画回场景。选择算法和预算后点击“启动训练”，完成后再点击“运行测试集并渲染”。<br>
+Run the main scene and press `H` to open the total-control hub, where the bundled frozen trained policies can be selected and replayed directly; press `C` to open the training page. “Algorithm / Environment Settings” configures hull radius, overhang clearance, sensing range, collision horizon, domain randomization, and generated traffic. “Preview Safety Boundary” draws the effective envelope into the scene. Select an algorithm and budget, start training, and only after completion run the held-out test set with rendering.
 
 <p align="center">
   <img src="docs/screenshots/03-xiaoyi-system-assistant.png" alt="晴天场景中的小懿全系统助手与场景、天气、事故、障碍和报告按钮" width="100%" />
@@ -270,6 +285,7 @@ Run the main scene and press `C` to open the training page. “Algorithm / Envir
 
 | 键 | 实际模块 | 同屏按钮入口 |
 |---|---|---|
+| `H` | 全系统总控与已训练策略播放 | 可加载冻结 SAC-S1 / RES-SAC-D2；若旧轨迹与当前实体悬岩冲突则安全停止，需新地图重训后才能完整播放 |
 | `M` | 系统与指标总览 | 主入口；可继续打开训练、航线/风险/海况、AIS、复盘与小懿助手 |
 | `Z` / `X` / `C` | RL 控制台 / 船队页 / 训练中心 | 系统总览“打开训练中心” |
 | `N` | 航线规划 | “航线规划 / 风险决策 / 海况” |
@@ -280,7 +296,7 @@ Run the main scene and press `C` to open the training page. “Algorithm / Envir
 | `O` | 小懿全系统助手 | “小懿全系统助手” |
 | `G` / `K` / `T` | 场景切换 / 测试轨迹回放 / 昼夜天气循环 | 主 HUD 快捷键提示 |
 
-主船使用方向键产生航行输入，`A/D` 环绕相机、`R/F` 调整俯仰。自动化测试会加载 `main.tscn`，检查默认晴天、双体无人艇结构、十个核心 UI 字母键、系统总览中的模块连接、十算法前端/后端清单，并分别通过后端指令与方向键驱动主船。当前 UI 冒烟测试 **38/38** 通过；结果写入 `reports/godot_ui_navigation_smoke_v1.json`。
+主船使用方向键产生航行输入，`A/D` 环绕相机、`R/F` 调整俯仰。自动化测试会加载 `main.tscn`，检查默认晴天、双体无人艇结构、十一个核心 UI 字母键、`H` 总控冻结策略播放、系统总览中的模块连接、十算法前端/后端清单，并分别通过后端指令与方向键驱动主船。当前 UI 冒烟测试 **42/42** 通过；结果写入 `reports/godot_ui_navigation_smoke_v1.json`。
 
 ## 命令行训练 / Command-line training
 

@@ -29,7 +29,7 @@ const MODES := [
 		"sun_energy": 1.18,
 		"sun_rotation": Vector3(-52.0, -36.0, 0.0),
 		"overlay": Color(0.10, 0.42, 0.78, 0.00),
-		"sea_state": {"wind_speed_knots": 6.0, "wind_direction_degrees": 38.0, "wave_height_meters": 0.4, "visibility_km": 20.0, "current_speed_knots": 0.4, "current_direction_degrees": 65.0, "tide_meters": 0.2, "time_scale": 1.0}
+		"sea_state": {"wind_speed_knots": 6.0, "wind_direction_degrees": 38.0, "wave_height_meters": 0.4, "wave_direction_degrees": 54.0, "wave_period_seconds": 5.5, "visibility_km": 20.0, "current_speed_knots": 0.4, "current_direction_degrees": 65.0, "tide_meters": 0.2, "time_scale": 1.0}
 	},
 	{
 		"key": "mist",
@@ -47,7 +47,7 @@ const MODES := [
 		"sun_energy": 0.72,
 		"sun_rotation": Vector3(-30.0, -18.0, 0.0),
 		"overlay": Color(0.70, 0.88, 0.90, 0.14),
-		"sea_state": {"wind_speed_knots": 10.0, "wind_direction_degrees": 52.0, "wave_height_meters": 0.8, "visibility_km": 2.5, "current_speed_knots": 0.7, "current_direction_degrees": 42.0, "tide_meters": 0.4, "time_scale": 1.0}
+		"sea_state": {"wind_speed_knots": 10.0, "wind_direction_degrees": 52.0, "wave_height_meters": 0.8, "wave_direction_degrees": 61.0, "wave_period_seconds": 6.2, "visibility_km": 2.5, "current_speed_knots": 0.7, "current_direction_degrees": 42.0, "tide_meters": 0.4, "time_scale": 1.0}
 	},
 	{
 		"key": "dusk",
@@ -65,7 +65,7 @@ const MODES := [
 		"sun_energy": 0.94,
 		"sun_rotation": Vector3(-10.0, -62.0, 0.0),
 		"overlay": Color(0.95, 0.38, 0.12, 0.12),
-		"sea_state": {"wind_speed_knots": 14.0, "wind_direction_degrees": 88.0, "wave_height_meters": 1.2, "visibility_km": 8.0, "current_speed_knots": 1.1, "current_direction_degrees": 102.0, "tide_meters": 0.7, "time_scale": 1.0}
+		"sea_state": {"wind_speed_knots": 14.0, "wind_direction_degrees": 88.0, "wave_height_meters": 1.2, "wave_direction_degrees": 96.0, "wave_period_seconds": 7.0, "visibility_km": 8.0, "current_speed_knots": 1.1, "current_direction_degrees": 102.0, "tide_meters": 0.7, "time_scale": 1.0}
 	},
 	{
 		"key": "night",
@@ -83,7 +83,7 @@ const MODES := [
 		"sun_energy": 0.22,
 		"sun_rotation": Vector3(-72.0, 32.0, 0.0),
 		"overlay": Color(0.0, 0.02, 0.12, 0.36),
-		"sea_state": {"wind_speed_knots": 18.0, "wind_direction_degrees": 126.0, "wave_height_meters": 1.6, "visibility_km": 4.0, "current_speed_knots": 1.4, "current_direction_degrees": 128.0, "tide_meters": 1.0, "time_scale": 1.0}
+		"sea_state": {"wind_speed_knots": 18.0, "wind_direction_degrees": 126.0, "wave_height_meters": 1.6, "wave_direction_degrees": 138.0, "wave_period_seconds": 7.8, "visibility_km": 4.0, "current_speed_knots": 1.4, "current_direction_degrees": 128.0, "tide_meters": 1.0, "time_scale": 1.0}
 	}
 ]
 
@@ -93,6 +93,8 @@ const MODES := [
 @export_range(0.0, 60.0, 0.1) var wind_speed_knots: float = 6.0
 @export_range(0.0, 359.0, 1.0) var wind_direction_degrees: float = 38.0
 @export_range(0.0, 8.0, 0.1) var wave_height_meters: float = 0.4
+@export_range(0.0, 359.0, 1.0) var wave_direction_degrees: float = 54.0
+@export_range(1.0, 30.0, 0.1) var wave_period_seconds: float = 5.5
 @export_range(0.1, 30.0, 0.1) var visibility_km: float = 20.0
 @export_range(0.0, 8.0, 0.1) var current_speed_knots: float = 0.4
 @export_range(0.0, 359.0, 1.0) var current_direction_degrees: float = 65.0
@@ -210,6 +212,8 @@ func get_weather_time_status() -> Dictionary:
 		"wind_speed_knots": wind_speed_knots,
 		"wind_direction_degrees": wind_direction_degrees,
 		"wave_height_meters": wave_height_meters,
+		"wave_direction_degrees": wave_direction_degrees,
+		"wave_period_seconds": wave_period_seconds,
 		"current_speed_knots": current_speed_knots,
 		"current_direction_degrees": current_direction_degrees,
 		"tide_meters": tide_meters,
@@ -228,6 +232,8 @@ func apply_sea_state(config: Dictionary) -> void:
 	wind_speed_knots = clampf(float(config.get("wind_speed_knots", wind_speed_knots)), 0.0, 60.0)
 	wind_direction_degrees = fposmod(float(config.get("wind_direction_degrees", wind_direction_degrees)), 360.0)
 	wave_height_meters = clampf(float(config.get("wave_height_meters", wave_height_meters)), 0.0, 8.0)
+	wave_direction_degrees = fposmod(float(config.get("wave_direction_degrees", wave_direction_degrees)), 360.0)
+	wave_period_seconds = clampf(float(config.get("wave_period_seconds", wave_period_seconds)), 1.0, 30.0)
 	visibility_km = clampf(float(config.get("visibility_km", visibility_km)), 0.1, 30.0)
 	current_speed_knots = clampf(float(config.get("current_speed_knots", current_speed_knots)), 0.0, 8.0)
 	current_direction_degrees = fposmod(float(config.get("current_direction_degrees", current_direction_degrees)), 360.0)
@@ -309,6 +315,8 @@ func _apply_open_meteo_payloads(atmosphere: Dictionary, marine: Dictionary) -> v
 		"wind_direction_degrees": float(current.get("wind_direction_10m", wind_direction_degrees)),
 		"visibility_km": float(current.get("visibility", visibility_km * 1000.0)) / 1000.0,
 		"wave_height_meters": _first_hourly_value(hourly, "wave_height", wave_height_meters),
+		"wave_direction_degrees": _first_hourly_value(hourly, "wave_direction", wave_direction_degrees),
+		"wave_period_seconds": _first_hourly_value(hourly, "wave_period", wave_period_seconds),
 		"current_speed_knots": _first_hourly_value(hourly, "ocean_current_velocity", current_speed_knots),
 		"current_direction_degrees": _first_hourly_value(hourly, "ocean_current_direction", current_direction_degrees),
 		"tide_meters": tide_meters,
@@ -403,6 +411,8 @@ func _apply_mode_sea_state(mode: Dictionary) -> void:
 	wind_speed_knots = float(sea_state.get("wind_speed_knots", wind_speed_knots))
 	wind_direction_degrees = float(sea_state.get("wind_direction_degrees", wind_direction_degrees))
 	wave_height_meters = float(sea_state.get("wave_height_meters", wave_height_meters))
+	wave_direction_degrees = float(sea_state.get("wave_direction_degrees", wave_direction_degrees))
+	wave_period_seconds = float(sea_state.get("wave_period_seconds", wave_period_seconds))
 	visibility_km = float(sea_state.get("visibility_km", _parse_visibility_km(String(mode.get("visibility", "20 km")))))
 	current_speed_knots = float(sea_state.get("current_speed_knots", current_speed_knots))
 	current_direction_degrees = float(sea_state.get("current_direction_degrees", current_direction_degrees))

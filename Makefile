@@ -1,7 +1,22 @@
 PYTHON ?= .venv/bin/python
 GODOT ?= godot
 
-.PHONY: test benchmark-verify benchmark-deep-verify port-contract-verify port-benchmark-verify port-benchmark-deep-verify safety-benchmark-verify safety-benchmark-deep-verify safety-utility-audit safety-utility-audit-verify maritime-assurance maritime-assurance-verify reliability-audit reliability-audit-v3 research-release research-release-verify release-check godot-check godot-acceptance godot-ui-navigation-smoke godot-safety-strategy-smoke
+.PHONY: setup run editor quick-check privacy-scan test benchmark-verify benchmark-deep-verify port-contract-verify port-benchmark-verify port-benchmark-deep-verify safety-benchmark-verify safety-benchmark-deep-verify safety-utility-audit safety-utility-audit-verify maritime-assurance maritime-assurance-verify reliability-audit reliability-audit-v3 research-release research-release-verify release-check godot-check godot-acceptance godot-ui-navigation-smoke godot-safety-strategy-smoke godot-large-rock-training-contract godot-catamaran-hydrodynamics godot-cargo-collision-smoke
+
+setup:
+	bash tools/setup_rl_env.sh
+
+run:
+	bash tools/run_godot.sh run
+
+editor:
+	bash tools/run_godot.sh editor
+
+quick-check:
+	bash tools/run_godot.sh check
+
+privacy-scan:
+	python3 tools/public_privacy_scan.py
 
 test:
 	$(PYTHON) -m unittest discover -s tests -v
@@ -56,6 +71,7 @@ research-release-verify:
 	$(PYTHON) tools/build_research_core_release.py verify
 
 release-check:
+	python3 tools/public_privacy_scan.py
 	$(PYTHON) tools/release_check.py
 
 godot-check:
@@ -70,3 +86,15 @@ godot-ui-navigation-smoke:
 
 godot-safety-strategy-smoke:
 	$(GODOT) --headless --path . --script res://tools/godot_safety_strategy_smoke_v3.gd
+
+godot-large-rock-training-contract:
+	$(GODOT) --headless --path . --script res://tools/large_rock_training_contract_smoke.gd
+
+godot-catamaran-hydrodynamics:
+	$(GODOT) --headless --path . --script res://tools/catamaran_hydrodynamics_smoke.gd
+
+godot-cargo-collision-smoke:
+	$(GODOT) --headless --path . --script res://tools/large_rock_training_contract_smoke.gd
+	$(GODOT) --headless --path . --script res://tools/large_rock_collision_audit.gd
+	$(GODOT) --headless --path . --script res://tools/cargo_circuit_godot_smoke.gd
+	$(GODOT) --headless --path . --script res://tools/cargo_circuit_full_replay_smoke.gd

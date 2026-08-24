@@ -98,6 +98,7 @@ func _run() -> void:
 	)
 
 	var node_names := [
+		"CargoCircuitRLPanel",
 		"ShipRLControlPanel",
 		"ShipRiskDecisionPanel",
 		"ShipNavigationPlanningPanel",
@@ -117,6 +118,7 @@ func _run() -> void:
 		return
 
 	var key_checks := {
+		"total_control_H": [panels["CargoCircuitRLPanel"], KEY_H],
 		"overview_M": [panels["ShipSystemOverviewPanel"], KEY_M],
 		"rl_Z": [panels["ShipRLControlPanel"], KEY_Z],
 		"fleet_X": [panels["ShipRLControlPanel"], KEY_X],
@@ -135,6 +137,40 @@ func _run() -> void:
 			_send_key(specification[0], specification[1]),
 			"panel root must become visible",
 		)
+
+	var cargo_controller := main.get_node_or_null("CargoCircuitReplayController")
+	_record(
+		"cargo_replay_controller_present",
+		cargo_controller != null,
+		"CargoCircuitReplayController",
+	)
+	if cargo_controller != null:
+		var cargo_player := main.get_node_or_null("Player") as Node3D
+		var cargo_start := cargo_player.global_position if cargo_player != null else Vector3.ZERO
+		panels["CargoCircuitRLPanel"].call("_on_play_selected_strategy_pressed")
+		for _index in range(4):
+			await physics_frame
+		var cargo_status := cargo_controller.call("get_replay_status") as Dictionary
+		var cargo_displacement := (
+			cargo_player.global_position.distance_to(cargo_start)
+			if cargo_player != null
+			else 0.0
+		)
+		_record(
+			"h_hub_plays_frozen_policy",
+			bool(cargo_status.get("active", false))
+			and bool(cargo_status.get("trained_rl", false))
+			and String(cargo_status.get("dataset_split", "")) == "test"
+			and cargo_displacement > 0.001,
+			{
+				"algorithm": cargo_status.get("algorithm", ""),
+				"dataset_split": cargo_status.get("dataset_split", ""),
+				"trained_rl": cargo_status.get("trained_rl", false),
+				"displacement_m": cargo_displacement,
+			},
+		)
+		cargo_controller.call("stop_replay", true)
+		await process_frame
 
 	var rl_panel: Node = panels["ShipRLControlPanel"]
 	rl_panel.call("show_training_center")

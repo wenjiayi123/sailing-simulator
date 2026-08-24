@@ -41,7 +41,7 @@ func _run() -> void:
 	while panel._training_run_active and Time.get_ticks_msec() < training_deadline:
 		await process_frame
 	_expect(not panel._training_run_active, "headless training completes")
-	_expect(not paused, "world resumes after training")
+	_expect(not paused, "world recovers after training")
 	_expect(FileAccess.file_exists(panel._training_checkpoint_path), "checkpoint is written")
 	_expect(not FileAccess.file_exists(panel._training_trajectory_path), "training does not create a test trajectory")
 

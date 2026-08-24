@@ -24,6 +24,7 @@ extends Node3D
 ]
 @export var autonomy_course_rock_indices: Array[int] = [1]
 @export var box_obstacles: Array[Dictionary] = []
+@export var large_rock_guard_path: NodePath = NodePath("../LargeRockCollisionGuard")
 
 var _temporary_obstacle_index := 0
 var _evaluation_visual_clock := 0.0
@@ -74,6 +75,20 @@ func get_radar_obstacle_data() -> Dictionary:
 			"position": obstacle.get("position", Vector3.ZERO) as Vector3,
 			"size": obstacle.get("size", Vector3.ONE) as Vector3
 		})
+	var large_rock_guard := get_node_or_null(large_rock_guard_path)
+	if large_rock_guard == null:
+		large_rock_guard = get_tree().get_first_node_in_group(&"large_rock_collision_guard_system")
+	if large_rock_guard != null and large_rock_guard.has_method("get_navigation_obstacle_records"):
+		for raw_obstacle in large_rock_guard.call("get_navigation_obstacle_records") as Array:
+			var obstacle := raw_obstacle as Dictionary
+			boxes.append({
+				"name": String(obstacle.get("name", "LargeRockObstacle")),
+				"kind": String(obstacle.get("kind", "terrain")),
+				"position": obstacle.get("position", Vector3.ZERO) as Vector3,
+				"size": obstacle.get("size", Vector3.ONE) as Vector3,
+				"source": String(obstacle.get("source", "large_rock_manifest")),
+				"manifest_id": String(obstacle.get("manifest_id", "")),
+			})
 	return {
 		"boundary_half_extent": boundary_half_extent,
 		"rocks": rocks,

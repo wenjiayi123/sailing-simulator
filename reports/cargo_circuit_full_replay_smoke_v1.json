@@ -1,0 +1,40 @@
+{
+  "boundary": "Full frozen-test visualization replay with runtime large-rock segment sweeps; not a new policy evaluation or sea trial.",
+  "errors": [
+    "SAC-S1 full replay did not finish collision-free",
+    "RES-SAC-D2 full replay did not finish collision-free"
+  ],
+  "fast_forward_delta_seconds": 0.25,
+  "format": "cargo_circuit_full_replay_smoke_v1",
+  "passed": false,
+  "results": [
+    {
+      "format": "cargo_circuit_test_rollout_v1",
+      "iterations": 147,
+      "large_rock_replay_guard_blocks": 1,
+      "last_result": {
+        "elapsed_seconds": 110.25,
+        "message": "Godot 大型悬岩碰撞守卫已阻止穿模回放",
+        "success": false
+      },
+      "name": "SAC-S1",
+      "passed": false,
+      "sample_count": 712,
+      "sample_index": 441
+    },
+    {
+      "format": "cargo_circuit_dynamic_test_rollout_v2",
+      "iterations": 143,
+      "large_rock_replay_guard_blocks": 1,
+      "last_result": {
+        "elapsed_seconds": 107.25,
+        "message": "Godot 大型悬岩碰撞守卫已阻止穿模回放",
+        "success": false
+      },
+      "name": "RES-SAC-D2",
+      "passed": false,
+      "sample_count": 696,
+      "sample_index": 429
+    }
+  ]
+}

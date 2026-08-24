@@ -3,17 +3,18 @@
 ## 开发环境
 
 ```bash
-bash tools/setup_rl_env.sh
+make setup
 .venv/bin/python -m pip install -r requirements-benchmark.txt
 make test
 make benchmark-verify
+make privacy-scan
 make release-check
 ```
 
 Godot 改动还应运行：
 
 ```bash
-/path/to/Godot --headless --path /path/to/sailing-simulator --quit-after 8
+make quick-check
 ```
 
 ## 算法与数据要求

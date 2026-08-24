@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+const CATAMARAN_DYNAMICS_SCRIPT := preload("res://scripts/physics/catamaran_three_dof_dynamics.gd")
+
 const SHIP_CAMERA_DEFAULT_POSITION := Vector3(0.0, 7.0, 16.0)
 const SHIP_CAMERA_DEFAULT_ROTATION_DEGREES := Vector3(-0.5, 0.0, 0.0)
 const SHIP_VISUAL_DEFAULT_POSITION := Vector3(0.0, 1, 0.0)
@@ -25,6 +27,9 @@ const SHIP_SELECTION_RING_COLOR := Color(0.28, 0.96, 1.0, 0.74)
 @export var ship_heading_settle_speed: float = 0.30
 @export var ship_heading_error_full_rudder_degrees: float = 70.0
 @export var ship_animation_speed_threshold: float = 0.18
+@export_group("Ship Hydrodynamics")
+@export var ship_three_dof_enabled: bool = true
+@export_file("*.json") var ship_dynamics_config_path: String = "res://data/verification/catamaran_usv_dynamics_reference_v2.json"
 @export_group("Ship Collision Feedback")
 @export var ship_impact_min_speed: float = 1.7
 @export_range(0.05, 0.95, 0.01) var ship_impact_speed_retention: float = 0.36
@@ -71,6 +76,9 @@ const SHIP_SELECTION_RING_COLOR := Color(0.28, 0.96, 1.0, 0.74)
 @export var camera_turn_back_offset: float = 1.15
 @export var camera_turn_focus_offset: float = 0.82
 @export var camera_turn_response: float = 3.7
+@export_group("Ship Camera Autopilot")
+@export var camera_heading_follow_reactivation_delay: float = 1.25
+@export var camera_heading_follow_response: float = 8.0
 @export_group("")
 @export var idle_action_delay: float = 5.0
 @export var idle_action_interval: float = 5.0
@@ -181,6 +189,8 @@ var camera_base_fov: float = 65.0
 var camera_follow_position: Vector3 = Vector3.ZERO
 var camera_focus_position: Vector3 = Vector3.ZERO
 var camera_turn_sway: float = 0.0
+var camera_heading_follow_enabled: bool = false
+var camera_manual_override_time_left: float = 0.0
 var player_visual_base_position: Vector3 = Vector3.ZERO
 var ship_visual_heading_roll: float = 0.0
 var ship_heading_yaw: float = 0.0
@@ -202,12 +212,16 @@ var ship_collision_warning_text: String = "CLEAR"
 var ship_last_impact_speed: float = 0.0
 var ship_external_throttle: float = 0.0
 var ship_external_rudder: float = 0.0
+var _catamaran_dynamics: CatamaranThreeDofDynamics
+var _catamaran_dynamics_ready := false
+var _catamaran_dynamics_status: Dictionary = {}
 var _selection_indicator: MeshInstance3D
 
 
 @onready var player_camera: Camera3D = $Camera3D
 @onready var player_visual: AnimatedSprite3D = $LegacyAnimationStateDriver
 @onready var procedural_usv_visual: Node3D = $ProceduralUSVVisual
+@onready var ship_collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var action_lock: PlayerActionLock = $ActionLock
 
 
@@ -225,6 +239,13 @@ func _ready() -> void:
 	ship_heading_yaw = atan2(last_direction.x, last_direction.z)
 	ship_target_heading_yaw = ship_heading_yaw
 	ship_course_yaw = ship_heading_yaw
+	_catamaran_dynamics = CATAMARAN_DYNAMICS_SCRIPT.new() as CatamaranThreeDofDynamics
+	_catamaran_dynamics_ready = _catamaran_dynamics.configure_from_json(ship_dynamics_config_path)
+	if _catamaran_dynamics_ready:
+		_catamaran_dynamics.reset(ship_heading_yaw)
+		_catamaran_dynamics_status = _catamaran_dynamics.get_status()
+	elif ship_three_dof_enabled:
+		push_error("Catamaran 3-DOF dynamics configuration is invalid: %s" % ship_dynamics_config_path)
 	if camera_enabled:
 		_setup_camera_orbit()
 	else:
@@ -427,14 +448,36 @@ func _update_camera_orbit(delta: float) -> void:
 	if Input.is_key_pressed(KEY_F):
 		pitch_input += 1.0
 
-	if not is_zero_approx(yaw_input) or not is_zero_approx(pitch_input):
+	apply_ship_camera_orbit_input(yaw_input, pitch_input, delta)
+	_apply_camera_orbit(delta)
+
+
+func apply_ship_camera_orbit_input(yaw_input: float, pitch_input: float, delta: float) -> void:
+	var has_manual_input := not is_zero_approx(yaw_input) or not is_zero_approx(pitch_input)
+	if has_manual_input:
+		camera_manual_override_time_left = maxf(camera_heading_follow_reactivation_delay, 0.0)
 		camera_yaw += yaw_input * camera_yaw_speed * delta
 
 		var min_pitch := deg_to_rad(camera_min_pitch_degrees)
 		var max_pitch := deg_to_rad(camera_max_pitch_degrees)
 		camera_pitch = clampf(camera_pitch + pitch_input * camera_pitch_speed * delta, min_pitch, max_pitch)
+		return
+	if not camera_heading_follow_enabled:
+		return
+	camera_manual_override_time_left = maxf(camera_manual_override_time_left - delta, 0.0)
+	if camera_manual_override_time_left > 0.0:
+		return
+	camera_yaw = lerp_angle(
+		camera_yaw,
+		_get_camera_heading_follow_yaw(),
+		_damping_alpha(camera_heading_follow_response, delta)
+	)
 
-	_apply_camera_orbit(delta)
+
+func _get_camera_heading_follow_yaw() -> float:
+	# camera_yaw is the camera's offset around the ship. Adding PI places the
+	# camera behind the bow so look_at() faces along the recorded ship heading.
+	return wrapf(ship_heading_yaw + PI, -PI, PI)
 
 
 func _apply_camera_orbit(delta: float = 0.0, immediate: bool = false) -> void:
@@ -527,6 +570,8 @@ func _update_visual_camera_facing() -> void:
 	if procedural_usv_visual != null:
 		procedural_usv_visual.rotation = Vector3(0.0, ship_heading_yaw, 0.0)
 		procedural_usv_visual.call("set_navigation_state", ship_throttle, ship_rudder, ship_forward_speed)
+	if ship_collision_shape != null:
+		ship_collision_shape.rotation.y = ship_heading_yaw
 
 
 func _get_camera_relative_direction(input_direction: Vector3) -> Vector3:
@@ -550,6 +595,8 @@ func _physics_process(delta: float) -> void:
 		ship_turn_authority = 0.0
 		ship_heading_error = 0.0
 		ship_drift_angle = 0.0
+		if _catamaran_dynamics_ready:
+			_catamaran_dynamics.reset(ship_heading_yaw)
 		jump_hold_time = 0.0
 		j_was_down = false
 		return
@@ -644,6 +691,8 @@ func _process_ship_collision_feedback(pre_slide_horizontal_velocity: Vector3) ->
 func _apply_ship_impact_slowdown(collision_normal: Vector3) -> void:
 	var retention := clampf(ship_impact_speed_retention, 0.05, 0.95)
 	ship_forward_speed *= retention
+	if _catamaran_dynamics_ready:
+		_catamaran_dynamics.apply_collision_retention(retention)
 	ship_throttle *= lerpf(0.55, 0.78, retention)
 	ship_target_throttle = minf(ship_target_throttle, ship_throttle)
 
@@ -727,6 +776,9 @@ func _update_ship_direct_motion(
 	rudder_command: float,
 	target_direction: Vector3 = Vector3.ZERO
 ) -> void:
+	if ship_three_dof_enabled and _catamaran_dynamics_ready:
+		_update_ship_three_dof_motion(delta, throttle_command, rudder_command)
+		return
 	ship_target_throttle = clampf(throttle_command, -1.0, 1.0)
 	ship_target_rudder = clampf(rudder_command, -1.0, 1.0)
 	ship_throttle = move_toward(ship_throttle, ship_target_throttle, ship_throttle_response * delta)
@@ -781,6 +833,82 @@ func _update_ship_direct_motion(
 	else:
 		velocity.y -= gravity * delta
 
+	_update_ship_visual_direction(delta)
+
+
+func _update_ship_three_dof_motion(delta: float, throttle_command: float, rudder_command: float) -> void:
+	ship_target_throttle = clampf(throttle_command, -1.0, 1.0)
+	ship_target_rudder = clampf(rudder_command, -1.0, 1.0)
+	var forcing := _get_ship_environment_forcing()
+	_catamaran_dynamics_status = _catamaran_dynamics.step(
+		ship_target_throttle,
+		ship_target_rudder,
+		delta,
+		forcing
+	)
+	ship_heading_yaw = float(_catamaran_dynamics_status.get("heading_rad", ship_heading_yaw))
+	ship_forward_speed = float(_catamaran_dynamics_status.get("surge_mps", 0.0))
+	ship_throttle = 0.5 * (
+		float(_catamaran_dynamics_status.get("port_throttle", 0.0))
+		+ float(_catamaran_dynamics_status.get("starboard_throttle", 0.0))
+	)
+	var maximum_steering := maxf(float((_catamaran_dynamics.get_config_snapshot()).get("max_steering_angle_deg", 24.0)), 0.1)
+	ship_rudder = clampf(float(_catamaran_dynamics_status.get("steering_angle_deg", 0.0)) / maximum_steering, -1.0, 1.0)
+	var speed_ratio := clampf(absf(ship_forward_speed) / maxf(ship_max_forward_speed, 0.001), 0.0, 1.0)
+	ship_turn_authority = lerpf(ship_low_speed_turn_factor, 1.0, speed_ratio)
+	var ground_velocity := _catamaran_dynamics_status.get("ground_velocity", Vector3.ZERO) as Vector3
+	velocity.x = ground_velocity.x
+	velocity.z = ground_velocity.z
+	if ground_velocity.length_squared() > 0.001:
+		ship_course_yaw = atan2(ground_velocity.x, ground_velocity.z)
+	else:
+		ship_course_yaw = ship_heading_yaw
+	ship_drift_angle = wrapf(ship_heading_yaw - ship_course_yaw, -PI, PI)
+	if is_on_floor():
+		velocity.y = 0.0
+	else:
+		velocity.y -= gravity * delta
+	_update_ship_visual_direction(delta)
+
+
+func _get_ship_environment_forcing() -> Dictionary:
+	var weather := get_tree().get_first_node_in_group(&"ship_weather_time_system")
+	var status: Dictionary = weather.call("get_sea_state_status") as Dictionary \
+		if weather != null and weather.has_method("get_sea_state_status") else {}
+	var config := _catamaran_dynamics.get_config_snapshot()
+	var wind_speed_mps := float(status.get("wind_speed_knots", 0.0)) * 0.514444
+	var wind_direction := deg_to_rad(float(status.get("wind_direction_degrees", 0.0)))
+	var wind_magnitude := 0.5 * float(config.get("air_density_kg_m3", 1.225)) \
+		* float(config.get("wind_drag_coefficient", 1.0)) \
+		* float(config.get("wind_lateral_area_m2", 1.0)) * wind_speed_mps * wind_speed_mps
+	var wave_height := float(status.get("wave_height_meters", 0.0))
+	var wave_direction := deg_to_rad(float(status.get("wave_direction_degrees", status.get("wind_direction_degrees", 0.0))))
+	var wave_period := maxf(float(status.get("wave_period_seconds", 6.0)), 1.0)
+	var wave_phase := sin(float(_catamaran_dynamics_status.get("simulation_time_s", 0.0)) * TAU / wave_period)
+	var wave_magnitude := float(config.get("wave_drift_force_n_per_meter", 0.0)) \
+		* wave_height * (0.65 + 0.35 * wave_phase)
+	var wind_body := _world_force_to_body(wind_magnitude, wind_direction)
+	var wave_body := _world_force_to_body(wave_magnitude, wave_direction)
+	var current_speed := float(status.get("current_speed_knots", 0.0)) * 0.514444
+	var current_direction := deg_to_rad(float(status.get("current_direction_degrees", 0.0)))
+	var current_vector := Vector3(sin(current_direction), 0.0, cos(current_direction)) * current_speed
+	var yaw_arm := float(config.get("environment_yaw_arm_m", 0.0))
+	return {
+		"current_vector_mps": current_vector,
+		"wind_force_body_n": wind_body,
+		"wave_force_body_n": wave_body,
+		"environment_yaw_moment_nm": (wind_body.y + wave_body.y) * yaw_arm,
+	}
+
+
+func _world_force_to_body(magnitude: float, direction_rad: float) -> Vector2:
+	var world_force := Vector3(sin(direction_rad), 0.0, cos(direction_rad)) * magnitude
+	var forward := _get_ship_forward_vector()
+	var starboard := Vector3(forward.z, 0.0, -forward.x)
+	return Vector2(world_force.dot(forward), world_force.dot(starboard))
+
+
+func _update_ship_visual_direction(delta: float) -> void:
 	var target_visual_direction := _get_ship_visual_direction()
 	if target_visual_direction != Vector3.ZERO:
 		last_direction = target_visual_direction
@@ -874,7 +1002,17 @@ func get_ship_telemetry() -> Dictionary:
 		"animation_speed_threshold": ship_animation_speed_threshold,
 		"collision_warning": ship_collision_warning_text,
 		"collision_warning_active": ship_impact_warning_time_left > 0.0,
-		"last_impact_speed": ship_last_impact_speed
+		"last_impact_speed": ship_last_impact_speed,
+		"dynamics_model_id": String(_catamaran_dynamics_status.get("model_id", "legacy_kinematic_v1")) if ship_three_dof_enabled and _catamaran_dynamics_ready else "legacy_kinematic_v1",
+		"dynamics_model_family": String(_catamaran_dynamics_status.get("model_family", "kinematic")) if ship_three_dof_enabled and _catamaran_dynamics_ready else "kinematic",
+		"dynamics_calibration_status": String(_catamaran_dynamics_status.get("calibration_status", "not_applicable")),
+		"named_vessel_dynamics_calibrated": bool(_catamaran_dynamics_status.get("named_vessel_calibrated", false)),
+		"surge_mps": float(_catamaran_dynamics_status.get("surge_mps", ship_forward_speed)),
+		"sway_mps": float(_catamaran_dynamics_status.get("sway_mps", 0.0)),
+		"yaw_rate_deg_s": float(_catamaran_dynamics_status.get("yaw_rate_deg_s", 0.0)),
+		"port_throttle": float(_catamaran_dynamics_status.get("port_throttle", ship_throttle)),
+		"starboard_throttle": float(_catamaran_dynamics_status.get("starboard_throttle", ship_throttle)),
+		"steering_angle_deg": float(_catamaran_dynamics_status.get("steering_angle_deg", ship_rudder)),
 	}
 
 
@@ -895,7 +1033,12 @@ func get_ship_performance_config() -> Dictionary:
 		"heading_settle_speed": ship_heading_settle_speed,
 		"heading_error_full_rudder_degrees": ship_heading_error_full_rudder_degrees,
 		"impact_speed_retention": ship_impact_speed_retention,
-		"impact_rebound_speed": ship_impact_rebound_speed
+		"impact_rebound_speed": ship_impact_rebound_speed,
+		"dynamics_enabled": ship_three_dof_enabled and _catamaran_dynamics_ready,
+		"dynamics_contract": _catamaran_dynamics.get_config_snapshot() if _catamaran_dynamics_ready else {
+			"model_id": "legacy_kinematic_v1",
+			"calibration_status": "not_applicable",
+		}
 	}
 
 
@@ -947,6 +1090,26 @@ func set_ship_camera_enabled(enabled: bool) -> void:
 			_apply_camera_orbit(0.0, true)
 
 
+func set_ship_camera_heading_follow_enabled(enabled: bool, align_immediately: bool = false) -> void:
+	camera_heading_follow_enabled = enabled
+	camera_manual_override_time_left = 0.0
+	if enabled and align_immediately:
+		camera_yaw = _get_camera_heading_follow_yaw()
+		_apply_camera_orbit(0.0, true)
+
+
+func get_ship_camera_heading_follow_status() -> Dictionary:
+	var target_yaw := _get_camera_heading_follow_yaw()
+	return {
+		"enabled": camera_heading_follow_enabled,
+		"manual_override_active": camera_manual_override_time_left > 0.0,
+		"manual_override_seconds_left": camera_manual_override_time_left,
+		"camera_yaw_degrees": fposmod(rad_to_deg(camera_yaw), 360.0),
+		"target_yaw_degrees": fposmod(rad_to_deg(target_yaw), 360.0),
+		"heading_alignment_error_degrees": absf(rad_to_deg(wrapf(target_yaw - camera_yaw, -PI, PI))),
+	}
+
+
 func set_ship_selection_highlight(selected: bool) -> void:
 	player_visual.modulate = Color.WHITE
 	_ensure_ship_selection_indicator()
@@ -978,6 +1141,9 @@ func reset_ship_motion_state() -> void:
 	ship_impact_shake_strength = 0.0
 	ship_collision_warning_text = "CLEAR"
 	ship_last_impact_speed = 0.0
+	if _catamaran_dynamics_ready:
+		_catamaran_dynamics.reset(ship_heading_yaw)
+		_catamaran_dynamics_status = _catamaran_dynamics.get_status(_get_ship_environment_forcing())
 
 
 func prepare_ship_fleet_spawn(world_position: Vector3, heading_degrees: float) -> void:
@@ -1004,6 +1170,34 @@ func set_ship_navigation_spawn(world_position: Vector3, heading_degrees: float) 
 	visual_direction = last_direction
 	_update_idle_animation(visual_direction, 0.0)
 	_apply_camera_orbit(0.0, true)
+
+
+func apply_recorded_ship_state(
+	world_position: Vector3,
+	heading_degrees: float,
+	speed_mps: float,
+	actual_throttle: float,
+	actual_rudder: float
+) -> void:
+	# Test-only visualization API. The numeric RL environment already integrated
+	# these states headlessly; Godot interpolates the immutable held-out rollout.
+	global_position = world_position
+	ship_heading_yaw = deg_to_rad(heading_degrees)
+	ship_course_yaw = ship_heading_yaw
+	ship_target_heading_yaw = ship_heading_yaw
+	ship_forward_speed = speed_mps
+	ship_throttle = clampf(actual_throttle, -1.0, 1.0)
+	ship_target_throttle = ship_throttle
+	ship_rudder = clampf(actual_rudder, -1.0, 1.0)
+	ship_target_rudder = ship_rudder
+	if _catamaran_dynamics_ready:
+		_catamaran_dynamics.set_recorded_state(ship_heading_yaw, speed_mps)
+		_catamaran_dynamics_status = _catamaran_dynamics.get_status()
+	var forward := _get_ship_forward_vector()
+	velocity = forward * speed_mps
+	last_direction = forward
+	visual_direction = _get_ship_visual_direction()
+	_apply_continuous_ship_heading(visual_direction)
 
 
 func _reset_ship_clone_mounts() -> void:

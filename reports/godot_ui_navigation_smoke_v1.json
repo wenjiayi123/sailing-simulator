@@ -3,14 +3,14 @@
 	"checks": {
 		"basic_navigation_forward_motion": {
 			"detail": {
-				"displacement_m": 8.0483226776123,
-				"speed_mps": 10.74
+				"displacement_m": 7.61410522460938,
+				"speed_mps": 4.71583986282349
 			},
 			"passed": true
 		},
 		"basic_navigation_rudder_response": {
 			"detail": {
-				"heading_change_radians": 0.63061711499235
+				"heading_change_radians": 0.593361679707662
 			},
 			"passed": true
 		},
@@ -27,7 +27,7 @@
 			"passed": true
 		},
 		"button_port_contract_validator": {
-			"detail": "已启动真实契约校验进程 PID 3750；结果写入终端与报告。",
+			"detail": "已启动真实契约校验进程 PID 28539；结果写入终端与报告。",
 			"passed": true
 		},
 		"button_review": {
@@ -44,6 +44,10 @@
 		},
 		"button_xiaoyi_assistant": {
 			"detail": "system overview -> Xiaoyi assistant",
+			"passed": true
+		},
+		"cargo_replay_controller_present": {
+			"detail": "CargoCircuitReplayController",
 			"passed": true
 		},
 		"default_weather_is_clear": {
@@ -67,6 +71,15 @@
 				"lqr",
 				"mpc"
 			],
+			"passed": true
+		},
+		"h_hub_plays_frozen_policy": {
+			"detail": {
+				"algorithm": "sac",
+				"dataset_split": "test",
+				"displacement_m": 218.238510131836,
+				"trained_rl": true
+			},
 			"passed": true
 		},
 		"hotkey_ais_I": {
@@ -101,6 +114,10 @@
 			"detail": "panel root must become visible",
 			"passed": true
 		},
+		"hotkey_total_control_H": {
+			"detail": "panel root must become visible",
+			"passed": true
+		},
 		"hotkey_training_C": {
 			"detail": "panel root must become visible",
 			"passed": true
@@ -115,7 +132,7 @@
 		},
 		"human_navigation_input_motion": {
 			"detail": {
-				"displacement_m": 2.76102256774902
+				"displacement_m": 2.69955086708069
 			},
 			"passed": true
 		},
@@ -145,6 +162,10 @@
 				"propulsion_animation": "实际航速、油门、实际舵角差速同步",
 				"visual_type": "procedural_unmanned_surface_vessel"
 			},
+			"passed": true
+		},
+		"panel_CargoCircuitRLPanel_present": {
+			"detail": "CargoCircuitRLPanel",
 			"passed": true
 		},
 		"panel_ShipAISFleetPanel_present": {
@@ -193,9 +214,9 @@
 		}
 	},
 	"errors": [],
-	"generated_at": "2026-08-23T03:34:16",
+	"generated_at": "2026-08-24T05:00:31",
 	"passed": true,
-	"passed_checks": 38,
+	"passed_checks": 42,
 	"schema_version": "godot_ui_navigation_smoke_v1",
-	"total_checks": 38
+	"total_checks": 42
 }

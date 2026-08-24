@@ -526,6 +526,8 @@ func _get_obstacle_snapshot() -> Dictionary:
 				"shape": "box",
 				"position": _vector3_to_dict(box_position),
 				"size": _vector3_to_dict(box_size),
+				"source": String(obstacle.get("source", "godot_navigation_obstacles")),
+				"manifest_id": String(obstacle.get("manifest_id", "")),
 			})
 		return {
 			"boundary_half_extent": float(radar.get("boundary_half_extent", 780.0)),

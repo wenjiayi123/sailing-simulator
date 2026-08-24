@@ -1,0 +1,2090 @@
+{
+  "errors": [
+    "released cargo trajectory is blocked by one or more large-rock physics shapes"
+  ],
+  "format": "large_rock_collision_audit_v1",
+  "large_rock_count": 32,
+  "passed": false,
+  "physics_guard_center_hits": 3,
+  "preserved_demo_encounter_count": 1,
+  "preserved_demo_encounters": [
+    {
+      "collision_aabb": {
+        "end": {
+          "x": 399.213195800781,
+          "y": -23.1014099121094,
+          "z": 61.3660736083984
+        },
+        "position": {
+          "x": 189.510284423828,
+          "y": -142.052444458008,
+          "z": -142.398422241211
+        },
+        "size": {
+          "x": 209.702911376953,
+          "y": 118.951034545898,
+          "z": 203.764495849609
+        }
+      },
+      "collision_overlaps_waterline": true,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": 302.138336181641,
+        "y": -25.1293964385986,
+        "z": -37.8135871887207
+      },
+      "local_position": {
+        "x": 301.781707763672,
+        "y": -24.944450378418,
+        "z": -37.7665710449219
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 0.0,
+      "minimum_trajectory_distance_to_visual_aabb_m": 0.0,
+      "name": "GroundedPlate_06_TwistedButtressMesa",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set/GroundedPlate_06_TwistedButtressMesa",
+      "preserved_demo_encounter": true,
+      "preserved_reason": "用户确认该东侧巨岩由策略近距离避让，保留以展示真实转向操作",
+      "raw_trajectory_envelope_overlap": true,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": true,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": 396.840148925781,
+          "y": -22.6470489501953,
+          "z": 60.2724761962891
+        },
+        "position": {
+          "x": 197.052673339844,
+          "y": -142.052444458008,
+          "z": -138.922561645508
+        },
+        "size": {
+          "x": 199.787475585938,
+          "y": 119.405395507812,
+          "z": 199.195037841797
+        }
+      },
+      "visual_overlaps_waterline": true
+    }
+  ],
+  "released_trajectory_replay_sweep_block_count": 2,
+  "released_trajectory_replay_sweep_blocks": [
+    {
+      "collider": "GroundedPlate_06_TwistedButtressMesa",
+      "from": {
+        "x": 224.960983276367,
+        "z": -33.2153587341309
+      },
+      "hit": {
+        "x": 224.833923339844,
+        "z": -34.1380500793457
+      },
+      "sample_index": 439,
+      "to": {
+        "x": 224.696151733398,
+        "z": -35.1384582519531
+      }
+    },
+    {
+      "collider": "GroundedPlate_06_TwistedButtressMesa",
+      "from": {
+        "x": 228.006652832031,
+        "z": -29.5534496307373
+      },
+      "hit": {
+        "x": 227.755798339844,
+        "z": -31.376501083374
+      },
+      "sample_index": 1138,
+      "to": {
+        "x": 227.734649658203,
+        "z": -31.5301704406738
+      }
+    }
+  ],
+  "required_demo_clearance_meters": 18.0,
+  "rocks": [
+    {
+      "collision_aabb": {
+        "end": {
+          "x": -334.363220214844,
+          "y": 107.970260620117,
+          "z": -118.05248260498
+        },
+        "position": {
+          "x": -416.575317382812,
+          "y": 35.8016967773438,
+          "z": -192.956329345703
+        },
+        "size": {
+          "x": 82.2120971679688,
+          "y": 72.1685638427734,
+          "z": 74.9038467407227
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": -376.465393066406,
+        "y": 106.683692932129,
+        "z": -153.875885009766
+      },
+      "local_position": {
+        "x": -376.822021484375,
+        "y": 106.868637084961,
+        "z": -153.828872680664
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 140.255172729492,
+      "minimum_trajectory_distance_to_visual_aabb_m": 141.921371459961,
+      "name": "Rock3A_01_BroadAncientRoot",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_01_BroadAncientRoot",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": -335.076751708984,
+          "y": 108.379493713379,
+          "z": -120.323883056641
+        },
+        "position": {
+          "x": -415.748596191406,
+          "y": 35.8016967773438,
+          "z": -190.99592590332
+        },
+        "size": {
+          "x": 80.6718444824219,
+          "y": 72.5777969360352,
+          "z": 70.6720428466797
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": -3.32229232788086,
+          "y": 223.454727172852,
+          "z": -285.475952148438
+        },
+        "position": {
+          "x": -58.5065269470215,
+          "y": 107.051628112793,
+          "z": -344.561187744141
+        },
+        "size": {
+          "x": 55.1842346191406,
+          "y": 116.403099060059,
+          "z": 59.0852355957031
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": -29.9413948059082,
+        "y": 221.857223510742,
+        "z": -314.303833007812
+      },
+      "local_position": {
+        "x": -30.2980117797852,
+        "y": 222.042175292969,
+        "z": -314.256805419922
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 65.9451675415039,
+      "minimum_trajectory_distance_to_visual_aabb_m": 66.8732147216797,
+      "name": "Rock3A_02_TallNeedleRoot",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_02_TallNeedleRoot",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": -3.83621215820312,
+          "y": 223.970016479492,
+          "z": -286.370666503906
+        },
+        "position": {
+          "x": -56.8772468566895,
+          "y": 107.051628112793,
+          "z": -344.561187744141
+        },
+        "size": {
+          "x": 53.0410346984863,
+          "y": 116.918388366699,
+          "z": 58.1905212402344
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": 326.655792236328,
+          "y": 112.936820983887,
+          "z": 207.459899902344
+        },
+        "position": {
+          "x": 243.213287353516,
+          "y": 54.619800567627,
+          "z": 130.921478271484
+        },
+        "size": {
+          "x": 83.4425048828125,
+          "y": 58.3170204162598,
+          "z": 76.5384216308594
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": 284.366119384766,
+        "y": 111.813438415527,
+        "z": 170.169281005859
+      },
+      "local_position": {
+        "x": 284.009490966797,
+        "y": 111.998382568359,
+        "z": 170.216293334961
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 63.7778930664062,
+      "minimum_trajectory_distance_to_visual_aabb_m": 64.5883178710938,
+      "name": "Rock3A_03_WideMossShelf",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_03_WideMossShelf",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": 326.655792236328,
+          "y": 113.300735473633,
+          "z": 206.141448974609
+        },
+        "position": {
+          "x": 244.069488525391,
+          "y": 54.619800567627,
+          "z": 130.921478271484
+        },
+        "size": {
+          "x": 82.5863037109375,
+          "y": 58.6809349060059,
+          "z": 75.219970703125
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": 144.81364440918,
+          "y": 166.107986450195,
+          "z": -323.703338623047
+        },
+        "position": {
+          "x": 77.1913909912109,
+          "y": 71.4264907836914,
+          "z": -390.993225097656
+        },
+        "size": {
+          "x": 67.6222534179688,
+          "y": 94.6814956665039,
+          "z": 67.2898864746094
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": 112.262786865234,
+        "y": 164.665374755859,
+        "z": -356.605712890625
+      },
+      "local_position": {
+        "x": 111.906173706055,
+        "y": 164.850326538086,
+        "z": -356.558685302734
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 120.965065002441,
+      "minimum_trajectory_distance_to_visual_aabb_m": 124.272750854492,
+      "name": "Rock3A_04_FracturedTwinRibs",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_04_FracturedTwinRibs",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": 143.215362548828,
+          "y": 166.555770874023,
+          "z": -326.242767333984
+        },
+        "position": {
+          "x": 79.5373458862305,
+          "y": 71.4264907836914,
+          "z": -389.717803955078
+        },
+        "size": {
+          "x": 63.6780166625977,
+          "y": 95.129280090332,
+          "z": 63.4750366210938
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": -258.268981933594,
+          "y": 148.855697631836,
+          "z": 434.182312011719
+        },
+        "position": {
+          "x": -329.543884277344,
+          "y": 46.5633544921875,
+          "z": 377.224914550781
+        },
+        "size": {
+          "x": 71.27490234375,
+          "y": 102.292343139648,
+          "z": 56.9573974609375
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": -292.526092529297,
+        "y": 147.424957275391,
+        "z": 405.138305664062
+      },
+      "local_position": {
+        "x": -292.882720947266,
+        "y": 147.609909057617,
+        "z": 405.185333251953
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 240.803436279297,
+      "minimum_trajectory_distance_to_visual_aabb_m": 242.736694335938,
+      "name": "Rock3A_05_CaveBellyHeavy",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_05_CaveBellyHeavy",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": -258.584930419922,
+          "y": 149.370956420898,
+          "z": 434.182312011719
+        },
+        "position": {
+          "x": -325.314544677734,
+          "y": 46.5633544921875,
+          "z": 379.265991210938
+        },
+        "size": {
+          "x": 66.7296142578125,
+          "y": 102.807601928711,
+          "z": 54.9163208007812
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": -255.282974243164,
+          "y": 192.136291503906,
+          "z": 23.7337589263916
+        },
+        "position": {
+          "x": -312.327819824219,
+          "y": 61.8215179443359,
+          "z": -28.5264110565186
+        },
+        "size": {
+          "x": 57.0448455810547,
+          "y": 130.31477355957,
+          "z": 52.2601699829102
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": -286.427062988281,
+        "y": 190.45491027832,
+        "z": -1.64135384559631
+      },
+      "local_position": {
+        "x": -286.78369140625,
+        "y": 190.639862060547,
+        "z": -1.59433746337891
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 38.2366180419922,
+      "minimum_trajectory_distance_to_visual_aabb_m": 42.5672302246094,
+      "name": "Rock3A_06_SlenderSideSpire",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_06_SlenderSideSpire",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": -259.613586425781,
+          "y": 192.734512329102,
+          "z": 23.733757019043
+        },
+        "position": {
+          "x": -312.327819824219,
+          "y": 61.8215179443359,
+          "z": -24.2235794067383
+        },
+        "size": {
+          "x": 52.7142333984375,
+          "y": 130.912994384766,
+          "z": 47.9573364257812
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": 313.843231201172,
+          "y": 204.023254394531,
+          "z": -245.880905151367
+        },
+        "position": {
+          "x": 222.149551391602,
+          "y": 137.022735595703,
+          "z": -325.040344238281
+        },
+        "size": {
+          "x": 91.6936798095703,
+          "y": 67.0005187988281,
+          "z": 79.1594390869141
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": 267.113555908203,
+        "y": 202.838424682617,
+        "z": -283.150970458984
+      },
+      "local_position": {
+        "x": 266.756927490234,
+        "y": 203.023376464844,
+        "z": -283.103942871094
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 100.716735839844,
+      "minimum_trajectory_distance_to_visual_aabb_m": 103.013954162598,
+      "name": "Rock3A_07_StackedCliffPlate",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_07_StackedCliffPlate",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": 313.843200683594,
+          "y": 204.478622436523,
+          "z": -245.880905151367
+        },
+        "position": {
+          "x": 225.487258911133,
+          "y": 137.022735595703,
+          "z": -318.763031005859
+        },
+        "size": {
+          "x": 88.3559417724609,
+          "y": 67.4558868408203,
+          "z": 72.8821258544922
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": 249.459503173828,
+          "y": 81.5328750610352,
+          "z": 144.380752563477
+        },
+        "position": {
+          "x": 162.637741088867,
+          "y": -1.98686218261719,
+          "z": 56.425537109375
+        },
+        "size": {
+          "x": 86.8217620849609,
+          "y": 83.5197372436523,
+          "z": 87.9552154541016
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": 203.374954223633,
+        "y": 80.213020324707,
+        "z": 104.321739196777
+      },
+      "local_position": {
+        "x": 203.018341064453,
+        "y": 80.3979644775391,
+        "z": 104.368759155273
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 0.0,
+      "minimum_trajectory_distance_to_visual_aabb_m": 0.0,
+      "name": "Rock3A_08_HollowMoonCut",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_08_HollowMoonCut",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": 239.947998046875,
+          "y": 82.0339202880859,
+          "z": 144.380752563477
+        },
+        "position": {
+          "x": 165.465240478516,
+          "y": -1.98686218261719,
+          "z": 69.5901336669922
+        },
+        "size": {
+          "x": 74.4827575683594,
+          "y": 84.0207824707031,
+          "z": 74.7906188964844
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": 101.088432312012,
+          "y": 3.61647796630859,
+          "z": 167.469589233398
+        },
+        "position": {
+          "x": 24.2240600585938,
+          "y": -78.3742065429688,
+          "z": 88.9565811157227
+        },
+        "size": {
+          "x": 76.864372253418,
+          "y": 81.9906845092773,
+          "z": 78.5130081176758
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": 67.7541656494141,
+        "y": 2.3150691986084,
+        "z": 130.981643676758
+      },
+      "local_position": {
+        "x": 67.3975524902344,
+        "y": 2.50001525878906,
+        "z": 131.028656005859
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 7.81283903121948,
+      "minimum_trajectory_distance_to_visual_aabb_m": 7.81283903121948,
+      "name": "Rock3A_09_OverhangWaterGroove",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_09_OverhangWaterGroove",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": 101.088432312012,
+          "y": 4.03866577148438,
+          "z": 167.469589233398
+        },
+        "position": {
+          "x": 36.7748870849609,
+          "y": -78.3742065429688,
+          "z": 96.0685348510742
+        },
+        "size": {
+          "x": 64.3135452270508,
+          "y": 82.4128723144531,
+          "z": 71.4010543823242
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": 42.207347869873,
+          "y": 43.8431053161621,
+          "z": 155.523635864258
+        },
+        "position": {
+          "x": -34.6570167541504,
+          "y": -38.1475791931152,
+          "z": 77.0106353759766
+        },
+        "size": {
+          "x": 76.8643646240234,
+          "y": 81.9906845092773,
+          "z": 78.5130004882812
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": 8.87308788299561,
+        "y": 42.5416984558105,
+        "z": 119.035697937012
+      },
+      "local_position": {
+        "x": 8.51647186279297,
+        "y": 42.7266464233398,
+        "z": 119.082717895508
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 31.3410930633545,
+      "minimum_trajectory_distance_to_visual_aabb_m": 36.6317596435547,
+      "name": "Rock3A_09_OverhangWaterGroove2",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_09_OverhangWaterGroove2",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": 42.2073516845703,
+          "y": 44.2652931213379,
+          "z": 155.523635864258
+        },
+        "position": {
+          "x": -22.1061878204346,
+          "y": -38.1475791931152,
+          "z": 84.1225967407227
+        },
+        "size": {
+          "x": 64.3135375976562,
+          "y": 82.4128723144531,
+          "z": 71.4010391235352
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": -61.6972045898438,
+          "y": 95.8335571289062,
+          "z": -114.703536987305
+        },
+        "position": {
+          "x": -126.993148803711,
+          "y": -14.242805480957,
+          "z": -184.825119018555
+        },
+        "size": {
+          "x": 65.2959442138672,
+          "y": 110.076362609863,
+          "z": 70.12158203125
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": -93.5296630859375,
+        "y": 94.3344802856445,
+        "z": -147.984115600586
+      },
+      "local_position": {
+        "x": -93.8862762451172,
+        "y": 94.5194244384766,
+        "z": -147.937103271484
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 0.0,
+      "minimum_trajectory_distance_to_visual_aabb_m": 4.00914001464844,
+      "name": "Rock3A_10_DenseBottomShard",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_10_DenseBottomShard",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": -64.7788238525391,
+          "y": 96.363883972168,
+          "z": -114.703536987305
+        },
+        "position": {
+          "x": -123.524368286133,
+          "y": -14.242805480957,
+          "z": -177.503845214844
+        },
+        "size": {
+          "x": 58.7455444335938,
+          "y": 110.606689453125,
+          "z": 62.8003082275391
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": -146.660385131836,
+          "y": 12.771053314209,
+          "z": 1.11112976074219
+        },
+        "position": {
+          "x": -221.88542175293,
+          "y": -40.4223709106445,
+          "z": -65.7160797119141
+        },
+        "size": {
+          "x": 75.2250366210938,
+          "y": 53.1934242248535,
+          "z": 66.8272094726562
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": -185.387298583984,
+        "y": 11.7281856536865,
+        "z": -33.353328704834
+      },
+      "local_position": {
+        "x": -185.743911743164,
+        "y": 11.9131317138672,
+        "z": -33.3063125610352
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 0.0,
+      "minimum_trajectory_distance_to_visual_aabb_m": 0.0,
+      "name": "Rock3A_11_RoundedGardenTop",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_11_RoundedGardenTop",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": -146.660385131836,
+          "y": 13.1459846496582,
+          "z": 1.11113357543945
+        },
+        "position": {
+          "x": -221.461624145508,
+          "y": -40.4223709106445,
+          "z": -63.6982765197754
+        },
+        "size": {
+          "x": 74.8012390136719,
+          "y": 53.5683555603027,
+          "z": 64.8094100952148
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": -136.785186767578,
+          "y": 204.094696044922,
+          "z": -117.825210571289
+        },
+        "position": {
+          "x": -212.010223388672,
+          "y": 150.901275634766,
+          "z": -184.652435302734
+        },
+        "size": {
+          "x": 75.2250366210938,
+          "y": 53.1934204101562,
+          "z": 66.8272247314453
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": -175.512100219727,
+        "y": 203.051834106445,
+        "z": -152.289672851562
+      },
+      "local_position": {
+        "x": -175.868713378906,
+        "y": 203.236785888672,
+        "z": -152.242660522461
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 0.0,
+      "minimum_trajectory_distance_to_visual_aabb_m": 0.0,
+      "name": "Rock3A_11_RoundedGardenTop2",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_11_RoundedGardenTop2",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": -136.785186767578,
+          "y": 204.469635009766,
+          "z": -117.825210571289
+        },
+        "position": {
+          "x": -211.58642578125,
+          "y": 150.901275634766,
+          "z": -182.634613037109
+        },
+        "size": {
+          "x": 74.8012390136719,
+          "y": 53.568359375,
+          "z": 64.8094024658203
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": 279.041015625,
+          "y": 256.861389160156,
+          "z": 8.26300048828125
+        },
+        "position": {
+          "x": 224.464080810547,
+          "y": 160.083892822266,
+          "z": -61.0911102294922
+        },
+        "size": {
+          "x": 54.5769348144531,
+          "y": 96.7774963378906,
+          "z": 69.3541107177734
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": 250.039291381836,
+        "y": 255.379501342773,
+        "z": -24.8891944885254
+      },
+      "local_position": {
+        "x": 249.682678222656,
+        "y": 255.564453125,
+        "z": -24.8421783447266
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 0.0,
+      "minimum_trajectory_distance_to_visual_aabb_m": 0.0,
+      "name": "Rock3A_12_AsymmetricBrokenWing",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_12_AsymmetricBrokenWing",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": 275.948425292969,
+          "y": 257.311614990234,
+          "z": 8.26299667358398
+        },
+        "position": {
+          "x": 224.464080810547,
+          "y": 160.083892822266,
+          "z": -59.2978553771973
+        },
+        "size": {
+          "x": 51.4843444824219,
+          "y": 97.2277221679688,
+          "z": 67.5608520507812
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": -178.281066894531,
+          "y": -3.20508193969727,
+          "z": 83.1039047241211
+        },
+        "position": {
+          "x": -283.841278076172,
+          "y": -48.0155868530273,
+          "z": 6.92240142822266
+        },
+        "size": {
+          "x": 105.560211181641,
+          "y": 44.8105049133301,
+          "z": 76.1815032958984
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": -229.64338684082,
+        "y": -4.18494606018066,
+        "z": 44.9529838562012
+      },
+      "local_position": {
+        "x": -230.0,
+        "y": -4.0,
+        "z": 45.0
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 0.0,
+      "minimum_trajectory_distance_to_visual_aabb_m": 0.0,
+      "name": "Rock3A_13_LowBroadSanctumBase",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_13_LowBroadSanctumBase",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": -178.929321289062,
+          "y": -2.90614700317383,
+          "z": 83.1039047241211
+        },
+        "position": {
+          "x": -283.841278076172,
+          "y": -48.0155868530273,
+          "z": 9.35652732849121
+        },
+        "size": {
+          "x": 104.911956787109,
+          "y": 45.1094398498535,
+          "z": 73.7473754882812
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": -17.8743286132812,
+          "y": -3.587890625,
+          "z": 164.679046630859
+        },
+        "position": {
+          "x": -121.699615478516,
+          "y": -179.278930664062,
+          "z": 58.3629417419434
+        },
+        "size": {
+          "x": 103.825286865234,
+          "y": 175.691040039062,
+          "z": 106.316101074219
+        }
+      },
+      "collision_overlaps_waterline": true,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": -68.1868896484375,
+        "y": -5.93757820129395,
+        "z": 112.269508361816
+      },
+      "local_position": {
+        "x": -68.5435028076172,
+        "y": -5.75263214111328,
+        "z": 112.316528320312
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 6.45555639266968,
+      "minimum_trajectory_distance_to_visual_aabb_m": 7.8921947479248,
+      "name": "Rock3A_14_DeepRootOldMountain",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_14_DeepRootOldMountain",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": true,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": -17.8743286132812,
+          "y": -2.86567687988281,
+          "z": 164.679046630859
+        },
+        "position": {
+          "x": -117.417465209961,
+          "y": -179.278930664062,
+          "z": 64.4532165527344
+        },
+        "size": {
+          "x": 99.5431365966797,
+          "y": 176.41325378418,
+          "z": 100.225830078125
+        }
+      },
+      "visual_overlaps_waterline": true
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": 9.29006195068359,
+          "y": 3.86907958984375,
+          "z": -140.057418823242
+        },
+        "position": {
+          "x": -53.1026000976562,
+          "y": -106.527496337891,
+          "z": -201.054992675781
+        },
+        "size": {
+          "x": 62.3926620483398,
+          "y": 110.396575927734,
+          "z": 60.9975738525391
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": -20.9986457824707,
+        "y": 2.25894737243652,
+        "z": -170.53564453125
+      },
+      "local_position": {
+        "x": -21.3552627563477,
+        "y": 2.44389343261719,
+        "z": -170.488632202148
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 9.03587627410889,
+      "minimum_trajectory_distance_to_visual_aabb_m": 9.27625179290771,
+      "name": "Rock3A_15_SideCaveFang",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_15_SideCaveFang",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": 8.81841659545898,
+          "y": 4.35784912109375,
+          "z": -140.125549316406
+        },
+        "position": {
+          "x": -53.1026000976562,
+          "y": -106.527496337891,
+          "z": -200.807647705078
+        },
+        "size": {
+          "x": 61.9210166931152,
+          "y": 110.885345458984,
+          "z": 60.6820983886719
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": 194.172241210938,
+          "y": 202.326202392578,
+          "z": 289.610778808594
+        },
+        "position": {
+          "x": 108.621246337891,
+          "y": 126.06226348877,
+          "z": 202.07551574707
+        },
+        "size": {
+          "x": 85.5509948730469,
+          "y": 76.2639389038086,
+          "z": 87.5352630615234
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": 153.108978271484,
+        "y": 201.098419189453,
+        "z": 246.366653442383
+      },
+      "local_position": {
+        "x": 152.752365112305,
+        "y": 201.28337097168,
+        "z": 246.413665771484
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 25.0468730926514,
+      "minimum_trajectory_distance_to_visual_aabb_m": 26.3051414489746,
+      "name": "Rock3A_16_MossyBrokenCrown",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_16_MossyBrokenCrown",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": 191.391326904297,
+          "y": 202.808120727539,
+          "z": 288.335266113281
+        },
+        "position": {
+          "x": 108.621246337891,
+          "y": 126.06226348877,
+          "z": 203.545288085938
+        },
+        "size": {
+          "x": 82.7700805664062,
+          "y": 76.7458572387695,
+          "z": 84.7899780273438
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": -55.8521423339844,
+          "y": 162.523574829102,
+          "z": 296.091064453125
+        },
+        "position": {
+          "x": -128.220993041992,
+          "y": 42.2787551879883,
+          "z": 223.133117675781
+        },
+        "size": {
+          "x": 72.3688507080078,
+          "y": 120.244819641113,
+          "z": 72.9579467773438
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": -92.6518402099609,
+        "y": 160.860855102539,
+        "z": 259.895111083984
+      },
+      "local_position": {
+        "x": -93.0084533691406,
+        "y": 161.045806884766,
+        "z": 259.942138671875
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 37.0502967834473,
+      "minimum_trajectory_distance_to_visual_aabb_m": 37.1527786254883,
+      "name": "Rock3A_17_PairedSubRoots",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_17_PairedSubRoots",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": -55.8778762817383,
+          "y": 163.043151855469,
+          "z": 294.001434326172
+        },
+        "position": {
+          "x": -126.863945007324,
+          "y": 42.2787551879883,
+          "z": 223.236892700195
+        },
+        "size": {
+          "x": 70.9860687255859,
+          "y": 120.76439666748,
+          "z": 70.7645416259766
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": -78.0206604003906,
+          "y": 66.7890472412109,
+          "z": 149.744033813477
+        },
+        "position": {
+          "x": -118.708320617676,
+          "y": 16.167366027832,
+          "z": 104.265975952148
+        },
+        "size": {
+          "x": 40.6876602172852,
+          "y": 50.6216812133789,
+          "z": 45.4780578613281
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": -98.3147277832031,
+        "y": 65.7615280151367,
+        "z": 129.131607055664
+      },
+      "local_position": {
+        "x": -98.6713409423828,
+        "y": 65.9464721679688,
+        "z": 129.178619384766
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 21.4198455810547,
+      "minimum_trajectory_distance_to_visual_aabb_m": 21.9702033996582,
+      "name": "Rock3A_18_LightFloatingShard",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_18_LightFloatingShard",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": -78.0206604003906,
+          "y": 67.1098251342773,
+          "z": 149.744033813477
+        },
+        "position": {
+          "x": -117.19660949707,
+          "y": 16.167366027832,
+          "z": 107.763450622559
+        },
+        "size": {
+          "x": 39.1759490966797,
+          "y": 50.9424591064453,
+          "z": 41.980583190918
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": 112.536506652832,
+          "y": 45.1326713562012,
+          "z": 57.8786392211914
+        },
+        "position": {
+          "x": 71.8488388061523,
+          "y": -5.48900985717773,
+          "z": 12.4005870819092
+        },
+        "size": {
+          "x": 40.6876678466797,
+          "y": 50.6216812133789,
+          "z": 45.4780502319336
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": 92.2424392700195,
+        "y": 44.105152130127,
+        "z": 37.2662162780762
+      },
+      "local_position": {
+        "x": 91.8858261108398,
+        "y": 44.2901000976562,
+        "z": 37.313232421875
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 72.3852844238281,
+      "minimum_trajectory_distance_to_visual_aabb_m": 72.3852844238281,
+      "name": "Rock3A_18_LightFloatingShard2",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_18_LightFloatingShard2",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": 112.536506652832,
+          "y": 45.4534530639648,
+          "z": 57.8786392211914
+        },
+        "position": {
+          "x": 73.3605499267578,
+          "y": -5.48900985717773,
+          "z": 15.8980617523193
+        },
+        "size": {
+          "x": 39.1759567260742,
+          "y": 50.9424629211426,
+          "z": 41.9805755615234
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": 194.844528198242,
+          "y": -12.4308242797852,
+          "z": 92.1091384887695
+        },
+        "position": {
+          "x": 106.356643676758,
+          "y": -104.151344299316,
+          "z": -7.23505592346191
+        },
+        "size": {
+          "x": 88.4878845214844,
+          "y": 91.7205200195312,
+          "z": 99.3441925048828
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": 150.307373046875,
+        "y": -13.8407077789307,
+        "z": 43.6213645935059
+      },
+      "local_position": {
+        "x": 149.950759887695,
+        "y": -13.65576171875,
+        "z": 43.6683807373047
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 0.0,
+      "minimum_trajectory_distance_to_visual_aabb_m": 0.0,
+      "name": "Rock3A_19_GrandTerraceRoot",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_19_GrandTerraceRoot",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": 189.088500976562,
+          "y": -11.9781112670898,
+          "z": 92.1091461181641
+        },
+        "position": {
+          "x": 106.806625366211,
+          "y": -104.151344299316,
+          "z": -3.47275924682617
+        },
+        "size": {
+          "x": 82.2818756103516,
+          "y": 92.1732330322266,
+          "z": 95.5819091796875
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": -177.832870483398,
+          "y": 201.97087097168,
+          "z": 188.625076293945
+        },
+        "position": {
+          "x": -262.412322998047,
+          "y": 70.2649078369141,
+          "z": 103.417663574219
+        },
+        "size": {
+          "x": 84.5794525146484,
+          "y": 131.705963134766,
+          "z": 85.2074127197266
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": -218.046005249023,
+        "y": 200.281097412109,
+        "z": 147.709442138672
+      },
+      "local_position": {
+        "x": -218.402618408203,
+        "y": 200.466049194336,
+        "z": 147.756454467773
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 10.2617845535278,
+      "minimum_trajectory_distance_to_visual_aabb_m": 13.011812210083,
+      "name": "Rock3A_20_AncientSplitPeak",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/Rock3A_Comparison_Set/Rock3A_20_AncientSplitPeak",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": -180.411911010742,
+          "y": 202.602401733398,
+          "z": 187.431381225586
+        },
+        "position": {
+          "x": -261.422485351562,
+          "y": 70.2649078369141,
+          "z": 105.930885314941
+        },
+        "size": {
+          "x": 81.0105743408203,
+          "y": 132.337493896484,
+          "z": 81.5004959106445
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": -329.328369140625,
+          "y": -22.8229446411133,
+          "z": 412.478057861328
+        },
+        "position": {
+          "x": -605.094909667969,
+          "y": -140.204513549805,
+          "z": 159.578338623047
+        },
+        "size": {
+          "x": 275.766540527344,
+          "y": 117.381568908691,
+          "z": 252.899719238281
+        }
+      },
+      "collision_overlaps_waterline": true,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": -459.643371582031,
+        "y": -24.8996753692627,
+        "z": 279.952972412109
+      },
+      "local_position": {
+        "x": -460.0,
+        "y": -24.714729309082,
+        "z": 280.0
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 166.587966918945,
+      "minimum_trajectory_distance_to_visual_aabb_m": 183.759826660156,
+      "name": "GroundedPlate_01_BroadLandMass",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set/GroundedPlate_01_BroadLandMass",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": true,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": -344.587768554688,
+          "y": -22.3577575683594,
+          "z": 394.15966796875
+        },
+        "position": {
+          "x": -596.116821289062,
+          "y": -140.204513549805,
+          "z": 171.053985595703
+        },
+        "size": {
+          "x": 251.529052734375,
+          "y": 117.846755981445,
+          "z": 223.105682373047
+        }
+      },
+      "visual_overlaps_waterline": true
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": 149.975662231445,
+          "y": 23.8661804199219,
+          "z": -38.5211944580078
+        },
+        "position": {
+          "x": 13.2203254699707,
+          "y": -72.0758361816406,
+          "z": -174.392730712891
+        },
+        "size": {
+          "x": 136.755340576172,
+          "y": 95.9420166015625,
+          "z": 135.871536254883
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": 81.8340148925781,
+        "y": 22.2609615325928,
+        "z": -107.550270080566
+      },
+      "local_position": {
+        "x": 81.4774017333984,
+        "y": 22.4459075927734,
+        "z": -107.50325012207
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 0.0,
+      "minimum_trajectory_distance_to_visual_aabb_m": 10.3719072341919,
+      "name": "GroundedPlate_02_CrookedStoneMesa",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set/GroundedPlate_02_CrookedStoneMesa",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": 135.428344726562,
+          "y": 24.2274627685547,
+          "z": -52.1127090454102
+        },
+        "position": {
+          "x": 19.528657913208,
+          "y": -72.0758361816406,
+          "z": -163.180526733398
+        },
+        "size": {
+          "x": 115.899688720703,
+          "y": 96.3032989501953,
+          "z": 111.067817687988
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": 107.45677947998,
+          "y": -11.8217468261719,
+          "z": -187.334701538086
+        },
+        "position": {
+          "x": -79.1047439575195,
+          "y": -142.69221496582,
+          "z": -372.690551757812
+        },
+        "size": {
+          "x": 186.5615234375,
+          "y": 130.870468139648,
+          "z": 185.355850219727
+        }
+      },
+      "collision_overlaps_waterline": true,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": 14.4979963302612,
+        "y": -14.0113468170166,
+        "z": -281.504089355469
+      },
+      "local_position": {
+        "x": 14.1413803100586,
+        "y": -13.8264007568359,
+        "z": -281.457061767578
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 0.0,
+      "minimum_trajectory_distance_to_visual_aabb_m": 0.0,
+      "name": "GroundedPlate_02_CrookedStoneMesa2",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set/GroundedPlate_02_CrookedStoneMesa2",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": true,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": 87.6113204956055,
+          "y": -11.3289337158203,
+          "z": -205.876220703125
+        },
+        "position": {
+          "x": -70.4989242553711,
+          "y": -142.69221496582,
+          "z": -357.394836425781
+        },
+        "size": {
+          "x": 158.110244750977,
+          "y": 131.36328125,
+          "z": 151.518615722656
+        }
+      },
+      "visual_overlaps_waterline": true
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": 225.972717285156,
+          "y": -34.4190979003906,
+          "z": 320.397369384766
+        },
+        "position": {
+          "x": 77.8232879638672,
+          "y": -142.81901550293,
+          "z": 174.749969482422
+        },
+        "size": {
+          "x": 148.149429321289,
+          "y": 108.399917602539,
+          "z": 145.647399902344
+        }
+      },
+      "collision_overlaps_waterline": true,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": 150.77490234375,
+        "y": -36.1406059265137,
+        "z": 250.05744934082
+      },
+      "local_position": {
+        "x": 150.41828918457,
+        "y": -35.9556579589844,
+        "z": 250.104461669922
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 0.0,
+      "minimum_trajectory_distance_to_visual_aabb_m": 0.0,
+      "name": "GroundedPlate_03_ForkedGroundPillar",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set/GroundedPlate_03_ForkedGroundPillar",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": true,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": 219.596710205078,
+          "y": -34.0316009521484,
+          "z": 311.689910888672
+        },
+        "position": {
+          "x": 83.5682067871094,
+          "y": -142.81901550293,
+          "z": 177.432205200195
+        },
+        "size": {
+          "x": 136.028503417969,
+          "y": 108.787414550781,
+          "z": 134.257705688477
+        }
+      },
+      "visual_overlaps_waterline": true
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": 227.922821044922,
+          "y": 0.25177001953125,
+          "z": 26.6999053955078
+        },
+        "position": {
+          "x": 79.7734069824219,
+          "y": -108.148139953613,
+          "z": -118.947494506836
+        },
+        "size": {
+          "x": 148.1494140625,
+          "y": 108.399909973145,
+          "z": 145.647399902344
+        }
+      },
+      "collision_overlaps_waterline": false,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": 152.725021362305,
+        "y": -1.46973621845245,
+        "z": -43.6400184631348
+      },
+      "local_position": {
+        "x": 152.368408203125,
+        "y": -1.2847900390625,
+        "z": -43.5930023193359
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 0.0,
+      "minimum_trajectory_distance_to_visual_aabb_m": 0.0,
+      "name": "GroundedPlate_03_ForkedGroundPillar2",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set/GroundedPlate_03_ForkedGroundPillar2",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": 221.546813964844,
+          "y": 0.639266967773438,
+          "z": 17.9924468994141
+        },
+        "position": {
+          "x": 85.5183258056641,
+          "y": -108.148139953613,
+          "z": -116.265258789062
+        },
+        "size": {
+          "x": 136.02848815918,
+          "y": 108.787406921387,
+          "z": 134.257705688477
+        }
+      },
+      "visual_overlaps_waterline": false
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": -378.320068359375,
+          "y": -33.8660354614258,
+          "z": -47.8042297363281
+        },
+        "position": {
+          "x": -684.359008789062,
+          "y": -143.89924621582,
+          "z": -353.843139648438
+        },
+        "size": {
+          "x": 306.038940429688,
+          "y": 110.033210754395,
+          "z": 306.038909912109
+        }
+      },
+      "collision_overlaps_waterline": true,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": -519.643371582031,
+        "y": -35.9246253967285,
+        "z": -200.047012329102
+      },
+      "local_position": {
+        "x": -520.0,
+        "y": -35.7396774291992,
+        "z": -200.0
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 162.567306518555,
+      "minimum_trajectory_distance_to_visual_aabb_m": 171.502380371094,
+      "name": "GroundedPlate_04_WideBridgeSlab",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set/GroundedPlate_04_WideBridgeSlab",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": true,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": -386.200775146484,
+          "y": -33.3989562988281,
+          "z": -56.8293762207031
+        },
+        "position": {
+          "x": -668.50537109375,
+          "y": -143.89924621582,
+          "z": -337.054595947266
+        },
+        "size": {
+          "x": 282.304595947266,
+          "y": 110.500289916992,
+          "z": 280.225219726562
+        }
+      },
+      "visual_overlaps_waterline": true
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": 291.275360107422,
+          "y": -14.1429214477539,
+          "z": -137.933212280273
+        },
+        "position": {
+          "x": 106.456405639648,
+          "y": -141.173004150391,
+          "z": -327.093048095703
+        },
+        "size": {
+          "x": 184.818954467773,
+          "y": 127.030082702637,
+          "z": 189.15983581543
+        }
+      },
+      "collision_overlaps_waterline": true,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": 200.856185913086,
+        "y": -16.0762348175049,
+        "z": -234.368591308594
+      },
+      "local_position": {
+        "x": 200.499572753906,
+        "y": -15.8912887573242,
+        "z": -234.321578979492
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 0.0,
+      "minimum_trajectory_distance_to_visual_aabb_m": 0.0,
+      "name": "GroundedPlate_05_CaveCutLandRoot",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set/GroundedPlate_05_CaveCutLandRoot",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": true,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": 290.300018310547,
+          "y": -13.6853713989258,
+          "z": -138.598541259766
+        },
+        "position": {
+          "x": 113.692306518555,
+          "y": -141.173004150391,
+          "z": -322.157043457031
+        },
+        "size": {
+          "x": 176.607711791992,
+          "y": 127.487632751465,
+          "z": 183.558502197266
+        }
+      },
+      "visual_overlaps_waterline": true
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": 399.213195800781,
+          "y": -23.1014099121094,
+          "z": 61.3660736083984
+        },
+        "position": {
+          "x": 189.510284423828,
+          "y": -142.052444458008,
+          "z": -142.398422241211
+        },
+        "size": {
+          "x": 209.702911376953,
+          "y": 118.951034545898,
+          "z": 203.764495849609
+        }
+      },
+      "collision_overlaps_waterline": true,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": 302.138336181641,
+        "y": -25.1293964385986,
+        "z": -37.8135871887207
+      },
+      "local_position": {
+        "x": 301.781707763672,
+        "y": -24.944450378418,
+        "z": -37.7665710449219
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 0.0,
+      "minimum_trajectory_distance_to_visual_aabb_m": 0.0,
+      "name": "GroundedPlate_06_TwistedButtressMesa",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set/GroundedPlate_06_TwistedButtressMesa",
+      "preserved_demo_encounter": true,
+      "preserved_reason": "用户确认该东侧巨岩由策略近距离避让，保留以展示真实转向操作",
+      "raw_trajectory_envelope_overlap": true,
+      "relocated_for_crossing_fix": false,
+      "render_surface_crossing": true,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": 396.840148925781,
+          "y": -22.6470489501953,
+          "z": 60.2724761962891
+        },
+        "position": {
+          "x": 197.052673339844,
+          "y": -142.052444458008,
+          "z": -138.922561645508
+        },
+        "size": {
+          "x": 199.787475585938,
+          "y": 119.405395507812,
+          "z": 199.195037841797
+        }
+      },
+      "visual_overlaps_waterline": true
+    },
+    {
+      "collision_aabb": {
+        "end": {
+          "x": 13.7713317871094,
+          "y": -37.3456878662109,
+          "z": 627.614929199219
+        },
+        "position": {
+          "x": -245.484985351562,
+          "y": -146.254272460938,
+          "z": 422.205108642578
+        },
+        "size": {
+          "x": 259.256317138672,
+          "y": 108.908584594727,
+          "z": 205.409820556641
+        }
+      },
+      "collision_overlaps_waterline": true,
+      "collision_shape_count": 2,
+      "global_position": {
+        "x": -119.64338684082,
+        "y": -39.2388153076172,
+        "z": 519.953002929688
+      },
+      "local_position": {
+        "x": -120.0,
+        "y": -39.0538673400879,
+        "z": 520.0
+      },
+      "minimum_trajectory_distance_to_collision_aabb_m": 209.022903442383,
+      "minimum_trajectory_distance_to_visual_aabb_m": 220.186233520508,
+      "name": "GroundedPlate_07_AncientWallPlate",
+      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set/GroundedPlate_07_AncientWallPlate",
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": true,
+      "render_surface_crossing": false,
+      "replay_guard_collision_shape_count": 2,
+      "trajectory_conflict": false,
+      "visual_aabb": {
+        "end": {
+          "x": 3.5540771484375,
+          "y": -36.9240417480469,
+          "z": 618.093933105469
+        },
+        "position": {
+          "x": -234.737594604492,
+          "y": -146.254272460938,
+          "z": 432.952972412109
+        },
+        "size": {
+          "x": 238.29167175293,
+          "y": 109.330230712891,
+          "z": 185.140960693359
+        }
+      },
+      "visual_overlaps_waterline": true
+    }
+  ],
+  "ship_sized_sweep_blocking_hits": 3,
+  "trajectory_conflict_count": 0,
+  "trajectory_conflicts": [],
+  "water_level_y": -140.73494,
+  "waterline_guard_status": {
+    "expected_rock_count": 32,
+    "guard_count": 3,
+    "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+    "manifest_schema_version": "large_rock_obstacle_manifest_v1",
+    "missing_manifest_rocks": [],
+    "registered_collision_body_count": 64,
+    "registered_obstacle_count": 32,
+    "restored_transform_count": 0,
+    "rocks": [
+      {
+        "center": {
+          "x": -470.352294921875,
+          "y": -140.734939575195,
+          "z": 282.606811523438
+        },
+        "guard": "WaterlineGuard_GroundedPlate_01_BroadLandMass",
+        "rock": "GroundedPlate_01_BroadLandMass",
+        "size": {
+          "x": 251.529052734375,
+          "y": 10.0,
+          "z": 223.105682373047
+        }
+      },
+      {
+        "center": {
+          "x": -527.353088378906,
+          "y": -140.734939575195,
+          "z": -196.941986083984
+        },
+        "guard": "WaterlineGuard_GroundedPlate_04_WideBridgeSlab",
+        "rock": "GroundedPlate_04_WideBridgeSlab",
+        "size": {
+          "x": 282.304595947266,
+          "y": 10.0,
+          "z": 280.225219726562
+        }
+      },
+      {
+        "center": {
+          "x": -115.591758728027,
+          "y": -140.734939575195,
+          "z": 525.5234375
+        },
+        "guard": "WaterlineGuard_GroundedPlate_07_AncientWallPlate",
+        "rock": "GroundedPlate_07_AncientWallPlate",
+        "size": {
+          "x": 238.29167175293,
+          "y": 10.0,
+          "z": 185.140960693359
+        }
+      }
+    ],
+    "unexpected_scene_rocks": [],
+    "water_level_y": -140.73494
+  }
+}

@@ -1,0 +1,71 @@
+{
+	"canonical_rock_count": 32,
+	"collision_shape_count": 64,
+	"errors": [],
+	"format": "large_rock_training_contract_v1",
+	"guard_status": {
+		"expected_rock_count": 32,
+		"guard_count": 3,
+		"manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+		"manifest_schema_version": "large_rock_obstacle_manifest_v1",
+		"missing_manifest_rocks": [],
+		"registered_collision_body_count": 64,
+		"registered_obstacle_count": 32,
+		"restored_transform_count": 1,
+		"rocks": [
+			{
+				"center": {
+					"x": -470.352294921875,
+					"y": -140.734939575195,
+					"z": 282.606811523438
+				},
+				"guard": "WaterlineGuard_GroundedPlate_01_BroadLandMass",
+				"rock": "GroundedPlate_01_BroadLandMass",
+				"size": {
+					"x": 251.529052734375,
+					"y": 10.0,
+					"z": 223.105682373047
+				}
+			},
+			{
+				"center": {
+					"x": -527.353088378906,
+					"y": -140.734939575195,
+					"z": -196.941986083984
+				},
+				"guard": "WaterlineGuard_GroundedPlate_04_WideBridgeSlab",
+				"rock": "GroundedPlate_04_WideBridgeSlab",
+				"size": {
+					"x": 282.304595947266,
+					"y": 10.0,
+					"z": 280.225219726562
+				}
+			},
+			{
+				"center": {
+					"x": -115.591758728027,
+					"y": -140.734939575195,
+					"z": 525.5234375
+				},
+				"guard": "WaterlineGuard_GroundedPlate_07_AncientWallPlate",
+				"rock": "GroundedPlate_07_AncientWallPlate",
+				"size": {
+					"x": 238.29167175293,
+					"y": 10.0,
+					"z": 185.140960693359
+				}
+			}
+		],
+		"unexpected_scene_rocks": [],
+		"water_level_y": -140.73494
+	},
+	"manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+	"manifest_schema_version": "large_rock_obstacle_manifest_v1",
+	"passed": true,
+	"physics_navigation_body_count": 64,
+	"radar_large_rock_count": 32,
+	"training_snapshot_large_rock_count": 32,
+	"transform_match_count": 32,
+	"transform_restore_probe_passed": true,
+	"unique_name_count": 32
+}

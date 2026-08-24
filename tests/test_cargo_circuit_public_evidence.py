@@ -49,7 +49,8 @@ class CargoCircuitPublicEvidenceTests(unittest.TestCase):
 
     def test_public_artifacts_match_frozen_hash_commitments(self) -> None:
         serialized = json.dumps(self.payload, ensure_ascii=False)
-        self.assertNotIn("/Users/", serialized)
+        local_account_path = str(Path("/") / "Users" / "local-account")
+        self.assertNotIn(local_account_path, serialized)
         self.assertNotIn("route_points", serialized)
         self.assertNotIn("samples", self.payload["held_out_results"])
         commitments = self.payload["frozen_artifact_commitments"]

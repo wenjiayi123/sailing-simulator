@@ -3,14 +3,14 @@
 	"checks": {
 		"basic_navigation_forward_motion": {
 			"detail": {
-				"displacement_m": 7.60466957092285,
-				"speed_mps": 4.7178692817688
+				"displacement_m": 15.0152778625488,
+				"speed_mps": 9.18429374694824
 			},
 			"passed": true
 		},
 		"basic_navigation_rudder_response": {
 			"detail": {
-				"heading_change_radians": 0.591599051152365
+				"heading_change_radians": 0.403301390009471
 			},
 			"passed": true
 		},
@@ -77,7 +77,7 @@
 			"detail": {
 				"algorithm": "sac",
 				"dataset_split": "test",
-				"displacement_m": 218.281707763672,
+				"displacement_m": 218.080596923828,
 				"trained_rl": true
 			},
 			"passed": true
@@ -130,9 +130,17 @@
 			"detail": "human_control_enabled",
 			"passed": true
 		},
+		"human_navigation_calm_water_three_dof_handling": {
+			"detail": {
+				"drift_angle_degrees": 9.42097509209246,
+				"motion_mode": "three_dof_reference"
+			},
+			"passed": true
+		},
 		"human_navigation_input_motion": {
 			"detail": {
-				"displacement_m": 2.70079040527344
+				"displacement_m": 6.58096790313721,
+				"speed_mps": 6.96411418914795
 			},
 			"passed": true
 		},
@@ -204,6 +212,13 @@
 			"detail": "Player",
 			"passed": true
 		},
+		"radar_large_rocks_use_terrain_symbols": {
+			"detail": {
+				"rectangle_symbols": 0,
+				"terrain_symbols": 32
+			},
+			"passed": true
+		},
 		"system_overview_buttons_have_handlers": {
 			"detail": "all system-overview buttons",
 			"passed": true
@@ -211,12 +226,19 @@
 		"training_buttons_have_handlers": {
 			"detail": "export/train/settings/test replay/stop replay",
 			"passed": true
+		},
+		"water_visual_matches_sea_state": {
+			"detail": {
+				"calm_visual_wave_height": 0.0492,
+				"rougher_visual_wave_height": 0.222
+			},
+			"passed": true
 		}
 	},
 	"errors": [],
-	"generated_at": "2026-08-25T02:47:09",
+	"generated_at": "2026-08-25T09:09:37",
 	"passed": true,
-	"passed_checks": 42,
+	"passed_checks": 45,
 	"schema_version": "godot_ui_navigation_smoke_v1",
-	"total_checks": 42
+	"total_checks": 45
 }

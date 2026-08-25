@@ -78,6 +78,7 @@ func _run() -> void:
 		return
 	_record("main_scene_ready", true, main.name)
 	var weather := main.get_node_or_null("ShipWeatherTimeController")
+	var telemetry_hud := main.get_node_or_null("ShipTelemetryHUD")
 	var world_environment := main.get_node_or_null("WorldEnvironment") as WorldEnvironment
 	var weather_status: Dictionary = {}
 	if weather != null and weather.has_method("get_weather_time_status"):
@@ -96,6 +97,35 @@ func _run() -> void:
 			"fog_enabled": fog_enabled,
 		},
 	)
+	if weather != null and weather.has_method("get_water_surface_visual_status"):
+		var calm_water_visual := weather.call("get_water_surface_visual_status") as Dictionary
+		weather.call("apply_mode", 2)
+		var rougher_water_visual := weather.call("get_water_surface_visual_status") as Dictionary
+		weather.call("apply_mode", 0)
+		_record(
+			"water_visual_matches_sea_state",
+			bool(calm_water_visual.get("connected", false))
+			and float(calm_water_visual.get("vertex_wave_height", 1.0)) < 0.08
+			and float(rougher_water_visual.get("vertex_wave_height", 0.0)) > float(calm_water_visual.get("vertex_wave_height", 1.0)),
+			{
+				"calm_visual_wave_height": calm_water_visual.get("vertex_wave_height", 0.0),
+				"rougher_visual_wave_height": rougher_water_visual.get("vertex_wave_height", 0.0),
+			},
+		)
+	if telemetry_hud != null:
+		var radar_scope: Control = telemetry_hud.get("_radar_scope") as Control
+		if radar_scope != null:
+			var radar_boxes := radar_scope.get("box_obstacles") as Array
+			var radar_terrain := radar_scope.get("terrain_obstacles") as Array
+			var leaked_large_rock_boxes := radar_boxes.filter(
+				func(item: Dictionary) -> bool:
+					return String(item.get("source", "")) == "large_rock_manifest"
+			)
+			_record(
+				"radar_large_rocks_use_terrain_symbols",
+				radar_terrain.size() == 32 and leaked_large_rock_boxes.is_empty(),
+				{"terrain_symbols": radar_terrain.size(), "rectangle_symbols": radar_boxes.size()},
+			)
 
 	var node_names := [
 		"CargoCircuitRLPanel",
@@ -355,10 +385,24 @@ func _run() -> void:
 			player.global_position.x - human_start.x,
 			player.global_position.z - human_start.z
 		).length()
+		var human_telemetry := player.call("get_ship_telemetry") as Dictionary
 		_record(
 			"human_navigation_input_motion",
-			human_displacement > 0.5,
-			{"displacement_m": human_displacement},
+			human_displacement > 4.0 and absf(float(human_telemetry.get("speed", 0.0))) > 3.0,
+			{
+				"displacement_m": human_displacement,
+				"speed_mps": human_telemetry.get("speed", 0.0),
+			},
+		)
+		_record(
+			"human_navigation_calm_water_three_dof_handling",
+			String(human_telemetry.get("motion_mode", "")) == "three_dof_reference"
+			and bool(human_telemetry.get("three_dof_active", false))
+			and absf(float(human_telemetry.get("drift_angle_degrees", 180.0))) < 20.0,
+			{
+				"motion_mode": human_telemetry.get("motion_mode", ""),
+				"drift_angle_degrees": human_telemetry.get("drift_angle_degrees", 0.0),
+			},
 		)
 	_finish()
 

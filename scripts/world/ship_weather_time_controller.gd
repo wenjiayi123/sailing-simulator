@@ -29,7 +29,7 @@ const MODES := [
 		"sun_energy": 1.18,
 		"sun_rotation": Vector3(-52.0, -36.0, 0.0),
 		"overlay": Color(0.10, 0.42, 0.78, 0.00),
-		"sea_state": {"wind_speed_knots": 6.0, "wind_direction_degrees": 38.0, "wave_height_meters": 0.4, "wave_direction_degrees": 54.0, "wave_period_seconds": 5.5, "visibility_km": 20.0, "current_speed_knots": 0.4, "current_direction_degrees": 65.0, "tide_meters": 0.2, "time_scale": 1.0}
+		"sea_state": {"wind_speed_knots": 3.0, "wind_direction_degrees": 38.0, "wave_height_meters": 0.12, "wave_direction_degrees": 54.0, "wave_period_seconds": 5.5, "visibility_km": 20.0, "current_speed_knots": 0.1, "current_direction_degrees": 65.0, "tide_meters": 0.2, "time_scale": 1.0}
 	},
 	{
 		"key": "mist",
@@ -89,14 +89,15 @@ const MODES := [
 
 @export var world_environment_path: NodePath = NodePath("../WorldEnvironment")
 @export var directional_light_path: NodePath = NodePath("../DirectionalLight3D")
+@export var water_surface_path: NodePath = NodePath("../NavigationEnvironment/BackgroundWalls/LakeSurfaceMotion")
 @export_range(0, 3, 1) var start_mode_index: int = 0
-@export_range(0.0, 60.0, 0.1) var wind_speed_knots: float = 6.0
+@export_range(0.0, 60.0, 0.1) var wind_speed_knots: float = 3.0
 @export_range(0.0, 359.0, 1.0) var wind_direction_degrees: float = 38.0
-@export_range(0.0, 8.0, 0.1) var wave_height_meters: float = 0.4
+@export_range(0.0, 8.0, 0.1) var wave_height_meters: float = 0.12
 @export_range(0.0, 359.0, 1.0) var wave_direction_degrees: float = 54.0
 @export_range(1.0, 30.0, 0.1) var wave_period_seconds: float = 5.5
 @export_range(0.1, 30.0, 0.1) var visibility_km: float = 20.0
-@export_range(0.0, 8.0, 0.1) var current_speed_knots: float = 0.4
+@export_range(0.0, 8.0, 0.1) var current_speed_knots: float = 0.1
 @export_range(0.0, 359.0, 1.0) var current_direction_degrees: float = 65.0
 @export_range(-5.0, 5.0, 0.1) var tide_meters: float = 0.2
 @export_range(0.0, 240.0, 1.0) var time_scale: float = 1.0
@@ -109,6 +110,8 @@ const MODES := [
 var _world_environment: WorldEnvironment
 var _environment: Environment
 var _directional_light: DirectionalLight3D
+var _water_surface: MeshInstance3D
+var _water_surface_material: ShaderMaterial
 var _overlay_layer: CanvasLayer
 var _overlay_rect: ColorRect
 var _mode_index := 0
@@ -225,6 +228,18 @@ func get_weather_time_status() -> Dictionary:
 		"observed_at": _data_observed_at,
 		"fetched_at": _data_fetched_at,
 		"public_location": {"latitude": public_weather_latitude, "longitude": public_weather_longitude},
+		"water_surface_visual": get_water_surface_visual_status(),
+	}
+
+
+func get_water_surface_visual_status() -> Dictionary:
+	if _water_surface_material == null:
+		return {"connected": false}
+	return {
+		"connected": true,
+		"vertex_wave_height": float(_water_surface_material.get_shader_parameter("vertex_wave_height")),
+		"wave_speed": float(_water_surface_material.get_shader_parameter("wave_speed")),
+		"flow_direction": _water_surface_material.get_shader_parameter("flow_direction") as Vector2,
 	}
 
 
@@ -390,6 +405,15 @@ func _resolve_targets() -> void:
 	if light_node is DirectionalLight3D:
 		_directional_light = light_node
 
+	var surface_node := get_node_or_null(water_surface_path)
+	if surface_node is MeshInstance3D:
+		_water_surface = surface_node as MeshInstance3D
+		if _water_surface_material == null:
+			var active_material := _water_surface.get_active_material(0)
+			if active_material is ShaderMaterial:
+				_water_surface_material = active_material.duplicate() as ShaderMaterial
+				_water_surface.set_surface_override_material(0, _water_surface_material)
+
 
 func _build_overlay() -> void:
 	if _overlay_layer != null:
@@ -436,6 +460,27 @@ func _apply_sea_state_effects() -> void:
 		var sea_alpha := clampf((wave_height_meters - 1.5) / 6.5, 0.0, 1.0) * 0.18
 		overlay.a = clampf(overlay.a + weather_alpha + sea_alpha * 0.45, 0.0, 0.58)
 		_overlay_rect.color = overlay
+
+	_apply_water_surface_sea_state()
+
+
+func _apply_water_surface_sea_state() -> void:
+	if _water_surface_material == null:
+		_resolve_targets()
+	if _water_surface_material == null:
+		return
+	var visible_wave_height := clampf(0.03 + wave_height_meters * 0.16, 0.03, 0.75)
+	var wave_factor := clampf(wave_height_meters / 2.5, 0.0, 1.0)
+	var wave_direction := deg_to_rad(wave_direction_degrees)
+	_water_surface_material.set_shader_parameter(
+		"flow_direction",
+		Vector2(sin(wave_direction), cos(wave_direction)).normalized()
+	)
+	_water_surface_material.set_shader_parameter("vertex_wave_height", visible_wave_height)
+	_water_surface_material.set_shader_parameter("wave_speed", clampf(1.2 / wave_period_seconds, 0.05, 0.35))
+	_water_surface_material.set_shader_parameter("directional_wave_strength", lerpf(0.16, 0.62, wave_factor))
+	_water_surface_material.set_shader_parameter("distortion_strength", lerpf(0.006, 0.032, wave_factor))
+	_water_surface_material.set_shader_parameter("normal_strength", lerpf(0.28, 0.92, wave_factor))
 
 
 func _apply_time_of_day_lighting() -> void:

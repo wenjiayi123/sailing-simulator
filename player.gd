@@ -13,14 +13,14 @@ const SHIP_SELECTION_RING_COLOR := Color(0.28, 0.96, 1.0, 0.74)
 
 @export var move_speed: float = 5.0
 @export_group("Ship Handling")
-@export var ship_max_forward_speed: float = 18.0
-@export var ship_max_reverse_speed: float = 5.5
+@export var ship_max_forward_speed: float = 11.0
+@export var ship_max_reverse_speed: float = 4.0
 @export var ship_acceleration: float = 3.6
 @export var ship_deceleration: float = 2.2
 @export var ship_brake_acceleration: float = 6.4
 @export var ship_throttle_response: float = 1.65
 @export var ship_rudder_response: float = 2.45
-@export var ship_max_turn_rate_degrees: float = 82.0
+@export var ship_max_turn_rate_degrees: float = 26.0
 @export_range(0.0, 1.0, 0.01) var ship_low_speed_turn_factor: float = 0.18
 @export_range(0.0, 1.0, 0.01) var ship_reverse_turn_factor: float = 0.58
 @export var ship_velocity_alignment: float = 1.25
@@ -29,7 +29,9 @@ const SHIP_SELECTION_RING_COLOR := Color(0.28, 0.96, 1.0, 0.74)
 @export var ship_animation_speed_threshold: float = 0.18
 @export_group("Ship Hydrodynamics")
 @export var ship_three_dof_enabled: bool = true
+@export var ship_three_dof_human_control_enabled: bool = true
 @export_file("*.json") var ship_dynamics_config_path: String = "res://data/verification/catamaran_usv_dynamics_reference_v2.json"
+@export var ship_drift_display_min_water_speed: float = 0.75
 @export_group("Ship Collision Feedback")
 @export var ship_impact_min_speed: float = 1.7
 @export_range(0.05, 0.95, 0.01) var ship_impact_speed_retention: float = 0.36
@@ -776,7 +778,7 @@ func _update_ship_direct_motion(
 	rudder_command: float,
 	target_direction: Vector3 = Vector3.ZERO
 ) -> void:
-	if ship_three_dof_enabled and _catamaran_dynamics_ready:
+	if _use_three_dof_motion():
 		_update_ship_three_dof_motion(delta, throttle_command, rudder_command)
 		return
 	ship_target_throttle = clampf(throttle_command, -1.0, 1.0)
@@ -836,6 +838,12 @@ func _update_ship_direct_motion(
 	_update_ship_visual_direction(delta)
 
 
+func _use_three_dof_motion() -> bool:
+	return ship_three_dof_enabled \
+		and _catamaran_dynamics_ready \
+		and (external_agent_control_enabled or ship_three_dof_human_control_enabled)
+
+
 func _update_ship_three_dof_motion(delta: float, throttle_command: float, rudder_command: float) -> void:
 	ship_target_throttle = clampf(throttle_command, -1.0, 1.0)
 	ship_target_rudder = clampf(rudder_command, -1.0, 1.0)
@@ -857,9 +865,13 @@ func _update_ship_three_dof_motion(delta: float, throttle_command: float, rudder
 	var speed_ratio := clampf(absf(ship_forward_speed) / maxf(ship_max_forward_speed, 0.001), 0.0, 1.0)
 	ship_turn_authority = lerpf(ship_low_speed_turn_factor, 1.0, speed_ratio)
 	var ground_velocity := _catamaran_dynamics_status.get("ground_velocity", Vector3.ZERO) as Vector3
+	var water_relative_velocity := _catamaran_dynamics_status.get("water_relative_velocity", Vector3.ZERO) as Vector3
 	velocity.x = ground_velocity.x
 	velocity.z = ground_velocity.z
-	if ground_velocity.length_squared() > 0.001:
+	# Course over ground is meaningful underway. Near rest, a small current can
+	# point the velocity vector anywhere and create a visually absurd drift angle.
+	if water_relative_velocity.length() >= ship_drift_display_min_water_speed \
+	and ground_velocity.length_squared() > 0.001:
 		ship_course_yaw = atan2(ground_velocity.x, ground_velocity.z)
 	else:
 		ship_course_yaw = ship_heading_yaw
@@ -1003,6 +1015,9 @@ func get_ship_telemetry() -> Dictionary:
 		"collision_warning": ship_collision_warning_text,
 		"collision_warning_active": ship_impact_warning_time_left > 0.0,
 		"last_impact_speed": ship_last_impact_speed,
+		"motion_mode": "three_dof_reference" if _use_three_dof_motion() else "manual_stable_handling",
+		"three_dof_active": _use_three_dof_motion(),
+		"three_dof_human_control_enabled": ship_three_dof_human_control_enabled,
 		"dynamics_model_id": String(_catamaran_dynamics_status.get("model_id", "legacy_kinematic_v1")) if ship_three_dof_enabled and _catamaran_dynamics_ready else "legacy_kinematic_v1",
 		"dynamics_model_family": String(_catamaran_dynamics_status.get("model_family", "kinematic")) if ship_three_dof_enabled and _catamaran_dynamics_ready else "kinematic",
 		"dynamics_calibration_status": String(_catamaran_dynamics_status.get("calibration_status", "not_applicable")),
@@ -1035,6 +1050,7 @@ func get_ship_performance_config() -> Dictionary:
 		"impact_speed_retention": ship_impact_speed_retention,
 		"impact_rebound_speed": ship_impact_rebound_speed,
 		"dynamics_enabled": ship_three_dof_enabled and _catamaran_dynamics_ready,
+		"three_dof_human_control_enabled": ship_three_dof_human_control_enabled,
 		"dynamics_contract": _catamaran_dynamics.get_config_snapshot() if _catamaran_dynamics_ready else {
 			"model_id": "legacy_kinematic_v1",
 			"calibration_status": "not_applicable",
@@ -1061,15 +1077,26 @@ func apply_ship_performance_config(config: Dictionary) -> void:
 
 
 func set_ship_agent_command(throttle_command: float, rudder_command: float) -> void:
+	if not external_agent_control_enabled and _catamaran_dynamics_ready:
+		_catamaran_dynamics.reset(ship_heading_yaw, ship_forward_speed)
 	external_agent_control_enabled = true
 	ship_external_throttle = clampf(throttle_command, -1.0, 1.0)
 	ship_external_rudder = clampf(rudder_command, -1.0, 1.0)
 
 
 func clear_ship_agent_command() -> void:
+	var was_external := external_agent_control_enabled
 	external_agent_control_enabled = false
 	ship_external_throttle = 0.0
 	ship_external_rudder = 0.0
+	if was_external and not ship_three_dof_human_control_enabled:
+		ship_course_yaw = ship_heading_yaw
+		ship_drift_angle = 0.0
+		var forward := _get_ship_forward_vector()
+		velocity.x = forward.x * ship_forward_speed
+		velocity.z = forward.z * ship_forward_speed
+		if _catamaran_dynamics_ready:
+			_catamaran_dynamics.reset(ship_heading_yaw, ship_forward_speed)
 
 
 func set_ship_human_control_enabled(enabled: bool) -> void:

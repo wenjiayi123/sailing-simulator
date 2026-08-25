@@ -657,6 +657,7 @@ class RadarScope:
 	var active_waypoint_index := -1
 	var obstacles: Array = []
 	var box_obstacles: Array = []
+	var terrain_obstacles: Array = []
 	var boundary_half_extent := 0.0
 
 	func set_radar_data(
@@ -674,7 +675,17 @@ class RadarScope:
 		route_active = bool(route_data.get("active", false))
 		active_waypoint_index = int(route_data.get("current_index", -1))
 		obstacles = obstacle_data.get("rocks", [])
-		box_obstacles = obstacle_data.get("boxes", [])
+		box_obstacles = []
+		terrain_obstacles = []
+		for raw_obstacle in obstacle_data.get("boxes", []) as Array:
+			if raw_obstacle is not Dictionary:
+				continue
+			var obstacle := raw_obstacle as Dictionary
+			if String(obstacle.get("kind", "")) in ["terrain", "shoreline", "cliff"] \
+			or String(obstacle.get("source", "")) == "large_rock_manifest":
+				terrain_obstacles.append(obstacle)
+			else:
+				box_obstacles.append(obstacle)
 		boundary_half_extent = float(obstacle_data.get("boundary_half_extent", 0.0))
 		queue_redraw()
 
@@ -706,6 +717,7 @@ class RadarScope:
 
 		_draw_boundary(center, radius, cyan)
 		_draw_route(center, radius, cyan, amber)
+		_draw_terrain_obstacles(center, radius, amber)
 		_draw_box_obstacles(center, radius, amber)
 		_draw_obstacles(center, radius, red, amber)
 		_draw_ship(center, green)
@@ -713,7 +725,7 @@ class RadarScope:
 
 		draw_string(font, Vector2(0.0, 14.0), "RADAR // 小地图", HORIZONTAL_ALIGNMENT_CENTER, size.x, 12, cyan)
 		draw_string(font, Vector2(0.0, size.y - 23.0), "RNG %03d m   HDG %03d" % [int(radar_range), int(round(heading_degrees)) % 360], HORIZONTAL_ALIGNMENT_CENTER, size.x, 10, Color(0.70, 0.92, 1.0, 0.82))
-		draw_string(font, Vector2(0.0, size.y - 8.0), "SHIP  WP  OBSTACLE  ROUTE", HORIZONTAL_ALIGNMENT_CENTER, size.x, 8, Color(0.70, 0.92, 1.0, 0.66))
+		draw_string(font, Vector2(0.0, size.y - 8.0), "船舶  航点  岩体  障碍  航线", HORIZONTAL_ALIGNMENT_CENTER, size.x, 8, Color(0.70, 0.92, 1.0, 0.66))
 
 	func _draw_route(center: Vector2, radius: float, route_color: Color, active_color: Color) -> void:
 		if route_points.is_empty():
@@ -752,8 +764,23 @@ class RadarScope:
 			if not _inside_scope(screen, center, radius + 8.0):
 				continue
 			var obstacle_radius := clampf(float(data.get("radius", 5.0)) / radar_range * radius, 2.4, 7.5)
-			draw_rect(Rect2(screen - Vector2(obstacle_radius, obstacle_radius), Vector2(obstacle_radius * 2.0, obstacle_radius * 2.0)), rock_color, false, 1.4)
+			draw_circle(screen, obstacle_radius, Color(rock_color.r, rock_color.g, rock_color.b, 0.42))
+			draw_arc(screen, obstacle_radius, 0.0, TAU, 24, rock_color, 1.2, true)
 			draw_arc(screen, obstacle_radius + 4.0, 0.0, TAU, 32, Color(ring_color.r, ring_color.g, ring_color.b, 0.42), 1.0, true)
+
+	func _draw_terrain_obstacles(center: Vector2, radius: float, color: Color) -> void:
+		for obstacle in terrain_obstacles:
+			var data := obstacle as Dictionary
+			var position := data.get("position", Vector3.ZERO) as Vector3
+			var screen := _world_to_radar(position, center, radius)
+			if not _inside_scope(screen, center, radius + 18.0):
+				continue
+			var size3 := data.get("size", Vector3.ONE) as Vector3
+			var footprint := maxf(size3.x, size3.z) * 0.5 / radar_range * radius
+			var symbol_radius := clampf(footprint, 3.2, 13.0)
+			draw_circle(screen, symbol_radius, Color(color.r, color.g, color.b, 0.14))
+			draw_arc(screen, symbol_radius, 0.0, TAU, 28, Color(color.r, color.g, color.b, 0.78), 1.3, true)
+			draw_circle(screen, 1.8, Color(color.r, color.g, color.b, 0.92))
 
 	func _draw_box_obstacles(center: Vector2, radius: float, color: Color) -> void:
 		for obstacle in box_obstacles:

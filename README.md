@@ -217,6 +217,8 @@ Without overwriting historic V1/V2/V3 checkpoints, metrics, or failures, the pro
 
 Godot 当前双体无人艇还接入了与 5.7 m 程序化船体几何一致的专用 `taoyuan_catamaran_usv_3dof_twin_waterjet_v2`：纵荡、横荡、艏摇、刚体惯量、附加质量、线性/二次阻尼、双喷水推进器差速、推力矢量、执行器迟滞/速率限制、流/风/浪和 RK4 子步积分均进入实时运动与遥测；船体碰撞包络也由旧小胶囊改为 2.95 × 1.5 × 5.7 m 定向实体。16 项软件验收通过，但参数仍是依据当前几何建立的参考值，`named_vessel_dynamics_calibrated=false`，不能替代水池/海试辨识。运行 `make godot-catamaran-hydrodynamics GODOT=/path/to/Godot` 可复核。
 
+默认人工驾驶保留三自由度模型，晴天按平静水面调整推进、横荡和首摇阻尼，参考最高航速约十一米每秒（二十一点四节），并将浪高、浪向和周期联动到可见水面；雷达中的固定大型岩体显示为地形轮廓，不再使用容易误解的方块目标。
+
 > 当前明确状态：`named_vessel_dynamics_calibrated=false`、`colreg_certified=false`、`physical_hil_verified=false`、`real_vessel_sea_trial_completed=false`、`production_authority=false`。软件层完善不冒充指定船舶标定、正式法规认证、真实硬件或实船证据。<br>
 > Explicit current status: `named_vessel_dynamics_calibrated=false`, `colreg_certified=false`, `physical_hil_verified=false`, `real_vessel_sea_trial_completed=false`, and `production_authority=false`. Software assurance is never represented as named-vessel calibration, formal certification, physical hardware, or real-vessel evidence.
 
@@ -296,7 +298,7 @@ Run the main scene and press `H` to open the total-control hub, where the bundle
 | `O` | 小懿全系统助手 | “小懿全系统助手” |
 | `G` / `K` / `T` | 场景切换 / 测试轨迹回放 / 昼夜天气循环 | 主 HUD 快捷键提示 |
 
-主船使用方向键产生航行输入，`A/D` 环绕相机、`R/F` 调整俯仰。自动化测试会加载 `main.tscn`，检查默认晴天、双体无人艇结构、十一个核心 UI 字母键、`H` 总控冻结策略播放、系统总览中的模块连接、十算法前端/后端清单，并分别通过后端指令与方向键驱动主船。当前 UI 冒烟测试 **42/42** 通过；结果写入 `reports/godot_ui_navigation_smoke_v1.json`。
+主船使用方向键产生航行输入，`A/D` 环绕相机、`R/F` 调整俯仰。自动化测试会加载 `main.tscn`，检查默认晴天、双体无人艇结构、十一个核心 UI 字母键、`H` 总控冻结策略播放、系统总览中的模块连接、十算法前端/后端清单，并分别通过后端指令与方向键驱动主船。当前 UI 冒烟测试 **45/45** 通过；结果写入 `reports/godot_ui_navigation_smoke_v1.json`。
 
 ## 命令行训练 / Command-line training
 

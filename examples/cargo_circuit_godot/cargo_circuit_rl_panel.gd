@@ -77,6 +77,7 @@ func _ready() -> void:
 	_resolve_replay_controller()
 	_apply_presentation_selection()
 	_load_latest_run()
+	_apply_training_package_boundary()
 	set_process(true)
 	set_process_unhandled_input(true)
 
@@ -419,6 +420,9 @@ func _build_interface() -> void:
 
 
 func _on_manual_gate_pressed() -> void:
+	if not _manual_gate_package_ready():
+		_show_training_package_blocked("人工可达性验收")
+		return
 	if _process_id > 0:
 		return
 	_operation = "manual_feasibility"
@@ -440,6 +444,9 @@ func _on_manual_gate_pressed() -> void:
 
 
 func _on_train_pressed() -> void:
+	if not _static_training_package_ready():
+		_show_training_package_blocked("静态策略训练")
+		return
 	if _process_id > 0:
 		return
 	var stamp := Time.get_datetime_string_from_system().replace("-", "").replace(":", "").replace("T", "_")
@@ -516,6 +523,9 @@ func _on_test_pressed() -> void:
 
 
 func _start_evaluation(split_name: String) -> void:
+	if not _static_training_package_ready():
+		_show_training_package_blocked("%s split 复评" % split_name)
+		return
 	if _process_id > 0:
 		return
 	var checkpoint := _active_checkpoint()
@@ -569,6 +579,9 @@ func _on_manual_play_pressed() -> void:
 
 
 func _on_dynamic_test_pressed() -> void:
+	if not _dynamic_training_package_ready():
+		_show_training_package_blocked("动态策略重测")
+		return
 	if _process_id > 0:
 		return
 	var stamp := Time.get_datetime_string_from_system().replace("-", "").replace(":", "").replace("T", "_")
@@ -711,12 +724,63 @@ func _apply_progress(data: Dictionary) -> void:
 
 
 func _set_buttons_enabled(enabled: bool) -> void:
-	_manual_gate_button.disabled = not enabled
-	_train_button.disabled = not enabled
-	_validation_button.disabled = not enabled
-	_test_button.disabled = not enabled
+	_manual_gate_button.disabled = not enabled or not _manual_gate_package_ready()
+	_train_button.disabled = not enabled or not _static_training_package_ready()
+	_validation_button.disabled = not enabled or not _static_training_package_ready()
+	_test_button.disabled = not enabled or not _static_training_package_ready()
 	_play_button.disabled = not enabled
-	_dynamic_test_button.disabled = not enabled
+	_dynamic_test_button.disabled = not enabled or not _dynamic_training_package_ready()
+
+
+func _manual_gate_package_ready() -> bool:
+	return FileAccess.file_exists(CONFIG_PATH) and FileAccess.file_exists(MANUAL_FEASIBILITY_SCRIPT)
+
+
+func _static_training_package_ready() -> bool:
+	return FileAccess.file_exists(CONFIG_PATH) \
+		and FileAccess.file_exists(TRAINING_SCRIPT) \
+		and FileAccess.file_exists(MANUAL_FEASIBILITY_REPORT)
+
+
+func _dynamic_training_package_ready() -> bool:
+	return FileAccess.file_exists(DYNAMIC_CONFIG_PATH) \
+		and FileAccess.file_exists(TRAINING_SCRIPT) \
+		and FileAccess.file_exists(DYNAMIC_RELEASE_CHECKPOINT)
+
+
+func _show_training_package_blocked(action_name: String) -> void:
+	_status_label.text = (
+		"● BLOCKED  %s不可用：当前为公开证据回放模式，精确任务配置与本地重训练包未安装"
+		% action_name
+	)
+
+
+func _apply_training_package_boundary() -> void:
+	_set_buttons_enabled(true)
+	var static_ready := _static_training_package_ready()
+	var dynamic_ready := _dynamic_training_package_ready()
+	var manual_ready := _manual_gate_package_ready()
+	_manual_gate_button.tooltip_text = (
+		"重新运行人工可达性验收"
+		if manual_ready
+		else "公开证据回放模式：本地人工验收脚本或精确任务配置未安装"
+	)
+	_train_button.tooltip_text = (
+		"启动真实无渲染训练"
+		if static_ready
+		else "公开证据回放模式：本地精确任务配置或人工准入报告未安装"
+	)
+	_validation_button.tooltip_text = _train_button.tooltip_text
+	_test_button.tooltip_text = _train_button.tooltip_text
+	_dynamic_test_button.tooltip_text = (
+		"重新评测动态交通策略"
+		if dynamic_ready
+		else "公开证据回放模式：动态任务配置未安装"
+	)
+	if not static_ready or not dynamic_ready or not manual_ready:
+		_status_label.text = (
+			"● READ-ONLY EVIDENCE  冻结 TEST 策略可回放；本地重训练/复评按钮已按缺失依赖 fail-closed"
+		)
 
 
 func _write_latest_manifest() -> void:

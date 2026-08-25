@@ -283,6 +283,7 @@ func _build_record_tab() -> Control:
 	_strategy_option.add_item("自动识别", 0)
 	_strategy_option.add_item("人工驾驶", 1)
 	_strategy_option.add_item("RL策略", 2)
+	_strategy_option.item_selected.connect(_on_strategy_option_selected)
 	top_row.add_child(_strategy_option)
 
 	var start_button := _make_button("开始记录")
@@ -445,6 +446,18 @@ func _start_recording() -> void:
 	_sample_timer = 0.0
 	_update_label("record_state", "REC", COLOR_GREEN)
 	_update_label("mode_pill", _active_strategy_label, COLOR_ACCENT)
+
+
+func _on_strategy_option_selected(_index: int) -> void:
+	if _strategy_option == null:
+		return
+	var selected_key := "human"
+	if _strategy_option.selected == 2:
+		selected_key = "rl"
+	elif _strategy_option.selected == 0:
+		var ship := _get_active_ship()
+		selected_key = _selected_strategy_key(_get_ship_telemetry(ship)) if ship != null else "human"
+	_update_label("mode_pill", _strategy_label(selected_key), COLOR_ACCENT)
 
 
 func _stop_recording() -> void:

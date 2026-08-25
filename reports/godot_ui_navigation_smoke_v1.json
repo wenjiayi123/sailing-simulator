@@ -3,14 +3,14 @@
 	"checks": {
 		"basic_navigation_forward_motion": {
 			"detail": {
-				"displacement_m": 7.61410522460938,
-				"speed_mps": 4.71583986282349
+				"displacement_m": 7.60466957092285,
+				"speed_mps": 4.7178692817688
 			},
 			"passed": true
 		},
 		"basic_navigation_rudder_response": {
 			"detail": {
-				"heading_change_radians": 0.593361679707662
+				"heading_change_radians": 0.591599051152365
 			},
 			"passed": true
 		},
@@ -27,7 +27,7 @@
 			"passed": true
 		},
 		"button_port_contract_validator": {
-			"detail": "已启动真实契约校验进程 PID 28539；结果写入终端与报告。",
+			"detail": "契约校验通过：409任务 / 85,435 AIS行 / 137 MMSI；research-ready=true，live-control=false。",
 			"passed": true
 		},
 		"button_review": {
@@ -77,7 +77,7 @@
 			"detail": {
 				"algorithm": "sac",
 				"dataset_split": "test",
-				"displacement_m": 218.238510131836,
+				"displacement_m": 218.281707763672,
 				"trained_rl": true
 			},
 			"passed": true
@@ -132,7 +132,7 @@
 		},
 		"human_navigation_input_motion": {
 			"detail": {
-				"displacement_m": 2.69955086708069
+				"displacement_m": 2.70079040527344
 			},
 			"passed": true
 		},
@@ -214,7 +214,7 @@
 		}
 	},
 	"errors": [],
-	"generated_at": "2026-08-24T05:00:31",
+	"generated_at": "2026-08-25T02:47:09",
 	"passed": true,
 	"passed_checks": 42,
 	"schema_version": "godot_ui_navigation_smoke_v1",

@@ -83,6 +83,8 @@ REQUIRED_FILES = (
     "reports/godot_acceptance_v1.json",
     "reports/godot_acceptance_v3.json",
     "reports/godot_ui_navigation_smoke_v1.json",
+    "reports/godot_button_inventory_v1.json",
+    "reports/godot_button_interaction_smoke_v1.json",
     "reports/godot_safety_strategy_smoke_v3.json",
     "reports/simulator_reliability_audit_v1.json",
     "reports/simulator_reliability_audit_v1.md",
@@ -100,6 +102,9 @@ REQUIRED_FILES = (
     "tools/run_nonmutating_deep_verify.py",
     "tools/audit_safety_supervisor_utility_v3.py",
     "tools/run_maritime_assurance.py",
+    "tools/godot_button_inventory.gd",
+    "tools/godot_button_interaction_smoke.gd",
+    "tools/run_cargo_collision_regression.py",
     "tools/evaluate_sea_trial.py",
     "tests/test_maritime_assurance.py",
 )

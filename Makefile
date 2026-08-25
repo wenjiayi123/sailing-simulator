@@ -1,7 +1,7 @@
 PYTHON ?= .venv/bin/python
 GODOT ?= godot
 
-.PHONY: setup run editor quick-check privacy-scan test benchmark-verify benchmark-deep-verify port-contract-verify port-benchmark-verify port-benchmark-deep-verify safety-benchmark-verify safety-benchmark-deep-verify safety-utility-audit safety-utility-audit-verify maritime-assurance maritime-assurance-verify reliability-audit reliability-audit-v3 research-release research-release-verify release-check godot-check godot-acceptance godot-ui-navigation-smoke godot-safety-strategy-smoke godot-large-rock-training-contract godot-catamaran-hydrodynamics godot-cargo-collision-smoke
+.PHONY: setup run editor quick-check privacy-scan test benchmark-verify benchmark-deep-verify port-contract-verify port-benchmark-verify port-benchmark-deep-verify safety-benchmark-verify safety-benchmark-deep-verify safety-utility-audit safety-utility-audit-verify maritime-assurance maritime-assurance-verify reliability-audit reliability-audit-v3 research-release research-release-verify release-check godot-check godot-acceptance godot-button-inventory godot-button-interaction-smoke godot-ui-navigation-smoke godot-safety-strategy-smoke godot-large-rock-training-contract godot-catamaran-hydrodynamics godot-cargo-collision-smoke
 
 setup:
 	bash tools/setup_rl_env.sh
@@ -81,6 +81,12 @@ godot-check:
 godot-acceptance:
 	$(PYTHON) tools/run_godot_acceptance.py --godot "$(GODOT)"
 
+godot-button-inventory:
+	$(GODOT) --headless --path . --script res://tools/godot_button_inventory.gd
+
+godot-button-interaction-smoke: godot-button-inventory
+	$(GODOT) --headless --path . --script res://tools/godot_button_interaction_smoke.gd
+
 godot-ui-navigation-smoke:
 	$(GODOT) --headless --path . --script res://tools/godot_ui_navigation_smoke.gd
 
@@ -94,7 +100,4 @@ godot-catamaran-hydrodynamics:
 	$(GODOT) --headless --path . --script res://tools/catamaran_hydrodynamics_smoke.gd
 
 godot-cargo-collision-smoke:
-	$(GODOT) --headless --path . --script res://tools/large_rock_training_contract_smoke.gd
-	$(GODOT) --headless --path . --script res://tools/large_rock_collision_audit.gd
-	$(GODOT) --headless --path . --script res://tools/cargo_circuit_godot_smoke.gd
-	$(GODOT) --headless --path . --script res://tools/cargo_circuit_full_replay_smoke.gd
+	$(PYTHON) tools/run_cargo_collision_regression.py --godot "$(GODOT)"

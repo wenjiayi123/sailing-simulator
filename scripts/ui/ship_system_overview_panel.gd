@@ -502,14 +502,35 @@ func _validate_port_contract() -> void:
 	var python_path := ProjectSettings.globalize_path("res://.venv/bin/python")
 	var script_path := ProjectSettings.globalize_path("res://tools/validate_port_package.py")
 	var data_path := ProjectSettings.globalize_path("res://data/rl/long_beach_ais_port_ops_benchmark_v2.json")
+	if not FileAccess.file_exists(python_path):
+		_status_label.text = "契约校验阻断：项目 Python 环境未安装。"
+		return
+	if not FileAccess.file_exists(script_path):
+		_status_label.text = "契约校验阻断：校验程序缺失。"
+		return
 	if not FileAccess.file_exists(data_path):
 		_status_label.text = "v2 数据包尚未生成；请先运行公开数据构建命令。"
 		return
-	var process_id := OS.create_process(
+	var output: Array = []
+	var exit_code := OS.execute(
 		python_path,
-		PackedStringArray([script_path, data_path, "--require-research-ready"])
+		PackedStringArray([script_path, data_path, "--require-research-ready"]),
+		output,
+		true,
+		false,
 	)
-	_status_label.text = "已启动真实契约校验进程 PID %d；结果写入终端与报告。" % process_id
+	if exit_code != 0:
+		_status_label.text = "契约校验阻断：exit=%d；数据未满足 research-ready 门槛。" % exit_code
+		return
+	var report := _read_json("res://reports/port_dataset_contract_v2.json")
+	_status_label.text = (
+		"契约校验通过：%d任务 / %s AIS行 / %s MMSI；research-ready=true，live-control=false。"
+		% [
+			int(report.get("task_count", 0)),
+			_format_integer(int(report.get("filtered_ais_rows", 0))),
+			_format_integer(int(report.get("distinct_mmsi", 0))),
+		]
+	)
 
 
 func _capture_current_view() -> void:

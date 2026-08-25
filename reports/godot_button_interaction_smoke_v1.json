@@ -1,0 +1,1316 @@
+{
+	"boundary": "Runtime action-outcome regression for every visible button group. The short LOS-PID process is immediately terminated after launch to verify busy-state/termination wiring; it is not convergence or sea-trial evidence.",
+	"checks": {
+		"ais_close": {
+			"detail": false,
+			"passed": true
+		},
+		"ais_follow": {
+			"detail": "ShipAgent_02",
+			"passed": true
+		},
+		"ais_rows": {
+			"detail": [
+				2,
+				2
+			],
+			"passed": true
+		},
+		"ais_select": {
+			"detail": "ShipAgent_02",
+			"passed": true
+		},
+		"cargo_algorithm_options": {
+			"detail": [
+				"sac",
+				"ppo",
+				"td3",
+				"a2c",
+				"ddpg",
+				"tqc",
+				"trpo"
+			],
+			"passed": true
+		},
+		"cargo_camera_0": {
+			"detail": {
+				"active": false,
+				"algorithm": "--",
+				"camera_mode": "auto_follow",
+				"dataset_split": "",
+				"dynamic_marker_count": 0,
+				"dynamic_obstacle_count": 0,
+				"elapsed_seconds": 0.0,
+				"format": "",
+				"large_rock_replay_guard_blocks": 0,
+				"last_result": {},
+				"module": "cargo_circuit_rl",
+				"playback_speed": 3.0,
+				"progress": 0.0,
+				"sample_count": 0,
+				"sample_index": 0,
+				"trained_rl": false,
+				"visual_mode": "procedural_usv"
+			},
+			"passed": true
+		},
+		"cargo_camera_1": {
+			"detail": {
+				"active": false,
+				"algorithm": "--",
+				"camera_mode": "free_camera",
+				"dataset_split": "",
+				"dynamic_marker_count": 0,
+				"dynamic_obstacle_count": 0,
+				"elapsed_seconds": 0.0,
+				"format": "",
+				"large_rock_replay_guard_blocks": 0,
+				"last_result": {},
+				"module": "cargo_circuit_rl",
+				"playback_speed": 3.0,
+				"progress": 0.0,
+				"sample_count": 0,
+				"sample_index": 0,
+				"trained_rl": false,
+				"visual_mode": "procedural_usv"
+			},
+			"passed": true
+		},
+		"cargo_close": {
+			"detail": false,
+			"passed": true
+		},
+		"cargo_open_AIS 船队态势": {
+			"detail": true,
+			"passed": true
+		},
+		"cargo_open_小懿系统助手": {
+			"detail": true,
+			"passed": true
+		},
+		"cargo_open_海况与时间": {
+			"detail": true,
+			"passed": true
+		},
+		"cargo_open_系统与指标总览": {
+			"detail": true,
+			"passed": true
+		},
+		"cargo_open_航线规划": {
+			"detail": true,
+			"passed": true
+		},
+		"cargo_open_训练与仿真复盘": {
+			"detail": true,
+			"passed": true
+		},
+		"cargo_open_进入 RL 训练中心": {
+			"detail": true,
+			"passed": true
+		},
+		"cargo_open_风险决策": {
+			"detail": true,
+			"passed": true
+		},
+		"cargo_present": {
+			"detail": "CargoCircuitRLPanel:<CanvasLayer#72997670054>",
+			"passed": true
+		},
+		"cargo_private_boundary_0  人工物理可达性验收": {
+			"detail": "公开证据回放模式：本地人工验收脚本或精确任务配置未安装",
+			"passed": true
+		},
+		"cargo_private_boundary_1  启动无渲染训练": {
+			"detail": "公开证据回放模式：本地精确任务配置或人工准入报告未安装",
+			"passed": true
+		},
+		"cargo_private_boundary_2  验证策略（不渲染）": {
+			"detail": "公开证据回放模式：本地精确任务配置或人工准入报告未安装",
+			"passed": true
+		},
+		"cargo_private_boundary_3  测试并生成可视化": {
+			"detail": "公开证据回放模式：本地精确任务配置或人工准入报告未安装",
+			"passed": true
+		},
+		"cargo_private_boundary_4  重测动态策略（无渲染→播放）": {
+			"detail": "公开证据回放模式：动态任务配置未安装",
+			"passed": true
+		},
+		"cargo_private_guard_0  人工物理可达性验收": {
+			"detail": "● BLOCKED  人工可达性验收不可用：当前为公开证据回放模式，精确任务配置与本地重训练包未安装",
+			"passed": true
+		},
+		"cargo_private_guard_1  启动无渲染训练": {
+			"detail": "● BLOCKED  静态策略训练不可用：当前为公开证据回放模式，精确任务配置与本地重训练包未安装",
+			"passed": true
+		},
+		"cargo_private_guard_2  验证策略（不渲染）": {
+			"detail": "● BLOCKED  validation split 复评不可用：当前为公开证据回放模式，精确任务配置与本地重训练包未安装",
+			"passed": true
+		},
+		"cargo_private_guard_3  测试并生成可视化": {
+			"detail": "● BLOCKED  test split 复评不可用：当前为公开证据回放模式，精确任务配置与本地重训练包未安装",
+			"passed": true
+		},
+		"cargo_private_guard_4  重测动态策略（无渲染→播放）": {
+			"detail": "● BLOCKED  动态策略重测不可用：当前为公开证据回放模式，精确任务配置与本地重训练包未安装",
+			"passed": true
+		},
+		"cargo_return_AIS 船队态势": {
+			"detail": true,
+			"passed": true
+		},
+		"cargo_return_小懿系统助手": {
+			"detail": true,
+			"passed": true
+		},
+		"cargo_return_海况与时间": {
+			"detail": true,
+			"passed": true
+		},
+		"cargo_return_系统与指标总览": {
+			"detail": true,
+			"passed": true
+		},
+		"cargo_return_航线规划": {
+			"detail": true,
+			"passed": true
+		},
+		"cargo_return_训练与仿真复盘": {
+			"detail": true,
+			"passed": true
+		},
+		"cargo_return_进入 RL 训练中心": {
+			"detail": true,
+			"passed": true
+		},
+		"cargo_return_风险决策": {
+			"detail": true,
+			"passed": true
+		},
+		"cargo_speed_1x": {
+			"detail": {
+				"active": false,
+				"algorithm": "--",
+				"camera_mode": "free_camera",
+				"dataset_split": "test",
+				"dynamic_marker_count": 0,
+				"dynamic_obstacle_count": 0,
+				"elapsed_seconds": 0.0,
+				"format": "cargo_circuit_manual_feasibility_rollout_v1",
+				"large_rock_replay_guard_blocks": 0,
+				"last_result": {},
+				"module": "cargo_circuit_rl",
+				"playback_speed": 1.0,
+				"progress": 0.0,
+				"sample_count": 2027,
+				"sample_index": 0,
+				"trained_rl": false,
+				"visual_mode": "procedural_usv"
+			},
+			"passed": true
+		},
+		"cargo_speed_3x": {
+			"detail": {
+				"active": false,
+				"algorithm": "--",
+				"camera_mode": "free_camera",
+				"dataset_split": "test",
+				"dynamic_marker_count": 0,
+				"dynamic_obstacle_count": 0,
+				"elapsed_seconds": 0.0,
+				"format": "cargo_circuit_manual_feasibility_rollout_v1",
+				"large_rock_replay_guard_blocks": 0,
+				"last_result": {},
+				"module": "cargo_circuit_rl",
+				"playback_speed": 3.0,
+				"progress": 0.0,
+				"sample_count": 2027,
+				"sample_index": 0,
+				"trained_rl": false,
+				"visual_mode": "procedural_usv"
+			},
+			"passed": true
+		},
+		"cargo_speed_5x": {
+			"detail": {
+				"active": false,
+				"algorithm": "--",
+				"camera_mode": "free_camera",
+				"dataset_split": "test",
+				"dynamic_marker_count": 0,
+				"dynamic_obstacle_count": 0,
+				"elapsed_seconds": 0.0,
+				"format": "cargo_circuit_manual_feasibility_rollout_v1",
+				"large_rock_replay_guard_blocks": 0,
+				"last_result": {},
+				"module": "cargo_circuit_rl",
+				"playback_speed": 5.0,
+				"progress": 0.0,
+				"sample_count": 2027,
+				"sample_index": 0,
+				"trained_rl": false,
+				"visual_mode": "procedural_usv"
+			},
+			"passed": true
+		},
+		"cargo_stop_restore": {
+			"detail": {
+				"active": false,
+				"algorithm": "--",
+				"camera_mode": "free_camera",
+				"dataset_split": "test",
+				"dynamic_marker_count": 0,
+				"dynamic_obstacle_count": 0,
+				"elapsed_seconds": 0.0,
+				"format": "cargo_circuit_manual_feasibility_rollout_v1",
+				"large_rock_replay_guard_blocks": 0,
+				"last_result": {},
+				"module": "cargo_circuit_rl",
+				"playback_speed": 5.0,
+				"progress": 0.0,
+				"sample_count": 2027,
+				"sample_index": 0,
+				"trained_rl": false,
+				"visual_mode": "procedural_usv"
+			},
+			"passed": true
+		},
+		"cargo_strategy_0_replay": {
+			"detail": {
+				"active": true,
+				"algorithm": "sac",
+				"camera_mode": "free_camera",
+				"dataset_split": "test",
+				"dynamic_marker_count": 0,
+				"dynamic_obstacle_count": 0,
+				"elapsed_seconds": 0.0,
+				"format": "cargo_circuit_test_rollout_v1",
+				"large_rock_replay_guard_blocks": 0,
+				"last_result": {},
+				"module": "cargo_circuit_rl",
+				"playback_speed": 3.0,
+				"progress": 0.0,
+				"sample_count": 712,
+				"sample_index": 0,
+				"trained_rl": true,
+				"visual_mode": "procedural_usv"
+			},
+			"passed": true
+		},
+		"cargo_strategy_1_replay": {
+			"detail": {
+				"active": true,
+				"algorithm": "sac",
+				"camera_mode": "free_camera",
+				"dataset_split": "test",
+				"dynamic_marker_count": 6,
+				"dynamic_obstacle_count": 6,
+				"elapsed_seconds": 0.0,
+				"format": "cargo_circuit_dynamic_test_rollout_v2",
+				"large_rock_replay_guard_blocks": 0,
+				"last_result": {},
+				"module": "cargo_circuit_dynamic_rl",
+				"playback_speed": 3.0,
+				"progress": 0.0,
+				"sample_count": 696,
+				"sample_index": 0,
+				"trained_rl": true,
+				"visual_mode": "procedural_usv"
+			},
+			"passed": true
+		},
+		"cargo_strategy_2_replay": {
+			"detail": {
+				"active": true,
+				"algorithm": "--",
+				"camera_mode": "free_camera",
+				"dataset_split": "test",
+				"dynamic_marker_count": 0,
+				"dynamic_obstacle_count": 0,
+				"elapsed_seconds": 0.0,
+				"format": "cargo_circuit_manual_feasibility_rollout_v1",
+				"large_rock_replay_guard_blocks": 0,
+				"last_result": {},
+				"module": "cargo_circuit_rl",
+				"playback_speed": 3.0,
+				"progress": 0.0,
+				"sample_count": 2027,
+				"sample_index": 0,
+				"trained_rl": false,
+				"visual_mode": "procedural_usv"
+			},
+			"passed": true
+		},
+		"instructor_close": {
+			"detail": false,
+			"passed": true
+		},
+		"instructor_continue": {
+			"detail": false,
+			"passed": true
+		},
+		"instructor_incident_动力故障": {
+			"detail": 3,
+			"passed": true
+		},
+		"instructor_incident_搁浅": {
+			"detail": 2,
+			"passed": true
+		},
+		"instructor_incident_碰撞": {
+			"detail": 1,
+			"passed": true
+		},
+		"instructor_incident_舵机故障": {
+			"detail": 4,
+			"passed": true
+		},
+		"instructor_obstacle_add": {
+			"detail": [
+				38,
+				39
+			],
+			"passed": true
+		},
+		"instructor_obstacle_clear": {
+			"detail": [
+				38,
+				38
+			],
+			"passed": true
+		},
+		"instructor_pause": {
+			"detail": true,
+			"passed": true
+		},
+		"instructor_pill_run": {
+			"detail": true,
+			"passed": true
+		},
+		"instructor_pill_scene": {
+			"detail": {
+				"data_profile": "航行模拟器默认水域配置",
+				"data_source": {
+					"license": "same_as_project",
+					"observed_port_data": false,
+					"type": "project_native_geometry"
+				},
+				"description": "OPEN WATER ROUTE",
+				"index": 0,
+				"key": "open_water",
+				"name": "开放水域",
+				"profile_path": "res://data/ports/default_port_profile.json"
+			},
+			"passed": true
+		},
+		"instructor_pill_ship": {
+			"detail": "Player",
+			"passed": true
+		},
+		"instructor_pill_weather": {
+			"detail": {
+				"base_time": "10:20",
+				"current_direction_degrees": 65.0,
+				"current_speed_knots": 0.4,
+				"current_vector": "(0.186498, 0.0, 0.086965)",
+				"data_source": "scenario_override",
+				"data_status": "manual_scenario",
+				"fetched_at": "",
+				"index": 0,
+				"key": "clear",
+				"name": "晴天",
+				"observed_at": "",
+				"public_location": {
+					"latitude": 1.2644,
+					"longitude": 103.8223
+				},
+				"sea_state_label": "CALM",
+				"tide_meters": 0.2,
+				"time": "10:20",
+				"time_scale": 1.0,
+				"visibility": "20.0 km",
+				"visibility_km": 20.0,
+				"wave_direction_degrees": 54.0,
+				"wave_height_meters": 0.4,
+				"wave_period_seconds": 5.5,
+				"weather": "CLEAR SKY",
+				"wind_direction_degrees": 38.0,
+				"wind_speed_knots": 6.0
+			},
+			"passed": true
+		},
+		"instructor_report": {
+			"detail": "user://ship_instructor_report.json",
+			"passed": true
+		},
+		"instructor_reset_controlled": {
+			"detail": 0.0,
+			"passed": true
+		},
+		"instructor_reset_fleet": {
+			"detail": 2,
+			"passed": true
+		},
+		"instructor_scene_开放水域": {
+			"detail": {
+				"data_profile": "航行模拟器默认水域配置",
+				"data_source": {
+					"license": "same_as_project",
+					"observed_port_data": false,
+					"type": "project_native_geometry"
+				},
+				"description": "OPEN WATER ROUTE",
+				"index": 0,
+				"key": "open_water",
+				"name": "开放水域",
+				"profile_path": "res://data/ports/default_port_profile.json"
+			},
+			"passed": true
+		},
+		"instructor_scene_简易港口": {
+			"detail": {
+				"data_profile": "航行模拟器默认水域配置",
+				"data_source": {
+					"license": "same_as_project",
+					"observed_port_data": false,
+					"type": "project_native_geometry"
+				},
+				"description": "PORT PILOTAGE DATA PROFILE",
+				"index": 1,
+				"key": "harbor",
+				"name": "港口引航水域",
+				"profile_path": "res://data/ports/default_port_profile.json"
+			},
+			"passed": true
+		},
+		"instructor_speed_0.5": {
+			"detail": 0.5,
+			"passed": true
+		},
+		"instructor_speed_1.0": {
+			"detail": 1.0,
+			"passed": true
+		},
+		"instructor_speed_2.0": {
+			"detail": 2.0,
+			"passed": true
+		},
+		"instructor_speed_4.0": {
+			"detail": 4.0,
+			"passed": true
+		},
+		"instructor_weather_夜航": {
+			"detail": {
+				"base_time": "22:30",
+				"current_direction_degrees": 128.0,
+				"current_speed_knots": 1.4,
+				"current_vector": "(0.567542, 0.0, -0.443413)",
+				"data_source": "scenario_override",
+				"data_status": "manual_scenario",
+				"fetched_at": "",
+				"index": 3,
+				"key": "night",
+				"name": "夜晚",
+				"observed_at": "",
+				"public_location": {
+					"latitude": 1.2644,
+					"longitude": 103.8223
+				},
+				"sea_state_label": "LIGHT SEA",
+				"tide_meters": 1.0,
+				"time": "22:30",
+				"time_scale": 1.0,
+				"visibility": "4.0 km",
+				"visibility_km": 4.0,
+				"wave_direction_degrees": 138.0,
+				"wave_height_meters": 1.6,
+				"wave_period_seconds": 7.8,
+				"weather": "NIGHT OPS",
+				"wind_direction_degrees": 126.0,
+				"wind_speed_knots": 18.0
+			},
+			"passed": true
+		},
+		"instructor_weather_晴天": {
+			"detail": {
+				"base_time": "10:20",
+				"current_direction_degrees": 65.0,
+				"current_speed_knots": 0.4,
+				"current_vector": "(0.186498, 0.0, 0.086965)",
+				"data_source": "scenario_override",
+				"data_status": "manual_scenario",
+				"fetched_at": "",
+				"index": 0,
+				"key": "clear",
+				"name": "晴天",
+				"observed_at": "",
+				"public_location": {
+					"latitude": 1.2644,
+					"longitude": 103.8223
+				},
+				"sea_state_label": "CALM",
+				"tide_meters": 0.2,
+				"time": "10:20",
+				"time_scale": 1.0,
+				"visibility": "20.0 km",
+				"visibility_km": 20.0,
+				"wave_direction_degrees": 54.0,
+				"wave_height_meters": 0.4,
+				"wave_period_seconds": 5.5,
+				"weather": "CLEAR SKY",
+				"wind_direction_degrees": 38.0,
+				"wind_speed_knots": 6.0
+			},
+			"passed": true
+		},
+		"instructor_weather_薄雾": {
+			"detail": {
+				"base_time": "07:40",
+				"current_direction_degrees": 42.0,
+				"current_speed_knots": 0.7,
+				"current_vector": "(0.240961, 0.0, 0.267614)",
+				"data_source": "scenario_override",
+				"data_status": "manual_scenario",
+				"fetched_at": "",
+				"index": 1,
+				"key": "mist",
+				"name": "薄雾",
+				"observed_at": "",
+				"public_location": {
+					"latitude": 1.2644,
+					"longitude": 103.8223
+				},
+				"sea_state_label": "LIGHT SEA",
+				"tide_meters": 0.4,
+				"time": "07:40",
+				"time_scale": 1.0,
+				"visibility": "2.5 km",
+				"visibility_km": 2.5,
+				"wave_direction_degrees": 61.0,
+				"wave_height_meters": 0.8,
+				"wave_period_seconds": 6.2,
+				"weather": "LIGHT MIST",
+				"wind_direction_degrees": 52.0,
+				"wind_speed_knots": 10.0
+			},
+			"passed": true
+		},
+		"instructor_weather_黄昏": {
+			"detail": {
+				"base_time": "18:35",
+				"current_direction_degrees": 102.0,
+				"current_speed_knots": 1.1,
+				"current_vector": "(0.553522, 0.0, -0.117655)",
+				"data_source": "scenario_override",
+				"data_status": "manual_scenario",
+				"fetched_at": "",
+				"index": 2,
+				"key": "dusk",
+				"name": "黄昏",
+				"observed_at": "",
+				"public_location": {
+					"latitude": 1.2644,
+					"longitude": 103.8223
+				},
+				"sea_state_label": "LIGHT SEA",
+				"tide_meters": 0.7,
+				"time": "18:35",
+				"time_scale": 1.0,
+				"visibility": "8.0 km",
+				"visibility_km": 8.0,
+				"wave_direction_degrees": 96.0,
+				"wave_height_meters": 1.2,
+				"wave_period_seconds": 7.0,
+				"weather": "DUSK GLOW",
+				"wind_direction_degrees": 88.0,
+				"wind_speed_knots": 14.0
+			},
+			"passed": true
+		},
+		"main_scene_load": {
+			"detail": 0,
+			"passed": true
+		},
+		"main_scene_ready": {
+			"detail": "Main",
+			"passed": true
+		},
+		"navigation_apply_mission": {
+			"detail": {
+				"active": true,
+				"arrival_radius": 12.0,
+				"current_index": 0,
+				"loop": false,
+				"points": [
+					{
+						"active": true,
+						"name": "WP-01",
+						"position": "(-118.0, -140.05, -86.0)"
+					},
+					{
+						"active": false,
+						"name": "WP-02",
+						"position": "(-74.0, -140.05, -76.0)"
+					},
+					{
+						"active": false,
+						"name": "WP-03",
+						"position": "(-34.0, -140.05, -50.0)"
+					},
+					{
+						"active": false,
+						"name": "WP-04",
+						"position": "(14.0, -140.05, -33.0)"
+					},
+					{
+						"active": false,
+						"name": "WP-05",
+						"position": "(58.0, -140.05, -10.0)"
+					},
+					{
+						"active": false,
+						"name": "WP-06",
+						"position": "(82.0, -140.05, 30.0)"
+					}
+				]
+			},
+			"passed": true
+		},
+		"navigation_apply_settings": {
+			"detail": {
+				"active": true,
+				"arrival_radius": 12.0,
+				"current_index": 0,
+				"loop": true,
+				"points": [
+					{
+						"active": true,
+						"name": "WP-01",
+						"position": "(-118.0, -140.05, -86.0)"
+					},
+					{
+						"active": false,
+						"name": "WP-02",
+						"position": "(-74.0, -140.05, -76.0)"
+					},
+					{
+						"active": false,
+						"name": "WP-03",
+						"position": "(-34.0, -140.05, -50.0)"
+					},
+					{
+						"active": false,
+						"name": "WP-04",
+						"position": "(14.0, -140.05, -33.0)"
+					},
+					{
+						"active": false,
+						"name": "WP-05",
+						"position": "(58.0, -140.05, -10.0)"
+					},
+					{
+						"active": false,
+						"name": "WP-06",
+						"position": "(82.0, -140.05, 30.0)"
+					}
+				]
+			},
+			"passed": true
+		},
+		"navigation_close": {
+			"detail": false,
+			"passed": true
+		},
+		"navigation_export": {
+			"detail": "任务快照已导出: user://ship_navigation_plan.json",
+			"passed": true
+		},
+		"navigation_link_toggles": {
+			"detail": "联动选项已变更；点击“应用任务”后生效。",
+			"passed": true
+		},
+		"navigation_mission_0": {
+			"detail": "任务参数已载入；点击“应用任务”后才写入场景、船位与航线。",
+			"passed": true
+		},
+		"navigation_mission_1": {
+			"detail": "任务参数已载入；点击“应用任务”后才写入场景、船位与航线。",
+			"passed": true
+		},
+		"overview_advisor": {
+			"detail": "小懿建议：先比较 held-out test 的安全完成、碰撞/搁浅/COLREG/航道违例，再比较效率。",
+			"passed": true
+		},
+		"overview_boundary": {
+			"detail": "边界审查：历史 AIS + 公开 ENC 可做研究训练；实船控制需实时数据、官方航海产品、硬件联调与人工授权。",
+			"passed": true
+		},
+		"overview_close": {
+			"detail": false,
+			"passed": true
+		},
+		"overview_contract_receipt": {
+			"detail": "契约校验通过：409任务 / 85,435 AIS行 / 137 MMSI；research-ready=true，live-control=false。",
+			"passed": true
+		},
+		"overview_open_AIS 船队态势": {
+			"detail": [
+				"ShipAISFleetPanel"
+			],
+			"passed": true
+		},
+		"overview_open_小懿全系统助手": {
+			"detail": [
+				"ShipInstructorConsolePanel"
+			],
+			"passed": true
+		},
+		"overview_open_打开训练中心  ·  TRAINING CENTER": {
+			"detail": [
+				"ShipRLControlPanel"
+			],
+			"passed": true
+		},
+		"overview_open_打开训练结果复盘": {
+			"detail": [
+				"ShipSimulationReviewPanel"
+			],
+			"passed": true
+		},
+		"overview_open_航线规划 / 风险决策 / 海况": {
+			"detail": [
+				"ShipNavigationPlanningPanel",
+				"ShipRiskDecisionPanel",
+				"ShipWeatherSeaPanel"
+			],
+			"passed": true
+		},
+		"overview_present": {
+			"detail": "ShipSystemOverviewPanel:<CanvasLayer#72980892837>",
+			"passed": true
+		},
+		"review_clear": {
+			"detail": [],
+			"passed": true
+		},
+		"review_close": {
+			"detail": false,
+			"passed": true
+		},
+		"review_export": {
+			"detail": "EXPORTED",
+			"passed": true
+		},
+		"review_score": {
+			"detail": {
+				"average_deviation_meters": 0.0,
+				"average_speed_knots": 0.39,
+				"carbon_tons": 0.0,
+				"collision_count": 0,
+				"distance_nm": 0.0,
+				"efficiency_score": 100.0,
+				"elapsed_seconds": 0.0,
+				"emission_score": 100.0,
+				"fuel_estimate_model": {
+					"co2_tons_per_fuel_ton": 3.114,
+					"hotel_load_kw": 12.0,
+					"measured": false,
+					"name": "cubic_propulsion_sfoc_v1",
+					"reference_propulsion_power_kw": 180.0,
+					"reference_speed_knots": 12.0,
+					"specific_fuel_consumption_kg_per_kwh": 0.205
+				},
+				"fuel_tons": 0.0,
+				"grounding_count": 0,
+				"max_deviation_meters": 0.0,
+				"max_speed_knots": 0.39,
+				"notes": "航迹稳定，无重大扣分",
+				"risk_event_resolved_count": 0,
+				"route_score": 100.0,
+				"safety_score": 100.0,
+				"samples": [
+					{
+						"collision": false,
+						"deviation": 0.0,
+						"speed_knots": 0.39,
+						"t": 0.0,
+						"x": -147.99,
+						"z": -91.99
+					}
+				],
+				"score": 100.0,
+				"strategy_key": "rl",
+				"strategy_label": "RL策略",
+				"validation": {}
+			},
+			"passed": true
+		},
+		"review_start": {
+			"detail": true,
+			"passed": true
+		},
+		"review_strategy_0": {
+			"detail": "人工驾驶",
+			"passed": true
+		},
+		"review_strategy_1": {
+			"detail": "人工驾驶",
+			"passed": true
+		},
+		"review_strategy_2": {
+			"detail": "RL策略",
+			"passed": true
+		},
+		"risk_close": {
+			"detail": false,
+			"passed": true
+		},
+		"risk_refresh": {
+			"detail": "LOCAL LIVE",
+			"passed": true
+		},
+		"risk_保守": {
+			"detail": 72.0,
+			"passed": true
+		},
+		"risk_夜航": {
+			"detail": 86.0,
+			"passed": true
+		},
+		"risk_标准": {
+			"detail": 52.0,
+			"passed": true
+		},
+		"risk_港口": {
+			"detail": 34.0,
+			"passed": true
+		},
+		"rl_add_ship_mode": {
+			"detail": true,
+			"passed": true
+		},
+		"rl_algorithm_0_0": {
+			"detail": "已选择 PPO；训练仍只读取 train split，冻结策略回放或独立评估才读取 test split",
+			"passed": true
+		},
+		"rl_algorithm_0_1": {
+			"detail": "已选择 SAC；训练仍只读取 train split，冻结策略回放或独立评估才读取 test split",
+			"passed": true
+		},
+		"rl_algorithm_0_2": {
+			"detail": "已选择 TD3；训练仍只读取 train split，冻结策略回放或独立评估才读取 test split",
+			"passed": true
+		},
+		"rl_algorithm_0_3": {
+			"detail": "已选择 DQN；训练仍只读取 train split，冻结策略回放或独立评估才读取 test split",
+			"passed": true
+		},
+		"rl_algorithm_0_4": {
+			"detail": "已选择 LOS_PID；训练仍只读取 train split，冻结策略回放或独立评估才读取 test split",
+			"passed": true
+		},
+		"rl_algorithm_1_0": {
+			"detail": "已选择 PPO；训练仍只读取 train split，冻结策略回放或独立评估才读取 test split",
+			"passed": true
+		},
+		"rl_algorithm_1_1": {
+			"detail": "已选择 SAC；训练仍只读取 train split，冻结策略回放或独立评估才读取 test split",
+			"passed": true
+		},
+		"rl_algorithm_1_2": {
+			"detail": "已选择 TD3；训练仍只读取 train split，冻结策略回放或独立评估才读取 test split",
+			"passed": true
+		},
+		"rl_algorithm_1_3": {
+			"detail": "已选择 DQN；训练仍只读取 train split，冻结策略回放或独立评估才读取 test split",
+			"passed": true
+		},
+		"rl_algorithm_1_4": {
+			"detail": "已选择 A2C；训练仍只读取 train split，冻结策略回放或独立评估才读取 test split",
+			"passed": true
+		},
+		"rl_algorithm_1_5": {
+			"detail": "已选择 DDPG；训练仍只读取 train split，冻结策略回放或独立评估才读取 test split",
+			"passed": true
+		},
+		"rl_algorithm_1_6": {
+			"detail": "已选择 TRPO；训练仍只读取 train split，冻结策略回放或独立评估才读取 test split",
+			"passed": true
+		},
+		"rl_algorithm_1_7": {
+			"detail": "已选择 LOS_PID；训练仍只读取 train split，冻结策略回放或独立评估才读取 test split",
+			"passed": true
+		},
+		"rl_algorithm_1_8": {
+			"detail": "已选择 LQR；训练仍只读取 train split，冻结策略回放或独立评估才读取 test split",
+			"passed": true
+		},
+		"rl_algorithm_1_9": {
+			"detail": "已选择 MPC；训练仍只读取 train split，冻结策略回放或独立评估才读取 test split",
+			"passed": true
+		},
+		"rl_clone_for_delete": {
+			"detail": 3,
+			"passed": true
+		},
+		"rl_clone_keep": {
+			"detail": 2,
+			"passed": true
+		},
+		"rl_close": {
+			"detail": false,
+			"passed": true
+		},
+		"rl_dataset_0_algorithms": {
+			"detail": 5,
+			"passed": true
+		},
+		"rl_dataset_1_algorithms": {
+			"detail": 10,
+			"passed": true
+		},
+		"rl_delete": {
+			"detail": 2,
+			"passed": true
+		},
+		"rl_export_config": {
+			"detail": "已导出: user://rl_training_config.json",
+			"passed": true
+		},
+		"rl_frozen_replay": {
+			"detail": {
+				"active": true,
+				"algorithm": "ppo",
+				"avoidance_events": 0,
+				"avoidance_point": "(0.0, 0.0, 0.0)",
+				"collision_count": 0,
+				"control_tick": 0,
+				"elapsed_seconds": 0.0,
+				"last_result": {},
+				"last_rudder_command": 0.0,
+				"last_throttle_command": 0.0,
+				"max_route_deviation_meters": 0.0,
+				"minimum_clearance_meters": 9999.0,
+				"policy_phase": "ROUTE TRACKING",
+				"policy_replans": 0,
+				"progress": 0.0,
+				"sample_count": 391,
+				"sample_index": 0,
+				"threat_active": false,
+				"threat_name": "",
+				"trajectory_path": "res://reports/artifacts/navigation_benchmark_v1/ppo/test_trajectory.json"
+			},
+			"passed": true
+		},
+		"rl_next_ship": {
+			"detail": "Player",
+			"passed": true
+		},
+		"rl_overlay_close": {
+			"detail": false,
+			"passed": true
+		},
+		"rl_overlay_replay": {
+			"detail": {
+				"active": true,
+				"algorithm": "ppo",
+				"avoidance_events": 0,
+				"avoidance_point": "(0.0, 0.0, 0.0)",
+				"collision_count": 0,
+				"control_tick": 1,
+				"elapsed_seconds": 0.0166666666666667,
+				"last_result": {},
+				"last_rudder_command": 0.0,
+				"last_throttle_command": 0.0,
+				"max_route_deviation_meters": 0.00292386307189622,
+				"minimum_clearance_meters": 90.8327,
+				"policy_phase": "RECORDED TEST ACTION / 测试动作",
+				"policy_replans": 0,
+				"progress": 0.0,
+				"sample_count": 391,
+				"sample_index": 0,
+				"threat_active": false,
+				"threat_name": "",
+				"trajectory_path": "res://reports/artifacts/navigation_benchmark_v1/ppo/test_trajectory.json"
+			},
+			"passed": true
+		},
+		"rl_replay_stop": {
+			"detail": "策略回放已停止，已恢复人工操船",
+			"passed": true
+		},
+		"rl_setting_domain_randomization": {
+			"detail": 0.0,
+			"passed": true
+		},
+		"rl_setting_merge_scene_obstacles": {
+			"detail": 0.0,
+			"passed": true
+		},
+		"rl_setting_randomize_evaluation": {
+			"detail": 1.0,
+			"passed": true
+		},
+		"rl_setting_terminate_on_collision": {
+			"detail": 0.0,
+			"passed": true
+		},
+		"rl_settings_apply": {
+			"detail": "环境已应用并写入训练配置：rl_training_config.json；预览 terrain=1 obstacle=37",
+			"passed": true
+		},
+		"rl_settings_close": {
+			"detail": false,
+			"passed": true
+		},
+		"rl_settings_open": {
+			"detail": true,
+			"passed": true
+		},
+		"rl_settings_preview": {
+			"detail": "场景已显示训练安全包络：悬岩/地形 1，其他障碍 37，有效边界 772.8m",
+			"passed": true
+		},
+		"rl_settings_reset": {
+			"detail": {
+				"batch_size": 512.0,
+				"boundary_margin_m": 4.0,
+				"cliff_inflation_m": 8.0,
+				"clip_range": 0.18,
+				"current_direction_jitter_degrees": 10.0,
+				"current_speed_jitter_knots": 0.25,
+				"discount_gamma": 0.985,
+				"domain_randomization": 1.0,
+				"entropy_coef": 0.018,
+				"epsilon_decay_steps": 90000.0,
+				"epsilon_end": 0.06,
+				"epsilon_start": 0.92,
+				"gae_lambda": 0.94,
+				"generated_traffic_count": 2.0,
+				"generated_traffic_radius_m": 6.0,
+				"generated_traffic_speed_knots": 5.0,
+				"learning_rate": 0.0003,
+				"los_kd": 0.24,
+				"los_ki": 0.015,
+				"los_kp": 1.35,
+				"merge_scene_obstacles": 1.0,
+				"minibatch_size": 128.0,
+				"obstacle_inflation_m": 1.5,
+				"obstacle_position_jitter_m": 1.5,
+				"obstacle_size_jitter_m": 0.8,
+				"penalty_boundary": 22.0,
+				"penalty_collision": 36.0,
+				"penalty_proximity": 0.8,
+				"penalty_rudder": 1.2,
+				"penalty_terrain_collision": 52.0,
+				"random_seed": 240705.0,
+				"randomize_evaluation": 0.0,
+				"replay_buffer_size": 120000.0,
+				"reward_heading": 1.6,
+				"reward_progress": 2.8,
+				"reward_speed": 0.9,
+				"rollout_horizon": 1024.0,
+				"safe_distance": 42.0,
+				"sensor_bearing_noise_degrees": 0.6,
+				"sensor_distance_noise_std_m": 0.35,
+				"sensor_range_m": 220.0,
+				"start_heading_jitter_degrees": 6.0,
+				"start_position_jitter_m": 3.0,
+				"target_update_steps": 1500.0,
+				"tcpa_horizon_seconds": 180.0,
+				"terminate_on_collision": 1.0,
+				"value_loss_coef": 0.52,
+				"vessel_radius_m": 3.2,
+				"warmup_steps": 12000.0,
+				"wind_speed_jitter_knots": 1.5
+			},
+			"passed": true
+		},
+		"rl_strategy_inventory": {
+			"detail": 21,
+			"passed": true
+		},
+		"rl_strategy_select_0": {
+			"detail": "V2-PORT PPO｜原训练策略｜冻结证据保留",
+			"passed": true
+		},
+		"rl_strategy_select_1": {
+			"detail": "V2-PORT SAC｜原训练策略｜冻结证据保留",
+			"passed": true
+		},
+		"rl_strategy_select_10": {
+			"detail": "V2-PORT PPO+SAFETY-V3｜新增组合策略｜基础产物不覆盖",
+			"passed": true
+		},
+		"rl_strategy_select_11": {
+			"detail": "V2-PORT SAC+SAFETY-V3｜新增组合策略｜基础产物不覆盖",
+			"passed": true
+		},
+		"rl_strategy_select_12": {
+			"detail": "V2-PORT TD3+SAFETY-V3｜新增组合策略｜基础产物不覆盖",
+			"passed": true
+		},
+		"rl_strategy_select_13": {
+			"detail": "V2-PORT DQN+SAFETY-V3｜新增组合策略｜基础产物不覆盖",
+			"passed": true
+		},
+		"rl_strategy_select_14": {
+			"detail": "V2-PORT A2C+SAFETY-V3｜新增组合策略｜基础产物不覆盖",
+			"passed": true
+		},
+		"rl_strategy_select_15": {
+			"detail": "V2-PORT DDPG+SAFETY-V3｜新增组合策略｜基础产物不覆盖",
+			"passed": true
+		},
+		"rl_strategy_select_16": {
+			"detail": "V2-PORT TRPO+SAFETY-V3｜新增组合策略｜基础产物不覆盖",
+			"passed": true
+		},
+		"rl_strategy_select_17": {
+			"detail": "V2-PORT LOS-PID+SAFETY-V3｜新增组合策略｜基础产物不覆盖",
+			"passed": true
+		},
+		"rl_strategy_select_18": {
+			"detail": "V2-PORT LQR+SAFETY-V3｜新增组合策略｜基础产物不覆盖",
+			"passed": true
+		},
+		"rl_strategy_select_19": {
+			"detail": "V2-PORT MPC+SAFETY-V3｜新增组合策略｜基础产物不覆盖",
+			"passed": true
+		},
+		"rl_strategy_select_2": {
+			"detail": "V2-PORT TD3｜原训练策略｜冻结证据保留",
+			"passed": true
+		},
+		"rl_strategy_select_20": {
+			"detail": "PERSONAL-LATEST｜本次新增训练产物",
+			"passed": true
+		},
+		"rl_strategy_select_3": {
+			"detail": "V2-PORT DQN｜原训练策略｜冻结证据保留",
+			"passed": true
+		},
+		"rl_strategy_select_4": {
+			"detail": "V2-PORT A2C｜原训练策略｜冻结证据保留",
+			"passed": true
+		},
+		"rl_strategy_select_5": {
+			"detail": "V2-PORT DDPG｜原训练策略｜冻结证据保留",
+			"passed": true
+		},
+		"rl_strategy_select_6": {
+			"detail": "V2-PORT TRPO｜原训练策略｜冻结证据保留",
+			"passed": true
+		},
+		"rl_strategy_select_7": {
+			"detail": "V2-PORT LOS-PID｜原控制基线｜冻结证据保留",
+			"passed": true
+		},
+		"rl_strategy_select_8": {
+			"detail": "V2-PORT LQR｜原控制基线｜冻结证据保留",
+			"passed": true
+		},
+		"rl_strategy_select_9": {
+			"detail": "V2-PORT MPC｜原控制基线｜冻结证据保留",
+			"passed": true
+		},
+		"rl_take_control": {
+			"detail": "ShipAgent_02",
+			"passed": true
+		},
+		"rl_training_started": {
+			"detail": "真实无渲染训练已启动: los_pid  pid=44883  split=train  config=rl_training_config.json  params=training_parameters.json",
+			"passed": true
+		},
+		"rl_training_terminated": {
+			"detail": "无渲染训练已终止，当前配置仍可重新启动",
+			"passed": true
+		},
+		"runtime_inventory_coverage": {
+			"detail": {
+				"button_count": 117.0,
+				"errors": []
+			},
+			"passed": true
+		},
+		"weather_close": {
+			"detail": false,
+			"passed": true
+		},
+		"weather_refresh": {
+			"detail": {
+				"base_time": "10:20",
+				"current_direction_degrees": 65.0,
+				"current_speed_knots": 0.4,
+				"current_vector": "(0.186498, 0.0, 0.086965)",
+				"data_source": "scenario_override",
+				"data_status": "refreshing",
+				"fetched_at": "",
+				"index": 0,
+				"key": "clear",
+				"name": "晴天",
+				"observed_at": "",
+				"public_location": {
+					"latitude": 1.2644,
+					"longitude": 103.8223
+				},
+				"sea_state_label": "CALM",
+				"tide_meters": 0.2,
+				"time": "10:20",
+				"time_scale": 1.0,
+				"visibility": "20.0 km",
+				"visibility_km": 20.0,
+				"wave_direction_degrees": 54.0,
+				"wave_height_meters": 0.4,
+				"wave_period_seconds": 5.5,
+				"weather": "CLEAR SKY",
+				"wind_direction_degrees": 38.0,
+				"wind_speed_knots": 6.0
+			},
+			"passed": true
+		},
+		"weather_time_0": {
+			"detail": 0.0,
+			"passed": true
+		},
+		"weather_time_1": {
+			"detail": 1.0,
+			"passed": true
+		},
+		"weather_time_120": {
+			"detail": 120.0,
+			"passed": true
+		},
+		"weather_time_30": {
+			"detail": 30.0,
+			"passed": true
+		},
+		"weather_time_60": {
+			"detail": 60.0,
+			"passed": true
+		},
+		"weather_夜航": {
+			"detail": 3,
+			"passed": true
+		},
+		"weather_晴天": {
+			"detail": 0,
+			"passed": true
+		},
+		"weather_薄雾": {
+			"detail": 1,
+			"passed": true
+		},
+		"weather_黄昏": {
+			"detail": 2,
+			"passed": true
+		}
+	},
+	"errors": [],
+	"generated_at": "2026-08-25T02:47:15",
+	"passed": true,
+	"passed_checks": 175,
+	"schema_version": "godot_button_interaction_smoke_v1",
+	"total_checks": 175
+}

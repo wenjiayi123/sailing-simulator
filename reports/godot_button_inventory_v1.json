@@ -1,0 +1,1326 @@
+{
+	"boundary": "Runtime inventory and signal-binding audit. Disabled controls are recorded explicitly; action outcomes are covered by the interaction smoke.",
+	"button_count": 117,
+	"buttons": [
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "CargoCircuitRLPanel",
+			"signal": "pressed",
+			"text": "进入 RL 训练中心",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "CargoCircuitRLPanel",
+			"signal": "pressed",
+			"text": "航线规划",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "CargoCircuitRLPanel",
+			"signal": "pressed",
+			"text": "风险决策",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "CargoCircuitRLPanel",
+			"signal": "pressed",
+			"text": "海况与时间",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "CargoCircuitRLPanel",
+			"signal": "pressed",
+			"text": "AIS 船队态势",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "CargoCircuitRLPanel",
+			"signal": "pressed",
+			"text": "训练与仿真复盘",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "CargoCircuitRLPanel",
+			"signal": "pressed",
+			"text": "小懿系统助手",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "CargoCircuitRLPanel",
+			"signal": "pressed",
+			"text": "系统与指标总览",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "OptionButton",
+			"disabled": false,
+			"handler_count": 1,
+			"items": [
+				{
+					"disabled": false,
+					"text": "SAC｜主策略·已有验收产物"
+				},
+				{
+					"disabled": false,
+					"text": "PPO｜成熟对照·可训练"
+				},
+				{
+					"disabled": false,
+					"text": "TD3｜双延迟确定性·可训练"
+				},
+				{
+					"disabled": false,
+					"text": "A2C｜轻量 Actor-Critic·可训练"
+				},
+				{
+					"disabled": false,
+					"text": "DDPG｜确定性连续控制·可训练"
+				},
+				{
+					"disabled": false,
+					"text": "TQC｜截断分位数评论家·可训练"
+				},
+				{
+					"disabled": false,
+					"text": "TRPO｜信赖域策略优化·可训练"
+				}
+			],
+			"panel": "CargoCircuitRLPanel",
+			"signal": "item_selected",
+			"text": "SAC｜主策略·已有验收产物",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "OptionButton",
+			"disabled": false,
+			"handler_count": 1,
+			"items": [
+				{
+					"disabled": false,
+					"text": "SAC-S1｜静态悬岩环航取货｜TEST PASS"
+				},
+				{
+					"disabled": false,
+					"text": "RES-SAC-D2｜动态交通避障取货｜TEST PASS"
+				},
+				{
+					"disabled": false,
+					"text": "MANUAL-F0｜人工物理可达性基线｜非 RL"
+				},
+				{
+					"disabled": true,
+					"text": "PERSONAL-LATEST｜尚无个人训练产物"
+				}
+			],
+			"panel": "CargoCircuitRLPanel",
+			"signal": "item_selected",
+			"text": "SAC-S1｜静态悬岩环航取货｜TEST PASS",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "CargoCircuitRLPanel",
+			"signal": "pressed",
+			"text": "播放所选策略",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "CargoCircuitRLPanel",
+			"signal": "pressed",
+			"text": "停止并恢复原场景",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "CargoCircuitRLPanel",
+			"signal": "pressed",
+			"text": "1x",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "CargoCircuitRLPanel",
+			"signal": "pressed",
+			"text": "3x",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "CargoCircuitRLPanel",
+			"signal": "pressed",
+			"text": "5x",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "OptionButton",
+			"disabled": false,
+			"handler_count": 1,
+			"items": [
+				{
+					"disabled": false,
+					"text": "自动跟随旋转"
+				},
+				{
+					"disabled": false,
+					"text": "自由镜头（不跟随）"
+				}
+			],
+			"panel": "CargoCircuitRLPanel",
+			"signal": "item_selected",
+			"text": "自动跟随旋转",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": true,
+			"handler_count": 1,
+			"panel": "CargoCircuitRLPanel",
+			"signal": "pressed",
+			"text": "0  人工物理可达性验收",
+			"tooltip": "公开证据回放模式：本地人工验收脚本或精确任务配置未安装",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": true,
+			"handler_count": 1,
+			"panel": "CargoCircuitRLPanel",
+			"signal": "pressed",
+			"text": "1  启动无渲染训练",
+			"tooltip": "公开证据回放模式：本地精确任务配置或人工准入报告未安装",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": true,
+			"handler_count": 1,
+			"panel": "CargoCircuitRLPanel",
+			"signal": "pressed",
+			"text": "2  验证策略（不渲染）",
+			"tooltip": "公开证据回放模式：本地精确任务配置或人工准入报告未安装",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": true,
+			"handler_count": 1,
+			"panel": "CargoCircuitRLPanel",
+			"signal": "pressed",
+			"text": "3  测试并生成可视化",
+			"tooltip": "公开证据回放模式：本地精确任务配置或人工准入报告未安装",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": true,
+			"handler_count": 1,
+			"panel": "CargoCircuitRLPanel",
+			"signal": "pressed",
+			"text": "4  重测动态策略（无渲染→播放）",
+			"tooltip": "公开证据回放模式：动态任务配置未安装",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "CargoCircuitRLPanel",
+			"signal": "pressed",
+			"text": "关闭面板（H）",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "CargoCircuitRLPanel",
+			"signal": "pressed",
+			"text": "← 返回 H 总控",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipSystemOverviewPanel",
+			"signal": "pressed",
+			"text": "关闭  M",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipSystemOverviewPanel",
+			"signal": "pressed",
+			"text": "打开训练中心  ·  TRAINING CENTER",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipSystemOverviewPanel",
+			"signal": "pressed",
+			"text": "校验 v2 港口数据契约",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipSystemOverviewPanel",
+			"signal": "pressed",
+			"text": "航线规划 / 风险决策 / 海况",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipSystemOverviewPanel",
+			"signal": "pressed",
+			"text": "AIS 船队态势",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipSystemOverviewPanel",
+			"signal": "pressed",
+			"text": "打开训练结果复盘",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipSystemOverviewPanel",
+			"signal": "pressed",
+			"text": "小懿全系统助手",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipSystemOverviewPanel",
+			"signal": "pressed",
+			"text": "训练顾问：查看算法选择依据",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipSystemOverviewPanel",
+			"signal": "pressed",
+			"text": "运行环境与数据边界审查",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "pressed",
+			"text": "收起",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "OptionButton",
+			"disabled": false,
+			"handler_count": 1,
+			"items": [
+				{
+					"disabled": false,
+					"text": "01 ▶ Player"
+				}
+			],
+			"panel": "ShipRLControlPanel",
+			"signal": "item_selected",
+			"text": "01 ▶ Player",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "pressed",
+			"text": "+ 新船",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "pressed",
+			"text": "克隆",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "pressed",
+			"text": "删除",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": true,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "pressed",
+			"text": "接管选中",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": true,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "pressed",
+			"text": "下一艘",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "OptionButton",
+			"disabled": false,
+			"handler_count": 1,
+			"items": [
+				{
+					"disabled": false,
+					"text": "v1 动态避障基准 / 28维"
+				},
+				{
+					"disabled": false,
+					"text": "v2 港口作业扩展 / 45维 AIS+ENC"
+				}
+			],
+			"panel": "ShipRLControlPanel",
+			"signal": "item_selected",
+			"text": "v1 动态避障基准 / 28维",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "OptionButton",
+			"disabled": false,
+			"handler_count": 1,
+			"items": [
+				{
+					"disabled": false,
+					"text": "ppo"
+				},
+				{
+					"disabled": false,
+					"text": "sac"
+				},
+				{
+					"disabled": false,
+					"text": "td3"
+				},
+				{
+					"disabled": false,
+					"text": "dqn"
+				},
+				{
+					"disabled": false,
+					"text": "los_pid"
+				}
+			],
+			"panel": "ShipRLControlPanel",
+			"signal": "item_selected",
+			"text": "ppo",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "OptionButton",
+			"disabled": false,
+			"handler_count": 1,
+			"items": [
+				{
+					"disabled": false,
+					"text": "V1-NAV PPO｜原训练策略｜冻结证据保留"
+				},
+				{
+					"disabled": false,
+					"text": "V1-NAV SAC｜原训练策略｜冻结证据保留"
+				},
+				{
+					"disabled": false,
+					"text": "V1-NAV TD3｜原训练策略｜冻结证据保留"
+				},
+				{
+					"disabled": false,
+					"text": "V1-NAV DQN｜原训练策略｜冻结证据保留"
+				},
+				{
+					"disabled": false,
+					"text": "V1-NAV LOS-PID｜原控制基线｜冻结证据保留"
+				},
+				{
+					"disabled": false,
+					"text": "PERSONAL-LATEST｜本次新增训练产物"
+				}
+			],
+			"panel": "ShipRLControlPanel",
+			"signal": "item_selected",
+			"text": "V1-NAV PPO｜原训练策略｜冻结证据保留",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "pressed",
+			"text": "导出配置",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "pressed",
+			"text": "启动训练",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "pressed",
+			"text": "算法/环境设置",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "pressed",
+			"text": "运行测试集并渲染",
+			"tooltip": "播放所选冻结 test 轨迹：res://reports/artifacts/navigation_benchmark_v1/ppo/test_trajectory.json",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "pressed",
+			"text": "停止策略回放",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "pressed",
+			"text": "终止",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "pressed",
+			"text": "执行本次训练策略",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "pressed",
+			"text": "关闭",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "pressed",
+			"text": "预览安全边界",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "pressed",
+			"text": "恢复默认",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "pressed",
+			"text": "应用",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "pressed",
+			"text": "关闭",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "CheckBox",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "toggled",
+			"text": "启用",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "CheckBox",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "toggled",
+			"text": "启用",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "CheckBox",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "toggled",
+			"text": "启用",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "CheckBox",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRLControlPanel",
+			"signal": "toggled",
+			"text": "启用",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipNavigationPlanningPanel",
+			"signal": "pressed",
+			"text": "收起",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "OptionButton",
+			"disabled": false,
+			"handler_count": 1,
+			"items": [
+				{
+					"disabled": false,
+					"text": "开放水域巡航"
+				},
+				{
+					"disabled": false,
+					"text": "港口引航"
+				}
+			],
+			"panel": "ShipNavigationPlanningPanel",
+			"signal": "item_selected",
+			"text": "开放水域巡航",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipNavigationPlanningPanel",
+			"signal": "pressed",
+			"text": "应用任务",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "CheckBox",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipNavigationPlanningPanel",
+			"signal": "toggled",
+			"text": "联动场景",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "CheckBox",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipNavigationPlanningPanel",
+			"signal": "toggled",
+			"text": "重定位船舶",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "CheckBox",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipNavigationPlanningPanel",
+			"signal": "toggled",
+			"text": "循环航线",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipNavigationPlanningPanel",
+			"signal": "pressed",
+			"text": "应用航线参数",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipNavigationPlanningPanel",
+			"signal": "pressed",
+			"text": "导出任务快照",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRiskDecisionPanel",
+			"signal": "pressed",
+			"text": "收起",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRiskDecisionPanel",
+			"signal": "pressed",
+			"text": "标准",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRiskDecisionPanel",
+			"signal": "pressed",
+			"text": "保守",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRiskDecisionPanel",
+			"signal": "pressed",
+			"text": "港口",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRiskDecisionPanel",
+			"signal": "pressed",
+			"text": "夜航",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipRiskDecisionPanel",
+			"signal": "pressed",
+			"text": "刷新验证结果",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipWeatherSeaPanel",
+			"signal": "pressed",
+			"text": "刷新公开数据",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipWeatherSeaPanel",
+			"signal": "pressed",
+			"text": "收起",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipWeatherSeaPanel",
+			"signal": "pressed",
+			"text": "晴天",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipWeatherSeaPanel",
+			"signal": "pressed",
+			"text": "薄雾",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipWeatherSeaPanel",
+			"signal": "pressed",
+			"text": "黄昏",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipWeatherSeaPanel",
+			"signal": "pressed",
+			"text": "夜航",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipWeatherSeaPanel",
+			"signal": "pressed",
+			"text": "0x",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipWeatherSeaPanel",
+			"signal": "pressed",
+			"text": "1x",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipWeatherSeaPanel",
+			"signal": "pressed",
+			"text": "30x",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipWeatherSeaPanel",
+			"signal": "pressed",
+			"text": "60x",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipWeatherSeaPanel",
+			"signal": "pressed",
+			"text": "120x",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipAISFleetPanel",
+			"signal": "pressed",
+			"text": "收起",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": true,
+			"handler_count": 1,
+			"panel": "ShipAISFleetPanel",
+			"signal": "pressed",
+			"text": "选中",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": true,
+			"handler_count": 1,
+			"panel": "ShipAISFleetPanel",
+			"signal": "pressed",
+			"text": "跟随",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipSimulationReviewPanel",
+			"signal": "pressed",
+			"text": "收起",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "OptionButton",
+			"disabled": false,
+			"handler_count": 1,
+			"items": [
+				{
+					"disabled": false,
+					"text": "自动识别"
+				},
+				{
+					"disabled": false,
+					"text": "人工驾驶"
+				},
+				{
+					"disabled": false,
+					"text": "RL策略"
+				}
+			],
+			"panel": "ShipSimulationReviewPanel",
+			"signal": "item_selected",
+			"text": "自动识别",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipSimulationReviewPanel",
+			"signal": "pressed",
+			"text": "开始记录",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipSimulationReviewPanel",
+			"signal": "pressed",
+			"text": "结束评分",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipSimulationReviewPanel",
+			"signal": "pressed",
+			"text": "清空本次",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipSimulationReviewPanel",
+			"signal": "pressed",
+			"text": "导出复盘",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "收起",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "RUN 1.0x",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "SCENE 开放水域",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "WX 晴天",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "SHIP Player",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "暂停",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "0.5x",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "1.0x",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "2.0x",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "4.0x",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "开放水域",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "简易港口",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "碰撞",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "搁浅",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "动力故障",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "舵机故障",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "船首障碍",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "清除临障",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "晴天",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "薄雾",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "黄昏",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "夜航",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "重置受控",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "重置船队",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "生成报告",
+			"tooltip": "",
+			"visible": true
+		}
+	],
+	"errors": [],
+	"generated_at": "2026-08-25T02:47:02",
+	"passed": true,
+	"schema_version": "godot_button_inventory_v1"
+}

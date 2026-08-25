@@ -19,7 +19,7 @@
       "tools/cargo_rl/trainer.py": "231daa2a6a17c648f74b912b4e922bb419fcf9c3b6015118cce006f452a6b376",
       "tools/cargo_rl_train.py": "2de9e32b28c66f4304f45f1e4a6b210370c10e5c058210149ada2ab5917b98b1",
       "examples/cargo_circuit_godot/cargo_circuit_replay_controller.gd": "42d2e31a95fc3a3ac82f34cf8cd793fd4f531ede49bdae5a2a318ec07cd84294",
-      "examples/cargo_circuit_godot/cargo_circuit_rl_panel.gd": "a0b765309c99c5d1cdb1779c3376ea95effaeffc1766185f16abac303760519a"
+      "examples/cargo_circuit_godot/cargo_circuit_rl_panel.gd": "aa45e46a762da12e8d7b8a2ad3551ce68cdf5967ee6474da0746249b52eebc02"
     },
     "public_artifact_sha256": {
       "reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",

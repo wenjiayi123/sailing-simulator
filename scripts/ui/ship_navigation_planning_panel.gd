@@ -401,10 +401,12 @@ func _build_mission_tab() -> Control:
 	_sync_scenario_check = CheckBox.new()
 	_sync_scenario_check.text = "联动场景"
 	_sync_scenario_check.button_pressed = true
+	_sync_scenario_check.toggled.connect(_on_mission_toggle_changed)
 	check_row.add_child(_sync_scenario_check)
 	_teleport_check = CheckBox.new()
 	_teleport_check.text = "重定位船舶"
 	_teleport_check.button_pressed = true
+	_teleport_check.toggled.connect(_on_mission_toggle_changed)
 	check_row.add_child(_teleport_check)
 	_loop_check = CheckBox.new()
 	_loop_check.text = "循环航线"
@@ -659,6 +661,11 @@ func _get_obstacle_data() -> Dictionary:
 func _on_mission_selected(index: int) -> void:
 	var preset := _preset_by_index(index)
 	_apply_preset_values_to_controls(preset)
+	_update_label("mission_footer", "任务参数已载入；点击“应用任务”后才写入场景、船位与航线。", COLOR_AMBER)
+
+
+func _on_mission_toggle_changed(_enabled: bool) -> void:
+	_update_label("mission_footer", "联动选项已变更；点击“应用任务”后生效。", COLOR_AMBER)
 
 
 func _on_apply_mission_pressed() -> void:

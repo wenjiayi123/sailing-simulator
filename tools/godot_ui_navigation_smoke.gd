@@ -287,7 +287,8 @@ func _run() -> void:
 	await process_frame
 	_record(
 		"button_port_contract_validator",
-		status_label.text.begins_with("已启动真实契约校验进程 PID"),
+		status_label.text.begins_with("契约校验通过")
+		and status_label.text.contains("live-control=false"),
 		status_label.text,
 	)
 

@@ -385,6 +385,7 @@ func _build_training_tab() -> Control:
 	_algorithm_option.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	for algorithm in SCENE_V1_ALGORITHMS:
 		_algorithm_option.add_item(algorithm)
+	_algorithm_option.item_selected.connect(_on_algorithm_option_changed)
 	algorithm_row.add_child(_algorithm_option)
 
 	var strategy_row := HBoxContainer.new()
@@ -991,6 +992,15 @@ func _on_dataset_profile_changed(_index: int) -> void:
 		_training_status_label.text = "v1 当前 Godot 场景：28维观测，训练 split=train"
 	_populate_strategy_options()
 	_refresh_policy_replay_buttons()
+
+
+func _on_algorithm_option_changed(_index: int) -> void:
+	if _algorithm_option == null or _training_status_label == null:
+		return
+	_training_status_label.text = (
+		"已选择 %s；训练仍只读取 train split，冻结策略回放或独立评估才读取 test split"
+		% _algorithm_option.get_item_text(_algorithm_option.selected).to_upper()
+	)
 
 
 func _port_ops_selected() -> bool:

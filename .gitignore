@@ -19,6 +19,7 @@ __pycache__/
 /tools/qa_strict_soft_copyright_materials.py
 *.zip
 !/reports/artifacts/navigation_benchmark_v1/**/*.zip
+!/reports/artifacts/sac_champion_v5/pilot_pure_20k/sac_policy.zip
 /data/public_cache/*.json
 !/data/public_cache/.gitkeep
 !/data/public_cache/marine_weather_singapore.json

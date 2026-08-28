@@ -21,6 +21,7 @@ MEDIA_SUFFIXES = {
 SKIP_TOP_LEVEL = {
     ".git", ".godot", ".venv", "dist", "output", "backups",
     "soft_copyright_materials", "soft_copyright_template_work",
+    "草稿",
 }
 RUNTIME_SUFFIXES = {".gd", ".tscn", ".tres", ".gdshader", ".shader", ".cfg"}
 RUNTIME_TOP_LEVEL = ("project.godot", "main.tscn")

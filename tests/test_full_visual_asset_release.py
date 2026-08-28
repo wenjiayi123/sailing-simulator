@@ -42,6 +42,7 @@ class FullVisualAssetReleaseTests(unittest.TestCase):
         excluded = set(report["excluded_local_assets_present_but_not_referenced"])
         self.assertIn("characters/download.png", excluded)
         self.assertIn("assets/art/terrain/premium_reference_cliff_rock_32471782690108.jpg", excluded)
+        self.assertFalse(any(path.startswith("草稿/") for path in excluded))
 
     def test_project_authored_svg_replacements_are_self_contained(self) -> None:
         generated = [

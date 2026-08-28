@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1254" height="1254" viewBox="0 0 1254 1254">
+  <title>Project-authored seabed and rock-floor texture</title>
+  <defs>
+    <radialGradient id="base"><stop stop-color="#346b6e"/><stop offset="1" stop-color="#102e3a"/></radialGradient>
+    <pattern id="ripples" width="180" height="130" patternUnits="userSpaceOnUse"><path d="M-20 55Q45 15 110 55t130 0" fill="none" stroke="#76c6c1" stroke-opacity=".22" stroke-width="12"/><circle cx="45" cy="100" r="18" fill="#193e42"/><circle cx="128" cy="28" r="11" fill="#4b7770"/></pattern>
+  </defs>
+  <rect width="1254" height="1254" fill="url(#base)"/>
+  <rect width="1254" height="1254" fill="url(#ripples)"/>
+</svg>

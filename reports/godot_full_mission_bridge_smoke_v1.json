@@ -1,0 +1,2710 @@
+{
+	"action_space_modified": false,
+	"approved_training_course": false,
+	"boundary": "Functional full-mission software bridge acceptance only; not physical bridge, type approval, GMDSS transmission, instructor certification or course approval.",
+	"certified_instructor_available": false,
+	"check_count": 38,
+	"checks": {
+		"autopilot_and_propulsion_console_path": {
+			"detail": {
+				"action": "arm_and_engage_autopilot",
+				"detail": {
+					"arm_receipt": {
+						"action": "arm",
+						"detail": {
+							"production_authority": false
+						},
+						"production_authority": false,
+						"schema_version": "ship_execution_control_receipt_v1",
+						"sequence": 1,
+						"simulation_time_seconds": 1.85,
+						"status": "ACCEPTED_SIMULATION_ONLY",
+						"subject": "acceptance-instructor"
+					},
+					"engage_receipt": {
+						"action": "engage_autopilot",
+						"detail": {
+							"engaged": true,
+							"target_heading_degrees": 90.0,
+							"target_speed_mps": 3.0
+						},
+						"production_authority": false,
+						"schema_version": "ship_execution_control_receipt_v1",
+						"sequence": 2,
+						"simulation_time_seconds": 1.85,
+						"status": "ACCEPTED",
+						"subject": "AUTOPILOT"
+					},
+					"physical_actuator": false
+				},
+				"existing_policy_modified": false,
+				"previous_receipt_hash": "9ef2a6f792b7f34f118bc25ed9f61358a582df8e26f058a259ac126034fe612a",
+				"production_authority": false,
+				"receipt_hash": "c5d93efe61b89b55e53bab4721e454863ac0e7b7062e7072f1bb77414e57a2a4",
+				"receipt_id": "FMB-000014",
+				"schema_version": "ship_full_mission_bridge_receipt_v1",
+				"sequence": 14,
+				"ship_motion_model_modified": false,
+				"status": "ACCEPTED_SIMULATION_ONLY",
+				"subject": "AUTOPILOT",
+				"utc": "2026-08-28T14:49:23"
+			},
+			"passed": true
+		},
+		"autopilot_authority_and_target_feedback": {
+			"detail": {
+				"actuator_feedback": {
+					"actual_rudder": 0.0,
+					"actual_throttle": 0.0,
+					"actual_tracking_within_tolerance": true,
+					"command_acknowledged": true,
+					"physical_feedback_verified": false,
+					"target_rudder": -0.0599999986588955,
+					"target_throttle": 0.0399999991059303
+				},
+				"armed": true,
+				"authority": "AUTOPILOT",
+				"authority_priority": [
+					"EMERGENCY_STOP",
+					"MANUAL",
+					"REMOTE_CONTROL_CENTER",
+					"AUTOPILOT",
+					"RL"
+				],
+				"autopilot": {
+					"engaged": true,
+					"target_heading_degrees": 90.0,
+					"target_speed_mps": 3.0
+				},
+				"boundary": "Runtime execution-control simulation using the existing vessel command API. No physical steering gear, propulsion plant, bridge control system, independent hardware emergency stop or live-vessel authority is claimed.",
+				"effective_command": {
+					"rudder": -0.0599999986588955,
+					"throttle": 0.0399999991059303
+				},
+				"emergency_stop": {
+					"independent_hardware_verified": false,
+					"latched": false,
+					"manual_confirmation_required_to_reset": true,
+					"software_channel_verified": true
+				},
+				"external_actuator_adapter": {
+					"bridge_control_system_connected": false,
+					"enabled": false,
+					"propulsion_controller_connected": false,
+					"steering_gear_connected": false
+				},
+				"faults": {
+					"command_link_loss": false,
+					"propulsion_actuator_jam": false,
+					"rudder_feedback_loss": false,
+					"steering_actuator_jam": false,
+					"throttle_feedback_loss": false
+				},
+				"generated_at_simulation_seconds": 1.85,
+				"manual_takeover": {
+					"immediate_priority": true,
+					"player_external_control_active": true,
+					"takeover_count": 0
+				},
+				"mode": "BOUNDED_AUTOPILOT_CONTROL",
+				"physical_actuator_feedback_verified": false,
+				"physical_emergency_stop_verified": false,
+				"production_authority": false,
+				"receipt_count": 2,
+				"remote_control_center": {
+					"authenticated": false,
+					"enabled": false,
+					"site_authorized": false
+				},
+				"requested_command": {
+					"rudder": -1.0,
+					"throttle": 0.550000011920929
+				},
+				"rl_command_gateway": {
+					"available_when_armed": true,
+					"existing_policy_adapter_wired": false,
+					"versioned_api": "submit_rl_action(throttle, rudder, sequence)"
+				},
+				"schema_version": "ship_execution_control_snapshot_v1",
+				"watchdog": {
+					"last_command_age_seconds": 0.0,
+					"timed_out": false,
+					"timeout_seconds": 0.35
+				}
+			},
+			"passed": true
+		},
+		"autopilot_requires_authorizer": {
+			"detail": {
+				"action": "arm_and_engage_autopilot",
+				"detail": {
+					"reason": "AUTHORIZER_REQUIRED"
+				},
+				"existing_policy_modified": false,
+				"previous_receipt_hash": "cc6d3ad2bfada0562fbb85ca44235407555d06cd3883ce5983d46071286342e2",
+				"production_authority": false,
+				"receipt_hash": "9ef2a6f792b7f34f118bc25ed9f61358a582df8e26f058a259ac126034fe612a",
+				"receipt_id": "FMB-000013",
+				"schema_version": "ship_full_mission_bridge_receipt_v1",
+				"sequence": 13,
+				"ship_motion_model_modified": false,
+				"status": "REJECTED",
+				"subject": "AUTOPILOT",
+				"utc": "2026-08-28T14:49:23"
+			},
+			"passed": true
+		},
+		"camera_sector_changes_visual_yaw": {
+			"detail": 2.35619449019234,
+			"passed": true
+		},
+		"direct_distress_bypass_rejected": {
+			"detail": {
+				"action": "send_dsc_call",
+				"detail": {
+					"reason": "DISTRESS_REQUIRES_GUARDED_TWO_STEP_FLOW"
+				},
+				"previous_receipt_hash": "20dfb6878c37c6839fed66c9b465bd4dabf35919a0cb8a1ad7ef5456348e2456",
+				"production_authority": false,
+				"real_radio_transmission": false,
+				"receipt_hash": "a67becc0c7702e8c3386b22040fd3ec81883d0bfa4a3fb1d7b5ebe41bbde3e16",
+				"receipt_id": "GMDSS-000009",
+				"schema_version": "ship_gmdss_communications_receipt_v1",
+				"sequence": 9,
+				"status": "REJECTED",
+				"subject": "DISTRESS",
+				"utc": "2026-08-28T14:49:23"
+			},
+			"passed": true
+		},
+		"distress_acknowledgement_recorded": {
+			"detail": {
+				"action": "acknowledge_call",
+				"detail": {
+					"station": "TRAINING COAST STATION"
+				},
+				"previous_receipt_hash": "a673e592b3ccf97915e759b05fb1c0c182af85c8a4b4fde5361414c12212341b",
+				"production_authority": false,
+				"real_radio_transmission": false,
+				"receipt_hash": "9d0491bcba2c58a07ba44a4889ebf9fdad7239b4850445e657f64b1e1d8eedb2",
+				"receipt_id": "GMDSS-000007",
+				"schema_version": "ship_gmdss_communications_receipt_v1",
+				"sequence": 7,
+				"status": "ACKNOWLEDGED_SIMULATION_ONLY",
+				"subject": "DSC-DISTRESS-000001",
+				"utc": "2026-08-28T14:49:23"
+			},
+			"passed": true
+		},
+		"distress_cancellation_recorded": {
+			"detail": {
+				"action": "cancel_distress",
+				"detail": {
+					"real_radio_transmission": false,
+					"reason": "EXERCISE COMPLETE"
+				},
+				"previous_receipt_hash": "9d0491bcba2c58a07ba44a4889ebf9fdad7239b4850445e657f64b1e1d8eedb2",
+				"production_authority": false,
+				"real_radio_transmission": false,
+				"receipt_hash": "20dfb6878c37c6839fed66c9b465bd4dabf35919a0cb8a1ad7ef5456348e2456",
+				"receipt_id": "GMDSS-000008",
+				"schema_version": "ship_gmdss_communications_receipt_v1",
+				"sequence": 8,
+				"status": "CANCELLED_SIMULATION_ONLY",
+				"subject": "DSC-DISTRESS-000001",
+				"utc": "2026-08-28T14:49:23"
+			},
+			"passed": true
+		},
+		"distress_operator_mismatch_rejected": {
+			"detail": {
+				"action": "transmit_distress",
+				"detail": {
+					"reason": "OPERATOR_CONFIRMATION_MISMATCH"
+				},
+				"previous_receipt_hash": "6d4be4eb16d69cf7bb83e6ae4b99010d25ad5ff439f49a658d45cf1ba9b7f8a7",
+				"production_authority": false,
+				"real_radio_transmission": false,
+				"receipt_hash": "238f479c6bbc04abcd8077173bc43fcfe80009b1498e3a58aff88748c82eb7e5",
+				"receipt_id": "GMDSS-000004",
+				"schema_version": "ship_gmdss_communications_receipt_v1",
+				"sequence": 4,
+				"status": "REJECTED",
+				"subject": "DSC-DISTRESS-000001",
+				"utc": "2026-08-28T14:49:23"
+			},
+			"passed": true
+		},
+		"distress_requires_guarded_prepare": {
+			"detail": {
+				"action": "prepare_distress",
+				"detail": {
+					"minimum_hold_seconds": 3.0,
+					"nature": "COLLISION",
+					"real_transmission": false
+				},
+				"previous_receipt_hash": "809d38387c70770ef585379209fb84d85a72dedd77f49f061e355d24d12454a7",
+				"production_authority": false,
+				"real_radio_transmission": false,
+				"receipt_hash": "8dcecaf69d0a0fc5954a34330baca070e36f6adbc6f616a84449b50a357cc4b1",
+				"receipt_id": "GMDSS-000002",
+				"schema_version": "ship_gmdss_communications_receipt_v1",
+				"sequence": 2,
+				"status": "PREPARED_GUARDED",
+				"subject": "DSC-DISTRESS-000001",
+				"utc": "2026-08-28T14:49:23"
+			},
+			"passed": true
+		},
+		"distress_training_transmission_receipt": {
+			"detail": {
+				"action": "transmit_distress",
+				"detail": {
+					"channel": "70",
+					"coast_station_connected": false,
+					"real_radio_transmission": false
+				},
+				"previous_receipt_hash": "238f479c6bbc04abcd8077173bc43fcfe80009b1498e3a58aff88748c82eb7e5",
+				"production_authority": false,
+				"real_radio_transmission": false,
+				"receipt_hash": "de0f47f6e419e2389bc4d4ecad9efcc06dee08564cdc650302ca9992ef15c623",
+				"receipt_id": "GMDSS-000005",
+				"schema_version": "ship_gmdss_communications_receipt_v1",
+				"sequence": 5,
+				"status": "TRANSMITTED_SIMULATION_ONLY",
+				"subject": "DSC-DISTRESS-000001",
+				"utc": "2026-08-28T14:49:23"
+			},
+			"passed": true
+		},
+		"external_claims_fail_closed": {
+			"detail": {
+				"approved_training_course": false,
+				"certified_instructor_available": false,
+				"official_chart_carriage_compliance": false,
+				"physical_360_bridge_verified": false,
+				"production_authority": false,
+				"real_gmdss_transmission": false,
+				"type_approved_bridge_equipment": false
+			},
+			"passed": true
+		},
+		"frozen_policy_artifacts_unchanged": {
+			"detail": {
+				"after": {
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_sac_test_episodes.csv": "7b027abb680dca7c31e97fe1083c6c28402204e06d0ead03ce76cfcd1aa7e9cd",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_test_episodes.csv": "25e953b3bd525f5834ced4179003c47de1b220423909a7ba87ff1b7073a27495"
+				},
+				"before": {
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_sac_test_episodes.csv": "7b027abb680dca7c31e97fe1083c6c28402204e06d0ead03ce76cfcd1aa7e9cd",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_test_episodes.csv": "25e953b3bd525f5834ced4179003c47de1b220423909a7ba87ff1b7073a27495"
+				}
+			},
+			"passed": true
+		},
+		"full_mission_components_present": {
+			"detail": {
+				"bridge": true,
+				"communication": true,
+				"panel": true,
+				"player": true
+			},
+			"passed": true
+		},
+		"full_mission_receipt_chain_valid": {
+			"detail": {
+				"errors": [],
+				"last_receipt_hash": "18fd2080d2c16bc9ebff1a667057623505e5faa0368809648ed81921880f5f78",
+				"passed": true,
+				"receipt_count": 15
+			},
+			"passed": true
+		},
+		"full_mission_snapshot_schema": {
+			"detail": "ship_full_mission_bridge_snapshot_v1",
+			"passed": true
+		},
+		"gmdss_receipt_chain_valid": {
+			"detail": {
+				"errors": [],
+				"last_receipt_hash": "edeec13280a24db03f0a8fadb76655345196101a91d758cf4287ad741d9cd873",
+				"passed": true,
+				"receipt_count": 15
+			},
+			"passed": true
+		},
+		"gmdss_snapshot_boundary": {
+			"detail": "GMDSS/VHF/DSC procedure trainer only; no RF transmission, coast station, type approval or live-vessel authority",
+			"passed": true
+		},
+		"hotkey_f12_opens_full_mission_panel": {
+			"detail": true,
+			"passed": true
+		},
+		"main_scene_load_request": {
+			"detail": 0,
+			"passed": true
+		},
+		"manual_immediate_takeover_restores_authority": {
+			"detail": {
+				"execution": {
+					"actuator_feedback": {
+						"actual_rudder": 0.0,
+						"actual_throttle": 0.0,
+						"actual_tracking_within_tolerance": true,
+						"command_acknowledged": true,
+						"physical_feedback_verified": false,
+						"target_rudder": 0.0,
+						"target_throttle": 0.0
+					},
+					"armed": false,
+					"authority": "MANUAL",
+					"authority_priority": [
+						"EMERGENCY_STOP",
+						"MANUAL",
+						"REMOTE_CONTROL_CENTER",
+						"AUTOPILOT",
+						"RL"
+					],
+					"autopilot": {
+						"engaged": false,
+						"target_heading_degrees": 90.0,
+						"target_speed_mps": 3.0
+					},
+					"boundary": "Runtime execution-control simulation using the existing vessel command API. No physical steering gear, propulsion plant, bridge control system, independent hardware emergency stop or live-vessel authority is claimed.",
+					"effective_command": {
+						"rudder": 0.0,
+						"throttle": 0.0
+					},
+					"emergency_stop": {
+						"independent_hardware_verified": false,
+						"latched": false,
+						"manual_confirmation_required_to_reset": true,
+						"software_channel_verified": true
+					},
+					"external_actuator_adapter": {
+						"bridge_control_system_connected": false,
+						"enabled": false,
+						"propulsion_controller_connected": false,
+						"steering_gear_connected": false
+					},
+					"faults": {
+						"command_link_loss": false,
+						"propulsion_actuator_jam": false,
+						"rudder_feedback_loss": false,
+						"steering_actuator_jam": false,
+						"throttle_feedback_loss": false
+					},
+					"generated_at_simulation_seconds": 1.85,
+					"manual_takeover": {
+						"immediate_priority": true,
+						"player_external_control_active": false,
+						"takeover_count": 1
+					},
+					"mode": "MANUAL_IMMEDIATE_TAKEOVER",
+					"physical_actuator_feedback_verified": false,
+					"physical_emergency_stop_verified": false,
+					"production_authority": false,
+					"receipt_count": 3,
+					"remote_control_center": {
+						"authenticated": false,
+						"enabled": false,
+						"site_authorized": false
+					},
+					"requested_command": {
+						"rudder": 0.0,
+						"throttle": 0.0
+					},
+					"rl_command_gateway": {
+						"available_when_armed": true,
+						"existing_policy_adapter_wired": false,
+						"versioned_api": "submit_rl_action(throttle, rudder, sequence)"
+					},
+					"schema_version": "ship_execution_control_snapshot_v1",
+					"watchdog": {
+						"last_command_age_seconds": 0.0,
+						"timed_out": false,
+						"timeout_seconds": 0.35
+					}
+				},
+				"receipt": {
+					"action": "manual_takeover",
+					"detail": {
+						"control_receipt": {
+							"action": "manual_takeover",
+							"detail": {
+								"reason": "acceptance",
+								"takeover_count": 1
+							},
+							"production_authority": false,
+							"schema_version": "ship_execution_control_receipt_v1",
+							"sequence": 3,
+							"simulation_time_seconds": 1.85,
+							"status": "ACCEPTED_IMMEDIATE",
+							"subject": "MANUAL"
+						}
+					},
+					"existing_policy_modified": false,
+					"previous_receipt_hash": "c5d93efe61b89b55e53bab4721e454863ac0e7b7062e7072f1bb77414e57a2a4",
+					"production_authority": false,
+					"receipt_hash": "18fd2080d2c16bc9ebff1a667057623505e5faa0368809648ed81921880f5f78",
+					"receipt_id": "FMB-000015",
+					"schema_version": "ship_full_mission_bridge_receipt_v1",
+					"sequence": 15,
+					"ship_motion_model_modified": false,
+					"status": "ACCEPTED_IMMEDIATE",
+					"subject": "MANUAL",
+					"utc": "2026-08-28T14:49:23"
+				}
+			},
+			"passed": true
+		},
+		"mission_links_team_and_instructor": {
+			"detail": {
+				"collaboration": "BRIDGE-20260828-010105",
+				"exercise": "restricted_visibility_bridge"
+			},
+			"passed": true
+		},
+		"mission_preparation_receipt": {
+			"detail": {
+				"action": "prepare_training_mission",
+				"detail": {
+					"control_armed": false,
+					"exercise_receipt": {
+						"action": "load_exercise",
+						"detail": {
+							"event_count": 6,
+							"template": "restricted_visibility_bridge"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000001",
+						"sequence": 1,
+						"status": "ACCEPTED",
+						"subject": "",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T14:49:23"
+					},
+					"session_receipt": {
+						"action": "create_session",
+						"detail": {
+							"session_name": "full mission acceptance"
+						},
+						"receipt_id": "BRM-000001",
+						"sequence": 1,
+						"session_id": "BRIDGE-20260828-010105",
+						"status": "ACCEPTED",
+						"subject": "BRIDGE-20260828-010105",
+						"utc": "2026-08-28T14:49:23"
+					},
+					"training_started": false
+				},
+				"existing_policy_modified": false,
+				"previous_receipt_hash": "51d377460ec593b2a41001f37af857d60da44006c231cfca287b7b2e1499aa7f",
+				"production_authority": false,
+				"receipt_hash": "d62c1ef931db1c6bda242411523176c2255a1fccbfed2bce6f83936913fa3069",
+				"receipt_id": "FMB-000002",
+				"schema_version": "ship_full_mission_bridge_receipt_v1",
+				"sequence": 2,
+				"ship_motion_model_modified": false,
+				"status": "ACCEPTED_SIMULATION_ONLY",
+				"subject": "restricted_visibility_bridge",
+				"utc": "2026-08-28T14:49:23"
+			},
+			"passed": true
+		},
+		"motion_policy_and_rl_contracts_preserved": {
+			"detail": {
+				"action_space_modified": false,
+				"existing_policy_modified": false,
+				"observation_space_modified": false,
+				"reward_function_modified": false,
+				"ship_motion_model_modified": false,
+				"training_performed": false
+			},
+			"passed": true
+		},
+		"panel_acceptance_boundaries": {
+			"detail": {
+				"bridge": {
+					"boundary": "Integrated software bridge for RL simulation and training; not a type-approved physical full-mission bridge or approved course",
+					"claims": {
+						"approved_training_course": false,
+						"certified_instructor_available": false,
+						"official_chart_carriage_compliance": false,
+						"physical_360_bridge_verified": false,
+						"production_authority": false,
+						"real_gmdss_transmission": false,
+						"type_approved_bridge_equipment": false
+					},
+					"collaboration": {
+						"boundary": "Research bridge-team communications and loopback UDP transport; not GMDSS/VHF, secure operational networking, or remote vessel control.",
+						"brm_check": {
+							"brief_count": 0,
+							"gaps": [
+								"MISSING_ROLE_MASTER",
+								"MISSING_ROLE_OOW",
+								"MISSING_ROLE_HELM",
+								"SITUATION_BRIEF_MISSING"
+							],
+							"open_loop_messages": [],
+							"passed": false,
+							"production_authority": false,
+							"roles_present": []
+						},
+						"format": "ship_bridge_team_collaboration_v1",
+						"messages": [],
+						"messages_mapped_to_actuation": false,
+						"production_authority": false,
+						"receipts": [
+							{
+								"action": "create_session",
+								"detail": {
+									"session_name": "full mission acceptance"
+								},
+								"receipt_id": "BRM-000001",
+								"sequence": 1,
+								"session_id": "BRIDGE-20260828-010105",
+								"status": "ACCEPTED",
+								"subject": "BRIDGE-20260828-010105",
+								"utc": "2026-08-28T14:49:23"
+							}
+						],
+						"remote_control_authority": false,
+						"session_id": "BRIDGE-20260828-010105",
+						"session_name": "full mission acceptance",
+						"situation_briefs": [],
+						"stations": [],
+						"udp": {
+							"bind_address": "",
+							"encrypted": false,
+							"last_error": "",
+							"listening": false,
+							"port": 0,
+							"production_authority": false,
+							"protocol": "ship_bridge_team_udp_v1",
+							"received_packets": 0,
+							"rejected_packets": 0
+						}
+					},
+					"communications": {
+						"boundary": "GMDSS/VHF/DSC procedure trainer only; no RF transmission, coast station, type approval or live-vessel authority",
+						"calls": [
+							{
+								"acknowledged": true,
+								"acknowledged_by": "TRAINING COAST STATION",
+								"acknowledged_operator_id": "instructor-01",
+								"acknowledged_utc": "2026-08-28T14:49:23",
+								"call_id": "DSC-DISTRESS-000001",
+								"cancellation_reason": "EXERCISE COMPLETE",
+								"cancelled_by": "oow-01",
+								"cancelled_utc": "2026-08-28T14:49:23",
+								"coast_station_connected": false,
+								"confirmation_required": true,
+								"created_utc": "2026-08-28T14:49:23",
+								"hold_seconds": 3.0,
+								"minimum_hold_seconds": 3.0,
+								"nature": "COLLISION",
+								"operator_id": "oow-01",
+								"position": {
+									"available": true,
+									"official_navigation_position": false,
+									"source": "SIMULATOR_BRIDGE_POSITION",
+									"x_meters": 0.456439793109894,
+									"z_meters": 0.0212538819760084
+								},
+								"position_source_valid": true,
+								"priority": "DISTRESS",
+								"real_radio_transmission": false,
+								"status": "CANCELLED_SIMULATION_ONLY",
+								"target": "ALL_STATIONS",
+								"training_identity": "TRAINING-999000001",
+								"transmitted_utc": "2026-08-28T14:49:23",
+								"voice_follow_ups": [
+									{
+										"channel": "16",
+										"message": "MAYDAY training follow-up",
+										"operator_id": "oow-01",
+										"real_radio_transmission": false,
+										"utc": "2026-08-28T14:49:23"
+									}
+								]
+							},
+							{
+								"acknowledged": false,
+								"call_id": "DSC-URGENCY-000002",
+								"coast_station_connected": false,
+								"created_utc": "2026-08-28T14:49:23",
+								"nature": "URGENCY EXERCISE",
+								"operator_id": "oow-01",
+								"position": {
+									"available": true,
+									"official_navigation_position": false,
+									"source": "SIMULATOR_BRIDGE_POSITION",
+									"x_meters": 0.456439793109894,
+									"z_meters": 0.0212538819760084
+								},
+								"position_source_valid": true,
+								"priority": "URGENCY",
+								"real_radio_transmission": false,
+								"status": "TRANSMITTED_SIMULATION_ONLY",
+								"target": "TRAINING COAST STATION",
+								"training_identity": "TRAINING-999000001",
+								"transmitted_utc": "2026-08-28T14:49:23",
+								"voice_follow_ups": []
+							},
+							{
+								"acknowledged": false,
+								"call_id": "DSC-SAFETY-000003",
+								"coast_station_connected": false,
+								"created_utc": "2026-08-28T14:49:23",
+								"nature": "SAFETY EXERCISE",
+								"operator_id": "oow-01",
+								"position": {
+									"available": true,
+									"official_navigation_position": false,
+									"source": "SIMULATOR_BRIDGE_POSITION",
+									"x_meters": 0.456439793109894,
+									"z_meters": 0.0212538819760084
+								},
+								"position_source_valid": true,
+								"priority": "SAFETY",
+								"real_radio_transmission": false,
+								"status": "TRANSMITTED_SIMULATION_ONLY",
+								"target": "TRAINING COAST STATION",
+								"training_identity": "TRAINING-999000001",
+								"transmitted_utc": "2026-08-28T14:49:23",
+								"voice_follow_ups": []
+							},
+							{
+								"acknowledged": false,
+								"call_id": "DSC-ROUTINE-000004",
+								"coast_station_connected": false,
+								"created_utc": "2026-08-28T14:49:23",
+								"nature": "ROUTINE EXERCISE",
+								"operator_id": "oow-01",
+								"position": {
+									"available": true,
+									"official_navigation_position": false,
+									"source": "SIMULATOR_BRIDGE_POSITION",
+									"x_meters": 0.456439793109894,
+									"z_meters": 0.0212538819760084
+								},
+								"position_source_valid": true,
+								"priority": "ROUTINE",
+								"real_radio_transmission": false,
+								"status": "TRANSMITTED_SIMULATION_ONLY",
+								"target": "TRAINING COAST STATION",
+								"training_identity": "TRAINING-999000001",
+								"transmitted_utc": "2026-08-28T14:49:23",
+								"voice_follow_ups": []
+							},
+							{
+								"acknowledged": false,
+								"call_id": "DSC-DISTRESS-000005",
+								"coast_station_connected": false,
+								"confirmation_required": true,
+								"created_utc": "2026-08-28T14:49:23",
+								"hold_seconds": 3.0,
+								"minimum_hold_seconds": 3.0,
+								"nature": "COLLISION",
+								"operator_id": "student-oow-01",
+								"position": {
+									"available": true,
+									"official_navigation_position": false,
+									"source": "SIMULATOR_BRIDGE_POSITION",
+									"x_meters": 0.456439793109894,
+									"z_meters": 0.0212538819760084
+								},
+								"position_source_valid": true,
+								"priority": "DISTRESS",
+								"real_radio_transmission": false,
+								"status": "TRANSMITTED_SIMULATION_ONLY",
+								"target": "ALL_STATIONS",
+								"training_identity": "TRAINING-999000001",
+								"transmitted_utc": "2026-08-28T14:49:23",
+								"voice_follow_ups": []
+							}
+						],
+						"channel_watch": {
+							"16": true,
+							"70": true
+						},
+						"coast_station_connected": false,
+						"faults": {
+							"antenna_degraded": false,
+							"dsc_controller_loss": false,
+							"gnss_input_loss": false,
+							"vhf_power_loss": false
+						},
+						"pending_distress_count": 0,
+						"priorities": [
+							"DISTRESS",
+							"URGENCY",
+							"SAFETY",
+							"ROUTINE"
+						],
+						"production_authority": false,
+						"profile_id": "RL-NAV-FMB-2026-01",
+						"real_radio_transmission_enabled": false,
+						"receipt_chain": {
+							"errors": [],
+							"last_receipt_hash": "60ecb67b3b2e89df92842ab490d1c6cc268d7c02f2f3eb4bb1bb725f5846a6f8",
+							"passed": true,
+							"receipt_count": 17
+						},
+						"schema_version": "ship_gmdss_communications_snapshot_v1",
+						"sea_area": "A1_SIMULATED",
+						"training_identity": "TRAINING-999000001",
+						"type_approved": false
+					},
+					"component_presence": {
+						"execution_control": true,
+						"gmdss_communications": true,
+						"instructor_exercise": true,
+						"multi_station_collaboration": true,
+						"navigation_equipment": true
+					},
+					"execution_control": {
+						"actuator_feedback": {
+							"actual_rudder": 0.0,
+							"actual_throttle": 0.0,
+							"actual_tracking_within_tolerance": true,
+							"command_acknowledged": true,
+							"physical_feedback_verified": false,
+							"target_rudder": 0.0,
+							"target_throttle": 0.0
+						},
+						"armed": false,
+						"authority": "MANUAL",
+						"authority_priority": [
+							"EMERGENCY_STOP",
+							"MANUAL",
+							"REMOTE_CONTROL_CENTER",
+							"AUTOPILOT",
+							"RL"
+						],
+						"autopilot": {
+							"engaged": false,
+							"target_heading_degrees": 90.0,
+							"target_speed_mps": 3.0
+						},
+						"boundary": "Runtime execution-control simulation using the existing vessel command API. No physical steering gear, propulsion plant, bridge control system, independent hardware emergency stop or live-vessel authority is claimed.",
+						"effective_command": {
+							"rudder": 0.0,
+							"throttle": 0.0
+						},
+						"emergency_stop": {
+							"independent_hardware_verified": false,
+							"latched": false,
+							"manual_confirmation_required_to_reset": true,
+							"software_channel_verified": true
+						},
+						"external_actuator_adapter": {
+							"bridge_control_system_connected": false,
+							"enabled": false,
+							"propulsion_controller_connected": false,
+							"steering_gear_connected": false
+						},
+						"faults": {
+							"command_link_loss": false,
+							"propulsion_actuator_jam": false,
+							"rudder_feedback_loss": false,
+							"steering_actuator_jam": false,
+							"throttle_feedback_loss": false
+						},
+						"generated_at_simulation_seconds": 1.98333333333333,
+						"manual_takeover": {
+							"immediate_priority": true,
+							"player_external_control_active": false,
+							"takeover_count": 1
+						},
+						"mode": "MANUAL_IMMEDIATE_TAKEOVER",
+						"physical_actuator_feedback_verified": false,
+						"physical_emergency_stop_verified": false,
+						"production_authority": false,
+						"receipt_count": 3,
+						"remote_control_center": {
+							"authenticated": false,
+							"enabled": false,
+							"site_authorized": false
+						},
+						"requested_command": {
+							"rudder": 0.0,
+							"throttle": 0.0
+						},
+						"rl_command_gateway": {
+							"available_when_armed": true,
+							"existing_policy_adapter_wired": false,
+							"versioned_api": "submit_rl_action(throttle, rudder, sequence)"
+						},
+						"schema_version": "ship_execution_control_snapshot_v1",
+						"watchdog": {
+							"last_command_age_seconds": 0.133333333333333,
+							"timed_out": false,
+							"timeout_seconds": 0.35
+						}
+					},
+					"functional_software_bridge_complete": true,
+					"instructor_exercise": {
+						"boundary": "Instructor-controlled research exercise timeline; equipment faults affect displays only and do not replace an approved simulator instructor operating station.",
+						"changes_motion_model": false,
+						"changes_policy": false,
+						"complete": false,
+						"elapsed_seconds": 0.0,
+						"event_count": 6,
+						"fault_matrix": [
+							{
+								"active": false,
+								"category": "RADAR",
+								"current_value": false,
+								"default_value": true,
+								"effect": "雷达目标与杂波输出归零",
+								"key": "radar_power_loss",
+								"label": "雷达电源失效",
+								"restore_value": false
+							},
+							{
+								"active": false,
+								"category": "RADAR",
+								"current_value": 0.0,
+								"default_value": 45.0,
+								"effect": "所有雷达测距叠加确定性偏差",
+								"key": "radar_range_bias_m",
+								"label": "雷达距离偏差",
+								"restore_value": 0.0
+							},
+							{
+								"active": false,
+								"category": "RADAR",
+								"current_value": 0.0,
+								"default_value": 3.5,
+								"effect": "所有雷达方位叠加确定性偏差",
+								"key": "radar_bearing_bias_deg",
+								"label": "雷达方位偏差",
+								"restore_value": 0.0
+							},
+							{
+								"active": false,
+								"category": "HEADING",
+								"current_value": 0.0,
+								"default_value": 7.5,
+								"effect": "首向与航向显示产生一致偏差",
+								"key": "gyro_bias_deg",
+								"label": "电罗经偏差",
+								"restore_value": 0.0
+							},
+							{
+								"active": false,
+								"category": "POSITION",
+								"current_value": false,
+								"default_value": true,
+								"effect": "电子海图位置保持在故障发生点并报警",
+								"key": "gnss_frozen",
+								"label": "全球导航卫星系统位置冻结",
+								"restore_value": false
+							},
+							{
+								"active": false,
+								"category": "TRAFFIC",
+								"current_value": false,
+								"default_value": true,
+								"effect": "电子海图与雷达融合不再提供自动识别系统记录",
+								"key": "ais_loss",
+								"label": "船舶自动识别系统数据丢失",
+								"restore_value": false
+							},
+							{
+								"active": false,
+								"category": "SPEED",
+								"current_value": false,
+								"default_value": true,
+								"effect": "操纵信息速度读数不可用",
+								"key": "speed_log_loss",
+								"label": "计程仪失效",
+								"restore_value": false
+							},
+							{
+								"active": false,
+								"category": "STEERING",
+								"current_value": false,
+								"default_value": true,
+								"effect": "操纵信息舵角反馈不可用，不改变实际舵效",
+								"key": "rudder_feedback_loss",
+								"label": "舵角反馈失效",
+								"restore_value": false
+							},
+							{
+								"active": false,
+								"category": "DEPTH",
+								"current_value": false,
+								"default_value": true,
+								"effect": "电子海图测深有效性报警",
+								"key": "depth_sensor_loss",
+								"label": "测深仪失效",
+								"restore_value": false
+							}
+						],
+						"format": "ship_instructor_exercise_v2",
+						"next_event_index": 0,
+						"objective": "识别雷达与自动识别系统分层失效，完成交叉核对和恢复确认",
+						"production_authority": false,
+						"receipts": [
+							{
+								"action": "load_exercise",
+								"detail": {
+									"event_count": 6,
+									"template": "restricted_visibility_bridge"
+								},
+								"exercise_elapsed_seconds": 0.0,
+								"receipt_id": "IEX-000001",
+								"sequence": 1,
+								"status": "ACCEPTED",
+								"subject": "",
+								"template_key": "restricted_visibility_bridge",
+								"utc": "2026-08-28T14:49:23"
+							}
+						],
+						"running": false,
+						"template_key": "restricted_visibility_bridge",
+						"template_name": "受限能见度驾驶台设备处置",
+						"timeline": [
+							{
+								"action": "marker",
+								"at_s": 0.0,
+								"id": "RV-00",
+								"label": "演练开始：建立雷达/电子海图/目视交叉核对"
+							},
+							{
+								"action": "fault",
+								"at_s": 15.0,
+								"fault": "radar_power_loss",
+								"id": "RV-01",
+								"value": true
+							},
+							{
+								"action": "restore",
+								"at_s": 35.0,
+								"fault": "radar_power_loss",
+								"id": "RV-02"
+							},
+							{
+								"action": "fault",
+								"at_s": 45.0,
+								"fault": "ais_loss",
+								"id": "RV-03",
+								"value": true
+							},
+							{
+								"action": "restore",
+								"at_s": 70.0,
+								"fault": "ais_loss",
+								"id": "RV-04"
+							},
+							{
+								"action": "marker",
+								"at_s": 75.0,
+								"id": "RV-05",
+								"label": "演练结束：确认设备恢复与未确认告警"
+							}
+						]
+					},
+					"navigation_equipment": {
+						"boundary": "research simulator equipment model; not type-approved radar, ECDIS or live-vessel authority",
+						"conning": {
+							"boundary": "conning replica driven by simulator telemetry; not a type-approved integrated bridge display",
+							"control_mode": "HUMAN",
+							"course_degrees": 180.0,
+							"drift_angle_degrees": 0.0,
+							"heading_degrees": 180.0,
+							"route": {
+								"active": true,
+								"arrival_radius": 16.0,
+								"current_distance": 72.022705078125,
+								"current_index": 0,
+								"current_name": "WP-01",
+								"current_position": "(0.0, -140.05, -72.0)",
+								"deviation_distance": 0.0960820595709097,
+								"deviation_side": "ON TRACK",
+								"next_index": 1,
+								"next_name": "WP-02",
+								"next_position": "(72.0, -140.05, -132.0)",
+								"signed_deviation": 0.0960820595709097,
+								"target_bearing_degrees": 180.363111187738
+							},
+							"rudder": 0.0,
+							"sensor_validity": {
+								"gnss": true,
+								"gyro": true,
+								"rudder_feedback": true,
+								"speed_log": true
+							},
+							"speed_knots": 0.107586359782755,
+							"throttle": 0.0
+						},
+						"ecdis": {
+							"active_unacknowledged_alarm_count": 8,
+							"ais_targets": [],
+							"alarms": [
+								{
+									"acknowledged": false,
+									"id": "ROUTE_HAZARD::1::BOX::GroundedPlate_02_CrookedStoneMesa",
+									"message": "航段 1 与 GroundedPlate_02_CrookedStoneMesa 安全包络相交",
+									"severity": "DANGER"
+								},
+								{
+									"acknowledged": false,
+									"id": "ROUTE_HAZARD::2::BOX::GroundedPlate_02_CrookedStoneMesa",
+									"message": "航段 2 与 GroundedPlate_02_CrookedStoneMesa 安全包络相交",
+									"severity": "DANGER"
+								},
+								{
+									"acknowledged": false,
+									"id": "ROUTE_HAZARD::2::BOX::GroundedPlate_02_CrookedStoneMesa2",
+									"message": "航段 2 与 GroundedPlate_02_CrookedStoneMesa2 安全包络相交",
+									"severity": "DANGER"
+								},
+								{
+									"acknowledged": false,
+									"id": "ROUTE_HAZARD::3::BOX::Rock3A_15_SideCaveFang",
+									"message": "航段 3 与 Rock3A_15_SideCaveFang 安全包络相交",
+									"severity": "DANGER"
+								},
+								{
+									"acknowledged": false,
+									"id": "ROUTE_HAZARD::3::BOX::GroundedPlate_02_CrookedStoneMesa2",
+									"message": "航段 3 与 GroundedPlate_02_CrookedStoneMesa2 安全包络相交",
+									"severity": "DANGER"
+								},
+								{
+									"acknowledged": false,
+									"id": "ROUTE_HAZARD::4::BOX::Rock3A_10_DenseBottomShard",
+									"message": "航段 4 与 Rock3A_10_DenseBottomShard 安全包络相交",
+									"severity": "DANGER"
+								},
+								{
+									"acknowledged": false,
+									"id": "ROUTE_HAZARD::4::BOX::Rock3A_15_SideCaveFang",
+									"message": "航段 4 与 Rock3A_15_SideCaveFang 安全包络相交",
+									"severity": "DANGER"
+								},
+								{
+									"acknowledged": false,
+									"id": "ROUTE_HAZARD::4::BOX::GroundedPlate_02_CrookedStoneMesa2",
+									"message": "航段 4 与 GroundedPlate_02_CrookedStoneMesa2 安全包络相交",
+									"severity": "DANGER"
+								}
+							],
+							"boundary": "research route monitoring; not an official, corrected or type-approved ECDIS",
+							"chart_source": "project port profile + research ENC/GeoJSON-derived hazards",
+							"chart_standard": "research_vector_chart_v1",
+							"depth_sensor_valid": true,
+							"hazards": [
+								{
+									"category": "rock",
+									"id": "ROCK::NavigationRock_01",
+									"name": "NavigationRock_01",
+									"position": "(-48.0, -140.05, -118.0)",
+									"radius": 5.5,
+									"shape": "circle"
+								},
+								{
+									"category": "rock",
+									"id": "ROCK::NavigationRock_02",
+									"name": "NavigationRock_02",
+									"position": "(98.0, -140.05, -88.0)",
+									"radius": 6.85,
+									"shape": "circle"
+								},
+								{
+									"category": "rock",
+									"id": "ROCK::NavigationRock_03",
+									"name": "NavigationRock_03",
+									"position": "(112.0, -140.05, -184.0)",
+									"radius": 8.2,
+									"shape": "circle"
+								},
+								{
+									"category": "rock",
+									"id": "ROCK::NavigationRock_04",
+									"name": "NavigationRock_04",
+									"position": "(-126.0, -140.05, -178.0)",
+									"radius": 5.5,
+									"shape": "circle"
+								},
+								{
+									"category": "rock",
+									"id": "ROCK::NavigationRock_05",
+									"name": "NavigationRock_05",
+									"position": "(-128.0, -140.05, -42.0)",
+									"radius": 6.85,
+									"shape": "circle"
+								},
+								{
+									"category": "cliff",
+									"id": "ROCK::SCENE_CLIFF_落水悬岩",
+									"name": "SCENE_CLIFF_落水悬岩",
+									"position": "(-55.0, -140.05, -40.0)",
+									"radius": 16.0,
+									"shape": "circle"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_01_BroadAncientRoot",
+									"name": "Rock3A_01_BroadAncientRoot",
+									"position": "(-375.4693, -140.7349, -155.5044)",
+									"shape": "box",
+									"size": "(82.2121, 72.16856, 74.90385)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_02_TallNeedleRoot",
+									"name": "Rock3A_02_TallNeedleRoot",
+									"position": "(-30.91441, -140.7349, -315.0186)",
+									"shape": "box",
+									"size": "(55.18423, 116.4031, 59.08524)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_03_WideMossShelf",
+									"name": "Rock3A_03_WideMossShelf",
+									"position": "(284.9345, -140.7349, 169.1907)",
+									"shape": "box",
+									"size": "(83.4425, 58.31702, 76.53842)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_04_FracturedTwinRibs",
+									"name": "Rock3A_04_FracturedTwinRibs",
+									"position": "(111.0025, -140.7349, -357.3483)",
+									"shape": "box",
+									"size": "(67.62225, 94.6815, 67.28989)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_05_CaveBellyHeavy",
+									"name": "Rock3A_05_CaveBellyHeavy",
+									"position": "(-293.9064, -140.7349, 405.7036)",
+									"shape": "box",
+									"size": "(71.2749, 102.2923, 56.9574)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_06_SlenderSideSpire",
+									"name": "Rock3A_06_SlenderSideSpire",
+									"position": "(-283.8054, -140.7349, -2.396326)",
+									"shape": "box",
+									"size": "(57.04485, 130.3148, 52.26017)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_07_StackedCliffPlate",
+									"name": "Rock3A_07_StackedCliffPlate",
+									"position": "(267.9964, -140.7349, -285.4606)",
+									"shape": "box",
+									"size": "(91.69368, 67.00052, 79.15944)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_08_HollowMoonCut",
+									"name": "Rock3A_08_HollowMoonCut",
+									"position": "(206.0486, -140.7349, 100.4031)",
+									"shape": "box",
+									"size": "(86.82176, 83.51974, 87.95522)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_09_OverhangWaterGroove",
+									"name": "Rock3A_09_OverhangWaterGroove",
+									"position": "(62.65625, -140.7349, 128.2131)",
+									"shape": "box",
+									"size": "(76.86437, 81.99068, 78.51301)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_09_OverhangWaterGroove2",
+									"name": "Rock3A_09_OverhangWaterGroove2",
+									"position": "(3.775166, -140.7349, 116.2671)",
+									"shape": "box",
+									"size": "(76.86436, 81.99068, 78.513)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_10_DenseBottomShard",
+									"name": "Rock3A_10_DenseBottomShard",
+									"position": "(-94.34518, -140.7349, -149.7643)",
+									"shape": "box",
+									"size": "(65.29594, 110.0764, 70.12158)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_11_RoundedGardenTop",
+									"name": "Rock3A_11_RoundedGardenTop",
+									"position": "(-184.2729, -140.7349, -32.30247)",
+									"shape": "box",
+									"size": "(75.22504, 53.19342, 66.82721)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_11_RoundedGardenTop2",
+									"name": "Rock3A_11_RoundedGardenTop2",
+									"position": "(-174.3977, -140.7349, -151.2388)",
+									"shape": "box",
+									"size": "(75.22504, 53.19342, 66.82722)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_12_AsymmetricBrokenWing",
+									"name": "Rock3A_12_AsymmetricBrokenWing",
+									"position": "(251.7525, -140.7349, -26.41405)",
+									"shape": "box",
+									"size": "(54.57693, 96.7775, 69.35411)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_13_LowBroadSanctumBase",
+									"name": "Rock3A_13_LowBroadSanctumBase",
+									"position": "(-231.0612, -140.7349, 45.01315)",
+									"shape": "box",
+									"size": "(105.5602, 44.8105, 76.1815)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_14_DeepRootOldMountain",
+									"name": "Rock3A_14_DeepRootOldMountain",
+									"position": "(-69.78697, -140.7349, 111.521)",
+									"shape": "box",
+									"size": "(103.8253, 175.691, 106.3161)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_15_SideCaveFang",
+									"name": "Rock3A_15_SideCaveFang",
+									"position": "(-21.90627, -140.7349, -170.5562)",
+									"shape": "box",
+									"size": "(62.39266, 110.3966, 60.99757)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_16_MossyBrokenCrown",
+									"name": "Rock3A_16_MossyBrokenCrown",
+									"position": "(151.3967, -140.7349, 245.8431)",
+									"shape": "box",
+									"size": "(85.55099, 76.26394, 87.53526)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_17_PairedSubRoots",
+									"name": "Rock3A_17_PairedSubRoots",
+									"position": "(-92.03657, -140.7349, 259.6121)",
+									"shape": "box",
+									"size": "(72.36885, 120.2448, 72.95795)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_18_LightFloatingShard",
+									"name": "Rock3A_18_LightFloatingShard",
+									"position": "(-98.36449, -140.7349, 127.005)",
+									"shape": "box",
+									"size": "(40.68766, 50.62168, 45.47806)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_18_LightFloatingShard2",
+									"name": "Rock3A_18_LightFloatingShard2",
+									"position": "(92.19267, -140.7349, 35.13961)",
+									"shape": "box",
+									"size": "(40.68767, 50.62168, 45.47805)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_19_GrandTerraceRoot",
+									"name": "Rock3A_19_GrandTerraceRoot",
+									"position": "(150.6006, -140.7349, 42.43704)",
+									"shape": "box",
+									"size": "(88.48788, 91.72052, 99.34419)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::Rock3A_20_AncientSplitPeak",
+									"name": "Rock3A_20_AncientSplitPeak",
+									"position": "(-220.1226, -140.7349, 146.0214)",
+									"shape": "box",
+									"size": "(84.57945, 131.706, 85.20741)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::GroundedPlate_01_BroadLandMass",
+									"name": "GroundedPlate_01_BroadLandMass",
+									"position": "(-467.2116, -140.7349, 286.0282)",
+									"shape": "box",
+									"size": "(275.7665, 117.3816, 252.8997)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::GroundedPlate_02_CrookedStoneMesa",
+									"name": "GroundedPlate_02_CrookedStoneMesa",
+									"position": "(81.59799, -140.7349, -106.457)",
+									"shape": "box",
+									"size": "(136.7553, 95.94202, 135.8715)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::GroundedPlate_02_CrookedStoneMesa2",
+									"name": "GroundedPlate_02_CrookedStoneMesa2",
+									"position": "(14.17602, -140.7349, -280.0126)",
+									"shape": "box",
+									"size": "(186.5615, 130.8705, 185.3559)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::GroundedPlate_03_ForkedGroundPillar",
+									"name": "GroundedPlate_03_ForkedGroundPillar",
+									"position": "(151.898, -140.7349, 247.5737)",
+									"shape": "box",
+									"size": "(148.1494, 108.3999, 145.6474)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::GroundedPlate_03_ForkedGroundPillar2",
+									"name": "GroundedPlate_03_ForkedGroundPillar2",
+									"position": "(153.8481, -140.7349, -46.12379)",
+									"shape": "box",
+									"size": "(148.1494, 108.3999, 145.6474)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::GroundedPlate_04_WideBridgeSlab",
+									"name": "GroundedPlate_04_WideBridgeSlab",
+									"position": "(-531.3395, -140.7349, -200.8237)",
+									"shape": "box",
+									"size": "(306.0389, 110.0332, 306.0389)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::GroundedPlate_05_CaveCutLandRoot",
+									"name": "GroundedPlate_05_CaveCutLandRoot",
+									"position": "(198.8659, -140.7349, -232.5131)",
+									"shape": "box",
+									"size": "(184.819, 127.0301, 189.1598)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::GroundedPlate_06_TwistedButtressMesa",
+									"name": "GroundedPlate_06_TwistedButtressMesa",
+									"position": "(612.5801, -140.7349, 447.2504)",
+									"shape": "box",
+									"size": "(209.7029, 118.951, 203.7645)"
+								},
+								{
+									"category": "terrain",
+									"id": "BOX::GroundedPlate_07_AncientWallPlate",
+									"name": "GroundedPlate_07_AncientWallPlate",
+									"position": "(-115.8568, -140.7349, 524.91)",
+									"shape": "box",
+									"size": "(259.2563, 108.9086, 205.4098)"
+								}
+							],
+							"layers": {
+								"ais": true,
+								"hazards": true,
+								"route": true,
+								"safety_contour": true
+							},
+							"official_chart": false,
+							"route": {
+								"active": true,
+								"arrival_radius": 16.0,
+								"current_index": 0,
+								"loop": true,
+								"points": [
+									{
+										"active": true,
+										"name": "WP-01",
+										"position": "(0.0, -140.05, -72.0)"
+									},
+									{
+										"active": false,
+										"name": "WP-02",
+										"position": "(72.0, -140.05, -132.0)"
+									},
+									{
+										"active": false,
+										"name": "WP-03",
+										"position": "(46.0, -140.05, -208.0)"
+									},
+									{
+										"active": false,
+										"name": "WP-04",
+										"position": "(-56.0, -140.05, -190.0)"
+									},
+									{
+										"active": false,
+										"name": "WP-05",
+										"position": "(-92.0, -140.05, -96.0)"
+									}
+								]
+							},
+							"route_check_passed": false,
+							"s100_ready": false,
+							"safety_contour_meters": 10.0,
+							"safety_depth_meters": 5.0,
+							"update_service_connected": false
+						},
+						"faults": {
+							"ais_loss": false,
+							"depth_sensor_loss": false,
+							"gnss_frozen": false,
+							"gyro_bias_deg": 0.0,
+							"radar_bearing_bias_deg": 0.0,
+							"radar_power_loss": false,
+							"radar_range_bias_m": 0.0,
+							"rudder_feedback_loss": false,
+							"speed_log_loss": false
+						},
+						"format": "ship_integrated_bridge_snapshot_v1",
+						"generated_at_simulation_seconds": 1.76695633333333,
+						"official_navigation_product": false,
+						"ownship": {
+							"available": true,
+							"collision_warning": "CLEAR",
+							"control_mode": "HUMAN",
+							"course_degrees": 180.0,
+							"drift_angle_degrees": 0.0,
+							"gnss_valid": true,
+							"heading_degrees": 180.0,
+							"position": "(0.45644, -140.1851, 0.021254)",
+							"rudder": 0.0,
+							"speed_knots": 0.107586359782755,
+							"speed_log_valid": true,
+							"speed_mps": 0.0553472191095352,
+							"throttle": 0.0,
+							"true_position": "(0.45644, -140.1851, 0.021254)",
+							"velocity_xz_mps": "(0.0, -0.055347)"
+						},
+						"production_authority": false,
+						"radar": {
+							"acquired_track_count": 0,
+							"boundary": "bounded scene-driven radar/ARPA model; not raw RF radar video or IMO type approval",
+							"contacts": [
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 234.066839084361,
+									"course_degrees": 252.72072699226,
+									"dcpa_meters": null,
+									"id": "STATIC_ROCK::SCENE_CLIFF_落水悬岩",
+									"kind": "STATIC",
+									"label": "SCENE_CLIFF_落水悬岩",
+									"measured_position_xz": "(-53.88315, -39.362)",
+									"range_meters": 67.1105870645772,
+									"range_nm": 0.0362368180694261,
+									"relative_position_xz": "(-54.33959, -39.38325)",
+									"risk": "UNTRACKED",
+									"signal_strength": 3.55555555555556,
+									"speed_knots": 0.385293868756592,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-0.189267, -0.058875)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 68.9948747136684,
+									"course_degrees": 265.104194682227,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_18_LightFloatingShard2",
+									"kind": "TERRAIN",
+									"label": "Rock3A_18_LightFloatingShard2",
+									"measured_position_xz": "(90.51311, 34.60002)",
+									"range_meters": 96.4670693509034,
+									"range_nm": 0.0520880504054554,
+									"relative_position_xz": "(90.05668, 34.57876)",
+									"risk": "UNTRACKED",
+									"signal_strength": 2.52655834621853,
+									"speed_knots": 1.85291690570569,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-0.949745, -0.081352)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 1.4569883790067,
+									"course_degrees": 187.33405395106,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_09_OverhangWaterGroove2",
+									"kind": "TERRAIN",
+									"label": "Rock3A_09_OverhangWaterGroove2",
+									"measured_position_xz": "(3.375504, 114.7881)",
+									"range_meters": 114.803978911986,
+									"range_nm": 0.0619891894773143,
+									"relative_position_xz": "(2.919064, 114.7669)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 3.72601722637653,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-0.244691, -1.901147)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 202.187075576113,
+									"course_degrees": 33.1793982479083,
+									"dcpa_meters": null,
+									"id": "STATIC_ROCK::NavigationRock_01",
+									"kind": "STATIC",
+									"label": "NavigationRock_01",
+									"measured_position_xz": "(-47.60848, -117.8342)",
+									"range_meters": 127.279810059092,
+									"range_nm": 0.0687255993839591,
+									"relative_position_xz": "(-48.06492, -117.8555)",
+									"risk": "UNTRACKED",
+									"signal_strength": 1.22222222222222,
+									"speed_knots": 3.42171924244881,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(0.963338, 1.47329)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 131.927646310828,
+									"course_degrees": 323.219084955866,
+									"dcpa_meters": null,
+									"id": "STATIC_ROCK::NavigationRock_02",
+									"kind": "STATIC",
+									"label": "NavigationRock_02",
+									"measured_position_xz": "(97.98101, -87.56751)",
+									"range_meters": 131.083318267674,
+									"range_nm": 0.0707793295181827,
+									"relative_position_xz": "(97.52457, -87.58877)",
+									"risk": "UNTRACKED",
+									"signal_strength": 1.52222222222222,
+									"speed_knots": 3.42716545778418,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-1.05566, 1.412111)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 327.752504782627,
+									"course_degrees": 338.768874926292,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_14_DeepRootOldMountain",
+									"kind": "TERRAIN",
+									"label": "Rock3A_14_DeepRootOldMountain",
+									"measured_position_xz": "(-69.75163, 111.3051)",
+									"range_meters": 131.579861824831,
+									"range_nm": 0.0710474415900815,
+									"relative_position_xz": "(-70.20806, 111.2838)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 2.74941045696688,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-0.512205, 1.318419)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 142.556237177569,
+									"course_degrees": 334.072110933367,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::GroundedPlate_02_CrookedStoneMesa",
+									"kind": "TERRAIN",
+									"label": "GroundedPlate_02_CrookedStoneMesa",
+									"measured_position_xz": "(81.66557, -106.0279)",
+									"range_meters": 133.571516995962,
+									"range_nm": 0.0721228493498718,
+									"relative_position_xz": "(81.20914, -106.0492)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 3.42594403919792,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-0.770617, 1.585058)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 251.750764964163,
+									"course_degrees": 83.353750831641,
+									"dcpa_meters": null,
+									"id": "STATIC_ROCK::NavigationRock_05",
+									"kind": "STATIC",
+									"label": "NavigationRock_05",
+									"measured_position_xz": "(-127.6073, -42.20595)",
+									"range_meters": 134.846078608096,
+									"range_nm": 0.0728110575637668,
+									"relative_position_xz": "(-128.0638, -42.2272)",
+									"risk": "UNTRACKED",
+									"signal_strength": 1.52222222222222,
+									"speed_knots": 3.43664367528248,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(1.756081, 0.204622)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 26.0190343864885,
+									"course_degrees": 208.636166080246,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_09_OverhangWaterGroove",
+									"kind": "TERRAIN",
+									"label": "Rock3A_09_OverhangWaterGroove",
+									"measured_position_xz": "(62.83352, 127.8055)",
+									"range_meters": 142.196010701904,
+									"range_nm": 0.0767797034027559,
+									"relative_position_xz": "(62.37708, 127.7842)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 3.3492500284009,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-0.825742, -1.512247)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 74.1044340152319,
+									"course_degrees": 126.734501043556,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_19_GrandTerraceRoot",
+									"kind": "TERRAIN",
+									"label": "Rock3A_19_GrandTerraceRoot",
+									"measured_position_xz": "(149.2298, 42.38802)",
+									"range_meters": 154.688261842097,
+									"range_nm": 0.0835249793963804,
+									"relative_position_xz": "(148.7734, 42.36676)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 0.328551056248426,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(0.135456, -0.101093)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 106.5658524901,
+									"course_degrees": 96.9311653859843,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::GroundedPlate_03_ForkedGroundPillar2",
+									"kind": "TERRAIN",
+									"label": "GroundedPlate_03_ForkedGroundPillar2",
+									"measured_position_xz": "(154.1582, -45.6995)",
+									"range_meters": 160.357765872629,
+									"range_nm": 0.0865862666698858,
+									"relative_position_xz": "(153.7018, -45.72076)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 3.26300735592985,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(1.666369, -0.202572)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 322.054717798537,
+									"course_degrees": 336.296651538649,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_18_LightFloatingShard",
+									"kind": "TERRAIN",
+									"label": "Rock3A_18_LightFloatingShard",
+									"measured_position_xz": "(-98.21146, 126.5593)",
+									"range_meters": 160.45944002945,
+									"range_nm": 0.0866411663225973,
+									"relative_position_xz": "(-98.6679, 126.5381)",
+									"risk": "UNTRACKED",
+									"signal_strength": 2.52655877007378,
+									"speed_knots": 2.36485662860727,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-0.48907, 1.113955)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 187.402265554747,
+									"course_degrees": 203.487540208418,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_15_SideCaveFang",
+									"kind": "TERRAIN",
+									"label": "Rock3A_15_SideCaveFang",
+									"measured_position_xz": "(-21.62902, -169.9747)",
+									"range_meters": 171.424639783586,
+									"range_nm": 0.092561900531094,
+									"relative_position_xz": "(-22.08546, -169.996)",
+									"risk": "UNTRACKED",
+									"signal_strength": 3.46625900268555,
+									"speed_knots": 2.06106751115942,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-0.422584, -0.972455)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 212.283322051492,
+									"course_degrees": 56.338949877278,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_10_DenseBottomShard",
+									"kind": "TERRAIN",
+									"label": "Rock3A_10_DenseBottomShard",
+									"measured_position_xz": "(-93.26835, -148.3323)",
+									"range_meters": 175.479658085348,
+									"range_nm": 0.0947514352512679,
+									"relative_position_xz": "(-93.72478, -148.3535)",
+									"risk": "UNTRACKED",
+									"signal_strength": 3.89564344618056,
+									"speed_knots": 2.25026643196392,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(0.963538, 0.641654)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 259.89613369952,
+									"course_degrees": 89.1130013859244,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_11_RoundedGardenTop",
+									"kind": "TERRAIN",
+									"label": "Rock3A_11_RoundedGardenTop",
+									"measured_position_xz": "(-182.6767, -32.61248)",
+									"range_meters": 186.018057973654,
+									"range_nm": 0.100441715968496,
+									"relative_position_xz": "(-183.1332, -32.63374)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 3.72071722905064,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(1.913873, 0.029631)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 148.643191793401,
+									"course_degrees": 346.697032352913,
+									"dcpa_meters": null,
+									"id": "STATIC_ROCK::NavigationRock_03",
+									"kind": "STATIC",
+									"label": "NavigationRock_03",
+									"measured_position_xz": "(112.274, -183.4763)",
+									"range_meters": 214.882554318796,
+									"range_nm": 0.116027297148378,
+									"relative_position_xz": "(111.8176, -183.4975)",
+									"risk": "UNTRACKED",
+									"signal_strength": 1.82222222222222,
+									"speed_knots": 3.53620863903809,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-0.418594, 1.770369)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 215.252920157576,
+									"course_degrees": 53.5479379710959,
+									"dcpa_meters": null,
+									"id": "STATIC_ROCK::NavigationRock_04",
+									"kind": "STATIC",
+									"label": "NavigationRock_04",
+									"measured_position_xz": "(-125.4031, -178.0466)",
+									"range_meters": 218.056882227902,
+									"range_nm": 0.117741297099299,
+									"relative_position_xz": "(-125.8596, -178.0679)",
+									"risk": "UNTRACKED",
+									"signal_strength": 1.22222222222222,
+									"speed_knots": 3.54305191995048,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(1.4661, 1.08296)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 63.8903223831085,
+									"course_degrees": 296.355080775458,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_08_HollowMoonCut",
+									"kind": "TERRAIN",
+									"label": "Rock3A_08_HollowMoonCut",
+									"measured_position_xz": "(204.4367, 99.99288)",
+									"range_meters": 227.161339583714,
+									"range_nm": 0.122657310790343,
+									"relative_position_xz": "(203.9803, 99.97163)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 1.54048412568998,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-0.710122, 0.351814)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 229.036622173565,
+									"course_degrees": 259.911502251677,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_11_RoundedGardenTop2",
+									"kind": "TERRAIN",
+									"label": "Rock3A_11_RoundedGardenTop2",
+									"measured_position_xz": "(-173.3089, -150.8358)",
+									"range_meters": 230.113584010307,
+									"range_nm": 0.124251395253946,
+									"relative_position_xz": "(-173.7654, -150.8571)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 1.05607648928189,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-0.534893, -0.095168)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 281.157298957891,
+									"course_degrees": 100.106340842395,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_13_LowBroadSanctumBase",
+									"kind": "TERRAIN",
+									"label": "Rock3A_13_LowBroadSanctumBase",
+									"measured_position_xz": "(-231.221, 45.71521)",
+									"range_meters": 236.140539297387,
+									"range_nm": 0.127505690765328,
+									"relative_position_xz": "(-231.6774, 45.69395)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 2.55513839688921,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(1.294081, -0.230659)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 95.8495832405751,
+									"course_degrees": 275.299185132298,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_12_AsymmetricBrokenWing",
+									"kind": "TERRAIN",
+									"label": "Rock3A_12_AsymmetricBrokenWing",
+									"measured_position_xz": "(250.1196, -25.55691)",
+									"range_meters": 250.969963140162,
+									"range_nm": 0.135512939060563,
+									"relative_position_xz": "(249.6631, -25.57816)",
+									"risk": "UNTRACKED",
+									"signal_strength": 3.85300615098741,
+									"speed_knots": 1.41025335238051,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-0.722396, 0.067004)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 303.324888072479,
+									"course_degrees": 286.182565225893,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_20_AncientSplitPeak",
+									"kind": "TERRAIN",
+									"label": "Rock3A_20_AncientSplitPeak",
+									"measured_position_xz": "(-220.6238, 145.3813)",
+									"range_meters": 264.586517516552,
+									"range_nm": 0.142865290235719,
+									"relative_position_xz": "(-221.0802, 145.3601)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 3.22372522727108,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-1.592719, 0.462202)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 340.319109773586,
+									"course_degrees": 206.093890110013,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_17_PairedSubRoots",
+									"kind": "TERRAIN",
+									"label": "Rock3A_17_PairedSubRoots",
+									"measured_position_xz": "(-91.77493, 257.8844)",
+									"range_meters": 273.861353264377,
+									"range_nm": 0.147873300898691,
+									"relative_position_xz": "(-92.23137, 257.8632)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 2.04084238582706,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-0.461792, -0.942889)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 177.095018681941,
+									"course_degrees": 212.220222191324,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::GroundedPlate_02_CrookedStoneMesa2",
+									"kind": "TERRAIN",
+									"label": "GroundedPlate_02_CrookedStoneMesa2",
+									"measured_position_xz": "(14.61132, -278.9202)",
+									"range_meters": 279.300314538101,
+									"range_nm": 0.150810105042171,
+									"relative_position_xz": "(14.15488, -278.9414)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 1.16369410287452,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-0.319188, -0.506466)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 269.632160651177,
+									"course_degrees": 97.3790902432937,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_06_SlenderSideSpire",
+									"kind": "TERRAIN",
+									"label": "Rock3A_06_SlenderSideSpire",
+									"measured_position_xz": "(-283.2092, -1.799907)",
+									"range_meters": 283.67147170175,
+									"range_nm": 0.153170341091658,
+									"relative_position_xz": "(-283.6656, -1.821161)",
+									"risk": "UNTRACKED",
+									"signal_strength": 3.16915808783637,
+									"speed_knots": 3.67053386419916,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(1.872648, -0.24252)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 31.5820880042781,
+									"course_degrees": 52.8853658855033,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_16_MossyBrokenCrown",
+									"kind": "TERRAIN",
+									"label": "Rock3A_16_MossyBrokenCrown",
+									"measured_position_xz": "(151.9071, 246.3733)",
+									"range_meters": 289.182647613607,
+									"range_nm": 0.156146138020306,
+									"relative_position_xz": "(151.4506, 246.352)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 3.99549632266045,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(1.639086, 1.240289)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 31.6059481384512,
+									"course_degrees": 59.5999714779383,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::GroundedPlate_03_ForkedGroundPillar",
+									"kind": "TERRAIN",
+									"label": "GroundedPlate_03_ForkedGroundPillar",
+									"measured_position_xz": "(153.4853, 248.7083)",
+									"range_meters": 291.998413097691,
+									"range_nm": 0.157666529750373,
+									"relative_position_xz": "(153.0289, 248.687)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 2.96147870866013,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(1.314054, 0.770952)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 139.626728255895,
+									"course_degrees": 330.671411843233,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::GroundedPlate_05_CaveCutLandRoot",
+									"kind": "TERRAIN",
+									"label": "GroundedPlate_05_CaveCutLandRoot",
+									"measured_position_xz": "(197.8686, -232.1566)",
+									"range_meters": 304.759127386155,
+									"range_nm": 0.164556764247384,
+									"relative_position_xz": "(197.4122, -232.1779)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 3.89465316787434,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-0.98139, 1.746774)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 185.866618493659,
+									"course_degrees": 291.645701493509,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_02_TallNeedleRoot",
+									"kind": "TERRAIN",
+									"label": "Rock3A_02_TallNeedleRoot",
+									"measured_position_xz": "(-32.03884, -316.231)",
+									"range_meters": 317.91733861485,
+									"range_nm": 0.171661629921625,
+									"relative_position_xz": "(-32.49528, -316.2523)",
+									"risk": "UNTRACKED",
+									"signal_strength": 3.28251308865017,
+									"speed_knots": 0.876977965619802,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-0.419342, 0.166416)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 59.122956422548,
+									"course_degrees": 2.10768244358557,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_03_WideMossShelf",
+									"kind": "TERRAIN",
+									"label": "Rock3A_03_WideMossShelf",
+									"measured_position_xz": "(283.6468, 169.3531)",
+									"range_meters": 329.954607783027,
+									"range_nm": 0.17816123530401,
+									"relative_position_xz": "(283.1903, 169.3319)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 1.96964394763327,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(0.037266, 1.012587)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 162.823094172553,
+									"course_degrees": 189.851937471959,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_04_FracturedTwinRibs",
+									"kind": "TERRAIN",
+									"label": "Rock3A_04_FracturedTwinRibs",
+									"measured_position_xz": "(111.067, -357.8142)",
+									"range_meters": 374.540883190846,
+									"range_nm": 0.202235898051213,
+									"relative_position_xz": "(110.6105, -357.8354)",
+									"risk": "UNTRACKED",
+									"signal_strength": 3.75679185655382,
+									"speed_knots": 3.95654440107536,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-0.348266, -2.005407)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 137.036359801531,
+									"course_degrees": 205.681634740561,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_07_StackedCliffPlate",
+									"kind": "TERRAIN",
+									"label": "Rock3A_07_StackedCliffPlate",
+									"measured_position_xz": "(268.1495, -287.4099)",
+									"range_meters": 392.780105302013,
+									"range_nm": 0.212084290119877,
+									"relative_position_xz": "(267.693, -287.4311)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 1.38117404298806,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-0.307926, -0.640348)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 247.40535783652,
+									"course_degrees": 317.43820237245,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_01_BroadAncientRoot",
+									"kind": "TERRAIN",
+									"label": "Rock3A_01_BroadAncientRoot",
+									"measured_position_xz": "(-373.9322, -155.7806)",
+									"range_meters": 405.513377584362,
+									"range_nm": 0.218959707118986,
+									"relative_position_xz": "(-374.3886, -155.8019)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 0.753355331027627,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-0.262139, 0.285456)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 324.215364900524,
+									"course_degrees": 68.7192765345598,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::Rock3A_05_CaveBellyHeavy",
+									"kind": "TERRAIN",
+									"label": "Rock3A_05_CaveBellyHeavy",
+									"measured_position_xz": "(-293.384, 407.6715)",
+									"range_meters": 502.514647469899,
+									"range_nm": 0.271336202737527,
+									"relative_position_xz": "(-293.8405, 407.6503)",
+									"risk": "UNTRACKED",
+									"signal_strength": 3.959716796875,
+									"speed_knots": 1.33365237887478,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(0.639308, 0.249008)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 347.342181952307,
+									"course_degrees": 174.479044490427,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::GroundedPlate_07_AncientWallPlate",
+									"kind": "TERRAIN",
+									"label": "GroundedPlate_07_AncientWallPlate",
+									"measured_position_xz": "(-116.964, 522.8511)",
+									"range_meters": 535.853228363682,
+									"range_nm": 0.289337596308684,
+									"relative_position_xz": "(-117.4204, 522.8299)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 1.86277051650882,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(0.092197, -0.953847)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 301.284695284293,
+									"course_degrees": 255.480999901168,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::GroundedPlate_01_BroadLandMass",
+									"kind": "TERRAIN",
+									"label": "GroundedPlate_01_BroadLandMass",
+									"measured_position_xz": "(-467.6526, 284.4648)",
+									"range_meters": 547.753791500161,
+									"range_nm": 0.29576338633918,
+									"relative_position_xz": "(-468.109, 284.4435)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 3.31407428539324,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(-1.650461, -0.427422)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 249.130011727629,
+									"course_degrees": 91.678099881208,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::GroundedPlate_04_WideBridgeSlab",
+									"kind": "TERRAIN",
+									"label": "GroundedPlate_04_WideBridgeSlab",
+									"measured_position_xz": "(-529.123, -201.8877)",
+									"range_meters": 566.764070044274,
+									"range_nm": 0.306028115574662,
+									"relative_position_xz": "(-529.5794, -201.9089)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 3.58607477337456,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(1.844046, -0.054025)"
+								},
+								{
+									"arpa_acquired": false,
+									"bearing_degrees": 53.6697802574905,
+									"course_degrees": 15.8414680217581,
+									"dcpa_meters": null,
+									"id": "STATIC_BOX::GroundedPlate_06_TwistedButtressMesa",
+									"kind": "TERRAIN",
+									"label": "GroundedPlate_06_TwistedButtressMesa",
+									"measured_position_xz": "(611.3679, 449.2766)",
+									"range_meters": 758.316005276321,
+									"range_nm": 0.409457886218316,
+									"relative_position_xz": "(610.9114, 449.2553)",
+									"risk": "UNTRACKED",
+									"signal_strength": 4.0,
+									"speed_knots": 4.14249895048428,
+									"tcpa_seconds": null,
+									"velocity_xz_mps": "(0.581737, 2.050149)"
+								}
+							],
+							"detected_contact_count": 38,
+							"false_echo_count": 0,
+							"gain": 0.72,
+							"limitations_modeled": [
+								"range",
+								"gain",
+								"sea_clutter",
+								"rain_clutter",
+								"measurement_error",
+								"power_and_bias_faults"
+							],
+							"orientation": "HEAD_UP",
+							"power": true,
+							"rain_clutter_rejection": 0.28,
+							"range_nm": 1.0,
+							"scan_index": 8,
+							"sea_clutter_rejection": 0.35,
+							"sweep_degrees": 152.0,
+							"type_approved": false,
+							"weather_clutter": {
+								"rain": 0.0,
+								"sea": 0.0
+							}
+						}
+					},
+					"preservation_boundary": {
+						"action_space_modified": false,
+						"existing_policy_modified": false,
+						"observation_space_modified": false,
+						"reward_function_modified": false,
+						"ship_motion_model_modified": false,
+						"training_performed": false
+					},
+					"production_authority": false,
+					"profile_id": "RL-NAV-FMB-2026-01",
+					"receipt_chain": {
+						"errors": [],
+						"last_receipt_hash": "18fd2080d2c16bc9ebff1a667057623505e5faa0368809648ed81921880f5f78",
+						"passed": true,
+						"receipt_count": 15
+					},
+					"schema_version": "ship_full_mission_bridge_snapshot_v1",
+					"visual": {
+						"current_sector": "PORT_BOW",
+						"declared_horizontal_coverage_degrees": 360,
+						"mode": "SOFTWARE_ORBIT_SECTORS",
+						"multi_channel_synchronization_verified": false,
+						"physical_projection_verified": false,
+						"sector_count": 8,
+						"visited_sector_count": 8
+					}
+				},
+				"communications": {
+					"boundary": "GMDSS/VHF/DSC procedure trainer only; no RF transmission, coast station, type approval or live-vessel authority",
+					"calls": [
+						{
+							"acknowledged": true,
+							"acknowledged_by": "TRAINING COAST STATION",
+							"acknowledged_operator_id": "instructor-01",
+							"acknowledged_utc": "2026-08-28T14:49:23",
+							"call_id": "DSC-DISTRESS-000001",
+							"cancellation_reason": "EXERCISE COMPLETE",
+							"cancelled_by": "oow-01",
+							"cancelled_utc": "2026-08-28T14:49:23",
+							"coast_station_connected": false,
+							"confirmation_required": true,
+							"created_utc": "2026-08-28T14:49:23",
+							"hold_seconds": 3.0,
+							"minimum_hold_seconds": 3.0,
+							"nature": "COLLISION",
+							"operator_id": "oow-01",
+							"position": {
+								"available": true,
+								"official_navigation_position": false,
+								"source": "SIMULATOR_BRIDGE_POSITION",
+								"x_meters": 0.456439793109894,
+								"z_meters": 0.0212538819760084
+							},
+							"position_source_valid": true,
+							"priority": "DISTRESS",
+							"real_radio_transmission": false,
+							"status": "CANCELLED_SIMULATION_ONLY",
+							"target": "ALL_STATIONS",
+							"training_identity": "TRAINING-999000001",
+							"transmitted_utc": "2026-08-28T14:49:23",
+							"voice_follow_ups": [
+								{
+									"channel": "16",
+									"message": "MAYDAY training follow-up",
+									"operator_id": "oow-01",
+									"real_radio_transmission": false,
+									"utc": "2026-08-28T14:49:23"
+								}
+							]
+						},
+						{
+							"acknowledged": false,
+							"call_id": "DSC-URGENCY-000002",
+							"coast_station_connected": false,
+							"created_utc": "2026-08-28T14:49:23",
+							"nature": "URGENCY EXERCISE",
+							"operator_id": "oow-01",
+							"position": {
+								"available": true,
+								"official_navigation_position": false,
+								"source": "SIMULATOR_BRIDGE_POSITION",
+								"x_meters": 0.456439793109894,
+								"z_meters": 0.0212538819760084
+							},
+							"position_source_valid": true,
+							"priority": "URGENCY",
+							"real_radio_transmission": false,
+							"status": "TRANSMITTED_SIMULATION_ONLY",
+							"target": "TRAINING COAST STATION",
+							"training_identity": "TRAINING-999000001",
+							"transmitted_utc": "2026-08-28T14:49:23",
+							"voice_follow_ups": []
+						},
+						{
+							"acknowledged": false,
+							"call_id": "DSC-SAFETY-000003",
+							"coast_station_connected": false,
+							"created_utc": "2026-08-28T14:49:23",
+							"nature": "SAFETY EXERCISE",
+							"operator_id": "oow-01",
+							"position": {
+								"available": true,
+								"official_navigation_position": false,
+								"source": "SIMULATOR_BRIDGE_POSITION",
+								"x_meters": 0.456439793109894,
+								"z_meters": 0.0212538819760084
+							},
+							"position_source_valid": true,
+							"priority": "SAFETY",
+							"real_radio_transmission": false,
+							"status": "TRANSMITTED_SIMULATION_ONLY",
+							"target": "TRAINING COAST STATION",
+							"training_identity": "TRAINING-999000001",
+							"transmitted_utc": "2026-08-28T14:49:23",
+							"voice_follow_ups": []
+						},
+						{
+							"acknowledged": false,
+							"call_id": "DSC-ROUTINE-000004",
+							"coast_station_connected": false,
+							"created_utc": "2026-08-28T14:49:23",
+							"nature": "ROUTINE EXERCISE",
+							"operator_id": "oow-01",
+							"position": {
+								"available": true,
+								"official_navigation_position": false,
+								"source": "SIMULATOR_BRIDGE_POSITION",
+								"x_meters": 0.456439793109894,
+								"z_meters": 0.0212538819760084
+							},
+							"position_source_valid": true,
+							"priority": "ROUTINE",
+							"real_radio_transmission": false,
+							"status": "TRANSMITTED_SIMULATION_ONLY",
+							"target": "TRAINING COAST STATION",
+							"training_identity": "TRAINING-999000001",
+							"transmitted_utc": "2026-08-28T14:49:23",
+							"voice_follow_ups": []
+						},
+						{
+							"acknowledged": false,
+							"call_id": "DSC-DISTRESS-000005",
+							"coast_station_connected": false,
+							"confirmation_required": true,
+							"created_utc": "2026-08-28T14:49:23",
+							"hold_seconds": 3.0,
+							"minimum_hold_seconds": 3.0,
+							"nature": "COLLISION",
+							"operator_id": "student-oow-01",
+							"position": {
+								"available": true,
+								"official_navigation_position": false,
+								"source": "SIMULATOR_BRIDGE_POSITION",
+								"x_meters": 0.456439793109894,
+								"z_meters": 0.0212538819760084
+							},
+							"position_source_valid": true,
+							"priority": "DISTRESS",
+							"real_radio_transmission": false,
+							"status": "TRANSMITTED_SIMULATION_ONLY",
+							"target": "ALL_STATIONS",
+							"training_identity": "TRAINING-999000001",
+							"transmitted_utc": "2026-08-28T14:49:23",
+							"voice_follow_ups": []
+						}
+					],
+					"channel_watch": {
+						"16": true,
+						"70": true
+					},
+					"coast_station_connected": false,
+					"faults": {
+						"antenna_degraded": false,
+						"dsc_controller_loss": false,
+						"gnss_input_loss": false,
+						"vhf_power_loss": false
+					},
+					"pending_distress_count": 0,
+					"priorities": [
+						"DISTRESS",
+						"URGENCY",
+						"SAFETY",
+						"ROUTINE"
+					],
+					"production_authority": false,
+					"profile_id": "RL-NAV-FMB-2026-01",
+					"real_radio_transmission_enabled": false,
+					"receipt_chain": {
+						"errors": [],
+						"last_receipt_hash": "60ecb67b3b2e89df92842ab490d1c6cc268d7c02f2f3eb4bb1bb725f5846a6f8",
+						"passed": true,
+						"receipt_count": 17
+					},
+					"schema_version": "ship_gmdss_communications_snapshot_v1",
+					"sea_area": "A1_SIMULATED",
+					"training_identity": "TRAINING-999000001",
+					"type_approved": false
+				},
+				"existing_policy_modified": false,
+				"last_receipt": {
+					"action": "transmit_distress",
+					"detail": {
+						"channel": "70",
+						"coast_station_connected": false,
+						"real_radio_transmission": false
+					},
+					"previous_receipt_hash": "8c4bac776defb76b01627060aeb884f60daef578d6972f1ad2dbd8f2ccf74381",
+					"production_authority": false,
+					"real_radio_transmission": false,
+					"receipt_hash": "60ecb67b3b2e89df92842ab490d1c6cc268d7c02f2f3eb4bb1bb725f5846a6f8",
+					"receipt_id": "GMDSS-000017",
+					"schema_version": "ship_gmdss_communications_receipt_v1",
+					"sequence": 17,
+					"status": "TRANSMITTED_SIMULATION_ONLY",
+					"subject": "DSC-DISTRESS-000005",
+					"utc": "2026-08-28T14:49:23"
+				},
+				"physical_full_mission_bridge_verified": false,
+				"production_authority": false,
+				"schema_version": "ship_full_mission_bridge_panel_v1",
+				"ship_motion_model_modified": false,
+				"training_performed": false
+			},
+			"passed": true
+		},
+		"panel_actions_reach_runtime_suite": {
+			"detail": {
+				"action": "transmit_distress",
+				"detail": {
+					"channel": "70",
+					"coast_station_connected": false,
+					"real_radio_transmission": false
+				},
+				"previous_receipt_hash": "8c4bac776defb76b01627060aeb884f60daef578d6972f1ad2dbd8f2ccf74381",
+				"production_authority": false,
+				"real_radio_transmission": false,
+				"receipt_hash": "60ecb67b3b2e89df92842ab490d1c6cc268d7c02f2f3eb4bb1bb725f5846a6f8",
+				"receipt_id": "GMDSS-000017",
+				"schema_version": "ship_gmdss_communications_receipt_v1",
+				"sequence": 17,
+				"status": "TRANSMITTED_SIMULATION_ONLY",
+				"subject": "DSC-DISTRESS-000005",
+				"utc": "2026-08-28T14:49:23"
+			},
+			"passed": true
+		},
+		"panel_gmdss_controls_present": {
+			"detail": {
+				"confirm": true,
+				"prepare": true
+			},
+			"passed": true
+		},
+		"physical_360_claim_remains_blocked": {
+			"detail": {
+				"current_sector": "PORT_BOW",
+				"declared_horizontal_coverage_degrees": 360,
+				"mode": "SOFTWARE_ORBIT_SECTORS",
+				"multi_channel_synchronization_verified": false,
+				"physical_projection_verified": false,
+				"sector_count": 8,
+				"visited_sector_count": 8
+			},
+			"passed": true
+		},
+		"predeparture_check_passes_without_arming": {
+			"detail": {
+				"action": "predeparture_check",
+				"detail": {
+					"control_remains_disarmed": true,
+					"gaps": [],
+					"production_authority": false
+				},
+				"existing_policy_modified": false,
+				"previous_receipt_hash": "GENESIS",
+				"production_authority": false,
+				"receipt_hash": "51d377460ec593b2a41001f37af857d60da44006c231cfca287b7b2e1499aa7f",
+				"receipt_id": "FMB-000001",
+				"schema_version": "ship_full_mission_bridge_receipt_v1",
+				"sequence": 1,
+				"ship_motion_model_modified": false,
+				"status": "PASS",
+				"subject": "FULL_MISSION_BRIDGE",
+				"utc": "2026-08-28T14:49:23"
+			},
+			"passed": true
+		},
+		"routine_call_recorded": {
+			"detail": {
+				"action": "send_dsc_call",
+				"detail": {
+					"priority": "ROUTINE",
+					"real_radio_transmission": false,
+					"target": "TRAINING COAST STATION"
+				},
+				"previous_receipt_hash": "12da4a9ea5baca7ea5fb67ad90b186f490a94abb460c527bfabc18e5f933b7c5",
+				"production_authority": false,
+				"real_radio_transmission": false,
+				"receipt_hash": "342e03ea9495fdd0e7ad207a4f8b45d1a7bdfc65f52d5412b767971d537e30e9",
+				"receipt_id": "GMDSS-000012",
+				"schema_version": "ship_gmdss_communications_receipt_v1",
+				"sequence": 12,
+				"status": "TRANSMITTED_SIMULATION_ONLY",
+				"subject": "DSC-ROUTINE-000004",
+				"utc": "2026-08-28T14:49:23"
+			},
+			"passed": true
+		},
+		"safety_call_recorded": {
+			"detail": {
+				"action": "send_dsc_call",
+				"detail": {
+					"priority": "SAFETY",
+					"real_radio_transmission": false,
+					"target": "TRAINING COAST STATION"
+				},
+				"previous_receipt_hash": "37d3b5a4e2f55c954663282df39d3ddb8534b8bbba953c92e0e7c12b0e5f7c6f",
+				"production_authority": false,
+				"real_radio_transmission": false,
+				"receipt_hash": "12da4a9ea5baca7ea5fb67ad90b186f490a94abb460c527bfabc18e5f933b7c5",
+				"receipt_id": "GMDSS-000011",
+				"schema_version": "ship_gmdss_communications_receipt_v1",
+				"sequence": 11,
+				"status": "TRANSMITTED_SIMULATION_ONLY",
+				"subject": "DSC-SAFETY-000003",
+				"utc": "2026-08-28T14:49:23"
+			},
+			"passed": true
+		},
+		"short_distress_hold_rejected": {
+			"detail": {
+				"action": "transmit_distress",
+				"detail": {
+					"hold_seconds": 2.9,
+					"reason": "GUARD_HOLD_TOO_SHORT"
+				},
+				"previous_receipt_hash": "8dcecaf69d0a0fc5954a34330baca070e36f6adbc6f616a84449b50a357cc4b1",
+				"production_authority": false,
+				"real_radio_transmission": false,
+				"receipt_hash": "6d4be4eb16d69cf7bb83e6ae4b99010d25ad5ff439f49a658d45cf1ba9b7f8a7",
+				"receipt_id": "GMDSS-000003",
+				"schema_version": "ship_gmdss_communications_receipt_v1",
+				"sequence": 3,
+				"status": "REJECTED",
+				"subject": "DSC-DISTRESS-000001",
+				"utc": "2026-08-28T14:49:23"
+			},
+			"passed": true
+		},
+		"software_360_sector_sweep": {
+			"detail": {
+				"receipt": {
+					"action": "sweep_visual_sectors",
+					"detail": {
+						"declared_coverage_degrees": 360,
+						"physical_projection_verified": false,
+						"sector_count": 8,
+						"visited_sector_count": 8
+					},
+					"existing_policy_modified": false,
+					"previous_receipt_hash": "20b255261a97a80ec507f0160bc8b680f7b4ba319ea5ccd20d34a6332969a2e3",
+					"production_authority": false,
+					"receipt_hash": "cc6d3ad2bfada0562fbb85ca44235407555d06cd3883ce5983d46071286342e2",
+					"receipt_id": "FMB-000012",
+					"schema_version": "ship_full_mission_bridge_receipt_v1",
+					"sequence": 12,
+					"ship_motion_model_modified": false,
+					"status": "PASS",
+					"subject": "360_DEGREES",
+					"utc": "2026-08-28T14:49:23"
+				},
+				"visual": {
+					"current_sector": "PORT_BOW",
+					"declared_horizontal_coverage_degrees": 360,
+					"mode": "SOFTWARE_ORBIT_SECTORS",
+					"multi_channel_synchronization_verified": false,
+					"physical_projection_verified": false,
+					"sector_count": 8,
+					"visited_sector_count": 8
+				}
+			},
+			"passed": true
+		},
+		"software_bridge_components_complete": {
+			"detail": {
+				"execution_control": true,
+				"gmdss_communications": true,
+				"instructor_exercise": true,
+				"multi_station_collaboration": true,
+				"navigation_equipment": true
+			},
+			"passed": true
+		},
+		"unknown_distress_nature_rejected": {
+			"detail": {
+				"action": "prepare_distress",
+				"detail": {
+					"reason": "UNKNOWN_DISTRESS_NATURE"
+				},
+				"previous_receipt_hash": "GENESIS",
+				"production_authority": false,
+				"real_radio_transmission": false,
+				"receipt_hash": "809d38387c70770ef585379209fb84d85a72dedd77f49f061e355d24d12454a7",
+				"receipt_id": "GMDSS-000001",
+				"schema_version": "ship_gmdss_communications_receipt_v1",
+				"sequence": 1,
+				"status": "REJECTED",
+				"subject": "UNKNOWN",
+				"utc": "2026-08-28T14:49:23"
+			},
+			"passed": true
+		},
+		"unknown_visual_sector_rejected": {
+			"detail": {
+				"action": "set_visual_sector",
+				"detail": {
+					"reason": "UNKNOWN_VISUAL_SECTOR"
+				},
+				"existing_policy_modified": false,
+				"previous_receipt_hash": "d62c1ef931db1c6bda242411523176c2255a1fccbfed2bce6f83936913fa3069",
+				"production_authority": false,
+				"receipt_hash": "a00d0f2137642dacc427fb56535808a0647547a19c5d6577961368da49bd46d8",
+				"receipt_id": "FMB-000003",
+				"schema_version": "ship_full_mission_bridge_receipt_v1",
+				"sequence": 3,
+				"ship_motion_model_modified": false,
+				"status": "REJECTED",
+				"subject": "UNKNOWN",
+				"utc": "2026-08-28T14:49:23"
+			},
+			"passed": true
+		},
+		"urgency_call_recorded": {
+			"detail": {
+				"action": "send_dsc_call",
+				"detail": {
+					"priority": "URGENCY",
+					"real_radio_transmission": false,
+					"target": "TRAINING COAST STATION"
+				},
+				"previous_receipt_hash": "a67becc0c7702e8c3386b22040fd3ec81883d0bfa4a3fb1d7b5ebe41bbde3e16",
+				"production_authority": false,
+				"real_radio_transmission": false,
+				"receipt_hash": "37d3b5a4e2f55c954663282df39d3ddb8534b8bbba953c92e0e7c12b0e5f7c6f",
+				"receipt_id": "GMDSS-000010",
+				"schema_version": "ship_gmdss_communications_receipt_v1",
+				"sequence": 10,
+				"status": "TRANSMITTED_SIMULATION_ONLY",
+				"subject": "DSC-URGENCY-000002",
+				"utc": "2026-08-28T14:49:23"
+			},
+			"passed": true
+		},
+		"vhf_fault_fails_closed": {
+			"detail": {
+				"action": "send_dsc_call",
+				"detail": {
+					"reason": "DSC_PATH_UNAVAILABLE"
+				},
+				"previous_receipt_hash": "ef9c98025419ea5449cc95af70c9cf6c2a7e1a79fef9b1381fe7b0db9cba2512",
+				"production_authority": false,
+				"real_radio_transmission": false,
+				"receipt_hash": "18e7a2d4cc906548c065132dcb9ca41d46776b5118539a1b29de02bd2e859726",
+				"receipt_id": "GMDSS-000014",
+				"schema_version": "ship_gmdss_communications_receipt_v1",
+				"sequence": 14,
+				"status": "REJECTED",
+				"subject": "ROUTINE",
+				"utc": "2026-08-28T14:49:23"
+			},
+			"passed": true
+		},
+		"voice_follow_up_recorded": {
+			"detail": {
+				"action": "voice_follow_up",
+				"detail": {
+					"channel": "16",
+					"real_radio_transmission": false
+				},
+				"previous_receipt_hash": "de0f47f6e419e2389bc4d4ecad9efcc06dee08564cdc650302ca9992ef15c623",
+				"production_authority": false,
+				"real_radio_transmission": false,
+				"receipt_hash": "a673e592b3ccf97915e759b05fb1c0c182af85c8a4b4fde5361414c12212341b",
+				"receipt_id": "GMDSS-000006",
+				"schema_version": "ship_gmdss_communications_receipt_v1",
+				"sequence": 6,
+				"status": "RECORDED_SIMULATION_ONLY",
+				"subject": "DSC-DISTRESS-000001",
+				"utc": "2026-08-28T14:49:23"
+			},
+			"passed": true
+		}
+	},
+	"errors": [],
+	"existing_policy_modified": false,
+	"generated_at": "2026-08-28T14:49:23",
+	"observation_space_modified": false,
+	"passed": true,
+	"passed_count": 38,
+	"physical_360_bridge_verified": false,
+	"production_authority": false,
+	"real_radio_transmission": false,
+	"reward_function_modified": false,
+	"schema_version": "godot_full_mission_bridge_smoke_v1",
+	"ship_motion_model_modified": false,
+	"training_performed": false
+}

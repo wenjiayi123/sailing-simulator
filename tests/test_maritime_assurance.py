@@ -34,6 +34,7 @@ from tools.ship_assurance.sea_trial import (
     sha256_file,
 )
 from tools.run_maritime_assurance import _comparison_differences
+from tools.run_maritime_assurance import build_payload as build_maritime_payload
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -193,6 +194,16 @@ class ColregAssuranceTests(unittest.TestCase):
                 "no_risk",
             },
         )
+
+    def test_top_level_assurance_includes_additive_complex_layer(self) -> None:
+        payload = build_maritime_payload()
+        self.assertTrue(payload["claim_matrix"]["colreg_scenario_regression_verified"])
+        self.assertTrue(payload["claim_matrix"]["colreg_complex_scenario_regression_verified"])
+        self.assertTrue(payload["colreg_complex"]["passed"])
+        self.assertEqual(payload["colreg_complex"]["scenario_count"], 16)
+        self.assertEqual(payload["colreg_complex"]["case_count"], 45)
+        self.assertFalse(payload["claim_matrix"]["official_local_rules_connected"])
+        self.assertFalse(payload["claim_matrix"]["colreg_certified"])
 
 
 class HilAssuranceTests(unittest.TestCase):

@@ -16,10 +16,10 @@ extends Node3D
 @export_range(1.0, 8.0, 0.1) var landing_length := 3.2
 @export var collision_enabled := true
 @export_group("Cloud Skin")
-@export_file("*.png") var deck_skin_path := "res://assets/textures/world/soft_cloud_ladder/cloud_bridge_deck_skin.png"
-@export_file("*.png") var step_skin_path := "res://assets/textures/world/soft_cloud_ladder/cloud_bridge_step_skin.png"
-@export_file("*.png") var rope_skin_path := "res://assets/textures/world/soft_cloud_ladder/cloud_bridge_rope_skin.png"
-@export_file("*.png") var puff_skin_path := "res://assets/textures/world/soft_cloud_ladder/cloud_bridge_puff_skin.png"
+@export_file("*.svg") var deck_skin_path := "res://assets/generated/release/cloud_bridge_deck.svg"
+@export_file("*.svg") var step_skin_path := "res://assets/generated/release/cloud_bridge_step.svg"
+@export_file("*.svg") var rope_skin_path := "res://assets/generated/release/cloud_bridge_rope.svg"
+@export_file("*.svg") var puff_skin_path := "res://assets/generated/release/cloud_bridge_puff.svg"
 @export_range(0.0, 1.0, 0.01) var cloud_skin_glow := 0.24
 
 var _route_start := Vector3.ZERO

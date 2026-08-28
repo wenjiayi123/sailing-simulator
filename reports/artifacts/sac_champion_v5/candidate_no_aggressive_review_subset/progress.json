@@ -1,0 +1,9 @@
+{
+  "status": "complete",
+  "dataset_split": "validation",
+  "completed_episodes": 8,
+  "total_episodes": 8,
+  "progress": 1.0,
+  "elapsed_wall_seconds": 225.38445170399999,
+  "result": "reports/artifacts/sac_champion_v5/candidate_no_aggressive_review_subset/validation_result.json"
+}

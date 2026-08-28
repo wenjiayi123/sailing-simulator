@@ -1,0 +1,2 @@
+test_case_id,test_case_type,started_at_utc,ended_at_utc,target_controller_serial,rtos_build_id,io_rack_serial,clock_source,clock_offset_ms,cycle_count,wcet_ms,p95_sensor_latency_ms,p95_command_latency_ms,maximum_jitter_ms,watchdog_trip_ms,estop_channel_a_result,estop_channel_b_result,manual_override_result,disconnect_recovery_result,neutral_output_confirmed,raw_log_reference,raw_log_sha256,operator,witness,witness_organization,signed_record_reference,notes
+HIL-WITNESS-001,nominal_and_fault_injection,,,,,,,,,,,,,,,,,,,,,,,,,

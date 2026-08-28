@@ -25,5 +25,12 @@ AIS records, or exploit payloads in a public issue.
 - `live_control_ready`, `deployment_authority`, and equivalent production
   gates must remain false unless the external approvals in
   `docs/PRODUCTION_READINESS.md` are independently completed.
+- The offline bridge cyber range provides default-deny policy simulation,
+  training-only identities, signed-update verification, chained audit records,
+  IDS fixtures, and recovery rehearsal. It forwards no packets and authorizes
+  no actuation. Production identity, hardware secure boot, SOC, field recovery,
+  independent penetration testing, and flag/class approval remain external
+  gates.
 
-See `docs/THREAT_MODEL.md` for the complete trust-boundary analysis.
+See `docs/THREAT_MODEL.md` and `docs/MARITIME_CYBERSECURITY.md` for the complete
+trust-boundary and evidence-gate analysis.

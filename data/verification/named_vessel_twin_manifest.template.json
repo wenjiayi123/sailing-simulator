@@ -1,0 +1,82 @@
+{
+  "schema_version": "named_vessel_twin_manifest_v1",
+  "manifest_id": "",
+  "vessel_identity": {
+    "vessel_name": "",
+    "official_number_or_mmsi": "",
+    "builder_and_hull_number": "",
+    "vessel_type": "twin-waterjet catamaran USV",
+    "length_overall_m": null,
+    "beam_m": null,
+    "propulsion_description": "",
+    "steering_description": ""
+  },
+  "instrumentation": {
+    "gnss_ins_model_and_serial": "",
+    "command_logger_model_and_serial": "",
+    "time_synchronization_reference": "",
+    "position_heading_calibration_reference": "",
+    "actuator_feedback_calibration_reference": "",
+    "environment_measurement_reference": ""
+  },
+  "loading_conditions": [
+    {
+      "id": "lightship",
+      "displacement_kg": null,
+      "longitudinal_cg_m": null,
+      "transverse_cg_m": null,
+      "draft_fore_m": null,
+      "draft_aft_m": null,
+      "payload_description": "",
+      "measurement_reference": ""
+    },
+    {
+      "id": "design_payload",
+      "displacement_kg": null,
+      "longitudinal_cg_m": null,
+      "transverse_cg_m": null,
+      "draft_fore_m": null,
+      "draft_aft_m": null,
+      "payload_description": "",
+      "measurement_reference": ""
+    },
+    {
+      "id": "maximum_operating",
+      "displacement_kg": null,
+      "longitudinal_cg_m": null,
+      "transverse_cg_m": null,
+      "draft_fore_m": null,
+      "draft_aft_m": null,
+      "payload_description": "",
+      "measurement_reference": ""
+    }
+  ],
+  "trials": [],
+  "required_maneuvers": [
+    "turning_circle_port",
+    "turning_circle_starboard",
+    "zigzag_10_10",
+    "zigzag_20_20",
+    "stopping_full_ahead_to_stop",
+    "acceleration",
+    "deceleration"
+  ],
+  "acceptance_thresholds": {
+    "position_error_p95_m": 5.0,
+    "heading_error_p95_deg": 5.0,
+    "surge_speed_rmse_mps": 0.5,
+    "yaw_rate_rmse_deg_s": 1.5,
+    "minimum_samples_per_trial": 120,
+    "minimum_trials_per_loading_condition": 2
+  },
+  "independent_review": {
+    "reviewer_name": "",
+    "organization": "",
+    "review_record_reference": "",
+    "witnessed_trial_reference": ""
+  },
+  "source_class": "REAL_NAMED_VESSEL_TRIAL_REQUIRED",
+  "named_vessel_dynamics_calibrated": false,
+  "production_authority": false,
+  "claim_boundary": "Template only. Empty fields and absent raw trial files must fail closed; simulation or self-generated data cannot establish named-vessel calibration."
+}

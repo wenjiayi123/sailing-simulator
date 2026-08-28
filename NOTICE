@@ -25,7 +25,11 @@ and marine forcing is attributed to Open-Meteo under CC BY 4.0. Exact URLs,
 retrieval timestamps, source hashes, and research-only boundaries are recorded
 under data/public and docs/DATA_SOURCES.md.
 
-Xiaoyi visual identity:
-assets/ui/xiaoyi/xiaoyi-maritime-officer.png reuses the established Xiaoyi
-maritime Q-style identity supplied with the author's related project. Its
-SHA-256 and release-review status are recorded in docs/ASSET_LICENSE_AUDIT.md.
+Visual release assets:
+Every included visual file is hash-bound to its origin and license in
+data/verification/visual_asset_release_manifest_v1.json. Project-authored SVG
+replacements and runtime captures are Apache-2.0. The exact user-authorized
+cargo recording and its poster/GIF derivatives use
+LicenseRef-User-Authorized-Public-Redistribution. Legacy local assets listed as
+excluded are not relicensed or packaged. See THIRD_PARTY_ASSETS.md and
+docs/ASSET_LICENSE_AUDIT.md.

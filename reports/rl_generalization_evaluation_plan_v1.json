@@ -1,0 +1,4539 @@
+{
+  "schema_version": "rl_generalization_evaluation_plan_v1",
+  "campaign_id": "top_simulator_generalization_v1",
+  "base_matrix_cell_count": 320,
+  "ablation_pair_count": 30,
+  "stress_cell_count": 40,
+  "ood_cell_count": 20,
+  "total_planned_cell_count": 410,
+  "cells": [
+    {
+      "cell_id": "base-bdaaae577d25274a",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250107,
+      "evidence_class": "OBSERVED_REFERENCE_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-c2ed5e08f2d6d1c7",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250211,
+      "evidence_class": "OBSERVED_REFERENCE_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-930d287bb14f673b",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250307,
+      "evidence_class": "OBSERVED_REFERENCE_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-70f332ac17587217",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250401,
+      "evidence_class": "OBSERVED_REFERENCE_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-9746048d7d954f15",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250503,
+      "evidence_class": "OBSERVED_REFERENCE_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-822361d11901055f",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250107,
+      "evidence_class": "OBSERVED_REFERENCE_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-fe4ceebab589e6be",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250211,
+      "evidence_class": "OBSERVED_REFERENCE_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-2b9cddb4b6ebb12e",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250307,
+      "evidence_class": "OBSERVED_REFERENCE_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-0f3c01a9f0de7123",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250401,
+      "evidence_class": "OBSERVED_REFERENCE_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-0b5a444a02657a25",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250503,
+      "evidence_class": "OBSERVED_REFERENCE_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-ea7709c7b04b905e",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250107,
+      "evidence_class": "OBSERVED_REFERENCE_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-94a7b0642a43241f",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250211,
+      "evidence_class": "OBSERVED_REFERENCE_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-144d51a67615910f",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250307,
+      "evidence_class": "OBSERVED_REFERENCE_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-d94284962fa66b4a",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250401,
+      "evidence_class": "OBSERVED_REFERENCE_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-6ace56682bb63b5b",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250503,
+      "evidence_class": "OBSERVED_REFERENCE_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-e98a5b229e262d13",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250107,
+      "evidence_class": "OBSERVED_REFERENCE_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-57b36b97a9298f69",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250211,
+      "evidence_class": "OBSERVED_REFERENCE_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-62f18c470570e431",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250307,
+      "evidence_class": "OBSERVED_REFERENCE_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-d9d7c396a033c3a0",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250401,
+      "evidence_class": "OBSERVED_REFERENCE_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-1a648eebe0280306",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250503,
+      "evidence_class": "OBSERVED_REFERENCE_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-1f12dd518d3589ae",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-0758c9fe9c3afe36",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-66e6095476e5a4aa",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-b6373b5264c27613",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-806a1a200a034ef8",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-90367583333e4b3b",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-8499760e71596cc0",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-0a057765ee0c7157",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-54ce6620ced5c3fb",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-79de2aee9269cf02",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-2355e7fa48226de0",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-17833b46ae4151b9",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-f4392e4019ff24b1",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-4b30e158552b3bcf",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-07286b8c2e085ede",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-adc5a0ea576a4e93",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-0b92e85cb30ba9cf",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-614516acd224c663",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-c610d6b60394dcb6",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-680c2af20e62e95e",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-9b0592d273272831",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-b50ff9933fe027cc",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-9042bfe70ca45a50",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-c4a8201b73a17827",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-e9a1a4d4d2f2718d",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-53244613041d93b4",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-dc92e547e6e06e55",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-46db69358a65bb65",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-1113235169cc9a1c",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-d5177bce7164f951",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-1575328c207e2d54",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-b5c6ab84e2b0e8ec",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-d2fa0f0293e3a558",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-c948f63df27dd624",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-2f6b55f5b4bdba28",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-edafb73f36200a22",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-2dbb2fae0967e49f",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-5e25c50cae825227",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-a117a28af1c7410b",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-ef104734f466f5b5",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-7945035343ac67ce",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-08b3b6e04c1c2ef4",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-23c2d5ec7c992f2b",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-dfa8cad1e6cb6121",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-3f42f8ea067289ae",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-d6ab27b7ac45b84e",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-20b368b7ee885489",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-7711802e1e4c3e55",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-097086d339ce2291",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-f85ac20fe2d7e413",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-478de17851efaea1",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-083719ca7449badf",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-36a5351ed160445f",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-aba76c532bc88bff",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-415d2727d1cfe724",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-a8957b23c1467e9f",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-2710a0a1968d6b96",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-4d994cc1502df92c",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-ca4141baf81a1bfa",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-f70c82e32cda01b0",
+      "kind": "base_matrix",
+      "port_domain_id": "port_long_beach_reference",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-a32f9c210618dcc7",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-611e900f0cfc4651",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-f1bd7e6e5e40da92",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-ae348fc7fae40bca",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-ace261d400fcff51",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-2e202bff63961434",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-e8bdc9e8f142e9c3",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-7e0cbcdf2d673429",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-cb90e51e035444e6",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-2aed92a5b1e48924",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-52fb8ea30eb3ef94",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-60d26236fa6adbd2",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-bf6f4dd1e73996c8",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-5245a47a2376359a",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-9b9e0c3a7c759265",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-06a6d1da09990de7",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-902a21914165930b",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-4af06f5734c0b920",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-6c7b132080b0d7b5",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-5a47b729e40aa859",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-8d67034614713030",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-ede4328c32f4fb74",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-66e5d17c69206e44",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-67472125061caeda",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-55d8e81f3e7a1814",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-0d8952bba9b78c02",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-11199e0a93f45fdd",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-e927f974992a7592",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-6e2b34ee129fe248",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-7f337e88adcc9729",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-8d1058c442cb5191",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-fcc143fc8158fb15",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-017e8f474ba56363",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-ea5aff1630f26804",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-9013cc688588f28f",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-e9d56ddabf3cda3a",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-32dad3c970fde664",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-441a3076c054d9b1",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-91d5a6944ae58ce2",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-e7f9d1686efbf6d0",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-03bdc09cf33c6343",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-3a927da25ed0af32",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-c86e2ffc45ad8586",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-0e1cb3c3e12783f0",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-23cb8b439a087271",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-1605b81eacdd2c7f",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-e830a0f882814f16",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-0b3f6ca172817486",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-b64d0e2feccd888b",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-4137a11271a18889",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-b8780f7479f40fe2",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-3fb7cf1f171c3351",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-25d1775499885de7",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-a643775059fdcb04",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-ce29b89af3054fd5",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-13e8d75fc834d04d",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-085cfbb05f80bd93",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-3129c20c48e3b8d1",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-3f715a02573ea5cf",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-89140ef8190d50bd",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-4a216cefa0999e12",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-ef272a4ce1a1a7b5",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-3c832e99eca44a32",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-c37570cdbb1316bb",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-9a0c547564c87db9",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-4c6211ece76b7e29",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-de9ccfceea6d799d",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-ad4e6e45744b20fa",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-8f38ca9bb994000e",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-aaaec95fa7668cdb",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-feee2c239652c78e",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-f556741b976a5e79",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-1f66507e37aa2597",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-3382dd2d3d6e76fa",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-bac262248eaeae79",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-d5fbc3c9dbf41aa1",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-e6928ec6623a751c",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-f400f43397a3908e",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-a1dff1275a34c20c",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-d80bae2da52aed7d",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_tidal_estuary",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-2c9b238f10d5bcea",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-0309a840df2398cc",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-e4fc972008efffc9",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-c3c540d07ed79ca7",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-48d524e43f7415ae",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-2fb92b0d9ee4fb75",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-72090fc0438bad72",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-56ef419515f6be58",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-290d425fa3157702",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-482ef08c51b34cc0",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-e372b9e281b17172",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-5c3bcd0a6479df7c",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-1bdbaab644728b4b",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-ee53cf6e3bd40ff6",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-f989af56401f720e",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-b0cb5a2d218afab8",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-3196f85c7c3d5cf8",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-17bc7291a9e997fb",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-3abae8d55b826773",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-2fbfd09937fe3b3d",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-3ffe63e13bf8270a",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-cd498dcc4938b474",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-02883435916f6265",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-e63773094f79fc6c",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-cf1cfdcc58800786",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-4d6e7b68f82f4cd4",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-540e1d255a4096b6",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-0c35a101312a0073",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-1eff54d1ebf283d3",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-353f948795e638b3",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-1a0a88489fc420ab",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-e1664fd23a09d2c2",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-a75bac0680923d37",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-86db5b2335e3464d",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-7f9ae0c0cc2c0c75",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-0f51551232cbd7ee",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-e87fed2279cfa740",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-1e29c8613694690f",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-8a2f090fdeef087c",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-df91e2fb90a5019a",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-9f3a77c255aefd8a",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-5378fb4980682e52",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-bdba7155bd3dac71",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-d505cd814cd024c2",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-2685e53ca34e237b",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-58a330152aed55d6",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-487ee726dc0912cd",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-6070def2de26b918",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-80cce19524026c1e",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-6cb737b5f33d37fc",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-c53b3e4e6ca78eef",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-3718ce98beb8924d",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-f328228f8b5dffe0",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-b6e665aaca85b8c0",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-a6cace288e24ab46",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-8b5dde2f79bfc662",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-b40387b1963d34e4",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-a7df69aa1f881209",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-56cc9b7d1f326aa5",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-c03bbb8fdeb34bfe",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-db6be9a0c1c11f64",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-cd84690e8b49d8d8",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-5906c34259c5eb78",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-8f3eddc4a7cbc493",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-cbb966610ae0d5ca",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-ac07ef5ed6d70ff5",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-01ad3f736228781d",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-f87bb6ef2e9be995",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-98b467d28026409f",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-4f5cbf6000c41535",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-fb72de4fa205bafb",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-9387706d6652d44a",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-af98711ba62e5e54",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-c046eae326a9b51f",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-7450636897b645fd",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-ce44e3be1dbb5a89",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-af5379c898d0bc93",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-e84b0d5d7e0f6c71",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-e405c61561a52133",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-78c1398855101d8f",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_narrow_strait",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-75ac7d51d8b0dc19",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-532dcf4f7a2db0b5",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-3aad1a702042bfa1",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-af2d1de3c163525b",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-533805ed5941dbff",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-dc344767f50a3969",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-0d92f67aecf94443",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-49c0c186888afdd8",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-d76c9d003dc0f7fb",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-d8276fee4d793409",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-8df077582929ca75",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-0870a1cecaa10f8e",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-f27d97d3a364cc69",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-56d4fc612090b1dd",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-1ed5a89ff9ff51a2",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-e0f5e693778918a4",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-009512fb40e3923f",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-31ceace1b7f7c152",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-7822e1936d2b857c",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-306f7b58baeddedf",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_winter_reference",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-ccc2027a010b60c2",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-4e18833cce14bc64",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-2af83282be5856a8",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-851b866c3604a329",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-a46250a6be880369",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-d27ac30792ffa741",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-683dc56b16958a58",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-c865dbdd98a956b8",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-662fde9134ad112c",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-3e30c8c535f18207",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-57917a93939d53c3",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-44a1a8590eb243ed",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-eb43a6bb44215823",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-8f6a3e8f8415e1cc",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-99f88831bf2eed93",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-c8120d04ddba30b5",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-12153c4decde0d2c",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-12b9ee92778de05d",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-eb4b4061d3d97a01",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-74881944f347e0f3",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_spring_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-903ff699be2fb17f",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-6c2d2fc08505e8af",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-77c98c8bfa494d9b",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-186279f94cdd44d3",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-892c95e45562c8fa",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-256d00d849547d13",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-9d2d649a04450358",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-96d4dd403ac485ae",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-a181e8aab59eafa2",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-698fb31e608a4be8",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-b0b01197f2a1cb5c",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-4f50494efef09849",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-e3ef0560523bf4ec",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-f418c196f75f169f",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-5a1c3731ab20a7fc",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-64ac35074b259e9a",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-192742507ff8fccf",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-db018d70ec5fb6a9",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-5d4ea4e831812203",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-41de8a94706a703b",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_summer_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-ed922c003e1ad870",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-df50a8f90514d86c",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-d8b9a5022b0b7106",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-1e28cae68169bc26",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-d039aedff409ac9e",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_harbor_service",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-a71627fd5b221b71",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-45dfdb20a3a463e1",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-9a57294b582c8582",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-9c90feb85c8a8951",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-9d9c95bde9f1ea97",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_feeder_container",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-88ce0ea6fd1d3055",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-a682223145e4da24",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-78f619917e20b0e6",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-9f4abaae724c9ff9",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-63ddaed11b74ded9",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_panamax_bulk",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-8a2c52ffe01ac730",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250107,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-8b5584a0a0db9d5d",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_adversarial_closing",
+      "seed": 250211,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-d826b5b4bc3542c2",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_speed_matching",
+      "seed": 250307,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-d41a745ad0e77c61",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_cooperative_yield",
+      "seed": 250401,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "base-d8a09d561855510b",
+      "kind": "base_matrix",
+      "port_domain_id": "port_sim_archipelago",
+      "season_domain_id": "season_autumn_overlay",
+      "vessel_domain_id": "vessel_large_tanker",
+      "traffic_domain_id": "traffic_delayed_yield",
+      "seed": 250503,
+      "evidence_class": "SIMULATOR_FUNCTIONAL_DOMAIN_CELL",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_domain_randomization-seed-250107",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_domain_randomization",
+      "factor": "domain_randomization",
+      "seed": 250107,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_domain_randomization-seed-250211",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_domain_randomization",
+      "factor": "domain_randomization",
+      "seed": 250211,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_domain_randomization-seed-250307",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_domain_randomization",
+      "factor": "domain_randomization",
+      "seed": 250307,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_domain_randomization-seed-250401",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_domain_randomization",
+      "factor": "domain_randomization",
+      "seed": 250401,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_domain_randomization-seed-250503",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_domain_randomization",
+      "factor": "domain_randomization",
+      "seed": 250503,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_interactive_traffic-seed-250107",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_interactive_traffic",
+      "factor": "interactive_traffic",
+      "seed": 250107,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_interactive_traffic-seed-250211",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_interactive_traffic",
+      "factor": "interactive_traffic",
+      "seed": 250211,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_interactive_traffic-seed-250307",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_interactive_traffic",
+      "factor": "interactive_traffic",
+      "seed": 250307,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_interactive_traffic-seed-250401",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_interactive_traffic",
+      "factor": "interactive_traffic",
+      "seed": 250401,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_interactive_traffic-seed-250503",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_interactive_traffic",
+      "factor": "interactive_traffic",
+      "seed": 250503,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_sensor_noise-seed-250107",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_sensor_noise",
+      "factor": "sensor_noise",
+      "seed": 250107,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_sensor_noise-seed-250211",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_sensor_noise",
+      "factor": "sensor_noise",
+      "seed": 250211,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_sensor_noise-seed-250307",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_sensor_noise",
+      "factor": "sensor_noise",
+      "seed": 250307,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_sensor_noise-seed-250401",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_sensor_noise",
+      "factor": "sensor_noise",
+      "seed": 250401,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_sensor_noise-seed-250503",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_sensor_noise",
+      "factor": "sensor_noise",
+      "seed": 250503,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_wind_wave_current-seed-250107",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_wind_wave_current",
+      "factor": "wind_wave_current",
+      "seed": 250107,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_wind_wave_current-seed-250211",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_wind_wave_current",
+      "factor": "wind_wave_current",
+      "seed": 250211,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_wind_wave_current-seed-250307",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_wind_wave_current",
+      "factor": "wind_wave_current",
+      "seed": 250307,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_wind_wave_current-seed-250401",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_wind_wave_current",
+      "factor": "wind_wave_current",
+      "seed": 250401,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_wind_wave_current-seed-250503",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_wind_wave_current",
+      "factor": "wind_wave_current",
+      "seed": 250503,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_colreg_context-seed-250107",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_colreg_context",
+      "factor": "colreg_context",
+      "seed": 250107,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_colreg_context-seed-250211",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_colreg_context",
+      "factor": "colreg_context",
+      "seed": 250211,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_colreg_context-seed-250307",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_colreg_context",
+      "factor": "colreg_context",
+      "seed": 250307,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_colreg_context-seed-250401",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_colreg_context",
+      "factor": "colreg_context",
+      "seed": 250401,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_colreg_context-seed-250503",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_colreg_context",
+      "factor": "colreg_context",
+      "seed": 250503,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_safety_supervision-seed-250107",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_safety_supervision",
+      "factor": "safety_supervision",
+      "seed": 250107,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_safety_supervision-seed-250211",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_safety_supervision",
+      "factor": "safety_supervision",
+      "seed": 250211,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_safety_supervision-seed-250307",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_safety_supervision",
+      "factor": "safety_supervision",
+      "seed": 250307,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_safety_supervision-seed-250401",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_safety_supervision",
+      "factor": "safety_supervision",
+      "seed": 250401,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ablation-ablate_safety_supervision-seed-250503",
+      "kind": "paired_ablation",
+      "ablation_id": "ablate_safety_supervision",
+      "factor": "safety_supervision",
+      "seed": 250503,
+      "control_value": true,
+      "treatment_value": false,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_dense_interactive_traffic-seed-250107",
+      "kind": "stress",
+      "stress_id": "stress_dense_interactive_traffic",
+      "factor": "traffic_count",
+      "value": 20,
+      "seed": 250107,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_dense_interactive_traffic-seed-250211",
+      "kind": "stress",
+      "stress_id": "stress_dense_interactive_traffic",
+      "factor": "traffic_count",
+      "value": 20,
+      "seed": 250211,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_dense_interactive_traffic-seed-250307",
+      "kind": "stress",
+      "stress_id": "stress_dense_interactive_traffic",
+      "factor": "traffic_count",
+      "value": 20,
+      "seed": 250307,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_dense_interactive_traffic-seed-250401",
+      "kind": "stress",
+      "stress_id": "stress_dense_interactive_traffic",
+      "factor": "traffic_count",
+      "value": 20,
+      "seed": 250401,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_dense_interactive_traffic-seed-250503",
+      "kind": "stress",
+      "stress_id": "stress_dense_interactive_traffic",
+      "factor": "traffic_count",
+      "value": 20,
+      "seed": 250503,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_restricted_visibility-seed-250107",
+      "kind": "stress",
+      "stress_id": "stress_restricted_visibility",
+      "factor": "visibility_km",
+      "value": 0.5,
+      "seed": 250107,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_restricted_visibility-seed-250211",
+      "kind": "stress",
+      "stress_id": "stress_restricted_visibility",
+      "factor": "visibility_km",
+      "value": 0.5,
+      "seed": 250211,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_restricted_visibility-seed-250307",
+      "kind": "stress",
+      "stress_id": "stress_restricted_visibility",
+      "factor": "visibility_km",
+      "value": 0.5,
+      "seed": 250307,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_restricted_visibility-seed-250401",
+      "kind": "stress",
+      "stress_id": "stress_restricted_visibility",
+      "factor": "visibility_km",
+      "value": 0.5,
+      "seed": 250401,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_restricted_visibility-seed-250503",
+      "kind": "stress",
+      "stress_id": "stress_restricted_visibility",
+      "factor": "visibility_km",
+      "value": 0.5,
+      "seed": 250503,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_strong_cross_current-seed-250107",
+      "kind": "stress",
+      "stress_id": "stress_strong_cross_current",
+      "factor": "current_speed_knots",
+      "value": 3.0,
+      "seed": 250107,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_strong_cross_current-seed-250211",
+      "kind": "stress",
+      "stress_id": "stress_strong_cross_current",
+      "factor": "current_speed_knots",
+      "value": 3.0,
+      "seed": 250211,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_strong_cross_current-seed-250307",
+      "kind": "stress",
+      "stress_id": "stress_strong_cross_current",
+      "factor": "current_speed_knots",
+      "value": 3.0,
+      "seed": 250307,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_strong_cross_current-seed-250401",
+      "kind": "stress",
+      "stress_id": "stress_strong_cross_current",
+      "factor": "current_speed_knots",
+      "value": 3.0,
+      "seed": 250401,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_strong_cross_current-seed-250503",
+      "kind": "stress",
+      "stress_id": "stress_strong_cross_current",
+      "factor": "current_speed_knots",
+      "value": 3.0,
+      "seed": 250503,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_high_wind_wave-seed-250107",
+      "kind": "stress",
+      "stress_id": "stress_high_wind_wave",
+      "factor": "combined_weather",
+      "value": {
+        "wind_speed_knots": 40.0,
+        "wave_height_meters": 5.0
+      },
+      "seed": 250107,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_high_wind_wave-seed-250211",
+      "kind": "stress",
+      "stress_id": "stress_high_wind_wave",
+      "factor": "combined_weather",
+      "value": {
+        "wind_speed_knots": 40.0,
+        "wave_height_meters": 5.0
+      },
+      "seed": 250211,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_high_wind_wave-seed-250307",
+      "kind": "stress",
+      "stress_id": "stress_high_wind_wave",
+      "factor": "combined_weather",
+      "value": {
+        "wind_speed_knots": 40.0,
+        "wave_height_meters": 5.0
+      },
+      "seed": 250307,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_high_wind_wave-seed-250401",
+      "kind": "stress",
+      "stress_id": "stress_high_wind_wave",
+      "factor": "combined_weather",
+      "value": {
+        "wind_speed_knots": 40.0,
+        "wave_height_meters": 5.0
+      },
+      "seed": 250401,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_high_wind_wave-seed-250503",
+      "kind": "stress",
+      "stress_id": "stress_high_wind_wave",
+      "factor": "combined_weather",
+      "value": {
+        "wind_speed_knots": 40.0,
+        "wave_height_meters": 5.0
+      },
+      "seed": 250503,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_minimum_ukc-seed-250107",
+      "kind": "stress",
+      "stress_id": "stress_minimum_ukc",
+      "factor": "under_keel_clearance_meters",
+      "value": 1.0,
+      "seed": 250107,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_minimum_ukc-seed-250211",
+      "kind": "stress",
+      "stress_id": "stress_minimum_ukc",
+      "factor": "under_keel_clearance_meters",
+      "value": 1.0,
+      "seed": 250211,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_minimum_ukc-seed-250307",
+      "kind": "stress",
+      "stress_id": "stress_minimum_ukc",
+      "factor": "under_keel_clearance_meters",
+      "value": 1.0,
+      "seed": 250307,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_minimum_ukc-seed-250401",
+      "kind": "stress",
+      "stress_id": "stress_minimum_ukc",
+      "factor": "under_keel_clearance_meters",
+      "value": 1.0,
+      "seed": 250401,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_minimum_ukc-seed-250503",
+      "kind": "stress",
+      "stress_id": "stress_minimum_ukc",
+      "factor": "under_keel_clearance_meters",
+      "value": 1.0,
+      "seed": 250503,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_sensor_latency-seed-250107",
+      "kind": "stress",
+      "stress_id": "stress_sensor_latency",
+      "factor": "sensor_latency_ms",
+      "value": 2000,
+      "seed": 250107,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_sensor_latency-seed-250211",
+      "kind": "stress",
+      "stress_id": "stress_sensor_latency",
+      "factor": "sensor_latency_ms",
+      "value": 2000,
+      "seed": 250211,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_sensor_latency-seed-250307",
+      "kind": "stress",
+      "stress_id": "stress_sensor_latency",
+      "factor": "sensor_latency_ms",
+      "value": 2000,
+      "seed": 250307,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_sensor_latency-seed-250401",
+      "kind": "stress",
+      "stress_id": "stress_sensor_latency",
+      "factor": "sensor_latency_ms",
+      "value": 2000,
+      "seed": 250401,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_sensor_latency-seed-250503",
+      "kind": "stress",
+      "stress_id": "stress_sensor_latency",
+      "factor": "sensor_latency_ms",
+      "value": 2000,
+      "seed": 250503,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_gnss_spoofing-seed-250107",
+      "kind": "stress",
+      "stress_id": "stress_gnss_spoofing",
+      "factor": "gnss_bias_meters",
+      "value": 100.0,
+      "seed": 250107,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_gnss_spoofing-seed-250211",
+      "kind": "stress",
+      "stress_id": "stress_gnss_spoofing",
+      "factor": "gnss_bias_meters",
+      "value": 100.0,
+      "seed": 250211,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_gnss_spoofing-seed-250307",
+      "kind": "stress",
+      "stress_id": "stress_gnss_spoofing",
+      "factor": "gnss_bias_meters",
+      "value": 100.0,
+      "seed": 250307,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_gnss_spoofing-seed-250401",
+      "kind": "stress",
+      "stress_id": "stress_gnss_spoofing",
+      "factor": "gnss_bias_meters",
+      "value": 100.0,
+      "seed": 250401,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_gnss_spoofing-seed-250503",
+      "kind": "stress",
+      "stress_id": "stress_gnss_spoofing",
+      "factor": "gnss_bias_meters",
+      "value": 100.0,
+      "seed": 250503,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_actuator_delay-seed-250107",
+      "kind": "stress",
+      "stress_id": "stress_actuator_delay",
+      "factor": "actuator_delay_ms",
+      "value": 1500,
+      "seed": 250107,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_actuator_delay-seed-250211",
+      "kind": "stress",
+      "stress_id": "stress_actuator_delay",
+      "factor": "actuator_delay_ms",
+      "value": 1500,
+      "seed": 250211,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_actuator_delay-seed-250307",
+      "kind": "stress",
+      "stress_id": "stress_actuator_delay",
+      "factor": "actuator_delay_ms",
+      "value": 1500,
+      "seed": 250307,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_actuator_delay-seed-250401",
+      "kind": "stress",
+      "stress_id": "stress_actuator_delay",
+      "factor": "actuator_delay_ms",
+      "value": 1500,
+      "seed": 250401,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "stress-stress_actuator_delay-seed-250503",
+      "kind": "stress",
+      "stress_id": "stress_actuator_delay",
+      "factor": "actuator_delay_ms",
+      "value": 1500,
+      "seed": 250503,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ood-ood_port_archetype-seed-250107",
+      "kind": "ood",
+      "suite_id": "ood_port_archetype",
+      "held_out_dimension": "port",
+      "seed": 250107,
+      "training_domain_ids": [
+        "port_long_beach_reference"
+      ],
+      "evaluation_domain_ids": [
+        "port_sim_tidal_estuary",
+        "port_sim_narrow_strait",
+        "port_sim_archipelago"
+      ],
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ood-ood_port_archetype-seed-250211",
+      "kind": "ood",
+      "suite_id": "ood_port_archetype",
+      "held_out_dimension": "port",
+      "seed": 250211,
+      "training_domain_ids": [
+        "port_long_beach_reference"
+      ],
+      "evaluation_domain_ids": [
+        "port_sim_tidal_estuary",
+        "port_sim_narrow_strait",
+        "port_sim_archipelago"
+      ],
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ood-ood_port_archetype-seed-250307",
+      "kind": "ood",
+      "suite_id": "ood_port_archetype",
+      "held_out_dimension": "port",
+      "seed": 250307,
+      "training_domain_ids": [
+        "port_long_beach_reference"
+      ],
+      "evaluation_domain_ids": [
+        "port_sim_tidal_estuary",
+        "port_sim_narrow_strait",
+        "port_sim_archipelago"
+      ],
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ood-ood_port_archetype-seed-250401",
+      "kind": "ood",
+      "suite_id": "ood_port_archetype",
+      "held_out_dimension": "port",
+      "seed": 250401,
+      "training_domain_ids": [
+        "port_long_beach_reference"
+      ],
+      "evaluation_domain_ids": [
+        "port_sim_tidal_estuary",
+        "port_sim_narrow_strait",
+        "port_sim_archipelago"
+      ],
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ood-ood_port_archetype-seed-250503",
+      "kind": "ood",
+      "suite_id": "ood_port_archetype",
+      "held_out_dimension": "port",
+      "seed": 250503,
+      "training_domain_ids": [
+        "port_long_beach_reference"
+      ],
+      "evaluation_domain_ids": [
+        "port_sim_tidal_estuary",
+        "port_sim_narrow_strait",
+        "port_sim_archipelago"
+      ],
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ood-ood_season_extreme-seed-250107",
+      "kind": "ood",
+      "suite_id": "ood_season_extreme",
+      "held_out_dimension": "season",
+      "seed": 250107,
+      "training_domain_ids": [
+        "season_winter_reference"
+      ],
+      "evaluation_domain_ids": [
+        "season_spring_overlay",
+        "season_summer_overlay",
+        "season_autumn_overlay"
+      ],
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ood-ood_season_extreme-seed-250211",
+      "kind": "ood",
+      "suite_id": "ood_season_extreme",
+      "held_out_dimension": "season",
+      "seed": 250211,
+      "training_domain_ids": [
+        "season_winter_reference"
+      ],
+      "evaluation_domain_ids": [
+        "season_spring_overlay",
+        "season_summer_overlay",
+        "season_autumn_overlay"
+      ],
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ood-ood_season_extreme-seed-250307",
+      "kind": "ood",
+      "suite_id": "ood_season_extreme",
+      "held_out_dimension": "season",
+      "seed": 250307,
+      "training_domain_ids": [
+        "season_winter_reference"
+      ],
+      "evaluation_domain_ids": [
+        "season_spring_overlay",
+        "season_summer_overlay",
+        "season_autumn_overlay"
+      ],
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ood-ood_season_extreme-seed-250401",
+      "kind": "ood",
+      "suite_id": "ood_season_extreme",
+      "held_out_dimension": "season",
+      "seed": 250401,
+      "training_domain_ids": [
+        "season_winter_reference"
+      ],
+      "evaluation_domain_ids": [
+        "season_spring_overlay",
+        "season_summer_overlay",
+        "season_autumn_overlay"
+      ],
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ood-ood_season_extreme-seed-250503",
+      "kind": "ood",
+      "suite_id": "ood_season_extreme",
+      "held_out_dimension": "season",
+      "seed": 250503,
+      "training_domain_ids": [
+        "season_winter_reference"
+      ],
+      "evaluation_domain_ids": [
+        "season_spring_overlay",
+        "season_summer_overlay",
+        "season_autumn_overlay"
+      ],
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ood-ood_vessel_scale-seed-250107",
+      "kind": "ood",
+      "suite_id": "ood_vessel_scale",
+      "held_out_dimension": "vessel",
+      "seed": 250107,
+      "training_domain_ids": [
+        "vessel_harbor_service",
+        "vessel_feeder_container"
+      ],
+      "evaluation_domain_ids": [
+        "vessel_panamax_bulk",
+        "vessel_large_tanker"
+      ],
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ood-ood_vessel_scale-seed-250211",
+      "kind": "ood",
+      "suite_id": "ood_vessel_scale",
+      "held_out_dimension": "vessel",
+      "seed": 250211,
+      "training_domain_ids": [
+        "vessel_harbor_service",
+        "vessel_feeder_container"
+      ],
+      "evaluation_domain_ids": [
+        "vessel_panamax_bulk",
+        "vessel_large_tanker"
+      ],
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ood-ood_vessel_scale-seed-250307",
+      "kind": "ood",
+      "suite_id": "ood_vessel_scale",
+      "held_out_dimension": "vessel",
+      "seed": 250307,
+      "training_domain_ids": [
+        "vessel_harbor_service",
+        "vessel_feeder_container"
+      ],
+      "evaluation_domain_ids": [
+        "vessel_panamax_bulk",
+        "vessel_large_tanker"
+      ],
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ood-ood_vessel_scale-seed-250401",
+      "kind": "ood",
+      "suite_id": "ood_vessel_scale",
+      "held_out_dimension": "vessel",
+      "seed": 250401,
+      "training_domain_ids": [
+        "vessel_harbor_service",
+        "vessel_feeder_container"
+      ],
+      "evaluation_domain_ids": [
+        "vessel_panamax_bulk",
+        "vessel_large_tanker"
+      ],
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ood-ood_vessel_scale-seed-250503",
+      "kind": "ood",
+      "suite_id": "ood_vessel_scale",
+      "held_out_dimension": "vessel",
+      "seed": 250503,
+      "training_domain_ids": [
+        "vessel_harbor_service",
+        "vessel_feeder_container"
+      ],
+      "evaluation_domain_ids": [
+        "vessel_panamax_bulk",
+        "vessel_large_tanker"
+      ],
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ood-ood_compound-seed-250107",
+      "kind": "ood",
+      "suite_id": "ood_compound",
+      "held_out_dimension": "compound",
+      "seed": 250107,
+      "training_domain_ids": [
+        "port_long_beach_reference",
+        "season_winter_reference",
+        "vessel_feeder_container"
+      ],
+      "evaluation_domain_ids": [
+        "port_sim_narrow_strait",
+        "season_autumn_overlay",
+        "vessel_large_tanker"
+      ],
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ood-ood_compound-seed-250211",
+      "kind": "ood",
+      "suite_id": "ood_compound",
+      "held_out_dimension": "compound",
+      "seed": 250211,
+      "training_domain_ids": [
+        "port_long_beach_reference",
+        "season_winter_reference",
+        "vessel_feeder_container"
+      ],
+      "evaluation_domain_ids": [
+        "port_sim_narrow_strait",
+        "season_autumn_overlay",
+        "vessel_large_tanker"
+      ],
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ood-ood_compound-seed-250307",
+      "kind": "ood",
+      "suite_id": "ood_compound",
+      "held_out_dimension": "compound",
+      "seed": 250307,
+      "training_domain_ids": [
+        "port_long_beach_reference",
+        "season_winter_reference",
+        "vessel_feeder_container"
+      ],
+      "evaluation_domain_ids": [
+        "port_sim_narrow_strait",
+        "season_autumn_overlay",
+        "vessel_large_tanker"
+      ],
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ood-ood_compound-seed-250401",
+      "kind": "ood",
+      "suite_id": "ood_compound",
+      "held_out_dimension": "compound",
+      "seed": 250401,
+      "training_domain_ids": [
+        "port_long_beach_reference",
+        "season_winter_reference",
+        "vessel_feeder_container"
+      ],
+      "evaluation_domain_ids": [
+        "port_sim_narrow_strait",
+        "season_autumn_overlay",
+        "vessel_large_tanker"
+      ],
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "cell_id": "ood-ood_compound-seed-250503",
+      "kind": "ood",
+      "suite_id": "ood_compound",
+      "held_out_dimension": "compound",
+      "seed": 250503,
+      "training_domain_ids": [
+        "port_long_beach_reference",
+        "season_winter_reference",
+        "vessel_feeder_container"
+      ],
+      "evaluation_domain_ids": [
+        "port_sim_narrow_strait",
+        "season_autumn_overlay",
+        "vessel_large_tanker"
+      ],
+      "execution_status": "NOT_RUN"
+    }
+  ],
+  "plan_sha256": "e0acab639e5c98214563ca5ab41722f9d104ae4c2f92cdbf214b6943879dcedc",
+  "test_results_accessed": false,
+  "training_performed": false
+}

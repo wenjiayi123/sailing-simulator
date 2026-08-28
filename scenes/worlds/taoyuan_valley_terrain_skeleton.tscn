@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://uhjadkgq7nd0"]
 
-[ext_resource type="Texture2D" uid="uid://cmtjpfj6aqfkw" path="res://assets/textures/backgrounds/background_candidates/taoyuan_far_paradise_eye_level_v6_sky_extended_2048_v2.png" id="18_far_bg"]
-[ext_resource type="Texture2D" uid="uid://bbkk4xuoft0p8" path="res://assets/textures/backgrounds/taoyuan_lake_rock_floor_v1.png" id="19_lake_floor"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/maritime_far_horizon.svg" id="18_far_bg"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/maritime_lake_floor.svg" id="19_lake_floor"]
 [ext_resource type="Shader" path="res://shaders/taoyuan_lake_floor.gdshader" id="20_lake_shader"]
 [ext_resource type="Script" uid="uid://cnmvpqgadjod8" path="res://scripts/world/soft_cloud_ladder.gd" id="22_soft_cloud_ladder"]
 [ext_resource type="PackedScene" path="res://scenes/objects/terrain/floating_rock_3a_demo.tscn" id="31_floating_rock_3a"]
@@ -568,7 +568,7 @@ waterfall_angle_offset = 0.08
 debris_density = 1.04
 
 [node name="GroundedPlate_06_TwistedButtressMesa" parent="TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set" unique_id=1845205392 instance=ExtResource("32_grounded_rock_plate_3a")]
-transform = Transform3D(3.5399923, 0, -7.681551, 0, 8.71, 0, 7.681551, 0, 3.5399923, 301.7817, -24.94445, -37.76657)
+transform = Transform3D(3.5399923, 0, -7.681551, 0, 8.71, 0, 7.681551, 0, 3.5399923, 620, -24.94445, 450)
 variant_seed = 1103.0
 plate_length_scale = 0.98
 plate_width_scale = 1.24

@@ -1,0 +1,1347 @@
+{
+	"action_space_modified": false,
+	"boundary": "Offline bridge cybersecurity control trainer only; no production network, hardware trust anchor, SOC, field disaster recovery, independent penetration test or class approval.",
+	"check_count": 61,
+	"checks": {
+		"alert_acknowledgement_recorded": {
+			"detail": "ACKNOWLEDGED",
+			"passed": true
+		},
+		"allowed_flow_never_forwards_packet": {
+			"detail": {
+				"mapped_to_actuation": false,
+				"packet_forwarded": false,
+				"rule": {
+					"required_permission": "request_training_flow",
+					"service": "NAV_TELEMETRY",
+					"source": "NAVIGATION_SENSOR",
+					"target": "BRIDGE_OPERATIONS"
+				},
+				"service": "NAV_TELEMETRY"
+			},
+			"passed": true
+		},
+		"allowlisted_navigation_flow_accepted": {
+			"detail": "ALLOWED_POLICY_SIMULATION_ONLY",
+			"passed": true
+		},
+		"audit_record_tampering_detected": {
+			"detail": [
+				"AUDIT_HASH_MISMATCH:CYBER-000001"
+			],
+			"passed": true
+		},
+		"authentication_nonce_replay_rejected": {
+			"detail": {
+				"reason": "NONCE_REPLAY"
+			},
+			"passed": true
+		},
+		"boot_check_does_not_claim_hardware_trust": {
+			"detail": {
+				"failures": [],
+				"file_count": 7,
+				"hardware_root_of_trust_verified": false,
+				"measured_boot_verified": false
+			},
+			"passed": true
+		},
+		"campaign_is_not_external_penetration_test": {
+			"detail": {
+				"case_count": 8,
+				"cases": [
+					{
+						"blocked": true,
+						"case_id": "bad_credentials",
+						"detected": true,
+						"evidence": "authentication rejected",
+						"production_system_attacked": false
+					},
+					{
+						"blocked": true,
+						"case_id": "nonce_replay",
+						"detected": true,
+						"evidence": "duplicate nonce rejected",
+						"production_system_attacked": false
+					},
+					{
+						"blocked": true,
+						"case_id": "rbac_escalation",
+						"detected": true,
+						"evidence": "role lacks privileged permission",
+						"production_system_attacked": false
+					},
+					{
+						"blocked": true,
+						"case_id": "prohibited_zone_flow",
+						"detected": true,
+						"evidence": "default deny",
+						"production_system_attacked": false
+					},
+					{
+						"blocked": true,
+						"case_id": "tampered_update",
+						"detected": true,
+						"evidence": "RSA signature invalid",
+						"production_system_attacked": false
+					},
+					{
+						"blocked": true,
+						"case_id": "boot_manifest_mismatch",
+						"detected": true,
+						"evidence": "synthetic hash mismatch detected",
+						"production_system_attacked": false
+					},
+					{
+						"blocked": true,
+						"case_id": "audit_chain_tamper",
+						"detected": true,
+						"evidence": "hash-chain mismatch",
+						"production_system_attacked": false
+					},
+					{
+						"blocked": true,
+						"case_id": "recovery_without_confirmation",
+						"detected": true,
+						"evidence": "manual confirmation gate",
+						"production_system_attacked": false
+					}
+				],
+				"independent_tester_verified": false,
+				"passed_count": 8,
+				"real_external_penetration_test_completed": false
+			},
+			"passed": true
+		},
+		"confirmed_training_recovery_succeeds": {
+			"detail": "RESTORED_IN_MEMORY_TRAINING_ONLY",
+			"passed": true
+		},
+		"cybersecurity_runtime_components_present": {
+			"detail": {
+				"overview": true,
+				"panel": true,
+				"suite": true
+			},
+			"passed": true
+		},
+		"default_deny_active": {
+			"detail": true,
+			"passed": true
+		},
+		"eight_allowed_flows_loaded": {
+			"detail": 8,
+			"passed": true
+		},
+		"eight_case_penetration_campaign_passes": {
+			"detail": {
+				"count": 8,
+				"status": "PASS_FUNCTIONAL_SIMULATION"
+			},
+			"passed": true
+		},
+		"external_direct_control_default_denied": {
+			"detail": {
+				"mapped_to_actuation": false,
+				"reason": "DEFAULT_DENY",
+				"service": "DIRECT_CONTROL"
+			},
+			"passed": true
+		},
+		"four_training_identities_loaded": {
+			"detail": 4,
+			"passed": true
+		},
+		"frozen_policy_artifacts_unchanged": {
+			"detail": {
+				"after": {
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_sac_test_episodes.csv": "7b027abb680dca7c31e97fe1083c6c28402204e06d0ead03ce76cfcd1aa7e9cd",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_test_episodes.csv": "25e953b3bd525f5834ced4179003c47de1b220423909a7ba87ff1b7073a27495"
+				},
+				"before": {
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_sac_test_episodes.csv": "7b027abb680dca7c31e97fe1083c6c28402204e06d0ead03ce76cfcd1aa7e9cd",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_test_episodes.csv": "25e953b3bd525f5834ced4179003c47de1b220423909a7ba87ff1b7073a27495"
+				}
+			},
+			"passed": true
+		},
+		"hotkey_f11_opens_cybersecurity_panel": {
+			"detail": true,
+			"passed": true
+		},
+		"ids_rule_audit_chain_tamper_observed": {
+			"detail": [
+				"AUTHENTICATION_BRUTE_FORCE",
+				"NONCE_REPLAY",
+				"RBAC_DENIAL",
+				"PROHIBITED_ZONE_FLOW",
+				"INVALID_UPDATE_SIGNATURE",
+				"RECOVERY_WITHOUT_CONFIRMATION",
+				"BOOT_INTEGRITY_FAILURE",
+				"AUDIT_CHAIN_TAMPER"
+			],
+			"passed": true
+		},
+		"ids_rule_authentication_brute_force_observed": {
+			"detail": [
+				"AUTHENTICATION_BRUTE_FORCE",
+				"NONCE_REPLAY",
+				"RBAC_DENIAL",
+				"PROHIBITED_ZONE_FLOW",
+				"INVALID_UPDATE_SIGNATURE",
+				"RECOVERY_WITHOUT_CONFIRMATION",
+				"BOOT_INTEGRITY_FAILURE",
+				"AUDIT_CHAIN_TAMPER"
+			],
+			"passed": true
+		},
+		"ids_rule_boot_integrity_failure_observed": {
+			"detail": [
+				"AUTHENTICATION_BRUTE_FORCE",
+				"NONCE_REPLAY",
+				"RBAC_DENIAL",
+				"PROHIBITED_ZONE_FLOW",
+				"INVALID_UPDATE_SIGNATURE",
+				"RECOVERY_WITHOUT_CONFIRMATION",
+				"BOOT_INTEGRITY_FAILURE",
+				"AUDIT_CHAIN_TAMPER"
+			],
+			"passed": true
+		},
+		"ids_rule_invalid_update_signature_observed": {
+			"detail": [
+				"AUTHENTICATION_BRUTE_FORCE",
+				"NONCE_REPLAY",
+				"RBAC_DENIAL",
+				"PROHIBITED_ZONE_FLOW",
+				"INVALID_UPDATE_SIGNATURE",
+				"RECOVERY_WITHOUT_CONFIRMATION",
+				"BOOT_INTEGRITY_FAILURE",
+				"AUDIT_CHAIN_TAMPER"
+			],
+			"passed": true
+		},
+		"ids_rule_nonce_replay_observed": {
+			"detail": [
+				"AUTHENTICATION_BRUTE_FORCE",
+				"NONCE_REPLAY",
+				"RBAC_DENIAL",
+				"PROHIBITED_ZONE_FLOW",
+				"INVALID_UPDATE_SIGNATURE",
+				"RECOVERY_WITHOUT_CONFIRMATION",
+				"BOOT_INTEGRITY_FAILURE",
+				"AUDIT_CHAIN_TAMPER"
+			],
+			"passed": true
+		},
+		"ids_rule_prohibited_zone_flow_observed": {
+			"detail": [
+				"AUTHENTICATION_BRUTE_FORCE",
+				"NONCE_REPLAY",
+				"RBAC_DENIAL",
+				"PROHIBITED_ZONE_FLOW",
+				"INVALID_UPDATE_SIGNATURE",
+				"RECOVERY_WITHOUT_CONFIRMATION",
+				"BOOT_INTEGRITY_FAILURE",
+				"AUDIT_CHAIN_TAMPER"
+			],
+			"passed": true
+		},
+		"ids_rule_rbac_denial_observed": {
+			"detail": [
+				"AUTHENTICATION_BRUTE_FORCE",
+				"NONCE_REPLAY",
+				"RBAC_DENIAL",
+				"PROHIBITED_ZONE_FLOW",
+				"INVALID_UPDATE_SIGNATURE",
+				"RECOVERY_WITHOUT_CONFIRMATION",
+				"BOOT_INTEGRITY_FAILURE",
+				"AUDIT_CHAIN_TAMPER"
+			],
+			"passed": true
+		},
+		"ids_rule_recovery_without_confirmation_observed": {
+			"detail": [
+				"AUTHENTICATION_BRUTE_FORCE",
+				"NONCE_REPLAY",
+				"RBAC_DENIAL",
+				"PROHIBITED_ZONE_FLOW",
+				"INVALID_UPDATE_SIGNATURE",
+				"RECOVERY_WITHOUT_CONFIRMATION",
+				"BOOT_INTEGRITY_FAILURE",
+				"AUDIT_CHAIN_TAMPER"
+			],
+			"passed": true
+		},
+		"in_memory_recovery_snapshot_created": {
+			"detail": {
+				"snapshot_id": "CYBER-RECOVERY-0001",
+				"status": "CREATED_IN_MEMORY_TRAINING_ONLY"
+			},
+			"passed": true
+		},
+		"initial_production_claims_fail_closed": {
+			"detail": "Offline cybersecurity control trainer; no production bridge network, hardware trust anchor, SOC, external penetration test or class approval",
+			"passed": true
+		},
+		"least_privilege_active": {
+			"detail": true,
+			"passed": true
+		},
+		"main_scene_load_request": {
+			"detail": 0,
+			"passed": true
+		},
+		"missing_credentials_rejected": {
+			"detail": {
+				"reason": "USERNAME_PASSWORD_AND_NONCE_REQUIRED"
+			},
+			"passed": true
+		},
+		"network_flow_nonce_replay_rejected": {
+			"detail": {
+				"mapped_to_actuation": false,
+				"reason": "NONCE_REPLAY",
+				"service": "NAV_TELEMETRY"
+			},
+			"passed": true
+		},
+		"no_network_actuation_mapping": {
+			"detail": false,
+			"passed": true
+		},
+		"operator_privilege_escalation_rejected": {
+			"detail": {
+				"allowed": false,
+				"permission": "verify_signed_update",
+				"reason": "PERMISSION_DENIED",
+				"role": "OPERATOR",
+				"username": "bridge_operator"
+			},
+			"passed": true
+		},
+		"operator_signed_update_denied_by_rbac": {
+			"detail": "PERMISSION_DENIED",
+			"passed": true
+		},
+		"operator_training_authentication": {
+			"detail": {
+				"status": "AUTHENTICATED_TRAINING_ONLY",
+				"token_redacted": true
+			},
+			"passed": true
+		},
+		"overview_entry_opens_cybersecurity_panel": {
+			"detail": {
+				"overview": false,
+				"panel": true
+			},
+			"passed": true
+		},
+		"panel_controls_present": {
+			"detail": "five control groups",
+			"passed": true
+		},
+		"panel_default_deny_action_reaches_suite": {
+			"detail": {
+				"action": "network_flow",
+				"audit_hash": "9f95515a6cc4e944cd49a3c07776ec88ce1f444bfcb67b9152786dac3b668872",
+				"detail": {
+					"mapped_to_actuation": false,
+					"reason": "DEFAULT_DENY",
+					"service": "DIRECT_CONTROL"
+				},
+				"network_message_mapped_to_actuation": false,
+				"previous_audit_hash": "5aed1c589dc18b18ef944c53726ab84a4f8d43059cf00cddc7cac8707c6b230a",
+				"production_authority": false,
+				"receipt_id": "CYBER-000023",
+				"schema_version": "ship_bridge_cybersecurity_receipt_v1",
+				"sequence": 23,
+				"status": "REJECTED",
+				"subject": "EXTERNAL_EXCHANGE>SAFETY_CONTROL",
+				"utc": "2026-08-28T15:57:45"
+			},
+			"passed": true
+		},
+		"panel_evidence_export_is_redacted": {
+			"detail": {
+				"exists": true,
+				"production_authority": false
+			},
+			"passed": true
+		},
+		"panel_login_reaches_runtime_authentication": {
+			"detail": {
+				"action": "authenticate",
+				"audit_hash": "5aed1c589dc18b18ef944c53726ab84a4f8d43059cf00cddc7cac8707c6b230a",
+				"detail": {
+					"production_identity_provider": false,
+					"role": "SECURITY_ADMIN",
+					"session_ttl_seconds": 600,
+					"username": "security_admin"
+				},
+				"network_message_mapped_to_actuation": false,
+				"previous_audit_hash": "e1a20ef90b5617098abf0c388003ccc4d83d6aea556feebf17e76bda30f9a418",
+				"production_authority": false,
+				"receipt_id": "CYBER-000022",
+				"schema_version": "ship_bridge_cybersecurity_receipt_v1",
+				"sequence": 22,
+				"status": "AUTHENTICATED_TRAINING_ONLY",
+				"subject": "REDACTED_SESSION_TOKEN",
+				"utc": "2026-08-28T15:57:45"
+			},
+			"passed": true
+		},
+		"panel_preserves_motion_policy_and_rl_contracts": {
+			"detail": {
+				"action_space_modified": false,
+				"authenticated_training_session": true,
+				"class_or_flag_cyber_approval": false,
+				"existing_policy_modified": false,
+				"hardware_secure_boot_verified": false,
+				"independent_penetration_test_completed": false,
+				"last_receipt": {
+					"detail": {
+						"path": "user://ship_bridge_cybersecurity_snapshot.json",
+						"session_token_exported": false
+					},
+					"receipt_id": "CYBER-EXPORT",
+					"status": "EXECUTED"
+				},
+				"network_messages_mapped_to_actuation": false,
+				"observation_space_modified": false,
+				"production_authority": false,
+				"production_ids_verified": false,
+				"production_network_segmentation_verified": false,
+				"recovery_snapshot_prepared": false,
+				"reward_function_modified": false,
+				"schema_version": "ship_bridge_cybersecurity_panel_v1",
+				"security": {
+					"active_sessions": [
+						{
+							"expires_msec": 611099,
+							"role": "OPERATOR",
+							"username": "bridge_operator"
+						},
+						{
+							"expires_msec": 611105,
+							"role": "SECURITY_ADMIN",
+							"username": "security_admin"
+						},
+						{
+							"expires_msec": 611253,
+							"role": "SECURITY_ADMIN",
+							"username": "security_admin"
+						}
+					],
+					"alert_count": 18,
+					"alerts": [
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000001",
+							"detail": {
+								"reason": "MISSING_CREDENTIAL_FIELD"
+							},
+							"production_sensor_event": false,
+							"rule_id": "AUTHENTICATION_BRUTE_FORCE",
+							"sequence": 1,
+							"severity": "LOW",
+							"subject": "",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000002",
+							"detail": {
+								"nonce_sha256": "502dab0c4ee039fb8bb6f5705cb8fdebfcf227d995b203bee77fece8ac50df18"
+							},
+							"production_sensor_event": false,
+							"rule_id": "NONCE_REPLAY",
+							"sequence": 2,
+							"severity": "HIGH",
+							"subject": "bridge_operator",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000003",
+							"detail": {
+								"permission": "verify_signed_update",
+								"reason": "PERMISSION_DENIED"
+							},
+							"production_sensor_event": false,
+							"rule_id": "RBAC_DENIAL",
+							"sequence": 3,
+							"severity": "MEDIUM",
+							"subject": "bridge_operator",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000004",
+							"detail": {
+								"account_locked": true,
+								"failed_attempts": 3
+							},
+							"production_sensor_event": false,
+							"rule_id": "AUTHENTICATION_BRUTE_FORCE",
+							"sequence": 4,
+							"severity": "HIGH",
+							"subject": "bridge_operator",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000005",
+							"detail": {
+								"nonce_sha256": "f6b6a35269128b67a0a78af810052766a9cb7dd25f3f09283a561e521998fa0f",
+								"service": "NAV_TELEMETRY"
+							},
+							"production_sensor_event": false,
+							"rule_id": "NONCE_REPLAY",
+							"sequence": 5,
+							"severity": "HIGH",
+							"subject": "bridge_operator",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000006",
+							"detail": {
+								"service": "DIRECT_CONTROL",
+								"source": "EXTERNAL_EXCHANGE",
+								"target": "SAFETY_CONTROL"
+							},
+							"production_sensor_event": false,
+							"rule_id": "PROHIBITED_ZONE_FLOW",
+							"sequence": 6,
+							"severity": "HIGH",
+							"subject": "bridge_operator",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000007",
+							"detail": {
+								"permission": "verify_signed_update"
+							},
+							"production_sensor_event": false,
+							"rule_id": "RBAC_DENIAL",
+							"sequence": 7,
+							"severity": "HIGH",
+							"subject": "bridge_operator",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000008",
+							"detail": {
+								"algorithm": "RSA_PKCS1_V1_5_SHA256",
+								"hardware_backed_key": false,
+								"key_load_error": "OK",
+								"private_key_present_in_repository": false,
+								"signature_valid": false,
+								"tamper_fixture": true,
+								"update_id": "CYBER-RANGE-UPDATE-2026-01"
+							},
+							"production_sensor_event": false,
+							"rule_id": "INVALID_UPDATE_SIGNATURE",
+							"sequence": 8,
+							"severity": "CRITICAL",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000009",
+							"detail": {
+								"snapshot_id": "CYBER-RECOVERY-0001"
+							},
+							"production_sensor_event": false,
+							"rule_id": "RECOVERY_WITHOUT_CONFIRMATION",
+							"sequence": 9,
+							"severity": "HIGH",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000010",
+							"detail": {
+								"penetration_case": {
+									"blocked": true,
+									"case_id": "bad_credentials",
+									"detected": true,
+									"evidence": "authentication rejected",
+									"production_system_attacked": false
+								}
+							},
+							"production_sensor_event": false,
+							"rule_id": "AUTHENTICATION_BRUTE_FORCE",
+							"sequence": 10,
+							"severity": "HIGH",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000011",
+							"detail": {
+								"penetration_case": {
+									"blocked": true,
+									"case_id": "nonce_replay",
+									"detected": true,
+									"evidence": "duplicate nonce rejected",
+									"production_system_attacked": false
+								}
+							},
+							"production_sensor_event": false,
+							"rule_id": "NONCE_REPLAY",
+							"sequence": 11,
+							"severity": "HIGH",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000012",
+							"detail": {
+								"penetration_case": {
+									"blocked": true,
+									"case_id": "rbac_escalation",
+									"detected": true,
+									"evidence": "role lacks privileged permission",
+									"production_system_attacked": false
+								}
+							},
+							"production_sensor_event": false,
+							"rule_id": "RBAC_DENIAL",
+							"sequence": 12,
+							"severity": "HIGH",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000013",
+							"detail": {
+								"penetration_case": {
+									"blocked": true,
+									"case_id": "prohibited_zone_flow",
+									"detected": true,
+									"evidence": "default deny",
+									"production_system_attacked": false
+								}
+							},
+							"production_sensor_event": false,
+							"rule_id": "PROHIBITED_ZONE_FLOW",
+							"sequence": 13,
+							"severity": "HIGH",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000014",
+							"detail": {
+								"penetration_case": {
+									"blocked": true,
+									"case_id": "tampered_update",
+									"detected": true,
+									"evidence": "RSA signature invalid",
+									"production_system_attacked": false
+								}
+							},
+							"production_sensor_event": false,
+							"rule_id": "INVALID_UPDATE_SIGNATURE",
+							"sequence": 14,
+							"severity": "HIGH",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000015",
+							"detail": {
+								"penetration_case": {
+									"blocked": true,
+									"case_id": "boot_manifest_mismatch",
+									"detected": true,
+									"evidence": "synthetic hash mismatch detected",
+									"production_system_attacked": false
+								}
+							},
+							"production_sensor_event": false,
+							"rule_id": "BOOT_INTEGRITY_FAILURE",
+							"sequence": 15,
+							"severity": "HIGH",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000016",
+							"detail": {
+								"penetration_case": {
+									"blocked": true,
+									"case_id": "audit_chain_tamper",
+									"detected": true,
+									"evidence": "hash-chain mismatch",
+									"production_system_attacked": false
+								}
+							},
+							"production_sensor_event": false,
+							"rule_id": "AUDIT_CHAIN_TAMPER",
+							"sequence": 16,
+							"severity": "HIGH",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": true,
+							"acknowledged_by": "security_admin",
+							"acknowledged_utc": "2026-08-28T15:57:45",
+							"alert_id": "CYBER-ALERT-000017",
+							"detail": {
+								"penetration_case": {
+									"blocked": true,
+									"case_id": "recovery_without_confirmation",
+									"detected": true,
+									"evidence": "manual confirmation gate",
+									"production_system_attacked": false
+								}
+							},
+							"production_sensor_event": false,
+							"rule_id": "RECOVERY_WITHOUT_CONFIRMATION",
+							"sequence": 17,
+							"severity": "HIGH",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000018",
+							"detail": {
+								"service": "DIRECT_CONTROL",
+								"source": "EXTERNAL_EXCHANGE",
+								"target": "SAFETY_CONTROL"
+							},
+							"production_sensor_event": false,
+							"rule_id": "PROHIBITED_ZONE_FLOW",
+							"sequence": 18,
+							"severity": "HIGH",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						}
+					],
+					"allowed_flow_count": 8,
+					"audit_chain": {
+						"chain_head_sha256": "9f95515a6cc4e944cd49a3c07776ec88ce1f444bfcb67b9152786dac3b668872",
+						"errors": [],
+						"passed": true,
+						"record_count": 23
+					},
+					"boundary": "Offline cybersecurity control trainer; no production bridge network, hardware trust anchor, SOC, external penetration test or class approval",
+					"class_or_flag_cyber_approval": false,
+					"default_deny": true,
+					"hardware_root_of_trust_verified": false,
+					"identity_count": 4,
+					"independent_penetration_test_completed": false,
+					"least_privilege": true,
+					"network_messages_mapped_to_actuation": false,
+					"production_authority": false,
+					"production_ids_connected": false,
+					"production_network_segmentation_verified": false,
+					"profile_id": "RL-NAV-CYBER-2026-01",
+					"recovery_snapshot_count": 1,
+					"schema_version": "ship_bridge_cybersecurity_snapshot_v1",
+					"security_state": {
+						"audit_chain_enabled": true,
+						"default_deny_enabled": true,
+						"monitoring_enabled": true,
+						"update_quarantine_enabled": true
+					},
+					"unacknowledged_alert_count": 17,
+					"zone_count": 7
+				},
+				"ship_motion_model_modified": false,
+				"training_performed": false
+			},
+			"passed": true
+		},
+		"panel_production_claims_fail_closed": {
+			"detail": {
+				"action_space_modified": false,
+				"authenticated_training_session": true,
+				"class_or_flag_cyber_approval": false,
+				"existing_policy_modified": false,
+				"hardware_secure_boot_verified": false,
+				"independent_penetration_test_completed": false,
+				"last_receipt": {
+					"detail": {
+						"path": "user://ship_bridge_cybersecurity_snapshot.json",
+						"session_token_exported": false
+					},
+					"receipt_id": "CYBER-EXPORT",
+					"status": "EXECUTED"
+				},
+				"network_messages_mapped_to_actuation": false,
+				"observation_space_modified": false,
+				"production_authority": false,
+				"production_ids_verified": false,
+				"production_network_segmentation_verified": false,
+				"recovery_snapshot_prepared": false,
+				"reward_function_modified": false,
+				"schema_version": "ship_bridge_cybersecurity_panel_v1",
+				"security": {
+					"active_sessions": [
+						{
+							"expires_msec": 611099,
+							"role": "OPERATOR",
+							"username": "bridge_operator"
+						},
+						{
+							"expires_msec": 611105,
+							"role": "SECURITY_ADMIN",
+							"username": "security_admin"
+						},
+						{
+							"expires_msec": 611253,
+							"role": "SECURITY_ADMIN",
+							"username": "security_admin"
+						}
+					],
+					"alert_count": 18,
+					"alerts": [
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000001",
+							"detail": {
+								"reason": "MISSING_CREDENTIAL_FIELD"
+							},
+							"production_sensor_event": false,
+							"rule_id": "AUTHENTICATION_BRUTE_FORCE",
+							"sequence": 1,
+							"severity": "LOW",
+							"subject": "",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000002",
+							"detail": {
+								"nonce_sha256": "502dab0c4ee039fb8bb6f5705cb8fdebfcf227d995b203bee77fece8ac50df18"
+							},
+							"production_sensor_event": false,
+							"rule_id": "NONCE_REPLAY",
+							"sequence": 2,
+							"severity": "HIGH",
+							"subject": "bridge_operator",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000003",
+							"detail": {
+								"permission": "verify_signed_update",
+								"reason": "PERMISSION_DENIED"
+							},
+							"production_sensor_event": false,
+							"rule_id": "RBAC_DENIAL",
+							"sequence": 3,
+							"severity": "MEDIUM",
+							"subject": "bridge_operator",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000004",
+							"detail": {
+								"account_locked": true,
+								"failed_attempts": 3
+							},
+							"production_sensor_event": false,
+							"rule_id": "AUTHENTICATION_BRUTE_FORCE",
+							"sequence": 4,
+							"severity": "HIGH",
+							"subject": "bridge_operator",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000005",
+							"detail": {
+								"nonce_sha256": "f6b6a35269128b67a0a78af810052766a9cb7dd25f3f09283a561e521998fa0f",
+								"service": "NAV_TELEMETRY"
+							},
+							"production_sensor_event": false,
+							"rule_id": "NONCE_REPLAY",
+							"sequence": 5,
+							"severity": "HIGH",
+							"subject": "bridge_operator",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000006",
+							"detail": {
+								"service": "DIRECT_CONTROL",
+								"source": "EXTERNAL_EXCHANGE",
+								"target": "SAFETY_CONTROL"
+							},
+							"production_sensor_event": false,
+							"rule_id": "PROHIBITED_ZONE_FLOW",
+							"sequence": 6,
+							"severity": "HIGH",
+							"subject": "bridge_operator",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000007",
+							"detail": {
+								"permission": "verify_signed_update"
+							},
+							"production_sensor_event": false,
+							"rule_id": "RBAC_DENIAL",
+							"sequence": 7,
+							"severity": "HIGH",
+							"subject": "bridge_operator",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000008",
+							"detail": {
+								"algorithm": "RSA_PKCS1_V1_5_SHA256",
+								"hardware_backed_key": false,
+								"key_load_error": "OK",
+								"private_key_present_in_repository": false,
+								"signature_valid": false,
+								"tamper_fixture": true,
+								"update_id": "CYBER-RANGE-UPDATE-2026-01"
+							},
+							"production_sensor_event": false,
+							"rule_id": "INVALID_UPDATE_SIGNATURE",
+							"sequence": 8,
+							"severity": "CRITICAL",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000009",
+							"detail": {
+								"snapshot_id": "CYBER-RECOVERY-0001"
+							},
+							"production_sensor_event": false,
+							"rule_id": "RECOVERY_WITHOUT_CONFIRMATION",
+							"sequence": 9,
+							"severity": "HIGH",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000010",
+							"detail": {
+								"penetration_case": {
+									"blocked": true,
+									"case_id": "bad_credentials",
+									"detected": true,
+									"evidence": "authentication rejected",
+									"production_system_attacked": false
+								}
+							},
+							"production_sensor_event": false,
+							"rule_id": "AUTHENTICATION_BRUTE_FORCE",
+							"sequence": 10,
+							"severity": "HIGH",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000011",
+							"detail": {
+								"penetration_case": {
+									"blocked": true,
+									"case_id": "nonce_replay",
+									"detected": true,
+									"evidence": "duplicate nonce rejected",
+									"production_system_attacked": false
+								}
+							},
+							"production_sensor_event": false,
+							"rule_id": "NONCE_REPLAY",
+							"sequence": 11,
+							"severity": "HIGH",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000012",
+							"detail": {
+								"penetration_case": {
+									"blocked": true,
+									"case_id": "rbac_escalation",
+									"detected": true,
+									"evidence": "role lacks privileged permission",
+									"production_system_attacked": false
+								}
+							},
+							"production_sensor_event": false,
+							"rule_id": "RBAC_DENIAL",
+							"sequence": 12,
+							"severity": "HIGH",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000013",
+							"detail": {
+								"penetration_case": {
+									"blocked": true,
+									"case_id": "prohibited_zone_flow",
+									"detected": true,
+									"evidence": "default deny",
+									"production_system_attacked": false
+								}
+							},
+							"production_sensor_event": false,
+							"rule_id": "PROHIBITED_ZONE_FLOW",
+							"sequence": 13,
+							"severity": "HIGH",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000014",
+							"detail": {
+								"penetration_case": {
+									"blocked": true,
+									"case_id": "tampered_update",
+									"detected": true,
+									"evidence": "RSA signature invalid",
+									"production_system_attacked": false
+								}
+							},
+							"production_sensor_event": false,
+							"rule_id": "INVALID_UPDATE_SIGNATURE",
+							"sequence": 14,
+							"severity": "HIGH",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000015",
+							"detail": {
+								"penetration_case": {
+									"blocked": true,
+									"case_id": "boot_manifest_mismatch",
+									"detected": true,
+									"evidence": "synthetic hash mismatch detected",
+									"production_system_attacked": false
+								}
+							},
+							"production_sensor_event": false,
+							"rule_id": "BOOT_INTEGRITY_FAILURE",
+							"sequence": 15,
+							"severity": "HIGH",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000016",
+							"detail": {
+								"penetration_case": {
+									"blocked": true,
+									"case_id": "audit_chain_tamper",
+									"detected": true,
+									"evidence": "hash-chain mismatch",
+									"production_system_attacked": false
+								}
+							},
+							"production_sensor_event": false,
+							"rule_id": "AUDIT_CHAIN_TAMPER",
+							"sequence": 16,
+							"severity": "HIGH",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": true,
+							"acknowledged_by": "security_admin",
+							"acknowledged_utc": "2026-08-28T15:57:45",
+							"alert_id": "CYBER-ALERT-000017",
+							"detail": {
+								"penetration_case": {
+									"blocked": true,
+									"case_id": "recovery_without_confirmation",
+									"detected": true,
+									"evidence": "manual confirmation gate",
+									"production_system_attacked": false
+								}
+							},
+							"production_sensor_event": false,
+							"rule_id": "RECOVERY_WITHOUT_CONFIRMATION",
+							"sequence": 17,
+							"severity": "HIGH",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						},
+						{
+							"acknowledged": false,
+							"alert_id": "CYBER-ALERT-000018",
+							"detail": {
+								"service": "DIRECT_CONTROL",
+								"source": "EXTERNAL_EXCHANGE",
+								"target": "SAFETY_CONTROL"
+							},
+							"production_sensor_event": false,
+							"rule_id": "PROHIBITED_ZONE_FLOW",
+							"sequence": 18,
+							"severity": "HIGH",
+							"subject": "security_admin",
+							"utc": "2026-08-28T15:57:45"
+						}
+					],
+					"allowed_flow_count": 8,
+					"audit_chain": {
+						"chain_head_sha256": "9f95515a6cc4e944cd49a3c07776ec88ce1f444bfcb67b9152786dac3b668872",
+						"errors": [],
+						"passed": true,
+						"record_count": 23
+					},
+					"boundary": "Offline cybersecurity control trainer; no production bridge network, hardware trust anchor, SOC, external penetration test or class approval",
+					"class_or_flag_cyber_approval": false,
+					"default_deny": true,
+					"hardware_root_of_trust_verified": false,
+					"identity_count": 4,
+					"independent_penetration_test_completed": false,
+					"least_privilege": true,
+					"network_messages_mapped_to_actuation": false,
+					"production_authority": false,
+					"production_ids_connected": false,
+					"production_network_segmentation_verified": false,
+					"profile_id": "RL-NAV-CYBER-2026-01",
+					"recovery_snapshot_count": 1,
+					"schema_version": "ship_bridge_cybersecurity_snapshot_v1",
+					"security_state": {
+						"audit_chain_enabled": true,
+						"default_deny_enabled": true,
+						"monitoring_enabled": true,
+						"update_quarantine_enabled": true
+					},
+					"unacknowledged_alert_count": 17,
+					"zone_count": 7
+				},
+				"ship_motion_model_modified": false,
+				"training_performed": false
+			},
+			"passed": true
+		},
+		"penetration_audit_chain_tamper_blocked": {
+			"detail": {
+				"blocked": true,
+				"case_id": "audit_chain_tamper",
+				"detected": true,
+				"evidence": "hash-chain mismatch",
+				"production_system_attacked": false
+			},
+			"passed": true
+		},
+		"penetration_bad_credentials_blocked": {
+			"detail": {
+				"blocked": true,
+				"case_id": "bad_credentials",
+				"detected": true,
+				"evidence": "authentication rejected",
+				"production_system_attacked": false
+			},
+			"passed": true
+		},
+		"penetration_boot_manifest_mismatch_blocked": {
+			"detail": {
+				"blocked": true,
+				"case_id": "boot_manifest_mismatch",
+				"detected": true,
+				"evidence": "synthetic hash mismatch detected",
+				"production_system_attacked": false
+			},
+			"passed": true
+		},
+		"penetration_nonce_replay_blocked": {
+			"detail": {
+				"blocked": true,
+				"case_id": "nonce_replay",
+				"detected": true,
+				"evidence": "duplicate nonce rejected",
+				"production_system_attacked": false
+			},
+			"passed": true
+		},
+		"penetration_prohibited_zone_flow_blocked": {
+			"detail": {
+				"blocked": true,
+				"case_id": "prohibited_zone_flow",
+				"detected": true,
+				"evidence": "default deny",
+				"production_system_attacked": false
+			},
+			"passed": true
+		},
+		"penetration_rbac_escalation_blocked": {
+			"detail": {
+				"blocked": true,
+				"case_id": "rbac_escalation",
+				"detected": true,
+				"evidence": "role lacks privileged permission",
+				"production_system_attacked": false
+			},
+			"passed": true
+		},
+		"penetration_recovery_without_confirmation_blocked": {
+			"detail": {
+				"blocked": true,
+				"case_id": "recovery_without_confirmation",
+				"detected": true,
+				"evidence": "manual confirmation gate",
+				"production_system_attacked": false
+			},
+			"passed": true
+		},
+		"penetration_tampered_update_blocked": {
+			"detail": {
+				"blocked": true,
+				"case_id": "tampered_update",
+				"detected": true,
+				"evidence": "RSA signature invalid",
+				"production_system_attacked": false
+			},
+			"passed": true
+		},
+		"recovery_does_not_claim_field_dr": {
+			"detail": {
+				"bare_metal_restore_verified": false,
+				"rto_rpo_field_tested": false
+			},
+			"passed": true
+		},
+		"recovery_requires_manual_confirmation": {
+			"detail": {
+				"reason": "MANUAL_CONFIRMATION_REQUIRED"
+			},
+			"passed": true
+		},
+		"repeated_bad_credentials_lock_account": {
+			"detail": {
+				"reason": "ACCOUNT_LOCKED",
+				"remaining_msec": 60000
+			},
+			"passed": true
+		},
+		"rsa_signed_update_fixture_valid": {
+			"detail": {
+				"algorithm": "RSA_PKCS1_V1_5_SHA256",
+				"hardware_backed_key": false,
+				"key_load_error": "OK",
+				"private_key_present_in_repository": false,
+				"signature_valid": true,
+				"tamper_fixture": false,
+				"update_id": "CYBER-RANGE-UPDATE-2026-01"
+			},
+			"passed": true
+		},
+		"security_admin_training_authentication": {
+			"detail": {
+				"status": "AUTHENTICATED_TRAINING_ONLY",
+				"token_redacted": true
+			},
+			"passed": true
+		},
+		"seven_security_zones_loaded": {
+			"detail": 7,
+			"passed": true
+		},
+		"snapshot_schema": {
+			"detail": "ship_bridge_cybersecurity_snapshot_v1",
+			"passed": true
+		},
+		"software_boot_allowlist_passes": {
+			"detail": {
+				"failures": [],
+				"file_count": 7,
+				"hardware_root_of_trust_verified": false,
+				"measured_boot_verified": false
+			},
+			"passed": true
+		},
+		"system_overview_cybersecurity_entry_present": {
+			"detail": true,
+			"passed": true
+		},
+		"tamper_evident_audit_chain_valid": {
+			"detail": {
+				"passed": true,
+				"record_count": 21
+			},
+			"passed": true
+		},
+		"tampered_update_signature_rejected": {
+			"detail": {
+				"algorithm": "RSA_PKCS1_V1_5_SHA256",
+				"hardware_backed_key": false,
+				"key_load_error": "OK",
+				"private_key_present_in_repository": false,
+				"signature_valid": false,
+				"tamper_fixture": true,
+				"update_id": "CYBER-RANGE-UPDATE-2026-01"
+			},
+			"passed": true
+		},
+		"valid_update_remains_quarantined": {
+			"detail": {
+				"package_installed": false,
+				"production_signed_update_verified": false,
+				"signature": {
+					"algorithm": "RSA_PKCS1_V1_5_SHA256",
+					"hardware_backed_key": false,
+					"key_load_error": "OK",
+					"private_key_present_in_repository": false,
+					"signature_valid": true,
+					"tamper_fixture": false,
+					"update_id": "CYBER-RANGE-UPDATE-2026-01"
+				}
+			},
+			"passed": true
+		}
+	},
+	"class_or_flag_cyber_approval": false,
+	"disaster_recovery_field_verified": false,
+	"errors": [],
+	"existing_policy_modified": false,
+	"generated_at": "2026-08-28T15:57:45",
+	"hardware_secure_boot_verified": false,
+	"independent_penetration_test_completed": false,
+	"network_messages_mapped_to_actuation": false,
+	"observation_space_modified": false,
+	"passed": true,
+	"passed_count": 61,
+	"production_authority": false,
+	"production_ids_verified": false,
+	"production_network_segmentation_verified": false,
+	"reward_function_modified": false,
+	"schema_version": "godot_bridge_cybersecurity_smoke_v1",
+	"ship_motion_model_modified": false,
+	"training_performed": false
+}

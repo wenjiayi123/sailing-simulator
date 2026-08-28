@@ -1,32 +1,32 @@
 [gd_scene format=3 uid="uid://1puthffyfgaa"]
 
 [ext_resource type="Script" uid="uid://jhcagtqy1xpp" path="res://player.gd" id="1_ig7tw"]
-[ext_resource type="Texture2D" uid="uid://lmal7egrdtom" path="res://characters/待机动作-iso_custom_待机_攻击_southeast.png" id="2_2cqfq"]
-[ext_resource type="Texture2D" uid="uid://cdl5hkfxwi0c" path="res://characters/上.png" id="8_6iyjs"]
-[ext_resource type="Texture2D" uid="uid://b1hf88hn10c7r" path="res://上-右上.png" id="11_4w656"]
-[ext_resource type="Texture2D" uid="uid://breeoxo1bhh57" path="res://characters/待机正向-iso_custom_待机正向_right.png" id="17_yaehf"]
-[ext_resource type="Texture2D" uid="uid://c1r8n3lurfdm" path="res://characters/御剑上.png" id="19_0cp0l"]
-[ext_resource type="Texture2D" uid="uid://bi84um42k7f4w" path="res://characters/御剑下.png" id="20_d2t1y"]
-[ext_resource type="Texture2D" uid="uid://dtyj6bqox75s6" path="res://characters/普攻1下-attack-2.png" id="20_getpj"]
-[ext_resource type="Texture2D" uid="uid://dtexjpc77oi0n" path="res://characters/御剑右.png" id="21_gngh3"]
-[ext_resource type="Texture2D" uid="uid://b4t3vbrtu2tek" path="res://characters/御剑右上.png" id="22_0n3wm"]
-[ext_resource type="Texture2D" uid="uid://bjr0y8nd2xdhu" path="res://characters/普攻1右-普攻1右.png" id="22_d13ii"]
-[ext_resource type="Texture2D" uid="uid://dmktccgen7e2x" path="res://characters/御剑右下.png" id="23_qnost"]
-[ext_resource type="Texture2D" uid="uid://f1fdqtrqf1ij" path="res://characters/普攻2下.png" id="24_0odxb"]
-[ext_resource type="Texture2D" uid="uid://l0ee01nq6u2h" path="res://characters/普攻2右.png" id="25_lswn8"]
-[ext_resource type="Texture2D" uid="uid://brvvbgwl668yh" path="res://characters/普攻3下.png" id="27_a6jrf"]
-[ext_resource type="Texture2D" uid="uid://byrd18ow1ronr" path="res://characters/普攻3上.png" id="27_xuqvo"]
-[ext_resource type="Texture2D" uid="uid://cyylgem08k2nr" path="res://characters/普攻3右.png" id="28_qsp4k"]
-[ext_resource type="Texture2D" uid="uid://crdoofxk5skcb" path="res://characters/普攻3右上.png" id="28_xuqvo"]
-[ext_resource type="Texture2D" uid="uid://bshpj701f2n24" path="res://characters/跟头右上和上.png" id="30_facbu"]
-[ext_resource type="Texture2D" uid="uid://dx45idy58se8m" path="res://characters/跳跃1下.png" id="30_kq58d"]
-[ext_resource type="Texture2D" uid="uid://ddbg7qtjafwgy" path="res://characters/跳跃1右.png" id="31_jq2sk"]
-[ext_resource type="Texture2D" uid="uid://cfvxrat7loaut" path="res://characters/跳跃下和跟头下.png" id="31_ok6jj"]
-[ext_resource type="Texture2D" uid="uid://dc6peciir3xjj" path="res://characters/跳跃1右下.png" id="31_seu75"]
-[ext_resource type="Texture2D" uid="uid://kfghoh7tygfw" path="res://characters/跳跃1右上.png" id="32_4k2k6"]
-[ext_resource type="Texture2D" uid="uid://ctnyqv440n6l3" path="res://characters/跟头右.png" id="32_come4"]
-[ext_resource type="Texture2D" uid="uid://bk5qs4x8i6utv" path="res://characters/跟头左下（右下）.png" id="33_h8e4i"]
-[ext_resource type="Texture2D" uid="uid://dxg6d1g1en30n" path="res://characters/普攻3右下备用.png" id="34_0cp0l"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="2_2cqfq"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="8_6iyjs"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="11_4w656"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="17_yaehf"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="19_0cp0l"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="20_d2t1y"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="20_getpj"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="21_gngh3"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="22_0n3wm"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="22_d13ii"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="23_qnost"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="24_0odxb"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="25_lswn8"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="27_a6jrf"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="27_xuqvo"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="28_qsp4k"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="28_xuqvo"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="30_facbu"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="30_kq58d"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="31_jq2sk"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="31_ok6jj"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="31_seu75"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="32_4k2k6"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="32_come4"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="33_h8e4i"]
+[ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="34_0cp0l"]
 [ext_resource type="Script" uid="uid://eyv08a15y8da" path="res://scripts/player/player_action_lock.gd" id="57_action_lock"]
 [ext_resource type="PackedScene" uid="uid://uhjadkgq7nd0" path="res://scenes/worlds/taoyuan_valley_terrain_skeleton.tscn" id="63_navigation_environment"]
 [ext_resource type="Script" uid="uid://dkvcndl1gyc25" path="res://scripts/ui/ship_telemetry_hud.gd" id="64_ship_hud"]
@@ -51,6 +51,29 @@
 [ext_resource type="Script" path="res://scripts/ui/cargo_circuit_rl_panel.gd" id="83_cargo_panel"]
 [ext_resource type="Script" path="res://scripts/world/large_rock_collision_guard.gd" id="84_large_rock_guard"]
 [ext_resource type="Script" path="res://scripts/visual/procedural_usv_visual.gd" id="85_procedural_usv"]
+[ext_resource type="Script" path="res://scripts/navigation/ship_navigation_equipment_suite.gd" id="86_bridge_equipment"]
+[ext_resource type="Script" path="res://scripts/ui/ship_integrated_bridge_panel.gd" id="87_integrated_bridge"]
+[ext_resource type="Script" path="res://scripts/training/ship_instructor_exercise_controller.gd" id="88_instructor_exercise"]
+[ext_resource type="Script" path="res://scripts/training/ship_port_operations_training_controller.gd" id="89_port_ops_training"]
+[ext_resource type="Script" path="res://scripts/ui/ship_port_operations_panel.gd" id="90_port_ops_panel"]
+[ext_resource type="Script" path="res://scripts/training/ship_bridge_team_collaboration_controller.gd" id="91_bridge_team_controller"]
+[ext_resource type="Script" path="res://scripts/ui/ship_bridge_team_panel.gd" id="92_bridge_team_panel"]
+[ext_resource type="Script" path="res://scripts/ui/ship_physical_bridge_readiness_panel.gd" id="93_physical_bridge_readiness"]
+[ext_resource type="Script" path="res://scripts/navigation/ship_multisensor_fusion_suite.gd" id="94_multisensor_fusion"]
+[ext_resource type="Script" path="res://scripts/ui/ship_multisensor_fusion_panel.gd" id="95_multisensor_panel"]
+[ext_resource type="Script" path="res://scripts/navigation/ship_execution_control_suite.gd" id="96_execution_control"]
+[ext_resource type="Script" path="res://scripts/ui/ship_execution_control_panel.gd" id="97_execution_panel"]
+[ext_resource type="Script" path="res://scripts/ui/ship_named_vessel_twin_panel.gd" id="98_named_vessel_twin_panel"]
+[ext_resource type="Script" path="res://scripts/ui/ship_safety_case_panel.gd" id="99_safety_case_panel"]
+[ext_resource type="Script" path="res://scripts/ui/ship_colreg_complex_panel.gd" id="100_colreg_complex_panel"]
+[ext_resource type="Script" path="res://scripts/ui/ship_rl_generalization_panel.gd" id="101_rl_generalization_panel"]
+[ext_resource type="Script" path="res://scripts/navigation/ship_gmdss_communications_suite.gd" id="102_gmdss_communications"]
+[ext_resource type="Script" path="res://scripts/navigation/ship_full_mission_bridge_suite.gd" id="103_full_mission_bridge"]
+[ext_resource type="Script" path="res://scripts/ui/ship_full_mission_bridge_panel.gd" id="104_full_mission_bridge_panel"]
+[ext_resource type="Script" path="res://scripts/security/ship_bridge_cybersecurity_suite.gd" id="105_bridge_cybersecurity"]
+[ext_resource type="Script" path="res://scripts/ui/ship_bridge_cybersecurity_panel.gd" id="106_bridge_cybersecurity_panel"]
+[ext_resource type="Script" path="res://scripts/integration/ship_port_production_gateway.gd" id="107_port_production_gateway"]
+[ext_resource type="Script" path="res://scripts/ui/ship_port_integration_panel.gd" id="108_port_integration_panel"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig7tw"]
 albedo_color = Color(0.43529412, 0.65882355, 0.41568628, 1)
@@ -3113,6 +3136,36 @@ script = ExtResource("82_cargo_replay")
 [node name="MalaccaValidationBridge" type="Node" parent="." unique_id=1887236491]
 script = ExtResource("73_malacca_bridge")
 
+[node name="ShipNavigationEquipmentSuite" type="Node" parent="."]
+script = ExtResource("86_bridge_equipment")
+
+[node name="ShipMultisensorFusionSuite" type="Node" parent="."]
+script = ExtResource("94_multisensor_fusion")
+
+[node name="ShipExecutionControlSuite" type="Node" parent="."]
+script = ExtResource("96_execution_control")
+
+[node name="ShipInstructorExerciseController" type="Node" parent="."]
+script = ExtResource("88_instructor_exercise")
+
+[node name="ShipPortOperationsTrainingController" type="Node" parent="."]
+script = ExtResource("89_port_ops_training")
+
+[node name="ShipBridgeTeamCollaborationController" type="Node" parent="."]
+script = ExtResource("91_bridge_team_controller")
+
+[node name="ShipGmdssCommunicationsSuite" type="Node" parent="."]
+script = ExtResource("102_gmdss_communications")
+
+[node name="ShipFullMissionBridgeSuite" type="Node" parent="."]
+script = ExtResource("103_full_mission_bridge")
+
+[node name="ShipBridgeCybersecuritySuite" type="Node" parent="."]
+script = ExtResource("105_bridge_cybersecurity")
+
+[node name="ShipPortProductionGateway" type="Node" parent="."]
+script = ExtResource("107_port_production_gateway")
+
 [node name="ShipTelemetryHUD" type="CanvasLayer" parent="." unique_id=1965573747]
 script = ExtResource("64_ship_hud")
 
@@ -3139,6 +3192,45 @@ script = ExtResource("79_instructor_console")
 
 [node name="ShipSystemOverviewPanel" type="CanvasLayer" parent="."]
 script = ExtResource("81_hr_evidence")
+
+[node name="ShipIntegratedBridgePanel" type="CanvasLayer" parent="."]
+script = ExtResource("87_integrated_bridge")
+
+[node name="ShipMultisensorFusionPanel" type="CanvasLayer" parent="."]
+script = ExtResource("95_multisensor_panel")
+
+[node name="ShipExecutionControlPanel" type="CanvasLayer" parent="."]
+script = ExtResource("97_execution_panel")
+
+[node name="ShipNamedVesselTwinPanel" type="CanvasLayer" parent="."]
+script = ExtResource("98_named_vessel_twin_panel")
+
+[node name="ShipPortOperationsPanel" type="CanvasLayer" parent="."]
+script = ExtResource("90_port_ops_panel")
+
+[node name="ShipBridgeTeamPanel" type="CanvasLayer" parent="."]
+script = ExtResource("92_bridge_team_panel")
+
+[node name="ShipPhysicalBridgeReadinessPanel" type="CanvasLayer" parent="."]
+script = ExtResource("93_physical_bridge_readiness")
+
+[node name="ShipSafetyCasePanel" type="CanvasLayer" parent="."]
+script = ExtResource("99_safety_case_panel")
+
+[node name="ShipColregComplexPanel" type="CanvasLayer" parent="."]
+script = ExtResource("100_colreg_complex_panel")
+
+[node name="ShipRlGeneralizationPanel" type="CanvasLayer" parent="."]
+script = ExtResource("101_rl_generalization_panel")
+
+[node name="ShipFullMissionBridgePanel" type="CanvasLayer" parent="."]
+script = ExtResource("104_full_mission_bridge_panel")
+
+[node name="ShipBridgeCybersecurityPanel" type="CanvasLayer" parent="."]
+script = ExtResource("106_bridge_cybersecurity_panel")
+
+[node name="ShipPortIntegrationPanel" type="CanvasLayer" parent="."]
+script = ExtResource("108_port_integration_panel")
 
 [node name="CargoCircuitRLPanel" type="CanvasLayer" parent="."]
 script = ExtResource("83_cargo_panel")

@@ -1,0 +1,288 @@
+{
+	"boundary": "Target-controller runtime, HIL manifest, standards mapping and UI refusal-gate acceptance; no physical hardware, real I/O, RTOS, external witness, certification or production authority.",
+	"checks": {
+		"bench_wcet_is_measured_against_deadline": {
+			"detail": {
+				"deadline_met": true,
+				"deadline_ms": 10.0,
+				"maximum_ms": 0.080198,
+				"mean_ms": 0.011852148,
+				"p95_ms": 0.0126713,
+				"p99_ms": 0.01995444,
+				"sample_count": 1000.0
+			},
+			"passed": true
+		},
+		"dual_estop_channels_trip_and_require_manual_key_reset": {
+			"detail": {
+				"channel_a": {
+					"armed": true,
+					"manual_reset_complete": true,
+					"receipt_chain_valid": true,
+					"reset_while_active_blocked": true,
+					"reset_without_key_blocked": true,
+					"tripped": true
+				},
+				"channel_b": {
+					"armed": true,
+					"manual_reset_complete": true,
+					"receipt_chain_valid": true,
+					"reset_while_active_blocked": true,
+					"reset_without_key_blocked": true,
+					"tripped": true
+				}
+			},
+			"passed": true
+		},
+		"external_gates_fail_closed": {
+			"detail": {
+				"dnv_certified": false,
+				"physical_hil_verified": false,
+				"production_authority": false,
+				"site_delivery_ready": false,
+				"software_hil_loopback_verified": true,
+				"stcw_approved": false
+			},
+			"passed": true
+		},
+		"hotkey_U_opens_readiness_panel": {
+			"detail": true,
+			"passed": true
+		},
+		"main_scene_load_request": {
+			"detail": 0,
+			"passed": true
+		},
+		"motion_model_and_existing_policy_artifacts_unchanged": {
+			"detail": {
+				"after": {
+					"res://data/rl/long_beach_ais_port_ops_benchmark_v2.json": "1d676e7446f22206f6113777524d46724545e58e55c1df73a9d359795a415a1f",
+					"res://data/rl/port_ops_safety_supervisor_v3.json": "1edee032e44132c4c15ade0de73ff3f0ba3ed9b2a25206faa0c6ca8a50f26de3",
+					"res://data/verification/catamaran_usv_dynamics_reference_v2.json": "d9dbd9fd61827952b50194f10e1a7331f7b154b7b7a69805de726e5bfd648c8f",
+					"res://player.gd": "a031fc53409eaca87af860536a615c047f51260a8c60ad65579c5cd8138caa6a",
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+					"res://scripts/physics/catamaran_three_dof_dynamics.gd": "4ea917668478d011dde89547da865b00e1600c7b5263c255fea8e846ea3321d2"
+				},
+				"before": {
+					"res://data/rl/long_beach_ais_port_ops_benchmark_v2.json": "1d676e7446f22206f6113777524d46724545e58e55c1df73a9d359795a415a1f",
+					"res://data/rl/port_ops_safety_supervisor_v3.json": "1edee032e44132c4c15ade0de73ff3f0ba3ed9b2a25206faa0c6ca8a50f26de3",
+					"res://data/verification/catamaran_usv_dynamics_reference_v2.json": "d9dbd9fd61827952b50194f10e1a7331f7b154b7b7a69805de726e5bfd648c8f",
+					"res://player.gd": "a031fc53409eaca87af860536a615c047f51260a8c60ad65579c5cd8138caa6a",
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+					"res://scripts/physics/catamaran_three_dof_dynamics.gd": "4ea917668478d011dde89547da865b00e1600c7b5263c255fea8e846ea3321d2"
+				}
+			},
+			"passed": true
+		},
+		"physical_bridge_readiness_panel_present": {
+			"detail": "ShipPhysicalBridgeReadinessPanel",
+			"passed": true
+		},
+		"readiness_check_button_present": {
+			"detail": "重新运行检查",
+			"passed": true
+		},
+		"readiness_report_contract": {
+			"detail": "Readiness routing and anti-overclaim evidence only; physical installation and external assessment remain blocked.",
+			"passed": true
+		},
+		"rerun_cannot_self_authorize": {
+			"detail": {
+				"dnv_certified": false,
+				"physical_hil_verified": false,
+				"production_authority": false,
+				"site_delivery_ready": false,
+				"software_hil_loopback_verified": true,
+				"stcw_approved": false
+			},
+			"passed": true
+		},
+		"runtime_covers_fail_safe_state_machine": {
+			"detail": [
+				"SAFE_NEUTRAL",
+				"ARMED",
+				"DISCONNECTED",
+				"RECOVERY_PENDING",
+				"CLOCK_OR_SENSOR_TIME_INVALID",
+				"DEADLINE_OVERRUN",
+				"MANUAL_PRIORITY",
+				"INPUT_INVALID",
+				"ESTOP_LATCHED"
+			],
+			"passed": true
+		},
+		"runtime_smoke_button_present": {
+			"detail": "运行 HIL 状态机烟测",
+			"passed": true
+		},
+		"runtime_smoke_never_claims_physical_connection": {
+			"detail": "Runtime and fault-state functional smoke only. No target controller, real I/O rack, RTOS, independent emergency-stop wiring or witness was connected.",
+			"passed": true
+		},
+		"site_template_export_button_present": {
+			"detail": "导出现场测试模板",
+			"passed": true
+		},
+		"site_templates_export_exact_reviewed_bytes": {
+			"detail": {
+				"directory": "user://physical_hil_evidence",
+				"files_sha256": {
+					"user://physical_hil_evidence/physical_bridge_hil_manifest.json": "599b0fc2641212dd61069b0bb04903a26fb631c5f3165239499f04a02220906c",
+					"user://physical_hil_evidence/physical_hil_runtime_profile.json": "fb06736ebd930672abadf906a8a1ea6a638a5857c068e06be291218fdb57da48",
+					"user://physical_hil_evidence/physical_hil_witnessed_test.csv": "b13659c422ce21671a401f02c132e889e95a6861e1c1bacd0daa9280d15900ce"
+				},
+				"passed": true
+			},
+			"passed": true
+		},
+		"standards_mapping_loaded": {
+			"detail": {
+				"boundary": "This file is a traceability and gap-routing aid, not a clause interpretation, approval, Statement of Compliance or certification.",
+				"requirements": 13
+			},
+			"passed": true
+		},
+		"standards_requirements_browsable": {
+			"detail": 13,
+			"passed": true
+		},
+		"target_controller_rtos_io_and_witness_gate_present": {
+			"detail": {
+				"dual_channel_emergency_stop_checks": {
+					"automatic_reset_disabled": false,
+					"channel_a_wiring_reference": false,
+					"channel_b_wiring_reference": false,
+					"channel_independence_test_reference": false,
+					"independent_power_reference": false,
+					"manual_reset_key_reference": false,
+					"one_out_of_two_trip_verified": false,
+					"safety_relay_reference": false
+				},
+				"passed": false,
+				"required_witnessed_test_cases": [
+					"nominal_closed_loop",
+					"clock_offset_fault",
+					"execution_deadline_overrun",
+					"sensor_link_dropout",
+					"command_link_dropout",
+					"io_rack_power_loss",
+					"controller_restart",
+					"manual_takeover",
+					"estop_channel_a",
+					"estop_channel_b",
+					"dual_channel_estop_reset",
+					"feedback_disagreement"
+				],
+				"section_checks": {
+					"clock_synchronization": {
+						"holdover_test_reference": false,
+						"primary_source_model": false,
+						"primary_source_serial_number": false,
+						"synchronization_domain": false,
+						"synchronization_protocol": false,
+						"topology_reference": false
+					},
+					"dropout_recovery_evidence": {
+						"control_link_loss_reference": false,
+						"controller_restart_reference": false,
+						"feedback_disagreement_reference": false,
+						"io_rack_power_cycle_reference": false,
+						"manual_rearm_reference": false,
+						"sensor_bus_loss_reference": false
+					},
+					"real_io_rack": {
+						"calibration_reference": false,
+						"electrical_acceptance_reference": false,
+						"fieldbus_protocol": false,
+						"manufacturer": false,
+						"model": false,
+						"serial_number": false,
+						"signal_mapping_reference": false
+					},
+					"real_time_operating_system": {
+						"build_id": false,
+						"configuration_hash": false,
+						"controller_task_priority": false,
+						"name": false,
+						"scheduler_policy": false,
+						"vendor": false,
+						"version": false,
+						"wcet_measurement_tool": false
+					},
+					"target_controller": {
+						"firmware_build_id": false,
+						"hardware_revision": false,
+						"installation_reference": false,
+						"io_firmware_id": false,
+						"manufacturer": false,
+						"model": false,
+						"serial_number": false
+					}
+				},
+				"witnessed_test_case_checks": {
+					"clock_offset_fault": false,
+					"command_link_dropout": false,
+					"controller_restart": false,
+					"dual_channel_estop_reset": false,
+					"estop_channel_a": false,
+					"estop_channel_b": false,
+					"execution_deadline_overrun": false,
+					"feedback_disagreement": false,
+					"io_rack_power_loss": false,
+					"manual_takeover": false,
+					"nominal_closed_loop": false,
+					"sensor_link_dropout": false
+				}
+			},
+			"passed": true
+		},
+		"target_controller_runtime_fault_campaign_passes": {
+			"detail": {
+				"bench_wcet_within_deadline": true,
+				"clock_offset_violation_neutralized": true,
+				"disconnect_does_not_auto_rearm": true,
+				"estop_channel_a_independently_trips": true,
+				"estop_channel_b_independently_trips": true,
+				"execution_deadline_overrun_neutralized": true,
+				"manual_and_key_arm_required": true,
+				"manual_override_has_priority": true,
+				"minimum_wcet_sample_count_collected": true,
+				"nominal_outputs_bounded": true,
+				"out_of_range_command_clamped": true,
+				"receipt_chain_is_tamper_evident": true,
+				"recovery_rejects_missing_confirmation": true,
+				"recovery_returns_safe_neutral_before_rearm": true,
+				"replayed_sequence_neutralized": true,
+				"runtime_profile_valid": true,
+				"watchdog_disconnect_neutralized": true
+			},
+			"passed": true
+		},
+		"ui_runs_real_readiness_checker": {
+			"detail": {
+				"exit_code": 0,
+				"output": "physical bridge readiness: PASS (checker verified; physical/site/certification gates remain blocked)\n"
+			},
+			"passed": true
+		},
+		"ui_runs_real_target_runtime_smoke": {
+			"detail": {
+				"exit_code": 0,
+				"output": "PHYSICAL_HIL_RUNTIME_SMOKE:PASS:17/17\n"
+			},
+			"passed": true
+		}
+	},
+	"errors": [],
+	"existing_model_modified": false,
+	"generated_at": "2026-08-28T13:33:45",
+	"passed": true,
+	"passed_checks": 21,
+	"physical_hil_verified": false,
+	"production_authority": false,
+	"schema_version": "godot_physical_bridge_readiness_smoke_v1",
+	"total_checks": 21,
+	"training_performed": false
+}

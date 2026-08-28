@@ -61,6 +61,9 @@ PPO、SAC、TD3、A2C、DDPG、TRPO 使用归一化连续 `[油门, 舵角]`；D
 
 ## 上线必须另行验证
 
+在静态港口数据包之外，模拟器现提供 [港口生产联动功能层](PORT_PRODUCTION_INTEGRATION.md)：VTS、TOS、引航、拖轮、泊位和官方通告六类连接器共用签名信封、防重放、时效、字段/单位、断链降级、人工确认和回执审计合同。离线夹具可验证完整流程，但不会自动启用真实端点。站点部署必须从
+`data/verification/port_production_site_acceptance_manifest.template.json` 建立独立证据包，不能只修改 `live_control_ready` 或其他布尔值。
+
 研究数据通过不等于实船可用。`deployment_factor_coverage` 必须逐项为真，包含：
 
 - 水深垂直基准与 UKC 规则；

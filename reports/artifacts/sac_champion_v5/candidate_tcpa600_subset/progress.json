@@ -1,0 +1,9 @@
+{
+  "status": "complete",
+  "dataset_split": "validation",
+  "completed_episodes": 4,
+  "total_episodes": 4,
+  "progress": 1.0,
+  "elapsed_wall_seconds": 166.475442254,
+  "result": "reports/artifacts/sac_champion_v5/candidate_tcpa600_subset/validation_result.json"
+}

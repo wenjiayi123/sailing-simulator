@@ -1,0 +1,40 @@
+{
+  "schema_version": "bridge_secure_boot_manifest_v1",
+  "manifest_id": "RL-NAV-CYBER-BOOT-2026-01",
+  "mode": "SOFTWARE_HASH_ALLOWLIST_TRAINING",
+  "files": [
+    {
+      "path": "res://data/verification/maritime_cybersecurity_profile_v1.json",
+      "sha256": "918ea1b4419ac1027853593301a9b6244e62924d931390b1cf14ac814f3b6ae9"
+    },
+    {
+      "path": "res://scripts/security/ship_bridge_cybersecurity_suite.gd",
+      "sha256": "21c89a4e63d3679e6b0daf574e35baaf81aa2527fe07bf1ab3ad4e21c470ccb7"
+    },
+    {
+      "path": "res://scripts/ui/ship_bridge_cybersecurity_panel.gd",
+      "sha256": "35ede23de32b30c25c473c6bce19faae57dc53b5c284a1732483d88884c395f5"
+    },
+    {
+      "path": "res://data/verification/cyber_range_signed_update_payload_v1.json",
+      "sha256": "d19d6668769def96d247120ca74ae4f0c01c43fb234695871589e64126c8eb94"
+    },
+    {
+      "path": "res://data/verification/cyber_range_signed_update_signature_v1.json",
+      "sha256": "14a42996b74983df862d2ac0ce2c64a9d358211567e88df391d27b91ea260acd"
+    },
+    {
+      "path": "res://data/verification/cyber_range_update_public_key_v1.pem",
+      "sha256": "24eaa996d092bdde892df90a73c8edddddea549db119c1828e88842747655457"
+    },
+    {
+      "path": "res://data/verification/maritime_cybersecurity_acceptance_manifest.template.json",
+      "sha256": "cba8b6037671ef4b247cd98cc1dbd01fc9b6552347fae041f89350b6c65284b3"
+    }
+  ],
+  "hardware_root_of_trust_verified": false,
+  "measured_boot_verified": false,
+  "secure_boot_key_enrolled": false,
+  "production_boot_authority": false,
+  "boundary": "Software hash allowlist for the offline RL simulator only; not hardware secure boot or measured boot."
+}

@@ -1,0 +1,1096 @@
+{
+  "schema_version": "cargo_circuit_physics_dataset_v4",
+  "name": "47D三自由度悬岩动态取货任务",
+  "description": "保留32个悬岩、全部视觉合同和6艘动态交通；通过短航段课程降低学习难度，不删除障碍。",
+  "coordinate_system": {
+    "type": "local_cartesian_meters",
+    "axes": "x_east_z_north"
+  },
+  "source": {
+    "type": "project_native_current_godot_snapshot",
+    "simulation_only": true,
+    "large_rock_manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+    "scene_snapshot_sha256": "3e4cacf11e95e315f8c5c14d5caa40062297c5c71bf30aabd03976b8c4682b9b"
+  },
+  "mission_contract": {
+    "ordered_checkpoints": true,
+    "checkpoint_count": 7,
+    "destination": "返航取货站",
+    "full_circuit": true,
+    "static_obstacle_count": 38,
+    "large_rock_count": 32,
+    "dynamic_traffic_count": 6,
+    "training_render": false,
+    "accepted_test_only_render": true,
+    "route_feasibility_gate": {
+      "minimum_raw_aabb_clearance_meters": 37.941077456023706,
+      "nearest_static_obstacle": "GroundedPlate_04_WideBridgeSlab",
+      "nearest_route_leg": 7,
+      "required_minimum_raw_clearance_meters": 25.0
+    },
+    "observation_dimension": 47,
+    "dynamics_model_id": "taoyuan_catamaran_usv_3dof_twin_waterjet_v2",
+    "difficulty_adjustment": "short-segment curriculum and reduced randomization; no obstacle removal"
+  },
+  "splits": {
+    "train": [
+      {
+        "id": "cargo_physics_v4_train_01",
+        "start": {
+          "x": 0.0,
+          "z": -650.0,
+          "heading_degrees": 85.0
+        },
+        "route": [
+          {
+            "name": "检查点 1 · 南部起航门",
+            "x": 350.0,
+            "z": -620.0
+          },
+          {
+            "name": "检查点 2 · 东南动障门",
+            "x": 460.0,
+            "z": -250.0
+          },
+          {
+            "name": "检查点 3 · 东部巨岩门",
+            "x": 460.0,
+            "z": 250.0
+          },
+          {
+            "name": "检查点 4 · 东北转向门",
+            "x": 400.0,
+            "z": 600.0
+          },
+          {
+            "name": "检查点 5 · 北部横越门",
+            "x": 80.0,
+            "z": 700.0
+          },
+          {
+            "name": "检查点 6 · 西北边界门",
+            "x": -700.0,
+            "z": 660.0
+          },
+          {
+            "name": "检查点 7 · 西部狭水门",
+            "x": -735.0,
+            "z": -450.0
+          },
+          {
+            "name": "返航取货站",
+            "x": 0.0,
+            "z": -650.0
+          }
+        ],
+        "arrival_radius": 18.0,
+        "boundary_half_extent": 780.0,
+        "manual_bypasses": [
+          [],
+          [],
+          [
+            {
+              "x": 520.0,
+              "z": -130.0,
+              "detail": "pre-drift east offset"
+            },
+            {
+              "x": 520.0,
+              "z": 120.0,
+              "detail": "post-conflict east recovery"
+            }
+          ],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "sea_state": {
+          "wind_speed_knots": 7.0,
+          "wind_direction_degrees": 35.0,
+          "current_speed_knots": 0.45,
+          "current_direction_degrees": 95.0,
+          "wave_height_meters": 0.45,
+          "wave_direction_degrees": 20.0
+        }
+      },
+      {
+        "id": "cargo_physics_v4_train_02",
+        "start": {
+          "x": 3.5,
+          "z": -652.0,
+          "heading_degrees": 89.0
+        },
+        "route": [
+          {
+            "name": "检查点 1 · 南部起航门",
+            "x": 350.0,
+            "z": -620.0
+          },
+          {
+            "name": "检查点 2 · 东南动障门",
+            "x": 460.0,
+            "z": -250.0
+          },
+          {
+            "name": "检查点 3 · 东部巨岩门",
+            "x": 460.0,
+            "z": 250.0
+          },
+          {
+            "name": "检查点 4 · 东北转向门",
+            "x": 400.0,
+            "z": 600.0
+          },
+          {
+            "name": "检查点 5 · 北部横越门",
+            "x": 80.0,
+            "z": 700.0
+          },
+          {
+            "name": "检查点 6 · 西北边界门",
+            "x": -700.0,
+            "z": 660.0
+          },
+          {
+            "name": "检查点 7 · 西部狭水门",
+            "x": -735.0,
+            "z": -450.0
+          },
+          {
+            "name": "返航取货站",
+            "x": 0.0,
+            "z": -650.0
+          }
+        ],
+        "arrival_radius": 18.0,
+        "boundary_half_extent": 780.0,
+        "manual_bypasses": [
+          [],
+          [],
+          [
+            {
+              "x": 520.0,
+              "z": -130.0,
+              "detail": "pre-drift east offset"
+            },
+            {
+              "x": 520.0,
+              "z": 120.0,
+              "detail": "post-conflict east recovery"
+            }
+          ],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "sea_state": {
+          "wind_speed_knots": 8.4,
+          "wind_direction_degrees": 106.0,
+          "current_speed_knots": 0.56,
+          "current_direction_degrees": 178.0,
+          "wave_height_meters": 0.5700000000000001,
+          "wave_direction_degrees": 87.0
+        }
+      },
+      {
+        "id": "cargo_physics_v4_train_03",
+        "start": {
+          "x": -3.0,
+          "z": -647.5,
+          "heading_degrees": 80.0
+        },
+        "route": [
+          {
+            "name": "检查点 1 · 南部起航门",
+            "x": 350.0,
+            "z": -620.0
+          },
+          {
+            "name": "检查点 2 · 东南动障门",
+            "x": 460.0,
+            "z": -250.0
+          },
+          {
+            "name": "检查点 3 · 东部巨岩门",
+            "x": 460.0,
+            "z": 250.0
+          },
+          {
+            "name": "检查点 4 · 东北转向门",
+            "x": 400.0,
+            "z": 600.0
+          },
+          {
+            "name": "检查点 5 · 北部横越门",
+            "x": 80.0,
+            "z": 700.0
+          },
+          {
+            "name": "检查点 6 · 西北边界门",
+            "x": -700.0,
+            "z": 660.0
+          },
+          {
+            "name": "检查点 7 · 西部狭水门",
+            "x": -735.0,
+            "z": -450.0
+          },
+          {
+            "name": "返航取货站",
+            "x": 0.0,
+            "z": -650.0
+          }
+        ],
+        "arrival_radius": 18.0,
+        "boundary_half_extent": 780.0,
+        "manual_bypasses": [
+          [],
+          [],
+          [
+            {
+              "x": 520.0,
+              "z": -130.0,
+              "detail": "pre-drift east offset"
+            },
+            {
+              "x": 520.0,
+              "z": 120.0,
+              "detail": "post-conflict east recovery"
+            }
+          ],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "sea_state": {
+          "wind_speed_knots": 9.8,
+          "wind_direction_degrees": 177.0,
+          "current_speed_knots": 0.67,
+          "current_direction_degrees": 261.0,
+          "wave_height_meters": 0.69,
+          "wave_direction_degrees": 154.0
+        }
+      },
+      {
+        "id": "cargo_physics_v4_train_04",
+        "start": {
+          "x": 1.5,
+          "z": -647.0,
+          "heading_degrees": 92.0
+        },
+        "route": [
+          {
+            "name": "检查点 1 · 南部起航门",
+            "x": 350.0,
+            "z": -620.0
+          },
+          {
+            "name": "检查点 2 · 东南动障门",
+            "x": 460.0,
+            "z": -250.0
+          },
+          {
+            "name": "检查点 3 · 东部巨岩门",
+            "x": 460.0,
+            "z": 250.0
+          },
+          {
+            "name": "检查点 4 · 东北转向门",
+            "x": 400.0,
+            "z": 600.0
+          },
+          {
+            "name": "检查点 5 · 北部横越门",
+            "x": 80.0,
+            "z": 700.0
+          },
+          {
+            "name": "检查点 6 · 西北边界门",
+            "x": -700.0,
+            "z": 660.0
+          },
+          {
+            "name": "检查点 7 · 西部狭水门",
+            "x": -735.0,
+            "z": -450.0
+          },
+          {
+            "name": "返航取货站",
+            "x": 0.0,
+            "z": -650.0
+          }
+        ],
+        "arrival_radius": 18.0,
+        "boundary_half_extent": 780.0,
+        "manual_bypasses": [
+          [],
+          [],
+          [
+            {
+              "x": 520.0,
+              "z": -130.0,
+              "detail": "pre-drift east offset"
+            },
+            {
+              "x": 520.0,
+              "z": 120.0,
+              "detail": "post-conflict east recovery"
+            }
+          ],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "sea_state": {
+          "wind_speed_knots": 11.2,
+          "wind_direction_degrees": 248.0,
+          "current_speed_knots": 0.45,
+          "current_direction_degrees": 344.0,
+          "wave_height_meters": 0.81,
+          "wave_direction_degrees": 221.0
+        }
+      },
+      {
+        "id": "cargo_physics_v4_train_05",
+        "start": {
+          "x": -2.0,
+          "z": -653.5,
+          "heading_degrees": 78.0
+        },
+        "route": [
+          {
+            "name": "检查点 1 · 南部起航门",
+            "x": 350.0,
+            "z": -620.0
+          },
+          {
+            "name": "检查点 2 · 东南动障门",
+            "x": 460.0,
+            "z": -250.0
+          },
+          {
+            "name": "检查点 3 · 东部巨岩门",
+            "x": 460.0,
+            "z": 250.0
+          },
+          {
+            "name": "检查点 4 · 东北转向门",
+            "x": 400.0,
+            "z": 600.0
+          },
+          {
+            "name": "检查点 5 · 北部横越门",
+            "x": 80.0,
+            "z": 700.0
+          },
+          {
+            "name": "检查点 6 · 西北边界门",
+            "x": -700.0,
+            "z": 660.0
+          },
+          {
+            "name": "检查点 7 · 西部狭水门",
+            "x": -735.0,
+            "z": -450.0
+          },
+          {
+            "name": "返航取货站",
+            "x": 0.0,
+            "z": -650.0
+          }
+        ],
+        "arrival_radius": 18.0,
+        "boundary_half_extent": 780.0,
+        "manual_bypasses": [
+          [],
+          [],
+          [
+            {
+              "x": 520.0,
+              "z": -130.0,
+              "detail": "pre-drift east offset"
+            },
+            {
+              "x": 520.0,
+              "z": 120.0,
+              "detail": "post-conflict east recovery"
+            }
+          ],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "sea_state": {
+          "wind_speed_knots": 7.0,
+          "wind_direction_degrees": 319.0,
+          "current_speed_knots": 0.56,
+          "current_direction_degrees": 67.0,
+          "wave_height_meters": 0.45,
+          "wave_direction_degrees": 288.0
+        }
+      }
+    ],
+    "validation": [
+      {
+        "id": "cargo_physics_v4_validation_01",
+        "start": {
+          "x": 0.0,
+          "z": -650.0,
+          "heading_degrees": 85.0
+        },
+        "route": [
+          {
+            "name": "检查点 1 · 南部起航门",
+            "x": 350.0,
+            "z": -620.0
+          },
+          {
+            "name": "检查点 2 · 东南动障门",
+            "x": 460.0,
+            "z": -250.0
+          },
+          {
+            "name": "检查点 3 · 东部巨岩门",
+            "x": 460.0,
+            "z": 250.0
+          },
+          {
+            "name": "检查点 4 · 东北转向门",
+            "x": 400.0,
+            "z": 600.0
+          },
+          {
+            "name": "检查点 5 · 北部横越门",
+            "x": 80.0,
+            "z": 700.0
+          },
+          {
+            "name": "检查点 6 · 西北边界门",
+            "x": -700.0,
+            "z": 660.0
+          },
+          {
+            "name": "检查点 7 · 西部狭水门",
+            "x": -735.0,
+            "z": -450.0
+          },
+          {
+            "name": "返航取货站",
+            "x": 0.0,
+            "z": -650.0
+          }
+        ],
+        "arrival_radius": 18.0,
+        "boundary_half_extent": 780.0,
+        "manual_bypasses": [
+          [],
+          [],
+          [
+            {
+              "x": 520.0,
+              "z": -130.0,
+              "detail": "pre-drift east offset"
+            },
+            {
+              "x": 520.0,
+              "z": 120.0,
+              "detail": "post-conflict east recovery"
+            }
+          ],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "sea_state": {
+          "wind_speed_knots": 7.0,
+          "wind_direction_degrees": 48.0,
+          "current_speed_knots": 0.45,
+          "current_direction_degrees": 108.0,
+          "wave_height_meters": 0.45,
+          "wave_direction_degrees": 33.0
+        }
+      },
+      {
+        "id": "cargo_physics_v4_validation_02",
+        "start": {
+          "x": 3.5,
+          "z": -652.0,
+          "heading_degrees": 89.0
+        },
+        "route": [
+          {
+            "name": "检查点 1 · 南部起航门",
+            "x": 350.0,
+            "z": -620.0
+          },
+          {
+            "name": "检查点 2 · 东南动障门",
+            "x": 460.0,
+            "z": -250.0
+          },
+          {
+            "name": "检查点 3 · 东部巨岩门",
+            "x": 460.0,
+            "z": 250.0
+          },
+          {
+            "name": "检查点 4 · 东北转向门",
+            "x": 400.0,
+            "z": 600.0
+          },
+          {
+            "name": "检查点 5 · 北部横越门",
+            "x": 80.0,
+            "z": 700.0
+          },
+          {
+            "name": "检查点 6 · 西北边界门",
+            "x": -700.0,
+            "z": 660.0
+          },
+          {
+            "name": "检查点 7 · 西部狭水门",
+            "x": -735.0,
+            "z": -450.0
+          },
+          {
+            "name": "返航取货站",
+            "x": 0.0,
+            "z": -650.0
+          }
+        ],
+        "arrival_radius": 18.0,
+        "boundary_half_extent": 780.0,
+        "manual_bypasses": [
+          [],
+          [],
+          [
+            {
+              "x": 520.0,
+              "z": -130.0,
+              "detail": "pre-drift east offset"
+            },
+            {
+              "x": 520.0,
+              "z": 120.0,
+              "detail": "post-conflict east recovery"
+            }
+          ],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "sea_state": {
+          "wind_speed_knots": 8.4,
+          "wind_direction_degrees": 119.0,
+          "current_speed_knots": 0.56,
+          "current_direction_degrees": 191.0,
+          "wave_height_meters": 0.5700000000000001,
+          "wave_direction_degrees": 100.0
+        }
+      },
+      {
+        "id": "cargo_physics_v4_validation_03",
+        "start": {
+          "x": -3.0,
+          "z": -647.5,
+          "heading_degrees": 80.0
+        },
+        "route": [
+          {
+            "name": "检查点 1 · 南部起航门",
+            "x": 350.0,
+            "z": -620.0
+          },
+          {
+            "name": "检查点 2 · 东南动障门",
+            "x": 460.0,
+            "z": -250.0
+          },
+          {
+            "name": "检查点 3 · 东部巨岩门",
+            "x": 460.0,
+            "z": 250.0
+          },
+          {
+            "name": "检查点 4 · 东北转向门",
+            "x": 400.0,
+            "z": 600.0
+          },
+          {
+            "name": "检查点 5 · 北部横越门",
+            "x": 80.0,
+            "z": 700.0
+          },
+          {
+            "name": "检查点 6 · 西北边界门",
+            "x": -700.0,
+            "z": 660.0
+          },
+          {
+            "name": "检查点 7 · 西部狭水门",
+            "x": -735.0,
+            "z": -450.0
+          },
+          {
+            "name": "返航取货站",
+            "x": 0.0,
+            "z": -650.0
+          }
+        ],
+        "arrival_radius": 18.0,
+        "boundary_half_extent": 780.0,
+        "manual_bypasses": [
+          [],
+          [],
+          [
+            {
+              "x": 520.0,
+              "z": -130.0,
+              "detail": "pre-drift east offset"
+            },
+            {
+              "x": 520.0,
+              "z": 120.0,
+              "detail": "post-conflict east recovery"
+            }
+          ],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "sea_state": {
+          "wind_speed_knots": 9.8,
+          "wind_direction_degrees": 190.0,
+          "current_speed_knots": 0.67,
+          "current_direction_degrees": 274.0,
+          "wave_height_meters": 0.69,
+          "wave_direction_degrees": 167.0
+        }
+      }
+    ],
+    "test": [
+      {
+        "id": "cargo_physics_v4_test_01",
+        "start": {
+          "x": 0.0,
+          "z": -650.0,
+          "heading_degrees": 85.0
+        },
+        "route": [
+          {
+            "name": "检查点 1 · 南部起航门",
+            "x": 350.0,
+            "z": -620.0
+          },
+          {
+            "name": "检查点 2 · 东南动障门",
+            "x": 460.0,
+            "z": -250.0
+          },
+          {
+            "name": "检查点 3 · 东部巨岩门",
+            "x": 460.0,
+            "z": 250.0
+          },
+          {
+            "name": "检查点 4 · 东北转向门",
+            "x": 400.0,
+            "z": 600.0
+          },
+          {
+            "name": "检查点 5 · 北部横越门",
+            "x": 80.0,
+            "z": 700.0
+          },
+          {
+            "name": "检查点 6 · 西北边界门",
+            "x": -700.0,
+            "z": 660.0
+          },
+          {
+            "name": "检查点 7 · 西部狭水门",
+            "x": -735.0,
+            "z": -450.0
+          },
+          {
+            "name": "返航取货站",
+            "x": 0.0,
+            "z": -650.0
+          }
+        ],
+        "arrival_radius": 18.0,
+        "boundary_half_extent": 780.0,
+        "manual_bypasses": [
+          [],
+          [],
+          [
+            {
+              "x": 520.0,
+              "z": -130.0,
+              "detail": "pre-drift east offset"
+            },
+            {
+              "x": 520.0,
+              "z": 120.0,
+              "detail": "post-conflict east recovery"
+            }
+          ],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "sea_state": {
+          "wind_speed_knots": 7.0,
+          "wind_direction_degrees": 62.0,
+          "current_speed_knots": 0.45,
+          "current_direction_degrees": 122.0,
+          "wave_height_meters": 0.45,
+          "wave_direction_degrees": 47.0
+        }
+      },
+      {
+        "id": "cargo_physics_v4_test_02",
+        "start": {
+          "x": 3.5,
+          "z": -652.0,
+          "heading_degrees": 89.0
+        },
+        "route": [
+          {
+            "name": "检查点 1 · 南部起航门",
+            "x": 350.0,
+            "z": -620.0
+          },
+          {
+            "name": "检查点 2 · 东南动障门",
+            "x": 460.0,
+            "z": -250.0
+          },
+          {
+            "name": "检查点 3 · 东部巨岩门",
+            "x": 460.0,
+            "z": 250.0
+          },
+          {
+            "name": "检查点 4 · 东北转向门",
+            "x": 400.0,
+            "z": 600.0
+          },
+          {
+            "name": "检查点 5 · 北部横越门",
+            "x": 80.0,
+            "z": 700.0
+          },
+          {
+            "name": "检查点 6 · 西北边界门",
+            "x": -700.0,
+            "z": 660.0
+          },
+          {
+            "name": "检查点 7 · 西部狭水门",
+            "x": -735.0,
+            "z": -450.0
+          },
+          {
+            "name": "返航取货站",
+            "x": 0.0,
+            "z": -650.0
+          }
+        ],
+        "arrival_radius": 18.0,
+        "boundary_half_extent": 780.0,
+        "manual_bypasses": [
+          [],
+          [],
+          [
+            {
+              "x": 520.0,
+              "z": -130.0,
+              "detail": "pre-drift east offset"
+            },
+            {
+              "x": 520.0,
+              "z": 120.0,
+              "detail": "post-conflict east recovery"
+            }
+          ],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "sea_state": {
+          "wind_speed_knots": 8.4,
+          "wind_direction_degrees": 133.0,
+          "current_speed_knots": 0.56,
+          "current_direction_degrees": 205.0,
+          "wave_height_meters": 0.5700000000000001,
+          "wave_direction_degrees": 114.0
+        }
+      },
+      {
+        "id": "cargo_physics_v4_test_03",
+        "start": {
+          "x": -3.0,
+          "z": -647.5,
+          "heading_degrees": 80.0
+        },
+        "route": [
+          {
+            "name": "检查点 1 · 南部起航门",
+            "x": 350.0,
+            "z": -620.0
+          },
+          {
+            "name": "检查点 2 · 东南动障门",
+            "x": 460.0,
+            "z": -250.0
+          },
+          {
+            "name": "检查点 3 · 东部巨岩门",
+            "x": 460.0,
+            "z": 250.0
+          },
+          {
+            "name": "检查点 4 · 东北转向门",
+            "x": 400.0,
+            "z": 600.0
+          },
+          {
+            "name": "检查点 5 · 北部横越门",
+            "x": 80.0,
+            "z": 700.0
+          },
+          {
+            "name": "检查点 6 · 西北边界门",
+            "x": -700.0,
+            "z": 660.0
+          },
+          {
+            "name": "检查点 7 · 西部狭水门",
+            "x": -735.0,
+            "z": -450.0
+          },
+          {
+            "name": "返航取货站",
+            "x": 0.0,
+            "z": -650.0
+          }
+        ],
+        "arrival_radius": 18.0,
+        "boundary_half_extent": 780.0,
+        "manual_bypasses": [
+          [],
+          [],
+          [
+            {
+              "x": 520.0,
+              "z": -130.0,
+              "detail": "pre-drift east offset"
+            },
+            {
+              "x": 520.0,
+              "z": 120.0,
+              "detail": "post-conflict east recovery"
+            }
+          ],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "sea_state": {
+          "wind_speed_knots": 9.8,
+          "wind_direction_degrees": 204.0,
+          "current_speed_knots": 0.67,
+          "current_direction_degrees": 288.0,
+          "wave_height_meters": 0.69,
+          "wave_direction_degrees": 181.0
+        }
+      },
+      {
+        "id": "cargo_physics_v4_test_04",
+        "start": {
+          "x": 1.5,
+          "z": -647.0,
+          "heading_degrees": 92.0
+        },
+        "route": [
+          {
+            "name": "检查点 1 · 南部起航门",
+            "x": 350.0,
+            "z": -620.0
+          },
+          {
+            "name": "检查点 2 · 东南动障门",
+            "x": 460.0,
+            "z": -250.0
+          },
+          {
+            "name": "检查点 3 · 东部巨岩门",
+            "x": 460.0,
+            "z": 250.0
+          },
+          {
+            "name": "检查点 4 · 东北转向门",
+            "x": 400.0,
+            "z": 600.0
+          },
+          {
+            "name": "检查点 5 · 北部横越门",
+            "x": 80.0,
+            "z": 700.0
+          },
+          {
+            "name": "检查点 6 · 西北边界门",
+            "x": -700.0,
+            "z": 660.0
+          },
+          {
+            "name": "检查点 7 · 西部狭水门",
+            "x": -735.0,
+            "z": -450.0
+          },
+          {
+            "name": "返航取货站",
+            "x": 0.0,
+            "z": -650.0
+          }
+        ],
+        "arrival_radius": 18.0,
+        "boundary_half_extent": 780.0,
+        "manual_bypasses": [
+          [],
+          [],
+          [
+            {
+              "x": 520.0,
+              "z": -130.0,
+              "detail": "pre-drift east offset"
+            },
+            {
+              "x": 520.0,
+              "z": 120.0,
+              "detail": "post-conflict east recovery"
+            }
+          ],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "sea_state": {
+          "wind_speed_knots": 11.2,
+          "wind_direction_degrees": 275.0,
+          "current_speed_knots": 0.45,
+          "current_direction_degrees": 11.0,
+          "wave_height_meters": 0.81,
+          "wave_direction_degrees": 248.0
+        }
+      },
+      {
+        "id": "cargo_physics_v4_test_05",
+        "start": {
+          "x": -2.0,
+          "z": -653.5,
+          "heading_degrees": 78.0
+        },
+        "route": [
+          {
+            "name": "检查点 1 · 南部起航门",
+            "x": 350.0,
+            "z": -620.0
+          },
+          {
+            "name": "检查点 2 · 东南动障门",
+            "x": 460.0,
+            "z": -250.0
+          },
+          {
+            "name": "检查点 3 · 东部巨岩门",
+            "x": 460.0,
+            "z": 250.0
+          },
+          {
+            "name": "检查点 4 · 东北转向门",
+            "x": 400.0,
+            "z": 600.0
+          },
+          {
+            "name": "检查点 5 · 北部横越门",
+            "x": 80.0,
+            "z": 700.0
+          },
+          {
+            "name": "检查点 6 · 西北边界门",
+            "x": -700.0,
+            "z": 660.0
+          },
+          {
+            "name": "检查点 7 · 西部狭水门",
+            "x": -735.0,
+            "z": -450.0
+          },
+          {
+            "name": "返航取货站",
+            "x": 0.0,
+            "z": -650.0
+          }
+        ],
+        "arrival_radius": 18.0,
+        "boundary_half_extent": 780.0,
+        "manual_bypasses": [
+          [],
+          [],
+          [
+            {
+              "x": 520.0,
+              "z": -130.0,
+              "detail": "pre-drift east offset"
+            },
+            {
+              "x": 520.0,
+              "z": 120.0,
+              "detail": "post-conflict east recovery"
+            }
+          ],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "sea_state": {
+          "wind_speed_knots": 7.0,
+          "wind_direction_degrees": 346.0,
+          "current_speed_knots": 0.56,
+          "current_direction_degrees": 94.0,
+          "wave_height_meters": 0.45,
+          "wave_direction_degrees": 315.0
+        }
+      }
+    ]
+  }
+}

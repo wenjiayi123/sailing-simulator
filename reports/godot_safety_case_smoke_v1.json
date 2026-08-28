@@ -1,0 +1,365 @@
+{
+	"boundary": "Executable simulator safety-case and ODD-to-MRC acceptance only; no external legal determination, residual-risk acceptance, independent approval, certification or production authority.",
+	"checks": {
+		"claim_graph_is_browsable": {
+			"detail": 7,
+			"passed": true
+		},
+		"claim_graph_is_traceable_and_acyclic": {
+			"detail": {
+				"claim_count": 7.0,
+				"invalid_claim_ids": [],
+				"passed": true,
+				"root_claim_id": "SC-TOP"
+			},
+			"passed": true
+		},
+		"claim_selection_updates_detail": {
+			"detail": "[color=#73f5ff][b]SC-ODD[/b][/color]\nThe operational design domain is explicit and monitored.\n状态：[color=#ffbd40]SUPPORTED[/color]\n证据：EV-SAFETY-CASE\n\nRACI：9 角色 / 7 活动\n法规路由：5 类，全部待外部决定\nRCC site_authorized=false\n\n外部证据：BLOCKED\n当前缺口：点击浏览\n导出：未导出",
+			"passed": true
+		},
+		"every_odd_breach_maps_to_mrc_without_production_authority": {
+			"detail": {
+				"breach_case_count": 12.0,
+				"breach_cases": {
+					"ODD-CONTROL": {
+						"passed": true,
+						"required_mrc_ids": [
+							"MRC-01",
+							"MRC-05"
+						]
+					},
+					"ODD-CYBER": {
+						"passed": true,
+						"required_mrc_ids": [
+							"MRC-05"
+						]
+					},
+					"ODD-FUSION": {
+						"passed": true,
+						"required_mrc_ids": [
+							"MRC-03",
+							"MRC-01"
+						]
+					},
+					"ODD-GEO": {
+						"passed": true,
+						"required_mrc_ids": [
+							"MRC-02",
+							"MRC-05"
+						]
+					},
+					"ODD-GNSS": {
+						"passed": true,
+						"required_mrc_ids": [
+							"MRC-03",
+							"MRC-01"
+						]
+					},
+					"ODD-RCC": {
+						"passed": true,
+						"required_mrc_ids": [
+							"MRC-01",
+							"MRC-02"
+						]
+					},
+					"ODD-SPEED": {
+						"passed": true,
+						"required_mrc_ids": [
+							"MRC-03"
+						]
+					},
+					"ODD-TRAFFIC": {
+						"passed": true,
+						"required_mrc_ids": [
+							"MRC-03",
+							"MRC-01"
+						]
+					},
+					"ODD-UKC": {
+						"passed": true,
+						"required_mrc_ids": [
+							"MRC-02"
+						]
+					},
+					"ODD-VIS": {
+						"passed": true,
+						"required_mrc_ids": [
+							"MRC-03",
+							"MRC-01"
+						]
+					},
+					"ODD-WAVE": {
+						"passed": true,
+						"required_mrc_ids": [
+							"MRC-03",
+							"MRC-02"
+						]
+					},
+					"ODD-WIND": {
+						"passed": true,
+						"required_mrc_ids": [
+							"MRC-03",
+							"MRC-02"
+						]
+					}
+				},
+				"nominal_within_odd": true,
+				"passed": true,
+				"production_command_authority": false
+			},
+			"passed": true
+		},
+		"external_acceptance_and_certification_fail_closed": {
+			"detail": "Functional safety-case consistency and ODD-to-MRC routing only. External legal determinations, residual-risk acceptance, independent review, vessel/site approval, certification and production authority remain blocked.",
+			"passed": true
+		},
+		"external_gap_browser_button_present": {
+			"detail": "下一个外部证据缺口",
+			"passed": true
+		},
+		"external_gap_browser_returns_named_gap": {
+			"detail": "deployment.vessel_name",
+			"passed": true
+		},
+		"external_review_export_button_present": {
+			"detail": "导出外部审查包",
+			"passed": true
+		},
+		"external_review_package_exports_exact_reviewed_bytes": {
+			"detail": {
+				"directory": "user://mass_safety_case_evidence",
+				"files_sha256": {
+					"user://mass_safety_case_evidence/mass_safety_case_acceptance_manifest.json": "c564a5d261bd0f3fad492b90c41d5a16611690bd08fb802162b778be1ded2ef9",
+					"user://mass_safety_case_evidence/mass_safety_case_assessment_v1.json": "7a3b2c5697614b09d1a887aab2385bf79bc6b46ac9b54cb79f647d587d4d3778",
+					"user://mass_safety_case_evidence/mass_safety_case_v1.json": "8e025ec5760dd68d8398aab2620a097a56bc7bdf2937e02366b8a7139c1e5b09"
+				},
+				"passed": true
+			},
+			"passed": true
+		},
+		"five_fault_trees_cover_every_hazard": {
+			"detail": {
+				"covered_hazard_ids": [
+					"HZ-01",
+					"HZ-02",
+					"HZ-03",
+					"HZ-04",
+					"HZ-05",
+					"HZ-06",
+					"HZ-07",
+					"HZ-08",
+					"HZ-09",
+					"HZ-10",
+					"HZ-11",
+					"HZ-12"
+				],
+				"invalid_tree_ids": [],
+				"passed": true,
+				"tree_count": 5.0,
+				"uncovered_hazard_ids": []
+			},
+			"passed": true
+		},
+		"five_regulatory_routes_require_external_decisions": {
+			"detail": {
+				"all_external_determination_required": true,
+				"instrument_count": 5.0,
+				"invalid_instruments": [],
+				"passed": true
+			},
+			"passed": true
+		},
+		"functional_safety_case_passes_all_sections": {
+			"detail": {
+				"approval_and_production_claims_fail_closed": true,
+				"claim_graph_is_traceable_and_acyclic": true,
+				"evidence_registry_files_exist_and_are_hash_bound": true,
+				"fault_trees_acyclic_and_cover_all_hazards": true,
+				"hazard_log_and_controls_complete": true,
+				"minimum_risk_conditions_complete": true,
+				"operational_design_domain_complete": true,
+				"personnel_responsibility_raci_complete": true,
+				"regulatory_register_routes_external_decisions": true,
+				"remote_control_centre_contract_complete": true,
+				"runtime_odd_monitor_maps_every_breach_to_mrc": true,
+				"schema_scope_and_top_claim": true
+			},
+			"passed": true
+		},
+		"hazard_catalog_is_browsable": {
+			"detail": 12,
+			"passed": true
+		},
+		"hazard_log_covers_twelve_categories_and_controls": {
+			"detail": {
+				"control_count": 24.0,
+				"covered_categories": [
+					"collision",
+					"communication_loss",
+					"cyber_compromise",
+					"fire_or_flooding",
+					"grounding",
+					"human_factor",
+					"loss_of_navigation_integrity",
+					"power_failure",
+					"propulsion_failure",
+					"sensor_deception",
+					"steering_failure",
+					"unsafe_learning_output"
+				],
+				"duplicate_control_ids": [],
+				"hazard_count": 12.0,
+				"invalid_hazard_ids": [],
+				"missing_categories": [],
+				"passed": true
+			},
+			"passed": true
+		},
+		"hazard_selection_updates_detail": {
+			"detail": "[color=#73f5ff][b]HZ-02 · grounding[/b][/color]\nGrounding or unsafe under-keel clearance.\n\n初始风险：[color=#ff5c4f]INTOLERABLE[/color]  剩余风险：[color=#ffbd40]ALARP_HIGH[/color]\n风险所有者：MASTER\nMRC：MRC-02, MRC-05\n\n控制：\n• CTL-ECDIS [preventive] Route and safety-contour checks in the simulator bridge.\n• CTL-UKC [detective] ODD under-keel-clearance monitor.",
+			"passed": true
+		},
+		"hotkey_Q_opens_safety_case_panel": {
+			"detail": true,
+			"passed": true
+		},
+		"main_scene_load_request": {
+			"detail": 0,
+			"passed": true
+		},
+		"motion_model_and_existing_policy_artifacts_unchanged": {
+			"detail": {
+				"after": {
+					"res://data/rl/long_beach_ais_port_ops_benchmark_v2.json": "1d676e7446f22206f6113777524d46724545e58e55c1df73a9d359795a415a1f",
+					"res://data/rl/port_ops_safety_supervisor_v3.json": "1edee032e44132c4c15ade0de73ff3f0ba3ed9b2a25206faa0c6ca8a50f26de3",
+					"res://data/verification/catamaran_usv_dynamics_reference_v2.json": "d9dbd9fd61827952b50194f10e1a7331f7b154b7b7a69805de726e5bfd648c8f",
+					"res://player.gd": "a031fc53409eaca87af860536a615c047f51260a8c60ad65579c5cd8138caa6a",
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+					"res://scripts/physics/catamaran_three_dof_dynamics.gd": "4ea917668478d011dde89547da865b00e1600c7b5263c255fea8e846ea3321d2"
+				},
+				"before": {
+					"res://data/rl/long_beach_ais_port_ops_benchmark_v2.json": "1d676e7446f22206f6113777524d46724545e58e55c1df73a9d359795a415a1f",
+					"res://data/rl/port_ops_safety_supervisor_v3.json": "1edee032e44132c4c15ade0de73ff3f0ba3ed9b2a25206faa0c6ca8a50f26de3",
+					"res://data/verification/catamaran_usv_dynamics_reference_v2.json": "d9dbd9fd61827952b50194f10e1a7331f7b154b7b7a69805de726e5bfd648c8f",
+					"res://player.gd": "a031fc53409eaca87af860536a615c047f51260a8c60ad65579c5cd8138caa6a",
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+					"res://scripts/physics/catamaran_three_dof_dynamics.gd": "4ea917668478d011dde89547da865b00e1600c7b5263c255fea8e846ea3321d2"
+				}
+			},
+			"passed": true
+		},
+		"mrc_catalog_is_browsable": {
+			"detail": 6,
+			"passed": true
+		},
+		"mrc_selection_updates_detail": {
+			"detail": "[color=#73f5ff][b]MRC-02 · 受控减速并停止[/b][/color]\n权限：BOUNDED_EXECUTION_CONTROLLER  超时：120.0s\n回退：MRC-01\n\n触发：grounding_risk, rcc_loss, environment_outside_odd\n\n动作：\n• reduce thrust\n• hold safe heading\n• stop within reviewed corridor\n\n成功判据：\n• speed below 0.5 knots\n• clearance stable",
+			"passed": true
+		},
+		"odd_breach_demo_button_present": {
+			"detail": "演示 ODD 越界→MRC",
+			"passed": true
+		},
+		"odd_breach_demo_returns_mrc_route_only": {
+			"detail": {
+				"dimension_id": "ODD-CONTROL",
+				"result": {
+					"passed": true,
+					"required_mrc_ids": [
+						"MRC-01",
+						"MRC-05"
+					]
+				}
+			},
+			"passed": true
+		},
+		"odd_covers_twelve_monitored_dimensions": {
+			"detail": {
+				"covered_categories": [
+					"actuator_feedback",
+					"cyber_integrity",
+					"geographical_authorization",
+					"navigation_fusion_quality",
+					"positioning_integrity",
+					"remote_control_centre_link",
+					"speed_envelope",
+					"traffic_complexity",
+					"under_keel_clearance",
+					"visibility",
+					"wave",
+					"wind"
+				],
+				"dimension_count": 12.0,
+				"invalid_dimensions": [],
+				"missing_categories": [],
+				"passed": true
+			},
+			"passed": true
+		},
+		"panel_never_trains_or_modifies_existing_model": {
+			"detail": "ship_safety_case_panel_snapshot_v1",
+			"passed": true
+		},
+		"personnel_responsibility_raci_is_complete": {
+			"detail": {
+				"activity_count": 7.0,
+				"invalid_activities": [],
+				"passed": true,
+				"role_count": 9.0
+			},
+			"passed": true
+		},
+		"remote_control_centre_contract_is_complete_but_not_site_authorized": {
+			"detail": {
+				"passed": true,
+				"site_authorized": false
+			},
+			"passed": true
+		},
+		"safety_case_checker_button_present": {
+			"detail": "重新运行安全案例",
+			"passed": true
+		},
+		"safety_case_panel_present": {
+			"detail": "ShipSafetyCasePanel",
+			"passed": true
+		},
+		"six_minimum_risk_conditions_are_complete": {
+			"detail": {
+				"invalid_mrc_ids": [],
+				"mrc_count": 6.0,
+				"passed": true
+			},
+			"passed": true
+		},
+		"ten_evidence_records_are_hash_bound": {
+			"detail": {
+				"evidence_count": 10.0,
+				"missing_or_invalid_evidence_ids": [],
+				"passed": true
+			},
+			"passed": true
+		},
+		"ui_runs_real_safety_case_checker": {
+			"detail": {
+				"exit_code": 0,
+				"output": "MASS_SAFETY_CASE:PASS:12/12:FUNCTIONAL_SAFETY_CASE_COMPLETE_EXTERNAL_ACCEPTANCE_BLOCKED\n"
+			},
+			"passed": true
+		}
+	},
+	"errors": [],
+	"existing_model_modified": false,
+	"generated_at": "2026-08-28T13:34:26",
+	"independent_review_complete": false,
+	"mass_safety_certificate": false,
+	"passed": true,
+	"passed_checks": 31,
+	"production_authority": false,
+	"schema_version": "godot_safety_case_smoke_v1",
+	"total_checks": 31,
+	"training_performed": false
+}

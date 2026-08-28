@@ -1,0 +1,654 @@
+{
+  "format": "ship_port_policy_test_safety_v4",
+  "source": "deterministic_base_policy_with_utility_preserving_safety_supervisor_v4",
+  "algorithm": "td3",
+  "strategy_id": "td3+safety_v4",
+  "checkpoint": "reports/artifacts/navigation_benchmark_v2/td3/checkpoint.json",
+  "base_checkpoint": "reports/artifacts/navigation_benchmark_v2/td3/checkpoint.json",
+  "base_checkpoint_sha256": "700e19a5d5858f24dae17b4b631102495deded832474157c911ea91782ab2cd9",
+  "dataset_path": "data/rl/long_beach_ais_port_ops_benchmark_v2.json",
+  "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+  "experiment_sha256": "b3ce96edb6a995c3d5fd9787fbae05d00a7f760f133b3910604bd740fcbf2da1",
+  "dataset_split": "test",
+  "task_id": "ais_2025-01-06_249836000_00_01_0911",
+  "playback_mode": "recorded_safety_supervised_test_rollout",
+  "start": {
+    "x": 5914.469,
+    "z": -1954.807,
+    "heading_degrees": 191.4
+  },
+  "goal": {
+    "x": 5678.667,
+    "z": -3372.542
+  },
+  "route_points": [
+    {
+      "x": 5861.76,
+      "z": -2180.533
+    },
+    {
+      "x": 5821.998,
+      "z": -2385.131
+    },
+    {
+      "x": 5792.407,
+      "z": -2603.073
+    },
+    {
+      "x": 5758.192,
+      "z": -2838.806
+    },
+    {
+      "x": 5718.43,
+      "z": -3097.891
+    },
+    {
+      "x": 5678.667,
+      "z": -3372.542
+    }
+  ],
+  "evaluation_obstacles": [
+    {
+      "name": "ais_traffic_368159190",
+      "kind": "traffic",
+      "shape": "circle",
+      "position": {
+        "x": 5981.828033882074,
+        "z": -2037.3432657866256
+      },
+      "dynamic": true,
+      "velocity": {
+        "x": 7.108067764148112,
+        "z": -2.72853157325106
+      },
+      "source": "dataset_dynamic",
+      "radius": 4.0,
+      "size": {
+        "x": 8.0,
+        "y": 7.0,
+        "z": 8.0
+      }
+    },
+    {
+      "name": "ais_traffic_368136950",
+      "kind": "traffic",
+      "shape": "circle",
+      "position": {
+        "x": 5022.118816738355,
+        "z": -1150.9219418365797
+      },
+      "dynamic": true,
+      "velocity": {
+        "x": -3.702366523290646,
+        "z": -0.1098836731592696
+      },
+      "source": "dataset_dynamic",
+      "radius": 6.0,
+      "size": {
+        "x": 12.0,
+        "y": 7.0,
+        "z": 12.0
+      }
+    },
+    {
+      "name": "ais_traffic_368265680",
+      "kind": "traffic",
+      "shape": "circle",
+      "position": {
+        "x": 6098.018409235795,
+        "z": -582.2494821338523
+      },
+      "dynamic": true,
+      "velocity": {
+        "x": 2.7608184715895896,
+        "z": 0.8230357322951917
+      },
+      "source": "dataset_dynamic",
+      "radius": 4.0,
+      "size": {
+        "x": 8.0,
+        "y": 7.0,
+        "z": 8.0
+      }
+    },
+    {
+      "name": "enc_238_9840164_0",
+      "kind": "shoreline",
+      "shape": "polygon",
+      "position": {
+        "x": 7859.297571428572,
+        "z": -1308.8674285714285
+      },
+      "dynamic": false,
+      "velocity": {
+        "x": 0.0,
+        "z": 0.0
+      },
+      "source": "enc_terrain",
+      "points": [
+        {
+          "x": 7448.985,
+          "z": -1313.156
+        },
+        {
+          "x": 10462.109,
+          "z": -1318.016
+        },
+        {
+          "x": 10462.109,
+          "z": -1296.944
+        },
+        {
+          "x": 6429.969,
+          "z": -1298.445
+        },
+        {
+          "x": 6398.51,
+          "z": -1304.461
+        },
+        {
+          "x": 6397.012,
+          "z": -1318.016
+        },
+        {
+          "x": 7416.389,
+          "z": -1313.034
+        }
+      ],
+      "radius": 2602.838738925433
+    },
+    {
+      "name": "enc_238_9840127_0",
+      "kind": "shoreline",
+      "shape": "polygon",
+      "position": {
+        "x": 3294.203888888889,
+        "z": -1903.2512222222222
+      },
+      "dynamic": false,
+      "velocity": {
+        "x": 0.0,
+        "z": 0.0
+      },
+      "source": "enc_terrain",
+      "points": [
+        {
+          "x": 5779.091,
+          "z": -1316.503
+        },
+        {
+          "x": 5883.26,
+          "z": -1316.503
+        },
+        {
+          "x": 5881.762,
+          "z": -1293.931
+        },
+        {
+          "x": 5842.822,
+          "z": -1293.931
+        },
+        {
+          "x": 5842.822,
+          "z": -1281.888
+        },
+        {
+          "x": 5818.854,
+          "z": -1281.888
+        },
+        {
+          "x": 5821.85,
+          "z": -1299.947
+        },
+        {
+          "x": 4033.444,
+          "z": -1299.947
+        },
+        {
+          "x": 637.877,
+          "z": -2625.957
+        },
+        {
+          "x": 497.08,
+          "z": -2665.098
+        },
+        {
+          "x": 483.598,
+          "z": -2675.628
+        },
+        {
+          "x": 483.598,
+          "z": -2693.697
+        },
+        {
+          "x": 492.586,
+          "z": -2705.74
+        },
+        {
+          "x": 510.562,
+          "z": -2704.227
+        },
+        {
+          "x": 537.527,
+          "z": -2683.156
+        },
+        {
+          "x": 1025.813,
+          "z": -2487.475
+        },
+        {
+          "x": 4037.938,
+          "z": -1316.503
+        },
+        {
+          "x": 5685.186,
+          "z": -1316.503
+        }
+      ],
+      "radius": 2919.6420996868123
+    },
+    {
+      "name": "enc_36_2216264",
+      "kind": "obstruction",
+      "shape": "circle",
+      "position": {
+        "x": 4304.431,
+        "z": -1590.41
+      },
+      "dynamic": false,
+      "velocity": {
+        "x": 0.0,
+        "z": 0.0
+      },
+      "source": "enc_obstacle",
+      "radius": 8.0,
+      "size": {
+        "x": 16.0,
+        "y": 7.0,
+        "z": 16.0
+      }
+    },
+    {
+      "name": "enc_36_2216241",
+      "kind": "obstruction",
+      "shape": "circle",
+      "position": {
+        "x": 5794.164,
+        "z": -2755.288
+      },
+      "dynamic": false,
+      "velocity": {
+        "x": 0.0,
+        "z": 0.0
+      },
+      "source": "enc_obstacle",
+      "radius": 8.0,
+      "size": {
+        "x": 16.0,
+        "y": 7.0,
+        "z": 16.0
+      }
+    },
+    {
+      "name": "enc_36_2216244",
+      "kind": "obstruction",
+      "shape": "circle",
+      "position": {
+        "x": 4749.246,
+        "z": -2484.784
+      },
+      "dynamic": false,
+      "velocity": {
+        "x": 0.0,
+        "z": 0.0
+      },
+      "source": "enc_obstacle",
+      "radius": 8.0,
+      "size": {
+        "x": 16.0,
+        "y": 7.0,
+        "z": 16.0
+      }
+    },
+    {
+      "name": "enc_36_2216280",
+      "kind": "obstruction",
+      "shape": "circle",
+      "position": {
+        "x": 5677.465,
+        "z": -2006.479
+      },
+      "dynamic": false,
+      "velocity": {
+        "x": 0.0,
+        "z": 0.0
+      },
+      "source": "enc_obstacle",
+      "radius": 8.0,
+      "size": {
+        "x": 16.0,
+        "y": 7.0,
+        "z": 16.0
+      }
+    },
+    {
+      "name": "enc_36_2216242",
+      "kind": "obstruction",
+      "shape": "circle",
+      "position": {
+        "x": 5645.553,
+        "z": -4105.15
+      },
+      "dynamic": false,
+      "velocity": {
+        "x": 0.0,
+        "z": 0.0
+      },
+      "source": "enc_obstacle",
+      "radius": 8.0,
+      "size": {
+        "x": 16.0,
+        "y": 7.0,
+        "z": 16.0
+      }
+    },
+    {
+      "name": "enc_36_2216271",
+      "kind": "obstruction",
+      "shape": "circle",
+      "position": {
+        "x": 4430.405,
+        "z": -2010.604
+      },
+      "dynamic": false,
+      "velocity": {
+        "x": 0.0,
+        "z": 0.0
+      },
+      "source": "enc_obstacle",
+      "radius": 8.0,
+      "size": {
+        "x": 16.0,
+        "y": 7.0,
+        "z": 16.0
+      }
+    },
+    {
+      "name": "enc_36_2216272",
+      "kind": "obstruction",
+      "shape": "circle",
+      "position": {
+        "x": 5003.339,
+        "z": -2725.021
+      },
+      "dynamic": false,
+      "velocity": {
+        "x": 0.0,
+        "z": 0.0
+      },
+      "source": "enc_obstacle",
+      "radius": 8.0,
+      "size": {
+        "x": 16.0,
+        "y": 7.0,
+        "z": 16.0
+      }
+    },
+    {
+      "name": "enc_36_2216258",
+      "kind": "obstruction",
+      "shape": "circle",
+      "position": {
+        "x": 6816.897,
+        "z": -2735.362
+      },
+      "dynamic": false,
+      "velocity": {
+        "x": 0.0,
+        "z": 0.0
+      },
+      "source": "enc_obstacle",
+      "radius": 8.0,
+      "size": {
+        "x": 16.0,
+        "y": 7.0,
+        "z": 16.0
+      }
+    },
+    {
+      "name": "enc_39_915870",
+      "kind": "wreck",
+      "shape": "circle",
+      "position": {
+        "x": 5376.914,
+        "z": -3083.847
+      },
+      "dynamic": false,
+      "velocity": {
+        "x": 0.0,
+        "z": 0.0
+      },
+      "source": "enc_obstacle",
+      "radius": 12.0,
+      "size": {
+        "x": 24.0,
+        "y": 7.0,
+        "z": 24.0
+      }
+    }
+  ],
+  "safety_profile": {
+    "profile_id": "port_ops_utility_preserving_safety_v4",
+    "enabled": true,
+    "trigger_clearance_meters": 72.0,
+    "target_clearance_meters": 48.0,
+    "hard_clearance_meters": 4.0,
+    "horizon_steps": 10,
+    "decision_interval_steps": 1,
+    "intervention_hold_steps": 0,
+    "action_deviation_weight": 2.5,
+    "route_progress_weight": 0.45,
+    "heading_error_weight": 0.9,
+    "clearance_weight": 5.0,
+    "dcpa_weight": 3.0,
+    "channel_violation_weight": 24.0,
+    "colreg_violation_weight": 30.0,
+    "speed_violation_weight": 8.0,
+    "collision_weight": 10000.0,
+    "grounding_weight": 12000.0,
+    "fail_closed_reverse_throttle": -0.55,
+    "critical_tcpa_seconds": 900.0,
+    "closing_speed_threshold_mps": 0.05,
+    "forward_hazard_bearing_degrees": 100.0,
+    "stopping_distance_margin_meters": 12.0,
+    "maximum_dynamic_trigger_meters": 140.0,
+    "colreg_trigger_buffer_meters": 25.0,
+    "operational_preview_steps": 10,
+    "escape_sequence_horizon_steps": 120,
+    "escape_sequence_switch_steps": 3,
+    "escape_search_retry_steps": 120,
+    "guardian_route_gain": 1.35,
+    "guardian_avoidance_gain": 0.85,
+    "preferred_speed_ratio": 0.68
+  },
+  "port_contract": {
+    "research_training_ready": true,
+    "live_control_ready": false,
+    "deployment_authority": false
+  },
+  "samples": [
+    {
+      "index": 0,
+      "time": 0.0,
+      "x": 5914.469,
+      "z": -1954.807,
+      "heading_degrees": 191.4,
+      "speed_mps": 0.0,
+      "throttle": 0.0,
+      "rudder": 0.0,
+      "reward": 0.0,
+      "collision": false,
+      "nearest_obstacle_name": "ais_traffic_368159190",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 81.24714,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 81.24714,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "ais_traffic_368159190",
+          "x": 5978.274,
+          "z": -2035.979
+        },
+        {
+          "name": "ais_traffic_368136950",
+          "x": 5023.97,
+          "z": -1150.867
+        },
+        {
+          "name": "ais_traffic_368265680",
+          "x": 6096.638,
+          "z": -582.661
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "time": 0.5,
+      "x": 5914.42246,
+      "z": -1954.78148,
+      "heading_degrees": 191.5031,
+      "speed_mps": -0.0123,
+      "throttle": -0.55,
+      "rudder": 1.0,
+      "reward": -100.367982,
+      "collision": true,
+      "nearest_obstacle_name": "ais_traffic_368159190",
+      "nearest_obstacle_kind": "traffic",
+      "nearest_clearance_meters": 84.58311,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 84.58311,
+      "nearest_is_dynamic": true,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "name": "ais_traffic_368159190",
+          "x": 5981.82803,
+          "z": -2037.34327
+        },
+        {
+          "name": "ais_traffic_368136950",
+          "x": 5022.11882,
+          "z": -1150.92194
+        },
+        {
+          "name": "ais_traffic_368265680",
+          "x": 6098.01841,
+          "z": -582.24948
+        }
+      ],
+      "operational_penalty": 4.26,
+      "under_keel_clearance_meters": -0.42,
+      "encounter": "crossing_port",
+      "give_way": false
+    }
+  ],
+  "evaluation_metrics": {
+    "task_id": "ais_2025-01-06_249836000_00_01_0911",
+    "success": false,
+    "port_compliant_success": false,
+    "goal_reached": false,
+    "collisions": 1,
+    "terrain_collisions": 1,
+    "groundings": 1,
+    "near_misses": 0,
+    "speed_limit_violations": 0,
+    "channel_departures": 0,
+    "colreg_give_way_violations": 0,
+    "dynamic_obstacle_count": 3,
+    "minimum_clearance_meters": 81.24713850272096,
+    "minimum_dcpa_meters": 84.58311187304787,
+    "minimum_under_keel_clearance_meters": -0.41999999999999993,
+    "max_cross_track_error_meters": 0.051123046457740344,
+    "path_length_meters": 0.05307694706174487,
+    "reference_route_length_meters": 1438.001851999076,
+    "route_completion_ratio": 0.0,
+    "path_efficiency": 0.0,
+    "elapsed_seconds": 0.5,
+    "reward": -100.36798207187297,
+    "steps": 1,
+    "last_collision": {
+      "name": "under_keel_clearance",
+      "kind": "terrain",
+      "step": 1
+    },
+    "safety_supervisor": {
+      "profile": {
+        "profile_id": "port_ops_utility_preserving_safety_v4",
+        "enabled": true,
+        "trigger_clearance_meters": 72.0,
+        "target_clearance_meters": 48.0,
+        "hard_clearance_meters": 4.0,
+        "horizon_steps": 10,
+        "decision_interval_steps": 1,
+        "intervention_hold_steps": 0,
+        "action_deviation_weight": 2.5,
+        "route_progress_weight": 0.45,
+        "heading_error_weight": 0.9,
+        "clearance_weight": 5.0,
+        "dcpa_weight": 3.0,
+        "channel_violation_weight": 24.0,
+        "colreg_violation_weight": 30.0,
+        "speed_violation_weight": 8.0,
+        "collision_weight": 10000.0,
+        "grounding_weight": 12000.0,
+        "fail_closed_reverse_throttle": -0.55,
+        "critical_tcpa_seconds": 900.0,
+        "closing_speed_threshold_mps": 0.05,
+        "forward_hazard_bearing_degrees": 100.0,
+        "stopping_distance_margin_meters": 12.0,
+        "maximum_dynamic_trigger_meters": 140.0,
+        "colreg_trigger_buffer_meters": 25.0,
+        "operational_preview_steps": 10,
+        "escape_sequence_horizon_steps": 120,
+        "escape_sequence_switch_steps": 3,
+        "escape_search_retry_steps": 120,
+        "guardian_route_gain": 1.35,
+        "guardian_avoidance_gain": 0.85,
+        "preferred_speed_ratio": 0.68
+      },
+      "interventions": 1,
+      "intervention_steps": 1,
+      "fail_closed_events": 1,
+      "candidate_evaluations": 9,
+      "reason_counts": {
+        "fail_closed_no_hard_safe_candidate": 1
+      },
+      "escape_plans_activated": 0,
+      "escape_plan_steps": 0,
+      "escape_sequence_evaluations": 0
+    }
+  },
+  "aggregate_metrics": {
+    "episodes": 130,
+    "collision_free_arrival_rate": 0.0,
+    "port_compliant_completion_rate": 0.0,
+    "collision_episode_rate": 0.12307692307692308,
+    "grounding_episode_rate": 0.06923076923076923,
+    "colreg_violation_episode_rate": 0.0,
+    "channel_departure_episode_rate": 0.11538461538461539,
+    "speed_violation_episode_rate": 0.0,
+    "mean_reward": 87.82033899499775,
+    "mean_max_cross_track_error_meters": 164.52682783085334,
+    "p95_max_cross_track_error_meters": 409.28852232152315,
+    "mean_minimum_clearance_meters": 254.1954316793637,
+    "p05_minimum_clearance_meters": 0.7344795054851464,
+    "mean_minimum_dcpa_meters": 498.566800507165,
+    "p05_minimum_dcpa_meters": 0.0,
+    "mean_minimum_under_keel_clearance_meters": 7.768230769230768,
+    "mean_path_efficiency": 0.17748996484723492,
+    "mean_route_completion_ratio": 0.13115601213915268,
+    "mean_elapsed_seconds": 718.5461538461539
+  }
+}

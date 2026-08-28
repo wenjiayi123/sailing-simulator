@@ -1,0 +1,17 @@
+{
+  "schema_version": "cyber_range_signed_update_payload_v1",
+  "update_id": "CYBER-RANGE-UPDATE-2026-01",
+  "component": "bridge_network_security_training_rules",
+  "from_version": "1.0.0",
+  "to_version": "1.0.1",
+  "release_channel": "OFFLINE_TRAINING_FIXTURE",
+  "changes": [
+    "add nonce replay detection fixture",
+    "add prohibited zone flow fixture"
+  ],
+  "install_authority": "SECURITY_ADMIN_TRAINING_ONLY",
+  "production_package": false,
+  "changes_ship_motion_model": false,
+  "changes_existing_policy": false,
+  "rollback_required": true
+}

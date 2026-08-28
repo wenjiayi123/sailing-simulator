@@ -1,0 +1,9 @@
+{
+  "status": "complete",
+  "dataset_split": "validation",
+  "completed_episodes": 7,
+  "total_episodes": 7,
+  "progress": 1.0,
+  "elapsed_wall_seconds": 78.32171678,
+  "result": "reports/artifacts/sac_champion_v5/candidate_route_recovery_subset/validation_result.json"
+}

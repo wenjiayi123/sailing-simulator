@@ -1,0 +1,135 @@
+{
+  "schema_version": "physical_bridge_hil_manifest_v1",
+  "manifest_id": "UNASSIGNED",
+  "execution_context": "software_only",
+  "site": {
+    "site_name": "",
+    "location": "",
+    "operator_organization": "",
+    "responsible_engineer": "",
+    "installation_record_reference": "",
+    "network_diagram_reference": "",
+    "power_and_ups_test_reference": ""
+  },
+  "hardware_inventory": [],
+  "io_channels": [],
+  "target_controller": {
+    "manufacturer": "",
+    "model": "",
+    "serial_number": "",
+    "hardware_revision": "",
+    "firmware_build_id": "",
+    "io_firmware_id": "",
+    "installation_reference": ""
+  },
+  "real_time_operating_system": {
+    "vendor": "",
+    "name": "",
+    "version": "",
+    "build_id": "",
+    "scheduler_policy": "",
+    "controller_task_priority": "",
+    "configuration_hash": "",
+    "wcet_measurement_tool": ""
+  },
+  "real_io_rack": {
+    "manufacturer": "",
+    "model": "",
+    "serial_number": "",
+    "fieldbus_protocol": "",
+    "signal_mapping_reference": "",
+    "electrical_acceptance_reference": "",
+    "calibration_reference": ""
+  },
+  "clock_synchronization": {
+    "synchronization_protocol": "",
+    "primary_source_model": "",
+    "primary_source_serial_number": "",
+    "synchronization_domain": "",
+    "topology_reference": "",
+    "holdover_test_reference": ""
+  },
+  "dual_channel_emergency_stop": {
+    "channel_a_wiring_reference": "",
+    "channel_b_wiring_reference": "",
+    "safety_relay_reference": "",
+    "independent_power_reference": "",
+    "manual_reset_key_reference": "",
+    "channel_independence_test_reference": "",
+    "one_out_of_two_trip_verified": false,
+    "automatic_reset_disabled": false
+  },
+  "dropout_recovery_evidence": {
+    "sensor_bus_loss_reference": "",
+    "control_link_loss_reference": "",
+    "io_rack_power_cycle_reference": "",
+    "controller_restart_reference": "",
+    "feedback_disagreement_reference": "",
+    "manual_rearm_reference": ""
+  },
+  "witnessed_test_cases": {
+    "nominal_closed_loop": {"passed": false, "evidence_reference": "", "witness_signature_reference": ""},
+    "clock_offset_fault": {"passed": false, "evidence_reference": "", "witness_signature_reference": ""},
+    "execution_deadline_overrun": {"passed": false, "evidence_reference": "", "witness_signature_reference": ""},
+    "sensor_link_dropout": {"passed": false, "evidence_reference": "", "witness_signature_reference": ""},
+    "command_link_dropout": {"passed": false, "evidence_reference": "", "witness_signature_reference": ""},
+    "io_rack_power_loss": {"passed": false, "evidence_reference": "", "witness_signature_reference": ""},
+    "controller_restart": {"passed": false, "evidence_reference": "", "witness_signature_reference": ""},
+    "manual_takeover": {"passed": false, "evidence_reference": "", "witness_signature_reference": ""},
+    "estop_channel_a": {"passed": false, "evidence_reference": "", "witness_signature_reference": ""},
+    "estop_channel_b": {"passed": false, "evidence_reference": "", "witness_signature_reference": ""},
+    "dual_channel_estop_reset": {"passed": false, "evidence_reference": "", "witness_signature_reference": ""},
+    "feedback_disagreement": {"passed": false, "evidence_reference": "", "witness_signature_reference": ""}
+  },
+  "safety_interlocks": {
+    "independent_emergency_stop": {"verified": false, "evidence_reference": ""},
+    "manual_control_priority": {"verified": false, "evidence_reference": ""},
+    "hardwired_neutral_state": {"verified": false, "evidence_reference": ""},
+    "power_loss_neutralization": {"verified": false, "evidence_reference": ""},
+    "watchdog_independent_of_application": {"verified": false, "evidence_reference": ""},
+    "network_isolation": {"verified": false, "evidence_reference": ""},
+    "hazard_analysis": {"verified": false, "evidence_reference": ""},
+    "cybersecurity_review": {"verified": false, "evidence_reference": ""}
+  },
+  "timing_evidence": {
+    "clock_synchronization_reference": "",
+    "worst_case_execution_time_reference": "",
+    "latency_log_reference": "",
+    "sample_count": 0,
+    "p95_sensor_latency_ms": null,
+    "p95_command_latency_ms": null,
+    "maximum_jitter_ms": null,
+    "watchdog_trip_ms": null,
+    "limits": {
+      "maximum_p95_sensor_latency_ms": 100.0,
+      "maximum_p95_command_latency_ms": 100.0,
+      "maximum_jitter_ms": 25.0,
+      "maximum_watchdog_trip_ms": 200.0,
+      "minimum_sample_count": 1000
+    }
+  },
+  "calibration_and_test_evidence": {
+    "sensor_calibration_reference": "",
+    "actuator_calibration_reference": "",
+    "physical_hil_raw_log_reference": "",
+    "physical_hil_raw_log_sha256": "",
+    "fault_injection_report_reference": "",
+    "manual_override_test_reference": "",
+    "emergency_stop_test_reference": "",
+    "independent_witness_name": "",
+    "independent_witness_organization": "",
+    "signed_acceptance_record_reference": ""
+  },
+  "standards_review": {
+    "mapping_id": "simulator_standards_mapping_v1",
+    "qualified_assessor_name": "",
+    "assessor_organization": "",
+    "review_record_reference": "",
+    "administration_or_class_reference": ""
+  },
+  "authority": {
+    "physical_hil_authorized": false,
+    "site_acceptance_authorized": false,
+    "production_control_authorized": false
+  }
+}

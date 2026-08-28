@@ -1,0 +1,2449 @@
+{
+	"boundary": "Godot UI and deterministic scenario-functional evidence only; not legal interpretation or field authority.",
+	"check_count": 25,
+	"checks": {
+		"all_complex_capabilities_covered": {
+			"detail": [
+				"complex_restricted_visibility",
+				"fishing_vessel",
+				"lights_and_shapes",
+				"local_rules",
+				"multi_ship",
+				"narrow_channel",
+				"not_under_command",
+				"restricted_in_ability_to_manoeuvre",
+				"sound_signals",
+				"traffic_separation_scheme"
+			],
+			"passed": true
+		},
+		"close_button_hides_panel": {
+			"detail": false,
+			"passed": true
+		},
+		"complex_colreg_panel_present": {
+			"detail": "ShipColregComplexPanel",
+			"passed": true
+		},
+		"complex_colreg_panel_root_present": {
+			"detail": "ShipColregComplexRoot:<Control#245987552590>",
+			"passed": true
+		},
+		"export_button_present": {
+			"detail": "导出场景证据包",
+			"passed": true
+		},
+		"exported_evidence_hashes_match": {
+			"detail": {
+				"directory": "user://colreg_complex_evidence",
+				"files_sha256": {
+					"user://colreg_complex_evidence/colreg_complex_assurance_v2.json": "9eaaee1c2bcf4f93b970425768eec751d25a5588c873a6442d926e819e21963b",
+					"user://colreg_complex_evidence/colreg_complex_scenario_catalog_v2.json": "66f4839be7410ce3c2a2cf06fa132124c2f782f784ab33092bb375ce53b35bb0",
+					"user://colreg_complex_evidence/local_navigation_rules_template_v1.json": "41f3bbd86f9183aa909a006c4059e99e8387c560c76e0394156cd7d67646c559"
+				},
+				"passed": true
+			},
+			"passed": true
+		},
+		"external_authority_boundaries_remain_false": {
+			"detail": {
+				"colreg_certified": false,
+				"existing_policy_modified": false,
+				"last_command_output": "COLREG_COMPLEX:PASS:16/16:45/45:legacy_v1=True\n",
+				"last_exit_code": 0,
+				"last_export": {
+					"directory": "user://colreg_complex_evidence",
+					"files_sha256": {
+						"user://colreg_complex_evidence/colreg_complex_assurance_v2.json": "9eaaee1c2bcf4f93b970425768eec751d25a5588c873a6442d926e819e21963b",
+						"user://colreg_complex_evidence/colreg_complex_scenario_catalog_v2.json": "66f4839be7410ce3c2a2cf06fa132124c2f782f784ab33092bb375ce53b35bb0",
+						"user://colreg_complex_evidence/local_navigation_rules_template_v1.json": "41f3bbd86f9183aa909a006c4059e99e8387c560c76e0394156cd7d67646c559"
+					},
+					"passed": true
+				},
+				"legacy_v1_replaced": false,
+				"official_local_rules_connected": false,
+				"production_authority": false,
+				"report": {
+					"boundary": "PASS is deterministic simulator-function evidence. It is not a complete legal interpretation, official local-rule feed, COLREG certification, type/class approval or authority for live-vessel control.",
+					"claim_matrix": {
+						"colreg_certified": false,
+						"complex_restricted_visibility_verified": true,
+						"lights_shapes_sound_regression_verified": true,
+						"multi_ship_duty_graph_verified": true,
+						"narrow_channel_scenarios_verified": true,
+						"official_local_rules_connected": false,
+						"production_authority": false,
+						"simulator_local_rule_template_verified": true,
+						"special_status_priority_verified": true,
+						"traffic_separation_scenarios_verified": true
+					},
+					"complex_assurance": {
+						"authorized_local_rules_connected": false,
+						"boundary": "V2 deterministic complex-scenario regression layered over the preserved V1 oracle. It is not legal advice, an official local-rule service, flag/class acceptance or COLREG certification.",
+						"case_count": 45.0,
+						"case_matched_count": 45.0,
+						"colreg_certified": false,
+						"coverage_complete": true,
+						"covered_capabilities": [
+							"complex_restricted_visibility",
+							"fishing_vessel",
+							"lights_and_shapes",
+							"local_rules",
+							"multi_ship",
+							"narrow_channel",
+							"not_under_command",
+							"restricted_in_ability_to_manoeuvre",
+							"sound_signals",
+							"traffic_separation_scheme"
+						],
+						"existing_model_modified": false,
+						"legacy_v1_replaced": false,
+						"legal_interpretation_complete": false,
+						"missing_capabilities": [],
+						"official_local_rule_compliance_verified": false,
+						"passed": true,
+						"production_authority": false,
+						"required_capabilities": [
+							"multi_ship",
+							"narrow_channel",
+							"traffic_separation_scheme",
+							"restricted_in_ability_to_manoeuvre",
+							"not_under_command",
+							"fishing_vessel",
+							"lights_and_shapes",
+							"sound_signals",
+							"local_rules",
+							"complex_restricted_visibility"
+						],
+						"results": [
+							{
+								"assessment": {
+									"context_compliant": true,
+									"context_violations": [],
+									"expected_sound_signal": null,
+									"expected_visual_signal": {
+										"lights": [
+											"masthead_white",
+											"sidelight_red",
+											"sidelight_green",
+											"stern_white"
+										],
+										"shapes": []
+									},
+									"local_rules": {
+										"applicable": false,
+										"area_id": "",
+										"compliant": true,
+										"rule_ids": [],
+										"violations": []
+									},
+									"multi_ship_duty_graph": [
+										{
+											"dcpa_m": 0.0000000000000142875459900525,
+											"encounter": "give_way_to_not_under_command",
+											"role": "give_way_to_privileged_vessel",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 14",
+												"Rule 23",
+												"Rule 27",
+												"Rule 18"
+											],
+											"target_id": "NUC-A",
+											"tcpa_s": 116.666666666667
+										},
+										{
+											"dcpa_m": 0.00000000000012710574864626,
+											"encounter": "crossing_starboard",
+											"role": "give_way",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 15",
+												"Rule 16",
+												"Rule 23"
+											],
+											"target_id": "CROSS-STBD",
+											"tcpa_s": 100.0
+										},
+										{
+											"dcpa_m": 0.0,
+											"encounter": "crossing_port",
+											"role": "stand_on",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 15",
+												"Rule 17",
+												"Rule 23"
+											],
+											"target_id": "CROSS-PORT",
+											"tcpa_s": 100.0
+										}
+									],
+									"pairwise": [
+										{
+											"dcpa_m": 0.0000000000000142875459900525,
+											"encounter": "give_way_to_not_under_command",
+											"own_status": "under_way_using_engine",
+											"range_m": 700.0,
+											"reasons": [
+												"relative bearing 0.00 deg",
+												"DCPA 0.0 m",
+												"TCPA 116.7 s",
+												"nearly reciprocal courses with target nearly ahead",
+												"target status not_under_command has priority over under_way_using_engine in the verifier hierarchy"
+											],
+											"relative_bearing_deg": 0.0,
+											"risk_of_collision": true,
+											"role": "give_way_to_privileged_vessel",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 14",
+												"Rule 23",
+												"Rule 27",
+												"Rule 18"
+											],
+											"target_aspect_deg": 0.0,
+											"target_id": "NUC-A",
+											"target_status": "not_under_command",
+											"tcpa_s": 116.666666666667
+										},
+										{
+											"dcpa_m": 0.00000000000012710574864626,
+											"encounter": "crossing_starboard",
+											"own_status": "under_way_using_engine",
+											"range_m": 707.106781186548,
+											"reasons": [
+												"relative bearing 45.00 deg",
+												"DCPA 0.0 m",
+												"TCPA 100.0 s",
+												"target is on own starboard side"
+											],
+											"relative_bearing_deg": 45.0,
+											"risk_of_collision": true,
+											"role": "give_way",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 15",
+												"Rule 16",
+												"Rule 23"
+											],
+											"target_aspect_deg": -45.0,
+											"target_id": "CROSS-STBD",
+											"target_status": "under_way_using_engine",
+											"tcpa_s": 100.0
+										},
+										{
+											"dcpa_m": 0.0,
+											"encounter": "crossing_port",
+											"own_status": "under_way_using_engine",
+											"range_m": 707.106781186548,
+											"reasons": [
+												"relative bearing -45.00 deg",
+												"DCPA 0.0 m",
+												"TCPA 100.0 s",
+												"target is on own port side"
+											],
+											"relative_bearing_deg": -45.0,
+											"risk_of_collision": true,
+											"role": "stand_on",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 15",
+												"Rule 17",
+												"Rule 23"
+											],
+											"target_aspect_deg": 45.0,
+											"target_id": "CROSS-PORT",
+											"target_status": "under_way_using_engine",
+											"tcpa_s": 100.0
+										}
+									],
+									"primary_duty": "give_way_to_privileged_vessel",
+									"priority_target_id": "NUC-A",
+									"risk_target_count": 3.0,
+									"rules": [
+										"Rule 5",
+										"Rule 6",
+										"Rule 7",
+										"Rule 8",
+										"Rule 14",
+										"Rule 23",
+										"Rule 27",
+										"Rule 18",
+										"Rule 15",
+										"Rule 16",
+										"Rule 17"
+									],
+									"scenario_id": "multi_ship_mixed_duties",
+									"signal_subject_status": "under_way_using_engine",
+									"target_count": 3.0,
+									"waterway": "open_water"
+								},
+								"capabilities": [
+									"multi_ship",
+									"not_under_command"
+								],
+								"cases": [
+									{
+										"case_id": "multi_starboard_action",
+										"expected_passed": true,
+										"kind": "navigation",
+										"matched": true,
+										"passed": true,
+										"reasons": [
+											"case satisfies the deterministic verifier contract"
+										]
+									},
+									{
+										"case_id": "multi_speed_reduction",
+										"expected_passed": true,
+										"kind": "navigation",
+										"matched": true,
+										"passed": true,
+										"reasons": [
+											"case satisfies the deterministic verifier contract"
+										]
+									},
+									{
+										"case_id": "multi_maintain_rejected",
+										"expected_passed": false,
+										"kind": "navigation",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"duty to NUC-A is not satisfied",
+											"duty to CROSS-STBD is not satisfied"
+										]
+									},
+									{
+										"case_id": "multi_port_action_rejected",
+										"expected_passed": false,
+										"kind": "navigation",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"duty to NUC-A is not satisfied",
+											"duty to CROSS-STBD is not satisfied"
+										]
+									}
+								],
+								"classification_passed": true,
+								"passed": true,
+								"scenario_id": "multi_ship_mixed_duties"
+							},
+							{
+								"assessment": {
+									"context_compliant": true,
+									"context_violations": [],
+									"expected_sound_signal": null,
+									"expected_visual_signal": {
+										"lights": [
+											"masthead_white",
+											"sidelight_red",
+											"sidelight_green",
+											"stern_white"
+										],
+										"shapes": []
+									},
+									"local_rules": {
+										"applicable": false,
+										"area_id": "",
+										"compliant": true,
+										"rule_ids": [],
+										"violations": []
+									},
+									"multi_ship_duty_graph": [],
+									"pairwise": [],
+									"primary_duty": "monitor",
+									"priority_target_id": null,
+									"risk_target_count": 0.0,
+									"rules": [
+										"Rule 9",
+										"Rule 23"
+									],
+									"scenario_id": "narrow_channel_keep_starboard",
+									"signal_subject_status": "under_way_using_engine",
+									"target_count": 0.0,
+									"waterway": "narrow_channel"
+								},
+								"capabilities": [
+									"narrow_channel"
+								],
+								"cases": [
+									{
+										"case_id": "channel_keep_starboard",
+										"expected_passed": true,
+										"kind": "navigation",
+										"matched": true,
+										"passed": true,
+										"reasons": [
+											"case satisfies the deterministic verifier contract"
+										]
+									},
+									{
+										"case_id": "channel_move_port_rejected",
+										"expected_passed": false,
+										"kind": "navigation",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"action leaves the starboard side of the narrow channel"
+										]
+									},
+									{
+										"case_id": "channel_impede_rejected",
+										"expected_passed": false,
+										"kind": "navigation",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"action impedes a channel vessel"
+										]
+									}
+								],
+								"classification_passed": true,
+								"passed": true,
+								"scenario_id": "narrow_channel_keep_starboard"
+							},
+							{
+								"assessment": {
+									"context_compliant": false,
+									"context_violations": [
+										"crossing impedes a vessel constrained to the channel"
+									],
+									"expected_sound_signal": null,
+									"expected_visual_signal": {
+										"lights": [
+											"masthead_white",
+											"sidelight_red",
+											"sidelight_green",
+											"stern_white"
+										],
+										"shapes": []
+									},
+									"local_rules": {
+										"applicable": false,
+										"area_id": "",
+										"compliant": true,
+										"rule_ids": [],
+										"violations": []
+									},
+									"multi_ship_duty_graph": [
+										{
+											"dcpa_m": 0.0000000000000803887338846093,
+											"encounter": "crossing_starboard",
+											"role": "give_way",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 15",
+												"Rule 16",
+												"Rule 23"
+											],
+											"target_id": "CHANNEL-VESSEL",
+											"tcpa_s": 100.0
+										}
+									],
+									"pairwise": [
+										{
+											"dcpa_m": 0.0000000000000803887338846093,
+											"encounter": "crossing_starboard",
+											"own_status": "under_way_using_engine",
+											"range_m": 565.685424949238,
+											"reasons": [
+												"relative bearing 45.00 deg",
+												"DCPA 0.0 m",
+												"TCPA 100.0 s",
+												"target is on own starboard side"
+											],
+											"relative_bearing_deg": 45.0,
+											"risk_of_collision": true,
+											"role": "give_way",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 15",
+												"Rule 16",
+												"Rule 23"
+											],
+											"target_aspect_deg": -45.0,
+											"target_id": "CHANNEL-VESSEL",
+											"target_status": "under_way_using_engine",
+											"tcpa_s": 100.0
+										}
+									],
+									"primary_duty": "give_way",
+									"priority_target_id": "CHANNEL-VESSEL",
+									"risk_target_count": 1.0,
+									"rules": [
+										"Rule 5",
+										"Rule 6",
+										"Rule 7",
+										"Rule 8",
+										"Rule 15",
+										"Rule 16",
+										"Rule 23",
+										"Rule 9"
+									],
+									"scenario_id": "narrow_channel_crossing_impedance",
+									"signal_subject_status": "under_way_using_engine",
+									"target_count": 1.0,
+									"waterway": "narrow_channel"
+								},
+								"capabilities": [
+									"narrow_channel",
+									"multi_ship"
+								],
+								"cases": [
+									{
+										"case_id": "channel_clear_astarn",
+										"expected_passed": true,
+										"kind": "navigation",
+										"matched": true,
+										"passed": true,
+										"reasons": [
+											"case satisfies the deterministic verifier contract"
+										]
+									},
+									{
+										"case_id": "channel_continue_impeding",
+										"expected_passed": false,
+										"kind": "navigation",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"action impedes a channel vessel"
+										]
+									}
+								],
+								"classification_passed": true,
+								"passed": true,
+								"scenario_id": "narrow_channel_crossing_impedance"
+							},
+							{
+								"assessment": {
+									"context_compliant": true,
+									"context_violations": [],
+									"expected_sound_signal": null,
+									"expected_visual_signal": {
+										"lights": [
+											"masthead_white",
+											"sidelight_red",
+											"sidelight_green",
+											"stern_white"
+										],
+										"shapes": []
+									},
+									"local_rules": {
+										"applicable": false,
+										"area_id": "",
+										"compliant": true,
+										"rule_ids": [],
+										"violations": []
+									},
+									"multi_ship_duty_graph": [
+										{
+											"dcpa_m": 0.0,
+											"encounter": "overtaking",
+											"role": "give_way",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 13",
+												"Rule 23"
+											],
+											"target_id": "SLOW-AHEAD",
+											"tcpa_s": 166.666666666667
+										}
+									],
+									"pairwise": [
+										{
+											"dcpa_m": 0.0,
+											"encounter": "overtaking",
+											"own_status": "under_way_using_engine",
+											"range_m": 500.0,
+											"reasons": [
+												"relative bearing 0.00 deg",
+												"DCPA 0.0 m",
+												"TCPA 166.7 s",
+												"own vessel approaches from more than 22.5 deg abaft target beam"
+											],
+											"relative_bearing_deg": 0.0,
+											"risk_of_collision": true,
+											"role": "give_way",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 13",
+												"Rule 23"
+											],
+											"target_aspect_deg": -180.0,
+											"target_id": "SLOW-AHEAD",
+											"target_status": "under_way_using_engine",
+											"tcpa_s": 166.666666666667
+										}
+									],
+									"primary_duty": "give_way",
+									"priority_target_id": "SLOW-AHEAD",
+									"risk_target_count": 1.0,
+									"rules": [
+										"Rule 5",
+										"Rule 6",
+										"Rule 7",
+										"Rule 8",
+										"Rule 13",
+										"Rule 23",
+										"Rule 9"
+									],
+									"scenario_id": "narrow_channel_overtaking_agreement",
+									"signal_subject_status": "under_way_using_engine",
+									"target_count": 1.0,
+									"waterway": "narrow_channel"
+								},
+								"capabilities": [
+									"narrow_channel"
+								],
+								"cases": [
+									{
+										"case_id": "agreed_overtaking",
+										"expected_passed": true,
+										"kind": "navigation",
+										"matched": true,
+										"passed": true,
+										"reasons": [
+											"case satisfies the deterministic verifier contract"
+										]
+									},
+									{
+										"case_id": "unagreed_overtaking",
+										"expected_passed": false,
+										"kind": "navigation",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"overtaking agreement is missing"
+										]
+									}
+								],
+								"classification_passed": true,
+								"passed": true,
+								"scenario_id": "narrow_channel_overtaking_agreement"
+							},
+							{
+								"assessment": {
+									"context_compliant": true,
+									"context_violations": [],
+									"expected_sound_signal": null,
+									"expected_visual_signal": {
+										"lights": [
+											"masthead_white",
+											"sidelight_red",
+											"sidelight_green",
+											"stern_white"
+										],
+										"shapes": []
+									},
+									"local_rules": {
+										"applicable": false,
+										"area_id": "",
+										"compliant": true,
+										"rule_ids": [],
+										"violations": []
+									},
+									"multi_ship_duty_graph": [],
+									"pairwise": [],
+									"primary_duty": "monitor",
+									"priority_target_id": null,
+									"risk_target_count": 0.0,
+									"rules": [
+										"Rule 10",
+										"Rule 23"
+									],
+									"scenario_id": "tss_lane_following",
+									"signal_subject_status": "under_way_using_engine",
+									"target_count": 0.0,
+									"waterway": "traffic_separation_scheme"
+								},
+								"capabilities": [
+									"traffic_separation_scheme"
+								],
+								"cases": [
+									{
+										"case_id": "lane_aligned",
+										"expected_passed": true,
+										"kind": "navigation",
+										"matched": true,
+										"passed": true,
+										"reasons": [
+											"case satisfies the deterministic verifier contract"
+										]
+									},
+									{
+										"case_id": "lane_misaligned",
+										"expected_passed": false,
+										"kind": "navigation",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"action is not aligned with traffic flow"
+										]
+									},
+									{
+										"case_id": "lane_enter_zone",
+										"expected_passed": false,
+										"kind": "navigation",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"action enters the separation zone"
+										]
+									}
+								],
+								"classification_passed": true,
+								"passed": true,
+								"scenario_id": "tss_lane_following"
+							},
+							{
+								"assessment": {
+									"context_compliant": true,
+									"context_violations": [],
+									"expected_sound_signal": null,
+									"expected_visual_signal": {
+										"lights": [
+											"masthead_white",
+											"sidelight_red",
+											"sidelight_green",
+											"stern_white"
+										],
+										"shapes": []
+									},
+									"local_rules": {
+										"applicable": false,
+										"area_id": "",
+										"compliant": true,
+										"rule_ids": [],
+										"violations": []
+									},
+									"multi_ship_duty_graph": [],
+									"pairwise": [],
+									"primary_duty": "monitor",
+									"priority_target_id": null,
+									"risk_target_count": 0.0,
+									"rules": [
+										"Rule 10",
+										"Rule 23"
+									],
+									"scenario_id": "tss_right_angle_crossing",
+									"signal_subject_status": "under_way_using_engine",
+									"target_count": 0.0,
+									"waterway": "traffic_separation_scheme"
+								},
+								"capabilities": [
+									"traffic_separation_scheme"
+								],
+								"cases": [
+									{
+										"case_id": "cross_near_right_angle",
+										"expected_passed": true,
+										"kind": "navigation",
+										"matched": true,
+										"passed": true,
+										"reasons": [
+											"case satisfies the deterministic verifier contract"
+										]
+									},
+									{
+										"case_id": "cross_shallow_angle",
+										"expected_passed": false,
+										"kind": "navigation",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"action does not cross near a right angle"
+										]
+									},
+									{
+										"case_id": "cross_enter_zone",
+										"expected_passed": false,
+										"kind": "navigation",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"action enters the separation zone"
+										]
+									}
+								],
+								"classification_passed": true,
+								"passed": true,
+								"scenario_id": "tss_right_angle_crossing"
+							},
+							{
+								"assessment": {
+									"context_compliant": true,
+									"context_violations": [],
+									"expected_sound_signal": null,
+									"expected_visual_signal": {
+										"lights": [
+											"all_round_red_upper",
+											"all_round_red_lower"
+										],
+										"shapes": [
+											"ball_upper",
+											"ball_lower"
+										]
+									},
+									"local_rules": {
+										"applicable": false,
+										"area_id": "",
+										"compliant": true,
+										"rule_ids": [],
+										"violations": []
+									},
+									"multi_ship_duty_graph": [
+										{
+											"dcpa_m": 0.0000000000000142875459900525,
+											"encounter": "give_way_to_not_under_command",
+											"role": "give_way_to_privileged_vessel",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 14",
+												"Rule 23",
+												"Rule 27",
+												"Rule 18"
+											],
+											"target_id": "NUC",
+											"tcpa_s": 116.666666666667
+										}
+									],
+									"pairwise": [
+										{
+											"dcpa_m": 0.0000000000000142875459900525,
+											"encounter": "give_way_to_not_under_command",
+											"own_status": "under_way_using_engine",
+											"range_m": 700.0,
+											"reasons": [
+												"relative bearing 0.00 deg",
+												"DCPA 0.0 m",
+												"TCPA 116.7 s",
+												"nearly reciprocal courses with target nearly ahead",
+												"target status not_under_command has priority over under_way_using_engine in the verifier hierarchy"
+											],
+											"relative_bearing_deg": 0.0,
+											"risk_of_collision": true,
+											"role": "give_way_to_privileged_vessel",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 14",
+												"Rule 23",
+												"Rule 27",
+												"Rule 18"
+											],
+											"target_aspect_deg": 0.0,
+											"target_id": "NUC",
+											"target_status": "not_under_command",
+											"tcpa_s": 116.666666666667
+										}
+									],
+									"primary_duty": "give_way_to_privileged_vessel",
+									"priority_target_id": "NUC",
+									"risk_target_count": 1.0,
+									"rules": [
+										"Rule 5",
+										"Rule 6",
+										"Rule 7",
+										"Rule 8",
+										"Rule 14",
+										"Rule 23",
+										"Rule 27",
+										"Rule 18"
+									],
+									"scenario_id": "give_way_to_nuc_and_verify_signals",
+									"signal_subject_status": "not_under_command",
+									"target_count": 1.0,
+									"waterway": "open_water"
+								},
+								"capabilities": [
+									"not_under_command",
+									"lights_and_shapes"
+								],
+								"cases": [
+									{
+										"case_id": "nuc_lights_shapes_correct",
+										"expected_passed": true,
+										"kind": "visual_signal",
+										"matched": true,
+										"passed": true,
+										"reasons": [
+											"case satisfies the deterministic verifier contract"
+										]
+									},
+									{
+										"case_id": "nuc_one_red_missing",
+										"expected_passed": false,
+										"kind": "visual_signal",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"observed lights or shapes do not match the status signature"
+										]
+									},
+									{
+										"case_id": "nuc_shape_missing",
+										"expected_passed": false,
+										"kind": "visual_signal",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"observed lights or shapes do not match the status signature"
+										]
+									}
+								],
+								"classification_passed": true,
+								"passed": true,
+								"scenario_id": "give_way_to_nuc_and_verify_signals"
+							},
+							{
+								"assessment": {
+									"context_compliant": true,
+									"context_violations": [],
+									"expected_sound_signal": null,
+									"expected_visual_signal": {
+										"lights": [
+											"all_round_red_upper",
+											"all_round_red_lower"
+										],
+										"shapes": [
+											"ball_upper",
+											"ball_lower"
+										]
+									},
+									"local_rules": {
+										"applicable": false,
+										"area_id": "",
+										"compliant": true,
+										"rule_ids": [],
+										"violations": []
+									},
+									"multi_ship_duty_graph": [
+										{
+											"dcpa_m": 0.0000000000000714377299502623,
+											"encounter": "stand_on_as_not_under_command",
+											"role": "stand_on_special_status",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 14",
+												"Rule 27",
+												"Rule 23",
+												"Rule 18"
+											],
+											"target_id": "POWER",
+											"tcpa_s": 116.666666666667
+										}
+									],
+									"pairwise": [
+										{
+											"dcpa_m": 0.0000000000000714377299502623,
+											"encounter": "stand_on_as_not_under_command",
+											"own_status": "not_under_command",
+											"range_m": 700.0,
+											"reasons": [
+												"relative bearing 0.00 deg",
+												"DCPA 0.0 m",
+												"TCPA 116.7 s",
+												"nearly reciprocal courses with target nearly ahead",
+												"own status not_under_command has priority over target status under_way_using_engine in the verifier hierarchy"
+											],
+											"relative_bearing_deg": 0.0,
+											"risk_of_collision": true,
+											"role": "stand_on_special_status",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 14",
+												"Rule 27",
+												"Rule 23",
+												"Rule 18"
+											],
+											"target_aspect_deg": 0.0,
+											"target_id": "POWER",
+											"target_status": "under_way_using_engine",
+											"tcpa_s": 116.666666666667
+										}
+									],
+									"primary_duty": "stand_on_special_status",
+									"priority_target_id": "POWER",
+									"risk_target_count": 1.0,
+									"rules": [
+										"Rule 5",
+										"Rule 6",
+										"Rule 7",
+										"Rule 8",
+										"Rule 14",
+										"Rule 27",
+										"Rule 23",
+										"Rule 18"
+									],
+									"scenario_id": "own_nuc_stand_on_status",
+									"signal_subject_status": "not_under_command",
+									"target_count": 1.0,
+									"waterway": "open_water"
+								},
+								"capabilities": [
+									"not_under_command",
+									"lights_and_shapes"
+								],
+								"cases": [
+									{
+										"case_id": "nuc_maintains",
+										"expected_passed": true,
+										"kind": "navigation",
+										"matched": true,
+										"passed": true,
+										"reasons": [
+											"case satisfies the deterministic verifier contract"
+										]
+									},
+									{
+										"case_id": "nuc_unprompted_large_change",
+										"expected_passed": false,
+										"kind": "navigation",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"stand-on course and speed are not maintained"
+										]
+									}
+								],
+								"classification_passed": true,
+								"passed": true,
+								"scenario_id": "own_nuc_stand_on_status"
+							},
+							{
+								"assessment": {
+									"context_compliant": true,
+									"context_violations": [],
+									"expected_sound_signal": null,
+									"expected_visual_signal": {
+										"lights": [
+											"all_round_red_upper",
+											"all_round_white",
+											"all_round_red_lower"
+										],
+										"shapes": [
+											"ball_upper",
+											"diamond",
+											"ball_lower"
+										]
+									},
+									"local_rules": {
+										"applicable": false,
+										"area_id": "",
+										"compliant": true,
+										"rule_ids": [],
+										"violations": []
+									},
+									"multi_ship_duty_graph": [
+										{
+											"dcpa_m": 0.0000000000000142875459900525,
+											"encounter": "give_way_to_restricted_in_ability_to_manoeuvre",
+											"role": "give_way_to_privileged_vessel",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 14",
+												"Rule 23",
+												"Rule 27",
+												"Rule 18"
+											],
+											"target_id": "RAM",
+											"tcpa_s": 116.666666666667
+										}
+									],
+									"pairwise": [
+										{
+											"dcpa_m": 0.0000000000000142875459900525,
+											"encounter": "give_way_to_restricted_in_ability_to_manoeuvre",
+											"own_status": "under_way_using_engine",
+											"range_m": 700.0,
+											"reasons": [
+												"relative bearing 0.00 deg",
+												"DCPA 0.0 m",
+												"TCPA 116.7 s",
+												"nearly reciprocal courses with target nearly ahead",
+												"target status restricted_in_ability_to_manoeuvre has priority over under_way_using_engine in the verifier hierarchy"
+											],
+											"relative_bearing_deg": 0.0,
+											"risk_of_collision": true,
+											"role": "give_way_to_privileged_vessel",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 14",
+												"Rule 23",
+												"Rule 27",
+												"Rule 18"
+											],
+											"target_aspect_deg": 0.0,
+											"target_id": "RAM",
+											"target_status": "restricted_in_ability_to_manoeuvre",
+											"tcpa_s": 116.666666666667
+										}
+									],
+									"primary_duty": "give_way_to_privileged_vessel",
+									"priority_target_id": "RAM",
+									"risk_target_count": 1.0,
+									"rules": [
+										"Rule 5",
+										"Rule 6",
+										"Rule 7",
+										"Rule 8",
+										"Rule 14",
+										"Rule 23",
+										"Rule 27",
+										"Rule 18"
+									],
+									"scenario_id": "give_way_to_ram_and_verify_signals",
+									"signal_subject_status": "restricted_in_ability_to_manoeuvre",
+									"target_count": 1.0,
+									"waterway": "open_water"
+								},
+								"capabilities": [
+									"restricted_in_ability_to_manoeuvre",
+									"lights_and_shapes"
+								],
+								"cases": [
+									{
+										"case_id": "ram_lights_shapes_correct",
+										"expected_passed": true,
+										"kind": "visual_signal",
+										"matched": true,
+										"passed": true,
+										"reasons": [
+											"case satisfies the deterministic verifier contract"
+										]
+									},
+									{
+										"case_id": "ram_light_order_incomplete",
+										"expected_passed": false,
+										"kind": "visual_signal",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"observed lights or shapes do not match the status signature"
+										]
+									},
+									{
+										"case_id": "ram_navigation_substantial",
+										"expected_passed": true,
+										"kind": "navigation",
+										"matched": true,
+										"passed": true,
+										"reasons": [
+											"case satisfies the deterministic verifier contract"
+										]
+									}
+								],
+								"classification_passed": true,
+								"passed": true,
+								"scenario_id": "give_way_to_ram_and_verify_signals"
+							},
+							{
+								"assessment": {
+									"context_compliant": true,
+									"context_violations": [],
+									"expected_sound_signal": null,
+									"expected_visual_signal": {
+										"lights": [
+											"all_round_red_upper",
+											"all_round_white_lower"
+										],
+										"shapes": [
+											"cone_apex_upper",
+											"cone_apex_lower"
+										]
+									},
+									"local_rules": {
+										"applicable": false,
+										"area_id": "",
+										"compliant": true,
+										"rule_ids": [],
+										"violations": []
+									},
+									"multi_ship_duty_graph": [
+										{
+											"dcpa_m": 0.0000000000000244929359829471,
+											"encounter": "give_way_to_fishing",
+											"role": "give_way_to_privileged_vessel",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 14",
+												"Rule 23",
+												"Rule 26",
+												"Rule 18"
+											],
+											"target_id": "FISH",
+											"tcpa_s": 100.0
+										}
+									],
+									"pairwise": [
+										{
+											"dcpa_m": 0.0000000000000244929359829471,
+											"encounter": "give_way_to_fishing",
+											"own_status": "under_way_using_engine",
+											"range_m": 700.0,
+											"reasons": [
+												"relative bearing 0.00 deg",
+												"DCPA 0.0 m",
+												"TCPA 100.0 s",
+												"nearly reciprocal courses with target nearly ahead",
+												"target status fishing has priority over under_way_using_engine in the verifier hierarchy"
+											],
+											"relative_bearing_deg": 0.0,
+											"risk_of_collision": true,
+											"role": "give_way_to_privileged_vessel",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 14",
+												"Rule 23",
+												"Rule 26",
+												"Rule 18"
+											],
+											"target_aspect_deg": 0.0,
+											"target_id": "FISH",
+											"target_status": "fishing",
+											"tcpa_s": 100.0
+										}
+									],
+									"primary_duty": "give_way_to_privileged_vessel",
+									"priority_target_id": "FISH",
+									"risk_target_count": 1.0,
+									"rules": [
+										"Rule 5",
+										"Rule 6",
+										"Rule 7",
+										"Rule 8",
+										"Rule 14",
+										"Rule 23",
+										"Rule 26",
+										"Rule 18"
+									],
+									"scenario_id": "give_way_to_fishing_nontrawling",
+									"signal_subject_status": "fishing",
+									"target_count": 1.0,
+									"waterway": "open_water"
+								},
+								"capabilities": [
+									"fishing_vessel",
+									"lights_and_shapes"
+								],
+								"cases": [
+									{
+										"case_id": "fishing_red_white_correct",
+										"expected_passed": true,
+										"kind": "visual_signal",
+										"matched": true,
+										"passed": true,
+										"reasons": [
+											"case satisfies the deterministic verifier contract"
+										]
+									},
+									{
+										"case_id": "fishing_wrong_green",
+										"expected_passed": false,
+										"kind": "visual_signal",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"observed lights or shapes do not match the status signature"
+										]
+									},
+									{
+										"case_id": "fishing_navigation_maintain_rejected",
+										"expected_passed": false,
+										"kind": "navigation",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"duty to FISH is not satisfied"
+										]
+									}
+								],
+								"classification_passed": true,
+								"passed": true,
+								"scenario_id": "give_way_to_fishing_nontrawling"
+							},
+							{
+								"assessment": {
+									"context_compliant": true,
+									"context_violations": [],
+									"expected_sound_signal": null,
+									"expected_visual_signal": {
+										"lights": [
+											"all_round_green_upper",
+											"all_round_white_lower"
+										],
+										"shapes": [
+											"cone_apex_upper",
+											"cone_apex_lower"
+										]
+									},
+									"local_rules": {
+										"applicable": false,
+										"area_id": "",
+										"compliant": true,
+										"rule_ids": [],
+										"violations": []
+									},
+									"multi_ship_duty_graph": [
+										{
+											"dcpa_m": 0.0000000000000244929359829471,
+											"encounter": "give_way_to_fishing",
+											"role": "give_way_to_privileged_vessel",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 14",
+												"Rule 23",
+												"Rule 26",
+												"Rule 18"
+											],
+											"target_id": "TRAWLER",
+											"tcpa_s": 100.0
+										}
+									],
+									"pairwise": [
+										{
+											"dcpa_m": 0.0000000000000244929359829471,
+											"encounter": "give_way_to_fishing",
+											"own_status": "under_way_using_engine",
+											"range_m": 700.0,
+											"reasons": [
+												"relative bearing 0.00 deg",
+												"DCPA 0.0 m",
+												"TCPA 100.0 s",
+												"nearly reciprocal courses with target nearly ahead",
+												"target status fishing has priority over under_way_using_engine in the verifier hierarchy"
+											],
+											"relative_bearing_deg": 0.0,
+											"risk_of_collision": true,
+											"role": "give_way_to_privileged_vessel",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 14",
+												"Rule 23",
+												"Rule 26",
+												"Rule 18"
+											],
+											"target_aspect_deg": 0.0,
+											"target_id": "TRAWLER",
+											"target_status": "fishing",
+											"tcpa_s": 100.0
+										}
+									],
+									"primary_duty": "give_way_to_privileged_vessel",
+									"priority_target_id": "TRAWLER",
+									"risk_target_count": 1.0,
+									"rules": [
+										"Rule 5",
+										"Rule 6",
+										"Rule 7",
+										"Rule 8",
+										"Rule 14",
+										"Rule 23",
+										"Rule 26",
+										"Rule 18"
+									],
+									"scenario_id": "fishing_trawling_signature",
+									"signal_subject_status": "fishing",
+									"target_count": 1.0,
+									"waterway": "open_water"
+								},
+								"capabilities": [
+									"fishing_vessel",
+									"lights_and_shapes"
+								],
+								"cases": [
+									{
+										"case_id": "trawling_green_white_correct",
+										"expected_passed": true,
+										"kind": "visual_signal",
+										"matched": true,
+										"passed": true,
+										"reasons": [
+											"case satisfies the deterministic verifier contract"
+										]
+									},
+									{
+										"case_id": "trawling_wrong_red",
+										"expected_passed": false,
+										"kind": "visual_signal",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"observed lights or shapes do not match the status signature"
+										]
+									}
+								],
+								"classification_passed": true,
+								"passed": true,
+								"scenario_id": "fishing_trawling_signature"
+							},
+							{
+								"assessment": {
+									"context_compliant": true,
+									"context_violations": [],
+									"expected_sound_signal": null,
+									"expected_visual_signal": {
+										"lights": [
+											"masthead_white",
+											"sidelight_red",
+											"sidelight_green",
+											"stern_white"
+										],
+										"shapes": []
+									},
+									"local_rules": {
+										"applicable": false,
+										"area_id": "",
+										"compliant": true,
+										"rule_ids": [],
+										"violations": []
+									},
+									"multi_ship_duty_graph": [
+										{
+											"dcpa_m": 0.0000000000000367394039744206,
+											"encounter": "restricted_visibility",
+											"role": "safe_speed_and_avoidance",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 19",
+												"Rule 23"
+											],
+											"target_id": "AHEAD",
+											"tcpa_s": 75.0
+										}
+									],
+									"pairwise": [
+										{
+											"dcpa_m": 0.0000000000000367394039744206,
+											"encounter": "restricted_visibility",
+											"own_status": "under_way_using_engine",
+											"range_m": 600.0,
+											"reasons": [
+												"relative bearing 0.00 deg",
+												"DCPA 0.0 m",
+												"TCPA 75.0 s",
+												"restricted visibility or vessels not in sight"
+											],
+											"relative_bearing_deg": 0.0,
+											"risk_of_collision": true,
+											"role": "safe_speed_and_avoidance",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 19",
+												"Rule 23"
+											],
+											"target_aspect_deg": 0.0,
+											"target_id": "AHEAD",
+											"target_status": "under_way_using_engine",
+											"tcpa_s": 75.0
+										}
+									],
+									"primary_duty": "safe_speed_and_avoidance",
+									"priority_target_id": "AHEAD",
+									"risk_target_count": 1.0,
+									"rules": [
+										"Rule 5",
+										"Rule 6",
+										"Rule 7",
+										"Rule 8",
+										"Rule 19",
+										"Rule 23"
+									],
+									"scenario_id": "restricted_visibility_forward_target",
+									"signal_subject_status": "under_way_using_engine",
+									"target_count": 1.0,
+									"waterway": "open_water"
+								},
+								"capabilities": [
+									"complex_restricted_visibility"
+								],
+								"cases": [
+									{
+										"case_id": "fog_reduce_speed",
+										"expected_passed": true,
+										"kind": "navigation",
+										"matched": true,
+										"passed": true,
+										"reasons": [
+											"case satisfies the deterministic verifier contract"
+										]
+									},
+									{
+										"case_id": "fog_starboard_substantial",
+										"expected_passed": true,
+										"kind": "navigation",
+										"matched": true,
+										"passed": true,
+										"reasons": [
+											"case satisfies the deterministic verifier contract"
+										]
+									},
+									{
+										"case_id": "fog_port_forward_rejected",
+										"expected_passed": false,
+										"kind": "navigation",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"port alteration for a vessel forward of the beam"
+										]
+									},
+									{
+										"case_id": "fog_maintain_rejected",
+										"expected_passed": false,
+										"kind": "navigation",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"restricted-visibility action is not substantial"
+										]
+									}
+								],
+								"classification_passed": true,
+								"passed": true,
+								"scenario_id": "restricted_visibility_forward_target"
+							},
+							{
+								"assessment": {
+									"context_compliant": true,
+									"context_violations": [],
+									"expected_sound_signal": null,
+									"expected_visual_signal": {
+										"lights": [
+											"masthead_white",
+											"sidelight_red",
+											"sidelight_green",
+											"stern_white"
+										],
+										"shapes": []
+									},
+									"local_rules": {
+										"applicable": false,
+										"area_id": "",
+										"compliant": true,
+										"rule_ids": [],
+										"violations": []
+									},
+									"multi_ship_duty_graph": [
+										{
+											"dcpa_m": 0.0,
+											"encounter": "restricted_visibility",
+											"role": "safe_speed_and_avoidance",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 19",
+												"Rule 23"
+											],
+											"target_id": "ASTERN",
+											"tcpa_s": 166.666666666667
+										}
+									],
+									"pairwise": [
+										{
+											"dcpa_m": 0.0,
+											"encounter": "restricted_visibility",
+											"own_status": "under_way_using_engine",
+											"range_m": 500.0,
+											"reasons": [
+												"relative bearing -180.00 deg",
+												"DCPA 0.0 m",
+												"TCPA 166.7 s",
+												"restricted visibility or vessels not in sight"
+											],
+											"relative_bearing_deg": -180.0,
+											"risk_of_collision": true,
+											"role": "safe_speed_and_avoidance",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 19",
+												"Rule 23"
+											],
+											"target_aspect_deg": 0.0,
+											"target_id": "ASTERN",
+											"target_status": "under_way_using_engine",
+											"tcpa_s": 166.666666666667
+										}
+									],
+									"primary_duty": "safe_speed_and_avoidance",
+									"priority_target_id": "ASTERN",
+									"risk_target_count": 1.0,
+									"rules": [
+										"Rule 5",
+										"Rule 6",
+										"Rule 7",
+										"Rule 8",
+										"Rule 19",
+										"Rule 23"
+									],
+									"scenario_id": "restricted_visibility_target_abaft_beam",
+									"signal_subject_status": "under_way_using_engine",
+									"target_count": 1.0,
+									"waterway": "open_water"
+								},
+								"capabilities": [
+									"complex_restricted_visibility"
+								],
+								"cases": [
+									{
+										"case_id": "fog_abaft_port_action",
+										"expected_passed": true,
+										"kind": "navigation",
+										"matched": true,
+										"passed": true,
+										"reasons": [
+											"case satisfies the deterministic verifier contract"
+										]
+									},
+									{
+										"case_id": "fog_abaft_no_action",
+										"expected_passed": false,
+										"kind": "navigation",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"restricted-visibility action is not substantial"
+										]
+									}
+								],
+								"classification_passed": true,
+								"passed": true,
+								"scenario_id": "restricted_visibility_target_abaft_beam"
+							},
+							{
+								"assessment": {
+									"context_compliant": true,
+									"context_violations": [],
+									"expected_sound_signal": "one_prolonged",
+									"expected_visual_signal": {
+										"lights": [
+											"masthead_white",
+											"sidelight_red",
+											"sidelight_green",
+											"stern_white"
+										],
+										"shapes": []
+									},
+									"local_rules": {
+										"applicable": false,
+										"area_id": "",
+										"compliant": true,
+										"rule_ids": [],
+										"violations": []
+									},
+									"multi_ship_duty_graph": [
+										{
+											"dcpa_m": 0.0000000000000367394039744206,
+											"encounter": "restricted_visibility",
+											"role": "safe_speed_and_avoidance",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 19",
+												"Rule 23"
+											],
+											"target_id": "FOG-TARGET",
+											"tcpa_s": 75.0
+										}
+									],
+									"pairwise": [
+										{
+											"dcpa_m": 0.0000000000000367394039744206,
+											"encounter": "restricted_visibility",
+											"own_status": "under_way_using_engine",
+											"range_m": 600.0,
+											"reasons": [
+												"relative bearing 0.00 deg",
+												"DCPA 0.0 m",
+												"TCPA 75.0 s",
+												"restricted visibility or vessels not in sight"
+											],
+											"relative_bearing_deg": 0.0,
+											"risk_of_collision": true,
+											"role": "safe_speed_and_avoidance",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 19",
+												"Rule 23"
+											],
+											"target_aspect_deg": 0.0,
+											"target_id": "FOG-TARGET",
+											"target_status": "under_way_using_engine",
+											"tcpa_s": 75.0
+										}
+									],
+									"primary_duty": "safe_speed_and_avoidance",
+									"priority_target_id": "FOG-TARGET",
+									"risk_target_count": 1.0,
+									"rules": [
+										"Rule 5",
+										"Rule 6",
+										"Rule 7",
+										"Rule 8",
+										"Rule 19",
+										"Rule 23",
+										"Rule 35"
+									],
+									"scenario_id": "restricted_visibility_power_sound",
+									"signal_subject_status": "under_way_using_engine",
+									"target_count": 1.0,
+									"waterway": "open_water"
+								},
+								"capabilities": [
+									"sound_signals",
+									"complex_restricted_visibility"
+								],
+								"cases": [
+									{
+										"case_id": "power_one_prolonged",
+										"expected_passed": true,
+										"kind": "sound_signal",
+										"matched": true,
+										"passed": true,
+										"reasons": [
+											"case satisfies the deterministic verifier contract"
+										]
+									},
+									{
+										"case_id": "power_wrong_pattern",
+										"expected_passed": false,
+										"kind": "sound_signal",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"restricted-visibility sound pattern or interval is incorrect"
+										]
+									},
+									{
+										"case_id": "power_late_interval",
+										"expected_passed": false,
+										"kind": "sound_signal",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"restricted-visibility sound pattern or interval is incorrect"
+										]
+									}
+								],
+								"classification_passed": true,
+								"passed": true,
+								"scenario_id": "restricted_visibility_power_sound"
+							},
+							{
+								"assessment": {
+									"context_compliant": true,
+									"context_violations": [],
+									"expected_sound_signal": "one_prolonged_two_short",
+									"expected_visual_signal": {
+										"lights": [
+											"all_round_red_upper",
+											"all_round_red_lower"
+										],
+										"shapes": [
+											"ball_upper",
+											"ball_lower"
+										]
+									},
+									"local_rules": {
+										"applicable": false,
+										"area_id": "",
+										"compliant": true,
+										"rule_ids": [],
+										"violations": []
+									},
+									"multi_ship_duty_graph": [
+										{
+											"dcpa_m": 0.0000000000000459242549680257,
+											"encounter": "restricted_visibility",
+											"role": "safe_speed_and_avoidance",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 19",
+												"Rule 27",
+												"Rule 23"
+											],
+											"target_id": "FOG-TARGET",
+											"tcpa_s": 125.0
+										}
+									],
+									"pairwise": [
+										{
+											"dcpa_m": 0.0000000000000459242549680257,
+											"encounter": "restricted_visibility",
+											"own_status": "not_under_command",
+											"range_m": 500.0,
+											"reasons": [
+												"relative bearing 0.00 deg",
+												"DCPA 0.0 m",
+												"TCPA 125.0 s",
+												"restricted visibility or vessels not in sight"
+											],
+											"relative_bearing_deg": 0.0,
+											"risk_of_collision": true,
+											"role": "safe_speed_and_avoidance",
+											"rules": [
+												"Rule 5",
+												"Rule 6",
+												"Rule 7",
+												"Rule 8",
+												"Rule 19",
+												"Rule 27",
+												"Rule 23"
+											],
+											"target_aspect_deg": 0.0,
+											"target_id": "FOG-TARGET",
+											"target_status": "under_way_using_engine",
+											"tcpa_s": 125.0
+										}
+									],
+									"primary_duty": "safe_speed_and_avoidance",
+									"priority_target_id": "FOG-TARGET",
+									"risk_target_count": 1.0,
+									"rules": [
+										"Rule 5",
+										"Rule 6",
+										"Rule 7",
+										"Rule 8",
+										"Rule 19",
+										"Rule 27",
+										"Rule 23",
+										"Rule 35"
+									],
+									"scenario_id": "restricted_visibility_nuc_sound",
+									"signal_subject_status": "not_under_command",
+									"target_count": 1.0,
+									"waterway": "open_water"
+								},
+								"capabilities": [
+									"sound_signals",
+									"complex_restricted_visibility",
+									"not_under_command"
+								],
+								"cases": [
+									{
+										"case_id": "nuc_one_prolonged_two_short",
+										"expected_passed": true,
+										"kind": "sound_signal",
+										"matched": true,
+										"passed": true,
+										"reasons": [
+											"case satisfies the deterministic verifier contract"
+										]
+									},
+									{
+										"case_id": "nuc_power_pattern_rejected",
+										"expected_passed": false,
+										"kind": "sound_signal",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"restricted-visibility sound pattern or interval is incorrect"
+										]
+									}
+								],
+								"classification_passed": true,
+								"passed": true,
+								"scenario_id": "restricted_visibility_nuc_sound"
+							},
+							{
+								"assessment": {
+									"context_compliant": true,
+									"context_violations": [],
+									"expected_sound_signal": null,
+									"expected_visual_signal": {
+										"lights": [
+											"masthead_white",
+											"sidelight_red",
+											"sidelight_green",
+											"stern_white"
+										],
+										"shapes": []
+									},
+									"local_rules": {
+										"applicable": true,
+										"area_id": "SIM-HARBOR-ALPHA",
+										"compliant": true,
+										"official_authorization_verified": false,
+										"rule_ids": [
+											"LOCAL:SIM-HARBOR-ALPHA-SPEED",
+											"LOCAL:SIM-HARBOR-ALPHA-NO-OVERTAKING",
+											"LOCAL:SIM-HARBOR-ALPHA-REPORTING"
+										],
+										"source_class": "SIMULATOR_AUTHORED_EXERCISE_RULES",
+										"violations": []
+									},
+									"multi_ship_duty_graph": [],
+									"pairwise": [],
+									"primary_duty": "monitor",
+									"priority_target_id": null,
+									"risk_target_count": 0.0,
+									"rules": [
+										"LOCAL:SIM-HARBOR-ALPHA-SPEED",
+										"LOCAL:SIM-HARBOR-ALPHA-NO-OVERTAKING",
+										"LOCAL:SIM-HARBOR-ALPHA-REPORTING",
+										"Rule 23"
+									],
+									"scenario_id": "simulated_local_port_rules",
+									"signal_subject_status": "under_way_using_engine",
+									"target_count": 0.0,
+									"waterway": "local_port_area"
+								},
+								"capabilities": [
+									"local_rules"
+								],
+								"cases": [
+									{
+										"case_id": "local_all_requirements",
+										"expected_passed": true,
+										"kind": "navigation",
+										"matched": true,
+										"passed": true,
+										"reasons": [
+											"case satisfies the deterministic verifier contract"
+										]
+									},
+									{
+										"case_id": "local_speed_limit_rejected",
+										"expected_passed": false,
+										"kind": "navigation",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"local speed limit exceeded"
+										]
+									},
+									{
+										"case_id": "local_overtaking_rejected",
+										"expected_passed": false,
+										"kind": "navigation",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"local overtaking prohibition"
+										]
+									},
+									{
+										"case_id": "local_reporting_missing",
+										"expected_passed": false,
+										"kind": "navigation",
+										"matched": true,
+										"passed": false,
+										"reasons": [
+											"mandatory reporting not completed"
+										]
+									}
+								],
+								"classification_passed": true,
+								"passed": true,
+								"scenario_id": "simulated_local_port_rules"
+							}
+						],
+						"rules_seen": [
+							"LOCAL:SIM-HARBOR-ALPHA-NO-OVERTAKING",
+							"LOCAL:SIM-HARBOR-ALPHA-REPORTING",
+							"LOCAL:SIM-HARBOR-ALPHA-SPEED",
+							"Rule 10",
+							"Rule 13",
+							"Rule 14",
+							"Rule 15",
+							"Rule 16",
+							"Rule 17",
+							"Rule 18",
+							"Rule 19",
+							"Rule 23",
+							"Rule 26",
+							"Rule 27",
+							"Rule 35",
+							"Rule 5",
+							"Rule 6",
+							"Rule 7",
+							"Rule 8",
+							"Rule 9"
+						],
+						"scenario_count": 16.0,
+						"scenario_passed_count": 16.0,
+						"schema_version": "colreg_complex_assessment_v2",
+						"training_performed": false
+					},
+					"functional_assurance_passed": true,
+					"generated_at_utc": "2026-08-28T13:54:16.433166+00:00",
+					"inputs_sha256": {
+						"data/verification/colreg_complex_scenario_catalog_v2.json": "66f4839be7410ce3c2a2cf06fa132124c2f782f784ab33092bb375ce53b35bb0",
+						"data/verification/colreg_encounter_catalog_v1.json": "d349f4420292e0ca90f735320e3e14cc8a5dcd54dc95aa38972454546a0144fb",
+						"data/verification/local_navigation_rules_template_v1.json": "41f3bbd86f9183aa909a006c4059e99e8387c560c76e0394156cd7d67646c559",
+						"tests/test_colreg_complex.py": "1a58e7a1e2a4ad18b1040abe5db8b22cee147adb0b88a1453fbc7fe57d73a025",
+						"tools/run_colreg_complex_assurance.py": "9ffbff759cbcd0c2c3647d41490bc8dac1f3299e33240806ff9af06cd7acb17f",
+						"tools/ship_assurance/colreg.py": "ed5efd3829eb06cc1cd87daeab65df64ffe9fc367f9162173f5d518c74f2f7c2",
+						"tools/ship_assurance/colreg_complex.py": "69d5555ad64c3eae07fc6528c8ae0aed732d7c0487fa8282322c1403a54ff8da"
+					},
+					"legacy_v1_regression": {
+						"action_case_count": 11.0,
+						"legacy_v1_replaced": false,
+						"passed": true,
+						"scenario_count": 6.0
+					},
+					"schema_version": "colreg_complex_assurance_v2",
+					"source_boundary": {
+						"existing_policy_modified": false,
+						"local_rule_source_class": "SIMULATOR_AUTHORED_EXERCISE_RULES",
+						"official_authorization_verified": false,
+						"ship_motion_model_modified": false,
+						"training_performed": false
+					}
+				},
+				"schema_version": "ship_colreg_complex_panel_snapshot_v1",
+				"selected_case_index": 1,
+				"selected_scenario": {
+					"assessment": {
+						"context_compliant": true,
+						"context_violations": [],
+						"expected_sound_signal": "one_prolonged_two_short",
+						"expected_visual_signal": {
+							"lights": [
+								"all_round_red_upper",
+								"all_round_red_lower"
+							],
+							"shapes": [
+								"ball_upper",
+								"ball_lower"
+							]
+						},
+						"local_rules": {
+							"applicable": false,
+							"area_id": "",
+							"compliant": true,
+							"rule_ids": [],
+							"violations": []
+						},
+						"multi_ship_duty_graph": [
+							{
+								"dcpa_m": 0.0000000000000459242549680257,
+								"encounter": "restricted_visibility",
+								"role": "safe_speed_and_avoidance",
+								"rules": [
+									"Rule 5",
+									"Rule 6",
+									"Rule 7",
+									"Rule 8",
+									"Rule 19",
+									"Rule 27",
+									"Rule 23"
+								],
+								"target_id": "FOG-TARGET",
+								"tcpa_s": 125.0
+							}
+						],
+						"pairwise": [
+							{
+								"dcpa_m": 0.0000000000000459242549680257,
+								"encounter": "restricted_visibility",
+								"own_status": "not_under_command",
+								"range_m": 500.0,
+								"reasons": [
+									"relative bearing 0.00 deg",
+									"DCPA 0.0 m",
+									"TCPA 125.0 s",
+									"restricted visibility or vessels not in sight"
+								],
+								"relative_bearing_deg": 0.0,
+								"risk_of_collision": true,
+								"role": "safe_speed_and_avoidance",
+								"rules": [
+									"Rule 5",
+									"Rule 6",
+									"Rule 7",
+									"Rule 8",
+									"Rule 19",
+									"Rule 27",
+									"Rule 23"
+								],
+								"target_aspect_deg": 0.0,
+								"target_id": "FOG-TARGET",
+								"target_status": "under_way_using_engine",
+								"tcpa_s": 125.0
+							}
+						],
+						"primary_duty": "safe_speed_and_avoidance",
+						"priority_target_id": "FOG-TARGET",
+						"risk_target_count": 1.0,
+						"rules": [
+							"Rule 5",
+							"Rule 6",
+							"Rule 7",
+							"Rule 8",
+							"Rule 19",
+							"Rule 27",
+							"Rule 23",
+							"Rule 35"
+						],
+						"scenario_id": "restricted_visibility_nuc_sound",
+						"signal_subject_status": "not_under_command",
+						"target_count": 1.0,
+						"waterway": "open_water"
+					},
+					"capabilities": [
+						"sound_signals",
+						"complex_restricted_visibility",
+						"not_under_command"
+					],
+					"cases": [
+						{
+							"case_id": "nuc_one_prolonged_two_short",
+							"expected_passed": true,
+							"kind": "sound_signal",
+							"matched": true,
+							"passed": true,
+							"reasons": [
+								"case satisfies the deterministic verifier contract"
+							]
+						},
+						{
+							"case_id": "nuc_power_pattern_rejected",
+							"expected_passed": false,
+							"kind": "sound_signal",
+							"matched": true,
+							"passed": false,
+							"reasons": [
+								"restricted-visibility sound pattern or interval is incorrect"
+							]
+						}
+					],
+					"classification_passed": true,
+					"passed": true,
+					"scenario_id": "restricted_visibility_nuc_sound"
+				},
+				"ship_motion_model_modified": false,
+				"training_performed": false
+			},
+			"passed": true
+		},
+		"functional_report_passes_16_scenarios_45_cases": {
+			"detail": {
+				"case_count": 45.0,
+				"scenario_count": 16.0
+			},
+			"passed": true
+		},
+		"hotkey_R_opens_complex_colreg_panel": {
+			"detail": true,
+			"passed": true
+		},
+		"legacy_v1_preserved": {
+			"detail": {
+				"action_case_count": 11.0,
+				"legacy_v1_replaced": false,
+				"passed": true,
+				"scenario_count": 6.0
+			},
+			"passed": true
+		},
+		"main_scene_load": {
+			"detail": 0,
+			"passed": true
+		},
+		"multi_ship_duty_graph_visible": {
+			"detail": [
+				{
+					"dcpa_m": 0.0000000000000142875459900525,
+					"encounter": "give_way_to_not_under_command",
+					"role": "give_way_to_privileged_vessel",
+					"rules": [
+						"Rule 5",
+						"Rule 6",
+						"Rule 7",
+						"Rule 8",
+						"Rule 14",
+						"Rule 23",
+						"Rule 27",
+						"Rule 18"
+					],
+					"target_id": "NUC-A",
+					"tcpa_s": 116.666666666667
+				},
+				{
+					"dcpa_m": 0.00000000000012710574864626,
+					"encounter": "crossing_starboard",
+					"role": "give_way",
+					"rules": [
+						"Rule 5",
+						"Rule 6",
+						"Rule 7",
+						"Rule 8",
+						"Rule 15",
+						"Rule 16",
+						"Rule 23"
+					],
+					"target_id": "CROSS-STBD",
+					"tcpa_s": 100.0
+				},
+				{
+					"dcpa_m": 0.0,
+					"encounter": "crossing_port",
+					"role": "stand_on",
+					"rules": [
+						"Rule 5",
+						"Rule 6",
+						"Rule 7",
+						"Rule 8",
+						"Rule 15",
+						"Rule 17",
+						"Rule 23"
+					],
+					"target_id": "CROSS-PORT",
+					"tcpa_s": 100.0
+				}
+			],
+			"passed": true
+		},
+		"narrow_channel_rule_9_and_violation_visible": {
+			"detail": {
+				"context_compliant": false,
+				"context_violations": [
+					"crossing impedes a vessel constrained to the channel"
+				],
+				"expected_sound_signal": null,
+				"expected_visual_signal": {
+					"lights": [
+						"masthead_white",
+						"sidelight_red",
+						"sidelight_green",
+						"stern_white"
+					],
+					"shapes": []
+				},
+				"local_rules": {
+					"applicable": false,
+					"area_id": "",
+					"compliant": true,
+					"rule_ids": [],
+					"violations": []
+				},
+				"multi_ship_duty_graph": [
+					{
+						"dcpa_m": 0.0000000000000803887338846093,
+						"encounter": "crossing_starboard",
+						"role": "give_way",
+						"rules": [
+							"Rule 5",
+							"Rule 6",
+							"Rule 7",
+							"Rule 8",
+							"Rule 15",
+							"Rule 16",
+							"Rule 23"
+						],
+						"target_id": "CHANNEL-VESSEL",
+						"tcpa_s": 100.0
+					}
+				],
+				"pairwise": [
+					{
+						"dcpa_m": 0.0000000000000803887338846093,
+						"encounter": "crossing_starboard",
+						"own_status": "under_way_using_engine",
+						"range_m": 565.685424949238,
+						"reasons": [
+							"relative bearing 45.00 deg",
+							"DCPA 0.0 m",
+							"TCPA 100.0 s",
+							"target is on own starboard side"
+						],
+						"relative_bearing_deg": 45.0,
+						"risk_of_collision": true,
+						"role": "give_way",
+						"rules": [
+							"Rule 5",
+							"Rule 6",
+							"Rule 7",
+							"Rule 8",
+							"Rule 15",
+							"Rule 16",
+							"Rule 23"
+						],
+						"target_aspect_deg": -45.0,
+						"target_id": "CHANNEL-VESSEL",
+						"target_status": "under_way_using_engine",
+						"tcpa_s": 100.0
+					}
+				],
+				"primary_duty": "give_way",
+				"priority_target_id": "CHANNEL-VESSEL",
+				"risk_target_count": 1.0,
+				"rules": [
+					"Rule 5",
+					"Rule 6",
+					"Rule 7",
+					"Rule 8",
+					"Rule 15",
+					"Rule 16",
+					"Rule 23",
+					"Rule 9"
+				],
+				"scenario_id": "narrow_channel_crossing_impedance",
+				"signal_subject_status": "under_way_using_engine",
+				"target_count": 1.0,
+				"waterway": "narrow_channel"
+			},
+			"passed": true
+		},
+		"narrow_channel_scenario_selectable": {
+			"detail": "narrow_channel_crossing_impedance",
+			"passed": true
+		},
+		"next_case_cycles_real_case": {
+			"detail": 1,
+			"passed": true
+		},
+		"nuc_sound_pattern_and_rule_35_visible": {
+			"detail": "one_prolonged_two_short",
+			"passed": true
+		},
+		"ram_lights_and_shapes_visible": {
+			"detail": {
+				"lights": [
+					"all_round_red_upper",
+					"all_round_white",
+					"all_round_red_lower"
+				],
+				"shapes": [
+					"ball_upper",
+					"diamond",
+					"ball_lower"
+				]
+			},
+			"passed": true
+		},
+		"ram_signal_scenario_selectable": {
+			"detail": "give_way_to_ram_and_verify_signals",
+			"passed": true
+		},
+		"real_checker_button_present": {
+			"detail": "重新运行规则验收",
+			"passed": true
+		},
+		"restricted_visibility_sound_scenario_selectable": {
+			"detail": "restricted_visibility_nuc_sound",
+			"passed": true
+		},
+		"scenario_and_case_buttons_connected": {
+			"detail": {
+				"case": true,
+				"next": true,
+				"previous": true
+			},
+			"passed": true
+		},
+		"scenario_selector_has_all_scenarios": {
+			"detail": 16,
+			"passed": true
+		},
+		"show_panel_opens": {
+			"detail": true,
+			"passed": true
+		},
+		"status_exposes_pass_and_boundaries": {
+			"detail": "[color=#86ff9b][b]COMPLEX COLREG PASS · 16/16 场景 · 45/45 案例[/b][/color]\nV1基线 6场景/11案例 · V1替换=false · 地方规则官方授权=false · 训练=false · 策略/运动模型未改 · 最近退出码=-1 ",
+			"passed": true
+		},
+		"ui_runs_real_complex_colreg_checker": {
+			"detail": {
+				"exit_code": 0,
+				"output": "COLREG_COMPLEX:PASS:16/16:45/45:legacy_v1=True\n"
+			},
+			"passed": true
+		}
+	},
+	"colreg_certified": false,
+	"errors": [],
+	"existing_policy_modified": false,
+	"generated_at": "2026-08-28T13:54:16",
+	"official_local_rules_connected": false,
+	"passed": true,
+	"passed_count": 25,
+	"production_authority": false,
+	"schema_version": "godot_colreg_complex_smoke_v1",
+	"ship_motion_model_modified": false,
+	"training_performed": false
+}

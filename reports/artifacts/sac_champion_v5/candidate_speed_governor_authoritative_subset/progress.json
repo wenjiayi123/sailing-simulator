@@ -1,0 +1,9 @@
+{
+  "status": "complete",
+  "dataset_split": "validation",
+  "completed_episodes": 3,
+  "total_episodes": 3,
+  "progress": 1.0,
+  "elapsed_wall_seconds": 83.536955503,
+  "result": "reports/artifacts/sac_champion_v5/candidate_speed_governor_authoritative_subset/validation_result.json"
+}

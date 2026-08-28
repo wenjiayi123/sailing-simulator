@@ -136,6 +136,19 @@ func _run() -> void:
 		"ShipSimulationReviewPanel",
 		"ShipAISFleetPanel",
 		"ShipInstructorConsolePanel",
+		"ShipIntegratedBridgePanel",
+		"ShipMultisensorFusionPanel",
+		"ShipExecutionControlPanel",
+		"ShipNamedVesselTwinPanel",
+		"ShipPortOperationsPanel",
+		"ShipBridgeTeamPanel",
+		"ShipPhysicalBridgeReadinessPanel",
+		"ShipSafetyCasePanel",
+		"ShipColregComplexPanel",
+		"ShipRlGeneralizationPanel",
+		"ShipFullMissionBridgePanel",
+		"ShipBridgeCybersecurityPanel",
+		"ShipPortIntegrationPanel",
 		"ShipSystemOverviewPanel",
 	]
 	var panels: Dictionary = {}
@@ -159,6 +172,19 @@ func _run() -> void:
 		"review_P": [panels["ShipSimulationReviewPanel"], KEY_P],
 		"ais_I": [panels["ShipAISFleetPanel"], KEY_I],
 		"assistant_O": [panels["ShipInstructorConsolePanel"], KEY_O],
+		"bridge_B": [panels["ShipIntegratedBridgePanel"], KEY_B],
+		"multisensor_K": [panels["ShipMultisensorFusionPanel"], KEY_K],
+		"execution_control_L": [panels["ShipExecutionControlPanel"], KEY_L],
+		"named_vessel_twin_G": [panels["ShipNamedVesselTwinPanel"], KEY_G],
+		"port_operations_Y": [panels["ShipPortOperationsPanel"], KEY_Y],
+		"bridge_team_J": [panels["ShipBridgeTeamPanel"], KEY_J],
+		"physical_bridge_U": [panels["ShipPhysicalBridgeReadinessPanel"], KEY_U],
+		"safety_case_Q": [panels["ShipSafetyCasePanel"], KEY_Q],
+		"colreg_complex_R": [panels["ShipColregComplexPanel"], KEY_R],
+		"rl_generalization_T": [panels["ShipRlGeneralizationPanel"], KEY_T],
+		"full_mission_bridge_F12": [panels["ShipFullMissionBridgePanel"], KEY_F12],
+		"bridge_cybersecurity_F11": [panels["ShipBridgeCybersecurityPanel"], KEY_F11],
+		"port_production_integration_F10": [panels["ShipPortIntegrationPanel"], KEY_F10],
 	}
 	for check_name in key_checks:
 		var specification: Array = key_checks[check_name]
@@ -269,6 +295,123 @@ func _run() -> void:
 			[panels["ShipAISFleetPanel"]],
 		),
 		"system overview -> AIS",
+	)
+	_record(
+		"button_integrated_bridge",
+		await _press_and_check(
+			center_root,
+			"综合驾驶台 / RADAR · ARPA · ECDIS",
+			[panels["ShipIntegratedBridgePanel"]],
+		),
+		"system overview -> integrated bridge",
+	)
+	_record(
+		"button_full_mission_bridge",
+		await _press_and_check(
+			center_root,
+			"全任务软件船桥 / GMDSS · 推进台 · 多学员 · 360°",
+			[panels["ShipFullMissionBridgePanel"]],
+		),
+		"system overview -> full mission software bridge",
+	)
+	_record(
+		"button_multisensor_fusion",
+		await _press_and_check(
+			center_root,
+			"多源传感融合 / RADAR · AIS · EO · IR · GNSS · INS",
+			[panels["ShipMultisensorFusionPanel"]],
+		),
+		"system overview -> multisensor fusion",
+	)
+	_record(
+		"button_execution_control",
+		await _press_and_check(
+			center_root,
+			"执行控制闭环 / 自动舵 · 推进 · 仲裁 · 急停",
+			[panels["ShipExecutionControlPanel"]],
+		),
+		"system overview -> execution control",
+	)
+	_record(
+		"button_named_vessel_twin",
+		await _press_and_check(
+			center_root,
+			"指定船舶数字孪生 / 海试辨识 · 误差包络",
+			[panels["ShipNamedVesselTwinPanel"]],
+		),
+		"system overview -> named vessel twin",
+	)
+	_record(
+		"button_port_operations",
+		await _press_and_check(
+			center_root,
+			"港内作业训练 / 靠离泊 · 拖轮 · 锚泊 · 系泊",
+			[panels["ShipPortOperationsPanel"]],
+		),
+		"system overview -> port operations training",
+	)
+	_record(
+		"button_bridge_team",
+		await _press_and_check(
+			center_root,
+			"多驾驶台协同 / 通信 · 复诵 · BRM",
+			[panels["ShipBridgeTeamPanel"]],
+		),
+		"system overview -> bridge team collaboration",
+	)
+	_record(
+		"button_physical_bridge_readiness",
+		await _press_and_check(
+			center_root,
+			"物理驾驶台 / HIL · 标准 · 现场准入",
+			[panels["ShipPhysicalBridgeReadinessPanel"]],
+		),
+		"system overview -> physical bridge readiness",
+	)
+	_record(
+		"button_safety_case",
+		await _press_and_check(
+			center_root,
+			"安全案例 / ODD · 危险 · MRC · FTA · RCC",
+			[panels["ShipSafetyCasePanel"]],
+		),
+		"system overview -> executable safety case",
+	)
+	_record(
+		"button_colreg_complex",
+		await _press_and_check(
+			center_root,
+			"复杂避碰规则 / 多船 · 狭水道 · 分道 · 灯号声号",
+			[panels["ShipColregComplexPanel"]],
+		),
+		"system overview -> complex COLREG scenario assurance",
+	)
+	_record(
+		"button_rl_generalization",
+		await _press_and_check(
+			center_root,
+			"RL 泛化可信度 / 多域 · OOD · 消融 · 压力 · 影子",
+			[panels["ShipRlGeneralizationPanel"]],
+		),
+		"system overview -> RL generalization assurance",
+	)
+	_record(
+		"button_bridge_cybersecurity",
+		await _press_and_check(
+			center_root,
+			"船舶网络安全 / 分区 · 身份 · 签名更新 · IDS · 恢复",
+			[panels["ShipBridgeCybersecurityPanel"]],
+		),
+		"system overview -> bridge cybersecurity range",
+	)
+	_record(
+		"button_port_production_integration",
+		await _press_and_check(
+			center_root,
+			"港口生产联动 / VTS · TOS · 引航 · 拖轮 · 泊位 · 通告",
+			[panels["ShipPortIntegrationPanel"]],
+		),
+		"system overview -> port production integration",
 	)
 	_record(
 		"button_review",

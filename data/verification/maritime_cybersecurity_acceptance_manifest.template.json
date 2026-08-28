@@ -1,0 +1,64 @@
+{
+  "schema_version": "maritime_cybersecurity_acceptance_manifest_v1",
+  "profile_id": "RL-NAV-CYBER-2026-01",
+  "evidence_files": {},
+  "network_segmentation": {
+    "as_built_network_diagram_file": "",
+    "firewall_export_file": "",
+    "vlan_and_data_diode_test_file": "",
+    "production_network_segmentation_verified": false
+  },
+  "identity_and_access": {
+    "identity_provider_configuration_file": "",
+    "multi_factor_authentication_test_file": "",
+    "privileged_access_review_file": "",
+    "least_privilege_verified": false
+  },
+  "platform_integrity": {
+    "hardware_root_of_trust_evidence_file": "",
+    "measured_boot_log_file": "",
+    "production_signing_key_ceremony_file": "",
+    "signed_update_install_and_rollback_test_file": "",
+    "hardware_secure_boot_verified": false
+  },
+  "monitoring_and_logs": {
+    "ids_sensor_deployment_file": "",
+    "soc_forwarding_test_file": "",
+    "hardware_log_immutability_test_file": "",
+    "incident_response_drill_file": "",
+    "production_ids_verified": false
+  },
+  "disaster_recovery": {
+    "offline_backup_inventory_file": "",
+    "bare_metal_restore_test_file": "",
+    "measured_rto_minutes": null,
+    "measured_rpo_minutes": null,
+    "field_restore_verified": false
+  },
+  "penetration_test": {
+    "scope_file": "",
+    "independent_tester_identity_file": "",
+    "signed_report_file": "",
+    "remediation_retest_file": "",
+    "critical_findings_open": null,
+    "high_findings_open": null,
+    "independent_penetration_test_completed": false
+  },
+  "external_approval": {
+    "flag_or_class_decision_file": "",
+    "qualified_assessor_identity_file": "",
+    "signed_acceptance_file": "",
+    "class_or_flag_cyber_approval": false
+  },
+  "claims": {
+    "production_network_segmentation_verified": false,
+    "hardware_secure_boot_verified": false,
+    "production_signed_update_verified": false,
+    "tamper_proof_hardware_log_verified": false,
+    "production_ids_verified": false,
+    "disaster_recovery_field_verified": false,
+    "independent_penetration_test_completed": false,
+    "class_or_flag_cyber_approval": false,
+    "production_authority": false
+  }
+}

@@ -1,0 +1,325 @@
+{
+	"boundary": "Software execution-control closure against the simulator vessel API; no physical actuator, independent hardware emergency stop, type approval or live-vessel authority.",
+	"checks": {
+		"actuator_jam_is_visible_and_degraded": {
+			"detail": {
+				"command_link_loss": false,
+				"propulsion_actuator_jam": false,
+				"rudder_feedback_loss": false,
+				"steering_actuator_jam": true,
+				"throttle_feedback_loss": false
+			},
+			"passed": true
+		},
+		"audit_receipts_are_retained": {
+			"detail": 19,
+			"passed": true
+		},
+		"autopilot_closes_heading_and_speed_loop": {
+			"detail": {
+				"autopilot": {
+					"engaged": true,
+					"target_heading_degrees": 210.0,
+					"target_speed_mps": 3.0
+				},
+				"requested": {
+					"rudder": 0.545454561710358,
+					"throttle": 0.550000011920929
+				}
+			},
+			"passed": true
+		},
+		"command_feedback_is_acknowledged": {
+			"detail": {
+				"actual_rudder": 0.0,
+				"actual_throttle": 0.0,
+				"actual_tracking_within_tolerance": true,
+				"command_acknowledged": true,
+				"physical_feedback_verified": false,
+				"target_rudder": -0.0599999986588955,
+				"target_throttle": 0.0399999991059303
+			},
+			"passed": true
+		},
+		"confirmed_estop_reset_returns_to_unarmed_manual": {
+			"detail": "MANUAL_AFTER_ESTOP_RESET",
+			"passed": true
+		},
+		"control_requires_explicit_arming": {
+			"detail": {
+				"action": "request_control",
+				"detail": {
+					"reason": "EXECUTION_NOT_ARMED"
+				},
+				"production_authority": false,
+				"schema_version": "ship_execution_control_receipt_v1",
+				"sequence": 1,
+				"simulation_time_seconds": 1.6,
+				"status": "REJECTED",
+				"subject": "RL"
+			},
+			"passed": true
+		},
+		"controlled_vessel_present": {
+			"detail": "Player",
+			"passed": true
+		},
+		"default_is_disarmed_manual_monitoring": {
+			"detail": {
+				"authority": "MANUAL",
+				"mode": "MANUAL_DIRECT"
+			},
+			"passed": true
+		},
+		"emergency_stop_latches_and_neutralizes": {
+			"detail": {
+				"estop": {
+					"independent_hardware_verified": false,
+					"latched": true,
+					"manual_confirmation_required_to_reset": true,
+					"software_channel_verified": true
+				},
+				"telemetry": {
+					"rudder": 0.0,
+					"throttle": 0.0
+				}
+			},
+			"passed": true
+		},
+		"estop_blocks_rearming": {
+			"detail": {
+				"action": "arm",
+				"detail": {
+					"reason": "EMERGENCY_STOP_LATCHED"
+				},
+				"production_authority": false,
+				"schema_version": "ship_execution_control_receipt_v1",
+				"sequence": 16,
+				"simulation_time_seconds": 2.3,
+				"status": "REJECTED",
+				"subject": "SMOKE_OPERATOR"
+			},
+			"passed": true
+		},
+		"estop_reset_requires_manual_confirmation": {
+			"detail": {
+				"action": "release_emergency_stop",
+				"detail": {
+					"reason": "MANUAL_CONFIRMATION_REQUIRED"
+				},
+				"production_authority": false,
+				"schema_version": "ship_execution_control_receipt_v1",
+				"sequence": 17,
+				"simulation_time_seconds": 2.3,
+				"status": "REJECTED",
+				"subject": "EMERGENCY_STOP"
+			},
+			"passed": true
+		},
+		"execution_panel_present": {
+			"detail": "ShipExecutionControlPanel",
+			"passed": true
+		},
+		"execution_suite_present": {
+			"detail": "ShipExecutionControlSuite",
+			"passed": true
+		},
+		"feedback_loss_fails_safe": {
+			"detail": {
+				"actual_rudder": null,
+				"actual_throttle": 0.0,
+				"actual_tracking_within_tolerance": false,
+				"command_acknowledged": false,
+				"physical_feedback_verified": false,
+				"target_rudder": null,
+				"target_throttle": 0.0
+			},
+			"passed": true
+		},
+		"fresh_command_recovers_after_watchdog": {
+			"detail": {
+				"action": "submit_command",
+				"detail": {
+					"effective": {
+						"rudder": 0.0599999986588955,
+						"throttle": 0.0399999991059303
+					},
+					"requested": {
+						"rudder": 0.14,
+						"throttle": 0.36
+					},
+					"sequence": 1
+				},
+				"production_authority": false,
+				"schema_version": "ship_execution_control_receipt_v1",
+				"sequence": 7,
+				"simulation_time_seconds": 2.1,
+				"status": "ACCEPTED",
+				"subject": "RL"
+			},
+			"passed": true
+		},
+		"hotkey_L_opens_execution_panel": {
+			"detail": true,
+			"passed": true
+		},
+		"main_scene_load_request": {
+			"detail": 0,
+			"passed": true
+		},
+		"manual_takeover_is_immediate_and_high_priority": {
+			"detail": {
+				"external": false,
+				"snapshot": {
+					"immediate_priority": true,
+					"player_external_control_active": false,
+					"takeover_count": 1
+				}
+			},
+			"passed": true
+		},
+		"motion_model_and_existing_policy_artifacts_unchanged": {
+			"detail": {
+				"after": {
+					"res://data/rl/long_beach_ais_port_ops_benchmark_v2.json": "1d676e7446f22206f6113777524d46724545e58e55c1df73a9d359795a415a1f",
+					"res://data/rl/port_ops_safety_supervisor_v3.json": "1edee032e44132c4c15ade0de73ff3f0ba3ed9b2a25206faa0c6ca8a50f26de3",
+					"res://data/verification/catamaran_usv_dynamics_reference_v2.json": "d9dbd9fd61827952b50194f10e1a7331f7b154b7b7a69805de726e5bfd648c8f",
+					"res://player.gd": "a031fc53409eaca87af860536a615c047f51260a8c60ad65579c5cd8138caa6a",
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+					"res://scripts/physics/catamaran_three_dof_dynamics.gd": "4ea917668478d011dde89547da865b00e1600c7b5263c255fea8e846ea3321d2"
+				},
+				"before": {
+					"res://data/rl/long_beach_ais_port_ops_benchmark_v2.json": "1d676e7446f22206f6113777524d46724545e58e55c1df73a9d359795a415a1f",
+					"res://data/rl/port_ops_safety_supervisor_v3.json": "1edee032e44132c4c15ade0de73ff3f0ba3ed9b2a25206faa0c6ca8a50f26de3",
+					"res://data/verification/catamaran_usv_dynamics_reference_v2.json": "d9dbd9fd61827952b50194f10e1a7331f7b154b7b7a69805de726e5bfd648c8f",
+					"res://player.gd": "a031fc53409eaca87af860536a615c047f51260a8c60ad65579c5cd8138caa6a",
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+					"res://scripts/physics/catamaran_three_dof_dynamics.gd": "4ea917668478d011dde89547da865b00e1600c7b5263c255fea8e846ea3321d2"
+				}
+			},
+			"passed": true
+		},
+		"panel_receives_execution_snapshot": {
+			"detail": "ship_execution_control_snapshot_v1",
+			"passed": true
+		},
+		"physical_and_production_claims_fail_closed": {
+			"detail": "Runtime execution-control simulation using the existing vessel command API. No physical steering gear, propulsion plant, bridge control system, independent hardware emergency stop or live-vessel authority is claimed.",
+			"passed": true
+		},
+		"range_and_slew_limits_apply_before_vessel": {
+			"detail": {
+				"effective": {
+					"rudder": -0.0599999986588955,
+					"throttle": 0.0399999991059303
+				},
+				"requested": {
+					"rudder": -1.0,
+					"throttle": 1.0
+				}
+			},
+			"passed": true
+		},
+		"remote_control_fails_closed_without_site_authority": {
+			"detail": {
+				"action": "request_control",
+				"detail": {
+					"reason": "REMOTE_AUTHORITY_NOT_VERIFIED"
+				},
+				"production_authority": false,
+				"schema_version": "ship_execution_control_receipt_v1",
+				"sequence": 3,
+				"simulation_time_seconds": 1.6,
+				"status": "REJECTED",
+				"subject": "REMOTE_CONTROL_CENTER"
+			},
+			"passed": true
+		},
+		"replayed_command_is_rejected": {
+			"detail": {
+				"action": "submit_command",
+				"detail": {
+					"last_sequence": 0,
+					"reason": "REPLAY_OR_REORDER"
+				},
+				"production_authority": false,
+				"schema_version": "ship_execution_control_receipt_v1",
+				"sequence": 6,
+				"simulation_time_seconds": 1.6,
+				"status": "REJECTED",
+				"subject": "RL"
+			},
+			"passed": true
+		},
+		"rl_authority_is_opt_in": {
+			"detail": {
+				"action": "request_control",
+				"detail": {
+					"authority": "RL"
+				},
+				"production_authority": false,
+				"schema_version": "ship_execution_control_receipt_v1",
+				"sequence": 4,
+				"simulation_time_seconds": 1.6,
+				"status": "ACCEPTED",
+				"subject": "RL"
+			},
+			"passed": true
+		},
+		"simulation_execution_arms_explicitly": {
+			"detail": {
+				"action": "arm",
+				"detail": {
+					"production_authority": false
+				},
+				"production_authority": false,
+				"schema_version": "ship_execution_control_receipt_v1",
+				"sequence": 2,
+				"simulation_time_seconds": 1.6,
+				"status": "ACCEPTED_SIMULATION_ONLY",
+				"subject": "SMOKE_OPERATOR"
+			},
+			"passed": true
+		},
+		"unknown_fault_is_rejected": {
+			"detail": {
+				"action": "set_fault",
+				"detail": {
+					"reason": "UNKNOWN_FAULT"
+				},
+				"production_authority": false,
+				"schema_version": "ship_execution_control_receipt_v1",
+				"sequence": 19,
+				"simulation_time_seconds": 2.3,
+				"status": "REJECTED",
+				"subject": "unknown_fault"
+			},
+			"passed": true
+		},
+		"watchdog_neutralizes_stale_command": {
+			"detail": {
+				"output": {
+					"rudder": 0.0,
+					"throttle": 0.0
+				},
+				"watchdog": {
+					"last_command_age_seconds": 0.5,
+					"timed_out": true,
+					"timeout_seconds": 0.35
+				}
+			},
+			"passed": true
+		}
+	},
+	"errors": [],
+	"existing_policy_changed": false,
+	"generated_at": "2026-08-28T15:57:18",
+	"motion_model_changed": false,
+	"passed": true,
+	"passed_checks": 28,
+	"schema_version": "godot_execution_control_smoke_v1",
+	"total_checks": 28,
+	"training_performed": false
+}

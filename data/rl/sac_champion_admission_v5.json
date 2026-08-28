@@ -1,0 +1,34 @@
+{
+  "schema_version": "sac_champion_admission_profile_v5",
+  "profile_id": "sac_champion_offline_admission_v5",
+  "selection_locked_before_validation_result": true,
+  "thresholds": {
+    "minimum_collision_free_arrival_rate": 0.8,
+    "minimum_port_compliant_completion_rate": 0.75,
+    "minimum_mean_route_completion_ratio": 0.8,
+    "maximum_collision_episode_rate": 0.1,
+    "maximum_grounding_episode_rate": 0.05,
+    "maximum_colreg_violation_episode_rate": 0.1,
+    "maximum_channel_departure_episode_rate": 0.05,
+    "maximum_speed_violation_episode_rate": 0.05,
+    "maximum_hazard_supervisor_intervention_step_rate": 0.2,
+    "maximum_fail_closed_episode_rate": 0.05,
+    "minimum_raw_sac_action_accepted_step_rate": 0.5,
+    "minimum_rl_rudder_retained_step_rate": 0.8,
+    "minimum_rl_any_dimension_retained_step_rate": 0.9,
+    "maximum_decision_p95_ms": 250.0,
+    "maximum_replan_p95_ms": 250.0
+  },
+  "selection_order": [
+    "all_admission_thresholds_pass",
+    "collision_free_arrival_rate_descending",
+    "port_compliant_completion_rate_descending",
+    "collision_episode_rate_ascending",
+    "grounding_episode_rate_ascending",
+    "colreg_violation_episode_rate_ascending",
+    "mean_route_completion_ratio_descending"
+  ],
+  "rl_requirement": "The selected strategy must load a trained Stable-Baselines3 SAC checkpoint. Safety layers may bound unsafe commands but must pass the declared SAC action-authority thresholds.",
+  "intervention_definition": "The hazard-supervisor intervention rate excludes the separately disclosed speed-governor projection rate. The combined raw-action modification rate remains disclosed and is constrained indirectly by the raw SAC acceptance and RL authority thresholds.",
+  "claim_boundary": "Offline historical-public-data and counterfactual-simulation evidence only; not field acceptance or live-vessel control authority."
+}

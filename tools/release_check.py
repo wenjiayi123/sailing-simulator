@@ -31,11 +31,19 @@ SAFETY_REPORT = ROOT / "reports/safety_supervisor_benchmark_v3.json"
 SAFETY_UTILITY_AUDIT = ROOT / "reports/safety_supervisor_utility_audit_v3.json"
 RELIABILITY_CURRENT = ROOT / "reports/simulator_reliability_audit_v3.json"
 MARITIME_ASSURANCE = ROOT / "reports/maritime_assurance_v1.json"
+COLREG_COMPLEX_ASSURANCE = ROOT / "reports/colreg_complex_assurance_v2.json"
+COLREG_COMPLEX_UI = ROOT / "reports/godot_colreg_complex_smoke_v1.json"
+RL_GENERALIZATION_ASSURANCE = ROOT / "reports/rl_generalization_assurance_v1.json"
+RL_GENERALIZATION_PLAN = ROOT / "reports/rl_generalization_evaluation_plan_v1.json"
+RL_GENERALIZATION_UI = ROOT / "reports/godot_rl_generalization_smoke_v1.json"
+FULL_MISSION_BRIDGE_ASSURANCE = ROOT / "reports/full_mission_bridge_assurance_v1.json"
+FULL_MISSION_BRIDGE_UI = ROOT / "reports/godot_full_mission_bridge_smoke_v1.json"
+MARITIME_CYBERSECURITY_ASSURANCE = ROOT / "reports/maritime_cybersecurity_assurance_v1.json"
+MARITIME_CYBERSECURITY_UI = ROOT / "reports/godot_bridge_cybersecurity_smoke_v1.json"
+PORT_PRODUCTION_INTEGRATION_ASSURANCE = ROOT / "reports/port_production_integration_assurance_v1.json"
+PORT_PRODUCTION_INTEGRATION_UI = ROOT / "reports/godot_port_production_integration_smoke_v1.json"
+FULL_VISUAL_ASSET_RELEASE = ROOT / "reports/full_visual_asset_release_v1.json"
 CARGO_EVIDENCE = ROOT / "reports/cargo_circuit_public_evidence_v1.json"
-XIAOYI_PORTRAIT = ROOT / "assets/ui/xiaoyi/xiaoyi-maritime-officer.png"
-XIAOYI_PORTRAIT_SHA256 = (
-    "8f56a569dcb098ef08cd2bed92ffc098474c7d6ef911141760982e9323ffe714"
-)
 ALGORITHMS = ("ppo", "sac", "td3", "dqn", "los_pid")
 PORT_ALGORITHMS = (
     "ppo",
@@ -74,8 +82,31 @@ REQUIRED_FILES = (
     "docs/OBSERVATION_ACTION_REWARD_SPEC.md",
     "docs/TOP_SYSTEM_GAP_AUDIT.md",
     "docs/MARITIME_ASSURANCE_GUIDE.md",
+    "docs/COLREG_COMPLEX_SCENARIO_ASSURANCE.md",
+    "docs/RL_GENERALIZATION_ASSURANCE.md",
+    "docs/FULL_MISSION_BRIDGE.md",
+    "docs/MARITIME_CYBERSECURITY.md",
+    "docs/PORT_PRODUCTION_INTEGRATION.md",
+    "docs/ASSET_LICENSE_AUDIT.md",
+    "THIRD_PARTY_ASSETS.md",
+    "LICENSES/LicenseRef-User-Authorized-Public-Redistribution.txt",
     "data/verification/vessel_dynamics_reference_v1.json",
     "data/verification/colreg_encounter_catalog_v1.json",
+    "data/verification/colreg_complex_scenario_catalog_v2.json",
+    "data/verification/local_navigation_rules_template_v1.json",
+    "data/verification/rl_generalization_campaign_v1.json",
+    "data/verification/rl_generalization_results_manifest.template.json",
+    "data/verification/full_mission_bridge_profile_v1.json",
+    "data/verification/full_mission_bridge_acceptance_manifest.template.json",
+    "data/verification/maritime_cybersecurity_profile_v1.json",
+    "data/verification/maritime_cybersecurity_acceptance_manifest.template.json",
+    "data/verification/bridge_secure_boot_manifest_v1.json",
+    "data/verification/cyber_range_signed_update_payload_v1.json",
+    "data/verification/cyber_range_signed_update_signature_v1.json",
+    "data/verification/cyber_range_update_public_key_v1.pem",
+    "data/verification/port_production_integration_profile_v1.json",
+    "data/verification/port_production_site_acceptance_manifest.template.json",
+    "data/verification/visual_asset_release_manifest_v1.json",
     "data/verification/hil_loopback_profile_v1.json",
     "data/verification/sea_trial_protocol_v1.json",
     "data/verification/sea_trial_evidence_manifest.template.json",
@@ -92,6 +123,24 @@ REQUIRED_FILES = (
     "reports/simulator_reliability_audit_v3.md",
     "reports/maritime_assurance_v1.json",
     "reports/maritime_assurance_v1.md",
+    "reports/colreg_complex_assurance_v2.json",
+    "reports/colreg_complex_assurance_v2.md",
+    "reports/godot_colreg_complex_smoke_v1.json",
+    "reports/rl_generalization_assurance_v1.json",
+    "reports/rl_generalization_assurance_v1.md",
+    "reports/rl_generalization_evaluation_plan_v1.json",
+    "reports/godot_rl_generalization_smoke_v1.json",
+    "reports/full_mission_bridge_assurance_v1.json",
+    "reports/full_mission_bridge_assurance_v1.md",
+    "reports/godot_full_mission_bridge_smoke_v1.json",
+    "reports/maritime_cybersecurity_assurance_v1.json",
+    "reports/maritime_cybersecurity_assurance_v1.md",
+    "reports/godot_bridge_cybersecurity_smoke_v1.json",
+    "reports/port_production_integration_assurance_v1.json",
+    "reports/port_production_integration_assurance_v1.md",
+    "reports/godot_port_production_integration_smoke_v1.json",
+    "reports/full_visual_asset_release_v1.json",
+    "reports/full_visual_asset_release_v1.md",
     "reports/cargo_circuit_public_evidence_v1.json",
     "data/ports/port_package_manifest_v3.example.json",
     "reports/port_ops_benchmark_v2.md",
@@ -102,16 +151,35 @@ REQUIRED_FILES = (
     "tools/run_nonmutating_deep_verify.py",
     "tools/audit_safety_supervisor_utility_v3.py",
     "tools/run_maritime_assurance.py",
+    "tools/run_colreg_complex_assurance.py",
+    "tools/ship_assurance/colreg_complex.py",
+    "tools/godot_colreg_complex_smoke.gd",
+    "tools/run_rl_generalization_assurance.py",
+    "tools/ship_rl/generalization_environment.py",
+    "tools/ship_rl/generalization_assurance.py",
+    "tools/godot_rl_generalization_smoke.gd",
+    "tools/run_full_mission_bridge_assurance.py",
+    "tools/ship_assurance/full_mission_bridge.py",
+    "tools/godot_full_mission_bridge_smoke.gd",
+    "tools/run_maritime_cybersecurity_assurance.py",
+    "tools/ship_assurance/maritime_cybersecurity.py",
+    "tools/godot_bridge_cybersecurity_smoke.gd",
+    "tools/run_port_production_integration_assurance.py",
+    "tools/ship_assurance/port_production_integration.py",
+    "tools/godot_port_production_integration_smoke.gd",
+    "tools/audit_full_visual_release.py",
+    "tools/build_full_visual_release.py",
     "tools/godot_button_inventory.gd",
     "tools/godot_button_interaction_smoke.gd",
     "tools/run_cargo_collision_regression.py",
     "tools/evaluate_sea_trial.py",
     "tests/test_maritime_assurance.py",
-)
-UNRESOLVED_ASSETS = (
-    "characters/download.png",
-    "characters/maritime_assistant_portrait.png",
-    "assets/art/terrain/premium_reference_cliff_rock_32471782690108.jpg",
+    "tests/test_colreg_complex.py",
+    "tests/test_rl_generalization_assurance.py",
+    "tests/test_full_mission_bridge.py",
+    "tests/test_maritime_cybersecurity.py",
+    "tests/test_port_production_integration.py",
+    "tests/test_full_visual_asset_release.py",
 )
 
 
@@ -428,6 +496,7 @@ def _verify_maritime_assurance_v1(errors: list[str]) -> None:
         "three_dof_software_model_verified",
         "three_dof_rl_environment_connected",
         "colreg_scenario_regression_verified",
+        "colreg_complex_scenario_regression_verified",
         "software_hil_loopback_verified",
         "sea_trial_protocol_and_refusal_gate_verified",
     )
@@ -453,10 +522,524 @@ def _verify_maritime_assurance_v1(errors: list[str]) -> None:
         errors.append("3-DOF/COLREG RL environment connection is not PASS")
     if report.get("colreg", {}).get("passed") is not True:
         errors.append("COLREG scenario regression is not PASS")
+    if report.get("colreg_complex", {}).get("passed") is not True:
+        errors.append("complex COLREG scenario regression is not PASS")
+    if claims.get("official_local_rules_connected") is not False:
+        errors.append("official local-rule boundary changed")
     if report.get("hil", {}).get("passed") is not True:
         errors.append("HIL software loopback is not PASS")
     if report.get("sea_trial", {}).get("evidence_completeness_refusal_gate_passed") is not True:
         errors.append("sea-trial evidence-completeness refusal gate is not PASS")
+
+
+def _verify_colreg_complex_v2(errors: list[str]) -> None:
+    report = _load_json(COLREG_COMPLEX_ASSURANCE)
+    if report.get("schema_version") != "colreg_complex_assurance_v2":
+        errors.append("complex COLREG assurance schema changed")
+    if report.get("functional_assurance_passed") is not True:
+        errors.append("complex COLREG functional assurance is not PASS")
+    legacy = report.get("legacy_v1_regression", {})
+    if not (
+        legacy.get("passed") is True
+        and legacy.get("scenario_count") == 6
+        and int(legacy.get("action_case_count", 0)) >= 11
+        and legacy.get("legacy_v1_replaced") is False
+    ):
+        errors.append("legacy V1 COLREG baseline was not preserved")
+    complex_result = report.get("complex_assurance", {})
+    if not (
+        complex_result.get("passed") is True
+        and complex_result.get("scenario_count") == 16
+        and complex_result.get("scenario_passed_count") == 16
+        and complex_result.get("case_count") == 45
+        and complex_result.get("case_matched_count") == 45
+        and complex_result.get("coverage_complete") is True
+        and complex_result.get("missing_capabilities") == []
+    ):
+        errors.append("complex COLREG scenario/case coverage is incomplete")
+    claims = report.get("claim_matrix", {})
+    for name in (
+        "official_local_rules_connected",
+        "colreg_certified",
+        "production_authority",
+    ):
+        if claims.get(name) is not False:
+            errors.append(f"complex COLREG external boundary changed: {name}")
+    boundary = report.get("source_boundary", {})
+    for name in (
+        "training_performed",
+        "existing_policy_modified",
+        "ship_motion_model_modified",
+    ):
+        if boundary.get(name) is not False:
+            errors.append(f"complex COLREG preservation boundary changed: {name}")
+    for relative, expected_hash in report.get("inputs_sha256", {}).items():
+        path = ROOT / str(relative)
+        if not path.is_file() or _sha256(path) != expected_hash:
+            errors.append(f"complex COLREG assurance input changed: {relative}")
+    ui = _load_json(COLREG_COMPLEX_UI)
+    if not (
+        ui.get("schema_version") == "godot_colreg_complex_smoke_v1"
+        and ui.get("passed") is True
+        and ui.get("passed_count") == ui.get("check_count")
+        and int(ui.get("check_count", 0)) >= 25
+        and ui.get("training_performed") is False
+        and ui.get("existing_policy_modified") is False
+        and ui.get("ship_motion_model_modified") is False
+        and ui.get("official_local_rules_connected") is False
+        and ui.get("colreg_certified") is False
+        and ui.get("production_authority") is False
+    ):
+        errors.append("complex COLREG Godot UI smoke is not PASS or crossed a boundary")
+
+
+def _verify_rl_generalization_v1(errors: list[str]) -> None:
+    report = _load_json(RL_GENERALIZATION_ASSURANCE)
+    if report.get("schema_version") != "rl_generalization_assurance_v1":
+        errors.append("RL generalization assurance schema changed")
+    if report.get("functional_framework_complete") is not True:
+        errors.append("RL generalization functional framework is not PASS")
+    if report.get("status") != "FUNCTIONAL_FRAMEWORK_COMPLETE_TRAINING_AND_FIELD_EVIDENCE_BLOCKED":
+        errors.append("RL generalization status is not fail-closed")
+    checks = report.get("checks", {})
+    if len(checks) != 16 or not all(value is True for value in checks.values()):
+        errors.append("RL generalization framework checks are incomplete")
+    domains = report.get("domain_summary", {})
+    expected_domains = {
+        "declared_port_archetype_count": 4,
+        "real_observed_port_count": 1,
+        "synthetic_port_domain_count": 3,
+        "declared_season_count": 4,
+        "real_observed_season_count": 1,
+        "synthetic_season_overlay_count": 3,
+        "vessel_family_count": 4,
+        "random_seed_count": 5,
+        "interactive_traffic_behavior_count": 4,
+        "ood_suite_count": 4,
+        "ablation_count": 6,
+        "stress_case_count": 8,
+    }
+    for name, expected in expected_domains.items():
+        if domains.get(name) != expected:
+            errors.append(f"RL generalization domain count changed: {name}")
+    policy_inventory = report.get("preserved_policy_inventory", {})
+    if not (
+        policy_inventory.get("passed") is True
+        and policy_inventory.get("policy_count") == 10
+        and policy_inventory.get("errors") == []
+    ):
+        errors.append("existing policy inventory is not hash-preserved")
+    summary = report.get("evaluation_plan", {})
+    plan = _load_json(RL_GENERALIZATION_PLAN)
+    if not (
+        summary.get("base_matrix_cell_count") == 320
+        and summary.get("ablation_pair_count") == 30
+        and summary.get("stress_cell_count") == 40
+        and summary.get("ood_cell_count") == 20
+        and summary.get("total_planned_cell_count") == 410
+        and summary.get("file_sha256") == _sha256(RL_GENERALIZATION_PLAN)
+        and plan.get("total_planned_cell_count") == 410
+        and len(plan.get("cells", [])) == 410
+        and plan.get("test_results_accessed") is False
+        and plan.get("training_performed") is False
+    ):
+        errors.append("RL generalization frozen evaluation plan is incomplete")
+    smoke = report.get("functional_smoke", {})
+    shadow = report.get("shadow_receipt_smoke", {})
+    if not (
+        smoke.get("passed") is True
+        and smoke.get("fixture_count") == 4
+        and smoke.get("passed_count") == 4
+        and smoke.get("training_performed") is False
+        and smoke.get("existing_policy_modified") is False
+        and smoke.get("ship_motion_model_modified") is False
+    ):
+        errors.append("RL generalization functional smoke is not PASS")
+    if not (
+        shadow.get("passed") is True
+        and shadow.get("recommendation_count") == 4
+        and shadow.get("dispatch_count") == 0
+        and shadow.get("real_shadow_operation") is False
+        and shadow.get("production_authority") is False
+    ):
+        errors.append("RL shadow receipt smoke crossed its read-only boundary")
+    gate = report.get("results_evidence_gate", {})
+    if not (
+        gate.get("structural_contract_complete") is True
+        and gate.get("training_completed") is False
+        and gate.get("convergence_demonstrated") is False
+        and gate.get("matrix_complete") is False
+        and gate.get("confidence_intervals_complete") is False
+        and gate.get("generalization_evidence_complete") is False
+    ):
+        errors.append("RL generalization result evidence gate did not fail closed")
+    claims = report.get("claims", {})
+    for name in (
+        "training_performed",
+        "convergence_demonstrated",
+        "real_multi_port_generalization_demonstrated",
+        "real_multi_season_generalization_demonstrated",
+        "ood_acceptance_passed",
+        "shadow_operation_completed",
+        "existing_policy_modified",
+        "ship_motion_model_modified",
+        "production_authority",
+    ):
+        if claims.get(name) is not False:
+            errors.append(f"RL generalization boundary changed: {name}")
+    for relative, expected_hash in report.get("inputs_sha256", {}).items():
+        path = ROOT / str(relative)
+        if not path.is_file() or _sha256(path) != expected_hash:
+            errors.append(f"RL generalization assurance input changed: {relative}")
+    ui = _load_json(RL_GENERALIZATION_UI)
+    if not (
+        ui.get("schema_version") == "godot_rl_generalization_smoke_v1"
+        and ui.get("passed") is True
+        and ui.get("passed_count") == ui.get("check_count")
+        and int(ui.get("check_count", 0)) >= 30
+        and ui.get("training_performed") is False
+        and ui.get("convergence_demonstrated") is False
+        and ui.get("existing_policy_modified") is False
+        and ui.get("ship_motion_model_modified") is False
+        and ui.get("real_multi_port_generalization_demonstrated") is False
+        and ui.get("real_multi_season_generalization_demonstrated") is False
+        and ui.get("shadow_operation_completed") is False
+        and ui.get("production_authority") is False
+    ):
+        errors.append("RL generalization Godot UI smoke is not PASS or crossed a boundary")
+
+
+def _verify_full_mission_bridge_v1(errors: list[str]) -> None:
+    report = _load_json(FULL_MISSION_BRIDGE_ASSURANCE)
+    if report.get("schema_version") != "full_mission_bridge_assurance_v1":
+        errors.append("full-mission bridge assurance schema changed")
+    if report.get("status") != "FUNCTIONAL_SOFTWARE_BRIDGE_COMPLETE_EXTERNAL_ACCEPTANCE_BLOCKED":
+        errors.append("full-mission bridge status is not fail-closed")
+    if report.get("functional_software_bridge_complete") is not True:
+        errors.append("full-mission software bridge functional gate is not PASS")
+    checks = report.get("checks", {})
+    if len(checks) != 13 or not all(value is True for value in checks.values()):
+        errors.append("full-mission bridge framework checks are incomplete")
+    profile = report.get("profile_evaluation", {})
+    if not (
+        profile.get("domain_count") == 10
+        and len(profile.get("domain_ids", [])) == 10
+        and profile.get("domain_contract_complete") is True
+        and profile.get("runtime_components_present") is True
+        and profile.get("gmdss_contract_complete") is True
+        and profile.get("visual_contract_complete") is True
+        and profile.get("multi_student_contract_complete") is True
+        and profile.get("instructor_gate_complete") is True
+        and profile.get("preservation_boundary_complete") is True
+        and profile.get("external_claims_fail_closed") is True
+    ):
+        errors.append("full-mission bridge profile coverage is incomplete")
+    runtime = report.get("runtime_acceptance", {})
+    if not (
+        runtime.get("passed") is True
+        and int(runtime.get("check_count", 0)) >= 38
+        and runtime.get("passed_count") == runtime.get("check_count")
+        and runtime.get("file_sha256") == _sha256(FULL_MISSION_BRIDGE_UI)
+    ):
+        errors.append("full-mission bridge runtime acceptance is incomplete")
+    policies = report.get("preserved_policy_inventory", {})
+    if not (
+        policies.get("passed") is True
+        and policies.get("policy_count") == 10
+        and policies.get("errors") == []
+    ):
+        errors.append("full-mission bridge did not preserve all ten policies")
+    gate = report.get("external_acceptance_gate", {})
+    if not (
+        gate.get("schema_valid") is True
+        and gate.get("evidence_package_complete") is False
+        and gate.get("status") == "BLOCKED_EXTERNAL_FULL_MISSION_EVIDENCE_INCOMPLETE"
+        and gate.get("physical_full_mission_bridge_verified") is False
+        and gate.get("instructor_qualification_verified") is False
+        and gate.get("course_approval_verified") is False
+        and gate.get("production_authority") is False
+        and gate.get("external_decision_required") is True
+    ):
+        errors.append("full-mission external acceptance gate did not fail closed")
+    claims = report.get("claims", {})
+    for name in (
+        "training_performed",
+        "ship_motion_model_modified",
+        "observation_space_modified",
+        "action_space_modified",
+        "reward_function_modified",
+        "existing_policy_modified",
+        "real_radio_transmission",
+        "physical_full_mission_bridge_verified",
+        "type_approved_bridge_equipment",
+        "instructor_qualification_verified",
+        "approved_training_course",
+        "production_authority",
+    ):
+        if claims.get(name) is not False:
+            errors.append(f"full-mission bridge boundary changed: {name}")
+    for relative, expected_hash in report.get("inputs_sha256", {}).items():
+        path = ROOT / str(relative)
+        if not path.is_file() or _sha256(path) != expected_hash:
+            errors.append(f"full-mission bridge assurance input changed: {relative}")
+    ui = _load_json(FULL_MISSION_BRIDGE_UI)
+    if not (
+        ui.get("schema_version") == "godot_full_mission_bridge_smoke_v1"
+        and ui.get("passed") is True
+        and ui.get("passed_count") == ui.get("check_count")
+        and int(ui.get("check_count", 0)) >= 38
+        and ui.get("training_performed") is False
+        and ui.get("ship_motion_model_modified") is False
+        and ui.get("observation_space_modified") is False
+        and ui.get("action_space_modified") is False
+        and ui.get("reward_function_modified") is False
+        and ui.get("existing_policy_modified") is False
+        and ui.get("real_radio_transmission") is False
+        and ui.get("physical_360_bridge_verified") is False
+        and ui.get("certified_instructor_available") is False
+        and ui.get("approved_training_course") is False
+        and ui.get("production_authority") is False
+    ):
+        errors.append("full-mission bridge Godot smoke is not PASS or crossed a boundary")
+
+
+def _verify_maritime_cybersecurity_v1(errors: list[str]) -> None:
+    report = _load_json(MARITIME_CYBERSECURITY_ASSURANCE)
+    if report.get("schema_version") != "maritime_cybersecurity_assurance_v1":
+        errors.append("maritime cybersecurity assurance schema changed")
+    if report.get("status") != "FUNCTIONAL_CYBER_CONTROLS_COMPLETE_EXTERNAL_SECURITY_ASSURANCE_BLOCKED":
+        errors.append("maritime cybersecurity status is not fail-closed")
+    if report.get("functional_cyber_controls_complete") is not True:
+        errors.append("maritime cybersecurity functional gate is not PASS")
+    checks = report.get("checks", {})
+    if len(checks) != 15 or not all(value is True for value in checks.values()):
+        errors.append("maritime cybersecurity functional checks are incomplete")
+    profile = report.get("profile_evaluation", {})
+    if not (
+        len(profile.get("roles", [])) == 4
+        and len(profile.get("zone_ids", [])) == 7
+        and profile.get("allowed_flow_count") == 8
+        and profile.get("identity_contract_complete") is True
+        and profile.get("zone_contract_complete") is True
+        and profile.get("ids_contract_complete") is True
+        and profile.get("recovery_contract_complete") is True
+        and profile.get("penetration_contract_complete") is True
+        and profile.get("preservation_boundary_complete") is True
+        and profile.get("production_claims_fail_closed") is True
+    ):
+        errors.append("maritime cybersecurity profile coverage is incomplete")
+    signature = report.get("signed_update_evaluation", {})
+    if not (
+        signature.get("passed") is True
+        and signature.get("openssl_stdout") == "Verified OK"
+        and signature.get("private_key_candidates") == []
+        and signature.get("production_signing_key") is False
+        and signature.get("hardware_backed_key") is False
+    ):
+        errors.append("maritime cybersecurity signed-update evidence is incomplete")
+    boot = report.get("software_boot_integrity", {})
+    if not (
+        boot.get("passed") is True
+        and int(boot.get("file_count", 0)) >= 7
+        and boot.get("hardware_root_of_trust_verified") is False
+        and boot.get("measured_boot_verified") is False
+    ):
+        errors.append("maritime cybersecurity boot allowlist crossed its software boundary")
+    runtime = report.get("runtime_acceptance", {})
+    if not (
+        runtime.get("passed") is True
+        and int(runtime.get("check_count", 0)) >= 55
+        and runtime.get("passed_count") == runtime.get("check_count")
+        and runtime.get("file_sha256") == _sha256(MARITIME_CYBERSECURITY_UI)
+    ):
+        errors.append("maritime cybersecurity runtime acceptance is incomplete")
+    policies = report.get("preserved_policy_inventory", {})
+    if not (
+        policies.get("passed") is True
+        and policies.get("policy_count") == 10
+        and policies.get("errors") == []
+    ):
+        errors.append("maritime cybersecurity work did not preserve all ten policies")
+    gate = report.get("external_acceptance_gate", {})
+    if not (
+        gate.get("schema_valid") is True
+        and gate.get("evidence_package_complete") is False
+        and gate.get("status") == "BLOCKED_EXTERNAL_CYBERSECURITY_EVIDENCE_INCOMPLETE"
+        and gate.get("production_network_segmentation_verified") is False
+        and gate.get("hardware_secure_boot_verified") is False
+        and gate.get("production_ids_verified") is False
+        and gate.get("disaster_recovery_field_verified") is False
+        and gate.get("independent_penetration_test_completed") is False
+        and gate.get("class_or_flag_cyber_approval") is False
+        and gate.get("production_authority") is False
+        and gate.get("external_decision_required") is True
+    ):
+        errors.append("maritime cybersecurity external evidence gate did not fail closed")
+    claims = report.get("claims", {})
+    if not claims or any(value is not False for value in claims.values()):
+        errors.append("maritime cybersecurity claim boundary changed")
+    for relative, expected_hash in report.get("inputs_sha256", {}).items():
+        path = ROOT / str(relative)
+        if not path.is_file() or _sha256(path) != expected_hash:
+            errors.append(f"maritime cybersecurity assurance input changed: {relative}")
+    ui = _load_json(MARITIME_CYBERSECURITY_UI)
+    if not (
+        ui.get("schema_version") == "godot_bridge_cybersecurity_smoke_v1"
+        and ui.get("passed") is True
+        and ui.get("passed_count") == ui.get("check_count")
+        and int(ui.get("check_count", 0)) >= 55
+        and all(
+            ui.get(name) is False
+            for name in (
+                "training_performed",
+                "ship_motion_model_modified",
+                "observation_space_modified",
+                "action_space_modified",
+                "reward_function_modified",
+                "existing_policy_modified",
+                "network_messages_mapped_to_actuation",
+                "production_network_segmentation_verified",
+                "hardware_secure_boot_verified",
+                "production_ids_verified",
+                "disaster_recovery_field_verified",
+                "independent_penetration_test_completed",
+                "class_or_flag_cyber_approval",
+                "production_authority",
+            )
+        )
+    ):
+        errors.append("maritime cybersecurity Godot smoke is not PASS or crossed a boundary")
+
+
+def _verify_port_production_integration_v1(errors: list[str]) -> None:
+    report = _load_json(PORT_PRODUCTION_INTEGRATION_ASSURANCE)
+    if report.get("schema_version") != "port_production_integration_assurance_v1":
+        errors.append("port production-integration assurance schema changed")
+    if report.get("status") != "FUNCTIONAL_PORT_INTEGRATION_COMPLETE_EXTERNAL_SITE_ACCEPTANCE_BLOCKED":
+        errors.append("port production-integration status is not fail-closed")
+    if report.get("functional_port_integration_complete") is not True:
+        errors.append("port production-integration functional gate is not PASS")
+    checks = report.get("checks", {})
+    if len(checks) != 14 or not all(value is True for value in checks.values()):
+        errors.append("port production-integration functional checks are incomplete")
+    profile = report.get("profile_evaluation", {})
+    if not (
+        profile.get("adapter_count") == 6
+        and profile.get("adapter_contract_complete") is True
+        and profile.get("coordination_contract_complete") is True
+        and profile.get("degraded_mode_complete") is True
+        and profile.get("audit_contract_complete") is True
+        and profile.get("preservation_boundary_complete") is True
+        and profile.get("site_claims_fail_closed") is True
+    ):
+        errors.append("port production-integration profile coverage is incomplete")
+    runtime = report.get("runtime_acceptance", {})
+    if not (
+        runtime.get("passed") is True
+        and int(runtime.get("check_count", 0)) >= 50
+        and runtime.get("passed_count") == runtime.get("check_count")
+        and runtime.get("file_sha256") == _sha256(PORT_PRODUCTION_INTEGRATION_UI)
+    ):
+        errors.append("port production-integration runtime acceptance is incomplete")
+    policies = report.get("preserved_policy_inventory", {})
+    if not (
+        policies.get("passed") is True
+        and policies.get("policy_count") == 10
+        and policies.get("errors") == []
+    ):
+        errors.append("port production-integration work did not preserve all ten policies")
+    gate = report.get("site_acceptance_gate", {})
+    if not (
+        gate.get("schema_valid") is True
+        and gate.get("evidence_package_complete") is False
+        and gate.get("status") == "BLOCKED_EXTERNAL_PORT_SITE_EVIDENCE_INCOMPLETE"
+        and gate.get("production_authority") is False
+        and gate.get("external_decision_required") is True
+    ):
+        errors.append("port production-integration external site gate did not fail closed")
+    claims = report.get("claims", {})
+    if not claims or any(value is not False for value in claims.values()):
+        errors.append("port production-integration claim boundary changed")
+    for relative, expected_hash in report.get("inputs_sha256", {}).items():
+        path = ROOT / str(relative)
+        if not path.is_file() or _sha256(path) != expected_hash:
+            errors.append(f"port production-integration assurance input changed: {relative}")
+    ui = _load_json(PORT_PRODUCTION_INTEGRATION_UI)
+    if not (
+        ui.get("schema_version") == "godot_port_production_integration_smoke_v1"
+        and ui.get("passed") is True
+        and ui.get("passed_count") == ui.get("check_count")
+        and int(ui.get("check_count", 0)) >= 50
+        and all(
+            ui.get(name) is False
+            for name in (
+                "training_performed",
+                "ship_motion_model_modified",
+                "observation_space_modified",
+                "action_space_modified",
+                "reward_function_modified",
+                "existing_policy_modified",
+                "external_dispatch_performed",
+                "mapped_to_vessel_actuation",
+                "live_vts_connected",
+                "live_tos_connected",
+                "authorized_pilotage_connected",
+                "authorized_tug_dispatch_connected",
+                "official_berth_service_connected",
+                "official_notices_connected",
+                "sla_verified",
+                "site_shadow_operation_completed",
+                "dispatch_allowed",
+                "production_authority",
+            )
+        )
+    ):
+        errors.append("port production-integration Godot smoke crossed a boundary")
+
+
+def _verify_full_visual_asset_release_v1(errors: list[str], strict: bool) -> None:
+    report = _load_json(FULL_VISUAL_ASSET_RELEASE)
+    if report.get("schema") != "full-visual-asset-release-audit.v1":
+        errors.append("full-visual asset audit schema changed")
+    if report.get("status") != "FULL_VISUAL_PACKAGE_READY":
+        errors.append("full-visual package is not release ready")
+    summary = report.get("summary", {})
+    if not (
+        summary.get("passed") is True
+        and summary.get("included_asset_count") == 23
+        and summary.get("unregistered_media_count") == 0
+        and summary.get("runtime_excluded_reference_count") == 0
+        and summary.get("unresolved_included_asset_count") == 0
+    ):
+        errors.append("full-visual asset inventory is incomplete")
+    claims = report.get("claims", {})
+    if not (
+        claims.get("full_visual_package_ready") is True
+        and claims.get("all_included_media_hash_bound") is True
+        and claims.get("excluded_local_assets_not_runtime_referenced") is True
+        and claims.get("excluded_local_assets_retained_locally") is True
+        and claims.get("named_vessel_dynamics_changed") is False
+        and claims.get("existing_policy_artifacts_changed") is False
+        and claims.get("training_performed") is False
+        and claims.get("production_authority") is False
+    ):
+        errors.append("full-visual release boundary changed")
+    if report.get("errors") != []:
+        errors.append("full-visual asset audit contains blocking errors")
+    try:
+        try:
+            from audit_full_visual_release import build_report
+        except ImportError:
+            from tools.audit_full_visual_release import build_report
+
+        current = build_report()
+    except (ImportError, OSError, ValueError, json.JSONDecodeError) as exc:
+        errors.append(f"full-visual asset audit could not be recomputed: {exc}")
+        return
+    if current != report:
+        errors.append("full-visual asset report is stale or modified")
+    if strict and current.get("status") != "FULL_VISUAL_PACKAGE_READY":
+        errors.append("strict asset gate is not PASS")
 
 
 def _verify_cargo_public_artifacts(errors: list[str]) -> None:
@@ -478,7 +1061,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--strict-assets",
         action="store_true",
-        help="fail while any documented unresolved visual assets remain",
+        help="require the current fail-closed full-visual asset audit",
     )
     return parser.parse_args()
 
@@ -488,10 +1071,6 @@ def main() -> int:
     errors: list[str] = []
     for relative in REQUIRED_FILES:
         _require_file(relative, errors)
-    if not XIAOYI_PORTRAIT.is_file():
-        errors.append("missing Xiaoyi maritime Q-style portrait")
-    elif _sha256(XIAOYI_PORTRAIT) != XIAOYI_PORTRAIT_SHA256:
-        errors.append("Xiaoyi portrait differs from the approved established identity")
     for path in (
         HOURLY,
         PROVENANCE,
@@ -509,6 +1088,18 @@ def main() -> int:
         SAFETY_UTILITY_AUDIT,
         RELIABILITY_CURRENT,
         MARITIME_ASSURANCE,
+        COLREG_COMPLEX_ASSURANCE,
+        COLREG_COMPLEX_UI,
+        RL_GENERALIZATION_ASSURANCE,
+        RL_GENERALIZATION_PLAN,
+        RL_GENERALIZATION_UI,
+        FULL_MISSION_BRIDGE_ASSURANCE,
+        FULL_MISSION_BRIDGE_UI,
+        MARITIME_CYBERSECURITY_ASSURANCE,
+        MARITIME_CYBERSECURITY_UI,
+        PORT_PRODUCTION_INTEGRATION_ASSURANCE,
+        PORT_PRODUCTION_INTEGRATION_UI,
+        FULL_VISUAL_ASSET_RELEASE,
         CARGO_EVIDENCE,
     ):
         if not path.is_file():
@@ -520,6 +1111,12 @@ def main() -> int:
         _verify_safety_supervisor_v3(errors)
         _verify_safety_utility_audit_v3(errors)
         _verify_maritime_assurance_v1(errors)
+        _verify_colreg_complex_v2(errors)
+        _verify_rl_generalization_v1(errors)
+        _verify_full_mission_bridge_v1(errors)
+        _verify_maritime_cybersecurity_v1(errors)
+        _verify_port_production_integration_v1(errors)
+        _verify_full_visual_asset_release_v1(errors, arguments.strict_assets)
         _verify_cargo_public_artifacts(errors)
         reliability = _load_json(RELIABILITY_CURRENT)
         ui_navigation = _load_json(
@@ -553,27 +1150,13 @@ def main() -> int:
                 "current fixed evidence must preserve the fail-closed "
                 "controller-admission result"
             )
-    unresolved = [
-        relative for relative in UNRESOLVED_ASSETS if (ROOT / relative).is_file()
-    ]
-    if arguments.strict_assets and unresolved:
-        errors.append(
-            "unresolved visual assets remain: " + ", ".join(unresolved)
-        )
     if errors:
         for error in errors:
             print(f"ERROR: {error}")
         print("project integrity check: FAIL")
         return 1
     print("project integrity check: PASS")
-    if unresolved:
-        print(
-            "third-party asset licensing: WARNING "
-            "(some assets still require source or license review; "
-            "see docs/ASSET_LICENSE_AUDIT.md)"
-        )
-    else:
-        print("third-party asset licensing: PASS")
+    print("third-party asset licensing: PASS (23 hash-bound public media files)")
     return 0
 
 

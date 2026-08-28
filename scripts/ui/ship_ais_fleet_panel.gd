@@ -435,6 +435,24 @@ func _load_external_ais_records() -> void:
 		return
 
 
+func get_equipment_ais_records() -> Array[Dictionary]:
+	# Public read-only seam for simulated bridge equipment.  The returned
+	# records remain historical/public AIS targets; callers must not relabel
+	# them as live traffic or mutate the panel's source cache.
+	_load_external_ais_records()
+	return _external_ais_records.duplicate(true)
+
+
+func get_ais_data_boundary() -> Dictionary:
+	return {
+		"source": _ais_data_source,
+		"record_count": _external_ais_records.size(),
+		"live": false,
+		"production_authority": false,
+		"boundary": "historical/public AIS replay or local simulated vessels only",
+	}
+
+
 func _add_row_label(parent: Control, text: String, width: float, color: Color, alignment: HorizontalAlignment = HORIZONTAL_ALIGNMENT_CENTER) -> void:
 	var label := _make_label(text, 11, color, alignment)
 	label.custom_minimum_size = Vector2(width, 28.0)

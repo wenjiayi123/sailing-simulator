@@ -1,0 +1,149 @@
+{
+	"boundary": "Functional calibration workflow acceptance only; no real named-vessel trial, parameter application, independent acceptance or production claim.",
+	"checks": {
+		"cross_trial_error_envelope_is_machine_readable": {
+			"detail": [
+				"position_error_p95_m",
+				"heading_error_p95_deg",
+				"surge_speed_rmse_mps",
+				"yaw_rate_rmse_deg_s"
+			],
+			"passed": true
+		},
+		"cross_trial_identification_summary_is_machine_readable": {
+			"detail": [
+				"surge_time_constant_s",
+				"surge_speed_gain_mps_per_throttle",
+				"nomoto_time_constant_s",
+				"nomoto_gain_radps_per_rad"
+			],
+			"passed": true
+		},
+		"each_loading_condition_has_an_error_envelope": {
+			"detail": [
+				"lightship",
+				"design_payload",
+				"maximum_operating"
+			],
+			"passed": true
+		},
+		"each_trial_has_metrics_identification_and_envelope": {
+			"detail": "seven trials",
+			"passed": true
+		},
+		"functional_report_covers_seven_maneuvers": {
+			"detail": 7.0,
+			"passed": true
+		},
+		"functional_report_covers_three_loading_conditions": {
+			"detail": [
+				"design_payload",
+				"lightship",
+				"maximum_operating"
+			],
+			"passed": true
+		},
+		"functional_smoke_does_not_claim_calibration": {
+			"detail": "Algorithm and schema smoke only. Simulator-generated trials cannot validate a named vessel.",
+			"passed": true
+		},
+		"hotkey_G_opens_named_vessel_panel": {
+			"detail": true,
+			"passed": true
+		},
+		"main_scene_load_request": {
+			"detail": 0,
+			"passed": true
+		},
+		"motion_model_and_existing_policy_artifacts_unchanged": {
+			"detail": {
+				"after": {
+					"res://data/rl/long_beach_ais_port_ops_benchmark_v2.json": "1d676e7446f22206f6113777524d46724545e58e55c1df73a9d359795a415a1f",
+					"res://data/rl/port_ops_safety_supervisor_v3.json": "1edee032e44132c4c15ade0de73ff3f0ba3ed9b2a25206faa0c6ca8a50f26de3",
+					"res://data/verification/catamaran_usv_dynamics_reference_v2.json": "d9dbd9fd61827952b50194f10e1a7331f7b154b7b7a69805de726e5bfd648c8f",
+					"res://player.gd": "a031fc53409eaca87af860536a615c047f51260a8c60ad65579c5cd8138caa6a",
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+					"res://scripts/physics/catamaran_three_dof_dynamics.gd": "4ea917668478d011dde89547da865b00e1600c7b5263c255fea8e846ea3321d2"
+				},
+				"before": {
+					"res://data/rl/long_beach_ais_port_ops_benchmark_v2.json": "1d676e7446f22206f6113777524d46724545e58e55c1df73a9d359795a415a1f",
+					"res://data/rl/port_ops_safety_supervisor_v3.json": "1edee032e44132c4c15ade0de73ff3f0ba3ed9b2a25206faa0c6ca8a50f26de3",
+					"res://data/verification/catamaran_usv_dynamics_reference_v2.json": "d9dbd9fd61827952b50194f10e1a7331f7b154b7b7a69805de726e5bfd648c8f",
+					"res://player.gd": "a031fc53409eaca87af860536a615c047f51260a8c60ad65579c5cd8138caa6a",
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+					"res://scripts/physics/catamaran_three_dof_dynamics.gd": "4ea917668478d011dde89547da865b00e1600c7b5263c255fea8e846ea3321d2"
+				}
+			},
+			"passed": true
+		},
+		"named_vessel_panel_present": {
+			"detail": "ShipNamedVesselTwinPanel",
+			"passed": true
+		},
+		"panel_cycles_missing_evidence": {
+			"detail": {
+				"after": "当前缺口：vessel_identity.official_number_or_mmsi is required",
+				"before": "当前缺口：vessel_identity.vessel_name is required"
+			},
+			"passed": true
+		},
+		"panel_cycles_trial_detail": {
+			"detail": {
+				"after": 1,
+				"before": 0
+			},
+			"passed": true
+		},
+		"panel_exports_site_evidence_templates": {
+			"detail": {
+				"csv_path": "user://named_vessel_twin_evidence/named_vessel_trial_template.csv",
+				"manifest_path": "user://named_vessel_twin_evidence/named_vessel_twin_manifest.json",
+				"passed": true
+			},
+			"passed": true
+		},
+		"panel_lists_all_maneuvers": {
+			"detail": 7,
+			"passed": true
+		},
+		"panel_receives_fail_closed_reports": {
+			"detail": {
+				"existing_model_modified": false,
+				"functional_maneuver_count": 7,
+				"functional_smoke_passed": true,
+				"last_export": {},
+				"loading_conditions_covered": [
+					"design_payload",
+					"lightship",
+					"maximum_operating"
+				],
+				"named_vessel_dynamics_calibrated": false,
+				"production_authority": false,
+				"readiness_status": "BLOCKED_NAMED_VESSEL_EVIDENCE_INCOMPLETE",
+				"required_maneuver_count": 7,
+				"schema_version": "ship_named_vessel_twin_panel_snapshot_v1",
+				"training_performed": false
+			},
+			"passed": true
+		},
+		"readiness_report_fails_closed": {
+			"detail": {
+				"errors": 45,
+				"status": "BLOCKED_NAMED_VESSEL_EVIDENCE_INCOMPLETE"
+			},
+			"passed": true
+		}
+	},
+	"errors": [],
+	"existing_policy_changed": false,
+	"generated_at": "2026-08-28T13:34:05",
+	"motion_model_changed": false,
+	"named_vessel_dynamics_calibrated": false,
+	"passed": true,
+	"passed_checks": 17,
+	"schema_version": "godot_named_vessel_twin_smoke_v1",
+	"total_checks": 17,
+	"training_performed": false
+}

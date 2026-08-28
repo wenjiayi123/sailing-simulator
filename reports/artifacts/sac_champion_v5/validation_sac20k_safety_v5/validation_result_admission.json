@@ -1,0 +1,47 @@
+{
+  "profile_id": "sac_champion_offline_admission_v5",
+  "strategy_id": "sac_pure_20k+safety_v5",
+  "dataset_split": "validation",
+  "thresholds": {
+    "minimum_collision_free_arrival_rate": 0.8,
+    "minimum_port_compliant_completion_rate": 0.75,
+    "minimum_mean_route_completion_ratio": 0.8,
+    "maximum_collision_episode_rate": 0.1,
+    "maximum_grounding_episode_rate": 0.05,
+    "maximum_colreg_violation_episode_rate": 0.1,
+    "maximum_channel_departure_episode_rate": 0.05,
+    "maximum_speed_violation_episode_rate": 0.05,
+    "maximum_hazard_supervisor_intervention_step_rate": 0.2,
+    "maximum_fail_closed_episode_rate": 0.05,
+    "minimum_raw_sac_action_accepted_step_rate": 0.5,
+    "minimum_rl_rudder_retained_step_rate": 0.8,
+    "minimum_rl_any_dimension_retained_step_rate": 0.9,
+    "maximum_decision_p95_ms": 250.0,
+    "maximum_replan_p95_ms": 250.0
+  },
+  "checks": {
+    "collision_free_arrival_rate": false,
+    "port_compliant_completion_rate": false,
+    "mean_route_completion_ratio": true,
+    "collision_episode_rate": true,
+    "grounding_episode_rate": true,
+    "colreg_violation_episode_rate": true,
+    "channel_departure_episode_rate": true,
+    "speed_violation_episode_rate": true,
+    "hazard_supervisor_intervention_step_rate": true,
+    "fail_closed_episode_rate": true,
+    "raw_sac_action_accepted_step_rate": false,
+    "rl_rudder_retained_step_rate": true,
+    "rl_any_dimension_retained_step_rate": false,
+    "decision_p95_ms": true,
+    "replan_p95_ms": true,
+    "contains_real_rl": true
+  },
+  "passed": false,
+  "failed_checks": [
+    "collision_free_arrival_rate",
+    "port_compliant_completion_rate",
+    "raw_sac_action_accepted_step_rate",
+    "rl_any_dimension_retained_step_rate"
+  ]
+}

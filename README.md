@@ -47,7 +47,7 @@
   <img src="docs/screenshots/01-port-ai-evidence-center.png" alt="同屏展示训练数据、十算法矩阵、小懿训练顾问和模块按钮联动" width="100%" />
 </p>
 
-系统总览可直接打开训练中心、航线规划、风险决策、海况、AIS、结果复盘和小懿全系统助手；自动测试同时覆盖对应快捷键与主船人工/后端控制航行。
+系统总览可直接打开训练中心、航线规划、风险决策、海况、AIS、结果复盘、小懿全系统助手、[全任务软件船桥](docs/FULL_MISSION_BRIDGE.md)、[船舶网络安全靶场](docs/MARITIME_CYBERSECURITY.md)及[港口生产联动台](docs/PORT_PRODUCTION_INTEGRATION.md)。全任务船桥将雷达/自动标绘/电子海图、全球海上遇险与安全系统通信程序、自动舵/推进台、九岗位多学员、八扇区软件全向视景、教员时间线和复盘连接为统一任务链；网络安全靶场提供七区默认拒绝、四角色最小权限、签名更新隔离、八规则检测、链式审计、恢复和攻击复现；生产联动台覆盖 VTS、TOS、引航、拖轮、泊位和官方通告的签名、时效、降级、人工确认与回执审计。三者均保持不接实船、不修改运动模型或既有策略，生产授权为 `false`。自动测试同时覆盖对应入口、快捷键与主船人工/后端控制航行。
 
 ## 系统价值 / Engineering value
 
@@ -80,7 +80,7 @@ Godot 4.7 owns vessel control, port geometry, risk envelopes, and 3D trajectory 
 
 当前场景实际包含 **32 个大型悬岩实例**（另外 2 个节点只是说明标签，不再误计为岩石）。它们的完整变换已锁入版本化清单，逐个核验结果为 **32/32 位置匹配、64/64 精确碰撞形状、32/32 雷达障碍、32/32 训练快照障碍**，且扰动恢复探针通过。两份历史冻结策略是在旧障碍契约下训练的，当前都会在 `GroundedPlate_06_TwistedButtressMesa` 触发一次实体碰撞守卫；Godot 会 fail-closed 停止回放而不会继续穿模。要在现地图完整播放，必须按新障碍快照重新训练并冻结新 checkpoint，不能把旧轨迹改写成“兼容”。运行 `make godot-large-rock-training-contract GODOT=/path/to/Godot` 可复核新训练契约；`make godot-cargo-collision-smoke` 会保留并报告旧策略的不兼容失败。
 
-The module includes runtime source, frozen weights, checkpoints, held-out trajectories, episode summaries, a replay controller, and control-panel source. The version manifest records SHA-256 hashes for released files. Exact map geometry, frozen experiment configuration, and the complete Godot scene and visual package are not included. Stable-Baselines3 archives may contain Python-serialized objects; load only hash-matched files from a trusted repository revision.
+The module's 11-file public-evidence manifest includes runtime source, frozen weights, checkpoints, held-out trajectories, episode summaries, a replay controller, and control-panel source. Exact map geometry and the complete Godot scene are intentionally outside that small evidence manifest; the separately audited full-visual bundle now includes the simulator runtime and all 23 licensed/hash-bound public media files while excluding unlicensed local legacy assets. Stable-Baselines3 archives may contain Python-serialized objects; load only hash-matched files from a trusted repository revision.
 
 > [!IMPORTANT]
 > 当前结果来自数值仿真与固定留出任务，不代表实船海试、COLREGs 认证或商业航行许可。公开环境输入、仿真动力学与真实传感/执行数据始终分层标注。
@@ -127,7 +127,7 @@ The v2 benchmark adds a `ship_port_dataset_v3` contract and a 45-dimensional por
 </p>
 
 > [!NOTE]
-> v2 的 2,000 步/算法运行是“公开数据与全算法执行覆盖”证据，不宣称七个 RL 已收敛。历史 AIS 不是实时交通，ENC Direct 不是船载认证海图；VTS、引航/拖轮/泊位、实时传感、船型标定和认证控制链未验证时，`live_control_ready=false`。
+> v2 的 2,000 步/算法运行是“公开数据与全算法执行覆盖”证据，不宣称七个 RL 已收敛。历史 AIS 不是实时交通，ENC Direct 不是船载认证海图；VTS、TOS、引航/拖轮/泊位/通告的离线联动功能已通过 53 项运行验收，但授权端点、SLA、真实映射与影子运行未验证，`live_control_ready=false`。
 
 十方法已完整完成 **720 个 validation + 1,300 个 sealed test rollout**，覆盖完整性为 **PASS**，安全准入为 **FAIL-CLOSED**。LOS-PID/LQR/MPC 在 130 场 test 的无碰撞到达率分别为 **86.9% / 70.0% / 73.8%**，但碰撞场景率仍为 **13.1% / 18.5% / 16.9%**，因此不以较高到达率替代安全结论。逐方法完整指标、哈希和边界见 [v2 十方法报告](reports/port_ops_benchmark_v2.md) 与 [机器可读报告](reports/port_ops_benchmark_v2.json)。
 
@@ -296,9 +296,12 @@ Run the main scene and press `H` to open the total-control hub, where the bundle
 | `I` | AIS 船队态势 | “AIS 船队态势” |
 | `P` | 仿真/训练结果复盘 | “打开训练结果复盘” |
 | `O` | 小懿全系统助手 | “小懿全系统助手” |
+| `F10` | 港口生产联动 | “港口生产联动 / VTS · TOS · 引航 · 拖轮 · 泊位 · 通告” |
+| `F11` | 船舶网络安全靶场 | “船舶网络安全 / 分区 · 身份 · 签名更新 · IDS · 恢复” |
+| `F12` | 全任务软件船桥 | “全任务软件船桥 / GMDSS · 推进台 · 多学员 · 360°” |
 | `G` / `K` / `T` | 场景切换 / 测试轨迹回放 / 昼夜天气循环 | 主 HUD 快捷键提示 |
 
-主船使用方向键产生航行输入，`A/D` 环绕相机、`R/F` 调整俯仰。自动化测试会加载 `main.tscn`，检查默认晴天、双体无人艇结构、十一个核心 UI 字母键、`H` 总控冻结策略播放、系统总览中的模块连接、十算法前端/后端清单，并分别通过后端指令与方向键驱动主船。当前 UI 冒烟测试 **45/45** 通过；结果写入 `reports/godot_ui_navigation_smoke_v1.json`。
+主船使用方向键产生航行输入，`A/D` 环绕相机、`R/F` 调整俯仰。自动化测试会加载 `main.tscn`，检查默认晴天、双体无人艇结构、全部业务面板及快捷键、`H` 总控冻结策略播放、系统总览中的模块连接、十算法前端/后端清单，并分别通过后端指令与方向键驱动主船。当前 UI 导航冒烟测试 **84/84** 通过；结果写入 `reports/godot_ui_navigation_smoke_v1.json`。
 
 ## 命令行训练 / Command-line training
 
@@ -352,6 +355,15 @@ make port-benchmark-verify
 # Godot 前端联动与主船航行回归 / UI linkage and navigation regression
 make godot-ui-navigation-smoke \
   GODOT=/absolute/path/to/Godot
+
+# 六类港口联动运行验收与保障报告 / six-adapter port-integration assurance
+make godot-port-production-integration-smoke GODOT=/absolute/path/to/Godot
+make port-production-integration-assurance-verify
+
+# 严格视觉资产台账及完整视觉包 / strict asset ledger and full-visual bundle
+make full-visual-asset-audit-verify
+make full-visual-release
+make full-visual-release-verify
 ```
 
 ## 接入真实港口 / Bring your own port
@@ -432,6 +444,10 @@ python3 tools/public_data_pipeline.py weather \
   *3-DOF dynamics, COLREG rule tracing, HIL protocol/fault injection, and sea-trial evidence gating.*
 - `tools/run_maritime_assurance.py`：生成并确定性复核航海保障报告。<br>
   *Generate and deterministically verify the maritime-assurance report.*
+- `scripts/integration/ship_port_production_gateway.gd`：VTS/TOS/引航/拖轮/泊位/通告的签名、时效、降级、人工确认和回执网关。<br>
+  *Fail-closed signed gateway for VTS, TOS, pilotage, tug, berth, and official-notice context.*
+- `tools/audit_full_visual_release.py` / `tools/build_full_visual_release.py`：逐媒体权利/哈希门禁和确定性完整视觉包。<br>
+  *Per-media rights/hash gate and deterministic full-visual release bundle.*
 - `tools/run_godot_acceptance.py`：Godot 版本、解析和短时 headless 启动验收，回执绑定脚本/场景源文件树。<br>
   *Godot version, parse, and short headless-start acceptance bound to the script/scene source tree.*
 - `scripts/ui/ship_rl_control_panel.gd`：真实训练/测试任务控制台。<br>
@@ -451,9 +467,9 @@ python3 tools/public_data_pipeline.py weather \
 
 ## 许可证与参考资料 / License & references
 
-源代码采用 [Apache License 2.0](LICENSE)。公开数据的来源与署名要求见[数据来源](docs/DATA_SOURCES.md)，模型与模拟结果的计算口径见[模拟器指标体系](docs/SIMULATOR_METRICS.md)。第三方素材不因代码许可证而重新授权，使用时请同时遵循 [NOTICE](NOTICE) 及原始来源条款。
+源代码采用 [Apache License 2.0](LICENSE)。公开数据的来源与署名要求见[数据来源](docs/DATA_SOURCES.md)，模型与模拟结果的计算口径见[模拟器指标体系](docs/SIMULATOR_METRICS.md)。完整视觉包内 23 项媒体逐项记录于[机器可读资产台账](data/verification/visual_asset_release_manifest_v1.json)和[资产权利说明](THIRD_PARTY_ASSETS.md)；来源未闭环的旧素材仅本地保留并由打包器排除，不因代码许可证而重新授权。
 
-Source code is available under the [Apache License 2.0](LICENSE). See [data sources](docs/DATA_SOURCES.md) for provenance and attribution, and [simulator metrics](docs/SIMULATOR_METRICS.md) for calculation methods. Third-party assets are not relicensed under Apache-2.0; their original terms and the repository [NOTICE](NOTICE) continue to apply.
+Source code is available under the [Apache License 2.0](LICENSE). See [data sources](docs/DATA_SOURCES.md) for provenance and attribution, and [simulator metrics](docs/SIMULATOR_METRICS.md) for calculation methods. The 23 public media files in the full-visual bundle are individually bound to origin, license, and SHA-256 in the [machine-readable ledger](data/verification/visual_asset_release_manifest_v1.json) and [asset rights notice](THIRD_PARTY_ASSETS.md). Unresolved legacy assets remain local-only and are not relicensed or packaged.
 
 ## 学术顾问与致谢 / Academic Advisor & Acknowledgements
 

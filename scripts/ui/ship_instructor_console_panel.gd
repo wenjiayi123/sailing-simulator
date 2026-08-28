@@ -22,6 +22,7 @@ const COLOR_MUTED := Color(0.56, 0.70, 0.76, 0.92)
 @export var navigation_panel_path: NodePath = NodePath("../ShipNavigationPlanningPanel")
 @export var review_panel_path: NodePath = NodePath("../ShipSimulationReviewPanel")
 @export var ais_panel_path: NodePath = NodePath("../ShipAISFleetPanel")
+@export var exercise_controller_path: NodePath = NodePath("../ShipInstructorExerciseController")
 
 var _root: Control
 var _pause_button: Button
@@ -41,6 +42,7 @@ var _risk_panel: Node
 var _navigation_panel: Node
 var _review_panel: Node
 var _ais_panel: Node
+var _exercise_controller: Node
 var _refresh_timer := 0.0
 var _incident_log: Array[Dictionary] = []
 var _event_log: Array[Dictionary] = []
@@ -144,7 +146,7 @@ func _build_interface() -> void:
 	header.add_theme_constant_override("separation", 8)
 	stack.add_child(header)
 	var portrait := TextureRect.new()
-	portrait.texture = load("res://assets/ui/xiaoyi/xiaoyi-maritime-officer.png")
+	portrait.texture = load("res://assets/generated/release/xiaoyi_maritime_officer.svg")
 	portrait.custom_minimum_size = Vector2(42.0, 48.0)
 	portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
@@ -182,6 +184,8 @@ func _build_interface() -> void:
 	_add_section(grid, "临时障碍", _build_obstacle_controls())
 	_add_section(grid, "天气切换", _build_weather_controls())
 	_add_section(grid, "重置 / 报告", _build_reset_report_controls())
+	_add_section(grid, "设备故障矩阵", _build_equipment_fault_controls())
+	_add_section(grid, "演练时间线", _build_exercise_timeline_controls())
 
 	_log_label = _make_label("--", 11, COLOR_MUTED)
 	_log_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -316,6 +320,60 @@ func _build_reset_report_controls() -> Control:
 	return root
 
 
+func _build_equipment_fault_controls() -> Control:
+	var root := VBoxContainer.new()
+	root.add_theme_constant_override("separation", 6)
+	var row_a := HBoxContainer.new()
+	row_a.add_theme_constant_override("separation", 6)
+	root.add_child(row_a)
+	var radar_button := _make_button("雷达黑屏")
+	radar_button.pressed.connect(_on_equipment_fault_pressed.bind("radar_power_loss", true))
+	row_a.add_child(radar_button)
+	var ais_button := _make_button("AIS 丢失")
+	ais_button.pressed.connect(_on_equipment_fault_pressed.bind("ais_loss", true))
+	row_a.add_child(ais_button)
+	var row_b := HBoxContainer.new()
+	row_b.add_theme_constant_override("separation", 6)
+	root.add_child(row_b)
+	var gyro_button := _make_button("罗经 +7.5°")
+	gyro_button.pressed.connect(_on_equipment_fault_pressed.bind("gyro_bias_deg", 7.5))
+	row_b.add_child(gyro_button)
+	var restore_button := _make_button("恢复设备")
+	restore_button.pressed.connect(_on_clear_equipment_faults_pressed)
+	row_b.add_child(restore_button)
+	return root
+
+
+func _build_exercise_timeline_controls() -> Control:
+	var root := VBoxContainer.new()
+	root.add_theme_constant_override("separation", 6)
+	var template_row := HBoxContainer.new()
+	template_row.add_theme_constant_override("separation", 6)
+	root.add_child(template_row)
+	var visibility_button := _make_button("受限能见度")
+	visibility_button.pressed.connect(_on_load_exercise_pressed.bind("restricted_visibility_bridge"))
+	template_row.add_child(visibility_button)
+	var disagreement_button := _make_button("传感器矛盾")
+	disagreement_button.pressed.connect(_on_load_exercise_pressed.bind("sensor_disagreement"))
+	template_row.add_child(disagreement_button)
+	var action_row := HBoxContainer.new()
+	action_row.add_theme_constant_override("separation", 6)
+	root.add_child(action_row)
+	var start_button := _make_button("启动时间线")
+	start_button.pressed.connect(_on_exercise_start_pressed)
+	action_row.add_child(start_button)
+	var next_button := _make_button("下一事件")
+	next_button.pressed.connect(_on_exercise_next_pressed)
+	action_row.add_child(next_button)
+	var pause_button := _make_button("暂停时间线")
+	pause_button.pressed.connect(_on_exercise_pause_pressed)
+	action_row.add_child(pause_button)
+	var reset_button := _make_button("复位时间线")
+	reset_button.pressed.connect(_on_exercise_reset_pressed)
+	action_row.add_child(reset_button)
+	return root
+
+
 func _add_section(parent: Control, title: String, content: Control) -> void:
 	var section := PanelContainer.new()
 	section.custom_minimum_size = Vector2(0.0, 100.0)
@@ -382,6 +440,9 @@ func _resolve_sources() -> void:
 	_ais_panel = get_node_or_null(ais_panel_path)
 	if _ais_panel == null:
 		_ais_panel = get_tree().get_first_node_in_group(&"ship_ais_fleet_panel")
+	_exercise_controller = get_node_or_null(exercise_controller_path)
+	if _exercise_controller == null:
+		_exercise_controller = get_tree().get_first_node_in_group(&"ship_instructor_exercise_controller")
 
 
 func _refresh_status() -> void:
@@ -573,6 +634,74 @@ func _on_reset_fleet_pressed() -> void:
 	_refresh_status()
 
 
+func _on_equipment_fault_pressed(fault_key: String, value: Variant) -> void:
+	_resolve_sources()
+	if _exercise_controller == null or not _exercise_controller.has_method("inject_equipment_fault"):
+		_log("设备故障控制器未就绪")
+		_announce_scenario_action("EQUIPMENT ERROR  设备故障控制器未就绪", COLOR_RED)
+		return
+	var receipt := _exercise_controller.call("inject_equipment_fault", fault_key, value, "instructor_panel") as Dictionary
+	_log_receipt(receipt, "设备故障注入")
+
+
+func _on_clear_equipment_faults_pressed() -> void:
+	_resolve_sources()
+	if _exercise_controller == null or not _exercise_controller.has_method("clear_equipment_faults"):
+		_log("设备故障控制器未就绪")
+		return
+	var receipt := _exercise_controller.call("clear_equipment_faults", "instructor_panel") as Dictionary
+	_log_receipt(receipt, "设备故障恢复")
+
+
+func _on_load_exercise_pressed(template_key: String) -> void:
+	_resolve_sources()
+	if _exercise_controller == null or not _exercise_controller.has_method("load_exercise"):
+		_log("演练时间线控制器未就绪")
+		return
+	var receipt := _exercise_controller.call("load_exercise", template_key) as Dictionary
+	_log_receipt(receipt, "载入演练时间线")
+
+
+func _on_exercise_start_pressed() -> void:
+	_call_exercise_action("start_exercise", "启动演练时间线")
+
+
+func _on_exercise_next_pressed() -> void:
+	_call_exercise_action("execute_next_event", "执行下一时间线事件")
+
+
+func _on_exercise_pause_pressed() -> void:
+	_call_exercise_action("pause_exercise", "暂停演练时间线")
+
+
+func _on_exercise_reset_pressed() -> void:
+	_resolve_sources()
+	if _exercise_controller == null or not _exercise_controller.has_method("reset_exercise"):
+		_log("演练时间线控制器未就绪")
+		return
+	var receipt := _exercise_controller.call("reset_exercise", true) as Dictionary
+	_log_receipt(receipt, "复位演练时间线")
+
+
+func _call_exercise_action(method_name: String, label: String) -> void:
+	_resolve_sources()
+	if _exercise_controller == null or not _exercise_controller.has_method(method_name):
+		_log("演练时间线控制器未就绪")
+		return
+	var receipt := _exercise_controller.call(method_name) as Dictionary
+	_log_receipt(receipt, label)
+
+
+func _log_receipt(receipt: Dictionary, label: String) -> void:
+	var accepted := String(receipt.get("status", "REJECTED")) != "REJECTED"
+	_log("%s：%s / %s" % [label, receipt.get("status", "REJECTED"), receipt.get("receipt_id", "NO-RECEIPT")])
+	_announce_scenario_action(
+		"RECEIPT %s  %s" % [receipt.get("receipt_id", "--"), label],
+		COLOR_GREEN if accepted else COLOR_RED,
+	)
+	_refresh_status()
+
+
 func _on_report_pressed() -> void:
 	var payload := _build_report_payload()
 	payload["reportPath"] = ProjectSettings.globalize_path(REPORT_PATH)
@@ -587,13 +716,19 @@ func _on_report_pressed() -> void:
 	_log("报告已生成：%s；场景、天气、船队、航线、障碍和操作日志已记录" % _last_report_path)
 	_announce_scenario_action("REPORT READY  教员场景注入记录已生成", COLOR_GREEN)
 	_open_panel(_review_panel, "复盘报告面板")
+	if _review_panel != null and _review_panel.has_method("ingest_instructor_debrief"):
+		_review_panel.call("ingest_instructor_debrief", payload)
 	if _review_panel != null and _review_panel.has_method("mark_instructor_report_generated"):
 		_review_panel.call("mark_instructor_report_generated", _last_report_path)
 	_refresh_status()
 
 
 func _build_report_payload() -> Dictionary:
+	var exercise := {}
+	if _exercise_controller != null and _exercise_controller.has_method("get_exercise_snapshot"):
+		exercise = _exercise_controller.call("get_exercise_snapshot") as Dictionary
 	return {
+		"schemaVersion": "ship_instructor_debrief_v2",
 		"generatedAt": Time.get_datetime_string_from_system(false, true),
 		"simulation": {
 			"paused": get_tree().paused,
@@ -607,13 +742,34 @@ func _build_report_payload() -> Dictionary:
 		"temporaryObstacleCount": _temporary_obstacle_count,
 		"injectedIncidents": _incident_log.duplicate(true),
 		"actionLog": _event_log.duplicate(true),
+		"exerciseTimeline": exercise,
+		"equipmentFaultMatrix": exercise.get("fault_matrix", []),
 		"scenarioInjectionSummary": {
 			"scenario": _scenario_name(),
 			"weather": _weather_name(),
 			"controlledShip": _controlled_ship_name(),
 			"incidentCount": _incident_log.size(),
 			"temporaryObstacleCount": _temporary_obstacle_count
+		},
+		"assuranceBoundary": {
+			"productionAuthority": false,
+			"changesMotionModel": false,
+			"changesPolicy": false,
+			"equipmentFaultsAffectDisplaysOnly": true,
+			"statement": "研究级教员站与复盘证据，不等同于认可的全任务驾驶台教员站或海上试验。"
 		}
+	}
+
+
+func get_instructor_acceptance_snapshot() -> Dictionary:
+	var payload := _build_report_payload()
+	return {
+		"format": payload.get("schemaVersion", ""),
+		"exercise": payload.get("exerciseTimeline", {}),
+		"fault_matrix": payload.get("equipmentFaultMatrix", []),
+		"incident_count": _incident_log.size(),
+		"action_count": _event_log.size(),
+		"boundary": payload.get("assuranceBoundary", {}),
 	}
 
 

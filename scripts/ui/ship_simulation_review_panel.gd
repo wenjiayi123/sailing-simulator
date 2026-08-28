@@ -65,6 +65,7 @@ var _active_strategy_label := "人工驾驶"
 var _last_summary: Dictionary = {}
 var _runs_by_strategy: Dictionary = {}
 var _instructor_report_path := ""
+var _instructor_debrief: Dictionary = {}
 
 
 class TrajectoryPlot:
@@ -206,6 +207,30 @@ func mark_instructor_report_generated(report_path: String) -> void:
 	_update_label("record_state", "REPORT", COLOR_GREEN)
 	_update_label("score_pill", "REPORT READY", COLOR_GREEN)
 	_update_label("score_notes", "教员报告已生成：" + report_path)
+
+
+func ingest_instructor_debrief(payload: Dictionary) -> void:
+	_instructor_debrief = payload.duplicate(true)
+	_update_label("record_state", "DEBRIEF", COLOR_GREEN)
+	_update_label("score_pill", "AUDIT READY", COLOR_GREEN)
+	var exercise := _instructor_debrief.get("exerciseTimeline", {}) as Dictionary
+	_update_label(
+		"score_notes",
+		"教员复盘已接收：%s，%d 个执行回执"
+		% [exercise.get("template_name", "未载入时间线"), (exercise.get("receipts", []) as Array).size()],
+	)
+
+
+func get_debrief_acceptance_snapshot() -> Dictionary:
+	var exercise := _instructor_debrief.get("exerciseTimeline", {}) as Dictionary
+	return {
+		"format": _instructor_debrief.get("schemaVersion", ""),
+		"received": not _instructor_debrief.is_empty(),
+		"template_key": exercise.get("template_key", ""),
+		"receipt_count": (exercise.get("receipts", []) as Array).size(),
+		"fault_matrix_count": (_instructor_debrief.get("equipmentFaultMatrix", []) as Array).size(),
+		"boundary": _instructor_debrief.get("assuranceBoundary", {}),
+	}
 
 
 func _build_interface() -> void:
@@ -768,6 +793,7 @@ func _export_review() -> void:
 	var payload := {
 		"currentRun": _last_summary,
 		"runsByStrategy": _runs_by_strategy,
+		"instructorDebrief": _instructor_debrief,
 		"exportPath": EXPORT_PATH
 	}
 	var file := FileAccess.open(EXPORT_PATH, FileAccess.WRITE)

@@ -1,0 +1,45 @@
+{
+  "schema_version": "full_mission_bridge_acceptance_manifest_v1",
+  "profile_id": "RL-NAV-FMB-2026-01",
+  "evidence_files": {},
+  "equipment_acceptance": {
+    "type_approval_evidence_file": "",
+    "official_chart_and_update_service_evidence_file": "",
+    "gmdss_hardware_test_evidence_file": "",
+    "steering_and_propulsion_console_test_evidence_file": ""
+  },
+  "visual_acceptance": {
+    "physical_display_layout_evidence_file": "",
+    "measured_horizontal_coverage_degrees": 0,
+    "measured_vertical_field_of_view_degrees": 0,
+    "worst_channel_latency_ms": null,
+    "channel_synchronization_evidence_file": ""
+  },
+  "multi_student_acceptance": {
+    "non_loopback_network_test_evidence_file": "",
+    "concurrent_station_count": 0,
+    "encrypted_transport_verified": false,
+    "session_authentication_verified": false,
+    "disconnect_recovery_verified": false
+  },
+  "instructor_acceptance": {
+    "instructor_identity": "",
+    "qualification_evidence_file": "",
+    "course_scope": "",
+    "issuing_authority": "",
+    "expiry_date": "",
+    "witness_signature": ""
+  },
+  "course_acceptance": {
+    "approved_training_course": false,
+    "approval_authority": "",
+    "approval_evidence_file": "",
+    "independent_acceptance_report_file": ""
+  },
+  "claims": {
+    "physical_full_mission_bridge_verified": false,
+    "instructor_qualification_verified": false,
+    "course_approval_verified": false,
+    "production_authority": false
+  }
+}

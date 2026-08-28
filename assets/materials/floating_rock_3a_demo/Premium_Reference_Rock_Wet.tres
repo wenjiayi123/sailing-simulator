@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://c5k8d5qqv02rv"]
 
 [ext_resource type="Shader" uid="uid://bgi6o8wl28gn4" path="res://shaders/floating_rock_3a_demo_rock.gdshader" id="1_shader"]
-[ext_resource type="Texture2D" uid="uid://b5wtiyrnhjq87" path="res://assets/art/terrain/premium_reference_cliff_rock_32471782690108.jpg" id="2_ref"]
+[ext_resource type="Texture2D" uid="uid://bhh88resbwr5v" path="res://assets/generated/release/rock_albedo.svg" id="2_ref"]
 
 [resource]
 resource_name = "Premium_Reference_Rock_Wet"

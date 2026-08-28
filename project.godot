@@ -13,7 +13,7 @@ config_version=5
 config/name="无人航行模拟器（Jiayi Wen）"
 run/main_scene="uid://1puthffyfgaa"
 config/features=PackedStringArray("4.7", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://assets/generated/release/simulator_icon.svg"
 
 [display]
 

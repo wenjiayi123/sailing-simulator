@@ -19,6 +19,19 @@ const COLOR_MUTED := Color(0.55, 0.70, 0.77, 1.0)
 @export var review_panel_path: NodePath = NodePath("../ShipSimulationReviewPanel")
 @export var ais_panel_path: NodePath = NodePath("../ShipAISFleetPanel")
 @export var instructor_panel_path: NodePath = NodePath("../ShipInstructorConsolePanel")
+@export var integrated_bridge_panel_path: NodePath = NodePath("../ShipIntegratedBridgePanel")
+@export var multisensor_fusion_panel_path: NodePath = NodePath("../ShipMultisensorFusionPanel")
+@export var execution_control_panel_path: NodePath = NodePath("../ShipExecutionControlPanel")
+@export var named_vessel_twin_panel_path: NodePath = NodePath("../ShipNamedVesselTwinPanel")
+@export var port_operations_panel_path: NodePath = NodePath("../ShipPortOperationsPanel")
+@export var bridge_team_panel_path: NodePath = NodePath("../ShipBridgeTeamPanel")
+@export var physical_bridge_readiness_panel_path: NodePath = NodePath("../ShipPhysicalBridgeReadinessPanel")
+@export var safety_case_panel_path: NodePath = NodePath("../ShipSafetyCasePanel")
+@export var colreg_complex_panel_path: NodePath = NodePath("../ShipColregComplexPanel")
+@export var rl_generalization_panel_path: NodePath = NodePath("../ShipRlGeneralizationPanel")
+@export var full_mission_bridge_panel_path: NodePath = NodePath("../ShipFullMissionBridgePanel")
+@export var cybersecurity_panel_path: NodePath = NodePath("../ShipBridgeCybersecurityPanel")
+@export var port_integration_panel_path: NodePath = NodePath("../ShipPortIntegrationPanel")
 
 var _root: Control
 var _dataset_label: RichTextLabel
@@ -74,6 +87,11 @@ func _prepare_capture_mode() -> void:
 		var player := get_node_or_null("../Player")
 		if player != null and player.has_method("set_ship_agent_command"):
 			player.call("set_ship_agent_command", 0.65, 0.12)
+	elif mode == "bridge":
+		_root.visible = false
+		var bridge := _node(integrated_bridge_panel_path)
+		if bridge != null and bridge.has_method("show_panel"):
+			bridge.call("show_panel")
 	else:
 		_root.visible = true
 
@@ -135,6 +153,19 @@ func _build_interface() -> void:
 	data_column.add_child(_action_button("校验 v2 港口数据契约", COLOR_GREEN, _validate_port_contract))
 	data_column.add_child(_action_button("航线规划 / 风险决策 / 海况", COLOR_AMBER, _open_navigation))
 	data_column.add_child(_action_button("AIS 船队态势", COLOR_CYAN, _open_ais))
+	data_column.add_child(_action_button("综合驾驶台 / RADAR · ARPA · ECDIS", COLOR_GREEN, _open_integrated_bridge))
+	data_column.add_child(_action_button("全任务软件船桥 / GMDSS · 推进台 · 多学员 · 360°", COLOR_GREEN, _open_full_mission_bridge))
+	data_column.add_child(_action_button("多源传感融合 / RADAR · AIS · EO · IR · GNSS · INS", COLOR_CYAN, _open_multisensor_fusion))
+	data_column.add_child(_action_button("执行控制闭环 / 自动舵 · 推进 · 仲裁 · 急停", COLOR_CYAN, _open_execution_control))
+	data_column.add_child(_action_button("指定船舶数字孪生 / 海试辨识 · 误差包络", COLOR_CYAN, _open_named_vessel_twin))
+	data_column.add_child(_action_button("港内作业训练 / 靠离泊 · 拖轮 · 锚泊 · 系泊", COLOR_AMBER, _open_port_operations))
+	data_column.add_child(_action_button("多驾驶台协同 / 通信 · 复诵 · BRM", COLOR_CYAN, _open_bridge_team))
+	data_column.add_child(_action_button("物理驾驶台 / HIL · 标准 · 现场准入", COLOR_RED, _open_physical_bridge_readiness))
+	data_column.add_child(_action_button("安全案例 / ODD · 危险 · MRC · FTA · RCC", COLOR_RED, _open_safety_case))
+	data_column.add_child(_action_button("复杂避碰规则 / 多船 · 狭水道 · 分道 · 灯号声号", COLOR_AMBER, _open_colreg_complex))
+	data_column.add_child(_action_button("RL 泛化可信度 / 多域 · OOD · 消融 · 压力 · 影子", COLOR_AMBER, _open_rl_generalization))
+	data_column.add_child(_action_button("船舶网络安全 / 分区 · 身份 · 签名更新 · IDS · 恢复", COLOR_RED, _open_cybersecurity))
+	data_column.add_child(_action_button("港口生产联动 / VTS · TOS · 引航 · 拖轮 · 泊位 · 通告", COLOR_RED, _open_port_integration))
 
 	var matrix_column := _column("十算法基准矩阵", "10 BASE POLICIES + ADDITIVE SAFETY V3", COLOR_GREEN)
 	matrix_column.custom_minimum_size.x = 500.0
@@ -155,7 +186,7 @@ func _build_interface() -> void:
 	portrait_row.add_theme_constant_override("separation", 12)
 	xiaoyi_column.add_child(portrait_row)
 	var portrait := TextureRect.new()
-	portrait.texture = load("res://assets/ui/xiaoyi/xiaoyi-maritime-officer.png")
+	portrait.texture = load("res://assets/generated/release/xiaoyi_maritime_officer.svg")
 	portrait.custom_minimum_size = Vector2(164.0, 184.0)
 	portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
@@ -471,6 +502,97 @@ func _open_navigation() -> void:
 
 func _open_ais() -> void:
 	var panel := _node(ais_panel_path)
+	if panel != null and panel.has_method("show_panel"):
+		_hide_self()
+		panel.call("show_panel")
+
+
+func _open_integrated_bridge() -> void:
+	var panel := _node(integrated_bridge_panel_path)
+	if panel != null and panel.has_method("show_panel"):
+		_hide_self()
+		panel.call("show_panel")
+
+
+func _open_full_mission_bridge() -> void:
+	var panel := _node(full_mission_bridge_panel_path)
+	if panel != null and panel.has_method("show_panel"):
+		_hide_self()
+		panel.call("show_panel")
+
+
+func _open_multisensor_fusion() -> void:
+	var panel := _node(multisensor_fusion_panel_path)
+	if panel != null and panel.has_method("show_panel"):
+		_hide_self()
+		panel.call("show_panel")
+
+
+func _open_execution_control() -> void:
+	var panel := _node(execution_control_panel_path)
+	if panel != null and panel.has_method("show_panel"):
+		_hide_self()
+		panel.call("show_panel")
+
+
+func _open_named_vessel_twin() -> void:
+	var panel := _node(named_vessel_twin_panel_path)
+	if panel != null and panel.has_method("show_panel"):
+		_hide_self()
+		panel.call("show_panel")
+
+
+func _open_port_operations() -> void:
+	var panel := _node(port_operations_panel_path)
+	if panel != null and panel.has_method("show_panel"):
+		_hide_self()
+		panel.call("show_panel")
+
+
+func _open_bridge_team() -> void:
+	var panel := _node(bridge_team_panel_path)
+	if panel != null and panel.has_method("show_panel"):
+		_hide_self()
+		panel.call("show_panel")
+
+
+func _open_physical_bridge_readiness() -> void:
+	var panel := _node(physical_bridge_readiness_panel_path)
+	if panel != null and panel.has_method("show_panel"):
+		_hide_self()
+		panel.call("show_panel")
+
+
+func _open_safety_case() -> void:
+	var panel := _node(safety_case_panel_path)
+	if panel != null and panel.has_method("show_panel"):
+		_hide_self()
+		panel.call("show_panel")
+
+
+func _open_colreg_complex() -> void:
+	var panel := _node(colreg_complex_panel_path)
+	if panel != null and panel.has_method("show_panel"):
+		_hide_self()
+		panel.call("show_panel")
+
+
+func _open_rl_generalization() -> void:
+	var panel := _node(rl_generalization_panel_path)
+	if panel != null and panel.has_method("show_panel"):
+		_hide_self()
+		panel.call("show_panel")
+
+
+func _open_cybersecurity() -> void:
+	var panel := _node(cybersecurity_panel_path)
+	if panel != null and panel.has_method("show_panel"):
+		_hide_self()
+		panel.call("show_panel")
+
+
+func _open_port_integration() -> void:
+	var panel := _node(port_integration_panel_path)
 	if panel != null and panel.has_method("show_panel"):
 		_hide_self()
 		panel.call("show_panel")

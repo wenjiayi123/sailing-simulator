@@ -1,0 +1,26 @@
+{
+  "status": "complete",
+  "ok": true,
+  "operation": "fine_tune",
+  "stage": "sac_champion_v5_checkpoint_ready",
+  "algorithm": "sac",
+  "progress": 1.0,
+  "completed_timesteps": 40000,
+  "lineage_timesteps": 60000,
+  "episodes_completed": 36,
+  "mean_reward_20": -116.13075535000016,
+  "success_rate_20": 0.4,
+  "port_compliant_rate_20": 0.15,
+  "elapsed_seconds": 609.086477261,
+  "checkpoint_json": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/checkpoint.json",
+  "model_path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/sac_policy.zip",
+  "render": false,
+  "dataset_split": "train",
+  "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+  "experiment_sha256": "502a2f6a7966d00b879e3339d6f435792ea0c934d62c670d3dc17f8d35799dd4",
+  "observation_size": 45,
+  "port_contract": {
+    "research_training_ready": true,
+    "live_control_ready": false
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "status": "complete",
+  "ok": true,
+  "operation": "train",
+  "stage": "port_checkpoint_ready",
+  "algorithm": "sac",
+  "progress": 1.0,
+  "completed_timesteps": 20000,
+  "total_timesteps": 20000,
+  "episodes_completed": 17,
+  "mean_reward_20": 1450.4862696470589,
+  "success_rate_20": 0.17647058823529413,
+  "elapsed_seconds": 273.28955771399995,
+  "checkpoint_json": "reports/artifacts/sac_champion_v5/pilot_pure_20k/checkpoint.json",
+  "model_path": "reports/artifacts/sac_champion_v5/pilot_pure_20k/sac_policy.zip",
+  "render": false,
+  "dataset_split": "train",
+  "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+  "experiment_sha256": "b3ce96edb6a995c3d5fd9787fbae05d00a7f760f133b3910604bd740fcbf2da1",
+  "observation_size": 45,
+  "port_contract": {
+    "research_training_ready": true,
+    "live_control_ready": false
+  }
+}

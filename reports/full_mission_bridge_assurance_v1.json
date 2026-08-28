@@ -1,0 +1,141 @@
+{
+  "schema_version": "full_mission_bridge_assurance_v1",
+  "status": "FUNCTIONAL_SOFTWARE_BRIDGE_COMPLETE_EXTERNAL_ACCEPTANCE_BLOCKED",
+  "functional_software_bridge_complete": true,
+  "checks": {
+    "profile_schema": true,
+    "ten_equipment_domains": true,
+    "runtime_components_present": true,
+    "gmdss_contract": true,
+    "visual_contract": true,
+    "multi_student_contract": true,
+    "instructor_gate": true,
+    "preservation_boundary": true,
+    "external_claims_fail_closed": true,
+    "existing_policy_hashes": true,
+    "godot_runtime_acceptance": true,
+    "external_manifest_fail_closed": true,
+    "no_self_asserted_external_claim": true
+  },
+  "profile_evaluation": {
+    "schema_valid": true,
+    "domain_contract_complete": true,
+    "domain_count": 10,
+    "domain_ids": [
+      "RADAR_ARPA",
+      "ECDIS",
+      "CONNING",
+      "GMDSS_VHF_DSC",
+      "AUTOPILOT_STEERING",
+      "PROPULSION_TELEGRAPH",
+      "MULTI_STATION_BRM",
+      "PANORAMIC_VISUAL",
+      "INSTRUCTOR_STATION",
+      "DEBRIEF"
+    ],
+    "declared_runtime_components": [
+      "ShipBridgeTeamCollaborationController",
+      "ShipExecutionControlSuite",
+      "ShipFullMissionBridgeSuite",
+      "ShipGmdssCommunicationsSuite",
+      "ShipInstructorExerciseController",
+      "ShipNavigationEquipmentSuite",
+      "ShipSimulationReviewPanel"
+    ],
+    "runtime_component_files": {
+      "ShipNavigationEquipmentSuite": true,
+      "ShipGmdssCommunicationsSuite": true,
+      "ShipExecutionControlSuite": true,
+      "ShipBridgeTeamCollaborationController": true,
+      "ShipFullMissionBridgeSuite": true,
+      "ShipInstructorExerciseController": true,
+      "ShipSimulationReviewPanel": true
+    },
+    "runtime_components_present": true,
+    "gmdss_contract_complete": true,
+    "visual_contract_complete": true,
+    "multi_student_contract_complete": true,
+    "instructor_gate_complete": true,
+    "preservation_boundary_complete": true,
+    "external_claims_fail_closed": true
+  },
+  "runtime_acceptance": {
+    "passed": true,
+    "passed_count": 38,
+    "check_count": 38,
+    "errors": [],
+    "file": "reports/godot_full_mission_bridge_smoke_v1.json",
+    "file_sha256": "6a741b39f03aa79e823e94d176849bff55bea28e522c602cee7d210f7bfa347e"
+  },
+  "preserved_policy_inventory": {
+    "passed": true,
+    "policy_count": 10,
+    "errors": []
+  },
+  "external_acceptance_gate": {
+    "schema_valid": true,
+    "reference_checks": {
+      "equipment_acceptance.type_approval_evidence_file": false,
+      "equipment_acceptance.official_chart_and_update_service_evidence_file": false,
+      "equipment_acceptance.gmdss_hardware_test_evidence_file": false,
+      "equipment_acceptance.steering_and_propulsion_console_test_evidence_file": false,
+      "visual_acceptance.physical_display_layout_evidence_file": false,
+      "visual_acceptance.channel_synchronization_evidence_file": false,
+      "multi_student_acceptance.non_loopback_network_test_evidence_file": false,
+      "instructor_acceptance.qualification_evidence_file": false,
+      "course_acceptance.approval_evidence_file": false,
+      "course_acceptance.independent_acceptance_report_file": false
+    },
+    "visual_metrics": {
+      "coverage": false,
+      "vertical_field": false,
+      "latency": false
+    },
+    "multi_student_metrics": {
+      "concurrent_stations": false,
+      "encrypted_transport": false,
+      "session_authentication": false,
+      "disconnect_recovery": false
+    },
+    "instructor_metadata": {
+      "instructor_identity": false,
+      "course_scope": false,
+      "issuing_authority": false,
+      "expiry_date": false,
+      "witness_signature": false
+    },
+    "course_metadata_complete": false,
+    "self_asserted_claim_detected": false,
+    "evidence_package_complete": false,
+    "status": "BLOCKED_EXTERNAL_FULL_MISSION_EVIDENCE_INCOMPLETE",
+    "physical_full_mission_bridge_verified": false,
+    "instructor_qualification_verified": false,
+    "course_approval_verified": false,
+    "production_authority": false,
+    "external_decision_required": true
+  },
+  "claims": {
+    "training_performed": false,
+    "ship_motion_model_modified": false,
+    "observation_space_modified": false,
+    "action_space_modified": false,
+    "reward_function_modified": false,
+    "existing_policy_modified": false,
+    "real_radio_transmission": false,
+    "physical_full_mission_bridge_verified": false,
+    "type_approved_bridge_equipment": false,
+    "instructor_qualification_verified": false,
+    "approved_training_course": false,
+    "production_authority": false
+  },
+  "inputs_sha256": {
+    "data/verification/full_mission_bridge_profile_v1.json": "fefefec6937e3f6028c325051e48b280b483388f19f375c4e08ce0496fb8d5b2",
+    "data/verification/full_mission_bridge_acceptance_manifest.template.json": "5d9b8ed00f9b5ab2b5d5ab987d02cc1192177e7da60f5e761afa6e92a30309ee",
+    "scripts/navigation/ship_gmdss_communications_suite.gd": "89d3f41821aa806bdf24d2cc7e8d5d795612fd679f19e49a23beee388d556e62",
+    "scripts/navigation/ship_full_mission_bridge_suite.gd": "66159b0a9f7f0c6c313304b7d1d5e8e9fe4a96a9194e6cb7547ab3663572744a",
+    "scripts/ui/ship_full_mission_bridge_panel.gd": "10425b3ec73c0f810492c2401658eb184b383ddf0bde8616174b2e14aca3ad44",
+    "tools/godot_full_mission_bridge_smoke.gd": "c9c8cc9f89c5ef4fe81080efefa54036d4004359c5b9cd8aa811fdd85d42bd24",
+    "tests/test_full_mission_bridge.py": "1532d038e3a4d260803a5108cdaf66df2176a02c382617c33b355b0bf8727ebf"
+  },
+  "generated_at_utc": "2026-08-28T14:49:35.228240+00:00"
+}

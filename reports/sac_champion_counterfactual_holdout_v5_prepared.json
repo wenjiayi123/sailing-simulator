@@ -1,0 +1,16 @@
+{
+  "schema_version": "sac_champion_counterfactual_holdout_prepared_v5",
+  "holdout_id": "sac_champion_counterfactual_holdout_v5",
+  "test_accessed": false,
+  "prepared_before_champion_test": true,
+  "generator": "tools/build_sac_champion_holdout_v5.py",
+  "generator_sha256": "096cc34951c8dfd1158dcff3b22b70574852ea37ab8fb00b22962f5a30848bb9",
+  "base_dataset": "data/rl/long_beach_ais_port_ops_benchmark_v2.json",
+  "base_dataset_sha256": "1d676e7446f22206f6113777524d46724545e58e55c1df73a9d359795a415a1f",
+  "holdout_dataset": "data/rl/sac_champion_counterfactual_holdout_v5.json",
+  "holdout_dataset_sha256": "77e5436dbbeeaabc7fe78a3d52967676007966b2dd64c8389a8f8b27c22969db",
+  "seed": 250828,
+  "source_date": "2025-01-07",
+  "episodes": 72,
+  "claim_boundary": "Counterfactual simulation holdout derived from historical AIS; not newly observed traffic, field validation, or live authority."
+}

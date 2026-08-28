@@ -1,0 +1,447 @@
+{
+  "schema_version": "named_vessel_twin_functional_smoke_v1",
+  "passed": true,
+  "maneuver_count": 7,
+  "loading_conditions_covered": [
+    "design_payload",
+    "lightship",
+    "maximum_operating"
+  ],
+  "trial_results": [
+    {
+      "trial_id": "SIM-01",
+      "maneuver": "turning_circle_port",
+      "loading_condition": "lightship",
+      "sample_count": 180,
+      "maneuver_metrics": {
+        "duration_seconds": 44.75,
+        "path_length_m": 333.16009112736765,
+        "maximum_speed_mps": 7.999973659211123,
+        "maximum_abs_yaw_rate_deg_s": 17.75783854494601,
+        "advance_at_90_deg_m": 55.69122989048008,
+        "transfer_at_90_deg_m": 24.098187617529128,
+        "tactical_diameter_m": 50.31143522391716,
+        "completed_180_deg": true
+      },
+      "identified_response": {
+        "surge_first_order": {
+          "stable": true,
+          "time_constant_s": 2.3406943988560203,
+          "steady_speed_gain_mps_per_throttle": 3.3578740692080813,
+          "bias_mps2": 2.4733848439113917,
+          "derivative_rmse_mps2": 0.36287458038983345
+        },
+        "nomoto_first_order": {
+          "nomoto_gain_radps_per_rad": 1.5835167681819189,
+          "nomoto_time_constant_s": 0.6560774365642682,
+          "bias_radps2": -0.0023657044418730067,
+          "derivative_rmse_radps2": 0.004796901987005035,
+          "r_squared": 0.9752056753306768,
+          "sample_count": 180.0
+        }
+      },
+      "error_envelope": {
+        "position_error_rmse_m": 0.04290882760048526,
+        "position_error_p95_m": 0.05990026153822138,
+        "position_error_max_m": 0.05997786008098549,
+        "heading_error_rmse_deg": 0.035588002362109336,
+        "heading_error_p95_deg": 0.04986114475761383,
+        "heading_error_max_deg": 0.049995418434718886,
+        "surge_speed_rmse_mps": 0.00711760047242188,
+        "surge_speed_p95_abs_mps": 0.0099722289515213,
+        "yaw_rate_rmse_deg_s": 0.007024226898027983,
+        "yaw_rate_p95_abs_deg_s": 0.009966997789734667,
+        "sample_count": 180.0
+      },
+      "thresholds_passed": true
+    },
+    {
+      "trial_id": "SIM-02",
+      "maneuver": "turning_circle_starboard",
+      "loading_condition": "design_payload",
+      "sample_count": 180,
+      "maneuver_metrics": {
+        "duration_seconds": 44.75,
+        "path_length_m": 333.22813166026896,
+        "maximum_speed_mps": 7.999973659211123,
+        "maximum_abs_yaw_rate_deg_s": 17.757852371616845,
+        "advance_at_90_deg_m": 55.691229890480116,
+        "transfer_at_90_deg_m": 24.13623225563107,
+        "tactical_diameter_m": 50.26279760561496,
+        "completed_180_deg": true
+      },
+      "identified_response": {
+        "surge_first_order": {
+          "stable": true,
+          "time_constant_s": 2.3406943988560203,
+          "steady_speed_gain_mps_per_throttle": 3.3578740692080813,
+          "bias_mps2": 2.4733848439113917,
+          "derivative_rmse_mps2": 0.36287458038983345
+        },
+        "nomoto_first_order": {
+          "nomoto_gain_radps_per_rad": 1.5838314451403162,
+          "nomoto_time_constant_s": 0.6577099083175514,
+          "bias_radps2": 0.00227807408511449,
+          "derivative_rmse_radps2": 0.004766980505231374,
+          "r_squared": 0.9755345355475991,
+          "sample_count": 180.0
+        }
+      },
+      "error_envelope": {
+        "position_error_rmse_m": 0.042908827600487885,
+        "position_error_p95_m": 0.059900261538221734,
+        "position_error_max_m": 0.05997786008098549,
+        "heading_error_rmse_deg": 0.03558800236210786,
+        "heading_error_p95_deg": 0.04986114475761383,
+        "heading_error_max_deg": 0.04999541843474731,
+        "surge_speed_rmse_mps": 0.00711760047242188,
+        "surge_speed_p95_abs_mps": 0.0099722289515213,
+        "yaw_rate_rmse_deg_s": 0.007024226898027983,
+        "yaw_rate_p95_abs_deg_s": 0.009966997789734667,
+        "sample_count": 180.0
+      },
+      "thresholds_passed": true
+    },
+    {
+      "trial_id": "SIM-03",
+      "maneuver": "zigzag_10_10",
+      "loading_condition": "maximum_operating",
+      "sample_count": 180,
+      "maneuver_metrics": {
+        "duration_seconds": 44.75,
+        "path_length_m": 346.6026735622082,
+        "maximum_speed_mps": 8.11747371108004,
+        "maximum_abs_yaw_rate_deg_s": 13.300561848172144,
+        "steering_reversal_count": 11,
+        "heading_overshoot_peaks_deg": [
+          17.231438291509438,
+          19.829217262644324,
+          19.989050242172194,
+          19.80775759440679
+        ]
+      },
+      "identified_response": {
+        "surge_first_order": {
+          "stable": true,
+          "time_constant_s": 2.4671366167093196,
+          "steady_speed_gain_mps_per_throttle": 3.522566920551616,
+          "bias_mps2": 2.4617166318219934,
+          "derivative_rmse_mps2": 0.33994932174703274
+        },
+        "nomoto_first_order": {
+          "nomoto_gain_radps_per_rad": 1.8348439063760598,
+          "nomoto_time_constant_s": 0.9382055710102609,
+          "bias_radps2": -0.0004178151294403909,
+          "derivative_rmse_radps2": 0.022866538851455887,
+          "r_squared": 0.9721554600732849,
+          "sample_count": 180.0
+        }
+      },
+      "error_envelope": {
+        "position_error_rmse_m": 0.04290882760048365,
+        "position_error_p95_m": 0.05990026153818372,
+        "position_error_max_m": 0.05997786008096063,
+        "heading_error_rmse_deg": 0.03558800236211003,
+        "heading_error_p95_deg": 0.04986114475761383,
+        "heading_error_max_deg": 0.04999541843477573,
+        "surge_speed_rmse_mps": 0.007117600472421881,
+        "surge_speed_p95_abs_mps": 0.0099722289515213,
+        "yaw_rate_rmse_deg_s": 0.007024226898027987,
+        "yaw_rate_p95_abs_deg_s": 0.009966997789734755,
+        "sample_count": 180.0
+      },
+      "thresholds_passed": true
+    },
+    {
+      "trial_id": "SIM-04",
+      "maneuver": "zigzag_20_20",
+      "loading_condition": "lightship",
+      "sample_count": 180,
+      "maneuver_metrics": {
+        "duration_seconds": 44.75,
+        "path_length_m": 337.2249783234363,
+        "maximum_speed_mps": 7.981089370138287,
+        "maximum_abs_yaw_rate_deg_s": 18.881688563533068,
+        "steering_reversal_count": 10,
+        "heading_overshoot_peaks_deg": [
+          30.33655183064241,
+          33.30084830138199,
+          34.729574274928005,
+          33.29108030881406
+        ]
+      },
+      "identified_response": {
+        "surge_first_order": {
+          "stable": true,
+          "time_constant_s": 2.456485418507411,
+          "steady_speed_gain_mps_per_throttle": 3.414425446742968,
+          "bias_mps2": 2.3964890575234445,
+          "derivative_rmse_mps2": 0.3687847437403392
+        },
+        "nomoto_first_order": {
+          "nomoto_gain_radps_per_rad": 1.5883393688070797,
+          "nomoto_time_constant_s": 0.8182387777101489,
+          "bias_radps2": -0.001173538860949619,
+          "derivative_rmse_radps2": 0.03475979268082085,
+          "r_squared": 0.966725195232912,
+          "sample_count": 180.0
+        }
+      },
+      "error_envelope": {
+        "position_error_rmse_m": 0.042908827600491826,
+        "position_error_p95_m": 0.059900261538237604,
+        "position_error_max_m": 0.05997786008101745,
+        "heading_error_rmse_deg": 0.035588002362108906,
+        "heading_error_p95_deg": 0.04986114475761383,
+        "heading_error_max_deg": 0.04999541843474731,
+        "surge_speed_rmse_mps": 0.007117600472421884,
+        "surge_speed_p95_abs_mps": 0.0099722289515213,
+        "yaw_rate_rmse_deg_s": 0.007024226898027914,
+        "yaw_rate_p95_abs_deg_s": 0.009966997789734755,
+        "sample_count": 180.0
+      },
+      "thresholds_passed": true
+    },
+    {
+      "trial_id": "SIM-05",
+      "maneuver": "stopping_full_ahead_to_stop",
+      "loading_condition": "design_payload",
+      "sample_count": 180,
+      "maneuver_metrics": {
+        "duration_seconds": 44.75,
+        "path_length_m": 30.340861672393398,
+        "maximum_speed_mps": 9.217273012393267,
+        "maximum_abs_yaw_rate_deg_s": 0.01,
+        "stopping_time_s": 6.5,
+        "stopping_distance_m": 17.692102550990796,
+        "stop_threshold_reached": true
+      },
+      "identified_response": {
+        "surge_first_order": {
+          "stable": true,
+          "time_constant_s": 2.334525644500052,
+          "steady_speed_gain_mps_per_throttle": 1.597387577350427,
+          "bias_mps2": -0.09986622819220026,
+          "derivative_rmse_mps2": 0.19391365031657812
+        },
+        "nomoto_first_order": {
+          "nomoto_gain_radps_per_rad": 0.0,
+          "nomoto_time_constant_s": 68.80008102268357,
+          "bias_radps2": -1.5342059591152329e-06,
+          "derivative_rmse_radps2": 8.407578975419922e-05,
+          "r_squared": 0.00044851450896155054,
+          "sample_count": 180.0
+        }
+      },
+      "error_envelope": {
+        "position_error_rmse_m": 0.04290882760048846,
+        "position_error_p95_m": 0.059900261538220916,
+        "position_error_max_m": 0.0599778600809846,
+        "heading_error_rmse_deg": 0.03558800236210845,
+        "heading_error_p95_deg": 0.04986114475761383,
+        "heading_error_max_deg": 0.04999541843474731,
+        "surge_speed_rmse_mps": 0.007117600472421892,
+        "surge_speed_p95_abs_mps": 0.00997222895152168,
+        "yaw_rate_rmse_deg_s": 0.007024226898027971,
+        "yaw_rate_p95_abs_deg_s": 0.009966997789735048,
+        "sample_count": 180.0
+      },
+      "thresholds_passed": true
+    },
+    {
+      "trial_id": "SIM-06",
+      "maneuver": "acceleration",
+      "loading_condition": "maximum_operating",
+      "sample_count": 180,
+      "maneuver_metrics": {
+        "duration_seconds": 44.75,
+        "path_length_m": 398.5105687602778,
+        "maximum_speed_mps": 9.227272096080215,
+        "maximum_abs_yaw_rate_deg_s": 0.01,
+        "time_to_90_percent_s": 3.25
+      },
+      "identified_response": {
+        "surge_first_order": {
+          "stable": true,
+          "time_constant_s": 2.3343397375976465,
+          "steady_speed_gain_mps_per_throttle": 4.429969416090595,
+          "bias_mps2": 2.6357497158737617,
+          "derivative_rmse_mps2": 0.38713689532414014
+        },
+        "nomoto_first_order": {
+          "nomoto_gain_radps_per_rad": 0.0,
+          "nomoto_time_constant_s": 68.80008102268357,
+          "bias_radps2": -1.5342059591152329e-06,
+          "derivative_rmse_radps2": 8.407578975419922e-05,
+          "r_squared": 0.00044851450896155054,
+          "sample_count": 180.0
+        }
+      },
+      "error_envelope": {
+        "position_error_rmse_m": 0.04290882760047849,
+        "position_error_p95_m": 0.05990026153818231,
+        "position_error_max_m": 0.05997786008096063,
+        "heading_error_rmse_deg": 0.03558800236210845,
+        "heading_error_p95_deg": 0.04986114475761383,
+        "heading_error_max_deg": 0.04999541843474731,
+        "surge_speed_rmse_mps": 0.007117600472421864,
+        "surge_speed_p95_abs_mps": 0.009972228951522144,
+        "yaw_rate_rmse_deg_s": 0.007024226898027971,
+        "yaw_rate_p95_abs_deg_s": 0.009966997789735048,
+        "sample_count": 180.0
+      },
+      "thresholds_passed": true
+    },
+    {
+      "trial_id": "SIM-07",
+      "maneuver": "deceleration",
+      "loading_condition": "lightship",
+      "sample_count": 180,
+      "maneuver_metrics": {
+        "duration_seconds": 44.75,
+        "path_length_m": 184.60585921979617,
+        "maximum_speed_mps": 9.217273012393267,
+        "maximum_abs_yaw_rate_deg_s": 0.01,
+        "time_to_90_percent_s": 0.0
+      },
+      "identified_response": {
+        "surge_first_order": {
+          "stable": true,
+          "time_constant_s": 1.0746323510366662,
+          "steady_speed_gain_mps_per_throttle": 0.6262911768085551,
+          "bias_mps2": 3.6424734945653157,
+          "derivative_rmse_mps2": 0.06451230766319722
+        },
+        "nomoto_first_order": {
+          "nomoto_gain_radps_per_rad": 0.0,
+          "nomoto_time_constant_s": 68.80008102268357,
+          "bias_radps2": -1.5342059591152329e-06,
+          "derivative_rmse_radps2": 8.407578975419922e-05,
+          "r_squared": 0.00044851450896155054,
+          "sample_count": 180.0
+        }
+      },
+      "error_envelope": {
+        "position_error_rmse_m": 0.042908827600488385,
+        "position_error_p95_m": 0.05990026153821068,
+        "position_error_max_m": 0.05997786008098904,
+        "heading_error_rmse_deg": 0.03558800236210845,
+        "heading_error_p95_deg": 0.04986114475761383,
+        "heading_error_max_deg": 0.04999541843474731,
+        "surge_speed_rmse_mps": 0.007117600472421885,
+        "surge_speed_p95_abs_mps": 0.009972228951521722,
+        "yaw_rate_rmse_deg_s": 0.007024226898027971,
+        "yaw_rate_p95_abs_deg_s": 0.009966997789735048,
+        "sample_count": 180.0
+      },
+      "thresholds_passed": true
+    }
+  ],
+  "cross_trial_error_envelope": {
+    "position_error_p95_m": {
+      "maximum": 0.059900261538237604,
+      "median": 0.059900261538220916
+    },
+    "heading_error_p95_deg": {
+      "maximum": 0.04986114475761383,
+      "median": 0.04986114475761383
+    },
+    "surge_speed_rmse_mps": {
+      "maximum": 0.007117600472421892,
+      "median": 0.007117600472421881
+    },
+    "yaw_rate_rmse_deg_s": {
+      "maximum": 0.007024226898027987,
+      "median": 0.007024226898027971
+    }
+  },
+  "error_envelope_by_loading_condition": {
+    "lightship": {
+      "position_error_p95_m": {
+        "maximum": 0.059900261538237604,
+        "median": 0.05990026153822138
+      },
+      "heading_error_p95_deg": {
+        "maximum": 0.04986114475761383,
+        "median": 0.04986114475761383
+      },
+      "surge_speed_rmse_mps": {
+        "maximum": 0.007117600472421885,
+        "median": 0.007117600472421884
+      },
+      "yaw_rate_rmse_deg_s": {
+        "maximum": 0.007024226898027983,
+        "median": 0.007024226898027971
+      }
+    },
+    "design_payload": {
+      "position_error_p95_m": {
+        "maximum": 0.059900261538221734,
+        "median": 0.059900261538221325
+      },
+      "heading_error_p95_deg": {
+        "maximum": 0.04986114475761383,
+        "median": 0.04986114475761383
+      },
+      "surge_speed_rmse_mps": {
+        "maximum": 0.007117600472421892,
+        "median": 0.007117600472421886
+      },
+      "yaw_rate_rmse_deg_s": {
+        "maximum": 0.007024226898027983,
+        "median": 0.007024226898027977
+      }
+    },
+    "maximum_operating": {
+      "position_error_p95_m": {
+        "maximum": 0.05990026153818372,
+        "median": 0.059900261538183015
+      },
+      "heading_error_p95_deg": {
+        "maximum": 0.04986114475761383,
+        "median": 0.04986114475761383
+      },
+      "surge_speed_rmse_mps": {
+        "maximum": 0.007117600472421881,
+        "median": 0.007117600472421872
+      },
+      "yaw_rate_rmse_deg_s": {
+        "maximum": 0.007024226898027987,
+        "median": 0.007024226898027979
+      }
+    }
+  },
+  "identified_parameter_summary": {
+    "surge_time_constant_s": {
+      "identified_trial_count": 7,
+      "median": 2.3406943988560203,
+      "p05": 1.4525445670049604,
+      "p95": 2.463941257248747
+    },
+    "surge_speed_gain_mps_per_throttle": {
+      "identified_trial_count": 7,
+      "median": 3.3578740692080813,
+      "p05": 0.9176200969711167,
+      "p95": 4.1577486674289
+    },
+    "nomoto_time_constant_s": {
+      "identified_trial_count": 7,
+      "median": 0.9382055710102609,
+      "p05": 0.6565671780902531,
+      "p95": 68.80008102268357
+    },
+    "nomoto_gain_radps_per_rad": {
+      "identified_trial_count": 7,
+      "median": 1.5835167681819189,
+      "p05": 0.0,
+      "p95": 1.7608925451053656
+    }
+  },
+  "source_class": "SIMULATOR_GENERATED_FUNCTIONAL_SMOKE",
+  "training_performed": false,
+  "existing_model_modified": false,
+  "named_vessel_dynamics_calibrated": false,
+  "production_authority": false,
+  "boundary": "Algorithm and schema smoke only. Simulator-generated trials cannot validate a named vessel.",
+  "generated_at": "2026-08-28T12:57:00.429419+00:00"
+}

@@ -1,0 +1,112 @@
+{
+  "schema_version": "maritime_cybersecurity_profile_v1",
+  "profile_id": "RL-NAV-CYBER-2026-01",
+  "intended_use": "offline bridge-network cybersecurity training, control verification and evidence rehearsal",
+  "identity_policy": {
+    "session_ttl_seconds": 600,
+    "maximum_failed_attempts": 3,
+    "lockout_seconds": 60,
+    "nonce_replay_window": 1024,
+    "password_hash_scheme": "TRAINING_SHA256_SALT_PASSWORD",
+    "production_password_storage_approved": false,
+    "accounts": [
+      {
+        "username": "bridge_operator",
+        "role": "OPERATOR",
+        "salt": "salt-op-2026",
+        "password_sha256": "9f5d4a73cddc54d7275d85cc2f7bf32a691e5afe801fa69c1681f499d5825234",
+        "permissions": ["view_security_status", "request_training_flow", "acknowledge_alert"]
+      },
+      {
+        "username": "instructor",
+        "role": "INSTRUCTOR",
+        "salt": "salt-ins-2026",
+        "password_sha256": "e4fd235a35c3a62261cb86b91cfbd8526fcef6cf326c79179046d5988c30d71a",
+        "permissions": ["view_security_status", "request_training_flow", "acknowledge_alert", "run_penetration_campaign"]
+      },
+      {
+        "username": "security_admin",
+        "role": "SECURITY_ADMIN",
+        "salt": "salt-adm-2026",
+        "password_sha256": "baa8697ef9910f88b4dd2e49cd9e1f978d0d7182310b427e9a00f4458b8f07e9",
+        "permissions": ["view_security_status", "request_training_flow", "acknowledge_alert", "verify_boot", "verify_signed_update", "create_recovery_snapshot", "restore_recovery_snapshot", "run_penetration_campaign", "export_audit"]
+      },
+      {
+        "username": "auditor",
+        "role": "AUDITOR",
+        "salt": "salt-aud-2026",
+        "password_sha256": "5f90753af6cbf548c90c48c637bb856ac822a74ff59892e135d32a3db22e1c8e",
+        "permissions": ["view_security_status", "export_audit"]
+      }
+    ]
+  },
+  "network_zones": [
+    {"zone_id": "SAFETY_CONTROL", "label": "安全关键控制区", "trust_level": 5},
+    {"zone_id": "NAVIGATION_SENSOR", "label": "导航传感区", "trust_level": 4},
+    {"zone_id": "BRIDGE_OPERATIONS", "label": "驾驶台操作区", "trust_level": 4},
+    {"zone_id": "INSTRUCTOR_TRAINING", "label": "教员训练区", "trust_level": 3},
+    {"zone_id": "ENGINEERING_MAINTENANCE", "label": "工程维护区", "trust_level": 3},
+    {"zone_id": "AUDIT_MONITORING", "label": "审计监控区", "trust_level": 4},
+    {"zone_id": "EXTERNAL_EXCHANGE", "label": "外部交换隔离区", "trust_level": 1}
+  ],
+  "allowed_flows": [
+    {"source": "NAVIGATION_SENSOR", "target": "BRIDGE_OPERATIONS", "service": "NAV_TELEMETRY", "required_permission": "request_training_flow"},
+    {"source": "BRIDGE_OPERATIONS", "target": "SAFETY_CONTROL", "service": "BOUNDED_COMMAND_ENVELOPE", "required_permission": "request_training_flow"},
+    {"source": "SAFETY_CONTROL", "target": "BRIDGE_OPERATIONS", "service": "CONTROL_FEEDBACK", "required_permission": "request_training_flow"},
+    {"source": "INSTRUCTOR_TRAINING", "target": "BRIDGE_OPERATIONS", "service": "EXERCISE_EVENT", "required_permission": "request_training_flow"},
+    {"source": "ENGINEERING_MAINTENANCE", "target": "SAFETY_CONTROL", "service": "SIGNED_UPDATE_VERIFICATION", "required_permission": "verify_signed_update"},
+    {"source": "BRIDGE_OPERATIONS", "target": "AUDIT_MONITORING", "service": "SECURITY_AUDIT", "required_permission": "request_training_flow"},
+    {"source": "SAFETY_CONTROL", "target": "AUDIT_MONITORING", "service": "SECURITY_AUDIT", "required_permission": "request_training_flow"},
+    {"source": "EXTERNAL_EXCHANGE", "target": "ENGINEERING_MAINTENANCE", "service": "QUARANTINED_PACKAGE", "required_permission": "verify_signed_update"}
+  ],
+  "secure_boot_and_update": {
+    "boot_manifest_path": "res://data/verification/bridge_secure_boot_manifest_v1.json",
+    "update_payload_path": "res://data/verification/cyber_range_signed_update_payload_v1.json",
+    "update_signature_path": "res://data/verification/cyber_range_signed_update_signature_v1.json",
+    "public_key_path": "res://data/verification/cyber_range_update_public_key_v1.pem",
+    "signature_algorithm": "RSA_PKCS1_V1_5_SHA256",
+    "private_key_present_in_repository": false,
+    "hardware_root_of_trust_verified": false,
+    "measured_boot_verified": false,
+    "production_signed_update_verified": false
+  },
+  "intrusion_detection": {
+    "rules": ["AUTHENTICATION_BRUTE_FORCE", "NONCE_REPLAY", "RBAC_DENIAL", "PROHIBITED_ZONE_FLOW", "INVALID_UPDATE_SIGNATURE", "BOOT_INTEGRITY_FAILURE", "AUDIT_CHAIN_TAMPER", "RECOVERY_WITHOUT_CONFIRMATION"],
+    "alert_retention": 512,
+    "production_sensor_connected": false,
+    "soc_forwarding_connected": false
+  },
+  "disaster_recovery": {
+    "recovery_point_type": "IN_MEMORY_TRAINING_SNAPSHOT",
+    "manual_confirmation_required": true,
+    "restore_reauth_required": true,
+    "offline_backup_verified": false,
+    "bare_metal_restore_verified": false,
+    "rto_rpo_field_tested": false
+  },
+  "penetration_campaign": {
+    "required_cases": ["bad_credentials", "nonce_replay", "rbac_escalation", "prohibited_zone_flow", "tampered_update", "boot_manifest_mismatch", "audit_chain_tamper", "recovery_without_confirmation"],
+    "real_external_penetration_test_completed": false,
+    "independent_tester_verified": false
+  },
+  "preservation_boundary": {
+    "ship_motion_model_modified": false,
+    "observation_space_modified": false,
+    "action_space_modified": false,
+    "reward_function_modified": false,
+    "existing_policy_modified": false,
+    "network_messages_mapped_to_actuation": false,
+    "training_performed": false
+  },
+  "claims": {
+    "production_network_segmentation_verified": false,
+    "hardware_secure_boot_verified": false,
+    "production_signed_update_verified": false,
+    "tamper_proof_hardware_log_verified": false,
+    "production_ids_verified": false,
+    "disaster_recovery_field_verified": false,
+    "independent_penetration_test_completed": false,
+    "class_or_flag_cyber_approval": false,
+    "production_authority": false
+  }
+}

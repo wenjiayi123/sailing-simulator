@@ -1,0 +1,174 @@
+{
+  "format": "sac_p47_expert_initialization_cache_v1",
+  "contract": {
+    "format": "sac_p47_expert_initialization_contract_v1",
+    "dataset_sha256": "12b0dd719a37d10431368ff8356a1ae94936f3a4ebb61d3fd64bb41ab1111c5f",
+    "rollout_relevant_config_sha256": "0c3ec7959757fe70342d1b6d6b26961a7505a59d6d91287e70cc1a37ae018bf5",
+    "source_sha256": {
+      "hardest_demonstration.py": "be613e1837aae221e3774149b008c52dd53126e17b1f337cebbe6ac4c9028280",
+      "physics_demonstration.py": "65a1086db4ba85487681116cb92a58ce3cb4c2177721008d3143c8fe91e9a6d1",
+      "physics_environment.py": "dc1891d85021d662618b323165d6735edfffdeed0595193d8cb185442a26caeb",
+      "catamaran_physics.py": "88dd7f4712bd0ad3a33ece36792ab8c744a8e4ee96f891b927fec780b9c64270",
+      "train_cargo_hardest_sac_v3.py": "02a625ca12dbcc1749d72254dbb20578489491e1c9a748e27f9acea4d67f714c"
+    },
+    "seed": 280826,
+    "network": [
+      256,
+      256
+    ],
+    "batch_size": 256,
+    "learning_rate": 0.0003,
+    "gamma": 0.995,
+    "contract_sha256": "a804a1c39f1d542819bf31aebb44ed3a1a84e80c83aba6ef82075d200abb6340"
+  },
+  "cloning": {
+    "epochs": 80,
+    "samples": 123147,
+    "successful_expert_samples": 61507,
+    "dagger_labeled_recovery_samples": 61640,
+    "dagger_train_split_only": true,
+    "dagger_rounds": [
+      {
+        "round": 1,
+        "task_id": "cargo_physics_v4_train_01",
+        "expert_action_fraction": 0.7,
+        "success": true,
+        "collisions": 0,
+        "steps": 4936
+      },
+      {
+        "round": 1,
+        "task_id": "cargo_physics_v4_train_02",
+        "expert_action_fraction": 0.7,
+        "success": true,
+        "collisions": 0,
+        "steps": 3931
+      },
+      {
+        "round": 1,
+        "task_id": "cargo_physics_v4_train_03",
+        "expert_action_fraction": 0.7,
+        "success": true,
+        "collisions": 0,
+        "steps": 4614
+      },
+      {
+        "round": 1,
+        "task_id": "cargo_physics_v4_train_04",
+        "expert_action_fraction": 0.7,
+        "success": true,
+        "collisions": 0,
+        "steps": 3388
+      },
+      {
+        "round": 1,
+        "task_id": "cargo_physics_v4_train_05",
+        "expert_action_fraction": 0.7,
+        "success": true,
+        "collisions": 0,
+        "steps": 4063
+      },
+      {
+        "round": 2,
+        "task_id": "cargo_physics_v4_train_01",
+        "expert_action_fraction": 0.4,
+        "success": true,
+        "collisions": 0,
+        "steps": 4180
+      },
+      {
+        "round": 2,
+        "task_id": "cargo_physics_v4_train_02",
+        "expert_action_fraction": 0.4,
+        "success": true,
+        "collisions": 0,
+        "steps": 3678
+      },
+      {
+        "round": 2,
+        "task_id": "cargo_physics_v4_train_03",
+        "expert_action_fraction": 0.4,
+        "success": true,
+        "collisions": 0,
+        "steps": 4841
+      },
+      {
+        "round": 2,
+        "task_id": "cargo_physics_v4_train_04",
+        "expert_action_fraction": 0.4,
+        "success": true,
+        "collisions": 0,
+        "steps": 3589
+      },
+      {
+        "round": 2,
+        "task_id": "cargo_physics_v4_train_05",
+        "expert_action_fraction": 0.4,
+        "success": true,
+        "collisions": 0,
+        "steps": 4056
+      },
+      {
+        "round": 3,
+        "task_id": "cargo_physics_v4_train_01",
+        "expert_action_fraction": 0.2,
+        "success": true,
+        "collisions": 0,
+        "steps": 4108
+      },
+      {
+        "round": 3,
+        "task_id": "cargo_physics_v4_train_02",
+        "expert_action_fraction": 0.2,
+        "success": true,
+        "collisions": 0,
+        "steps": 3947
+      },
+      {
+        "round": 3,
+        "task_id": "cargo_physics_v4_train_03",
+        "expert_action_fraction": 0.2,
+        "success": true,
+        "collisions": 0,
+        "steps": 5084
+      },
+      {
+        "round": 3,
+        "task_id": "cargo_physics_v4_train_04",
+        "expert_action_fraction": 0.2,
+        "success": false,
+        "collisions": 1,
+        "steps": 2964
+      },
+      {
+        "round": 3,
+        "task_id": "cargo_physics_v4_train_05",
+        "expert_action_fraction": 0.2,
+        "success": true,
+        "collisions": 0,
+        "steps": 4261
+      }
+    ],
+    "dagger_refit_epochs_by_round": [
+      24,
+      16,
+      8
+    ],
+    "final_loss": 0.006002097390592098,
+    "final_epoch_throttle_mse": 0.031644564842673875,
+    "final_epoch_rudder_mse": 0.0020539797866051335,
+    "loss_weights": {
+      "throttle": 0.55,
+      "rudder": 1.45
+    },
+    "initial_log_std": -3.0,
+    "initial_action_std": 0.049787066876888275,
+    "v3_exploration_guard": true,
+    "behavior_cloning_learning_rate": 0.0003,
+    "post_clone_sac_actor_learning_rate": 1e-07
+  },
+  "expert_episodes": 15,
+  "expert_successes": 15,
+  "trained_rl": false,
+  "dropdown_strategy": false
+}

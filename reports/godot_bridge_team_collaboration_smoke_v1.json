@@ -1,0 +1,344 @@
+{
+	"boundary": "Role-based bridge-team messaging, closed-loop readback, challenge-response, BRM check and loopback UDP acceptance; not operational VHF/GMDSS, encrypted field networking or remote vessel control.",
+	"checks": {
+		"brm_team_check_passes": {
+			"detail": {
+				"brief_count": 1,
+				"gaps": [],
+				"open_loop_messages": [],
+				"passed": true,
+				"production_authority": false,
+				"roles_present": [
+					"MASTER",
+					"OOW",
+					"HELM"
+				]
+			},
+			"passed": true
+		},
+		"challenge_response_closed_loop": {
+			"detail": {
+				"ack": {
+					"action": "acknowledge_message",
+					"detail": {
+						"station_id": "MASTER-01",
+						"status": "CLOSED_LOOP"
+					},
+					"receipt_id": "BRM-000013",
+					"sequence": 13,
+					"session_id": "BRIDGE-20260828-009801",
+					"status": "EXECUTED",
+					"subject": "MSG-000002",
+					"utc": "2026-08-28T13:34:05"
+				},
+				"challenge": {
+					"action": "send_message",
+					"detail": {
+						"category": "CHALLENGE",
+						"requires_readback": true,
+						"target_role": "MASTER"
+					},
+					"receipt_id": "BRM-000012",
+					"sequence": 12,
+					"session_id": "BRIDGE-20260828-009801",
+					"status": "EXECUTED",
+					"subject": "MSG-000002",
+					"utc": "2026-08-28T13:34:05"
+				}
+			},
+			"passed": true
+		},
+		"collaboration_components_present": {
+			"detail": {
+				"controller": true,
+				"panel": true
+			},
+			"passed": true
+		},
+		"command_closed_loop_receipt": {
+			"detail": {
+				"action": "acknowledge_message",
+				"detail": {
+					"station_id": "HELM-03",
+					"status": "CLOSED_LOOP"
+				},
+				"receipt_id": "BRM-000010",
+				"sequence": 10,
+				"session_id": "BRIDGE-20260828-009801",
+				"status": "EXECUTED",
+				"subject": "MSG-000001",
+				"utc": "2026-08-28T13:34:05"
+			},
+			"passed": true
+		},
+		"communications_never_map_to_actuation": {
+			"detail": "Research bridge-team communications and loopback UDP transport; not GMDSS/VHF, secure operational networking, or remote vessel control.",
+			"passed": true
+		},
+		"duplicate_role_fails_closed": {
+			"detail": {
+				"action": "join_station",
+				"detail": {
+					"reason": "ROLE_ALREADY_OCCUPIED",
+					"station_id": "MASTER-01"
+				},
+				"receipt_id": "BRM-000005",
+				"sequence": 5,
+				"session_id": "BRIDGE-20260828-009801",
+				"status": "REJECTED",
+				"subject": "MASTER",
+				"utc": "2026-08-28T13:34:05"
+			},
+			"passed": true
+		},
+		"empty_readback_rejected": {
+			"detail": {
+				"action": "acknowledge_message",
+				"detail": {
+					"reason": "READBACK_TEXT_REQUIRED"
+				},
+				"receipt_id": "BRM-000009",
+				"sequence": 9,
+				"session_id": "BRIDGE-20260828-009801",
+				"status": "REJECTED",
+				"subject": "MSG-000001",
+				"utc": "2026-08-28T13:34:05"
+			},
+			"passed": true
+		},
+		"frozen_policy_artifacts_unchanged": {
+			"detail": {
+				"after": {
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_sac_test_episodes.csv": "7b027abb680dca7c31e97fe1083c6c28402204e06d0ead03ce76cfcd1aa7e9cd",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_test_episodes.csv": "25e953b3bd525f5834ced4179003c47de1b220423909a7ba87ff1b7073a27495"
+				},
+				"before": {
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_sac_test_episodes.csv": "7b027abb680dca7c31e97fe1083c6c28402204e06d0ead03ce76cfcd1aa7e9cd",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_test_episodes.csv": "25e953b3bd525f5834ced4179003c47de1b220423909a7ba87ff1b7073a27495"
+				}
+			},
+			"passed": true
+		},
+		"hazard_plan_contingency_brief": {
+			"detail": {
+				"action": "situation_brief",
+				"detail": {
+					"brief_id": "BRIEF-0001",
+					"contingency": "Stop engines and call master",
+					"hazard": "Cross traffic",
+					"plan": "Hold course and monitor CPA",
+					"role": "MASTER",
+					"station_id": "MASTER-01",
+					"utc": "2026-08-28T13:34:05"
+				},
+				"receipt_id": "BRM-000011",
+				"sequence": 11,
+				"session_id": "BRIDGE-20260828-009801",
+				"status": "EXECUTED",
+				"subject": "BRIEF-0001",
+				"utc": "2026-08-28T13:34:05"
+			},
+			"passed": true
+		},
+		"helm_command_authority_rejected": {
+			"detail": {
+				"action": "send_message",
+				"detail": {
+					"reason": "COMMAND_AUTHORITY_REQUIRED",
+					"role": "HELM"
+				},
+				"receipt_id": "BRM-000006",
+				"sequence": 6,
+				"session_id": "BRIDGE-20260828-009801",
+				"status": "REJECTED",
+				"subject": "HELM-03",
+				"utc": "2026-08-28T13:34:05"
+			},
+			"passed": true
+		},
+		"hotkey_J_opens_bridge_team_panel": {
+			"detail": true,
+			"passed": true
+		},
+		"loopback_udp_binds_runtime_port": {
+			"detail": {
+				"bind_address": "127.0.0.1",
+				"encrypted": false,
+				"last_error": "",
+				"listening": true,
+				"port": 50622,
+				"production_authority": false,
+				"protocol": "ship_bridge_team_udp_v1",
+				"received_packets": 0,
+				"rejected_packets": 0
+			},
+			"passed": true
+		},
+		"main_scene_load_request": {
+			"detail": 0,
+			"passed": true
+		},
+		"master_command_open_loop_created": {
+			"detail": {
+				"action": "send_message",
+				"detail": {
+					"category": "COMMAND",
+					"requires_readback": true,
+					"target_role": "HELM"
+				},
+				"receipt_id": "BRM-000007",
+				"sequence": 7,
+				"session_id": "BRIDGE-20260828-009801",
+				"status": "EXECUTED",
+				"subject": "MSG-000001",
+				"utc": "2026-08-28T13:34:05"
+			},
+			"passed": true
+		},
+		"non_loopback_network_requires_authorization": {
+			"detail": {
+				"action": "udp_enable",
+				"detail": {
+					"reason": "NON_LOOPBACK_REQUIRES_EXPLICIT_AUTHORIZATION"
+				},
+				"receipt_id": "BRM-000014",
+				"sequence": 14,
+				"session_id": "BRIDGE-20260828-009801",
+				"status": "REJECTED",
+				"subject": "0.0.0.0",
+				"utc": "2026-08-28T13:34:05"
+			},
+			"passed": true
+		},
+		"panel_creates_session_and_joins_station": {
+			"detail": {
+				"action": "join_station",
+				"detail": {
+					"operator_id": "panel-master",
+					"role": "MASTER"
+				},
+				"receipt_id": "BRM-000021",
+				"sequence": 21,
+				"session_id": "BRIDGE-20260828-011087",
+				"status": "ACCEPTED",
+				"subject": "MASTER-01",
+				"utc": "2026-08-28T13:34:07"
+			},
+			"passed": true
+		},
+		"required_brm_roles_join": {
+			"detail": {
+				"helm": {
+					"action": "join_station",
+					"detail": {
+						"operator_id": "helm-01",
+						"role": "HELM"
+					},
+					"receipt_id": "BRM-000004",
+					"sequence": 4,
+					"session_id": "BRIDGE-20260828-009801",
+					"status": "ACCEPTED",
+					"subject": "HELM-03",
+					"utc": "2026-08-28T13:34:05"
+				},
+				"master": {
+					"action": "join_station",
+					"detail": {
+						"operator_id": "master-01",
+						"role": "MASTER"
+					},
+					"receipt_id": "BRM-000002",
+					"sequence": 2,
+					"session_id": "BRIDGE-20260828-009801",
+					"status": "ACCEPTED",
+					"subject": "MASTER-01",
+					"utc": "2026-08-28T13:34:05"
+				},
+				"oow": {
+					"action": "join_station",
+					"detail": {
+						"operator_id": "oow-01",
+						"role": "OOW"
+					},
+					"receipt_id": "BRM-000003",
+					"sequence": 3,
+					"session_id": "BRIDGE-20260828-009801",
+					"status": "ACCEPTED",
+					"subject": "OOW-02",
+					"utc": "2026-08-28T13:34:05"
+				}
+			},
+			"passed": true
+		},
+		"session_creation_receipt": {
+			"detail": {
+				"action": "create_session",
+				"detail": {
+					"session_name": "acceptance bridge team"
+				},
+				"receipt_id": "BRM-000001",
+				"sequence": 1,
+				"session_id": "BRIDGE-20260828-009801",
+				"status": "ACCEPTED",
+				"subject": "BRIDGE-20260828-009801",
+				"utc": "2026-08-28T13:34:05"
+			},
+			"passed": true
+		},
+		"udp_loopback_packet_received": {
+			"detail": {
+				"bind_address": "127.0.0.1",
+				"encrypted": false,
+				"last_error": "",
+				"listening": true,
+				"port": 50622,
+				"production_authority": false,
+				"protocol": "ship_bridge_team_udp_v1",
+				"received_packets": 1,
+				"rejected_packets": 0
+			},
+			"passed": true
+		},
+		"udp_transport_stops_cleanly": {
+			"detail": {
+				"bind_address": "",
+				"encrypted": false,
+				"last_error": "",
+				"listening": false,
+				"port": 0,
+				"production_authority": false,
+				"protocol": "ship_bridge_team_udp_v1",
+				"received_packets": 1,
+				"rejected_packets": 0
+			},
+			"passed": true
+		},
+		"wrong_recipient_readback_rejected": {
+			"detail": {
+				"action": "acknowledge_message",
+				"detail": {
+					"actual": "OOW",
+					"expected": "HELM",
+					"reason": "WRONG_RECIPIENT_ROLE"
+				},
+				"receipt_id": "BRM-000008",
+				"sequence": 8,
+				"session_id": "BRIDGE-20260828-009801",
+				"status": "REJECTED",
+				"subject": "MSG-000001",
+				"utc": "2026-08-28T13:34:05"
+			},
+			"passed": true
+		}
+	},
+	"errors": [],
+	"generated_at": "2026-08-28T13:34:07",
+	"passed": true,
+	"passed_checks": 21,
+	"schema_version": "godot_bridge_team_collaboration_smoke_v1",
+	"total_checks": 21
+}

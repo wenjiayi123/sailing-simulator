@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1280" viewBox="0 0 1280 1280">
+  <title>Project-authored placeholder atlas for hidden legacy animation driver</title>
+  <defs>
+    <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071d31"/><stop offset="1" stop-color="#0b4863"/></linearGradient>
+    <pattern id="grid" width="256" height="256" patternUnits="userSpaceOnUse"><rect width="256" height="256" fill="url(#sea)"/><path d="M0 255h256M255 0v256" stroke="#49cfe8" stroke-opacity=".18" stroke-width="2"/><path d="M64 148h128l-24 34H88zM112 87h32v61h-32zM78 110h100v25H78z" fill="#7beaff" stroke="#d8fbff" stroke-width="4"/></pattern>
+  </defs>
+  <rect width="1280" height="1280" fill="url(#grid)"/>
+</svg>

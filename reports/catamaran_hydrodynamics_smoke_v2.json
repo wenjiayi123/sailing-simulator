@@ -44,11 +44,11 @@
 		"reverse_turn_factor": 0.58,
 		"rudder": 0.0,
 		"rudder_response": 2.45,
-		"speed": -0.0387180782854557,
+		"speed": -0.0463544689118862,
 		"starboard_throttle": 0.0,
 		"steering_angle_deg": 0.0,
-		"surge_mps": -0.016976734623313,
-		"sway_mps": -0.0101546347141266,
+		"surge_mps": -0.0246131252497435,
+		"sway_mps": -0.0135183101519942,
 		"target_heading_degrees": 180.0,
 		"target_rudder": 0.0,
 		"target_throttle": 0.0,
@@ -56,9 +56,9 @@
 		"three_dof_human_control_enabled": true,
 		"throttle": 0.0,
 		"throttle_response": 1.65,
-		"turn_authority": 0.181265538399192,
+		"turn_authority": 0.181834796609526,
 		"velocity_alignment": 1.25,
-		"yaw_rate_deg_s": -0.0378949367219687
+		"yaw_rate_deg_s": -0.0498517631633512
 	},
 	"software_factors": [
 		"surge",

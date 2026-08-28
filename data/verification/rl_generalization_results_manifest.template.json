@@ -1,0 +1,37 @@
+{
+  "schema_version": "rl_generalization_results_manifest_v1",
+  "campaign_id": "top_simulator_generalization_v1",
+  "status": "NOT_RUN",
+  "policy_id": null,
+  "policy_sha256": null,
+  "frozen_source_sha256": null,
+  "frozen_campaign_sha256": null,
+  "training_runs": [],
+  "real_port_domain_ids": [],
+  "real_season_domain_ids": [],
+  "base_matrix_results": [],
+  "ood_results": [],
+  "ablation_results": [],
+  "stress_results": [],
+  "confidence_intervals": {},
+  "failed_or_diverged_seeds": [],
+  "shadow_operation": {
+    "status": "NOT_RUN",
+    "days_completed": 0,
+    "scenarios_completed": 0,
+    "dispatch_count": 0,
+    "receipt_archive_sha256": null,
+    "operator_review_reference": null
+  },
+  "independent_review_reference": null,
+  "claims": {
+    "training_completed": false,
+    "convergence_demonstrated": false,
+    "real_multi_port_generalization_demonstrated": false,
+    "real_multi_season_generalization_demonstrated": false,
+    "ood_acceptance_passed": false,
+    "shadow_operation_completed": false,
+    "production_authority": false
+  },
+  "boundary": "Empty fail-closed result template. Populate only with hash-bound campaign outputs after unified training and independent evaluation."
+}

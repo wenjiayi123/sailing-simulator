@@ -1,0 +1,333 @@
+{
+  "schema_version": "mass_safety_case_assessment_v1",
+  "safety_case_id": "rl_navigation_simulator_safety_case_v1",
+  "status": "FUNCTIONAL_SAFETY_CASE_COMPLETE_EXTERNAL_ACCEPTANCE_BLOCKED",
+  "functional_safety_case_complete": true,
+  "checks": {
+    "schema_scope_and_top_claim": true,
+    "operational_design_domain_complete": true,
+    "hazard_log_and_controls_complete": true,
+    "minimum_risk_conditions_complete": true,
+    "fault_trees_acyclic_and_cover_all_hazards": true,
+    "remote_control_centre_contract_complete": true,
+    "personnel_responsibility_raci_complete": true,
+    "regulatory_register_routes_external_decisions": true,
+    "evidence_registry_files_exist_and_are_hash_bound": true,
+    "claim_graph_is_traceable_and_acyclic": true,
+    "runtime_odd_monitor_maps_every_breach_to_mrc": true,
+    "approval_and_production_claims_fail_closed": true
+  },
+  "section_results": {
+    "operational_design_domain": {
+      "passed": true,
+      "dimension_count": 12,
+      "covered_categories": [
+        "actuator_feedback",
+        "cyber_integrity",
+        "geographical_authorization",
+        "navigation_fusion_quality",
+        "positioning_integrity",
+        "remote_control_centre_link",
+        "speed_envelope",
+        "traffic_complexity",
+        "under_keel_clearance",
+        "visibility",
+        "wave",
+        "wind"
+      ],
+      "missing_categories": [],
+      "invalid_dimensions": []
+    },
+    "hazard_log": {
+      "passed": true,
+      "hazard_count": 12,
+      "control_count": 24,
+      "covered_categories": [
+        "collision",
+        "communication_loss",
+        "cyber_compromise",
+        "fire_or_flooding",
+        "grounding",
+        "human_factor",
+        "loss_of_navigation_integrity",
+        "power_failure",
+        "propulsion_failure",
+        "sensor_deception",
+        "steering_failure",
+        "unsafe_learning_output"
+      ],
+      "missing_categories": [],
+      "invalid_hazard_ids": [],
+      "duplicate_control_ids": []
+    },
+    "minimum_risk_conditions": {
+      "passed": true,
+      "mrc_count": 6,
+      "invalid_mrc_ids": []
+    },
+    "fault_trees": {
+      "passed": true,
+      "tree_count": 5,
+      "covered_hazard_ids": [
+        "HZ-01",
+        "HZ-02",
+        "HZ-03",
+        "HZ-04",
+        "HZ-05",
+        "HZ-06",
+        "HZ-07",
+        "HZ-08",
+        "HZ-09",
+        "HZ-10",
+        "HZ-11",
+        "HZ-12"
+      ],
+      "uncovered_hazard_ids": [],
+      "invalid_tree_ids": []
+    },
+    "remote_control_centre": {
+      "passed": true,
+      "site_authorized": false
+    },
+    "responsibility_model": {
+      "passed": true,
+      "role_count": 9,
+      "activity_count": 7,
+      "invalid_activities": []
+    },
+    "regulatory_applicability": {
+      "passed": true,
+      "instrument_count": 5,
+      "invalid_instruments": [],
+      "all_external_determination_required": true
+    },
+    "evidence_registry": {
+      "passed": true,
+      "evidence_count": 10,
+      "missing_or_invalid_evidence_ids": []
+    },
+    "claim_graph": {
+      "passed": true,
+      "claim_count": 7,
+      "root_claim_id": "SC-TOP",
+      "invalid_claim_ids": []
+    }
+  },
+  "runtime_odd_monitor_smoke": {
+    "passed": true,
+    "nominal_within_odd": true,
+    "breach_case_count": 12,
+    "breach_cases": {
+      "ODD-GEO": {
+        "passed": true,
+        "required_mrc_ids": [
+          "MRC-02",
+          "MRC-05"
+        ]
+      },
+      "ODD-UKC": {
+        "passed": true,
+        "required_mrc_ids": [
+          "MRC-02"
+        ]
+      },
+      "ODD-WIND": {
+        "passed": true,
+        "required_mrc_ids": [
+          "MRC-03",
+          "MRC-02"
+        ]
+      },
+      "ODD-WAVE": {
+        "passed": true,
+        "required_mrc_ids": [
+          "MRC-03",
+          "MRC-02"
+        ]
+      },
+      "ODD-VIS": {
+        "passed": true,
+        "required_mrc_ids": [
+          "MRC-03",
+          "MRC-01"
+        ]
+      },
+      "ODD-TRAFFIC": {
+        "passed": true,
+        "required_mrc_ids": [
+          "MRC-03",
+          "MRC-01"
+        ]
+      },
+      "ODD-GNSS": {
+        "passed": true,
+        "required_mrc_ids": [
+          "MRC-03",
+          "MRC-01"
+        ]
+      },
+      "ODD-FUSION": {
+        "passed": true,
+        "required_mrc_ids": [
+          "MRC-03",
+          "MRC-01"
+        ]
+      },
+      "ODD-CONTROL": {
+        "passed": true,
+        "required_mrc_ids": [
+          "MRC-01",
+          "MRC-05"
+        ]
+      },
+      "ODD-RCC": {
+        "passed": true,
+        "required_mrc_ids": [
+          "MRC-01",
+          "MRC-02"
+        ]
+      },
+      "ODD-CYBER": {
+        "passed": true,
+        "required_mrc_ids": [
+          "MRC-05"
+        ]
+      },
+      "ODD-SPEED": {
+        "passed": true,
+        "required_mrc_ids": [
+          "MRC-03"
+        ]
+      }
+    },
+    "production_command_authority": false
+  },
+  "acceptance_evidence": {
+    "passed": false,
+    "schema_valid": true,
+    "deployment_checks": {
+      "vessel_name": false,
+      "official_number_or_mmsi": false,
+      "flag_state": false,
+      "operating_area": false,
+      "operator_organization": false,
+      "rcc_site": false,
+      "approved_odd_reference": false,
+      "configuration_baseline_reference": false,
+      "change_control_record_reference": false
+    },
+    "regulatory_determination_checks": {
+      "COLREG": false,
+      "SOLAS": false,
+      "STCW": false,
+      "FLAG_AND_COASTAL_STATE": false,
+      "CLASS_AND_ASSURANCE": false
+    },
+    "duty_holder_checks": {
+      "MASTER": false,
+      "ONBOARD_OPERATOR": false,
+      "RCC_OPERATOR": false,
+      "RCC_SUPERVISOR": false,
+      "SAFETY_MANAGER": false,
+      "TECHNICAL_AUTHORITY": false,
+      "RL_MODEL_OWNER": false,
+      "CYBERSECURITY_OFFICER": false
+    },
+    "independent_review_checks": {
+      "reviewer_name": false,
+      "organization": false,
+      "competence_reference": false,
+      "independence_declaration_reference": false,
+      "review_scope_reference": false,
+      "review_report_reference": false,
+      "open_findings_register_reference": false,
+      "finding_closure_reference": false,
+      "residual_risk_acceptance_reference": false,
+      "signed_decision_reference": false
+    },
+    "supporting_evidence_checks": {
+      "hazard_workshop_reference": false,
+      "fault_tree_review_reference": false,
+      "mrc_demonstration_reference": false,
+      "rcc_human_factors_reference": false,
+      "physical_hil_reference": false,
+      "named_vessel_calibration_reference": false,
+      "sea_trial_reference": false,
+      "cybersecurity_assessment_reference": false
+    },
+    "authority_request_detected": false,
+    "missing_or_invalid": [
+      "deployment.vessel_name",
+      "deployment.official_number_or_mmsi",
+      "deployment.flag_state",
+      "deployment.operating_area",
+      "deployment.operator_organization",
+      "deployment.rcc_site",
+      "deployment.approved_odd_reference",
+      "deployment.configuration_baseline_reference",
+      "deployment.change_control_record_reference",
+      "regulatory_determinations.COLREG",
+      "regulatory_determinations.SOLAS",
+      "regulatory_determinations.STCW",
+      "regulatory_determinations.FLAG_AND_COASTAL_STATE",
+      "regulatory_determinations.CLASS_AND_ASSURANCE",
+      "duty_holder_assignments.MASTER",
+      "duty_holder_assignments.ONBOARD_OPERATOR",
+      "duty_holder_assignments.RCC_OPERATOR",
+      "duty_holder_assignments.RCC_SUPERVISOR",
+      "duty_holder_assignments.SAFETY_MANAGER",
+      "duty_holder_assignments.TECHNICAL_AUTHORITY",
+      "duty_holder_assignments.RL_MODEL_OWNER",
+      "duty_holder_assignments.CYBERSECURITY_OFFICER",
+      "independent_review.reviewer_name",
+      "independent_review.organization",
+      "independent_review.competence_reference",
+      "independent_review.independence_declaration_reference",
+      "independent_review.review_scope_reference",
+      "independent_review.review_report_reference",
+      "independent_review.open_findings_register_reference",
+      "independent_review.finding_closure_reference",
+      "independent_review.residual_risk_acceptance_reference",
+      "independent_review.signed_decision_reference",
+      "supporting_evidence.hazard_workshop_reference",
+      "supporting_evidence.fault_tree_review_reference",
+      "supporting_evidence.mrc_demonstration_reference",
+      "supporting_evidence.rcc_human_factors_reference",
+      "supporting_evidence.physical_hil_reference",
+      "supporting_evidence.named_vessel_calibration_reference",
+      "supporting_evidence.sea_trial_reference",
+      "supporting_evidence.cybersecurity_assessment_reference"
+    ]
+  },
+  "evidence_sha256": {
+    "EV-COLREG": "d349f4420292e0ca90f735320e3e14cc8a5dcd54dc95aa38972454546a0144fb",
+    "EV-SAFETY": "770db26feb5697e865446eb5dab9b62f20500d1085dd832a930e54c80541e6a6",
+    "EV-SENSOR": "336baebedb9207130f84f9199b1ab069c6def2f6805be8978a4d562ce7f81258",
+    "EV-CONTROL": "69fed0a81ef177330825a81295c7b6cc6dd86c7bf6ea745162bc3608f59e98f1",
+    "EV-HIL": "34afa28d577c2cc42a5d1fd8196a4967ed399d77dbb3500cb3f334faf697b6b4",
+    "EV-DYNAMICS": "027d27f95712725681d340087f7d7e10329e561961194e4f622642b2e4989937",
+    "EV-BRIDGE": "0e477cb17b9110f83419457384ccb2caecf6bee2610618c3376cb75bf3b71ed6",
+    "EV-BRM": "18deaca7a8dc3976bd3c415389c776cf471484c4dcca3f53b89b692315be9392",
+    "EV-ASSURANCE": "319be092df7a04de7fdfb7bf7caf153daba7585a1f64dcedbd975c5b0ff36e4e",
+    "EV-SAFETY-CASE": "8e025ec5760dd68d8398aab2620a097a56bc7bdf2937e02366b8a7139c1e5b09"
+  },
+  "external_authentication_required": true,
+  "independent_review_complete": false,
+  "flag_state_approval": false,
+  "coastal_state_approval": false,
+  "class_approval": false,
+  "type_approval": false,
+  "mass_safety_certificate": false,
+  "sea_trial_completed": false,
+  "production_authority": false,
+  "training_performed": false,
+  "existing_model_modified": false,
+  "boundary": "Functional safety-case consistency and ODD-to-MRC routing only. External legal determinations, residual-risk acceptance, independent review, vessel/site approval, certification and production authority remain blocked.",
+  "inputs_sha256": {
+    "data/verification/mass_safety_case_v1.json": "8e025ec5760dd68d8398aab2620a097a56bc7bdf2937e02366b8a7139c1e5b09",
+    "data/verification/mass_safety_case_acceptance_manifest.template.json": "c564a5d261bd0f3fad492b90c41d5a16611690bd08fb802162b778be1ded2ef9",
+    "tools/ship_assurance/safety_case.py": "6c397df9aa148a329fbfc36ca4ee1943229a23810be36311855dd5d2fa81e423",
+    "tools/run_mass_safety_case.py": "fe7591c92447f06adf2f070ed1433d09a0421e820719021bf30fb6b7a333509e"
+  },
+  "generated_at_utc": "2026-08-28T13:34:25.998708+00:00"
+}

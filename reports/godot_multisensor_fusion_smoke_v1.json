@@ -1,0 +1,219 @@
+{
+	"boundary": "Software sensor simulation and fusion acceptance only; no physical sensor, field calibration, live-data or production-vessel claim.",
+	"checks": {
+		"ais_latency_becomes_stale": {
+			"detail": {
+				"health": {
+					"age_seconds": 3.3,
+					"hardware_verified": false,
+					"integrity": "VALID",
+					"latency_ms": 3150.0,
+					"quality": 0.76,
+					"sequence": 116,
+					"source_mode": "HISTORICAL_REPLAY_AND_SIMULATION",
+					"status": "STALE"
+				},
+				"latency_ms": 3150.0
+			},
+			"passed": true
+		},
+		"audit_receipts_present": {
+			"detail": 148,
+			"passed": true
+		},
+		"baseline_gnss_ins_fusion": {
+			"detail": {
+				"gnss_ins_disagreement_meters": 1.76594829559326,
+				"heading_degrees": 180.0,
+				"integrity_alerts": [],
+				"mode": "GNSS_INS_FUSED",
+				"navigation_valid": true,
+				"position_xz": "(1.745196, -0.149611)",
+				"sources": [
+					"GNSS",
+					"INS"
+				]
+			},
+			"passed": true
+		},
+		"claims_fail_closed": {
+			"detail": "Simulator-generated and historical-replay sensor channels with explicit faults and fusion. No physical radar, EO/IR, GNSS, INS, calibration, field clock, or live-vessel authority is claimed.",
+			"passed": true
+		},
+		"eo_full_occlusion_removes_detections": {
+			"detail": {
+				"dropout": false,
+				"occlusion_ratio": 1.0
+			},
+			"passed": true
+		},
+		"external_ingest_disabled_without_site_evidence": {
+			"detail": {
+				"action": "ingest_external_packet",
+				"detail": {
+					"reason": "EXTERNAL_INGEST_DISABLED"
+				},
+				"production_authority": false,
+				"schema_version": "ship_sensor_receipt_v1",
+				"sequence": 139,
+				"simulation_time_seconds": 17.9252332222222,
+				"status": "REJECTED",
+				"subject": "RADAR"
+			},
+			"passed": true
+		},
+		"fault_clear_restores_navigation": {
+			"detail": {
+				"gnss_ins_disagreement_meters": 1.73329365253448,
+				"heading_degrees": 180.0,
+				"integrity_alerts": [],
+				"mode": "GNSS_INS_FUSED",
+				"navigation_valid": true,
+				"position_xz": "(0.095178, -1.258448)",
+				"sources": [
+					"GNSS",
+					"INS"
+				]
+			},
+			"passed": true
+		},
+		"frozen_policy_and_model_artifacts_unchanged": {
+			"detail": {
+				"after": {
+					"res://data/rl/default_port_dataset.json": "47c8680049e6011f05b04fee97f220e8918aec81f96336c45beeef774ad1ddae",
+					"res://data/rl/long_beach_ais_port_ops_benchmark_v2.json": "1d676e7446f22206f6113777524d46724545e58e55c1df73a9d359795a415a1f",
+					"res://data/rl/long_beach_ais_port_ops_experiment_v2.json": "cc549e731e0d1adeb9e8a5d71446350df95d8b84af07d90dd596a6144630a0c8",
+					"res://data/rl/long_beach_public_weather_benchmark_v1.json": "459709e85178aea650f8913aa3913dd31e5e0a801a02e075262a2d3132097e11",
+					"res://data/rl/long_beach_public_weather_experiment_v1.json": "4f248803100c2f9b226a9df2a1d8434c327281ff5c3ed72c707c35c8b4b33652",
+					"res://data/rl/port_ops_safety_supervisor_v3.json": "1edee032e44132c4c15ade0de73ff3f0ba3ed9b2a25206faa0c6ca8a50f26de3",
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5"
+				},
+				"before": {
+					"res://data/rl/default_port_dataset.json": "47c8680049e6011f05b04fee97f220e8918aec81f96336c45beeef774ad1ddae",
+					"res://data/rl/long_beach_ais_port_ops_benchmark_v2.json": "1d676e7446f22206f6113777524d46724545e58e55c1df73a9d359795a415a1f",
+					"res://data/rl/long_beach_ais_port_ops_experiment_v2.json": "cc549e731e0d1adeb9e8a5d71446350df95d8b84af07d90dd596a6144630a0c8",
+					"res://data/rl/long_beach_public_weather_benchmark_v1.json": "459709e85178aea650f8913aa3913dd31e5e0a801a02e075262a2d3132097e11",
+					"res://data/rl/long_beach_public_weather_experiment_v1.json": "4f248803100c2f9b226a9df2a1d8434c327281ff5c3ed72c707c35c8b4b33652",
+					"res://data/rl/port_ops_safety_supervisor_v3.json": "1edee032e44132c4c15ade0de73ff3f0ba3ed9b2a25206faa0c6ca8a50f26de3",
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5"
+				}
+			},
+			"passed": true
+		},
+		"fusion_panel_present": {
+			"detail": "ShipMultisensorFusionPanel",
+			"passed": true
+		},
+		"fusion_suite_present": {
+			"detail": "ShipMultisensorFusionSuite",
+			"passed": true
+		},
+		"gnss_ins_dual_failure_blocks_decision": {
+			"detail": {
+				"gnss_ins_disagreement_meters": null,
+				"heading_degrees": null,
+				"integrity_alerts": [],
+				"mode": "FAIL_CLOSED_NO_POSITION",
+				"navigation_valid": false,
+				"position_xz": null,
+				"sources": []
+			},
+			"passed": true
+		},
+		"gnss_spoof_detected_and_degraded": {
+			"detail": {
+				"alerts": [
+					"GNSS_INS_DISAGREEMENT",
+					"GNSS_SPOOF_SUSPECTED"
+				],
+				"mode": "DEAD_RECKONING_DEGRADED"
+			},
+			"passed": true
+		},
+		"hotkey_K_opens_sensor_panel": {
+			"detail": true,
+			"passed": true
+		},
+		"ir_false_alarms_are_explicit": {
+			"detail": 3,
+			"passed": true
+		},
+		"main_scene_load_request": {
+			"detail": 0,
+			"passed": true
+		},
+		"packet_time_provenance_quality_contract": {
+			"detail": "six channel packets",
+			"passed": true
+		},
+		"panel_receives_fusion_snapshot": {
+			"detail": "ship_multisensor_fusion_snapshot_v1",
+			"passed": true
+		},
+		"radar_dropout_fails_closed": {
+			"detail": {
+				"faults": {
+					"dropout": true,
+					"false_alarm_count": 0
+				},
+				"health": {
+					"age_seconds": 1.0,
+					"hardware_verified": false,
+					"integrity": "UNAVAILABLE",
+					"latency_ms": 80.0,
+					"quality": 0.0,
+					"sequence": 61,
+					"source_mode": "SIMULATOR_GENERATED",
+					"status": "OFFLINE"
+				}
+			},
+			"passed": true
+		},
+		"rl_gateway_preserves_existing_policy": {
+			"detail": {
+				"available": true,
+				"reason": "existing policies remain frozen during function build",
+				"requires_versioned_observation_adapter_and_retraining": true,
+				"wired_to_existing_policy": false
+			},
+			"passed": true
+		},
+		"six_sensor_channels_present": {
+			"detail": [
+				"RADAR",
+				"AIS",
+				"EO",
+				"IR",
+				"GNSS",
+				"INS"
+			],
+			"passed": true
+		},
+		"unknown_fault_rejected": {
+			"detail": {
+				"action": "set_sensor_fault",
+				"detail": {
+					"reason": "UNKNOWN_FAULT"
+				},
+				"production_authority": false,
+				"schema_version": "ship_sensor_receipt_v1",
+				"sequence": 140,
+				"simulation_time_seconds": 17.9252332222222,
+				"status": "REJECTED",
+				"subject": "unknown_fault"
+			},
+			"passed": true
+		}
+	},
+	"errors": [],
+	"existing_policy_changed": false,
+	"generated_at": "2026-08-28T13:33:44",
+	"motion_model_changed": false,
+	"passed": true,
+	"passed_checks": 21,
+	"schema_version": "godot_multisensor_fusion_smoke_v1",
+	"total_checks": 21,
+	"training_performed": false
+}

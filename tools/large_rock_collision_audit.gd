@@ -4,13 +4,14 @@ const LARGE_ROCK_MANIFEST := preload("res://scripts/world/large_rock_obstacle_ma
 
 const WATER_LEVEL_Y := -140.73494
 const DEMO_CLEARANCE_METERS := 18.0
-const PRESERVED_DEMO_ENCOUNTERS := {
-	"GroundedPlate_06_TwistedButtressMesa": "用户确认该东侧巨岩由策略近距离避让，保留以展示真实转向操作",
-}
+const PRESERVED_DEMO_ENCOUNTERS := {}
 const RELOCATED_CROSSING_ROCKS := {
 	"GroundedPlate_01_BroadLandMass": Vector2(-460.0, 280.0),
 	"GroundedPlate_04_WideBridgeSlab": Vector2(-520.0, -200.0),
 	"GroundedPlate_07_AncientWallPlate": Vector2(-120.0, 520.0),
+}
+const USER_RELOCATED_ROCKS := {
+	"GroundedPlate_06_TwistedButtressMesa": Vector2(620.0, 450.0),
 }
 const REPORT_PATH := "res://reports/large_rock_collision_audit_v1.json"
 const TRAJECTORY_PATHS := [
@@ -58,7 +59,11 @@ func _run() -> void:
 	for record in records:
 		if not bool(record.get("relocated_for_crossing_fix", false)):
 			continue
-		var target := RELOCATED_CROSSING_ROCKS[String(record.get("name", ""))] as Vector2
+		var rock_name := String(record.get("name", ""))
+		var target := RELOCATED_CROSSING_ROCKS.get(
+			rock_name,
+			USER_RELOCATED_ROCKS.get(rock_name, Vector2(INF, INF))
+		) as Vector2
 		var position := record.get("local_position", {}) as Dictionary
 		if not is_equal_approx(float(position.get("x", INF)), target.x) or not is_equal_approx(float(position.get("z", INF)), target.y):
 			errors.append("relocated crossing rock is not at its reviewed safe position: %s" % String(record.get("name", "")))
@@ -145,7 +150,10 @@ func _audit_root(root_node: Node3D, samples: Array[Vector2]) -> Dictionary:
 		"render_surface_crossing": surface_crossing,
 		"preserved_demo_encounter": preserved_encounter,
 		"preserved_reason": String(PRESERVED_DEMO_ENCOUNTERS.get(String(root_node.name), "")),
-		"relocated_for_crossing_fix": RELOCATED_CROSSING_ROCKS.has(String(root_node.name)),
+		"relocated_for_crossing_fix": (
+			RELOCATED_CROSSING_ROCKS.has(String(root_node.name))
+			or USER_RELOCATED_ROCKS.has(String(root_node.name))
+		),
 		"trajectory_conflict": surface_crossing and not preserved_encounter,
 	}
 

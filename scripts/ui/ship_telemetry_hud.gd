@@ -17,7 +17,7 @@ const BOTTOM_PANEL_HEIGHT := 58.0
 const KEY_GUIDE_LEFT := 22.0
 const KEY_GUIDE_TOP := 22.0
 const KEY_GUIDE_WIDTH := 242.0
-const KEY_GUIDE_HEIGHT := 124.0
+const KEY_GUIDE_HEIGHT := 144.0
 const DEVELOPER_CREDIT_LEFT := 22.0
 const DEVELOPER_CREDIT_TOP := 150.0
 const DEVELOPER_CREDIT_WIDTH := 250.0
@@ -1483,6 +1483,7 @@ func _build_interface() -> void:
 	_add_hotkey_line(key_stack, "H", "总控 / 已训练策略")
 	_add_hotkey_line(key_stack, "Z/X/C", "RL / 船队 / 训练")
 	_add_hotkey_line(key_stack, "V/N/W", "风险 / 海图 / 海况")
+	_add_hotkey_line(key_stack, "B/Y/J/U/Q", "驾驶台 / 港作 / 协同 / HIL / 安全案例")
 	_add_hotkey_line(key_stack, "P/I/O", "复盘 / AIS / 教员")
 	_add_hotkey_line(key_stack, "G/T/1-4", "场景 / 天气 / 预设")
 	_add_hotkey_line(key_stack, "L/BK", "HUD编辑 / 还原")

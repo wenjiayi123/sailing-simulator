@@ -1,0 +1,37 @@
+# 港口生产联动功能保障报告 V1
+
+**功能状态：** `FUNCTIONAL_PORT_INTEGRATION_COMPLETE_EXTERNAL_SITE_ACCEPTANCE_BLOCKED`
+
+本层为强化学习航行模拟器提供船舶交通服务、码头操作系统、引航、拖轮、泊位资源和官方航海通告六类可替换接口。当前运行证据来自签名离线夹具，不冒充真实港口连接。
+
+| 项目 | 当前证据 |
+|---|---:|
+| 适配器 | 6/6 |
+| Godot 运行验收 | 53/53 |
+| 既有策略哈希 | 10/10 |
+| 功能联动闭环 | PASS |
+| 真实港口站点准入 | BLOCKED |
+
+## 已实现
+
+- 每适配器独立身份、HMAC-SHA256、载荷 SHA-256、单调序号、唯一快照和防重放。
+- 必填字段、单位、时间基准、未来时间、时效窗口和官方通告有效期检查。
+- 船舶交通服务、码头操作系统、引航、拖轮、泊位、通告六类数据的权威范围分离。
+- 断链和过期自动撤销数据源权威，进入显式降级模式并要求人工协调。
+- 引航和拖轮协调请求必须人工确认、类型在白名单内；调度回执形成哈希审计链。
+- 仅持久化摘要、载荷哈希和来源链；不持久化业务载荷正文。
+- `external_dispatch_performed=false`、`mapped_to_vessel_actuation=false`。
+
+## 外部门禁
+
+当前站点模板为 `BLOCKED_EXTERNAL_PORT_SITE_EVIDENCE_INCOMPLETE`。真实上线必须提交六方接口授权、数据映射和单位、签署服务级别协议、时效/时钟/断链测试、身份与证书、网络分区、密钥轮换、防篡改审计、至少 30 天且 1,000 场的影子运行、零关键偏差、回滚演练、操作员验收以及港口/VTS/码头/引航/拖轮/船旗或船级和法律责任批准。
+
+布尔值不能绕过逐文件 SHA-256 证据。完整材料也只进入独立站点决定，不由模拟器自行签发生产授权。
+
+## 复现
+
+```bash
+make GODOT="/Applications/Godot.app/Contents/MacOS/Godot" godot-port-production-integration-smoke
+.venv/bin/python tools/run_port_production_integration_assurance.py verify
+.venv/bin/python -m unittest tests.test_port_production_integration -v
+```

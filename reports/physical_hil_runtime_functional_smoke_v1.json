@@ -1,0 +1,81 @@
+{
+  "schema_version": "physical_hil_runtime_functional_smoke_v1",
+  "profile_id": "physical_hil_runtime_bench_v1",
+  "passed": true,
+  "checks": {
+    "runtime_profile_valid": true,
+    "manual_and_key_arm_required": true,
+    "minimum_wcet_sample_count_collected": true,
+    "bench_wcet_within_deadline": true,
+    "nominal_outputs_bounded": true,
+    "out_of_range_command_clamped": true,
+    "watchdog_disconnect_neutralized": true,
+    "disconnect_does_not_auto_rearm": true,
+    "recovery_rejects_missing_confirmation": true,
+    "recovery_returns_safe_neutral_before_rearm": true,
+    "clock_offset_violation_neutralized": true,
+    "execution_deadline_overrun_neutralized": true,
+    "manual_override_has_priority": true,
+    "replayed_sequence_neutralized": true,
+    "estop_channel_a_independently_trips": true,
+    "estop_channel_b_independently_trips": true,
+    "receipt_chain_is_tamper_evident": true
+  },
+  "timing": {
+    "sample_count": 1000,
+    "mean_ms": 0.011729749,
+    "p95_ms": 0.012905549999999997,
+    "p99_ms": 0.02042732,
+    "maximum_ms": 0.076132,
+    "deadline_ms": 10.0,
+    "deadline_met": true
+  },
+  "state_coverage": [
+    "SAFE_NEUTRAL",
+    "ARMED",
+    "DISCONNECTED",
+    "RECOVERY_PENDING",
+    "CLOCK_OR_SENSOR_TIME_INVALID",
+    "DEADLINE_OVERRUN",
+    "MANUAL_PRIORITY",
+    "INPUT_INVALID",
+    "ESTOP_LATCHED"
+  ],
+  "dual_channel_emergency_stop": {
+    "channel_a": {
+      "armed": true,
+      "tripped": true,
+      "reset_while_active_blocked": true,
+      "reset_without_key_blocked": true,
+      "manual_reset_complete": true,
+      "receipt_chain_valid": true
+    },
+    "channel_b": {
+      "armed": true,
+      "tripped": true,
+      "reset_while_active_blocked": true,
+      "reset_without_key_blocked": true,
+      "manual_reset_complete": true,
+      "receipt_chain_valid": true
+    }
+  },
+  "receipt_count": 1011,
+  "receipt_chain_head_sha256": "59352bf518282ad01ee0d3988c7723054a043f3cffa18d9a4ccb25383ee5b83c",
+  "source_class": "BENCH_FUNCTIONAL_SMOKE",
+  "target_controller_connected": false,
+  "real_io_connected": false,
+  "rtos_verified": false,
+  "physical_hil_verified": false,
+  "site_delivery_ready": false,
+  "production_authority": false,
+  "training_performed": false,
+  "existing_model_modified": false,
+  "boundary": "Runtime and fault-state functional smoke only. No target controller, real I/O rack, RTOS, independent emergency-stop wiring or witness was connected.",
+  "inputs_sha256": {
+    "data/verification/physical_hil_runtime_profile_v1.json": "fb06736ebd930672abadf906a8a1ea6a638a5857c068e06be291218fdb57da48",
+    "tools/ship_assurance/physical_hil_runtime.py": "fcd0e7710dd0258e8b1f3dc14a28395e064356e8c65429fefee6a155cb6d0ee0",
+    "tools/ship_assurance/hil.py": "202c4b980504798faf76185609d48517b3d1784ca8e6f081594ac7e1578c0ecc",
+    "tools/run_physical_hil_runtime.py": "cc2daa4579989f3bc128143471377499f770331162c44b0ae21a5e43e7c365f6"
+  },
+  "generated_at_utc": "2026-08-28T13:33:44.877578+00:00"
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": "ship_execution_control_profile_v1",
+  "profile_id": "research_execution_control_v1",
+  "cycle_period_seconds": 0.05,
+  "watchdog_timeout_seconds": 0.35,
+  "command_limits": {
+    "maximum_ahead_throttle": 0.75,
+    "maximum_astern_throttle": 0.35,
+    "maximum_rudder_normalized": 0.65,
+    "maximum_throttle_slew_per_second": 0.8,
+    "maximum_rudder_slew_per_second": 1.2
+  },
+  "feedback": {
+    "command_ack_tolerance": 0.015,
+    "actuator_tracking_tolerance": 0.12,
+    "maximum_feedback_age_seconds": 0.2
+  },
+  "autopilot": {
+    "heading_error_full_rudder_degrees": 55.0,
+    "minimum_throttle": 0.16,
+    "maximum_throttle": 0.55,
+    "speed_gain": 0.16
+  },
+  "authority_priority": [
+    "EMERGENCY_STOP",
+    "MANUAL",
+    "REMOTE_CONTROL_CENTER",
+    "AUTOPILOT",
+    "RL"
+  ],
+  "remote_control_center": {
+    "enabled": false,
+    "authenticated": false,
+    "site_authorized": false
+  },
+  "external_actuator_adapter": {
+    "enabled": false,
+    "steering_gear_connected": false,
+    "propulsion_controller_connected": false,
+    "bridge_control_system_connected": false
+  },
+  "existing_policy_adapter": {
+    "wired": false,
+    "reason": "Existing strategies remain frozen during function build; the new RL command API is versioned and opt-in."
+  },
+  "physical_emergency_stop_verified": false,
+  "physical_actuator_feedback_verified": false,
+  "production_authority": false,
+  "claim_boundary": "Runtime execution-control simulation using the existing vessel command API. No physical steering gear, propulsion plant, bridge control system, independent hardware emergency stop or live-vessel authority is claimed."
+}

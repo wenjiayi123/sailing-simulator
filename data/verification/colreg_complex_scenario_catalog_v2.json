@@ -1,0 +1,247 @@
+{
+  "schema_version": "colreg_complex_scenario_catalog_v2",
+  "safe_dcpa_m": 500.0,
+  "tcpa_horizon_s": 900.0,
+  "scenarios": [
+    {
+      "id": "multi_ship_mixed_duties",
+      "capabilities": ["multi_ship", "not_under_command"],
+      "own": {"vessel_id": "OWN", "east_m": 0.0, "north_m": 0.0, "heading_deg": 0.0, "speed_mps": 5.0, "navigation_status": "under_way_using_engine"},
+      "targets": [
+        {"vessel_id": "NUC-A", "east_m": 0.0, "north_m": 700.0, "heading_deg": 180.0, "speed_mps": 1.0, "navigation_status": "not_under_command"},
+        {"vessel_id": "CROSS-STBD", "east_m": 500.0, "north_m": 500.0, "heading_deg": 270.0, "speed_mps": 5.0, "navigation_status": "under_way_using_engine"},
+        {"vessel_id": "CROSS-PORT", "east_m": -500.0, "north_m": 500.0, "heading_deg": 90.0, "speed_mps": 5.0, "navigation_status": "under_way_using_engine"}
+      ],
+      "expected": {"primary_duty": "give_way_to_privileged_vessel", "priority_target_id": "NUC-A", "context_compliant": true, "rule_ids": ["Rule 18", "Rule 27"]},
+      "cases": [
+        {"id": "multi_starboard_action", "kind": "navigation", "course_change_deg": 20.0, "speed_ratio": 1.0, "expected_passed": true},
+        {"id": "multi_speed_reduction", "kind": "navigation", "course_change_deg": 0.0, "speed_ratio": 0.6, "expected_passed": true},
+        {"id": "multi_maintain_rejected", "kind": "navigation", "course_change_deg": 0.0, "speed_ratio": 1.0, "expected_passed": false},
+        {"id": "multi_port_action_rejected", "kind": "navigation", "course_change_deg": -20.0, "speed_ratio": 1.0, "expected_passed": false}
+      ]
+    },
+    {
+      "id": "narrow_channel_keep_starboard",
+      "capabilities": ["narrow_channel"],
+      "own": {"vessel_id": "OWN", "east_m": 0.0, "north_m": 0.0, "heading_deg": 0.0, "speed_mps": 4.0},
+      "targets": [],
+      "context": {"waterway": "narrow_channel", "starboard_side_fraction": 0.82, "crossing_impedes_channel_vessel": false, "overtaking": false},
+      "expected": {"primary_duty": "monitor", "priority_target_id": null, "context_compliant": true, "rule_ids": ["Rule 9"]},
+      "cases": [
+        {"id": "channel_keep_starboard", "kind": "navigation", "course_change_deg": 0.0, "speed_ratio": 1.0, "starboard_side_fraction_after": 0.8, "expected_passed": true},
+        {"id": "channel_move_port_rejected", "kind": "navigation", "course_change_deg": -10.0, "speed_ratio": 1.0, "starboard_side_fraction_after": 0.3, "expected_passed": false},
+        {"id": "channel_impede_rejected", "kind": "navigation", "course_change_deg": 0.0, "speed_ratio": 1.0, "starboard_side_fraction_after": 0.8, "crossing_impedes_after": true, "expected_passed": false}
+      ]
+    },
+    {
+      "id": "narrow_channel_crossing_impedance",
+      "capabilities": ["narrow_channel", "multi_ship"],
+      "own": {"vessel_id": "OWN", "east_m": 0.0, "north_m": 0.0, "heading_deg": 0.0, "speed_mps": 4.0},
+      "targets": [
+        {"vessel_id": "CHANNEL-VESSEL", "east_m": 400.0, "north_m": 400.0, "heading_deg": 270.0, "speed_mps": 4.0}
+      ],
+      "context": {"waterway": "narrow_channel", "starboard_side_fraction": 0.72, "crossing_impedes_channel_vessel": true, "overtaking": false},
+      "expected": {"primary_duty": "give_way", "priority_target_id": "CHANNEL-VESSEL", "context_compliant": false, "rule_ids": ["Rule 9", "Rule 15", "Rule 16"]},
+      "cases": [
+        {"id": "channel_clear_astarn", "kind": "navigation", "course_change_deg": 20.0, "speed_ratio": 1.0, "starboard_side_fraction_after": 0.7, "crossing_impedes_after": false, "expected_passed": true},
+        {"id": "channel_continue_impeding", "kind": "navigation", "course_change_deg": 20.0, "speed_ratio": 1.0, "starboard_side_fraction_after": 0.7, "crossing_impedes_after": true, "expected_passed": false}
+      ]
+    },
+    {
+      "id": "narrow_channel_overtaking_agreement",
+      "capabilities": ["narrow_channel"],
+      "own": {"vessel_id": "OWN", "east_m": 0.0, "north_m": 0.0, "heading_deg": 0.0, "speed_mps": 6.0},
+      "targets": [
+        {"vessel_id": "SLOW-AHEAD", "east_m": 0.0, "north_m": 500.0, "heading_deg": 0.0, "speed_mps": 3.0}
+      ],
+      "context": {"waterway": "narrow_channel", "starboard_side_fraction": 0.78, "crossing_impedes_channel_vessel": false, "overtaking": true, "overtaking_agreement": true},
+      "expected": {"primary_duty": "give_way", "priority_target_id": "SLOW-AHEAD", "context_compliant": true, "rule_ids": ["Rule 9", "Rule 13"]},
+      "cases": [
+        {"id": "agreed_overtaking", "kind": "navigation", "course_change_deg": 15.0, "speed_ratio": 1.0, "starboard_side_fraction_after": 0.7, "overtaking_after": true, "overtaking_agreement": true, "expected_passed": true},
+        {"id": "unagreed_overtaking", "kind": "navigation", "course_change_deg": 15.0, "speed_ratio": 1.0, "starboard_side_fraction_after": 0.7, "overtaking_after": true, "overtaking_agreement": false, "expected_passed": false}
+      ]
+    },
+    {
+      "id": "tss_lane_following",
+      "capabilities": ["traffic_separation_scheme"],
+      "own": {"vessel_id": "OWN", "east_m": 0.0, "north_m": 0.0, "heading_deg": 2.0, "speed_mps": 5.0},
+      "targets": [],
+      "context": {"waterway": "traffic_separation_scheme", "tss_mode": "lane_following", "lane_alignment_error_deg": 2.0, "inside_separation_zone": false},
+      "expected": {"primary_duty": "monitor", "priority_target_id": null, "context_compliant": true, "rule_ids": ["Rule 10"]},
+      "cases": [
+        {"id": "lane_aligned", "kind": "navigation", "course_change_deg": 0.0, "speed_ratio": 1.0, "lane_alignment_error_after_deg": 4.0, "inside_separation_zone_after": false, "expected_passed": true},
+        {"id": "lane_misaligned", "kind": "navigation", "course_change_deg": 0.0, "speed_ratio": 1.0, "lane_alignment_error_after_deg": 25.0, "inside_separation_zone_after": false, "expected_passed": false},
+        {"id": "lane_enter_zone", "kind": "navigation", "course_change_deg": 0.0, "speed_ratio": 1.0, "lane_alignment_error_after_deg": 4.0, "inside_separation_zone_after": true, "expected_passed": false}
+      ]
+    },
+    {
+      "id": "tss_right_angle_crossing",
+      "capabilities": ["traffic_separation_scheme"],
+      "own": {"vessel_id": "OWN", "east_m": 0.0, "north_m": 0.0, "heading_deg": 90.0, "speed_mps": 5.0},
+      "targets": [],
+      "context": {"waterway": "traffic_separation_scheme", "tss_mode": "crossing", "crossing_angle_deg": 90.0, "inside_separation_zone": false},
+      "expected": {"primary_duty": "monitor", "priority_target_id": null, "context_compliant": true, "rule_ids": ["Rule 10"]},
+      "cases": [
+        {"id": "cross_near_right_angle", "kind": "navigation", "course_change_deg": 0.0, "speed_ratio": 1.0, "crossing_angle_after_deg": 90.0, "inside_separation_zone_after": false, "expected_passed": true},
+        {"id": "cross_shallow_angle", "kind": "navigation", "course_change_deg": 0.0, "speed_ratio": 1.0, "crossing_angle_after_deg": 45.0, "inside_separation_zone_after": false, "expected_passed": false},
+        {"id": "cross_enter_zone", "kind": "navigation", "course_change_deg": 0.0, "speed_ratio": 1.0, "crossing_angle_after_deg": 90.0, "inside_separation_zone_after": true, "expected_passed": false}
+      ]
+    },
+    {
+      "id": "give_way_to_nuc_and_verify_signals",
+      "capabilities": ["not_under_command", "lights_and_shapes"],
+      "own": {"vessel_id": "OWN", "east_m": 0.0, "north_m": 0.0, "heading_deg": 0.0, "speed_mps": 5.0},
+      "targets": [
+        {"vessel_id": "NUC", "east_m": 0.0, "north_m": 700.0, "heading_deg": 180.0, "speed_mps": 1.0, "navigation_status": "not_under_command"}
+      ],
+      "signal_subject": {"navigation_status": "not_under_command"},
+      "expected": {"primary_duty": "give_way_to_privileged_vessel", "priority_target_id": "NUC", "context_compliant": true, "rule_ids": ["Rule 18", "Rule 27"]},
+      "cases": [
+        {"id": "nuc_lights_shapes_correct", "kind": "visual_signal", "lights": ["all_round_red_upper", "all_round_red_lower"], "shapes": ["ball_upper", "ball_lower"], "expected_passed": true},
+        {"id": "nuc_one_red_missing", "kind": "visual_signal", "lights": ["all_round_red_upper"], "shapes": ["ball_upper", "ball_lower"], "expected_passed": false},
+        {"id": "nuc_shape_missing", "kind": "visual_signal", "lights": ["all_round_red_upper", "all_round_red_lower"], "shapes": ["ball_upper"], "expected_passed": false}
+      ]
+    },
+    {
+      "id": "own_nuc_stand_on_status",
+      "capabilities": ["not_under_command", "lights_and_shapes"],
+      "own": {"vessel_id": "OWN-NUC", "east_m": 0.0, "north_m": 0.0, "heading_deg": 0.0, "speed_mps": 1.0, "navigation_status": "not_under_command"},
+      "targets": [
+        {"vessel_id": "POWER", "east_m": 0.0, "north_m": 700.0, "heading_deg": 180.0, "speed_mps": 5.0, "navigation_status": "under_way_using_engine"}
+      ],
+      "expected": {"primary_duty": "stand_on_special_status", "priority_target_id": "POWER", "context_compliant": true, "rule_ids": ["Rule 18", "Rule 27"]},
+      "cases": [
+        {"id": "nuc_maintains", "kind": "navigation", "course_change_deg": 0.0, "speed_ratio": 1.0, "expected_passed": true},
+        {"id": "nuc_unprompted_large_change", "kind": "navigation", "course_change_deg": 20.0, "speed_ratio": 1.0, "expected_passed": false}
+      ]
+    },
+    {
+      "id": "give_way_to_ram_and_verify_signals",
+      "capabilities": ["restricted_in_ability_to_manoeuvre", "lights_and_shapes"],
+      "own": {"vessel_id": "OWN", "east_m": 0.0, "north_m": 0.0, "heading_deg": 0.0, "speed_mps": 5.0},
+      "targets": [
+        {"vessel_id": "RAM", "east_m": 0.0, "north_m": 700.0, "heading_deg": 180.0, "speed_mps": 1.0, "navigation_status": "restricted_in_ability_to_manoeuvre"}
+      ],
+      "signal_subject": {"navigation_status": "restricted_in_ability_to_manoeuvre"},
+      "expected": {"primary_duty": "give_way_to_privileged_vessel", "priority_target_id": "RAM", "context_compliant": true, "rule_ids": ["Rule 18", "Rule 27"]},
+      "cases": [
+        {"id": "ram_lights_shapes_correct", "kind": "visual_signal", "lights": ["all_round_red_upper", "all_round_white", "all_round_red_lower"], "shapes": ["ball_upper", "diamond", "ball_lower"], "expected_passed": true},
+        {"id": "ram_light_order_incomplete", "kind": "visual_signal", "lights": ["all_round_red_upper", "all_round_white"], "shapes": ["ball_upper", "diamond", "ball_lower"], "expected_passed": false},
+        {"id": "ram_navigation_substantial", "kind": "navigation", "course_change_deg": 15.0, "speed_ratio": 1.0, "expected_passed": true}
+      ]
+    },
+    {
+      "id": "give_way_to_fishing_nontrawling",
+      "capabilities": ["fishing_vessel", "lights_and_shapes"],
+      "own": {"vessel_id": "OWN", "east_m": 0.0, "north_m": 0.0, "heading_deg": 0.0, "speed_mps": 5.0},
+      "targets": [
+        {"vessel_id": "FISH", "east_m": 0.0, "north_m": 700.0, "heading_deg": 180.0, "speed_mps": 2.0, "navigation_status": "fishing"}
+      ],
+      "signal_subject": {"navigation_status": "fishing"},
+      "trawling": false,
+      "expected": {"primary_duty": "give_way_to_privileged_vessel", "priority_target_id": "FISH", "context_compliant": true, "rule_ids": ["Rule 18", "Rule 26"]},
+      "cases": [
+        {"id": "fishing_red_white_correct", "kind": "visual_signal", "lights": ["all_round_red_upper", "all_round_white_lower"], "shapes": ["cone_apex_upper", "cone_apex_lower"], "expected_passed": true},
+        {"id": "fishing_wrong_green", "kind": "visual_signal", "lights": ["all_round_green_upper", "all_round_white_lower"], "shapes": ["cone_apex_upper", "cone_apex_lower"], "expected_passed": false},
+        {"id": "fishing_navigation_maintain_rejected", "kind": "navigation", "course_change_deg": 0.0, "speed_ratio": 1.0, "expected_passed": false}
+      ]
+    },
+    {
+      "id": "fishing_trawling_signature",
+      "capabilities": ["fishing_vessel", "lights_and_shapes"],
+      "own": {"vessel_id": "OWN", "east_m": 0.0, "north_m": 0.0, "heading_deg": 0.0, "speed_mps": 5.0},
+      "targets": [
+        {"vessel_id": "TRAWLER", "east_m": 0.0, "north_m": 700.0, "heading_deg": 180.0, "speed_mps": 2.0, "navigation_status": "fishing"}
+      ],
+      "signal_subject": {"navigation_status": "fishing"},
+      "trawling": true,
+      "expected": {"primary_duty": "give_way_to_privileged_vessel", "priority_target_id": "TRAWLER", "context_compliant": true, "rule_ids": ["Rule 18", "Rule 26"]},
+      "cases": [
+        {"id": "trawling_green_white_correct", "kind": "visual_signal", "lights": ["all_round_green_upper", "all_round_white_lower"], "shapes": ["cone_apex_upper", "cone_apex_lower"], "expected_passed": true},
+        {"id": "trawling_wrong_red", "kind": "visual_signal", "lights": ["all_round_red_upper", "all_round_white_lower"], "shapes": ["cone_apex_upper", "cone_apex_lower"], "expected_passed": false}
+      ]
+    },
+    {
+      "id": "restricted_visibility_forward_target",
+      "capabilities": ["complex_restricted_visibility"],
+      "visibility_nm": 0.5,
+      "vessels_in_sight": false,
+      "own": {"vessel_id": "OWN", "east_m": 0.0, "north_m": 0.0, "heading_deg": 0.0, "speed_mps": 4.0},
+      "targets": [
+        {"vessel_id": "AHEAD", "east_m": 0.0, "north_m": 600.0, "heading_deg": 180.0, "speed_mps": 4.0}
+      ],
+      "expected": {"primary_duty": "safe_speed_and_avoidance", "priority_target_id": "AHEAD", "context_compliant": true, "rule_ids": ["Rule 19"]},
+      "cases": [
+        {"id": "fog_reduce_speed", "kind": "navigation", "course_change_deg": 0.0, "speed_ratio": 0.6, "expected_passed": true},
+        {"id": "fog_starboard_substantial", "kind": "navigation", "course_change_deg": 15.0, "speed_ratio": 1.0, "expected_passed": true},
+        {"id": "fog_port_forward_rejected", "kind": "navigation", "course_change_deg": -15.0, "speed_ratio": 1.0, "expected_passed": false},
+        {"id": "fog_maintain_rejected", "kind": "navigation", "course_change_deg": 0.0, "speed_ratio": 1.0, "expected_passed": false}
+      ]
+    },
+    {
+      "id": "restricted_visibility_target_abaft_beam",
+      "capabilities": ["complex_restricted_visibility"],
+      "visibility_nm": 0.4,
+      "vessels_in_sight": false,
+      "own": {"vessel_id": "OWN", "east_m": 0.0, "north_m": 0.0, "heading_deg": 0.0, "speed_mps": 3.0},
+      "targets": [
+        {"vessel_id": "ASTERN", "east_m": 0.0, "north_m": -500.0, "heading_deg": 0.0, "speed_mps": 6.0}
+      ],
+      "expected": {"primary_duty": "safe_speed_and_avoidance", "priority_target_id": "ASTERN", "context_compliant": true, "rule_ids": ["Rule 19"]},
+      "cases": [
+        {"id": "fog_abaft_port_action", "kind": "navigation", "course_change_deg": -15.0, "speed_ratio": 1.0, "expected_passed": true},
+        {"id": "fog_abaft_no_action", "kind": "navigation", "course_change_deg": 0.0, "speed_ratio": 1.0, "expected_passed": false}
+      ]
+    },
+    {
+      "id": "restricted_visibility_power_sound",
+      "capabilities": ["sound_signals", "complex_restricted_visibility"],
+      "visibility_nm": 0.5,
+      "vessels_in_sight": false,
+      "sound_signal_required": true,
+      "making_way": true,
+      "own": {"vessel_id": "OWN", "east_m": 0.0, "north_m": 0.0, "heading_deg": 0.0, "speed_mps": 4.0, "navigation_status": "under_way_using_engine"},
+      "targets": [
+        {"vessel_id": "FOG-TARGET", "east_m": 0.0, "north_m": 600.0, "heading_deg": 180.0, "speed_mps": 4.0}
+      ],
+      "expected": {"primary_duty": "safe_speed_and_avoidance", "priority_target_id": "FOG-TARGET", "context_compliant": true, "rule_ids": ["Rule 19", "Rule 35"]},
+      "cases": [
+        {"id": "power_one_prolonged", "kind": "sound_signal", "signal": "one_prolonged", "interval_s": 100.0, "expected_passed": true},
+        {"id": "power_wrong_pattern", "kind": "sound_signal", "signal": "two_prolonged", "interval_s": 100.0, "expected_passed": false},
+        {"id": "power_late_interval", "kind": "sound_signal", "signal": "one_prolonged", "interval_s": 130.0, "expected_passed": false}
+      ]
+    },
+    {
+      "id": "restricted_visibility_nuc_sound",
+      "capabilities": ["sound_signals", "complex_restricted_visibility", "not_under_command"],
+      "visibility_nm": 0.5,
+      "vessels_in_sight": false,
+      "sound_signal_required": true,
+      "making_way": true,
+      "own": {"vessel_id": "OWN-NUC", "east_m": 0.0, "north_m": 0.0, "heading_deg": 0.0, "speed_mps": 1.0, "navigation_status": "not_under_command"},
+      "targets": [
+        {"vessel_id": "FOG-TARGET", "east_m": 0.0, "north_m": 500.0, "heading_deg": 180.0, "speed_mps": 3.0}
+      ],
+      "expected": {"primary_duty": "safe_speed_and_avoidance", "priority_target_id": "FOG-TARGET", "context_compliant": true, "rule_ids": ["Rule 27", "Rule 35"]},
+      "cases": [
+        {"id": "nuc_one_prolonged_two_short", "kind": "sound_signal", "signal": "one_prolonged_two_short", "interval_s": 110.0, "expected_passed": true},
+        {"id": "nuc_power_pattern_rejected", "kind": "sound_signal", "signal": "one_prolonged", "interval_s": 110.0, "expected_passed": false}
+      ]
+    },
+    {
+      "id": "simulated_local_port_rules",
+      "capabilities": ["local_rules"],
+      "own": {"vessel_id": "OWN", "east_m": 0.0, "north_m": 0.0, "heading_deg": 0.0, "speed_mps": 2.5},
+      "targets": [],
+      "context": {"waterway": "local_port_area", "local_rule_area_id": "SIM-HARBOR-ALPHA", "overtaking": false, "report_completed": true},
+      "expected": {"primary_duty": "monitor", "priority_target_id": null, "context_compliant": true, "rule_ids": ["LOCAL:SIM-HARBOR-ALPHA-SPEED", "LOCAL:SIM-HARBOR-ALPHA-NO-OVERTAKING", "LOCAL:SIM-HARBOR-ALPHA-REPORTING"]},
+      "cases": [
+        {"id": "local_all_requirements", "kind": "navigation", "course_change_deg": 0.0, "speed_ratio": 1.0, "overtaking_after": false, "report_completed": true, "expected_passed": true},
+        {"id": "local_speed_limit_rejected", "kind": "navigation", "course_change_deg": 0.0, "speed_ratio": 1.25, "overtaking_after": false, "report_completed": true, "expected_passed": false},
+        {"id": "local_overtaking_rejected", "kind": "navigation", "course_change_deg": 0.0, "speed_ratio": 1.0, "overtaking_after": true, "report_completed": true, "expected_passed": false},
+        {"id": "local_reporting_missing", "kind": "navigation", "course_change_deg": 0.0, "speed_ratio": 1.0, "overtaking_after": false, "report_completed": false, "expected_passed": false}
+      ]
+    }
+  ],
+  "boundary": "Deterministic simulator regression for complex encounter functions. It preserves the V1 oracle, does not modify vessel dynamics or policies, and is not legal advice, official local-rule data, COLREG certification, type approval or live-vessel control authority."
+}

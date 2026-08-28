@@ -1,0 +1,2 @@
+timestamp_s,east_m,north_m,heading_deg,surge_mps,sway_mps,yaw_rate_deg_s,throttle_command,steering_command,steering_angle_deg,current_east_mps,current_north_mps,wind_force_body_x_n,wind_force_body_y_n,wave_force_body_x_n,wave_force_body_y_n,environment_yaw_moment_nm
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0

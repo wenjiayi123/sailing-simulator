@@ -1,0 +1,701 @@
+{
+	"action_space_modified": false,
+	"authorized_pilotage_connected": false,
+	"authorized_tug_dispatch_connected": false,
+	"boundary": "Signed offline fixtures and receipt rehearsal only; no authorized live port connector, field SLA, shadow operation, external dispatch or vessel actuation.",
+	"check_count": 53,
+	"checks": {
+		"accepted_snapshot_persists_summary_not_body": {
+			"detail": {
+				"payload_persisted": false,
+				"payload_sha256": "82edd7239000a5d3c8cf1fc96d52aba1a52fd098960702a761ab3c136d4fe3bf",
+				"production_source": false,
+				"sequence": 10,
+				"snapshot_id": "VTS-VALID-10",
+				"source_time_unix": 1787932676,
+				"summary": {
+					"adapter_id": "VTS_TRAFFIC",
+					"advisory_count": 1,
+					"field_count": 5,
+					"payload_body_persisted": false,
+					"payload_sha256": "82edd7239000a5d3c8cf1fc96d52aba1a52fd098960702a761ab3c136d4fe3bf",
+					"track_count": 12
+				}
+			},
+			"passed": true
+		},
+		"ack_receipt_never_dispatches_or_actuates": {
+			"detail": {
+				"acknowledged_by": "fixture-pilot",
+				"acknowledged_utc": "2026-08-28T15:57:56",
+				"adapter_id": "PILOTAGE_ORDER",
+				"created_utc": "2026-08-28T15:57:56",
+				"external_dispatch_performed": false,
+				"mapped_to_actuation": false,
+				"operator_id": "oow-01",
+				"request_id": "PORT-REQ-000001",
+				"request_type": "PILOT_ETA_UPDATE",
+				"status": "ACKNOWLEDGED_FIXTURE_RECEIPT",
+				"summary_sha256": "6aea50cd19c658f1ec967fc26396d1230f16b0653adbd88bb3a9525b8a30829c"
+			},
+			"passed": true
+		},
+		"adapter_berth_resource_fresh_fixture": {
+			"detail": {
+				"accepted": 1,
+				"adapter": "BERTH_RESOURCE",
+				"state": "CONNECTED_OFFLINE_FIXTURE"
+			},
+			"passed": true
+		},
+		"adapter_official_notices_fresh_fixture": {
+			"detail": {
+				"accepted": 1,
+				"adapter": "OFFICIAL_NOTICES",
+				"state": "CONNECTED_OFFLINE_FIXTURE"
+			},
+			"passed": true
+		},
+		"adapter_pilotage_order_fresh_fixture": {
+			"detail": {
+				"accepted": 1,
+				"adapter": "PILOTAGE_ORDER",
+				"state": "CONNECTED_OFFLINE_FIXTURE"
+			},
+			"passed": true
+		},
+		"adapter_tos_berth_plan_fresh_fixture": {
+			"detail": {
+				"accepted": 1,
+				"adapter": "TOS_BERTH_PLAN",
+				"state": "CONNECTED_OFFLINE_FIXTURE"
+			},
+			"passed": true
+		},
+		"adapter_tug_order_fresh_fixture": {
+			"detail": {
+				"accepted": 1,
+				"adapter": "TUG_ORDER",
+				"state": "CONNECTED_OFFLINE_FIXTURE"
+			},
+			"passed": true
+		},
+		"adapter_vts_traffic_fresh_fixture": {
+			"detail": {
+				"accepted": 2,
+				"adapter": "VTS_TRAFFIC",
+				"state": "CONNECTED_OFFLINE_FIXTURE"
+			},
+			"passed": true
+		},
+		"all_six_signed_port_fixtures_accepted": {
+			"detail": {
+				"accepted_count": 6,
+				"adapter_count": 6,
+				"live_data_verified": false
+			},
+			"passed": true
+		},
+		"coordination_requires_human_confirmation": {
+			"detail": {
+				"reason": "HUMAN_CONFIRMATION_REQUIRED"
+			},
+			"passed": true
+		},
+		"degraded_mode_requires_human_and_never_dispatches": {
+			"detail": {
+				"automatic_dispatch": false,
+				"degraded_adapter_ids": [
+					"VTS_TRAFFIC",
+					"TOS_BERTH_PLAN",
+					"PILOTAGE_ORDER",
+					"TUG_ORDER",
+					"BERTH_RESOURCE",
+					"OFFICIAL_NOTICES"
+				],
+				"human_coordination_required": true,
+				"source_authority_removed_for_degraded": true
+			},
+			"passed": true
+		},
+		"disconnected_adapter_rejects_ingest": {
+			"detail": {
+				"payload_persisted": false,
+				"production_source": false,
+				"reason": "LINK_DISCONNECTED",
+				"snapshot_id": "FIXTURE-VTS_TRAFFIC-000200-1787932676"
+			},
+			"passed": true
+		},
+		"envelope_has_hash_hmac_sequence_and_identity": {
+			"detail": {
+				"hmac": 64,
+				"payload_hash": 64
+			},
+			"passed": true
+		},
+		"explicit_disconnect_enters_degraded_mode": {
+			"detail": "DISCONNECTED_DEGRADED",
+			"passed": true
+		},
+		"fresh_fixtures_recover_all_sources": {
+			"detail": {
+				"accepted_count": 6,
+				"adapter_count": 6,
+				"live_data_verified": false
+			},
+			"passed": true
+		},
+		"frozen_policy_artifacts_unchanged": {
+			"detail": {
+				"after": {
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_sac_test_episodes.csv": "7b027abb680dca7c31e97fe1083c6c28402204e06d0ead03ce76cfcd1aa7e9cd",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_test_episodes.csv": "25e953b3bd525f5834ced4179003c47de1b220423909a7ba87ff1b7073a27495"
+				},
+				"before": {
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_sac_test_episodes.csv": "7b027abb680dca7c31e97fe1083c6c28402204e06d0ead03ce76cfcd1aa7e9cd",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_test_episodes.csv": "25e953b3bd525f5834ced4179003c47de1b220423909a7ba87ff1b7073a27495"
+				}
+			},
+			"passed": true
+		},
+		"future_source_time_rejected": {
+			"detail": {
+				"payload_persisted": false,
+				"production_source": false,
+				"reason": "FUTURE_SOURCE_TIME",
+				"snapshot_id": "VTS-FUTURE"
+			},
+			"passed": true
+		},
+		"hotkey_f10_opens_port_integration_panel": {
+			"detail": true,
+			"passed": true
+		},
+		"initial_production_boundary": {
+			"detail": "Six signed offline port connector fixtures; no live VTS/TOS/pilot/tug/berth/notices service, external dispatch, actuation or site authority",
+			"passed": true
+		},
+		"initial_sources_fail_degraded": {
+			"detail": [
+				"VTS_TRAFFIC",
+				"TOS_BERTH_PLAN",
+				"PILOTAGE_ORDER",
+				"TUG_ORDER",
+				"BERTH_RESOURCE",
+				"OFFICIAL_NOTICES"
+			],
+			"passed": true
+		},
+		"invalid_terminal_ack_rejected": {
+			"detail": {
+				"reason": "INVALID_TERMINAL_STATUS"
+			},
+			"passed": true
+		},
+		"main_scene_load_request": {
+			"detail": 0,
+			"passed": true
+		},
+		"missing_required_field_rejected": {
+			"detail": {
+				"payload_persisted": false,
+				"production_source": false,
+				"reason": "MISSING_REQUIRED_FIELD",
+				"snapshot_id": "VTS-MISSING-FIELD"
+			},
+			"passed": true
+		},
+		"non_allowlisted_request_type_rejected": {
+			"detail": {
+				"reason": "REQUEST_TYPE_NOT_ALLOWED",
+				"request_type": "START_MAIN_ENGINE"
+			},
+			"passed": true
+		},
+		"non_monotonic_sequence_rejected": {
+			"detail": {
+				"payload_persisted": false,
+				"production_source": false,
+				"reason": "NON_MONOTONIC_SEQUENCE",
+				"snapshot_id": "VTS-OLD-SEQUENCE"
+			},
+			"passed": true
+		},
+		"operator_can_restore_fixture_link_without_production_claim": {
+			"detail": {
+				"dispatch_allowed": false,
+				"operator_id": "smoke-operator",
+				"production_connection": false
+			},
+			"passed": true
+		},
+		"overview_entry_opens_port_integration_panel": {
+			"detail": {
+				"overview": false,
+				"panel": true
+			},
+			"passed": true
+		},
+		"panel_coordination_receipt_closes": {
+			"detail": {
+				"action": "receive_coordination_ack",
+				"audit_hash": "75f7da1674e04f91267d9273e05298419eb7336d4dde73b890e627d96795b47c",
+				"detail": {
+					"acknowledged_by": "fixture-service-operator",
+					"acknowledged_utc": "2026-08-28T15:57:56",
+					"adapter_id": "PILOTAGE_ORDER",
+					"created_utc": "2026-08-28T15:57:56",
+					"external_dispatch_performed": false,
+					"mapped_to_actuation": false,
+					"operator_id": "port-link-panel-operator",
+					"request_id": "PORT-REQ-000003",
+					"request_type": "PILOT_ETA_UPDATE",
+					"status": "ACKNOWLEDGED_FIXTURE_RECEIPT",
+					"summary_sha256": "6aea50cd19c658f1ec967fc26396d1230f16b0653adbd88bb3a9525b8a30829c"
+				},
+				"external_dispatch_performed": false,
+				"mapped_to_vessel_actuation": false,
+				"previous_audit_hash": "e55cbd8f3d30bd818bf01843c13544befbba6c9a5115136778f24a18e7527d7b",
+				"production_authority": false,
+				"receipt_id": "PORTLINK-000044",
+				"schema_version": "ship_port_production_gateway_receipt_v1",
+				"sequence": 44,
+				"status": "ACKNOWLEDGED_FIXTURE_RECEIPT",
+				"subject": "PORT-REQ-000003",
+				"utc": "2026-08-28T15:57:56"
+			},
+			"passed": true
+		},
+		"panel_export_preserves_fail_closed_boundary": {
+			"detail": {
+				"dispatch": false,
+				"exists": true
+			},
+			"passed": true
+		},
+		"panel_fixture_action_reaches_gateway": {
+			"detail": {
+				"action": "ingest_all_training_fixtures",
+				"audit_hash": "827a3784d56e610aae3bad3e6d0e1852b6890e8b2d5d3e68363c9bbbedd83cf0",
+				"detail": {
+					"accepted_count": 6,
+					"adapter_count": 6,
+					"live_data_verified": false
+				},
+				"external_dispatch_performed": false,
+				"mapped_to_vessel_actuation": false,
+				"previous_audit_hash": "a92f4b2a14640385c7d00d6381c31cc19464bfd4a3fdc659234ae0f9beb449e6",
+				"production_authority": false,
+				"receipt_id": "PORTLINK-000042",
+				"schema_version": "ship_port_production_gateway_receipt_v1",
+				"sequence": 42,
+				"status": "PASS",
+				"subject": "ALL_ADAPTERS",
+				"utc": "2026-08-28T15:57:56"
+			},
+			"passed": true
+		},
+		"panel_preserves_motion_policy_and_rl_contracts": {
+			"detail": {
+				"action_space_modified": false,
+				"dispatch_allowed": false,
+				"existing_policy_modified": false,
+				"gateway": {
+					"action_space_modified": false,
+					"adapter_count": 6,
+					"adapter_states": {
+						"BERTH_RESOURCE": {
+							"accepted_count": 3,
+							"adapter_id": "BERTH_RESOURCE",
+							"degraded": false,
+							"degraded_reason": "",
+							"last_sequence": 1104,
+							"last_snapshot_id": "FIXTURE-BERTH_RESOURCE-001104-1787932676",
+							"last_source_time_unix": 1787932676,
+							"last_summary": {
+								"adapter_id": "BERTH_RESOURCE",
+								"availability": "AVAILABLE_FIXTURE",
+								"berth_id": "BERTH-TRAINING-01",
+								"field_count": 6,
+								"payload_body_persisted": false,
+								"payload_sha256": "aa6b7f17afaff8ee7c3799f7f830432671b7193db9bfa128fdae39e6828aa5cc"
+							},
+							"link_state": "STALE_DEGRADED",
+							"production_connected": false,
+							"rejected_count": 0
+						},
+						"OFFICIAL_NOTICES": {
+							"accepted_count": 3,
+							"adapter_id": "OFFICIAL_NOTICES",
+							"degraded": false,
+							"degraded_reason": "",
+							"last_sequence": 1105,
+							"last_snapshot_id": "FIXTURE-OFFICIAL_NOTICES-001105-1787932676",
+							"last_source_time_unix": 1787932676,
+							"last_summary": {
+								"adapter_id": "OFFICIAL_NOTICES",
+								"field_count": 6,
+								"notice_id": "NOTICE-FIXTURE-01",
+								"payload_body_persisted": false,
+								"payload_sha256": "81d9f7ba79c0134adad667bfaca7c2e45568502b07791d8410d2b8fc6e997916",
+								"severity": "ADVISORY_FIXTURE"
+							},
+							"link_state": "STALE_DEGRADED",
+							"production_connected": false,
+							"rejected_count": 0
+						},
+						"PILOTAGE_ORDER": {
+							"accepted_count": 3,
+							"adapter_id": "PILOTAGE_ORDER",
+							"degraded": false,
+							"degraded_reason": "",
+							"last_sequence": 1102,
+							"last_snapshot_id": "FIXTURE-PILOTAGE_ORDER-001102-1787932676",
+							"last_source_time_unix": 1787932676,
+							"last_summary": {
+								"adapter_id": "PILOTAGE_ORDER",
+								"field_count": 5,
+								"payload_body_persisted": false,
+								"payload_sha256": "243db6b8bdbaae91c76d975ce4dcbfe96dbd42ec437e0f382281ceaf2c897269",
+								"pilot_order_id": "PILOT-FIXTURE-01",
+								"pilot_status": "CONFIRMED_FIXTURE"
+							},
+							"link_state": "STALE_DEGRADED",
+							"production_connected": false,
+							"rejected_count": 0
+						},
+						"TOS_BERTH_PLAN": {
+							"accepted_count": 3,
+							"adapter_id": "TOS_BERTH_PLAN",
+							"degraded": false,
+							"degraded_reason": "",
+							"last_sequence": 1101,
+							"last_snapshot_id": "FIXTURE-TOS_BERTH_PLAN-001101-1787932676",
+							"last_source_time_unix": 1787932676,
+							"last_summary": {
+								"adapter_id": "TOS_BERTH_PLAN",
+								"berth_id": "BERTH-TRAINING-01",
+								"field_count": 6,
+								"operation_id": "OPS-FIXTURE-01",
+								"payload_body_persisted": false,
+								"payload_sha256": "9d927e6dba90b33369a2c238a17e1258f7f10f5da6d5197a3f9f9f9edbcf29bd",
+								"status": "PLANNED_FIXTURE"
+							},
+							"link_state": "STALE_DEGRADED",
+							"production_connected": false,
+							"rejected_count": 0
+						},
+						"TUG_ORDER": {
+							"accepted_count": 3,
+							"adapter_id": "TUG_ORDER",
+							"degraded": false,
+							"degraded_reason": "",
+							"last_sequence": 1103,
+							"last_snapshot_id": "FIXTURE-TUG_ORDER-001103-1787932676",
+							"last_source_time_unix": 1787932676,
+							"last_summary": {
+								"adapter_id": "TUG_ORDER",
+								"assigned_tug_count": 2,
+								"field_count": 5,
+								"order_status": "ASSIGNED_FIXTURE",
+								"payload_body_persisted": false,
+								"payload_sha256": "ed564a89aed3004817e3628eb52e0832646d11ca051a05532f3b4e09baf3eb36",
+								"tug_order_id": "TUG-FIXTURE-01"
+							},
+							"link_state": "STALE_DEGRADED",
+							"production_connected": false,
+							"rejected_count": 0
+						},
+						"VTS_TRAFFIC": {
+							"accepted_count": 4,
+							"adapter_id": "VTS_TRAFFIC",
+							"degraded": false,
+							"degraded_reason": "",
+							"last_sequence": 1100,
+							"last_snapshot_id": "FIXTURE-VTS_TRAFFIC-001100-1787932676",
+							"last_source_time_unix": 1787932676,
+							"last_summary": {
+								"adapter_id": "VTS_TRAFFIC",
+								"advisory_count": 2,
+								"field_count": 5,
+								"payload_body_persisted": false,
+								"payload_sha256": "2a7f6094fe53ef15f0c010270d69908b826743a187a856bf6fe9e7fc649516e0",
+								"track_count": 18
+							},
+							"link_state": "CONNECTED_OFFLINE_FIXTURE",
+							"production_connected": false,
+							"rejected_count": 10
+						}
+					},
+					"audit_chain": {
+						"chain_head_sha256": "75f7da1674e04f91267d9273e05298419eb7336d4dde73b890e627d96795b47c",
+						"errors": [],
+						"passed": true,
+						"record_count": 44
+					},
+					"boundary": "Six signed offline port connector fixtures; no live VTS/TOS/pilot/tug/berth/notices service, external dispatch, actuation or site authority",
+					"coordination_requests": [
+						{
+							"acknowledged_by": "fixture-pilot",
+							"acknowledged_utc": "2026-08-28T15:57:56",
+							"adapter_id": "PILOTAGE_ORDER",
+							"created_utc": "2026-08-28T15:57:56",
+							"external_dispatch_performed": false,
+							"mapped_to_actuation": false,
+							"operator_id": "oow-01",
+							"request_id": "PORT-REQ-000001",
+							"request_type": "PILOT_ETA_UPDATE",
+							"status": "ACKNOWLEDGED_FIXTURE_RECEIPT",
+							"summary_sha256": "6aea50cd19c658f1ec967fc26396d1230f16b0653adbd88bb3a9525b8a30829c"
+						},
+						{
+							"adapter_id": "TUG_ORDER",
+							"created_utc": "2026-08-28T15:57:56",
+							"external_dispatch_performed": false,
+							"mapped_to_actuation": false,
+							"operator_id": "oow-01",
+							"request_id": "PORT-REQ-000002",
+							"request_type": "TUG_READINESS_CONFIRMATION",
+							"status": "QUEUED_REHEARSAL_ONLY",
+							"summary_sha256": "5dc7ea9d1f7d9821af601c056d3a100be195f9a8ae19ef37955098b641b34b81"
+						},
+						{
+							"acknowledged_by": "fixture-service-operator",
+							"acknowledged_utc": "2026-08-28T15:57:56",
+							"adapter_id": "PILOTAGE_ORDER",
+							"created_utc": "2026-08-28T15:57:56",
+							"external_dispatch_performed": false,
+							"mapped_to_actuation": false,
+							"operator_id": "port-link-panel-operator",
+							"request_id": "PORT-REQ-000003",
+							"request_type": "PILOT_ETA_UPDATE",
+							"status": "ACKNOWLEDGED_FIXTURE_RECEIPT",
+							"summary_sha256": "6aea50cd19c658f1ec967fc26396d1230f16b0653adbd88bb3a9525b8a30829c"
+						}
+					],
+					"degraded_adapter_ids": [],
+					"dispatch_allowed": false,
+					"existing_policy_modified": false,
+					"external_dispatch_enabled": false,
+					"live_data_verified": false,
+					"mapped_to_vessel_actuation": false,
+					"mode": "SIGNED_OFFLINE_CONNECTOR_FIXTURES",
+					"observation_space_modified": false,
+					"production_authority": false,
+					"profile_id": "RL-NAV-PORT-LINK-2026-01",
+					"reward_function_modified": false,
+					"schema_version": "ship_port_production_gateway_snapshot_v1",
+					"ship_motion_model_modified": false,
+					"site_shadow_operation_completed": false,
+					"sla_verified": false,
+					"training_performed": false
+				},
+				"last_receipt": {
+					"detail": {
+						"path": "user://ship_port_integration_snapshot.json"
+					},
+					"receipt_id": "PORTLINK-EXPORT",
+					"status": "EXECUTED"
+				},
+				"last_request_id": "PORT-REQ-000003",
+				"live_data_verified": false,
+				"observation_space_modified": false,
+				"production_authority": false,
+				"reward_function_modified": false,
+				"schema_version": "ship_port_integration_panel_v1",
+				"ship_motion_model_modified": false,
+				"training_performed": false
+			},
+			"passed": true
+		},
+		"payload_tampering_rejected": {
+			"detail": {
+				"payload_persisted": false,
+				"production_source": false,
+				"reason": "PAYLOAD_HASH_MISMATCH",
+				"snapshot_id": "VTS-BAD-PAYLOAD"
+			},
+			"passed": true
+		},
+		"pilot_coordination_ack_recorded": {
+			"detail": "ACKNOWLEDGED_FIXTURE_RECEIPT",
+			"passed": true
+		},
+		"pilot_request_never_dispatches_or_actuates": {
+			"detail": {
+				"adapter_id": "PILOTAGE_ORDER",
+				"created_utc": "2026-08-28T15:57:56",
+				"external_dispatch_performed": false,
+				"mapped_to_actuation": false,
+				"operator_id": "oow-01",
+				"request_id": "PORT-REQ-000001",
+				"request_type": "PILOT_ETA_UPDATE",
+				"status": "QUEUED_REHEARSAL_ONLY",
+				"summary_sha256": "6aea50cd19c658f1ec967fc26396d1230f16b0653adbd88bb3a9525b8a30829c"
+			},
+			"passed": true
+		},
+		"pilot_request_queued_as_rehearsal_only": {
+			"detail": {
+				"request_id": "PORT-REQ-000001",
+				"status": "QUEUED_REHEARSAL_ONLY"
+			},
+			"passed": true
+		},
+		"port_integration_components_present": {
+			"detail": {
+				"gateway": true,
+				"overview": true,
+				"panel": true
+			},
+			"passed": true
+		},
+		"port_integration_panel_controls_present": {
+			"detail": "five control groups",
+			"passed": true
+		},
+		"port_link_audit_chain_valid": {
+			"detail": {
+				"count": 35,
+				"passed": true
+			},
+			"passed": true
+		},
+		"port_link_audit_tamper_detected": {
+			"detail": [
+				"AUDIT_HASH_MISMATCH:PORTLINK-000001"
+			],
+			"passed": true
+		},
+		"profile_schema": {
+			"detail": "port_production_integration_profile_v1",
+			"passed": true
+		},
+		"six_port_adapters_declared": {
+			"detail": [
+				"VTS_TRAFFIC",
+				"TOS_BERTH_PLAN",
+				"PILOTAGE_ORDER",
+				"TUG_ORDER",
+				"BERTH_RESOURCE",
+				"OFFICIAL_NOTICES"
+			],
+			"passed": true
+		},
+		"snapshot_id_replay_rejected": {
+			"detail": {
+				"payload_persisted": false,
+				"production_source": false,
+				"reason": "SNAPSHOT_REPLAY",
+				"snapshot_id": "VTS-VALID-10"
+			},
+			"passed": true
+		},
+		"stale_source_data_rejected": {
+			"detail": {
+				"payload_persisted": false,
+				"production_source": false,
+				"reason": "STALE_SOURCE_DATA",
+				"snapshot_id": "VTS-STALE"
+			},
+			"passed": true
+		},
+		"system_overview_port_integration_entry_present": {
+			"detail": true,
+			"passed": true
+		},
+		"tampered_hmac_rejected": {
+			"detail": {
+				"payload_persisted": false,
+				"production_source": false,
+				"reason": "HMAC_MISMATCH",
+				"snapshot_id": "VTS-BAD-HMAC"
+			},
+			"passed": true
+		},
+		"training_keys_redacted_from_adapter_inventory": {
+			"detail": "redacted",
+			"passed": true
+		},
+		"tug_request_rehearsal_path_available": {
+			"detail": "QUEUED_REHEARSAL_ONLY",
+			"passed": true
+		},
+		"unified_snapshot_keeps_live_claims_false": {
+			"detail": "Six signed offline port connector fixtures; no live VTS/TOS/pilot/tug/berth/notices service, external dispatch, actuation or site authority",
+			"passed": true
+		},
+		"unit_mismatch_rejected": {
+			"detail": {
+				"payload_persisted": false,
+				"production_source": false,
+				"reason": "UNIT_MISMATCH",
+				"snapshot_id": "VTS-BAD-UNITS"
+			},
+			"passed": true
+		},
+		"valid_signed_vts_snapshot_accepted": {
+			"detail": "ACCEPTED_OFFLINE_FIXTURE",
+			"passed": true
+		},
+		"watchdog_marks_stale_and_disconnected_sources": {
+			"detail": {
+				"automatic_dispatch": false,
+				"degraded_adapter_ids": [
+					"VTS_TRAFFIC",
+					"TOS_BERTH_PLAN",
+					"PILOTAGE_ORDER",
+					"TUG_ORDER",
+					"BERTH_RESOURCE",
+					"OFFICIAL_NOTICES"
+				],
+				"human_coordination_required": true,
+				"source_authority_removed_for_degraded": true
+			},
+			"passed": true
+		},
+		"watchdog_returns_healthy_fixture_only": {
+			"detail": {
+				"automatic_dispatch": false,
+				"degraded_adapter_ids": [],
+				"human_coordination_required": false,
+				"source_authority_removed_for_degraded": true
+			},
+			"passed": true
+		},
+		"wrong_source_credential_rejected": {
+			"detail": {
+				"payload_persisted": false,
+				"production_source": false,
+				"reason": "SOURCE_CREDENTIAL_REJECTED",
+				"snapshot_id": "VTS-WRONG-KEY"
+			},
+			"passed": true
+		}
+	},
+	"dispatch_allowed": false,
+	"errors": [],
+	"existing_policy_modified": false,
+	"external_dispatch_performed": false,
+	"generated_at": "2026-08-28T15:57:56",
+	"live_tos_connected": false,
+	"live_vts_connected": false,
+	"mapped_to_vessel_actuation": false,
+	"observation_space_modified": false,
+	"official_berth_service_connected": false,
+	"official_notices_connected": false,
+	"passed": true,
+	"passed_count": 53,
+	"production_authority": false,
+	"reward_function_modified": false,
+	"schema_version": "godot_port_production_integration_smoke_v1",
+	"ship_motion_model_modified": false,
+	"site_shadow_operation_completed": false,
+	"sla_verified": false,
+	"training_performed": false
+}

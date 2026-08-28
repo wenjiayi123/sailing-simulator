@@ -1,0 +1,141 @@
+{
+	"boundary": "Runtime radar/ARPA/ECDIS/conning software acceptance; not IMO/DNV type approval, official chart carriage compliance or live-vessel authority.",
+	"checks": {
+		"arpa_cpa_tcpa_known_case": {
+			"detail": {
+				"dcpa_meters": 0.0,
+				"risk": "DANGER",
+				"tcpa_seconds": 100.0
+			},
+			"passed": true
+		},
+		"arpa_target_acquisition": {
+			"detail": {
+				"accepted": true,
+				"contact_id": "STATIC_ROCK::SCENE_CLIFF_落水悬岩",
+				"label": "SCENE_CLIFF_落水悬岩"
+			},
+			"passed": true
+		},
+		"conning_uses_runtime_telemetry": {
+			"detail": {
+				"boundary": "conning replica driven by simulator telemetry; not a type-approved integrated bridge display",
+				"control_mode": "HUMAN",
+				"course_degrees": 180.0,
+				"drift_angle_degrees": 0.0,
+				"heading_degrees": 180.0,
+				"route": {
+					"active": true,
+					"arrival_radius": 16.0,
+					"current_distance": 72.0018615722656,
+					"current_index": 0,
+					"current_name": "WP-01",
+					"current_position": "(0.0, -140.05, -72.0)",
+					"deviation_distance": 0.071357229990096,
+					"deviation_side": "ON TRACK",
+					"next_index": 1,
+					"next_name": "WP-02",
+					"next_position": "(72.0, -140.05, -132.0)",
+					"signed_deviation": 0.071357229990096,
+					"target_bearing_degrees": 180.343458433299
+				},
+				"rudder": 0.0,
+				"sensor_validity": {
+					"gnss": true,
+					"gyro": true,
+					"rudder_feedback": true,
+					"speed_log": true
+				},
+				"speed_knots": 0.0926729772998393,
+				"throttle": 0.0
+			},
+			"passed": true
+		},
+		"ecdis_is_functional_but_fail_closed": {
+			"detail": {
+				"alarms": 8,
+				"route_check": false
+			},
+			"passed": true
+		},
+		"equipment_suite_present": {
+			"detail": "ShipNavigationEquipmentSuite",
+			"passed": true
+		},
+		"fault_clear_restores_sensor": {
+			"detail": true,
+			"passed": true
+		},
+		"frozen_policy_artifacts_unchanged": {
+			"detail": {
+				"after": {
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_sac_test_episodes.csv": "7b027abb680dca7c31e97fe1083c6c28402204e06d0ead03ce76cfcd1aa7e9cd",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_test_episodes.csv": "25e953b3bd525f5834ced4179003c47de1b220423909a7ba87ff1b7073a27495"
+				},
+				"before": {
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_sac_test_episodes.csv": "7b027abb680dca7c31e97fe1083c6c28402204e06d0ead03ce76cfcd1aa7e9cd",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_test_episodes.csv": "25e953b3bd525f5834ced4179003c47de1b220423909a7ba87ff1b7073a27495"
+				}
+			},
+			"passed": true
+		},
+		"hotkey_B_opens_integrated_bridge": {
+			"detail": true,
+			"passed": true
+		},
+		"integrated_bridge_panel_present": {
+			"detail": "ShipIntegratedBridgePanel",
+			"passed": true
+		},
+		"main_scene_load_request": {
+			"detail": 0,
+			"passed": true
+		},
+		"panel_receives_equipment_snapshot": {
+			"detail": "ship_integrated_bridge_snapshot_v1",
+			"passed": true
+		},
+		"radar_models_limits_and_errors": {
+			"detail": {
+				"contacts": 38,
+				"limitations": [
+					"range",
+					"gain",
+					"sea_clutter",
+					"rain_clutter",
+					"measurement_error",
+					"power_and_bias_faults"
+				]
+			},
+			"passed": true
+		},
+		"radar_power_fault_fails_closed": {
+			"detail": "bounded scene-driven radar/ARPA model; not raw RF radar video or IMO type approval",
+			"passed": true
+		},
+		"radar_range_control_changes_backend": {
+			"detail": {
+				"after": 2.0,
+				"before": 1.0
+			},
+			"passed": true
+		},
+		"snapshot_contract": {
+			"detail": {
+				"boundary": "research simulator equipment model; not type-approved radar, ECDIS or live-vessel authority",
+				"format": "ship_integrated_bridge_snapshot_v1"
+			},
+			"passed": true
+		}
+	},
+	"errors": [],
+	"generated_at": "2026-08-28T13:34:05",
+	"passed": true,
+	"passed_checks": 15,
+	"schema_version": "godot_integrated_bridge_smoke_v1",
+	"total_checks": 15
+}

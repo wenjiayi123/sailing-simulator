@@ -2,14 +2,16 @@
 
 ## 结论 / Outcome
 
-项目现在具备四条可执行、可重复核验的保障链：
+项目现在具备六条可执行、可重复核验的保障链：
 
 1. 三自由度 surge–sway–yaw 船舶模型：附加质量、线性/二次阻尼、推进器与舵机一阶动态、执行器速率/幅值限制、风浪外力、流致对地漂移和 RK4 数值积分。
 2. COLREG 会遇判定与动作回归：CPA/TCPA、相对方位、目标船舷角、能见度、追越/对遇/交叉/能见度不良、让路/直航责任、规则编号和正反动作案例。
 3. HIL 准备层：UDP JSON 完整性帧、NMEA 0183 校验、单调序号/时效/范围/斜率门禁、watchdog 中性失效状态、故障注入和哈希回执链。
 4. 海试保障层：逐级试验协议、遥测 CSV 合同、量化验收判据，以及没有物理 HIL、许可、标定、见证、原始日志和签字记录时拒绝宣称“完成海试”的证据完整性门禁。
+5. 船舶网络安全功能层：七区默认拒绝、训练身份与最小权限、签名更新隔离、软件启动哈希、八规则入侵检测、链式审计、恢复确认、八用例攻击活动和生产证据拒绝门禁。
+6. 港口生产联动功能层：船舶交通服务、码头操作系统、引航、拖轮、泊位和官方通告六适配器，具备签名信封、时效/单位/字段、防重放、断链降级、人工确认、回执审计和真实站点拒绝门禁。
 
-The project now has four executable assurance chains: a calibratable 3-DOF plant, traceable COLREG encounter/action regression, HIL protocol/loopback/fault injection, and a progressive sea-trial protocol with an anti-fabrication evidence gate.
+The project now has six executable assurance chains: a calibratable 3-DOF plant, traceable COLREG encounter/action regression, HIL protocol/loopback/fault injection, a progressive sea-trial protocol with an anti-fabrication evidence gate, an offline bridge cybersecurity range, and a fail-closed six-adapter port-integration layer.
 
 ## 证据分层 / Evidence layers
 
@@ -18,6 +20,10 @@ The project now has four executable assurance chains: a calibratable 3-DOF plant
 | 软件模型 / Software plant | 数学模型、数值稳定性、确定性、阻尼、舵向对称、执行器边界 | VERIFIED |
 | 规则回归 / Rule regression | 6 类场景、规则追踪、11 个正反动作案例 | VERIFIED |
 | 软件回环 / Software loopback | UDP/NMEA、完整性、重放/过期/损坏/丢包/越界故障 | VERIFIED |
+| 船舶网络安全功能 / Maritime cyber controls | 七区默认拒绝、身份/权限、RSA 更新签名、IDS、审计、恢复、八用例攻击活动 | VERIFIED（离线功能） |
+| 生产网络安全 / Production cyber assurance | 需要实建分区、生产身份源、硬件信任根、SOC、现场灾备、独立渗透测试和船级认可 | NOT VERIFIED |
+| 港口生产联动功能 / Port integration functions | 六适配器、签名/时效/单位、防重放、降级、人工确认、回执和审计 | VERIFIED（离线功能） |
+| 真实港口站点 / Live port site | 需要授权端点、SLA、生产身份、影子运行、回滚和多方批准 | NOT VERIFIED |
 | 指定船舶标定 / Named-vessel calibration | 需要指定船舶辨识数据 | NOT VERIFIED |
 | 物理 HIL / Physical HIL | 需要目标控制器、真实 I/O 或认证植物模拟器、独立急停 | NOT VERIFIED |
 | 实船海试 / Real-vessel sea trial | 需要船舶、许可、船长/操作员、见证、标定、原始日志和签字 | NOT COMPLETED |
@@ -64,7 +70,11 @@ Historic V1/V2/V3 RL checkpoints and metrics are not relabelled or overwritten. 
 - Rule 7 当前未形成碰撞危险的监视案例；
 - Rules 5/6/7/8 的共同瞭望、安全航速、危险判断和早期明显行动追踪。
 
-每类危险会遇同时包含应通过和应拒绝的动作案例，避免只验证“正确答案”。这仍不是完整法规推理：船舶操纵受限/失控/吃水受限/捕鱼/帆船优先关系、狭水道、分道通航、多船博弈、地方规则、灯号声号和法律解释还需要专门场景与主管机关审查。
+每类危险会遇同时包含应通过和应拒绝的动作案例，避免只验证“正确答案”。V1 仍作为冻结的双船基线，不被后续复杂层替换。
+
+新增的 [复杂避碰规则场景保障 V2](COLREG_COMPLEX_SCENARIO_ASSURANCE.md) 在 V1 之外实现 16 个复杂场景、45 个正反动作/信号案例：多船逐目标责任图、Rule 9 狭水道、Rule 10 分道通航、Rule 18 特殊身份责任、操纵能力受到限制/失去控制/捕鱼船的灯号号型、Rule 19 复杂能见度、Rule 35 声号和地方规则模板。Godot 规则台允许教员逐场浏览并导出证据包；未训练或替换任何策略，也未修改船舶运动模型。
+
+V2 仍不是完整法律推理或认证：吃水受限船、帆船等更多组合和实际水域的正式规则仍可继续扩充；地方规则当前是 `SIMULATOR_AUTHORED_EXERCISE_RULES`，不是主管机关授权数据。规则适用性、地方规则效力和法律结论必须由有权方审查。
 
 ## 3. HIL
 
@@ -84,6 +94,8 @@ Historic V1/V2/V3 RL checkpoints and metrics are not relabelled or overwritten. 
 - 命令回执哈希链。
 
 `software_loopback_verified=true` 不能写成 `physical_hardware_verified=true`。物理 HIL 还必须接入目标控制器/RTOS、真实 GNSS/INS/AIS/雷达或获批传感接口、真实操舵/推进 I/O 或认证植物模拟器、独立急停/手动优先权、时钟同步和 WCET 证据，并完成见证故障/恢复测试。
+
+新增的 [物理驾驶台就绪指南](PHYSICAL_BRIDGE_READINESS.md) 已将上述工作拆成可执行目标控制器状态机，以及可机读的 15 类硬件角色、15 类输入输出通道、12 类独立安全联锁、12 项见证试验、时延/抖动/看门狗/时钟证据、现场/校准/签字证据和 STCW/DNV 追踪。功能烟测通过不等于物理连接；完整填写也只会进入 `READY_FOR_WITNESSED_EXTERNAL_ASSESSMENT`，软件不会自行宣称物理 HIL 已验证。
 
 ## 4. 海试 / Sea trial
 

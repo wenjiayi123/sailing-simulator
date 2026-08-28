@@ -1,0 +1,362 @@
+{
+  "schema_version": "rl_generalization_assurance_v1",
+  "campaign_id": "top_simulator_generalization_v1",
+  "functional_framework_complete": true,
+  "status": "FUNCTIONAL_FRAMEWORK_COMPLETE_TRAINING_AND_FIELD_EVIDENCE_BLOCKED",
+  "checks": {
+    "campaign_schema_valid": true,
+    "base_dataset_hashable_and_single_port_boundary_explicit": true,
+    "existing_ten_policy_inventory_hash_verified": true,
+    "four_port_archetypes_declared": true,
+    "four_seasons_declared_with_source_class": true,
+    "four_vessel_families_declared": true,
+    "five_unique_random_seeds_frozen": true,
+    "interactive_traffic_behaviors_executable": true,
+    "ood_suites_disjoint_and_complete": true,
+    "paired_ablation_protocol_complete": true,
+    "stress_protocol_complete": true,
+    "convergence_protocol_rejects_short_smoke": true,
+    "shadow_protocol_is_read_only_and_fail_closed": true,
+    "evaluation_plan_is_frozen_before_execution": true,
+    "interactive_environment_functional_smoke_passed": true,
+    "shadow_receipt_functional_smoke_passed_without_dispatch": true
+  },
+  "domain_summary": {
+    "declared_port_archetype_count": 4,
+    "real_observed_port_count": 1,
+    "synthetic_port_domain_count": 3,
+    "declared_season_count": 4,
+    "real_observed_season_count": 1,
+    "synthetic_season_overlay_count": 3,
+    "vessel_family_count": 4,
+    "random_seed_count": 5,
+    "interactive_traffic_behavior_count": 4,
+    "ood_suite_count": 4,
+    "ablation_count": 6,
+    "stress_case_count": 8
+  },
+  "base_dataset": {
+    "path": "data/rl/long_beach_ais_port_ops_benchmark_v2.json",
+    "sha256": "1d676e7446f22206f6113777524d46724545e58e55c1df73a9d359795a415a1f",
+    "port_id": "us_lgb_long_beach",
+    "period": {
+      "start": "2025-01-01",
+      "end": "2025-01-07"
+    },
+    "live_data_verified": false
+  },
+  "preserved_policy_inventory": {
+    "policy_count": 10,
+    "algorithms": [
+      "a2c",
+      "ddpg",
+      "dqn",
+      "los_pid",
+      "lqr",
+      "mpc",
+      "ppo",
+      "sac",
+      "td3",
+      "trpo"
+    ],
+    "records": [
+      {
+        "algorithm": "ppo",
+        "checkpoint": "reports/artifacts/navigation_benchmark_v2/ppo/checkpoint.json",
+        "checkpoint_sha256": "ee7553133ae6958eb87f1e54be4c13415e8b1afb1ba4f4efa4afa387250d02ff",
+        "model": "reports/artifacts/navigation_benchmark_v2/ppo/ppo_policy.zip",
+        "model_sha256": "0040ecb6aaaede4bd425711665145f0c33b737d304cdb770b545da69dddb3570"
+      },
+      {
+        "algorithm": "sac",
+        "checkpoint": "reports/artifacts/navigation_benchmark_v2/sac/checkpoint.json",
+        "checkpoint_sha256": "d8af3a8d52b758adf797f6bd22c219e404bb37561e4ebfe160efbb46f1fb567e",
+        "model": "reports/artifacts/navigation_benchmark_v2/sac/sac_policy.zip",
+        "model_sha256": "1bc1b3d1ab0a65045d933b7192d5c4a9cc9f17d40b08e5edb7d5b86b8a8c019d"
+      },
+      {
+        "algorithm": "td3",
+        "checkpoint": "reports/artifacts/navigation_benchmark_v2/td3/checkpoint.json",
+        "checkpoint_sha256": "700e19a5d5858f24dae17b4b631102495deded832474157c911ea91782ab2cd9",
+        "model": "reports/artifacts/navigation_benchmark_v2/td3/td3_policy.zip",
+        "model_sha256": "376ea6d2f68f7c0a667eb841b94cd932d76ad5b10935d7115ca82f83f1023b1f"
+      },
+      {
+        "algorithm": "dqn",
+        "checkpoint": "reports/artifacts/navigation_benchmark_v2/dqn/checkpoint.json",
+        "checkpoint_sha256": "015a06d8dcf6366c9f214795ebb84d04b61b7546ca44f5ef4d6f126f536dea13",
+        "model": "reports/artifacts/navigation_benchmark_v2/dqn/dqn_policy.zip",
+        "model_sha256": "e72e3d82b7511fae1e9eb3e8f1ca7d8fe14b2d4ce572329d646384172a7a2d33"
+      },
+      {
+        "algorithm": "a2c",
+        "checkpoint": "reports/artifacts/navigation_benchmark_v2/a2c/checkpoint.json",
+        "checkpoint_sha256": "484bd05b755fa136d9f2b3a4cd9b57f6f7cd08d7dd062d96c921f7959fb541f9",
+        "model": "reports/artifacts/navigation_benchmark_v2/a2c/a2c_policy.zip",
+        "model_sha256": "e7fc50cebdf3b56e18acc640bd2e84d9f1ae390f883ee56e98a96b6f93934aea"
+      },
+      {
+        "algorithm": "ddpg",
+        "checkpoint": "reports/artifacts/navigation_benchmark_v2/ddpg/checkpoint.json",
+        "checkpoint_sha256": "0ae63af060609cac2c88c417369c152cc5f40582336ff7fee271ca88b4b276e1",
+        "model": "reports/artifacts/navigation_benchmark_v2/ddpg/ddpg_policy.zip",
+        "model_sha256": "44516ae96129451c81c605ccc733bde05d6adbaffa5feff0841e927c48250ec8"
+      },
+      {
+        "algorithm": "trpo",
+        "checkpoint": "reports/artifacts/navigation_benchmark_v2/trpo/checkpoint.json",
+        "checkpoint_sha256": "877fcb31f2b2923aa6d82ebc73efd5a1fec4aa2ce802671d00f053d21c5daf92",
+        "model": "reports/artifacts/navigation_benchmark_v2/trpo/trpo_policy.zip",
+        "model_sha256": "20ebe5448a5a856f29d1840584bfc1111c0cbbd6db00f8c5389948e01b937340"
+      },
+      {
+        "algorithm": "los_pid",
+        "checkpoint": "reports/artifacts/navigation_benchmark_v2/los_pid/checkpoint.json",
+        "checkpoint_sha256": "9b53d434f6b4a4efb9062c250374e60f42f03915d5056ad0c03bd22142bd90a8",
+        "model": null,
+        "model_sha256": null
+      },
+      {
+        "algorithm": "lqr",
+        "checkpoint": "reports/artifacts/navigation_benchmark_v2/lqr/checkpoint.json",
+        "checkpoint_sha256": "928edd0834908d373407c4ff6e809eed06d3cbf39efb2772ecd5674a23a72678",
+        "model": null,
+        "model_sha256": null
+      },
+      {
+        "algorithm": "mpc",
+        "checkpoint": "reports/artifacts/navigation_benchmark_v2/mpc/checkpoint.json",
+        "checkpoint_sha256": "b76420aab25f1eef92c312e063ff7bd987b8ee2e1a9adfe739b991ffc789cde7",
+        "model": null,
+        "model_sha256": null
+      }
+    ],
+    "errors": [],
+    "passed": true
+  },
+  "functional_smoke": {
+    "schema_version": "rl_generalization_functional_smoke_v1",
+    "fixture_count": 4,
+    "passed_count": 4,
+    "results": [
+      {
+        "fixture_id": "smoke_tidal_service_yield",
+        "port_domain_id": "port_sim_tidal_estuary",
+        "season_domain_id": "season_spring_overlay",
+        "vessel_domain_id": "vessel_harbor_service",
+        "traffic_domain_id": "traffic_cooperative_yield",
+        "seed": 250107,
+        "observation_size": 45,
+        "observations_valid": true,
+        "interaction_receipt_count": 5,
+        "receipt_chain_valid": true,
+        "receipt_head_sha256": "794886e8106abd011fe8d247efce83c28f962fa952fb49130bf8b54d0b05dbb6",
+        "own_ship_motion_model_modified": false,
+        "observation_contract_modified": false,
+        "action_contract_modified": false,
+        "policy_modified": false,
+        "passed": true
+      },
+      {
+        "fixture_id": "smoke_strait_feeder_delayed",
+        "port_domain_id": "port_sim_narrow_strait",
+        "season_domain_id": "season_summer_overlay",
+        "vessel_domain_id": "vessel_feeder_container",
+        "traffic_domain_id": "traffic_delayed_yield",
+        "seed": 250211,
+        "observation_size": 45,
+        "observations_valid": true,
+        "interaction_receipt_count": 3,
+        "receipt_chain_valid": true,
+        "receipt_head_sha256": "6b5b7bd83a8d883769ef2a142c557963775417858fd729f63b7ce52d3f52697b",
+        "own_ship_motion_model_modified": false,
+        "observation_contract_modified": false,
+        "action_contract_modified": false,
+        "policy_modified": false,
+        "passed": true
+      },
+      {
+        "fixture_id": "smoke_archipelago_bulk_adversarial",
+        "port_domain_id": "port_sim_archipelago",
+        "season_domain_id": "season_autumn_overlay",
+        "vessel_domain_id": "vessel_panamax_bulk",
+        "traffic_domain_id": "traffic_adversarial_closing",
+        "seed": 250307,
+        "observation_size": 45,
+        "observations_valid": true,
+        "interaction_receipt_count": 5,
+        "receipt_chain_valid": true,
+        "receipt_head_sha256": "503d4b4d32af87daa7dc5ace056fbd05066e761fe777cb5bf4f25985b6ed50bf",
+        "own_ship_motion_model_modified": false,
+        "observation_contract_modified": false,
+        "action_contract_modified": false,
+        "policy_modified": false,
+        "passed": true
+      },
+      {
+        "fixture_id": "smoke_reference_tanker_matching",
+        "port_domain_id": "port_long_beach_reference",
+        "season_domain_id": "season_winter_reference",
+        "vessel_domain_id": "vessel_large_tanker",
+        "traffic_domain_id": "traffic_speed_matching",
+        "seed": 250401,
+        "observation_size": 45,
+        "observations_valid": true,
+        "interaction_receipt_count": 5,
+        "receipt_chain_valid": true,
+        "receipt_head_sha256": "7e435b18a31ba22ee903a8931d6d3b943cc33bdd673aaa5f683f940dd43b8ee0",
+        "own_ship_motion_model_modified": false,
+        "observation_contract_modified": false,
+        "action_contract_modified": false,
+        "policy_modified": false,
+        "passed": true
+      }
+    ],
+    "passed": true,
+    "training_performed": false,
+    "policy_performance_measured": false,
+    "existing_policy_modified": false,
+    "ship_motion_model_modified": false
+  },
+  "shadow_receipt_smoke": {
+    "schema_version": "rl_shadow_receipt_functional_smoke_v1",
+    "recommendation_count": 4,
+    "dispatch_count": 0,
+    "receipts": [
+      {
+        "sequence": 1,
+        "input_snapshot_sha256": "fe0a2f4075b600cedd679c974d1fe19364a5e1e9ecb3197c3f02f31d07890249",
+        "policy_adapter": "FUNCTIONAL_STUB_NO_TRAINED_POLICY",
+        "recommendation": [
+          0.35,
+          0.1
+        ],
+        "actual_track_action": [
+          0.3,
+          0.0
+        ],
+        "divergence_l1": 0.15,
+        "dispatch_attempted": false,
+        "previous_receipt_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "receipt_sha256": "4f8897f0fb19cb7f673c10e66cdeb0f8356833df4d886575c8a2fada8c7cf2f9"
+      },
+      {
+        "sequence": 2,
+        "input_snapshot_sha256": "cd7da63cb7c4a67aaa46d544a437a01797390b51584d3dd34ccef30b9841c3d4",
+        "policy_adapter": "FUNCTIONAL_STUB_NO_TRAINED_POLICY",
+        "recommendation": [
+          0.35,
+          0.1
+        ],
+        "actual_track_action": [
+          0.3,
+          0.0
+        ],
+        "divergence_l1": 0.15,
+        "dispatch_attempted": false,
+        "previous_receipt_sha256": "4f8897f0fb19cb7f673c10e66cdeb0f8356833df4d886575c8a2fada8c7cf2f9",
+        "receipt_sha256": "8d0e826b3571f9ca0af2475e9a9d56f3ba481580174c23cd9eea689d77de905f"
+      },
+      {
+        "sequence": 3,
+        "input_snapshot_sha256": "391193902648e407154865c7e30a7bbd76676bed89a0d7c1a8b8e2953485bb12",
+        "policy_adapter": "FUNCTIONAL_STUB_NO_TRAINED_POLICY",
+        "recommendation": [
+          0.35,
+          0.1
+        ],
+        "actual_track_action": [
+          0.3,
+          0.0
+        ],
+        "divergence_l1": 0.15,
+        "dispatch_attempted": false,
+        "previous_receipt_sha256": "8d0e826b3571f9ca0af2475e9a9d56f3ba481580174c23cd9eea689d77de905f",
+        "receipt_sha256": "46779a20ad02176cd611b690916c4621a059594f1814f3e3ccd37ab68e8f8e73"
+      },
+      {
+        "sequence": 4,
+        "input_snapshot_sha256": "4ba6ade540709f99cde4dd2519167a26c75d519482ba07148e4aaa42e6522482",
+        "policy_adapter": "FUNCTIONAL_STUB_NO_TRAINED_POLICY",
+        "recommendation": [
+          0.35,
+          0.1
+        ],
+        "actual_track_action": [
+          0.3,
+          0.0
+        ],
+        "divergence_l1": 0.15,
+        "dispatch_attempted": false,
+        "previous_receipt_sha256": "46779a20ad02176cd611b690916c4621a059594f1814f3e3ccd37ab68e8f8e73",
+        "receipt_sha256": "c691e7dad562c89e66b30be8bbc8616ac1564b3841f414f61a629c38ff49daa6"
+      }
+    ],
+    "receipt_head_sha256": "c691e7dad562c89e66b30be8bbc8616ac1564b3841f414f61a629c38ff49daa6",
+    "passed": true,
+    "real_shadow_operation": false,
+    "live_data_verified": false,
+    "policy_performance_measured": false,
+    "production_authority": false
+  },
+  "results_evidence_gate": {
+    "structural_contract_complete": true,
+    "training_seed_count": 0,
+    "minimum_training_seed_count": 5,
+    "training_completed": false,
+    "hashes_bound": false,
+    "training_runs_complete": false,
+    "base_matrix_result_count": 0,
+    "ood_result_count": 0,
+    "ablation_result_count": 0,
+    "stress_result_count": 0,
+    "matrix_complete": false,
+    "confidence_intervals_complete": false,
+    "real_port_domain_count": 0,
+    "real_season_domain_count": 0,
+    "convergence_demonstrated": false,
+    "real_multi_port_generalization_demonstrated": false,
+    "real_multi_season_generalization_demonstrated": false,
+    "ood_acceptance_passed": false,
+    "shadow_operation_completed": false,
+    "production_authority": false,
+    "generalization_evidence_complete": false
+  },
+  "claims": {
+    "training_performed": false,
+    "convergence_demonstrated": false,
+    "real_multi_port_generalization_demonstrated": false,
+    "real_multi_season_generalization_demonstrated": false,
+    "ood_acceptance_passed": false,
+    "shadow_operation_completed": false,
+    "existing_policy_modified": false,
+    "ship_motion_model_modified": false,
+    "production_authority": false
+  },
+  "boundary": "Functional readiness covers campaign planning, interactive traffic, deterministic receipts and fail-closed evidence routing. No new policy was trained; synthetic domains do not prove convergence, real cross-port/cross-season generalization, shadow acceptance or production authority.",
+  "inputs_sha256": {
+    "data/verification/rl_generalization_campaign_v1.json": "e22820dae509f51b2a075b451518e8ee5f8b2c46dcd43f57ec8e97c8abc4b16a",
+    "data/verification/rl_generalization_results_manifest.template.json": "50776e80e03d3a3f75fe0c8e40a942a0be7138c7b843493416a2b56434bdbd01",
+    "data/rl/long_beach_ais_port_ops_benchmark_v2.json": "1d676e7446f22206f6113777524d46724545e58e55c1df73a9d359795a415a1f",
+    "reports/port_ops_benchmark_v2.json": "758a448e1389486cd0fb867c77741098ccffc25eec8fcef883f2f835c349071a",
+    "tools/ship_rl/generalization_environment.py": "420010104da65b591541c13b1b7eee69d4208a30442169b521a2c86634f6774c",
+    "tools/ship_rl/generalization_assurance.py": "97875679d0ca32b6601f97bf39d043fdbfb25963cfd85db54f2e8d4087e534d5",
+    "tools/run_rl_generalization_assurance.py": "9b4686e19ae3d3005b5d9b17ddcb5e4a6f2069bb5d32bbfaaea7c8a15595ca66",
+    "tests/test_rl_generalization_assurance.py": "c91896cfd3b661c6153aa5c95845043a0e3a316d9df96c09cd132b592a982ae9"
+  },
+  "evaluation_plan": {
+    "schema_version": "rl_generalization_evaluation_plan_v1",
+    "campaign_id": "top_simulator_generalization_v1",
+    "base_matrix_cell_count": 320,
+    "ablation_pair_count": 30,
+    "stress_cell_count": 40,
+    "ood_cell_count": 20,
+    "total_planned_cell_count": 410,
+    "plan_sha256": "e0acab639e5c98214563ca5ab41722f9d104ae4c2f92cdbf214b6943879dcedc",
+    "test_results_accessed": false,
+    "training_performed": false,
+    "path": "reports/rl_generalization_evaluation_plan_v1.json",
+    "file_sha256": "be6a8dbe80c23a6a7fb43d6afac32e26e0dd90bceb15f92acb9e94e181956933"
+  },
+  "generated_at_utc": "2026-08-28T14:22:42.195087+00:00"
+}

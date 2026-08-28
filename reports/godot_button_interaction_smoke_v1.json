@@ -113,7 +113,7 @@
 			"passed": true
 		},
 		"cargo_present": {
-			"detail": "CargoCircuitRLPanel:<CanvasLayer#72997670054>",
+			"detail": "CargoCircuitRLPanel:<CanvasLayer#75614915750>",
 			"passed": true
 		},
 		"cargo_private_boundary_0  人工物理可达性验收": {
@@ -350,6 +350,62 @@
 			"detail": false,
 			"passed": true
 		},
+		"instructor_equipment_ais_fault": {
+			"detail": {
+				"ais_loss": true,
+				"depth_sensor_loss": false,
+				"gnss_frozen": false,
+				"gyro_bias_deg": 0.0,
+				"radar_bearing_bias_deg": 0.0,
+				"radar_power_loss": true,
+				"radar_range_bias_m": 0.0,
+				"rudder_feedback_loss": false,
+				"speed_log_loss": false
+			},
+			"passed": true
+		},
+		"instructor_equipment_gyro_bias": {
+			"detail": {
+				"ais_loss": true,
+				"depth_sensor_loss": false,
+				"gnss_frozen": false,
+				"gyro_bias_deg": 7.5,
+				"radar_bearing_bias_deg": 0.0,
+				"radar_power_loss": true,
+				"radar_range_bias_m": 0.0,
+				"rudder_feedback_loss": false,
+				"speed_log_loss": false
+			},
+			"passed": true
+		},
+		"instructor_equipment_radar_fault": {
+			"detail": {
+				"ais_loss": false,
+				"depth_sensor_loss": false,
+				"gnss_frozen": false,
+				"gyro_bias_deg": 0.0,
+				"radar_bearing_bias_deg": 0.0,
+				"radar_power_loss": true,
+				"radar_range_bias_m": 0.0,
+				"rudder_feedback_loss": false,
+				"speed_log_loss": false
+			},
+			"passed": true
+		},
+		"instructor_equipment_restore": {
+			"detail": {
+				"ais_loss": false,
+				"depth_sensor_loss": false,
+				"gnss_frozen": false,
+				"gyro_bias_deg": 0.0,
+				"radar_bearing_bias_deg": 0.0,
+				"radar_power_loss": false,
+				"radar_range_bias_m": 0.0,
+				"rudder_feedback_loss": false,
+				"speed_log_loss": false
+			},
+			"passed": true
+		},
 		"instructor_incident_动力故障": {
 			"detail": 3,
 			"passed": true
@@ -412,8 +468,8 @@
 			"detail": {
 				"base_time": "10:20",
 				"current_direction_degrees": 65.0,
-				"current_speed_knots": 0.4,
-				"current_vector": "(0.186498, 0.0, 0.086965)",
+				"current_speed_knots": 0.1,
+				"current_vector": "(0.046624, 0.0, 0.021741)",
 				"data_source": "scenario_override",
 				"data_status": "manual_scenario",
 				"fetched_at": "",
@@ -431,12 +487,18 @@
 				"time_scale": 1.0,
 				"visibility": "20.0 km",
 				"visibility_km": 20.0,
+				"water_surface_visual": {
+					"connected": true,
+					"flow_direction": "(0.809017, 0.587785)",
+					"vertex_wave_height": 0.0492,
+					"wave_speed": 0.218181818181818
+				},
 				"wave_direction_degrees": 54.0,
-				"wave_height_meters": 0.4,
+				"wave_height_meters": 0.12,
 				"wave_period_seconds": 5.5,
 				"weather": "CLEAR SKY",
 				"wind_direction_degrees": 38.0,
-				"wind_speed_knots": 6.0
+				"wind_speed_knots": 3.0
 			},
 			"passed": true
 		},
@@ -500,6 +562,1184 @@
 			"detail": 4.0,
 			"passed": true
 		},
+		"instructor_timeline_load_disagreement": {
+			"detail": {
+				"boundary": "Instructor-controlled research exercise timeline; equipment faults affect displays only and do not replace an approved simulator instructor operating station.",
+				"changes_motion_model": false,
+				"changes_policy": false,
+				"complete": false,
+				"elapsed_seconds": 0.0,
+				"event_count": 6,
+				"fault_matrix": [
+					{
+						"active": false,
+						"category": "RADAR",
+						"current_value": false,
+						"default_value": true,
+						"effect": "雷达目标与杂波输出归零",
+						"key": "radar_power_loss",
+						"label": "雷达电源失效",
+						"restore_value": false
+					},
+					{
+						"active": false,
+						"category": "RADAR",
+						"current_value": 0.0,
+						"default_value": 45.0,
+						"effect": "所有雷达测距叠加确定性偏差",
+						"key": "radar_range_bias_m",
+						"label": "雷达距离偏差",
+						"restore_value": 0.0
+					},
+					{
+						"active": false,
+						"category": "RADAR",
+						"current_value": 0.0,
+						"default_value": 3.5,
+						"effect": "所有雷达方位叠加确定性偏差",
+						"key": "radar_bearing_bias_deg",
+						"label": "雷达方位偏差",
+						"restore_value": 0.0
+					},
+					{
+						"active": false,
+						"category": "HEADING",
+						"current_value": 0.0,
+						"default_value": 7.5,
+						"effect": "首向与航向显示产生一致偏差",
+						"key": "gyro_bias_deg",
+						"label": "电罗经偏差",
+						"restore_value": 0.0
+					},
+					{
+						"active": false,
+						"category": "POSITION",
+						"current_value": false,
+						"default_value": true,
+						"effect": "电子海图位置保持在故障发生点并报警",
+						"key": "gnss_frozen",
+						"label": "全球导航卫星系统位置冻结",
+						"restore_value": false
+					},
+					{
+						"active": false,
+						"category": "TRAFFIC",
+						"current_value": false,
+						"default_value": true,
+						"effect": "电子海图与雷达融合不再提供自动识别系统记录",
+						"key": "ais_loss",
+						"label": "船舶自动识别系统数据丢失",
+						"restore_value": false
+					},
+					{
+						"active": false,
+						"category": "SPEED",
+						"current_value": false,
+						"default_value": true,
+						"effect": "操纵信息速度读数不可用",
+						"key": "speed_log_loss",
+						"label": "计程仪失效",
+						"restore_value": false
+					},
+					{
+						"active": false,
+						"category": "STEERING",
+						"current_value": false,
+						"default_value": true,
+						"effect": "操纵信息舵角反馈不可用，不改变实际舵效",
+						"key": "rudder_feedback_loss",
+						"label": "舵角反馈失效",
+						"restore_value": false
+					},
+					{
+						"active": false,
+						"category": "DEPTH",
+						"current_value": false,
+						"default_value": true,
+						"effect": "电子海图测深有效性报警",
+						"key": "depth_sensor_loss",
+						"label": "测深仪失效",
+						"restore_value": false
+					}
+				],
+				"format": "ship_instructor_exercise_v2",
+				"next_event_index": 0,
+				"objective": "通过独立信息源识别电罗经偏差与位置冻结，保持航行决策可解释",
+				"production_authority": false,
+				"receipts": [
+					{
+						"action": "equipment_fault",
+						"detail": {
+							"effect": "雷达目标与杂波输出归零",
+							"source": "instructor_panel",
+							"value": true
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000001",
+						"sequence": 1,
+						"status": "EXECUTED",
+						"subject": "radar_power_loss",
+						"template_key": "",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "equipment_fault",
+						"detail": {
+							"effect": "电子海图与雷达融合不再提供自动识别系统记录",
+							"source": "instructor_panel",
+							"value": true
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000002",
+						"sequence": 2,
+						"status": "EXECUTED",
+						"subject": "ais_loss",
+						"template_key": "",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "equipment_fault",
+						"detail": {
+							"effect": "首向与航向显示产生一致偏差",
+							"source": "instructor_panel",
+							"value": 7.5
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000003",
+						"sequence": 3,
+						"status": "EXECUTED",
+						"subject": "gyro_bias_deg",
+						"template_key": "",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "equipment_restore_all",
+						"detail": {
+							"source": "instructor_panel"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000004",
+						"sequence": 4,
+						"status": "EXECUTED",
+						"subject": "",
+						"template_key": "",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "load_exercise",
+						"detail": {
+							"event_count": 6,
+							"template": "restricted_visibility_bridge"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000005",
+						"sequence": 5,
+						"status": "ACCEPTED",
+						"subject": "",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "start_exercise",
+						"detail": {
+							"next_event_index": 0,
+							"template": "restricted_visibility_bridge"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000006",
+						"sequence": 6,
+						"status": "ACCEPTED",
+						"subject": "",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "marker",
+						"detail": {
+							"label": "演练开始：建立雷达/电子海图/目视交叉核对",
+							"source": "scheduled"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000007",
+						"sequence": 7,
+						"status": "EXECUTED",
+						"subject": "RV-00",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "equipment_fault",
+						"detail": {
+							"effect": "雷达目标与杂波输出归零",
+							"source": "manual_step:RV-01",
+							"value": true
+						},
+						"exercise_elapsed_seconds": 15.0,
+						"receipt_id": "IEX-000008",
+						"sequence": 8,
+						"status": "EXECUTED",
+						"subject": "radar_power_loss",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "pause_exercise",
+						"detail": {
+							"elapsed_seconds": 15.0
+						},
+						"exercise_elapsed_seconds": 15.0,
+						"receipt_id": "IEX-000009",
+						"sequence": 9,
+						"status": "ACCEPTED",
+						"subject": "",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "equipment_restore_all",
+						"detail": {
+							"source": "exercise_reset"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000010",
+						"sequence": 10,
+						"status": "EXECUTED",
+						"subject": "",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "reset_exercise",
+						"detail": {
+							"faults_cleared": true,
+							"template": "restricted_visibility_bridge"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000011",
+						"sequence": 11,
+						"status": "ACCEPTED",
+						"subject": "",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "load_exercise",
+						"detail": {
+							"event_count": 6,
+							"template": "sensor_disagreement"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000012",
+						"sequence": 12,
+						"status": "ACCEPTED",
+						"subject": "",
+						"template_key": "sensor_disagreement",
+						"utc": "2026-08-28T15:51:25"
+					}
+				],
+				"running": false,
+				"template_key": "sensor_disagreement",
+				"template_name": "位置与首向传感器不一致",
+				"timeline": [
+					{
+						"action": "marker",
+						"at_s": 0.0,
+						"id": "SD-00",
+						"label": "演练开始：记录基准首向和位置"
+					},
+					{
+						"action": "fault",
+						"at_s": 10.0,
+						"fault": "gyro_bias_deg",
+						"id": "SD-01",
+						"value": 7.5
+					},
+					{
+						"action": "fault",
+						"at_s": 25.0,
+						"fault": "gnss_frozen",
+						"id": "SD-02",
+						"value": true
+					},
+					{
+						"action": "restore",
+						"at_s": 45.0,
+						"fault": "gnss_frozen",
+						"id": "SD-03"
+					},
+					{
+						"action": "restore",
+						"at_s": 60.0,
+						"fault": "gyro_bias_deg",
+						"id": "SD-04"
+					},
+					{
+						"action": "marker",
+						"at_s": 65.0,
+						"id": "SD-05",
+						"label": "演练结束：记录识别时间与恢复核验"
+					}
+				]
+			},
+			"passed": true
+		},
+		"instructor_timeline_load_visibility": {
+			"detail": "restricted_visibility_bridge",
+			"passed": true
+		},
+		"instructor_timeline_next_event": {
+			"detail": {
+				"ais_loss": false,
+				"depth_sensor_loss": false,
+				"gnss_frozen": false,
+				"gyro_bias_deg": 0.0,
+				"radar_bearing_bias_deg": 0.0,
+				"radar_power_loss": true,
+				"radar_range_bias_m": 0.0,
+				"rudder_feedback_loss": false,
+				"speed_log_loss": false
+			},
+			"passed": true
+		},
+		"instructor_timeline_pause": {
+			"detail": {
+				"boundary": "Instructor-controlled research exercise timeline; equipment faults affect displays only and do not replace an approved simulator instructor operating station.",
+				"changes_motion_model": false,
+				"changes_policy": false,
+				"complete": false,
+				"elapsed_seconds": 15.0,
+				"event_count": 6,
+				"fault_matrix": [
+					{
+						"active": true,
+						"category": "RADAR",
+						"current_value": true,
+						"default_value": true,
+						"effect": "雷达目标与杂波输出归零",
+						"key": "radar_power_loss",
+						"label": "雷达电源失效",
+						"restore_value": false
+					},
+					{
+						"active": false,
+						"category": "RADAR",
+						"current_value": 0.0,
+						"default_value": 45.0,
+						"effect": "所有雷达测距叠加确定性偏差",
+						"key": "radar_range_bias_m",
+						"label": "雷达距离偏差",
+						"restore_value": 0.0
+					},
+					{
+						"active": false,
+						"category": "RADAR",
+						"current_value": 0.0,
+						"default_value": 3.5,
+						"effect": "所有雷达方位叠加确定性偏差",
+						"key": "radar_bearing_bias_deg",
+						"label": "雷达方位偏差",
+						"restore_value": 0.0
+					},
+					{
+						"active": false,
+						"category": "HEADING",
+						"current_value": 0.0,
+						"default_value": 7.5,
+						"effect": "首向与航向显示产生一致偏差",
+						"key": "gyro_bias_deg",
+						"label": "电罗经偏差",
+						"restore_value": 0.0
+					},
+					{
+						"active": false,
+						"category": "POSITION",
+						"current_value": false,
+						"default_value": true,
+						"effect": "电子海图位置保持在故障发生点并报警",
+						"key": "gnss_frozen",
+						"label": "全球导航卫星系统位置冻结",
+						"restore_value": false
+					},
+					{
+						"active": false,
+						"category": "TRAFFIC",
+						"current_value": false,
+						"default_value": true,
+						"effect": "电子海图与雷达融合不再提供自动识别系统记录",
+						"key": "ais_loss",
+						"label": "船舶自动识别系统数据丢失",
+						"restore_value": false
+					},
+					{
+						"active": false,
+						"category": "SPEED",
+						"current_value": false,
+						"default_value": true,
+						"effect": "操纵信息速度读数不可用",
+						"key": "speed_log_loss",
+						"label": "计程仪失效",
+						"restore_value": false
+					},
+					{
+						"active": false,
+						"category": "STEERING",
+						"current_value": false,
+						"default_value": true,
+						"effect": "操纵信息舵角反馈不可用，不改变实际舵效",
+						"key": "rudder_feedback_loss",
+						"label": "舵角反馈失效",
+						"restore_value": false
+					},
+					{
+						"active": false,
+						"category": "DEPTH",
+						"current_value": false,
+						"default_value": true,
+						"effect": "电子海图测深有效性报警",
+						"key": "depth_sensor_loss",
+						"label": "测深仪失效",
+						"restore_value": false
+					}
+				],
+				"format": "ship_instructor_exercise_v2",
+				"next_event_index": 2,
+				"objective": "识别雷达与自动识别系统分层失效，完成交叉核对和恢复确认",
+				"production_authority": false,
+				"receipts": [
+					{
+						"action": "equipment_fault",
+						"detail": {
+							"effect": "雷达目标与杂波输出归零",
+							"source": "instructor_panel",
+							"value": true
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000001",
+						"sequence": 1,
+						"status": "EXECUTED",
+						"subject": "radar_power_loss",
+						"template_key": "",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "equipment_fault",
+						"detail": {
+							"effect": "电子海图与雷达融合不再提供自动识别系统记录",
+							"source": "instructor_panel",
+							"value": true
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000002",
+						"sequence": 2,
+						"status": "EXECUTED",
+						"subject": "ais_loss",
+						"template_key": "",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "equipment_fault",
+						"detail": {
+							"effect": "首向与航向显示产生一致偏差",
+							"source": "instructor_panel",
+							"value": 7.5
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000003",
+						"sequence": 3,
+						"status": "EXECUTED",
+						"subject": "gyro_bias_deg",
+						"template_key": "",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "equipment_restore_all",
+						"detail": {
+							"source": "instructor_panel"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000004",
+						"sequence": 4,
+						"status": "EXECUTED",
+						"subject": "",
+						"template_key": "",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "load_exercise",
+						"detail": {
+							"event_count": 6,
+							"template": "restricted_visibility_bridge"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000005",
+						"sequence": 5,
+						"status": "ACCEPTED",
+						"subject": "",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "start_exercise",
+						"detail": {
+							"next_event_index": 0,
+							"template": "restricted_visibility_bridge"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000006",
+						"sequence": 6,
+						"status": "ACCEPTED",
+						"subject": "",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "marker",
+						"detail": {
+							"label": "演练开始：建立雷达/电子海图/目视交叉核对",
+							"source": "scheduled"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000007",
+						"sequence": 7,
+						"status": "EXECUTED",
+						"subject": "RV-00",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "equipment_fault",
+						"detail": {
+							"effect": "雷达目标与杂波输出归零",
+							"source": "manual_step:RV-01",
+							"value": true
+						},
+						"exercise_elapsed_seconds": 15.0,
+						"receipt_id": "IEX-000008",
+						"sequence": 8,
+						"status": "EXECUTED",
+						"subject": "radar_power_loss",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "pause_exercise",
+						"detail": {
+							"elapsed_seconds": 15.0
+						},
+						"exercise_elapsed_seconds": 15.0,
+						"receipt_id": "IEX-000009",
+						"sequence": 9,
+						"status": "ACCEPTED",
+						"subject": "",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					}
+				],
+				"running": false,
+				"template_key": "restricted_visibility_bridge",
+				"template_name": "受限能见度驾驶台设备处置",
+				"timeline": [
+					{
+						"action": "marker",
+						"at_s": 0.0,
+						"id": "RV-00",
+						"label": "演练开始：建立雷达/电子海图/目视交叉核对"
+					},
+					{
+						"action": "fault",
+						"at_s": 15.0,
+						"fault": "radar_power_loss",
+						"id": "RV-01",
+						"value": true
+					},
+					{
+						"action": "restore",
+						"at_s": 35.0,
+						"fault": "radar_power_loss",
+						"id": "RV-02"
+					},
+					{
+						"action": "fault",
+						"at_s": 45.0,
+						"fault": "ais_loss",
+						"id": "RV-03",
+						"value": true
+					},
+					{
+						"action": "restore",
+						"at_s": 70.0,
+						"fault": "ais_loss",
+						"id": "RV-04"
+					},
+					{
+						"action": "marker",
+						"at_s": 75.0,
+						"id": "RV-05",
+						"label": "演练结束：确认设备恢复与未确认告警"
+					}
+				]
+			},
+			"passed": true
+		},
+		"instructor_timeline_reset": {
+			"detail": {
+				"boundary": "Instructor-controlled research exercise timeline; equipment faults affect displays only and do not replace an approved simulator instructor operating station.",
+				"changes_motion_model": false,
+				"changes_policy": false,
+				"complete": false,
+				"elapsed_seconds": 0.0,
+				"event_count": 6,
+				"fault_matrix": [
+					{
+						"active": false,
+						"category": "RADAR",
+						"current_value": false,
+						"default_value": true,
+						"effect": "雷达目标与杂波输出归零",
+						"key": "radar_power_loss",
+						"label": "雷达电源失效",
+						"restore_value": false
+					},
+					{
+						"active": false,
+						"category": "RADAR",
+						"current_value": 0.0,
+						"default_value": 45.0,
+						"effect": "所有雷达测距叠加确定性偏差",
+						"key": "radar_range_bias_m",
+						"label": "雷达距离偏差",
+						"restore_value": 0.0
+					},
+					{
+						"active": false,
+						"category": "RADAR",
+						"current_value": 0.0,
+						"default_value": 3.5,
+						"effect": "所有雷达方位叠加确定性偏差",
+						"key": "radar_bearing_bias_deg",
+						"label": "雷达方位偏差",
+						"restore_value": 0.0
+					},
+					{
+						"active": false,
+						"category": "HEADING",
+						"current_value": 0.0,
+						"default_value": 7.5,
+						"effect": "首向与航向显示产生一致偏差",
+						"key": "gyro_bias_deg",
+						"label": "电罗经偏差",
+						"restore_value": 0.0
+					},
+					{
+						"active": false,
+						"category": "POSITION",
+						"current_value": false,
+						"default_value": true,
+						"effect": "电子海图位置保持在故障发生点并报警",
+						"key": "gnss_frozen",
+						"label": "全球导航卫星系统位置冻结",
+						"restore_value": false
+					},
+					{
+						"active": false,
+						"category": "TRAFFIC",
+						"current_value": false,
+						"default_value": true,
+						"effect": "电子海图与雷达融合不再提供自动识别系统记录",
+						"key": "ais_loss",
+						"label": "船舶自动识别系统数据丢失",
+						"restore_value": false
+					},
+					{
+						"active": false,
+						"category": "SPEED",
+						"current_value": false,
+						"default_value": true,
+						"effect": "操纵信息速度读数不可用",
+						"key": "speed_log_loss",
+						"label": "计程仪失效",
+						"restore_value": false
+					},
+					{
+						"active": false,
+						"category": "STEERING",
+						"current_value": false,
+						"default_value": true,
+						"effect": "操纵信息舵角反馈不可用，不改变实际舵效",
+						"key": "rudder_feedback_loss",
+						"label": "舵角反馈失效",
+						"restore_value": false
+					},
+					{
+						"active": false,
+						"category": "DEPTH",
+						"current_value": false,
+						"default_value": true,
+						"effect": "电子海图测深有效性报警",
+						"key": "depth_sensor_loss",
+						"label": "测深仪失效",
+						"restore_value": false
+					}
+				],
+				"format": "ship_instructor_exercise_v2",
+				"next_event_index": 0,
+				"objective": "识别雷达与自动识别系统分层失效，完成交叉核对和恢复确认",
+				"production_authority": false,
+				"receipts": [
+					{
+						"action": "equipment_fault",
+						"detail": {
+							"effect": "雷达目标与杂波输出归零",
+							"source": "instructor_panel",
+							"value": true
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000001",
+						"sequence": 1,
+						"status": "EXECUTED",
+						"subject": "radar_power_loss",
+						"template_key": "",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "equipment_fault",
+						"detail": {
+							"effect": "电子海图与雷达融合不再提供自动识别系统记录",
+							"source": "instructor_panel",
+							"value": true
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000002",
+						"sequence": 2,
+						"status": "EXECUTED",
+						"subject": "ais_loss",
+						"template_key": "",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "equipment_fault",
+						"detail": {
+							"effect": "首向与航向显示产生一致偏差",
+							"source": "instructor_panel",
+							"value": 7.5
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000003",
+						"sequence": 3,
+						"status": "EXECUTED",
+						"subject": "gyro_bias_deg",
+						"template_key": "",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "equipment_restore_all",
+						"detail": {
+							"source": "instructor_panel"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000004",
+						"sequence": 4,
+						"status": "EXECUTED",
+						"subject": "",
+						"template_key": "",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "load_exercise",
+						"detail": {
+							"event_count": 6,
+							"template": "restricted_visibility_bridge"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000005",
+						"sequence": 5,
+						"status": "ACCEPTED",
+						"subject": "",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "start_exercise",
+						"detail": {
+							"next_event_index": 0,
+							"template": "restricted_visibility_bridge"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000006",
+						"sequence": 6,
+						"status": "ACCEPTED",
+						"subject": "",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "marker",
+						"detail": {
+							"label": "演练开始：建立雷达/电子海图/目视交叉核对",
+							"source": "scheduled"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000007",
+						"sequence": 7,
+						"status": "EXECUTED",
+						"subject": "RV-00",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "equipment_fault",
+						"detail": {
+							"effect": "雷达目标与杂波输出归零",
+							"source": "manual_step:RV-01",
+							"value": true
+						},
+						"exercise_elapsed_seconds": 15.0,
+						"receipt_id": "IEX-000008",
+						"sequence": 8,
+						"status": "EXECUTED",
+						"subject": "radar_power_loss",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "pause_exercise",
+						"detail": {
+							"elapsed_seconds": 15.0
+						},
+						"exercise_elapsed_seconds": 15.0,
+						"receipt_id": "IEX-000009",
+						"sequence": 9,
+						"status": "ACCEPTED",
+						"subject": "",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "equipment_restore_all",
+						"detail": {
+							"source": "exercise_reset"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000010",
+						"sequence": 10,
+						"status": "EXECUTED",
+						"subject": "",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "reset_exercise",
+						"detail": {
+							"faults_cleared": true,
+							"template": "restricted_visibility_bridge"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000011",
+						"sequence": 11,
+						"status": "ACCEPTED",
+						"subject": "",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					}
+				],
+				"running": false,
+				"template_key": "restricted_visibility_bridge",
+				"template_name": "受限能见度驾驶台设备处置",
+				"timeline": [
+					{
+						"action": "marker",
+						"at_s": 0.0,
+						"id": "RV-00",
+						"label": "演练开始：建立雷达/电子海图/目视交叉核对"
+					},
+					{
+						"action": "fault",
+						"at_s": 15.0,
+						"fault": "radar_power_loss",
+						"id": "RV-01",
+						"value": true
+					},
+					{
+						"action": "restore",
+						"at_s": 35.0,
+						"fault": "radar_power_loss",
+						"id": "RV-02"
+					},
+					{
+						"action": "fault",
+						"at_s": 45.0,
+						"fault": "ais_loss",
+						"id": "RV-03",
+						"value": true
+					},
+					{
+						"action": "restore",
+						"at_s": 70.0,
+						"fault": "ais_loss",
+						"id": "RV-04"
+					},
+					{
+						"action": "marker",
+						"at_s": 75.0,
+						"id": "RV-05",
+						"label": "演练结束：确认设备恢复与未确认告警"
+					}
+				]
+			},
+			"passed": true
+		},
+		"instructor_timeline_start": {
+			"detail": {
+				"boundary": "Instructor-controlled research exercise timeline; equipment faults affect displays only and do not replace an approved simulator instructor operating station.",
+				"changes_motion_model": false,
+				"changes_policy": false,
+				"complete": false,
+				"elapsed_seconds": 0.0,
+				"event_count": 6,
+				"fault_matrix": [
+					{
+						"active": false,
+						"category": "RADAR",
+						"current_value": false,
+						"default_value": true,
+						"effect": "雷达目标与杂波输出归零",
+						"key": "radar_power_loss",
+						"label": "雷达电源失效",
+						"restore_value": false
+					},
+					{
+						"active": false,
+						"category": "RADAR",
+						"current_value": 0.0,
+						"default_value": 45.0,
+						"effect": "所有雷达测距叠加确定性偏差",
+						"key": "radar_range_bias_m",
+						"label": "雷达距离偏差",
+						"restore_value": 0.0
+					},
+					{
+						"active": false,
+						"category": "RADAR",
+						"current_value": 0.0,
+						"default_value": 3.5,
+						"effect": "所有雷达方位叠加确定性偏差",
+						"key": "radar_bearing_bias_deg",
+						"label": "雷达方位偏差",
+						"restore_value": 0.0
+					},
+					{
+						"active": false,
+						"category": "HEADING",
+						"current_value": 0.0,
+						"default_value": 7.5,
+						"effect": "首向与航向显示产生一致偏差",
+						"key": "gyro_bias_deg",
+						"label": "电罗经偏差",
+						"restore_value": 0.0
+					},
+					{
+						"active": false,
+						"category": "POSITION",
+						"current_value": false,
+						"default_value": true,
+						"effect": "电子海图位置保持在故障发生点并报警",
+						"key": "gnss_frozen",
+						"label": "全球导航卫星系统位置冻结",
+						"restore_value": false
+					},
+					{
+						"active": false,
+						"category": "TRAFFIC",
+						"current_value": false,
+						"default_value": true,
+						"effect": "电子海图与雷达融合不再提供自动识别系统记录",
+						"key": "ais_loss",
+						"label": "船舶自动识别系统数据丢失",
+						"restore_value": false
+					},
+					{
+						"active": false,
+						"category": "SPEED",
+						"current_value": false,
+						"default_value": true,
+						"effect": "操纵信息速度读数不可用",
+						"key": "speed_log_loss",
+						"label": "计程仪失效",
+						"restore_value": false
+					},
+					{
+						"active": false,
+						"category": "STEERING",
+						"current_value": false,
+						"default_value": true,
+						"effect": "操纵信息舵角反馈不可用，不改变实际舵效",
+						"key": "rudder_feedback_loss",
+						"label": "舵角反馈失效",
+						"restore_value": false
+					},
+					{
+						"active": false,
+						"category": "DEPTH",
+						"current_value": false,
+						"default_value": true,
+						"effect": "电子海图测深有效性报警",
+						"key": "depth_sensor_loss",
+						"label": "测深仪失效",
+						"restore_value": false
+					}
+				],
+				"format": "ship_instructor_exercise_v2",
+				"next_event_index": 1,
+				"objective": "识别雷达与自动识别系统分层失效，完成交叉核对和恢复确认",
+				"production_authority": false,
+				"receipts": [
+					{
+						"action": "equipment_fault",
+						"detail": {
+							"effect": "雷达目标与杂波输出归零",
+							"source": "instructor_panel",
+							"value": true
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000001",
+						"sequence": 1,
+						"status": "EXECUTED",
+						"subject": "radar_power_loss",
+						"template_key": "",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "equipment_fault",
+						"detail": {
+							"effect": "电子海图与雷达融合不再提供自动识别系统记录",
+							"source": "instructor_panel",
+							"value": true
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000002",
+						"sequence": 2,
+						"status": "EXECUTED",
+						"subject": "ais_loss",
+						"template_key": "",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "equipment_fault",
+						"detail": {
+							"effect": "首向与航向显示产生一致偏差",
+							"source": "instructor_panel",
+							"value": 7.5
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000003",
+						"sequence": 3,
+						"status": "EXECUTED",
+						"subject": "gyro_bias_deg",
+						"template_key": "",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "equipment_restore_all",
+						"detail": {
+							"source": "instructor_panel"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000004",
+						"sequence": 4,
+						"status": "EXECUTED",
+						"subject": "",
+						"template_key": "",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "load_exercise",
+						"detail": {
+							"event_count": 6,
+							"template": "restricted_visibility_bridge"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000005",
+						"sequence": 5,
+						"status": "ACCEPTED",
+						"subject": "",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "start_exercise",
+						"detail": {
+							"next_event_index": 0,
+							"template": "restricted_visibility_bridge"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000006",
+						"sequence": 6,
+						"status": "ACCEPTED",
+						"subject": "",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					},
+					{
+						"action": "marker",
+						"detail": {
+							"label": "演练开始：建立雷达/电子海图/目视交叉核对",
+							"source": "scheduled"
+						},
+						"exercise_elapsed_seconds": 0.0,
+						"receipt_id": "IEX-000007",
+						"sequence": 7,
+						"status": "EXECUTED",
+						"subject": "RV-00",
+						"template_key": "restricted_visibility_bridge",
+						"utc": "2026-08-28T15:51:25"
+					}
+				],
+				"running": true,
+				"template_key": "restricted_visibility_bridge",
+				"template_name": "受限能见度驾驶台设备处置",
+				"timeline": [
+					{
+						"action": "marker",
+						"at_s": 0.0,
+						"id": "RV-00",
+						"label": "演练开始：建立雷达/电子海图/目视交叉核对"
+					},
+					{
+						"action": "fault",
+						"at_s": 15.0,
+						"fault": "radar_power_loss",
+						"id": "RV-01",
+						"value": true
+					},
+					{
+						"action": "restore",
+						"at_s": 35.0,
+						"fault": "radar_power_loss",
+						"id": "RV-02"
+					},
+					{
+						"action": "fault",
+						"at_s": 45.0,
+						"fault": "ais_loss",
+						"id": "RV-03",
+						"value": true
+					},
+					{
+						"action": "restore",
+						"at_s": 70.0,
+						"fault": "ais_loss",
+						"id": "RV-04"
+					},
+					{
+						"action": "marker",
+						"at_s": 75.0,
+						"id": "RV-05",
+						"label": "演练结束：确认设备恢复与未确认告警"
+					}
+				]
+			},
+			"passed": true
+		},
 		"instructor_weather_夜航": {
 			"detail": {
 				"base_time": "22:30",
@@ -523,6 +1763,12 @@
 				"time_scale": 1.0,
 				"visibility": "4.0 km",
 				"visibility_km": 4.0,
+				"water_surface_visual": {
+					"connected": true,
+					"flow_direction": "(0.669131, -0.743145)",
+					"vertex_wave_height": 0.286,
+					"wave_speed": 0.153846153846154
+				},
 				"wave_direction_degrees": 138.0,
 				"wave_height_meters": 1.6,
 				"wave_period_seconds": 7.8,
@@ -536,8 +1782,8 @@
 			"detail": {
 				"base_time": "10:20",
 				"current_direction_degrees": 65.0,
-				"current_speed_knots": 0.4,
-				"current_vector": "(0.186498, 0.0, 0.086965)",
+				"current_speed_knots": 0.1,
+				"current_vector": "(0.046624, 0.0, 0.021741)",
 				"data_source": "scenario_override",
 				"data_status": "manual_scenario",
 				"fetched_at": "",
@@ -555,12 +1801,18 @@
 				"time_scale": 1.0,
 				"visibility": "20.0 km",
 				"visibility_km": 20.0,
+				"water_surface_visual": {
+					"connected": true,
+					"flow_direction": "(0.809017, 0.587785)",
+					"vertex_wave_height": 0.0492,
+					"wave_speed": 0.218181818181818
+				},
 				"wave_direction_degrees": 54.0,
-				"wave_height_meters": 0.4,
+				"wave_height_meters": 0.12,
 				"wave_period_seconds": 5.5,
 				"weather": "CLEAR SKY",
 				"wind_direction_degrees": 38.0,
-				"wind_speed_knots": 6.0
+				"wind_speed_knots": 3.0
 			},
 			"passed": true
 		},
@@ -587,6 +1839,12 @@
 				"time_scale": 1.0,
 				"visibility": "2.5 km",
 				"visibility_km": 2.5,
+				"water_surface_visual": {
+					"connected": true,
+					"flow_direction": "(0.87462, 0.48481)",
+					"vertex_wave_height": 0.158,
+					"wave_speed": 0.193548387096774
+				},
 				"wave_direction_degrees": 61.0,
 				"wave_height_meters": 0.8,
 				"wave_period_seconds": 6.2,
@@ -619,6 +1877,12 @@
 				"time_scale": 1.0,
 				"visibility": "8.0 km",
 				"visibility_km": 8.0,
+				"water_surface_visual": {
+					"connected": true,
+					"flow_direction": "(0.994522, -0.104528)",
+					"vertex_wave_height": 0.222,
+					"wave_speed": 0.171428571428571
+				},
 				"wave_direction_degrees": 96.0,
 				"wave_height_meters": 1.2,
 				"wave_period_seconds": 7.0,
@@ -760,6 +2024,42 @@
 			],
 			"passed": true
 		},
+		"overview_open_RL 泛化可信度 / 多域 · OOD · 消融 · 压力 · 影子": {
+			"detail": [
+				"ShipRlGeneralizationPanel"
+			],
+			"passed": true
+		},
+		"overview_open_全任务软件船桥 / GMDSS · 推进台 · 多学员 · 360°": {
+			"detail": [
+				"ShipFullMissionBridgePanel"
+			],
+			"passed": true
+		},
+		"overview_open_复杂避碰规则 / 多船 · 狭水道 · 分道 · 灯号声号": {
+			"detail": [
+				"ShipColregComplexPanel"
+			],
+			"passed": true
+		},
+		"overview_open_多源传感融合 / RADAR · AIS · EO · IR · GNSS · INS": {
+			"detail": [
+				"ShipMultisensorFusionPanel"
+			],
+			"passed": true
+		},
+		"overview_open_多驾驶台协同 / 通信 · 复诵 · BRM": {
+			"detail": [
+				"ShipBridgeTeamPanel"
+			],
+			"passed": true
+		},
+		"overview_open_安全案例 / ODD · 危险 · MRC · FTA · RCC": {
+			"detail": [
+				"ShipSafetyCasePanel"
+			],
+			"passed": true
+		},
 		"overview_open_小懿全系统助手": {
 			"detail": [
 				"ShipInstructorConsolePanel"
@@ -778,6 +2078,42 @@
 			],
 			"passed": true
 		},
+		"overview_open_执行控制闭环 / 自动舵 · 推进 · 仲裁 · 急停": {
+			"detail": [
+				"ShipExecutionControlPanel"
+			],
+			"passed": true
+		},
+		"overview_open_指定船舶数字孪生 / 海试辨识 · 误差包络": {
+			"detail": [
+				"ShipNamedVesselTwinPanel"
+			],
+			"passed": true
+		},
+		"overview_open_港内作业训练 / 靠离泊 · 拖轮 · 锚泊 · 系泊": {
+			"detail": [
+				"ShipPortOperationsPanel"
+			],
+			"passed": true
+		},
+		"overview_open_港口生产联动 / VTS · TOS · 引航 · 拖轮 · 泊位 · 通告": {
+			"detail": [
+				"ShipPortIntegrationPanel"
+			],
+			"passed": true
+		},
+		"overview_open_物理驾驶台 / HIL · 标准 · 现场准入": {
+			"detail": [
+				"ShipPhysicalBridgeReadinessPanel"
+			],
+			"passed": true
+		},
+		"overview_open_综合驾驶台 / RADAR · ARPA · ECDIS": {
+			"detail": [
+				"ShipIntegratedBridgePanel"
+			],
+			"passed": true
+		},
 		"overview_open_航线规划 / 风险决策 / 海况": {
 			"detail": [
 				"ShipNavigationPlanningPanel",
@@ -786,8 +2122,14 @@
 			],
 			"passed": true
 		},
+		"overview_open_船舶网络安全 / 分区 · 身份 · 签名更新 · IDS · 恢复": {
+			"detail": [
+				"ShipBridgeCybersecurityPanel"
+			],
+			"passed": true
+		},
 		"overview_present": {
-			"detail": "ShipSystemOverviewPanel:<CanvasLayer#72980892837>",
+			"detail": "ShipSystemOverviewPanel:<CanvasLayer#75380034712>",
 			"passed": true
 		},
 		"review_clear": {
@@ -805,7 +2147,7 @@
 		"review_score": {
 			"detail": {
 				"average_deviation_meters": 0.0,
-				"average_speed_knots": 0.39,
+				"average_speed_knots": 0.1,
 				"carbon_tons": 0.0,
 				"collision_count": 0,
 				"distance_nm": 0.0,
@@ -824,7 +2166,7 @@
 				"fuel_tons": 0.0,
 				"grounding_count": 0,
 				"max_deviation_meters": 0.0,
-				"max_speed_knots": 0.39,
+				"max_speed_knots": 0.1,
 				"notes": "航迹稳定，无重大扣分",
 				"risk_event_resolved_count": 0,
 				"route_score": 100.0,
@@ -833,10 +2175,10 @@
 					{
 						"collision": false,
 						"deviation": 0.0,
-						"speed_knots": 0.39,
+						"speed_knots": 0.1,
 						"t": 0.0,
-						"x": -147.99,
-						"z": -91.99
+						"x": -148.0,
+						"z": -92.0
 					}
 				],
 				"score": 100.0,
@@ -1023,7 +2365,7 @@
 				"last_result": {},
 				"last_rudder_command": 0.0,
 				"last_throttle_command": 0.0,
-				"max_route_deviation_meters": 0.00292386307189622,
+				"max_route_deviation_meters": 0.000714528263324799,
 				"minimum_clearance_meters": 90.8327,
 				"policy_phase": "RECORDED TEST ACTION / 测试动作",
 				"policy_replans": 0,
@@ -1220,7 +2562,7 @@
 			"passed": true
 		},
 		"rl_training_started": {
-			"detail": "真实无渲染训练已启动: los_pid  pid=44883  split=train  config=rl_training_config.json  params=training_parameters.json",
+			"detail": "真实无渲染训练已启动: los_pid  pid=13791  split=train  config=rl_training_config.json  params=training_parameters.json",
 			"passed": true
 		},
 		"rl_training_terminated": {
@@ -1229,7 +2571,7 @@
 		},
 		"runtime_inventory_coverage": {
 			"detail": {
-				"button_count": 117.0,
+				"button_count": 288.0,
 				"errors": []
 			},
 			"passed": true
@@ -1242,8 +2584,8 @@
 			"detail": {
 				"base_time": "10:20",
 				"current_direction_degrees": 65.0,
-				"current_speed_knots": 0.4,
-				"current_vector": "(0.186498, 0.0, 0.086965)",
+				"current_speed_knots": 0.1,
+				"current_vector": "(0.046624, 0.0, 0.021741)",
 				"data_source": "scenario_override",
 				"data_status": "refreshing",
 				"fetched_at": "",
@@ -1261,12 +2603,18 @@
 				"time_scale": 1.0,
 				"visibility": "20.0 km",
 				"visibility_km": 20.0,
+				"water_surface_visual": {
+					"connected": true,
+					"flow_direction": "(0.809017, 0.587785)",
+					"vertex_wave_height": 0.0492,
+					"wave_speed": 0.218181818181818
+				},
 				"wave_direction_degrees": 54.0,
-				"wave_height_meters": 0.4,
+				"wave_height_meters": 0.12,
 				"wave_period_seconds": 5.5,
 				"weather": "CLEAR SKY",
 				"wind_direction_degrees": 38.0,
-				"wind_speed_knots": 6.0
+				"wind_speed_knots": 3.0
 			},
 			"passed": true
 		},
@@ -1308,9 +2656,9 @@
 		}
 	},
 	"errors": [],
-	"generated_at": "2026-08-25T02:47:15",
+	"generated_at": "2026-08-28T15:51:25",
 	"passed": true,
-	"passed_checks": 175,
+	"passed_checks": 198,
 	"schema_version": "godot_button_interaction_smoke_v1",
-	"total_checks": 175
+	"total_checks": 198
 }

@@ -1,0 +1,73 @@
+{
+  "schema_version": "rl_safety_effectiveness_functional_smoke_v1",
+  "generated_at": "2026-08-28T12:12:16+00:00",
+  "algorithm": "sac",
+  "strategy_id": "sac_pure_20k+safety_v5",
+  "contains_real_rl": true,
+  "dataset_split": "validation",
+  "task_indices": [
+    0,
+    54,
+    59
+  ],
+  "maximum_steps_per_episode": 120,
+  "model_inference_calls": 277,
+  "safety_intervention_steps": 119,
+  "fail_closed_events": 10,
+  "receipts": [
+    {
+      "task_index": 0,
+      "task_id": "ais_2025-01-05_215137000_01_02_2036",
+      "steps": 120,
+      "model_inference_calls": 120,
+      "safety_intervention_steps": 54,
+      "fail_closed_events": 0,
+      "terminated": false,
+      "truncated": true,
+      "collisions": 0,
+      "groundings": 0
+    },
+    {
+      "task_index": 54,
+      "task_id": "ais_2025-01-05_373404000_00_01_2149",
+      "steps": 37,
+      "model_inference_calls": 37,
+      "safety_intervention_steps": 37,
+      "fail_closed_events": 10,
+      "terminated": false,
+      "truncated": false,
+      "collisions": 1,
+      "groundings": 0
+    },
+    {
+      "task_index": 59,
+      "task_id": "ais_2025-01-05_477025400_00_04_0444",
+      "steps": 120,
+      "model_inference_calls": 120,
+      "safety_intervention_steps": 28,
+      "fail_closed_events": 0,
+      "terminated": false,
+      "truncated": true,
+      "collisions": 0,
+      "groundings": 0
+    }
+  ],
+  "checks": {
+    "real_trained_sac_loaded": true,
+    "model_inference_executed": true,
+    "safety_projection_executed": true,
+    "applied_actions_bounded": true,
+    "intervention_path_exercised": true,
+    "multiple_validation_scenarios_exercised": true,
+    "counterfactual_holdout_untouched": true,
+    "production_authority_remains_false": true,
+    "performance_claim_suppressed": true
+  },
+  "passed": true,
+  "performance_claimed": false,
+  "counterfactual_holdout_accessed": false,
+  "training_performed": false,
+  "base_policy_modified": false,
+  "production_authority": false,
+  "boundary": "Functional smoke only: proves real SAC inference and safety-layer wiring, not convergence, safety effectiveness, policy admission, certification, or live-vessel authority."
+}

@@ -11,6 +11,9 @@ const USER_FILES_TO_PRESERVE := [
 	"user://ship_navigation_plan.json",
 	"user://ship_simulation_review.json",
 	"user://ship_instructor_report.json",
+	"user://ship_full_mission_bridge_snapshot.json",
+	"user://ship_bridge_cybersecurity_snapshot.json",
+	"user://ship_port_integration_snapshot.json",
 ]
 
 var _checks: Dictionary = {}
@@ -81,6 +84,15 @@ func _label_text(panel: Node, key: String) -> String:
 	return label.text if label != null else ""
 
 
+func _equipment_faults_clear(faults: Dictionary) -> bool:
+	for value in faults.values():
+		if value is bool and bool(value):
+			return false
+		if (value is float or value is int) and not is_zero_approx(float(value)):
+			return false
+	return true
+
+
 func _snapshot_user_files() -> void:
 	for path in USER_FILES_TO_PRESERVE:
 		var record := {"existed": FileAccess.file_exists(path), "bytes": PackedByteArray()}
@@ -145,6 +157,19 @@ func _test_overview() -> void:
 		"打开训练中心  ·  TRAINING CENTER": ["ShipRLControlPanel"],
 		"航线规划 / 风险决策 / 海况": ["ShipNavigationPlanningPanel", "ShipRiskDecisionPanel", "ShipWeatherSeaPanel"],
 		"AIS 船队态势": ["ShipAISFleetPanel"],
+		"综合驾驶台 / RADAR · ARPA · ECDIS": ["ShipIntegratedBridgePanel"],
+		"全任务软件船桥 / GMDSS · 推进台 · 多学员 · 360°": ["ShipFullMissionBridgePanel"],
+		"多源传感融合 / RADAR · AIS · EO · IR · GNSS · INS": ["ShipMultisensorFusionPanel"],
+		"执行控制闭环 / 自动舵 · 推进 · 仲裁 · 急停": ["ShipExecutionControlPanel"],
+		"指定船舶数字孪生 / 海试辨识 · 误差包络": ["ShipNamedVesselTwinPanel"],
+		"港内作业训练 / 靠离泊 · 拖轮 · 锚泊 · 系泊": ["ShipPortOperationsPanel"],
+		"多驾驶台协同 / 通信 · 复诵 · BRM": ["ShipBridgeTeamPanel"],
+		"物理驾驶台 / HIL · 标准 · 现场准入": ["ShipPhysicalBridgeReadinessPanel"],
+		"安全案例 / ODD · 危险 · MRC · FTA · RCC": ["ShipSafetyCasePanel"],
+		"复杂避碰规则 / 多船 · 狭水道 · 分道 · 灯号声号": ["ShipColregComplexPanel"],
+		"RL 泛化可信度 / 多域 · OOD · 消融 · 压力 · 影子": ["ShipRlGeneralizationPanel"],
+		"船舶网络安全 / 分区 · 身份 · 签名更新 · IDS · 恢复": ["ShipBridgeCybersecurityPanel"],
+		"港口生产联动 / VTS · TOS · 引航 · 拖轮 · 泊位 · 通告": ["ShipPortIntegrationPanel"],
 		"打开训练结果复盘": ["ShipSimulationReviewPanel"],
 		"小懿全系统助手": ["ShipInstructorConsolePanel"],
 	}
@@ -505,6 +530,8 @@ func _test_instructor() -> void:
 	var scenario := _main.get_node("ShipScenarioController")
 	var weather := _main.get_node("ShipWeatherTimeController")
 	var obstacles := _main.get_node("ShipNavigationObstacles")
+	var equipment := _main.get_node("ShipNavigationEquipmentSuite")
+	var exercise := _main.get_node("ShipInstructorExerciseController")
 	panel.call("show_panel")
 	_press(root, "暂停")
 	_record("instructor_pause", paused, paused)
@@ -535,6 +562,29 @@ func _test_instructor() -> void:
 		var title: String = ["晴天", "薄雾", "黄昏", "夜航"][index]
 		_press(root, title)
 		_record("instructor_weather_%s" % title, int((weather.call("get_weather_time_status") as Dictionary).get("index", -1)) == index, weather.call("get_weather_time_status"))
+	_press(root, "雷达黑屏")
+	_record("instructor_equipment_radar_fault", bool((equipment.call("get_fault_state") as Dictionary).get("radar_power_loss", false)), equipment.call("get_fault_state"))
+	_press(root, "AIS 丢失")
+	_record("instructor_equipment_ais_fault", bool((equipment.call("get_fault_state") as Dictionary).get("ais_loss", false)), equipment.call("get_fault_state"))
+	_press(root, "罗经 +7.5°")
+	_record("instructor_equipment_gyro_bias", is_equal_approx(float((equipment.call("get_fault_state") as Dictionary).get("gyro_bias_deg", 0.0)), 7.5), equipment.call("get_fault_state"))
+	_press(root, "恢复设备")
+	var restored_faults := equipment.call("get_fault_state") as Dictionary
+	_record("instructor_equipment_restore", _equipment_faults_clear(restored_faults), restored_faults)
+	_press(root, "受限能见度")
+	var exercise_snapshot := exercise.call("get_exercise_snapshot") as Dictionary
+	_record("instructor_timeline_load_visibility", String(exercise_snapshot.get("template_key", "")) == "restricted_visibility_bridge", exercise_snapshot.get("template_key"))
+	_press(root, "启动时间线")
+	exercise_snapshot = exercise.call("get_exercise_snapshot") as Dictionary
+	_record("instructor_timeline_start", bool(exercise_snapshot.get("running", false)) and int(exercise_snapshot.get("next_event_index", 0)) >= 1, exercise_snapshot)
+	_press(root, "下一事件")
+	_record("instructor_timeline_next_event", bool((equipment.call("get_fault_state") as Dictionary).get("radar_power_loss", false)), equipment.call("get_fault_state"))
+	_press(root, "暂停时间线")
+	_record("instructor_timeline_pause", not bool((exercise.call("get_exercise_snapshot") as Dictionary).get("running", true)), exercise.call("get_exercise_snapshot"))
+	_press(root, "复位时间线")
+	_record("instructor_timeline_reset", int((exercise.call("get_exercise_snapshot") as Dictionary).get("next_event_index", -1)) == 0 and not bool((equipment.call("get_fault_state") as Dictionary).get("radar_power_loss", true)), exercise.call("get_exercise_snapshot"))
+	_press(root, "传感器矛盾")
+	_record("instructor_timeline_load_disagreement", String((exercise.call("get_exercise_snapshot") as Dictionary).get("template_key", "")) == "sensor_disagreement", exercise.call("get_exercise_snapshot"))
 	_press(root, "重置受控")
 	var controlled := manager.get_controlled_ship()
 	_record("instructor_reset_controlled", controlled != null and absf(float(controlled.get("ship_forward_speed"))) < 0.01, controlled.get("ship_forward_speed"))
@@ -566,7 +616,7 @@ func _test_inventory_coverage() -> void:
 	var inventory := _read_json("res://reports/godot_button_inventory_v1.json")
 	_record(
 		"runtime_inventory_coverage",
-		bool(inventory.get("passed", false)) and int(inventory.get("button_count", 0)) >= 117,
+		bool(inventory.get("passed", false)) and int(inventory.get("button_count", 0)) >= 130,
 		{"button_count": inventory.get("button_count", 0), "errors": inventory.get("errors", [])},
 	)
 

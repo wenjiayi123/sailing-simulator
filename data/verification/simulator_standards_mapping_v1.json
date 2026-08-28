@@ -1,0 +1,117 @@
+{
+  "schema_version": "simulator_standards_mapping_v1",
+  "mapping_id": "simulator_standards_mapping_v1",
+  "generated_for": "research gap analysis and evidence routing only",
+  "references": [
+    {
+      "id": "IMO_STCW_A_I_12",
+      "title": "STCW Code Section A-I/12 - Standards governing the use of simulators",
+      "publisher": "International Maritime Organization",
+      "source_url": "https://wwwcdn.imo.org/localresources/en/OurWork/HumanElement/Documents/34.pdf",
+      "reference_note": "Official 2010 Manila Amendments text; applicability and amendments require Administration review."
+    },
+    {
+      "id": "DNV_ST_0033_2025",
+      "title": "DNV-ST-0033 Maritime Simulator Systems, 2025 revision",
+      "publisher": "DNV",
+      "source_url": "https://www.dnv.com/news/2025/dnv-revises-maritime-simulator-standard-to-support-safer-and-more-adaptable-training/",
+      "reference_note": "Topic-level readiness routing only; certification requires DNV assessment against the current controlled standard."
+    }
+  ],
+  "requirements": [
+    {
+      "requirement_id": "STCW-A-I/12-1.1",
+      "topic": "Suitability for selected training objectives and tasks",
+      "status": "PARTIAL_SOFTWARE_EVIDENCE",
+      "evidence": ["docs/port_operations_training.md", "reports/godot_port_operations_training_smoke_v1.json"],
+      "gap": "No approved course syllabus, qualified assessor acceptance or Administration approval."
+    },
+    {
+      "requirement_id": "STCW-A-I/12-1.2",
+      "topic": "Shipboard equipment capabilities, limitations and possible errors",
+      "status": "PARTIAL_SOFTWARE_EVIDENCE",
+      "evidence": ["reports/godot_integrated_bridge_smoke_v1.json", "reports/godot_instructor_debrief_smoke_v2.json"],
+      "gap": "Research radar/ECDIS/conning are not type-approved equipment models or official chart products."
+    },
+    {
+      "requirement_id": "STCW-A-I/12-1.3",
+      "topic": "Behavioural realism appropriate to objectives",
+      "status": "BLOCKED_EXTERNAL_VALIDATION",
+      "evidence": ["reports/maritime_assurance_v1.json"],
+      "gap": "Named-vessel calibration, harbour manoeuvring validation and independent behavioural-realism assessment are absent."
+    },
+    {
+      "requirement_id": "STCW-A-I/12-1.4",
+      "topic": "Controlled environment including emergency and unusual situations",
+      "status": "PARTIAL_SOFTWARE_EVIDENCE",
+      "evidence": ["reports/godot_instructor_debrief_smoke_v2.json"],
+      "gap": "Scenario catalogue and independent training-objective coverage review remain incomplete."
+    },
+    {
+      "requirement_id": "STCW-A-I/12-1.5",
+      "topic": "Trainee interaction with equipment, environment and instructor",
+      "status": "PARTIAL_SOFTWARE_EVIDENCE",
+      "evidence": ["reports/godot_button_interaction_smoke_v1.json"],
+      "gap": "No physical bridge controls, human-factors validation or accessibility assessment."
+    },
+    {
+      "requirement_id": "STCW-A-I/12-1.6",
+      "topic": "Instructor control, monitoring, recording and debriefing",
+      "status": "PARTIAL_SOFTWARE_EVIDENCE",
+      "evidence": ["reports/godot_instructor_debrief_smoke_v2.json"],
+      "gap": "No approved instructor operating station acceptance or qualified-instructor field evaluation."
+    },
+    {
+      "requirement_id": "STCW-A-I/12-4.1",
+      "topic": "Radar stabilized and true-motion operating modes",
+      "status": "BLOCKED_FUNCTIONAL_SCOPE",
+      "evidence": ["reports/godot_integrated_bridge_smoke_v1.json"],
+      "gap": "Head-up, north-up and course-up are implemented; required stabilized relative/sea/ground true-motion modes are not fully represented."
+    },
+    {
+      "requirement_id": "STCW-A-I/12-4.2",
+      "topic": "Radar environmental, propagation, coastline, buoy and SART effects",
+      "status": "BLOCKED_FUNCTIONAL_SCOPE",
+      "evidence": ["reports/godot_integrated_bridge_smoke_v1.json"],
+      "gap": "Weather clutter and scene hazards exist; tidal, shadow-sector, propagation, buoy and SART fidelity are incomplete."
+    },
+    {
+      "requirement_id": "STCW-A-I/12-4.3",
+      "topic": "At least two own-ship stations, target ships and communications",
+      "status": "BLOCKED_FUNCTIONAL_SCOPE",
+      "evidence": ["reports/godot_bridge_team_collaboration_smoke_v1.json"],
+      "gap": "Multi-role communications exist, but two independently manoeuvrable own-ship bridge stations and a verified 20-target exercise are absent."
+    },
+    {
+      "requirement_id": "STCW-A-I/12-5",
+      "topic": "Automatic Radar Plotting Aid operating capability",
+      "status": "PARTIAL_SOFTWARE_EVIDENCE",
+      "evidence": ["reports/godot_integrated_bridge_smoke_v1.json"],
+      "gap": "CPA/TCPA and acquisition are implemented, but full approved ARPA performance and error behaviour are not established."
+    },
+    {
+      "requirement_id": "DNV-ST-0033-2025-REALISM",
+      "topic": "Physical and behavioural realism for training objectives",
+      "status": "NOT_ASSESSED_BY_DNV",
+      "evidence": ["reports/maritime_assurance_v1.json"],
+      "gap": "Requires DNV assessment against the controlled 2025 standard and defined simulator class."
+    },
+    {
+      "requirement_id": "DNV-ST-0033-2025-INSTALLATION",
+      "topic": "Installed and configured simulator equipment",
+      "status": "BLOCKED_NO_PHYSICAL_INSTALLATION",
+      "evidence": [],
+      "gap": "No physical bridge installation, commissioning record or witnessed site acceptance."
+    },
+    {
+      "requirement_id": "DNV-ST-0033-2025-CERTIFICATION",
+      "topic": "Statement of Compliance or product certification",
+      "status": "NOT_CERTIFIED",
+      "evidence": [],
+      "gap": "No DNV design/performance assessment, Statement of Compliance or installation certification."
+    }
+  ],
+  "certification_claim_allowed": false,
+  "external_assessor_required": true,
+  "boundary": "This file is a traceability and gap-routing aid, not a clause interpretation, approval, Statement of Compliance or certification."
+}

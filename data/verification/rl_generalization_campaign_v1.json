@@ -1,0 +1,255 @@
+{
+  "schema_version": "rl_generalization_campaign_v1",
+  "campaign_id": "top_simulator_generalization_v1",
+  "purpose": "Freeze the multi-domain evaluation design before any new training or access to final OOD results.",
+  "base_dataset": {
+    "path": "data/rl/long_beach_ais_port_ops_benchmark_v2.json",
+    "evidence_class": "OBSERVED_HISTORICAL_SINGLE_PORT_SINGLE_WEEK",
+    "observed_port_count": 1,
+    "observed_period_start": "2025-01-01",
+    "observed_period_end": "2025-01-07"
+  },
+  "preserved_policy_report": "reports/port_ops_benchmark_v2.json",
+  "random_seeds": [250107, 250211, 250307, 250401, 250503],
+  "domain_dimensions": {
+    "ports": [
+      {
+        "domain_id": "port_long_beach_reference",
+        "name": "Long Beach historical reference",
+        "archetype": "large_container_harbor",
+        "evidence_class": "OBSERVED_HISTORICAL",
+        "dataset_path": "data/rl/long_beach_ais_port_ops_benchmark_v2.json",
+        "evaluation_role": "in_distribution_reference",
+        "real_port_verified": true
+      },
+      {
+        "domain_id": "port_sim_tidal_estuary",
+        "name": "Simulator-authored tidal estuary",
+        "archetype": "tidal_estuary",
+        "evidence_class": "SIMULATOR_AUTHORED_DOMAIN",
+        "dataset_path": null,
+        "evaluation_role": "functional_ood",
+        "real_port_verified": false
+      },
+      {
+        "domain_id": "port_sim_narrow_strait",
+        "name": "Simulator-authored narrow strait",
+        "archetype": "narrow_strait",
+        "evidence_class": "SIMULATOR_AUTHORED_DOMAIN",
+        "dataset_path": null,
+        "evaluation_role": "functional_ood",
+        "real_port_verified": false
+      },
+      {
+        "domain_id": "port_sim_archipelago",
+        "name": "Simulator-authored archipelago approaches",
+        "archetype": "archipelago_approach",
+        "evidence_class": "SIMULATOR_AUTHORED_DOMAIN",
+        "dataset_path": null,
+        "evaluation_role": "functional_ood",
+        "real_port_verified": false
+      }
+    ],
+    "seasons": [
+      {
+        "domain_id": "season_winter_reference",
+        "name": "Winter reference",
+        "evidence_class": "OBSERVED_REFERENCE_PLUS_BOUNDED_OVERLAY",
+        "wind_speed_knots": 12.0,
+        "wave_height_meters": 1.2,
+        "current_speed_knots": 0.5,
+        "visibility_km": 8.0,
+        "real_season_verified": true
+      },
+      {
+        "domain_id": "season_spring_overlay",
+        "name": "Spring transition overlay",
+        "evidence_class": "SIMULATOR_AUTHORED_OVERLAY",
+        "wind_speed_knots": 8.0,
+        "wave_height_meters": 0.8,
+        "current_speed_knots": 0.7,
+        "visibility_km": 12.0,
+        "real_season_verified": false
+      },
+      {
+        "domain_id": "season_summer_overlay",
+        "name": "Summer convective overlay",
+        "evidence_class": "SIMULATOR_AUTHORED_OVERLAY",
+        "wind_speed_knots": 16.0,
+        "wave_height_meters": 1.6,
+        "current_speed_knots": 0.9,
+        "visibility_km": 5.0,
+        "real_season_verified": false
+      },
+      {
+        "domain_id": "season_autumn_overlay",
+        "name": "Autumn storm overlay",
+        "evidence_class": "SIMULATOR_AUTHORED_OVERLAY",
+        "wind_speed_knots": 24.0,
+        "wave_height_meters": 2.5,
+        "current_speed_knots": 1.3,
+        "visibility_km": 2.5,
+        "real_season_verified": false
+      }
+    ],
+    "vessel_profiles": [
+      {
+        "domain_id": "vessel_harbor_service",
+        "name": "Harbor service craft",
+        "ais_type_family": "service",
+        "length_meters": 32.0,
+        "width_meters": 12.0,
+        "draft_meters": 3.5,
+        "max_observed_speed_knots": 10.0,
+        "evidence_class": "BOUNDED_SIMULATOR_PROFILE"
+      },
+      {
+        "domain_id": "vessel_feeder_container",
+        "name": "Feeder container ship",
+        "ais_type_family": "cargo",
+        "length_meters": 150.0,
+        "width_meters": 24.0,
+        "draft_meters": 8.0,
+        "max_observed_speed_knots": 8.0,
+        "evidence_class": "BOUNDED_SIMULATOR_PROFILE"
+      },
+      {
+        "domain_id": "vessel_panamax_bulk",
+        "name": "Panamax bulk carrier",
+        "ais_type_family": "bulk_carrier",
+        "length_meters": 225.0,
+        "width_meters": 32.2,
+        "draft_meters": 12.0,
+        "max_observed_speed_knots": 7.0,
+        "evidence_class": "BOUNDED_SIMULATOR_PROFILE"
+      },
+      {
+        "domain_id": "vessel_large_tanker",
+        "name": "Large tanker",
+        "ais_type_family": "tanker",
+        "length_meters": 285.0,
+        "width_meters": 46.0,
+        "draft_meters": 15.0,
+        "max_observed_speed_knots": 6.5,
+        "evidence_class": "BOUNDED_SIMULATOR_PROFILE"
+      }
+    ],
+    "traffic_behaviors": [
+      {
+        "domain_id": "traffic_cooperative_yield",
+        "behavior": "cooperative_yield",
+        "interactive": true,
+        "trigger_range_m": 300.0,
+        "maximum_course_change_deg_per_step": 8.0,
+        "maximum_speed_change_mps_per_step": 0.25
+      },
+      {
+        "domain_id": "traffic_delayed_yield",
+        "behavior": "delayed_yield",
+        "interactive": true,
+        "response_delay_steps": 2,
+        "trigger_range_m": 300.0,
+        "maximum_course_change_deg_per_step": 8.0,
+        "maximum_speed_change_mps_per_step": 0.25
+      },
+      {
+        "domain_id": "traffic_adversarial_closing",
+        "behavior": "adversarial_closing",
+        "interactive": true,
+        "trigger_range_m": 500.0,
+        "maximum_course_change_deg_per_step": 6.0,
+        "maximum_speed_change_mps_per_step": 0.2
+      },
+      {
+        "domain_id": "traffic_speed_matching",
+        "behavior": "speed_matching",
+        "interactive": true,
+        "trigger_range_m": 350.0,
+        "maximum_course_change_deg_per_step": 5.0,
+        "maximum_speed_change_mps_per_step": 0.3
+      }
+    ]
+  },
+  "evaluation_design": {
+    "base_matrix": "ports_x_seasons_x_vessels_x_seeds_with_balanced_traffic",
+    "minimum_real_ports_for_generalization_claim": 3,
+    "minimum_real_seasons_for_generalization_claim": 4,
+    "minimum_vessel_families": 4,
+    "minimum_random_seeds": 5,
+    "confidence_interval": "paired_hierarchical_bootstrap_95",
+    "seed_aggregation": "report_each_seed_plus_median_and_worst_seed",
+    "test_access_policy": "freeze policy, config, source hashes and analysis code before final OOD access",
+    "primary_metrics": [
+      "collision_free_arrival_rate",
+      "port_compliant_completion_rate",
+      "collision_episode_rate",
+      "grounding_episode_rate",
+      "near_miss_episode_rate",
+      "colreg_violation_episode_rate",
+      "channel_departure_episode_rate",
+      "speed_violation_episode_rate",
+      "p05_minimum_clearance_meters",
+      "p05_minimum_dcpa_meters",
+      "mean_max_cross_track_error_meters",
+      "mean_elapsed_seconds"
+    ]
+  },
+  "ood_suites": [
+    {"suite_id": "ood_port_archetype", "held_out_dimension": "port", "training_domain_ids": ["port_long_beach_reference"], "evaluation_domain_ids": ["port_sim_tidal_estuary", "port_sim_narrow_strait", "port_sim_archipelago"], "source_boundary": "functional synthetic OOD until real port packages are connected"},
+    {"suite_id": "ood_season_extreme", "held_out_dimension": "season", "training_domain_ids": ["season_winter_reference"], "evaluation_domain_ids": ["season_spring_overlay", "season_summer_overlay", "season_autumn_overlay"], "source_boundary": "authored weather overlays are stress functions, not observed seasonal evidence"},
+    {"suite_id": "ood_vessel_scale", "held_out_dimension": "vessel", "training_domain_ids": ["vessel_harbor_service", "vessel_feeder_container"], "evaluation_domain_ids": ["vessel_panamax_bulk", "vessel_large_tanker"], "source_boundary": "profile-scale test without named-vessel hydrodynamic calibration"},
+    {"suite_id": "ood_compound", "held_out_dimension": "compound", "training_domain_ids": ["port_long_beach_reference", "season_winter_reference", "vessel_feeder_container"], "evaluation_domain_ids": ["port_sim_narrow_strait", "season_autumn_overlay", "vessel_large_tanker"], "source_boundary": "compound simulator OOD only"}
+  ],
+  "ablations": [
+    {"ablation_id": "ablate_domain_randomization", "factor": "domain_randomization", "control_value": true, "treatment_value": false, "paired_seed_required": true},
+    {"ablation_id": "ablate_interactive_traffic", "factor": "interactive_traffic", "control_value": true, "treatment_value": false, "paired_seed_required": true},
+    {"ablation_id": "ablate_sensor_noise", "factor": "sensor_noise", "control_value": true, "treatment_value": false, "paired_seed_required": true},
+    {"ablation_id": "ablate_wind_wave_current", "factor": "wind_wave_current", "control_value": true, "treatment_value": false, "paired_seed_required": true},
+    {"ablation_id": "ablate_colreg_context", "factor": "colreg_context", "control_value": true, "treatment_value": false, "paired_seed_required": true},
+    {"ablation_id": "ablate_safety_supervision", "factor": "safety_supervision", "control_value": true, "treatment_value": false, "paired_seed_required": true}
+  ],
+  "stress_cases": [
+    {"stress_id": "stress_dense_interactive_traffic", "factor": "traffic_count", "value": 20, "expected_gate": "collision_and_near_miss_non_regression"},
+    {"stress_id": "stress_restricted_visibility", "factor": "visibility_km", "value": 0.5, "expected_gate": "safe_speed_and_rule_19"},
+    {"stress_id": "stress_strong_cross_current", "factor": "current_speed_knots", "value": 3.0, "expected_gate": "channel_and_xte"},
+    {"stress_id": "stress_high_wind_wave", "factor": "combined_weather", "value": {"wind_speed_knots": 40.0, "wave_height_meters": 5.0}, "expected_gate": "arrival_and_control_stability"},
+    {"stress_id": "stress_minimum_ukc", "factor": "under_keel_clearance_meters", "value": 1.0, "expected_gate": "zero_grounding"},
+    {"stress_id": "stress_sensor_latency", "factor": "sensor_latency_ms", "value": 2000, "expected_gate": "fail_closed_or_handover"},
+    {"stress_id": "stress_gnss_spoofing", "factor": "gnss_bias_meters", "value": 100.0, "expected_gate": "integrity_rejection"},
+    {"stress_id": "stress_actuator_delay", "factor": "actuator_delay_ms", "value": 1500, "expected_gate": "bounded_action_or_takeover"}
+  ],
+  "convergence_protocol": {
+    "minimum_random_seeds": 5,
+    "minimum_training_steps_per_seed": 100000,
+    "required_curves": ["episode_return", "success_rate", "collision_rate", "policy_loss", "value_loss_or_q_loss", "entropy_or_action_std"],
+    "plateau_window_steps": 20000,
+    "maximum_relative_slope_for_plateau": 0.02,
+    "validation_patience_windows": 3,
+    "must_report_failed_and_diverged_seeds": true,
+    "short_smoke_can_prove_convergence": false
+  },
+  "shadow_protocol": {
+    "mode": "read_only_counterfactual",
+    "dispatch_allowed": false,
+    "minimum_days": 30,
+    "minimum_scenarios": 1000,
+    "required_receipts": ["input_snapshot_hash", "policy_hash", "recommendation", "actual_track_outcome", "divergence_metrics", "operator_review"],
+    "live_data_verified": false,
+    "shadow_operation_completed": false
+  },
+  "functional_smoke_fixtures": [
+    {"fixture_id": "smoke_tidal_service_yield", "port_domain_id": "port_sim_tidal_estuary", "season_domain_id": "season_spring_overlay", "vessel_domain_id": "vessel_harbor_service", "traffic_domain_id": "traffic_cooperative_yield", "seed": 250107},
+    {"fixture_id": "smoke_strait_feeder_delayed", "port_domain_id": "port_sim_narrow_strait", "season_domain_id": "season_summer_overlay", "vessel_domain_id": "vessel_feeder_container", "traffic_domain_id": "traffic_delayed_yield", "seed": 250211},
+    {"fixture_id": "smoke_archipelago_bulk_adversarial", "port_domain_id": "port_sim_archipelago", "season_domain_id": "season_autumn_overlay", "vessel_domain_id": "vessel_panamax_bulk", "traffic_domain_id": "traffic_adversarial_closing", "seed": 250307},
+    {"fixture_id": "smoke_reference_tanker_matching", "port_domain_id": "port_long_beach_reference", "season_domain_id": "season_winter_reference", "vessel_domain_id": "vessel_large_tanker", "traffic_domain_id": "traffic_speed_matching", "seed": 250401}
+  ],
+  "claims": {
+    "training_performed": false,
+    "convergence_demonstrated": false,
+    "real_multi_port_data_verified": false,
+    "real_multi_season_data_verified": false,
+    "shadow_operation_completed": false,
+    "production_authority": false
+  },
+  "boundary": "This campaign freezes executable simulator coverage and future evidence requirements. Synthetic domains and a functional smoke do not prove learned-policy generalization, convergence, real multi-port performance or production readiness."
+}

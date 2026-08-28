@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>港口任务人工可达性驾驶台</title>
+  <style>
+    :root { color-scheme: dark; font-family: Inter, system-ui, sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #07131c; color: #dbeaf3; }
+    main { display: grid; grid-template-columns: minmax(560px, 1fr) 360px; min-height: 100vh; }
+    .map-wrap { position: relative; padding: 16px; }
+    canvas { width: 100%; height: calc(100vh - 32px); background: #0a2130; border: 1px solid #1f5369; border-radius: 12px; }
+    .legend { position: absolute; left: 30px; top: 28px; padding: 8px 10px; background: #06131ddd; border-radius: 8px; font-size: 12px; }
+    aside { padding: 18px; background: #0b1b25; border-left: 1px solid #1f5369; overflow: auto; }
+    h1 { margin: 0 0 4px; font-size: 20px; }
+    .sub { color: #82aabb; font-size: 12px; overflow-wrap: anywhere; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 14px 0; }
+    .metric { background: #102a37; border-radius: 8px; padding: 9px; }
+    .metric span { display: block; color: #7fa6b8; font-size: 11px; }
+    .metric strong { font-size: 17px; font-variant-numeric: tabular-nums; }
+    .warn { color: #ffca66; }
+    .bad { color: #ff6d74; }
+    .good { color: #65e2b2; }
+    .control { margin: 12px 0; padding: 12px; background: #102a37; border-radius: 10px; }
+    .bar { height: 8px; background: #07131c; border-radius: 5px; overflow: hidden; margin-top: 6px; }
+    .fill { height: 100%; width: 50%; background: #3fc6ff; transition: width .1s; }
+    button { background: #17445a; color: #e8f7ff; border: 1px solid #2a6c88; border-radius: 7px; padding: 8px 10px; cursor: pointer; }
+    button:hover { background: #205c75; }
+    .buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+    kbd { background: #183747; border: 1px solid #3b6a80; border-radius: 4px; padding: 1px 5px; }
+    pre { white-space: pre-wrap; font: 12px/1.45 ui-monospace, monospace; background: #07131c; padding: 10px; border-radius: 8px; }
+    @media (max-width: 900px) { main { grid-template-columns: 1fr; } canvas { height: 58vh; } aside { border-left: 0; border-top: 1px solid #1f5369; } }
+  </style>
+</head>
+<body>
+<main>
+  <section class="map-wrap">
+    <canvas id="map"></canvas>
+    <div class="legend">青色：航线　黄色：当前航点　红色：动态船　白色：本船</div>
+  </section>
+  <aside>
+    <h1>人工可达性驾驶台</h1>
+    <div id="task" class="sub">连接中…</div>
+
+    <div class="grid">
+      <div class="metric"><span>步骤</span><strong id="steps">--</strong></div>
+      <div class="metric"><span>航点</span><strong id="waypoint">--</strong></div>
+      <div class="metric"><span>距航点</span><strong id="distance">--</strong></div>
+      <div class="metric"><span>航向误差</span><strong id="headingError">--</strong></div>
+      <div class="metric"><span>航速 / 限速</span><strong id="speed">--</strong></div>
+      <div class="metric"><span>横向偏差</span><strong id="crossTrack">--</strong></div>
+      <div class="metric"><span>最近净距</span><strong id="clearance">--</strong></div>
+      <div class="metric"><span>会遇 / DCPA</span><strong id="encounter">--</strong></div>
+    </div>
+
+    <div class="control">
+      <div>目标油门 <strong id="throttle">0.00</strong></div>
+      <div class="bar"><div id="throttleBar" class="fill"></div></div>
+      <div style="margin-top:10px">目标舵角 <strong id="rudder">0.00</strong></div>
+      <div class="bar"><div id="rudderBar" class="fill"></div></div>
+    </div>
+
+    <div class="buttons">
+      <button onclick="adjustRudder(-0.1)">A 左舵</button>
+      <button onclick="adjustThrottle(0.05)">W 加车</button>
+      <button onclick="adjustRudder(0.1)">D 右舵</button>
+      <button onclick="setRudder(0)">C 正舵</button>
+      <button onclick="adjustThrottle(-0.05)">S 减车</button>
+      <button onclick="setThrottle(0)">Z 停车</button>
+      <button onclick="advance(1)">单步</button>
+      <button id="run" onclick="toggleRun()">连续运行</button>
+      <button onclick="advance(10)">推进 10 步</button>
+      <button onclick="save()">保存轨迹</button>
+      <button onclick="reset()">重置场景</button>
+      <button onclick="emergency()">紧急倒车</button>
+    </div>
+
+    <p class="sub"><kbd>W/S</kbd> 加减车　<kbd>A/D</kbd> 左右舵　<kbd>C</kbd> 正舵　<kbd>Z</kbd> 停车　<kbd>Space</kbd> 连续/暂停　<kbd>Enter</kbd> 单步</p>
+    <pre id="status">等待环境状态…</pre>
+  </aside>
+</main>
+<script>
+  const canvas = document.getElementById('map');
+  const ctx = canvas.getContext('2d');
+  let state = null;
+  let throttle = 0;
+  let rudder = 0;
+  let running = false;
+  let busy = false;
+
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const fmt = (v, n=1) => Number.isFinite(v) ? v.toFixed(n) : '--';
+  function adjustThrottle(v) { throttle = clamp(throttle + v, -1, 1); updateCommand(); }
+  function adjustRudder(v) { rudder = clamp(rudder + v, -1, 1); updateCommand(); }
+  function setThrottle(v) { throttle = v; updateCommand(); }
+  function setRudder(v) { rudder = v; updateCommand(); }
+  function emergency() { throttle = -0.6; rudder = 0; updateCommand(); }
+  function updateCommand() {
+    document.getElementById('throttle').textContent = throttle.toFixed(2);
+    document.getElementById('rudder').textContent = rudder.toFixed(2);
+    document.getElementById('throttleBar').style.width = `${(throttle + 1) * 50}%`;
+    document.getElementById('rudderBar').style.width = `${(rudder + 1) * 50}%`;
+  }
+  async function api(path, body) {
+    const options = body ? {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)} : {};
+    const response = await fetch(path, options);
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.detail || data.error || response.statusText);
+    return data;
+  }
+  async function advance(steps=1) {
+    if (busy || state?.done) return;
+    busy = true;
+    try { state = await api('/api/advance', {steps, throttle, rudder}); render(); }
+    catch (error) { document.getElementById('status').textContent = String(error); running = false; }
+    finally { busy = false; }
+  }
+  function toggleRun() { running = !running; document.getElementById('run').textContent = running ? '暂停' : '连续运行'; }
+  async function reset() { running = false; state = await api('/api/reset', {}); throttle = 0; rudder = 0; updateCommand(); render(); }
+  async function save() { const saved = await api('/api/save', {}); state = saved; render(); }
+  function sizeCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    const ratio = window.devicePixelRatio || 1;
+    if (canvas.width !== rect.width * ratio || canvas.height !== rect.height * ratio) {
+      canvas.width = rect.width * ratio; canvas.height = rect.height * ratio; ctx.setTransform(ratio,0,0,ratio,0,0);
+    }
+    return rect;
+  }
+  function renderMap() {
+    if (!state) return;
+    const rect = sizeCanvas(); const w = rect.width, h = rect.height;
+    ctx.clearRect(0, 0, w, h);
+    const points = [state.start, ...state.route, state.ship, ...state.obstacles.filter(o => o.dynamic)];
+    let minX=Math.min(...points.map(p=>p.x)), maxX=Math.max(...points.map(p=>p.x));
+    let minZ=Math.min(...points.map(p=>p.z)), maxZ=Math.max(...points.map(p=>p.z));
+    const pad=Math.max(maxX-minX,maxZ-minZ)*0.14+50; minX-=pad; maxX+=pad; minZ-=pad; maxZ+=pad;
+    const scale=Math.min(w/(maxX-minX),h/(maxZ-minZ));
+    const sx=x=>(x-minX)*scale+(w-(maxX-minX)*scale)/2;
+    const sy=z=>h-((z-minZ)*scale+(h-(maxZ-minZ)*scale)/2);
+    ctx.strokeStyle='#1f5369'; ctx.lineWidth=1;
+    for(let i=0;i<10;i++){const x=i*w/10;ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();const y=i*h/10;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
+    ctx.strokeStyle='#30c9e8'; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(sx(state.start.x),sy(state.start.z));
+    state.route.forEach(p=>ctx.lineTo(sx(p.x),sy(p.z))); ctx.stroke();
+    state.route.forEach((p,i)=>{ctx.beginPath();ctx.arc(sx(p.x),sy(p.z),i===state.navigation.waypoint_index?8:5,0,Math.PI*2);ctx.fillStyle=i===state.navigation.waypoint_index?'#ffd166':'#30c9e8';ctx.fill();});
+    state.obstacles.forEach(o=>{if(!o.dynamic)return;ctx.beginPath();ctx.arc(sx(o.x),sy(o.z),Math.max(4,o.radius*scale),0,Math.PI*2);ctx.fillStyle='#ff5d69';ctx.fill();});
+    const x=sx(state.ship.x), y=sy(state.ship.z), a=state.ship.heading_degrees*Math.PI/180;
+    ctx.save();ctx.translate(x,y);ctx.rotate(a);ctx.beginPath();ctx.moveTo(0,-12);ctx.lineTo(7,10);ctx.lineTo(0,6);ctx.lineTo(-7,10);ctx.closePath();ctx.fillStyle='#ffffff';ctx.fill();ctx.restore();
+  }
+  function render() {
+    if (!state) return;
+    document.getElementById('task').textContent = `验证任务 ${state.task_index}｜${state.task_id}`;
+    document.getElementById('steps').textContent = `${state.step}/${state.max_steps}`;
+    document.getElementById('waypoint').textContent = `${state.navigation.waypoint_index+1}/${state.navigation.waypoint_count}`;
+    document.getElementById('distance').textContent = `${fmt(state.navigation.distance_to_waypoint_meters)} m`;
+    document.getElementById('headingError').textContent = `${fmt(state.navigation.heading_error_degrees)}°`;
+    document.getElementById('speed').textContent = `${fmt(state.ship.speed_knots,2)} / ${fmt(state.navigation.speed_limit_knots,2)} kn`;
+    document.getElementById('crossTrack').textContent = `${fmt(state.navigation.cross_track_error_meters)} m`;
+    document.getElementById('clearance').textContent = `${fmt(state.traffic.nearest_clearance_meters)} m`;
+    document.getElementById('encounter').textContent = `${state.traffic.encounter} / ${fmt(state.traffic.dcpa_meters)} m`;
+    const m=state.metrics;
+    document.getElementById('status').textContent = `完成度 ${(m.route_completion_ratio*100).toFixed(1)}%\n到达 ${m.success?'是':'否'}｜港口合规 ${m.port_compliant_success?'是':'否'}\n碰撞 ${m.collisions}｜搁浅 ${m.groundings}｜超速 ${m.speed_limit_violations}\nCOLREG代理违规 ${m.colreg_give_way_violations}｜偏出航道 ${m.channel_departures}\n${state.done?'本回合结束':''}${state.saved_path?'\n已保存 '+state.saved_path:''}`;
+    if (state.done) { running=false; document.getElementById('run').textContent='连续运行'; }
+    renderMap();
+  }
+  document.addEventListener('keydown', event=>{
+    if (event.repeat) return;
+    const key=event.key.toLowerCase();
+    if(key==='w')adjustThrottle(.05); else if(key==='s')adjustThrottle(-.05); else if(key==='a')adjustRudder(-.1); else if(key==='d')adjustRudder(.1); else if(key==='c')setRudder(0); else if(key==='z')setThrottle(0); else if(event.key===' '){event.preventDefault();toggleRun();} else if(event.key==='Enter')advance(1);
+  });
+  window.addEventListener('resize', renderMap);
+  setInterval(()=>{if(running)advance(1)},125);
+  api('/api/state').then(s=>{state=s;throttle=s.command.throttle;rudder=s.command.rudder;updateCommand();render();});
+</script>
+</body>
+</html>

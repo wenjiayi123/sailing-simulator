@@ -1,0 +1,137 @@
+{
+  "schema_version": "named_vessel_twin_assessment_v1",
+  "manifest_id": "",
+  "vessel_identity": {
+    "vessel_name": "",
+    "official_number_or_mmsi": "",
+    "builder_and_hull_number": "",
+    "vessel_type": "twin-waterjet catamaran USV",
+    "length_overall_m": null,
+    "beam_m": null,
+    "propulsion_description": "",
+    "steering_description": ""
+  },
+  "status": "BLOCKED_NAMED_VESSEL_EVIDENCE_INCOMPLETE",
+  "evidence_package_complete": false,
+  "required_maneuvers": [
+    "turning_circle_port",
+    "turning_circle_starboard",
+    "zigzag_10_10",
+    "zigzag_20_20",
+    "stopping_full_ahead_to_stop",
+    "acceleration",
+    "deceleration"
+  ],
+  "covered_maneuvers": [],
+  "missing_maneuvers": [
+    "turning_circle_port",
+    "turning_circle_starboard",
+    "zigzag_10_10",
+    "zigzag_20_20",
+    "stopping_full_ahead_to_stop",
+    "acceleration",
+    "deceleration"
+  ],
+  "loading_condition_trial_counts": {
+    "lightship": 0,
+    "design_payload": 0,
+    "maximum_operating": 0
+  },
+  "insufficient_loading_conditions": [
+    "lightship",
+    "design_payload",
+    "maximum_operating"
+  ],
+  "trial_results": [],
+  "cross_trial_error_envelope": {},
+  "error_envelope_by_loading_condition": {
+    "lightship": {},
+    "design_payload": {},
+    "maximum_operating": {}
+  },
+  "identified_parameter_summary": {
+    "surge_time_constant_s": {
+      "identified_trial_count": 0,
+      "median": null,
+      "p05": null,
+      "p95": null
+    },
+    "surge_speed_gain_mps_per_throttle": {
+      "identified_trial_count": 0,
+      "median": null,
+      "p05": null,
+      "p95": null
+    },
+    "nomoto_time_constant_s": {
+      "identified_trial_count": 0,
+      "median": null,
+      "p05": null,
+      "p95": null
+    },
+    "nomoto_gain_radps_per_rad": {
+      "identified_trial_count": 0,
+      "median": null,
+      "p05": null,
+      "p95": null
+    }
+  },
+  "thresholds_passed": false,
+  "independent_review_complete": false,
+  "errors": [
+    "vessel_identity.vessel_name is required",
+    "vessel_identity.official_number_or_mmsi is required",
+    "vessel_identity.builder_and_hull_number is required",
+    "vessel_identity.length_overall_m is required",
+    "vessel_identity.beam_m is required",
+    "vessel_identity.propulsion_description is required",
+    "vessel_identity.steering_description is required",
+    "instrumentation.gnss_ins_model_and_serial is required",
+    "instrumentation.command_logger_model_and_serial is required",
+    "instrumentation.time_synchronization_reference is required",
+    "instrumentation.position_heading_calibration_reference is required",
+    "instrumentation.actuator_feedback_calibration_reference is required",
+    "instrumentation.environment_measurement_reference is required",
+    "loading_conditions.lightship.displacement_kg is required",
+    "loading_conditions.lightship.longitudinal_cg_m is required",
+    "loading_conditions.lightship.transverse_cg_m is required",
+    "loading_conditions.lightship.draft_fore_m is required",
+    "loading_conditions.lightship.draft_aft_m is required",
+    "loading_conditions.lightship.payload_description is required",
+    "loading_conditions.lightship.measurement_reference is required",
+    "loading_conditions.design_payload.displacement_kg is required",
+    "loading_conditions.design_payload.longitudinal_cg_m is required",
+    "loading_conditions.design_payload.transverse_cg_m is required",
+    "loading_conditions.design_payload.draft_fore_m is required",
+    "loading_conditions.design_payload.draft_aft_m is required",
+    "loading_conditions.design_payload.payload_description is required",
+    "loading_conditions.design_payload.measurement_reference is required",
+    "loading_conditions.maximum_operating.displacement_kg is required",
+    "loading_conditions.maximum_operating.longitudinal_cg_m is required",
+    "loading_conditions.maximum_operating.transverse_cg_m is required",
+    "loading_conditions.maximum_operating.draft_fore_m is required",
+    "loading_conditions.maximum_operating.draft_aft_m is required",
+    "loading_conditions.maximum_operating.payload_description is required",
+    "loading_conditions.maximum_operating.measurement_reference is required",
+    "required maneuver turning_circle_port has no valid trial",
+    "required maneuver turning_circle_starboard has no valid trial",
+    "required maneuver zigzag_10_10 has no valid trial",
+    "required maneuver zigzag_20_20 has no valid trial",
+    "required maneuver stopping_full_ahead_to_stop has no valid trial",
+    "required maneuver acceleration has no valid trial",
+    "required maneuver deceleration has no valid trial",
+    "loading condition lightship has fewer than 2 valid trials",
+    "loading condition design_payload has fewer than 2 valid trials",
+    "loading condition maximum_operating has fewer than 2 valid trials",
+    "independent review evidence is incomplete"
+  ],
+  "inputs_sha256": {
+    "dynamics_config": "d9dbd9fd61827952b50194f10e1a7331f7b154b7b7a69805de726e5bfd648c8f"
+  },
+  "candidate_parameters_apply_automatically": false,
+  "existing_model_modified": false,
+  "named_vessel_dynamics_calibrated": false,
+  "production_authority": false,
+  "boundary": "A complete package is only a calibration candidate for independent acceptance. This tool never self-asserts named-vessel calibration or edits the frozen model.",
+  "generated_at": "2026-08-28T12:56:58.957680+00:00",
+  "manifest_path": "data/verification/named_vessel_twin_manifest.template.json"
+}

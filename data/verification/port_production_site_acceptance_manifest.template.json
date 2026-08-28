@@ -1,0 +1,75 @@
+{
+  "schema_version": "port_production_site_acceptance_manifest_v1",
+  "profile_id": "RL-NAV-PORT-LINK-2026-01",
+  "site_id": "",
+  "port_authority": "",
+  "evidence_files": {},
+  "connector_authorization": {
+    "vts_endpoint_and_authorization_file": "",
+    "tos_endpoint_and_authorization_file": "",
+    "pilotage_endpoint_and_authorization_file": "",
+    "tug_dispatch_endpoint_and_authorization_file": "",
+    "berth_resource_endpoint_and_authorization_file": "",
+    "official_notices_endpoint_and_authorization_file": "",
+    "all_six_authorized": false
+  },
+  "mapping_and_semantics": {
+    "vts_mapping_file": "",
+    "tos_mapping_file": "",
+    "pilotage_mapping_file": "",
+    "tug_mapping_file": "",
+    "berth_mapping_file": "",
+    "notices_mapping_file": "",
+    "units_and_time_reference_file": "",
+    "authority_precedence_file": "",
+    "all_mappings_accepted": false
+  },
+  "service_level": {
+    "signed_sla_file": "",
+    "freshness_and_latency_test_file": "",
+    "clock_synchronization_test_file": "",
+    "disconnect_and_recovery_test_file": "",
+    "measured_availability_percent": null,
+    "worst_freshness_seconds": null,
+    "sla_verified": false
+  },
+  "security_and_audit": {
+    "identity_and_certificate_file": "",
+    "network_zone_and_firewall_file": "",
+    "key_rotation_test_file": "",
+    "immutable_audit_store_test_file": "",
+    "security_accepted": false
+  },
+  "shadow_operation": {
+    "frozen_shadow_plan_file": "",
+    "signed_shadow_results_file": "",
+    "operator_acceptance_file": "",
+    "rollback_drill_file": "",
+    "duration_days": null,
+    "scenario_count": null,
+    "critical_mismatch_count": null,
+    "shadow_operation_completed": false
+  },
+  "external_approval": {
+    "port_authority_acceptance_file": "",
+    "vts_acceptance_file": "",
+    "terminal_operator_acceptance_file": "",
+    "pilotage_provider_acceptance_file": "",
+    "tug_provider_acceptance_file": "",
+    "flag_or_class_decision_file": "",
+    "legal_and_raci_file": "",
+    "all_required_approvals_obtained": false
+  },
+  "claims": {
+    "live_vts_connected": false,
+    "live_tos_connected": false,
+    "authorized_pilotage_connected": false,
+    "authorized_tug_dispatch_connected": false,
+    "official_berth_service_connected": false,
+    "official_notices_connected": false,
+    "sla_verified": false,
+    "site_shadow_operation_completed": false,
+    "dispatch_allowed": false,
+    "production_authority": false
+  }
+}

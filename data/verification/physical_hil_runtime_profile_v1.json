@@ -1,0 +1,57 @@
+{
+  "schema_version": "physical_hil_runtime_profile_v1",
+  "profile_id": "physical_hil_runtime_bench_v1",
+  "execution_context": "bench_functional_smoke",
+  "cycle_period_ms": 20.0,
+  "execution_deadline_ms": 10.0,
+  "maximum_sensor_age_ms": 80.0,
+  "maximum_clock_offset_ms": 5.0,
+  "watchdog_timeout_ms": 150.0,
+  "recovery_healthy_cycles": 5,
+  "minimum_timing_samples": 1000,
+  "command_limits": {
+    "minimum_throttle": -0.35,
+    "maximum_throttle": 0.8,
+    "maximum_absolute_rudder": 0.7
+  },
+  "target_controller_adapter": {
+    "transport": "udp_json_sha256",
+    "telemetry_frame_type": "telemetry",
+    "command_frame_type": "command",
+    "receipt_frame_type": "receipt",
+    "sequence_required": true,
+    "monotonic_timestamp_required": true,
+    "explicit_physical_io_enable_required": true
+  },
+  "required_telemetry_fields": [
+    "heading_deg",
+    "latitude_deg",
+    "longitude_deg",
+    "speed_knots",
+    "rudder_feedback",
+    "throttle_feedback",
+    "estop_channel_a",
+    "estop_channel_b",
+    "manual_override"
+  ],
+  "dual_channel_emergency_stop": {
+    "channel_a": "hardwired_estop_a",
+    "channel_b": "hardwired_estop_b",
+    "trip_logic": "one_out_of_two_trips",
+    "reset_requires_both_channels_clear": true,
+    "reset_requires_manual_confirmation": true,
+    "reset_requires_key_confirmation": true
+  },
+  "recovery_policy": {
+    "automatic_rearm": false,
+    "neutral_during_recovery": true,
+    "manual_confirmation_required": true,
+    "key_confirmation_required": true
+  },
+  "claims": {
+    "physical_hil_verified": false,
+    "site_delivery_ready": false,
+    "production_authority": false
+  },
+  "boundary": "Executable bench contract for target-controller I/O and fail-safe state transitions. It does not prove that physical hardware, RTOS scheduling, wiring or an independent emergency-stop chain was tested."
+}

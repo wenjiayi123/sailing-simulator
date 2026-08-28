@@ -1,0 +1,861 @@
+{
+  "schema_version": "cargo_circuit_physics_experiment_v4",
+  "module": "cargo_circuit_dynamic_rl",
+  "headless": true,
+  "render": false,
+  "delta": 0.25,
+  "dataset": {
+    "path": "res://data/rl/cargo_circuit_physics_dataset_v4.json",
+    "training_split": "train",
+    "validation_split": "validation",
+    "evaluation_split": "test"
+  },
+  "algorithm_decision": {
+    "primary": "sac",
+    "reason": "47D direct continuous control with Godot-matched surge/sway/yaw inertia",
+    "new_strategy_id": "SAC-P47",
+    "preserves_existing_strategies": true
+  },
+  "pretraining_feasibility_gate": {
+    "required": true,
+    "path": "res://reports/cargo_circuit_physics_manual_feasibility_v4.json",
+    "requires_matching_dataset_and_experiment_sha256": true
+  },
+  "demonstration_initialization": {
+    "enabled_for_sac": true,
+    "source": "current_map_3dof_manual_helm_train_split_only",
+    "fixed_seed": 280826,
+    "actor_behavior_cloning_epochs": 10,
+    "replay_buffer_prefill": true,
+    "note": "Expert actions initialize SAC only; validation/test execute the neural policy without manual targets or fallback control.",
+    "physics_manual_helm_sha256": "1f9b36a058c086608a329c490e625accaba702bfbdc631b2a21ee37cd6701571"
+  },
+  "cargo_parameters": {
+    "checkpoint_bonus": 55.0,
+    "destination_bonus": 260.0,
+    "reverse_penalty": 1.5,
+    "overspeed_penalty": 0.26,
+    "boundary_proximity_penalty": 2.4,
+    "boundary_warning_distance_m": 55.0,
+    "safe_speed_ratio": 0.48,
+    "dynamic_safe_distance_m": 30.0,
+    "dynamic_proximity_penalty": 3.6,
+    "forward_motion_bonus": 0.1,
+    "incomplete_mission_penalty": 900.0,
+    "residual_policy": false,
+    "throttle_action_min": -0.2,
+    "throttle_action_max": 0.55,
+    "curriculum_route_lengths": [
+      2,
+      4,
+      8
+    ],
+    "curriculum_obstacles_enabled": [
+      true,
+      true,
+      true
+    ],
+    "curriculum_randomization_enabled": [
+      false,
+      true,
+      true
+    ],
+    "curriculum_random_segment": [
+      true,
+      true,
+      false
+    ],
+    "curriculum_max_steps": [
+      1700,
+      3000,
+      5200
+    ],
+    "curriculum_fractions": [
+      0.25,
+      0.35,
+      0.4
+    ],
+    "difficulty_ladder": [
+      {
+        "level": 1,
+        "id": "P47-L1",
+        "name": "单航段·固定海况",
+        "route_length": 1,
+        "random_segment": true,
+        "randomization_enabled": false,
+        "dynamic_traffic_speed_knots": 0.4,
+        "randomization_multiplier": 0.0,
+        "max_steps": 2000,
+        "training_timesteps": 100000
+      },
+      {
+        "level": 2,
+        "id": "P47-L2",
+        "name": "双航段·固定海况",
+        "route_length": 2,
+        "random_segment": true,
+        "randomization_enabled": false,
+        "dynamic_traffic_speed_knots": 0.4,
+        "randomization_multiplier": 0.0,
+        "max_steps": 3600,
+        "training_timesteps": 100000
+      },
+      {
+        "level": 3,
+        "id": "P47-L3",
+        "name": "双航段·轻度扰动",
+        "route_length": 2,
+        "random_segment": true,
+        "randomization_enabled": true,
+        "dynamic_traffic_speed_knots": 0.4,
+        "randomization_multiplier": 0.5,
+        "max_steps": 3600,
+        "training_timesteps": 120000
+      },
+      {
+        "level": 4,
+        "id": "P47-L4",
+        "name": "半环·标准动态交通",
+        "route_length": 4,
+        "random_segment": true,
+        "randomization_enabled": true,
+        "dynamic_traffic_speed_knots": 0.4,
+        "randomization_multiplier": 1.0,
+        "max_steps": 4400,
+        "training_timesteps": 140000
+      },
+      {
+        "level": 5,
+        "id": "P47-L5",
+        "name": "完整环图·标准动态交通",
+        "route_length": 8,
+        "random_segment": false,
+        "randomization_enabled": true,
+        "dynamic_traffic_speed_knots": 0.4,
+        "randomization_multiplier": 1.0,
+        "max_steps": 5200,
+        "training_timesteps": 160000
+      },
+      {
+        "level": 6,
+        "id": "P47-L6",
+        "name": "完整环图·增强交通海况",
+        "route_length": 8,
+        "random_segment": false,
+        "randomization_enabled": true,
+        "dynamic_traffic_speed_knots": 0.6,
+        "randomization_multiplier": 1.5,
+        "max_steps": 5200,
+        "training_timesteps": 180000
+      },
+      {
+        "level": 7,
+        "id": "P47-L7",
+        "name": "完整环图·高速交通强扰动",
+        "route_length": 8,
+        "random_segment": false,
+        "randomization_enabled": true,
+        "dynamic_traffic_speed_knots": 0.8,
+        "randomization_multiplier": 2.0,
+        "max_steps": 5200,
+        "training_timesteps": 200000
+      },
+      {
+        "level": 8,
+        "id": "P47-L8",
+        "name": "完整环图·极限交通复合扰动",
+        "route_length": 8,
+        "random_segment": false,
+        "randomization_enabled": true,
+        "dynamic_traffic_speed_knots": 1.0,
+        "randomization_multiplier": 2.5,
+        "max_steps": 5200,
+        "training_timesteps": 220000
+      }
+    ],
+    "difficulty_promotion_gate": {
+      "validation_sweeps": 2,
+      "requires_all_episodes_successful": true,
+      "requires_zero_collision": true,
+      "requires_all_active_checkpoints": true,
+      "requires_positive_static_dynamic_and_boundary_clearance": true,
+      "requires_all_32_large_rocks": true,
+      "requires_all_6_dynamic_vessels": true,
+      "requires_sac_actor_updates": true,
+      "stop_at_first_unconverged_level": true
+    }
+  },
+  "rl_parameters": {
+    "reward_progress": 3.2,
+    "reward_heading": 1.4,
+    "reward_speed": 0.8,
+    "penalty_collision": 1300.0,
+    "penalty_terrain_collision": 1500.0,
+    "penalty_boundary": 1300.0,
+    "penalty_rudder": 0.48,
+    "penalty_proximity": 3.4,
+    "penalty_predicted_collision": 6.0,
+    "penalty_cross_track": 0.012,
+    "penalty_action_slew": 0.045,
+    "penalty_step": 0.005,
+    "safe_distance": 34.0
+  },
+  "environment_parameters": {
+    "vessel_radius_m": 3.2,
+    "obstacle_inflation_m": 1.8,
+    "cliff_inflation_m": 3.0,
+    "boundary_margin_m": 5.0,
+    "sensor_range_m": 180.0,
+    "tcpa_horizon_seconds": 100.0,
+    "terminate_on_collision": true,
+    "merge_scene_obstacles": true,
+    "domain_randomization": true,
+    "randomize_evaluation": true,
+    "start_position_jitter_m": 1.0,
+    "start_heading_jitter_degrees": 2.0,
+    "obstacle_position_jitter_m": 0.0,
+    "obstacle_size_jitter_m": 0.0,
+    "current_speed_jitter_knots": 0.08,
+    "current_direction_jitter_degrees": 4.0,
+    "wind_speed_jitter_knots": 0.5,
+    "wind_direction_jitter_degrees": 5.0,
+    "wave_height_jitter_m": 0.05,
+    "wave_direction_jitter_degrees": 5.0,
+    "wind_leeway_factor": 0.012,
+    "wave_drift_mps_per_meter": 0.06,
+    "sensor_distance_noise_std_m": 0.12,
+    "sensor_bearing_noise_degrees": 0.2,
+    "generated_traffic_count": 6,
+    "generated_traffic_speed_knots": 0.4,
+    "generated_traffic_radius_m": 5.5
+  },
+  "ships": [
+    {
+      "performance": {
+        "max_forward_speed": 11.0,
+        "max_reverse_speed": 4.0,
+        "acceleration": 3.6,
+        "deceleration": 2.2,
+        "brake_acceleration": 6.4,
+        "throttle_response": 1.65,
+        "rudder_response": 2.45,
+        "max_turn_rate_degrees": 26.0,
+        "low_speed_turn_factor": 0.18,
+        "reverse_turn_factor": 0.58
+      }
+    }
+  ],
+  "world": {
+    "water_level_y": -140.05,
+    "obstacles": {
+      "boundary_half_extent": 780.0,
+      "rocks": [
+        {
+          "kind": "rock",
+          "name": "NavigationRock_01",
+          "radius": 5.5,
+          "shape": "circle",
+          "x": -48.0,
+          "z": -118.0
+        },
+        {
+          "kind": "rock",
+          "name": "NavigationRock_02",
+          "radius": 6.85,
+          "shape": "circle",
+          "x": 98.0,
+          "z": -88.0
+        },
+        {
+          "kind": "rock",
+          "name": "NavigationRock_03",
+          "radius": 8.2,
+          "shape": "circle",
+          "x": 112.0,
+          "z": -184.0
+        },
+        {
+          "kind": "rock",
+          "name": "NavigationRock_04",
+          "radius": 5.5,
+          "shape": "circle",
+          "x": -126.0,
+          "z": -178.0
+        },
+        {
+          "kind": "rock",
+          "name": "NavigationRock_05",
+          "radius": 6.85,
+          "shape": "circle",
+          "x": -128.0,
+          "z": -42.0
+        },
+        {
+          "kind": "cliff",
+          "name": "SCENE_CLIFF_落水悬岩",
+          "radius": 16.0,
+          "shape": "circle",
+          "x": -55.0,
+          "z": -40.0
+        }
+      ],
+      "boxes": [
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_01_BroadAncientRoot",
+          "position": {
+            "x": -375.469268798828,
+            "y": -140.734939575195,
+            "z": -155.504409790039
+          },
+          "shape": "box",
+          "size": {
+            "x": 82.2120971679688,
+            "y": 72.1685638427734,
+            "z": 74.9038467407227
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_02_TallNeedleRoot",
+          "position": {
+            "x": -30.9144096374512,
+            "y": -140.734939575195,
+            "z": -315.0185546875
+          },
+          "shape": "box",
+          "size": {
+            "x": 55.1842346191406,
+            "y": 116.403099060059,
+            "z": 59.0852355957031
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_03_WideMossShelf",
+          "position": {
+            "x": 284.934539794922,
+            "y": -140.734939575195,
+            "z": 169.190689086914
+          },
+          "shape": "box",
+          "size": {
+            "x": 83.4425048828125,
+            "y": 58.3170204162598,
+            "z": 76.5384216308594
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_04_FracturedTwinRibs",
+          "position": {
+            "x": 111.002517700195,
+            "y": -140.734939575195,
+            "z": -357.348266601562
+          },
+          "shape": "box",
+          "size": {
+            "x": 67.6222534179688,
+            "y": 94.6814956665039,
+            "z": 67.2898864746094
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_05_CaveBellyHeavy",
+          "position": {
+            "x": -293.906433105469,
+            "y": -140.734939575195,
+            "z": 405.70361328125
+          },
+          "shape": "box",
+          "size": {
+            "x": 71.27490234375,
+            "y": 102.292343139648,
+            "z": 56.9573974609375
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_06_SlenderSideSpire",
+          "position": {
+            "x": -283.805389404297,
+            "y": -140.734939575195,
+            "z": -2.39632606506348
+          },
+          "shape": "box",
+          "size": {
+            "x": 57.0448455810547,
+            "y": 130.31477355957,
+            "z": 52.2601699829102
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_07_StackedCliffPlate",
+          "position": {
+            "x": 267.996398925781,
+            "y": -140.734939575195,
+            "z": -285.460632324219
+          },
+          "shape": "box",
+          "size": {
+            "x": 91.6936798095703,
+            "y": 67.0005187988281,
+            "z": 79.1594390869141
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_08_HollowMoonCut",
+          "position": {
+            "x": 206.048614501953,
+            "y": -140.734939575195,
+            "z": 100.403144836426
+          },
+          "shape": "box",
+          "size": {
+            "x": 86.8217620849609,
+            "y": 83.5197372436523,
+            "z": 87.9552154541016
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_09_OverhangWaterGroove",
+          "position": {
+            "x": 62.6562461853027,
+            "y": -140.734939575195,
+            "z": 128.213088989258
+          },
+          "shape": "box",
+          "size": {
+            "x": 76.864372253418,
+            "y": 81.9906845092773,
+            "z": 78.5130081176758
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_09_OverhangWaterGroove2",
+          "position": {
+            "x": 3.77516555786133,
+            "y": -140.734939575195,
+            "z": 116.267135620117
+          },
+          "shape": "box",
+          "size": {
+            "x": 76.8643646240234,
+            "y": 81.9906845092773,
+            "z": 78.5130004882812
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_10_DenseBottomShard",
+          "position": {
+            "x": -94.3451766967773,
+            "y": -140.734939575195,
+            "z": -149.76432800293
+          },
+          "shape": "box",
+          "size": {
+            "x": 65.2959442138672,
+            "y": 110.076362609863,
+            "z": 70.12158203125
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_11_RoundedGardenTop",
+          "position": {
+            "x": -184.272903442383,
+            "y": -140.734939575195,
+            "z": -32.3024749755859
+          },
+          "shape": "box",
+          "size": {
+            "x": 75.2250366210938,
+            "y": 53.1934242248535,
+            "z": 66.8272094726562
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_11_RoundedGardenTop2",
+          "position": {
+            "x": -174.397705078125,
+            "y": -140.734939575195,
+            "z": -151.238830566406
+          },
+          "shape": "box",
+          "size": {
+            "x": 75.2250366210938,
+            "y": 53.1934204101562,
+            "z": 66.8272247314453
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_12_AsymmetricBrokenWing",
+          "position": {
+            "x": 251.752548217773,
+            "y": -140.734939575195,
+            "z": -26.4140548706055
+          },
+          "shape": "box",
+          "size": {
+            "x": 54.5769348144531,
+            "y": 96.7774963378906,
+            "z": 69.3541107177734
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_13_LowBroadSanctumBase",
+          "position": {
+            "x": -231.061172485352,
+            "y": -140.734939575195,
+            "z": 45.0131530761719
+          },
+          "shape": "box",
+          "size": {
+            "x": 105.560211181641,
+            "y": 44.8105049133301,
+            "z": 76.1815032958984
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_14_DeepRootOldMountain",
+          "position": {
+            "x": -69.7869720458984,
+            "y": -140.734939575195,
+            "z": 111.52099609375
+          },
+          "shape": "box",
+          "size": {
+            "x": 103.825286865234,
+            "y": 175.691040039062,
+            "z": 106.316101074219
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_15_SideCaveFang",
+          "position": {
+            "x": -21.9062690734863,
+            "y": -140.734939575195,
+            "z": -170.556213378906
+          },
+          "shape": "box",
+          "size": {
+            "x": 62.3926620483398,
+            "y": 110.396575927734,
+            "z": 60.9975738525391
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_16_MossyBrokenCrown",
+          "position": {
+            "x": 151.396743774414,
+            "y": -140.734939575195,
+            "z": 245.843139648438
+          },
+          "shape": "box",
+          "size": {
+            "x": 85.5509948730469,
+            "y": 76.2639389038086,
+            "z": 87.5352630615234
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_17_PairedSubRoots",
+          "position": {
+            "x": -92.0365676879883,
+            "y": -140.734939575195,
+            "z": 259.612091064453
+          },
+          "shape": "box",
+          "size": {
+            "x": 72.3688507080078,
+            "y": 120.244819641113,
+            "z": 72.9579467773438
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_18_LightFloatingShard",
+          "position": {
+            "x": -98.3644866943359,
+            "y": -140.734939575195,
+            "z": 127.005004882812
+          },
+          "shape": "box",
+          "size": {
+            "x": 40.6876602172852,
+            "y": 50.6216812133789,
+            "z": 45.4780578613281
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_18_LightFloatingShard2",
+          "position": {
+            "x": 92.1926727294922,
+            "y": -140.734939575195,
+            "z": 35.1396102905273
+          },
+          "shape": "box",
+          "size": {
+            "x": 40.6876678466797,
+            "y": 50.6216812133789,
+            "z": 45.4780502319336
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_19_GrandTerraceRoot",
+          "position": {
+            "x": 150.6005859375,
+            "y": -140.734939575195,
+            "z": 42.4370422363281
+          },
+          "shape": "box",
+          "size": {
+            "x": 88.4878845214844,
+            "y": 91.7205200195312,
+            "z": 99.3441925048828
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "Rock3A_20_AncientSplitPeak",
+          "position": {
+            "x": -220.122589111328,
+            "y": -140.734939575195,
+            "z": 146.021362304688
+          },
+          "shape": "box",
+          "size": {
+            "x": 84.5794525146484,
+            "y": 131.705963134766,
+            "z": 85.2074127197266
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "GroundedPlate_01_BroadLandMass",
+          "position": {
+            "x": -467.211639404297,
+            "y": -140.734939575195,
+            "z": 286.028198242188
+          },
+          "shape": "box",
+          "size": {
+            "x": 275.766540527344,
+            "y": 117.381568908691,
+            "z": 252.899719238281
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "GroundedPlate_02_CrookedStoneMesa",
+          "position": {
+            "x": 81.5979919433594,
+            "y": -140.734939575195,
+            "z": -106.456962585449
+          },
+          "shape": "box",
+          "size": {
+            "x": 136.755340576172,
+            "y": 95.9420166015625,
+            "z": 135.871536254883
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "GroundedPlate_02_CrookedStoneMesa2",
+          "position": {
+            "x": 14.1760177612305,
+            "y": -140.734939575195,
+            "z": -280.012634277344
+          },
+          "shape": "box",
+          "size": {
+            "x": 186.5615234375,
+            "y": 130.870468139648,
+            "z": 185.355850219727
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "GroundedPlate_03_ForkedGroundPillar",
+          "position": {
+            "x": 151.898010253906,
+            "y": -140.734939575195,
+            "z": 247.573669433594
+          },
+          "shape": "box",
+          "size": {
+            "x": 148.149429321289,
+            "y": 108.399917602539,
+            "z": 145.647399902344
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "GroundedPlate_03_ForkedGroundPillar2",
+          "position": {
+            "x": 153.848114013672,
+            "y": -140.734939575195,
+            "z": -46.1237945556641
+          },
+          "shape": "box",
+          "size": {
+            "x": 148.1494140625,
+            "y": 108.399909973145,
+            "z": 145.647399902344
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "GroundedPlate_04_WideBridgeSlab",
+          "position": {
+            "x": -531.339538574219,
+            "y": -140.734939575195,
+            "z": -200.823684692383
+          },
+          "shape": "box",
+          "size": {
+            "x": 306.038940429688,
+            "y": 110.033210754395,
+            "z": 306.038909912109
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "GroundedPlate_05_CaveCutLandRoot",
+          "position": {
+            "x": 198.865875244141,
+            "y": -140.734939575195,
+            "z": -232.513122558594
+          },
+          "shape": "box",
+          "size": {
+            "x": 184.818954467773,
+            "y": 127.030082702637,
+            "z": 189.15983581543
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "GroundedPlate_06_TwistedButtressMesa",
+          "position": {
+            "x": 612.580078125,
+            "y": -140.734939575195,
+            "z": 447.250366210938
+          },
+          "shape": "box",
+          "size": {
+            "x": 209.702941894531,
+            "y": 118.951034545898,
+            "z": 203.764495849609
+          },
+          "source": "large_rock_manifest"
+        },
+        {
+          "kind": "terrain",
+          "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+          "name": "GroundedPlate_07_AncientWallPlate",
+          "position": {
+            "x": -115.856826782227,
+            "y": -140.734939575195,
+            "z": 524.910034179688
+          },
+          "shape": "box",
+          "size": {
+            "x": 259.256317138672,
+            "y": 108.908584594727,
+            "z": 205.409820556641
+          },
+          "source": "large_rock_manifest"
+        }
+      ],
+      "snapshot_sha256": "3e4cacf11e95e315f8c5c14d5caa40062297c5c71bf30aabd03976b8c4682b9b",
+      "large_rock_manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24"
+    },
+    "dynamics_contract": {
+      "path": "res://data/verification/catamaran_usv_dynamics_reference_v2.json",
+      "sha256": "d9dbd9fd61827952b50194f10e1a7331f7b154b7b7a69805de726e5bfd648c8f",
+      "model_id": "taoyuan_catamaran_usv_3dof_twin_waterjet_v2",
+      "model_family": "3DOF_surge_sway_yaw_twin_waterjet_RK4",
+      "runtime_physics_hz": 60,
+      "control_interval_seconds": 0.25,
+      "godot_runtime_script": "res://scripts/physics/catamaran_three_dof_dynamics.gd"
+    }
+  }
+}

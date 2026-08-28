@@ -1,0 +1,121 @@
+{
+  "schema_version": "port_production_integration_profile_v1",
+  "profile_id": "RL-NAV-PORT-LINK-2026-01",
+  "mode": "SIGNED_OFFLINE_CONNECTOR_FIXTURES",
+  "envelope_schema": "port-link-envelope.v1",
+  "future_tolerance_seconds": 5,
+  "adapters": [
+    {
+      "adapter_id": "VTS_TRAFFIC",
+      "system_type": "VESSEL_TRAFFIC_SERVICE",
+      "direction": "READ_ONLY",
+      "freshness_seconds": 30,
+      "disconnect_grace_seconds": 10,
+      "required_fields": ["track_count", "advisory_count", "traffic_window_start_unix", "traffic_window_end_unix", "units"],
+      "required_units": {"position": "WGS84", "speed": "knots", "course": "degrees_true"},
+      "authoritative_for": ["traffic_tracks", "traffic_advisories"],
+      "training_hmac_key": "vts-offline-fixture-key-2026",
+      "production_credentials_configured": false
+    },
+    {
+      "adapter_id": "TOS_BERTH_PLAN",
+      "system_type": "TERMINAL_OPERATING_SYSTEM",
+      "direction": "READ_ONLY",
+      "freshness_seconds": 60,
+      "disconnect_grace_seconds": 20,
+      "required_fields": ["operation_id", "berth_id", "eta_unix", "etd_unix", "status", "units"],
+      "required_units": {"time": "unix_seconds", "berth_position": "port_authority_identifier"},
+      "authoritative_for": ["berth_schedule", "terminal_operation_status"],
+      "training_hmac_key": "tos-offline-fixture-key-2026",
+      "production_credentials_configured": false
+    },
+    {
+      "adapter_id": "PILOTAGE_ORDER",
+      "system_type": "PILOTAGE_SERVICE",
+      "direction": "READ_AND_RECEIPT_REHEARSAL",
+      "freshness_seconds": 300,
+      "disconnect_grace_seconds": 60,
+      "required_fields": ["pilot_order_id", "pilot_status", "boarding_ground", "vhf_channel", "units"],
+      "required_units": {"boarding_ground": "port_authority_identifier", "vhf_channel": "channel_number"},
+      "authoritative_for": ["pilot_order", "pilot_boarding_status"],
+      "allowed_request_types": ["PILOT_ETA_UPDATE", "PILOT_READINESS_CONFIRMATION"],
+      "training_hmac_key": "pilot-offline-fixture-key-2026",
+      "production_credentials_configured": false
+    },
+    {
+      "adapter_id": "TUG_ORDER",
+      "system_type": "TUG_DISPATCH_SERVICE",
+      "direction": "READ_AND_RECEIPT_REHEARSAL",
+      "freshness_seconds": 120,
+      "disconnect_grace_seconds": 30,
+      "required_fields": ["tug_order_id", "assigned_tug_count", "order_status", "rendezvous", "units"],
+      "required_units": {"tug_count": "count", "rendezvous": "port_authority_identifier"},
+      "authoritative_for": ["tug_assignment", "tug_order_status"],
+      "allowed_request_types": ["TUG_READINESS_CONFIRMATION", "TUG_ETA_UPDATE"],
+      "training_hmac_key": "tug-offline-fixture-key-2026",
+      "production_credentials_configured": false
+    },
+    {
+      "adapter_id": "BERTH_RESOURCE",
+      "system_type": "BERTH_RESOURCE_SERVICE",
+      "direction": "READ_ONLY",
+      "freshness_seconds": 120,
+      "disconnect_grace_seconds": 30,
+      "required_fields": ["berth_id", "availability", "length_m", "declared_depth_m", "restriction_ids", "units"],
+      "required_units": {"length": "m", "depth": "m_chart_datum"},
+      "authoritative_for": ["berth_availability", "berth_declared_geometry"],
+      "training_hmac_key": "berth-offline-fixture-key-2026",
+      "production_credentials_configured": false
+    },
+    {
+      "adapter_id": "OFFICIAL_NOTICES",
+      "system_type": "AUTHORIZED_NAVIGATIONAL_NOTICE_SERVICE",
+      "direction": "READ_ONLY",
+      "freshness_seconds": 300,
+      "disconnect_grace_seconds": 60,
+      "required_fields": ["notice_id", "effective_unix", "expires_unix", "area_id", "severity", "units"],
+      "required_units": {"time": "unix_seconds", "area": "authority_area_identifier"},
+      "authoritative_for": ["local_navigation_notice", "temporary_restriction"],
+      "training_hmac_key": "notices-offline-fixture-key-2026",
+      "production_credentials_configured": false
+    }
+  ],
+  "coordination": {
+    "human_confirmation_required": true,
+    "allowed_terminal_statuses": ["ACKNOWLEDGED", "REJECTED", "CANCELLED"],
+    "external_dispatch_enabled": false,
+    "vessel_actuation_mapping_enabled": false
+  },
+  "audit": {
+    "hash_algorithm": "SHA256",
+    "maximum_records": 1024,
+    "persist_payload_body": false,
+    "persist_summary_and_lineage_only": true
+  },
+  "degraded_mode": {
+    "stale_action": "READ_ONLY_LAST_KNOWN_WITH_EXPLICIT_STALE_LABEL",
+    "disconnect_action": "REMOVE_SOURCE_AUTHORITY_AND_REQUIRE_HUMAN_COORDINATION",
+    "never_auto_dispatch": true,
+    "never_map_to_actuation": true
+  },
+  "preservation_boundary": {
+    "ship_motion_model_modified": false,
+    "observation_space_modified": false,
+    "action_space_modified": false,
+    "reward_function_modified": false,
+    "existing_policy_modified": false,
+    "training_performed": false
+  },
+  "claims": {
+    "live_vts_connected": false,
+    "live_tos_connected": false,
+    "authorized_pilotage_connected": false,
+    "authorized_tug_dispatch_connected": false,
+    "official_berth_service_connected": false,
+    "official_notices_connected": false,
+    "sla_verified": false,
+    "site_shadow_operation_completed": false,
+    "dispatch_allowed": false,
+    "production_authority": false
+  }
+}

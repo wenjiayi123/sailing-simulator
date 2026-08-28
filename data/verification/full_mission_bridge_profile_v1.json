@@ -1,0 +1,117 @@
+{
+  "schema_version": "full_mission_bridge_profile_v1",
+  "profile_id": "RL-NAV-FMB-2026-01",
+  "intended_use": "reinforcement-learning navigation simulation, bridge-team training and instructor-led functional exercises",
+  "equipment_domains": [
+    {
+      "domain_id": "RADAR_ARPA",
+      "label": "雷达与自动雷达标绘仪",
+      "runtime_component": "ShipNavigationEquipmentSuite",
+      "required_functions": ["bounded_radar_measurement", "target_acquisition", "cpa_tcpa", "clutter_and_fault_model"]
+    },
+    {
+      "domain_id": "ECDIS",
+      "label": "电子海图显示与信息系统",
+      "runtime_component": "ShipNavigationEquipmentSuite",
+      "required_functions": ["route_monitoring", "safety_contour", "hazard_alarm", "alarm_acknowledgement"]
+    },
+    {
+      "domain_id": "CONNING",
+      "label": "综合驾驶信息显示",
+      "runtime_component": "ShipNavigationEquipmentSuite",
+      "required_functions": ["heading_course_speed", "rudder_throttle_feedback", "sensor_validity"]
+    },
+    {
+      "domain_id": "GMDSS_VHF_DSC",
+      "label": "全球海上遇险与安全系统、甚高频及数字选择性呼叫训练",
+      "runtime_component": "ShipGmdssCommunicationsSuite",
+      "required_functions": ["channel_guard", "guarded_distress_alert", "urgency_safety_routine_calls", "voice_follow_up", "acknowledgement_and_cancellation"]
+    },
+    {
+      "domain_id": "AUTOPILOT_STEERING",
+      "label": "自动舵与操舵控制",
+      "runtime_component": "ShipExecutionControlSuite",
+      "required_functions": ["simulation_arm", "heading_control", "feedback_confirmation", "manual_immediate_takeover"]
+    },
+    {
+      "domain_id": "PROPULSION_TELEGRAPH",
+      "label": "推进台与车钟",
+      "runtime_component": "ShipExecutionControlSuite",
+      "required_functions": ["bounded_throttle", "ahead_and_astern", "actuator_feedback", "emergency_neutral"]
+    },
+    {
+      "domain_id": "MULTI_STATION_BRM",
+      "label": "多学员驾驶台资源管理",
+      "runtime_component": "ShipBridgeTeamCollaborationController",
+      "required_functions": ["role_assignment", "closed_loop_readback", "challenge_response", "loopback_udp_session"]
+    },
+    {
+      "domain_id": "PANORAMIC_VISUAL",
+      "label": "软件全向视景",
+      "runtime_component": "ShipFullMissionBridgeSuite",
+      "required_functions": ["eight_sector_selection", "360_degree_coverage_receipt", "camera_only_no_dynamics_change"]
+    },
+    {
+      "domain_id": "INSTRUCTOR_STATION",
+      "label": "教员站",
+      "runtime_component": "ShipInstructorExerciseController",
+      "required_functions": ["deterministic_exercise_timeline", "equipment_fault_injection", "unique_receipts", "pause_reset"]
+    },
+    {
+      "domain_id": "DEBRIEF",
+      "label": "复盘与评分证据",
+      "runtime_component": "ShipSimulationReviewPanel",
+      "required_functions": ["timeline_ingest", "incident_and_action_log", "exportable_report"]
+    }
+  ],
+  "gmdss_training": {
+    "sea_area": "A1_SIMULATED",
+    "training_identity": "TRAINING-999000001",
+    "guard_channels": ["16", "70"],
+    "voice_channels": ["06", "13", "16"],
+    "priorities": ["DISTRESS", "URGENCY", "SAFETY", "ROUTINE"],
+    "distress_hold_seconds": 3.0,
+    "distress_natures": ["FIRE", "FLOODING", "COLLISION", "GROUNDING", "ABANDONING", "PIRACY", "MAN_OVERBOARD", "UNDESIGNATED"],
+    "real_radio_transmission_enabled": false,
+    "coast_station_connected": false
+  },
+  "visual_system": {
+    "mode": "SOFTWARE_ORBIT_SECTORS",
+    "sector_count": 8,
+    "sector_width_degrees": 45,
+    "declared_horizontal_coverage_degrees": 360,
+    "physical_projection_verified": false,
+    "multi_channel_synchronization_verified": false,
+    "visual_latency_measured": false
+  },
+  "multi_student_network": {
+    "functional_transport": "LOOPBACK_UDP",
+    "role_count": 9,
+    "encrypted": false,
+    "authenticated_training_session": true,
+    "non_loopback_acceptance_complete": false,
+    "production_network_authorized": false
+  },
+  "instructor_qualification_gate": {
+    "required_evidence": ["instructor_identity", "valid_qualification", "course_scope", "issuing_authority", "expiry_date", "witness_signature"],
+    "self_assertion_sufficient": false,
+    "external_approval_required": true
+  },
+  "preservation_boundary": {
+    "ship_motion_model_modified": false,
+    "observation_space_modified": false,
+    "action_space_modified": false,
+    "reward_function_modified": false,
+    "existing_policy_modified": false,
+    "training_performed": false
+  },
+  "claim_boundary": {
+    "type_approved_bridge_equipment": false,
+    "official_chart_carriage_compliance": false,
+    "real_gmdss_transmission": false,
+    "physical_360_bridge_verified": false,
+    "certified_instructor_available": false,
+    "approved_training_course": false,
+    "production_authority": false
+  }
+}

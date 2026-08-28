@@ -12,6 +12,19 @@ const PANEL_NAMES := [
 	"ShipAISFleetPanel",
 	"ShipSimulationReviewPanel",
 	"ShipInstructorConsolePanel",
+	"ShipIntegratedBridgePanel",
+	"ShipMultisensorFusionPanel",
+	"ShipExecutionControlPanel",
+	"ShipNamedVesselTwinPanel",
+	"ShipPortOperationsPanel",
+	"ShipBridgeTeamPanel",
+	"ShipPhysicalBridgeReadinessPanel",
+	"ShipSafetyCasePanel",
+	"ShipColregComplexPanel",
+	"ShipRlGeneralizationPanel",
+	"ShipFullMissionBridgePanel",
+	"ShipBridgeCybersecurityPanel",
+	"ShipPortIntegrationPanel",
 ]
 
 var _errors: Array[String] = []

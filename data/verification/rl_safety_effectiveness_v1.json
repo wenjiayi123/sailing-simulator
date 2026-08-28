@@ -1,0 +1,60 @@
+{
+  "schema_version": "rl_safety_effectiveness_profile_v1",
+  "profile_id": "sac_v5_cross_scenario_safety_effectiveness_v1",
+  "algorithm": "sac",
+  "strategy_id": "sac_pure_20k+safety_v5",
+  "checkpoint": "reports/artifacts/sac_champion_v5/pilot_pure_20k/checkpoint.json",
+  "validation_base_result": "reports/artifacts/sac_champion_v5/pilot_pure_20k/validation_progress.json",
+  "validation_supervised_result": "reports/artifacts/sac_champion_v5/validation_sac20k_safety_v5/validation_result.json",
+  "validation_policy_admission": "reports/artifacts/sac_champion_v5/validation_sac20k_safety_v5/validation_result_admission.json",
+  "safety_profile": "data/rl/sac_champion_safety_v5.json",
+  "safety_source": "tools/ship_rl/sac_champion_safety_v5.py",
+  "experiment": "data/rl/long_beach_ais_port_ops_experiment_v2.json",
+  "training_dataset": "data/rl/long_beach_ais_port_ops_benchmark_v2.json",
+  "counterfactual_holdout": "data/rl/sac_champion_counterfactual_holdout_v5.json",
+  "counterfactual_holdout_freeze": "reports/sac_champion_counterfactual_holdout_v5_prepared.json",
+  "effect_thresholds": {
+    "minimum_material_collision_reduction_ratio": 0.3,
+    "maximum_supervised_collision_episode_rate": 0.1,
+    "maximum_supervised_grounding_episode_rate": 0.05,
+    "maximum_arrival_rate_regression": 0.05,
+    "maximum_port_completion_rate_regression": 0.05,
+    "maximum_grounding_rate_increase": 0.0,
+    "maximum_colreg_rate_increase": 0.0,
+    "maximum_hazard_supervisor_intervention_step_rate": 0.2,
+    "maximum_fail_closed_episode_rate": 0.05,
+    "minimum_rl_rudder_retained_step_rate": 0.8,
+    "minimum_rl_any_dimension_retained_step_rate": 0.85,
+    "maximum_decision_p95_ms": 250.0,
+    "maximum_replan_p95_ms": 250.0
+  },
+  "required_holdout_strata": {
+    "vessel_length_band": [
+      "small",
+      "medium",
+      "large"
+    ],
+    "traffic_load": [
+      "single",
+      "multiple"
+    ],
+    "wave_height_band": [
+      "low",
+      "medium"
+    ]
+  },
+  "maximum_steps_per_episode": 1600,
+  "functional_smoke": {
+    "dataset_split": "validation",
+    "task_indices": [
+      0,
+      54,
+      59
+    ],
+    "maximum_steps_per_episode": 120,
+    "performance_claimed": false
+  },
+  "seed": 250828,
+  "production_authority": false,
+  "claim_boundary": "Cross-scenario offline evidence for the effect of an additive safety layer on a real trained SAC policy. It is not independent third-party review, certification, hardware interlock evidence, sea-trial acceptance, or live-vessel authority."
+}

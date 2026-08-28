@@ -1,0 +1,65 @@
+{
+  "schema_version": "mass_safety_case_acceptance_manifest_v1",
+  "manifest_id": "UNASSIGNED",
+  "safety_case_id": "rl_navigation_simulator_safety_case_v1",
+  "deployment": {
+    "vessel_name": "",
+    "official_number_or_mmsi": "",
+    "flag_state": "",
+    "operating_area": "",
+    "operator_organization": "",
+    "rcc_site": "",
+    "approved_odd_reference": "",
+    "configuration_baseline_reference": "",
+    "change_control_record_reference": ""
+  },
+  "regulatory_determinations": {
+    "COLREG": {"authority": "", "decision_reference": "", "decision_date": ""},
+    "SOLAS": {"authority": "", "decision_reference": "", "decision_date": ""},
+    "STCW": {"authority": "", "decision_reference": "", "decision_date": ""},
+    "FLAG_AND_COASTAL_STATE": {"authority": "", "decision_reference": "", "decision_date": ""},
+    "CLASS_AND_ASSURANCE": {"authority": "", "decision_reference": "", "decision_date": ""}
+  },
+  "duty_holder_assignments": {
+    "MASTER": "",
+    "ONBOARD_OPERATOR": "",
+    "RCC_OPERATOR": "",
+    "RCC_SUPERVISOR": "",
+    "SAFETY_MANAGER": "",
+    "TECHNICAL_AUTHORITY": "",
+    "RL_MODEL_OWNER": "",
+    "CYBERSECURITY_OFFICER": ""
+  },
+  "independent_review": {
+    "reviewer_name": "",
+    "organization": "",
+    "competence_reference": "",
+    "independence_declaration_reference": "",
+    "review_scope_reference": "",
+    "review_report_reference": "",
+    "open_findings_register_reference": "",
+    "finding_closure_reference": "",
+    "residual_risk_acceptance_reference": "",
+    "signed_decision_reference": ""
+  },
+  "supporting_evidence": {
+    "hazard_workshop_reference": "",
+    "fault_tree_review_reference": "",
+    "mrc_demonstration_reference": "",
+    "rcc_human_factors_reference": "",
+    "physical_hil_reference": "",
+    "named_vessel_calibration_reference": "",
+    "sea_trial_reference": "",
+    "cybersecurity_assessment_reference": ""
+  },
+  "claims": {
+    "independent_review_complete": false,
+    "flag_state_approval": false,
+    "coastal_state_approval": false,
+    "class_approval": false,
+    "type_approval": false,
+    "mass_safety_certificate": false,
+    "sea_trial_completed": false,
+    "production_authority": false
+  }
+}

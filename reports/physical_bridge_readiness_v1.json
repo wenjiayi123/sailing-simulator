@@ -1,0 +1,301 @@
+{
+  "schema_version": "physical_bridge_readiness_report_v1",
+  "software_readiness_gate_passed": true,
+  "evaluation": {
+    "status": "BLOCKED_PHYSICAL_BRIDGE_EVIDENCE_INCOMPLETE",
+    "manifest_id": "UNASSIGNED",
+    "schema_valid": true,
+    "physical_execution_context_declared": false,
+    "evidence_package_complete": false,
+    "hardware_inventory": {
+      "passed": false,
+      "required_roles": [
+        "helm_input",
+        "engine_telegraph",
+        "emergency_stop_channel_a",
+        "emergency_stop_channel_b",
+        "manual_override",
+        "gnss_receiver",
+        "heading_sensor",
+        "speed_log",
+        "rudder_feedback",
+        "throttle_feedback",
+        "bridge_display",
+        "target_controller",
+        "real_io_rack",
+        "safety_relay",
+        "clock_source"
+      ],
+      "record_count": 0,
+      "missing_roles": [
+        "helm_input",
+        "engine_telegraph",
+        "emergency_stop_channel_a",
+        "emergency_stop_channel_b",
+        "manual_override",
+        "gnss_receiver",
+        "heading_sensor",
+        "speed_log",
+        "rudder_feedback",
+        "throttle_feedback",
+        "bridge_display",
+        "target_controller",
+        "real_io_rack",
+        "safety_relay",
+        "clock_source"
+      ],
+      "invalid_record_indexes": []
+    },
+    "io_contract": {
+      "passed": false,
+      "required_channels": {
+        "heading_deg": "input",
+        "position_lat_lon": "input",
+        "speed_knots": "input",
+        "rudder_command": "output",
+        "rudder_feedback": "input",
+        "throttle_command": "output",
+        "throttle_feedback": "input",
+        "emergency_stop_channel_a": "input",
+        "emergency_stop_channel_b": "input",
+        "manual_reset_key": "input",
+        "manual_override": "input",
+        "watchdog_heartbeat": "bidirectional",
+        "target_controller_health": "input",
+        "io_rack_health": "input",
+        "clock_sync": "input"
+      },
+      "record_count": 0,
+      "missing_channels": [
+        "heading_deg",
+        "position_lat_lon",
+        "speed_knots",
+        "rudder_command",
+        "rudder_feedback",
+        "throttle_command",
+        "throttle_feedback",
+        "emergency_stop_channel_a",
+        "emergency_stop_channel_b",
+        "manual_reset_key",
+        "manual_override",
+        "watchdog_heartbeat",
+        "target_controller_health",
+        "io_rack_health",
+        "clock_sync"
+      ],
+      "invalid_channels": []
+    },
+    "safety_interlocks": {
+      "passed": false,
+      "required": [
+        "independent_emergency_stop",
+        "manual_control_priority",
+        "hardwired_neutral_state",
+        "power_loss_neutralization",
+        "watchdog_independent_of_application",
+        "network_isolation",
+        "hazard_analysis",
+        "cybersecurity_review",
+        "dual_channel_estop_independence",
+        "controller_deadline_monitor",
+        "feedback_disagreement_trip",
+        "recovery_manual_rearm"
+      ],
+      "failed_or_missing": [
+        "independent_emergency_stop",
+        "manual_control_priority",
+        "hardwired_neutral_state",
+        "power_loss_neutralization",
+        "watchdog_independent_of_application",
+        "network_isolation",
+        "hazard_analysis",
+        "cybersecurity_review",
+        "dual_channel_estop_independence",
+        "controller_deadline_monitor",
+        "feedback_disagreement_trip",
+        "recovery_manual_rearm"
+      ]
+    },
+    "timing": {
+      "passed": false,
+      "reference_checks": {
+        "clock_synchronization_reference": false,
+        "worst_case_execution_time_reference": false,
+        "latency_log_reference": false
+      },
+      "metric_checks": {
+        "minimum_sample_count": false,
+        "sensor_latency": false,
+        "command_latency": false,
+        "jitter": false,
+        "watchdog_trip": false
+      },
+      "limits": {
+        "maximum_p95_sensor_latency_ms": 100.0,
+        "maximum_p95_command_latency_ms": 100.0,
+        "maximum_jitter_ms": 25.0,
+        "maximum_watchdog_trip_ms": 200.0,
+        "minimum_sample_count": 1000
+      }
+    },
+    "target_runtime_and_witnessed_tests": {
+      "passed": false,
+      "section_checks": {
+        "target_controller": {
+          "manufacturer": false,
+          "model": false,
+          "serial_number": false,
+          "hardware_revision": false,
+          "firmware_build_id": false,
+          "io_firmware_id": false,
+          "installation_reference": false
+        },
+        "real_time_operating_system": {
+          "vendor": false,
+          "name": false,
+          "version": false,
+          "build_id": false,
+          "scheduler_policy": false,
+          "controller_task_priority": false,
+          "configuration_hash": false,
+          "wcet_measurement_tool": false
+        },
+        "real_io_rack": {
+          "manufacturer": false,
+          "model": false,
+          "serial_number": false,
+          "fieldbus_protocol": false,
+          "signal_mapping_reference": false,
+          "electrical_acceptance_reference": false,
+          "calibration_reference": false
+        },
+        "clock_synchronization": {
+          "synchronization_protocol": false,
+          "primary_source_model": false,
+          "primary_source_serial_number": false,
+          "synchronization_domain": false,
+          "topology_reference": false,
+          "holdover_test_reference": false
+        },
+        "dropout_recovery_evidence": {
+          "sensor_bus_loss_reference": false,
+          "control_link_loss_reference": false,
+          "io_rack_power_cycle_reference": false,
+          "controller_restart_reference": false,
+          "feedback_disagreement_reference": false,
+          "manual_rearm_reference": false
+        }
+      },
+      "dual_channel_emergency_stop_checks": {
+        "channel_a_wiring_reference": false,
+        "channel_b_wiring_reference": false,
+        "safety_relay_reference": false,
+        "independent_power_reference": false,
+        "manual_reset_key_reference": false,
+        "channel_independence_test_reference": false,
+        "one_out_of_two_trip_verified": false,
+        "automatic_reset_disabled": false
+      },
+      "required_witnessed_test_cases": [
+        "nominal_closed_loop",
+        "clock_offset_fault",
+        "execution_deadline_overrun",
+        "sensor_link_dropout",
+        "command_link_dropout",
+        "io_rack_power_loss",
+        "controller_restart",
+        "manual_takeover",
+        "estop_channel_a",
+        "estop_channel_b",
+        "dual_channel_estop_reset",
+        "feedback_disagreement"
+      ],
+      "witnessed_test_case_checks": {
+        "nominal_closed_loop": false,
+        "clock_offset_fault": false,
+        "execution_deadline_overrun": false,
+        "sensor_link_dropout": false,
+        "command_link_dropout": false,
+        "io_rack_power_loss": false,
+        "controller_restart": false,
+        "manual_takeover": false,
+        "estop_channel_a": false,
+        "estop_channel_b": false,
+        "dual_channel_estop_reset": false,
+        "feedback_disagreement": false
+      }
+    },
+    "site_and_test_evidence": {
+      "passed": false,
+      "site_checks": {
+        "site_name": false,
+        "location": false,
+        "operator_organization": false,
+        "responsible_engineer": false,
+        "installation_record_reference": false,
+        "network_diagram_reference": false,
+        "power_and_ups_test_reference": false
+      },
+      "evidence_checks": {
+        "sensor_calibration_reference": false,
+        "actuator_calibration_reference": false,
+        "physical_hil_raw_log_reference": false,
+        "fault_injection_report_reference": false,
+        "manual_override_test_reference": false,
+        "emergency_stop_test_reference": false,
+        "independent_witness_name": false,
+        "independent_witness_organization": false,
+        "signed_acceptance_record_reference": false,
+        "physical_hil_raw_log_sha256": false
+      },
+      "standards_review_checks": {
+        "mapping_id": true,
+        "qualified_assessor_name": false,
+        "assessor_organization": false,
+        "review_record_reference": false,
+        "administration_or_class_reference": false
+      }
+    },
+    "standards_mapping": {
+      "mapping_id": "simulator_standards_mapping_v1",
+      "schema_valid": true,
+      "requirement_count": 13,
+      "status_counts": {
+        "BLOCKED_EXTERNAL_VALIDATION": 1,
+        "BLOCKED_FUNCTIONAL_SCOPE": 3,
+        "BLOCKED_NO_PHYSICAL_INSTALLATION": 1,
+        "NOT_ASSESSED_BY_DNV": 1,
+        "NOT_CERTIFIED": 1,
+        "PARTIAL_SOFTWARE_EVIDENCE": 6
+      },
+      "open_or_partial_count": 13,
+      "certification_claim_allowed": false,
+      "external_assessor_required": true,
+      "boundary": "This file is a traceability and gap-routing aid, not a clause interpretation, approval, Statement of Compliance or certification."
+    },
+    "authority_request_detected": false,
+    "physical_hil_verified": false,
+    "site_delivery_ready": false,
+    "certified": false,
+    "production_authority": false,
+    "external_authentication_required": true,
+    "boundary": "The evaluator checks completeness, ranges and references only. It cannot authenticate hardware, calibration, witnesses, signatures, an Administration/class decision or a physical test, so it never declares physical HIL verified, site delivery ready, certified or production-authorized."
+  },
+  "refusal_gate_passed": true,
+  "claims": {
+    "software_hil_loopback_verified": true,
+    "physical_hil_verified": false,
+    "site_delivery_ready": false,
+    "stcw_approved": false,
+    "dnv_certified": false,
+    "production_authority": false
+  },
+  "boundary": "Readiness routing and anti-overclaim evidence only; physical installation and external assessment remain blocked.",
+  "inputs_sha256": {
+    "data/verification/physical_bridge_hil_manifest.template.json": "599b0fc2641212dd61069b0bb04903a26fb631c5f3165239499f04a02220906c",
+    "data/verification/simulator_standards_mapping_v1.json": "16c60c928b07e761309de2822893b9aa88923bf0d7b2878f41b0f8275b3db2de",
+    "data/verification/physical_hil_runtime_profile_v1.json": "fb06736ebd930672abadf906a8a1ea6a638a5857c068e06be291218fdb57da48",
+    "data/verification/physical_hil_witnessed_test_csv_template.csv": "b13659c422ce21671a401f02c132e889e95a6861e1c1bacd0daa9280d15900ce"
+  },
+  "generated_at_utc": "2026-08-28T13:33:44.342420+00:00"
+}

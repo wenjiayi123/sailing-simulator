@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <title>Project-authored sailing simulator icon</title>
+  <rect x="2" y="2" width="124" height="124" rx="22" fill="#061a2a" stroke="#58e6ff" stroke-width="4"/>
+  <circle cx="64" cy="64" r="43" fill="none" stroke="#1e6e8f" stroke-width="2"/>
+  <path d="M64 17v18M64 93v18M17 64h18M93 64h18" stroke="#63eaff" stroke-width="3"/>
+  <path d="M32 77h64L84 94H44z" fill="#0d7899" stroke="#a1f4ff" stroke-width="3"/>
+  <path d="M55 42h18v35H55zM43 55h42v13H43z" fill="#d8fbff" stroke="#5adff3" stroke-width="2"/>
+  <path d="M64 24l6 12H58z" fill="#7dffb6"/>
+</svg>

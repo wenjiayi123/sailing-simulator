@@ -1,0 +1,10 @@
+{
+  "schema_version": "cyber_range_signed_update_signature_v1",
+  "update_id": "CYBER-RANGE-UPDATE-2026-01",
+  "signature_algorithm": "RSA_PKCS1_V1_5_SHA256",
+  "signature_base64": "siXNoUoPlLTqzKHrN61JstEF2zS9h2f0NNYPQiPitoqXnV4TkXz/d43pliive6zNsq+R6X1ByoB35c/XUykjsKkhh7nPmH6SYOQ/m4736N1FsMUQoYwy8vcIzFkTp26ry/VBPj+s2UeSUMqk+HKWOr/Y5YnhzquetXJYwvsHumSeW8ZeEiUbyaTDDTxhPuh6ug8jSZzISL6DlMi8bUFQ9S5ADPi1ECl+2+DPXUqZTsFvamPoBmo+juALDmIk8eBBqAxTM1zoBPq14vMngYcpQsk64143HpTacPb4sU+OVirYb6jzbQ1Hkua3Y0xBPjLyCmo444OUw+PLoTHdvo7Akg==",
+  "private_key_present_in_repository": false,
+  "hardware_backed_key": false,
+  "production_signing_key": false,
+  "boundary": "Offline signed-update verification fixture; the private key was ephemeral and is not included."
+}

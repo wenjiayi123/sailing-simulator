@@ -18,6 +18,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.ship_assurance.colreg import run_scenario_catalog
+from tools.ship_assurance.colreg_complex import run_complex_colreg_catalog
 from tools.ship_assurance.dynamics import DynamicsConfig, run_dynamics_acceptance
 from tools.ship_assurance.hil import run_hil_loopback_campaign
 from tools.ship_assurance.environment import run_assured_environment_smoke
@@ -26,6 +27,8 @@ from tools.ship_assurance.sea_trial import run_sea_trial_dry_run
 
 DYNAMICS = ROOT / "data/verification/vessel_dynamics_reference_v1.json"
 COLREG = ROOT / "data/verification/colreg_encounter_catalog_v1.json"
+COLREG_COMPLEX = ROOT / "data/verification/colreg_complex_scenario_catalog_v2.json"
+LOCAL_RULES = ROOT / "data/verification/local_navigation_rules_template_v1.json"
 HIL = ROOT / "data/verification/hil_loopback_profile_v1.json"
 SEA_TRIAL = ROOT / "data/verification/sea_trial_protocol_v1.json"
 REPORT = ROOT / "reports/maritime_assurance_v1.json"
@@ -33,12 +36,15 @@ MARKDOWN = ROOT / "reports/maritime_assurance_v1.md"
 EVIDENCE_INPUTS = (
     DYNAMICS,
     COLREG,
+    COLREG_COMPLEX,
+    LOCAL_RULES,
     HIL,
     SEA_TRIAL,
     ROOT / "tools/ship_assurance/dynamics.py",
     ROOT / "tools/ship_assurance/__init__.py",
     ROOT / "tools/ship_assurance/environment.py",
     ROOT / "tools/ship_assurance/colreg.py",
+    ROOT / "tools/ship_assurance/colreg_complex.py",
     ROOT / "tools/ship_assurance/hil.py",
     ROOT / "tools/ship_assurance/sea_trial.py",
     ROOT / "tools/run_maritime_assurance.py",
@@ -99,17 +105,21 @@ def _comparison_differences(
 def build_payload() -> dict[str, Any]:
     dynamics_input = _read(DYNAMICS)
     colreg_input = _read(COLREG)
+    colreg_complex_input = _read(COLREG_COMPLEX)
+    local_rules_input = _read(LOCAL_RULES)
     hil_input = _read(HIL)
     sea_trial_input = _read(SEA_TRIAL)
     dynamics = run_dynamics_acceptance(DynamicsConfig.from_mapping(dynamics_input))
     connected_environment = run_assured_environment_smoke(dynamics_input)
     colreg = run_scenario_catalog(colreg_input)
+    colreg_complex = run_complex_colreg_catalog(colreg_complex_input, local_rules_input)
     hil = run_hil_loopback_campaign(hil_input)
     sea_trial = run_sea_trial_dry_run(sea_trial_input)
     software_passed = bool(
         dynamics["passed"]
         and connected_environment["passed"]
         and colreg["passed"]
+        and colreg_complex["passed"]
         and hil["passed"]
         and sea_trial["evidence_completeness_refusal_gate_passed"]
     )
@@ -129,6 +139,8 @@ def build_payload() -> dict[str, Any]:
             "three_dof_rl_environment_connected": bool(connected_environment["passed"]),
             "named_vessel_dynamics_calibrated": False,
             "colreg_scenario_regression_verified": bool(colreg["passed"]),
+            "colreg_complex_scenario_regression_verified": bool(colreg_complex["passed"]),
+            "official_local_rules_connected": local_rules_input.get("official_authorization_verified") is True,
             "colreg_certified": False,
             "software_hil_loopback_verified": bool(hil["passed"]),
             "physical_hil_verified": False,
@@ -138,9 +150,10 @@ def build_payload() -> dict[str, Any]:
         "dynamics": dynamics,
         "connected_environment": connected_environment,
         "colreg": colreg,
+        "colreg_complex": colreg_complex,
         "hil": hil,
         "sea_trial": sea_trial,
-        "boundary": "PASS means the new software verification and anti-overclaim gates executed successfully. It does not mean vessel calibration, COLREG certification, physical HIL, sea trial or production authorization.",
+        "boundary": "PASS means the software verification and anti-overclaim gates executed successfully. Complex COLREG scenarios use an authored local-rule template; PASS does not mean official local rules, vessel calibration, COLREG certification, physical HIL, sea trial or production authorization.",
     }
 
 
@@ -148,6 +161,7 @@ def _markdown(payload: dict[str, Any]) -> str:
     dynamics = payload["dynamics"]
     connected = payload["connected_environment"]
     colreg = payload["colreg"]
+    colreg_complex = payload["colreg_complex"]
     hil = payload["hil"]
     sea = payload["sea_trial"]
     overall = "PASS" if payload["overall"]["software_assurance_passed"] else "FAIL"
@@ -164,7 +178,7 @@ This report adds executable 3-DOF dynamics checks, traceable COLREG scenario reg
 | 模块 / Module | 已完成的软件证据 / Completed software evidence | 结果 / Result | 仍需外部证据 / External evidence still required |
 |---|---|---:|---|
 | 动力学 / Dynamics | 3-DOF surge-sway-yaw、附加质量、非线性阻尼、桨/舵执行器、RK4；{dynamics['passed_count']}/{dynamics['check_count']} checks；{connected['observation_size']}-D RL 环境连接 | {'PASS' if dynamics['passed'] and connected['passed'] else 'FAIL'} | 指定船舶辨识、zig-zag、回转圈、停船、装载工况标定；按新合同重新训练 |
-| COLREG | {colreg['scenario_passed_count']}/{colreg['scenario_count']} scenarios；{colreg['action_case_passed_count']}/{colreg['action_case_count']} positive/negative action cases | {'PASS' if colreg['passed'] else 'FAIL'} | 多船/复杂水域验证、主管机关/船级/法律审查 |
+| COLREG | V1 {colreg['scenario_passed_count']}/{colreg['scenario_count']} 场景、{colreg['action_case_passed_count']}/{colreg['action_case_count']} 动作案例；V2 {colreg_complex['scenario_passed_count']}/{colreg_complex['scenario_count']} 复杂场景、{colreg_complex['case_matched_count']}/{colreg_complex['case_count']} 动作/信号案例 | {'PASS' if colreg['passed'] and colreg_complex['passed'] else 'FAIL'} | 正式地方规则、主管机关/船级/法律审查与认证 |
 | HIL | UDP JSON 完整性、NMEA 校验、时效/顺序/限幅、watchdog、drop/corrupt/replay/stale/range/session fault injection 和授权重启 | {'PASS' if hil['passed'] else 'FAIL'} | 目标控制器、真实传感/执行 I/O、独立急停、WCET/时钟、见证测试 |
 | 海试 / Sea trial | 协议、遥测判据和“仿真指标再好也不得标记海试完成”的证据完整性拒绝门禁 | {'PASS' if sea['evidence_completeness_refusal_gate_passed'] else 'FAIL'} | 船舶、许可、船长/操作员、独立见证、校准、风险评估、物理 HIL、原始日志与签字记录 |
 
@@ -172,6 +186,7 @@ This report adds executable 3-DOF dynamics checks, traceable COLREG scenario reg
 
 - `named_vessel_dynamics_calibrated=false`
 - `colreg_certified=false`
+- `official_local_rules_connected=false`
 - `physical_hil_verified=false`
 - `real_vessel_sea_trial_completed=false`
 - `production_authority=false`
@@ -220,6 +235,10 @@ def verify() -> int:
         errors.append("physical HIL boundary changed")
     if recorded.get("claim_matrix", {}).get("real_vessel_sea_trial_completed") is not False:
         errors.append("sea-trial boundary changed")
+    if recorded.get("claim_matrix", {}).get("official_local_rules_connected") is not False:
+        errors.append("official local-rule boundary changed")
+    if recorded.get("colreg_complex", {}).get("passed") is not True:
+        errors.append("complex COLREG regression is not PASS")
     if recorded.get("overall", {}).get("production_authority") is not False:
         errors.append("production authority must remain false")
     if errors:

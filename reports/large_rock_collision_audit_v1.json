@@ -1,109 +1,13 @@
 {
-  "errors": [
-    "released cargo trajectory is blocked by one or more large-rock physics shapes"
-  ],
+  "errors": [],
   "format": "large_rock_collision_audit_v1",
   "large_rock_count": 32,
-  "passed": false,
+  "passed": true,
   "physics_guard_center_hits": 3,
-  "preserved_demo_encounter_count": 1,
-  "preserved_demo_encounters": [
-    {
-      "collision_aabb": {
-        "end": {
-          "x": 399.213195800781,
-          "y": -23.1014099121094,
-          "z": 61.3660736083984
-        },
-        "position": {
-          "x": 189.510284423828,
-          "y": -142.052444458008,
-          "z": -142.398422241211
-        },
-        "size": {
-          "x": 209.702911376953,
-          "y": 118.951034545898,
-          "z": 203.764495849609
-        }
-      },
-      "collision_overlaps_waterline": true,
-      "collision_shape_count": 2,
-      "global_position": {
-        "x": 302.138336181641,
-        "y": -25.1293964385986,
-        "z": -37.8135871887207
-      },
-      "local_position": {
-        "x": 301.781707763672,
-        "y": -24.944450378418,
-        "z": -37.7665710449219
-      },
-      "minimum_trajectory_distance_to_collision_aabb_m": 0.0,
-      "minimum_trajectory_distance_to_visual_aabb_m": 0.0,
-      "name": "GroundedPlate_06_TwistedButtressMesa",
-      "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set/GroundedPlate_06_TwistedButtressMesa",
-      "preserved_demo_encounter": true,
-      "preserved_reason": "用户确认该东侧巨岩由策略近距离避让，保留以展示真实转向操作",
-      "raw_trajectory_envelope_overlap": true,
-      "relocated_for_crossing_fix": false,
-      "render_surface_crossing": true,
-      "replay_guard_collision_shape_count": 2,
-      "trajectory_conflict": false,
-      "visual_aabb": {
-        "end": {
-          "x": 396.840148925781,
-          "y": -22.6470489501953,
-          "z": 60.2724761962891
-        },
-        "position": {
-          "x": 197.052673339844,
-          "y": -142.052444458008,
-          "z": -138.922561645508
-        },
-        "size": {
-          "x": 199.787475585938,
-          "y": 119.405395507812,
-          "z": 199.195037841797
-        }
-      },
-      "visual_overlaps_waterline": true
-    }
-  ],
-  "released_trajectory_replay_sweep_block_count": 2,
-  "released_trajectory_replay_sweep_blocks": [
-    {
-      "collider": "GroundedPlate_06_TwistedButtressMesa",
-      "from": {
-        "x": 224.960983276367,
-        "z": -33.2153587341309
-      },
-      "hit": {
-        "x": 224.833923339844,
-        "z": -34.1380500793457
-      },
-      "sample_index": 439,
-      "to": {
-        "x": 224.696151733398,
-        "z": -35.1384582519531
-      }
-    },
-    {
-      "collider": "GroundedPlate_06_TwistedButtressMesa",
-      "from": {
-        "x": 228.006652832031,
-        "z": -29.5534496307373
-      },
-      "hit": {
-        "x": 227.755798339844,
-        "z": -31.376501083374
-      },
-      "sample_index": 1138,
-      "to": {
-        "x": 227.734649658203,
-        "z": -31.5301704406738
-      }
-    }
-  ],
+  "preserved_demo_encounter_count": 0,
+  "preserved_demo_encounters": [],
+  "released_trajectory_replay_sweep_block_count": 0,
+  "released_trajectory_replay_sweep_blocks": [],
   "required_demo_clearance_meters": 18.0,
   "rocks": [
     {
@@ -1909,17 +1813,17 @@
     {
       "collision_aabb": {
         "end": {
-          "x": 399.213195800781,
+          "x": 717.431518554688,
           "y": -23.1014099121094,
-          "z": 61.3660736083984
+          "z": 549.132629394531
         },
         "position": {
-          "x": 189.510284423828,
+          "x": 507.728576660156,
           "y": -142.052444458008,
-          "z": -142.398422241211
+          "z": 345.368133544922
         },
         "size": {
-          "x": 209.702911376953,
+          "x": 209.702941894531,
           "y": 118.951034545898,
           "z": 203.764495849609
         }
@@ -1927,41 +1831,41 @@
       "collision_overlaps_waterline": true,
       "collision_shape_count": 2,
       "global_position": {
-        "x": 302.138336181641,
+        "x": 620.356628417969,
         "y": -25.1293964385986,
-        "z": -37.8135871887207
+        "z": 449.952972412109
       },
       "local_position": {
-        "x": 301.781707763672,
+        "x": 620.0,
         "y": -24.944450378418,
-        "z": -37.7665710449219
+        "z": 450.0
       },
-      "minimum_trajectory_distance_to_collision_aabb_m": 0.0,
-      "minimum_trajectory_distance_to_visual_aabb_m": 0.0,
+      "minimum_trajectory_distance_to_collision_aabb_m": 398.172637939453,
+      "minimum_trajectory_distance_to_visual_aabb_m": 406.389282226562,
       "name": "GroundedPlate_06_TwistedButtressMesa",
       "path": "/root/Main/NavigationEnvironment/TerrainUpperWalkableRegions/FloatingPlates/GroundedRockPlate_Comparison_Set/GroundedPlate_06_TwistedButtressMesa",
-      "preserved_demo_encounter": true,
-      "preserved_reason": "用户确认该东侧巨岩由策略近距离避让，保留以展示真实转向操作",
-      "raw_trajectory_envelope_overlap": true,
-      "relocated_for_crossing_fix": false,
-      "render_surface_crossing": true,
+      "preserved_demo_encounter": false,
+      "preserved_reason": "",
+      "raw_trajectory_envelope_overlap": false,
+      "relocated_for_crossing_fix": true,
+      "render_surface_crossing": false,
       "replay_guard_collision_shape_count": 2,
       "trajectory_conflict": false,
       "visual_aabb": {
         "end": {
-          "x": 396.840148925781,
+          "x": 715.058410644531,
           "y": -22.6470489501953,
-          "z": 60.2724761962891
+          "z": 548.039001464844
         },
         "position": {
-          "x": 197.052673339844,
+          "x": 515.27099609375,
           "y": -142.052444458008,
-          "z": -138.922561645508
+          "z": 348.843994140625
         },
         "size": {
-          "x": 199.787475585938,
+          "x": 199.787414550781,
           "y": 119.405395507812,
-          "z": 199.195037841797
+          "z": 199.195007324219
         }
       },
       "visual_overlaps_waterline": true

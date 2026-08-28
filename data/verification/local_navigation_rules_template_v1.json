@@ -1,0 +1,25 @@
+{
+  "schema_version": "local_navigation_rules_v1",
+  "source_class": "SIMULATOR_AUTHORED_EXERCISE_RULES",
+  "official_authorization_verified": false,
+  "effective_at_utc": null,
+  "issuer": null,
+  "areas": [
+    {
+      "area_id": "SIM-HARBOR-ALPHA",
+      "name": "仿真港区甲",
+      "geometry_authority": "SIMULATOR_EXERCISE_ONLY",
+      "rules": {
+        "maximum_speed_knots": 6.0,
+        "overtaking_prohibited": true,
+        "reporting_required": true,
+        "rule_ids": [
+          "SIM-HARBOR-ALPHA-SPEED",
+          "SIM-HARBOR-ALPHA-NO-OVERTAKING",
+          "SIM-HARBOR-ALPHA-REPORTING"
+        ]
+      }
+    }
+  ],
+  "boundary": "This is an authored simulator exercise template, not an official port direction, notice to mariners, VTS instruction or navigation authority. Replace it with an authorized, versioned local source before any field claim."
+}

@@ -1,0 +1,12 @@
+User-Authorized Public Redistribution Notice
+
+The project owner supplied the cargo-circuit held-out-test screen recording and
+explicitly authorized its public redistribution with this project. The poster
+and animated preview listed in the visual asset release ledger are derived from
+that recording and may be redistributed with the project for demonstration,
+documentation, education, research, and portfolio use.
+
+This permission applies only to the exact files and SHA-256 digests recorded in
+data/verification/visual_asset_release_manifest_v1.json. It does not grant a
+license to extract, reuse, or redistribute any unlisted legacy source asset that
+may be visible in a rendered frame. No endorsement is implied.

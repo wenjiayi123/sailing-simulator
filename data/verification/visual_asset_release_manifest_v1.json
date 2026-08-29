@@ -49,7 +49,6 @@
   "excluded_local_assets": [
     {"path_prefix": "草稿/", "reason": "local character concept drafts are outside the public release"},
     {"path_prefix": "characters/", "reason": "legacy character provenance is incomplete"},
-    {"path": "上-右上.png", "reason": "legacy character provenance is incomplete"},
     {"path": "icon.svg", "reason": "legacy icon provenance is incomplete"},
     {"path": "assets/art/terrain/premium_reference_cliff_rock_32471782690108.jpg", "reason": "reference photograph provenance is incomplete"},
     {"path_prefix": "assets/audio/sfx/", "reason": "legacy audio provenance is incomplete"},

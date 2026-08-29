@@ -25,6 +25,29 @@ FORBIDDEN_TERMS = (
     "".join(chr(codepoint) for codepoint in (0x9762, 0x8BD5)),
     "".join(chr(codepoint) for codepoint in (0x6C42, 0x804C)),
 )
+FORBIDDEN_FILENAME_TERMS = (
+    "录制台词",
+    "演示台词",
+    "演示脚本",
+    "demo_script",
+    "recording_script",
+    "个人简历",
+    "求职材料",
+    "个人自传",
+    "内部流转",
+)
+ROOT_MEDIA_SUFFIXES = (
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".webp",
+    ".gif",
+    ".png.import",
+    ".jpg.import",
+    ".jpeg.import",
+    ".webp.import",
+    ".gif.import",
+)
 FORBIDDEN_TERM_RE = re.compile(
     "(?:" + "|".join(re.escape(value) for value in FORBIDDEN_TERMS) + ")",
     re.IGNORECASE,
@@ -66,6 +89,11 @@ def main() -> int:
     for path in _publishable_files():
         relative = path.relative_to(ROOT).as_posix()
         is_scanner = path.resolve() == scanner_path
+        lowered_relative = relative.casefold()
+        if any(term.casefold() in lowered_relative for term in FORBIDDEN_FILENAME_TERMS):
+            findings.append((relative, 0, "private-material filename"))
+        if "/" not in relative and lowered_relative.endswith(ROOT_MEDIA_SUFFIXES):
+            findings.append((relative, 0, "root-level personal-media risk"))
         if not is_scanner and FORBIDDEN_TERM_RE.search(relative):
             findings.append((relative, 0, "forbidden filename"))
         content = _text(path)

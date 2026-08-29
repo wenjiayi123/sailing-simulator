@@ -73,8 +73,7 @@
     "characters/跳跃1右上.png",
     "characters/跳跃1右下.png",
     "characters/跳跃下和跟头下.png",
-    "icon.svg",
-    "上-右上.png"
+    "icon.svg"
   ],
   "included_assets": [
     {
@@ -495,15 +494,15 @@
     }
   ],
   "input_sha256": {
-    "media_inventory": "1035b158065f4de07e43c6a822848c3a8993905ce6f81a031fd1fe1a1f12201a",
+    "media_inventory": "12b34f9975297f9dee3896c3efc04f335b447c6321c04521be9deebdb38c2ef0",
     "runtime_reference_set": "e23d1401282904652b71b480988495d3cf881dceecb0b8984b8756065f47e084",
-    "visual_asset_release_manifest_v1.json": "37d1a0066673a817be6013d9b8bb4edf01005b603dc87f0d433eb2737aacce13"
+    "visual_asset_release_manifest_v1.json": "0ef07c41d43ec9000064a71fd0e7a431abfb6b74facc1f87f8d52fef030b153b"
   },
   "runtime_excluded_references": [],
   "schema": "full-visual-asset-release-audit.v1",
   "status": "FULL_VISUAL_PACKAGE_READY",
   "summary": {
-    "excluded_local_asset_file_count": 55,
+    "excluded_local_asset_file_count": 54,
     "included_asset_count": 36,
     "passed": true,
     "runtime_excluded_reference_count": 0,

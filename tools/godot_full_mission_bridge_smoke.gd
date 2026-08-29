@@ -68,7 +68,7 @@ func _run() -> void:
 	var initial_claims := initial.get("claims", {}) as Dictionary
 	_record("external_claims_fail_closed", initial_claims.get("type_approved_bridge_equipment") == false and initial_claims.get("real_gmdss_transmission") == false and initial_claims.get("physical_360_bridge_verified") == false and initial_claims.get("certified_instructor_available") == false and initial_claims.get("approved_training_course") == false and initial.get("production_authority") == false, initial_claims)
 	var preservation := initial.get("preservation_boundary", {}) as Dictionary
-	_record("motion_policy_and_rl_contracts_preserved", preservation.get("ship_motion_model_modified") == false and preservation.get("observation_space_modified") == false and preservation.get("action_space_modified") == false and preservation.get("reward_function_modified") == false and preservation.get("existing_policy_modified") == false and preservation.get("training_performed") == false, preservation)
+	_record("motion_policy_and_rl_contracts_preserved", preservation.get("base_ship_motion_model_replaced") == false and preservation.get("advanced_task_hydrodynamic_extension_enabled") == true and preservation.get("advanced_task_hydrodynamic_extension_scope") == "five_advanced_mission_scenarios_only" and preservation.get("observation_space_modified") == false and preservation.get("action_space_modified") == false and preservation.get("reward_function_modified") == false and preservation.get("existing_policy_modified") == false and preservation.get("training_performed") == false, preservation)
 
 	var predeparture := bridge.call("run_predeparture_check") as Dictionary
 	_record("predeparture_check_passes_without_arming", String(predeparture.get("status", "")) == "PASS" and bool(predeparture.get("detail", {}).get("control_remains_disarmed", false)), predeparture)
@@ -142,7 +142,7 @@ func _run() -> void:
 		confirm_button.pressed.emit()
 	var panel_snapshot := panel.call("get_acceptance_snapshot") as Dictionary
 	_record("panel_actions_reach_runtime_suite", String(panel_snapshot.get("last_receipt", {}).get("status", "")) == "TRANSMITTED_SIMULATION_ONLY" and (panel_snapshot.get("communications", {}).get("calls", []) as Array).size() >= 5, panel_snapshot.get("last_receipt"))
-	_record("panel_acceptance_boundaries", panel_snapshot.get("training_performed") == false and panel_snapshot.get("ship_motion_model_modified") == false and panel_snapshot.get("existing_policy_modified") == false and panel_snapshot.get("physical_full_mission_bridge_verified") == false and panel_snapshot.get("production_authority") == false, panel_snapshot)
+	_record("panel_acceptance_boundaries", panel_snapshot.get("training_performed") == false and panel_snapshot.get("base_ship_motion_model_replaced") == false and panel_snapshot.get("advanced_task_hydrodynamic_extension_enabled") == true and panel_snapshot.get("existing_policy_modified") == false and panel_snapshot.get("physical_full_mission_bridge_verified") == false and panel_snapshot.get("production_authority") == false, panel_snapshot)
 	_finish(before_hashes)
 
 
@@ -158,7 +158,8 @@ func _finish(before_hashes: Dictionary) -> void:
 		"checks": _checks,
 		"errors": _errors,
 		"training_performed": false,
-		"ship_motion_model_modified": false,
+		"base_ship_motion_model_replaced": false,
+		"advanced_task_hydrodynamic_extension_enabled": true,
 		"observation_space_modified": false,
 		"action_space_modified": false,
 		"reward_function_modified": false,

@@ -31,6 +31,7 @@ const VISUAL_SECTORS := [
 @export var execution_suite_path: NodePath = NodePath("../ShipExecutionControlSuite")
 @export var collaboration_controller_path: NodePath = NodePath("../ShipBridgeTeamCollaborationController")
 @export var instructor_controller_path: NodePath = NodePath("../ShipInstructorExerciseController")
+@export var advanced_mission_realism_path: NodePath = NodePath("../ShipAdvancedMissionRealismController")
 
 var _player: Node
 var _equipment_suite: Node
@@ -38,6 +39,7 @@ var _communication_suite: Node
 var _execution_suite: Node
 var _collaboration_controller: Node
 var _instructor_controller: Node
+var _advanced_mission_realism: Node
 var _profile: Dictionary = {}
 var _current_visual_sector := "FORWARD"
 var _visited_visual_sectors: Dictionary = {}
@@ -81,6 +83,8 @@ func run_predeparture_check() -> Dictionary:
 	var equipment := _component_snapshot(_equipment_suite, "get_bridge_snapshot")
 	var communication := _component_snapshot(_communication_suite, "get_communication_snapshot")
 	var execution := _component_snapshot(_execution_suite, "get_execution_snapshot")
+	var realism := _component_snapshot(_advanced_mission_realism, "get_realism_snapshot")
+	var realism_receipt: Dictionary = {}
 	if equipment.is_empty():
 		gaps.append("NAVIGATION_EQUIPMENT_UNAVAILABLE")
 	else:
@@ -102,9 +106,18 @@ func run_predeparture_check() -> Dictionary:
 		gaps.append("EXECUTION_CONTROL_UNAVAILABLE")
 	elif bool((execution.get("emergency_stop", {}) as Dictionary).get("latched", false)):
 		gaps.append("EMERGENCY_STOP_LATCHED")
+	if bool(realism.get("active", false)):
+		if _advanced_mission_realism == null or not _advanced_mission_realism.has_method("run_predeparture_check"):
+			gaps.append("ADVANCED_MISSION_REALISM_CHECK_UNAVAILABLE")
+		else:
+			realism_receipt = _advanced_mission_realism.call("run_predeparture_check", "full_mission_bridge") as Dictionary
+			if String(realism_receipt.get("status", "")) != "PASS":
+				gaps.append("ADVANCED_MISSION_REALISM_CHECK_REJECTED")
 	var passed := gaps.is_empty()
 	return _append_receipt("predeparture_check", "FULL_MISSION_BRIDGE", "PASS" if passed else "REJECTED", {
 		"gaps": gaps,
+		"advanced_mission_realism": realism,
+		"advanced_mission_realism_receipt": realism_receipt,
 		"control_remains_disarmed": not bool(execution.get("armed", false)),
 		"production_authority": false,
 	})
@@ -127,7 +140,7 @@ func set_visual_sector(sector_id: String) -> Dictionary:
 	return _append_receipt("set_visual_sector", _current_visual_sector, "ACCEPTED_VISUAL_ONLY", {
 		"bearing_degrees": bearing,
 		"camera_only": true,
-		"ship_motion_model_modified": false,
+		"visual_action_modified_ship_motion_model": false,
 	})
 
 
@@ -209,12 +222,14 @@ func _rebuild_snapshot() -> void:
 	var execution := _component_snapshot(_execution_suite, "get_execution_snapshot")
 	var collaboration := _component_snapshot(_collaboration_controller, "get_collaboration_snapshot")
 	var instructor := _component_snapshot(_instructor_controller, "get_exercise_snapshot")
+	var realism := _component_snapshot(_advanced_mission_realism, "get_realism_snapshot")
 	var component_presence := {
 		"navigation_equipment": not equipment.is_empty(),
 		"gmdss_communications": not communication.is_empty(),
 		"execution_control": not execution.is_empty(),
 		"multi_station_collaboration": not collaboration.is_empty(),
 		"instructor_exercise": not instructor.is_empty(),
+		"advanced_mission_realism": _advanced_mission_realism != null and is_instance_valid(_advanced_mission_realism),
 	}
 	var software_functional := component_presence.values().all(func(value: Variant) -> bool: return bool(value)) and VISUAL_SECTORS.size() == 8
 	_snapshot = {
@@ -226,6 +241,7 @@ func _rebuild_snapshot() -> void:
 		"execution_control": execution,
 		"collaboration": collaboration,
 		"instructor_exercise": instructor,
+		"advanced_mission_realism": realism,
 		"visual": {
 			"mode": "SOFTWARE_ORBIT_SECTORS",
 			"current_sector": _current_visual_sector,
@@ -271,7 +287,7 @@ func _append_receipt(action: String, subject: String, status: String, detail: Di
 		"status": status,
 		"detail": detail.duplicate(true),
 		"previous_receipt_hash": _previous_receipt_hash,
-		"ship_motion_model_modified": false,
+		"receipt_action_modified_ship_motion_model": false,
 		"existing_policy_modified": false,
 		"production_authority": false,
 	}
@@ -292,6 +308,7 @@ func _resolve_components() -> void:
 	_execution_suite = _resolve(_execution_suite, execution_suite_path, &"ship_execution_control_suite")
 	_collaboration_controller = _resolve(_collaboration_controller, collaboration_controller_path, &"ship_bridge_team_collaboration_controller")
 	_instructor_controller = _resolve(_instructor_controller, instructor_controller_path, &"ship_instructor_exercise_controller")
+	_advanced_mission_realism = _resolve(_advanced_mission_realism, advanced_mission_realism_path, &"ship_advanced_mission_realism_controller")
 
 
 func _resolve(current: Node, path: NodePath, group_name: StringName) -> Node:

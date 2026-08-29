@@ -61,19 +61,19 @@
 					"res://data/rl/long_beach_ais_port_ops_benchmark_v2.json": "1d676e7446f22206f6113777524d46724545e58e55c1df73a9d359795a415a1f",
 					"res://data/rl/port_ops_safety_supervisor_v3.json": "1edee032e44132c4c15ade0de73ff3f0ba3ed9b2a25206faa0c6ca8a50f26de3",
 					"res://data/verification/catamaran_usv_dynamics_reference_v2.json": "d9dbd9fd61827952b50194f10e1a7331f7b154b7b7a69805de726e5bfd648c8f",
-					"res://player.gd": "a031fc53409eaca87af860536a615c047f51260a8c60ad65579c5cd8138caa6a",
+					"res://player.gd": "2b744d77774f6f9c9bc376dc12dc9c64e894d6331d2f6a074828a3191c525faf",
 					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
 					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
-					"res://scripts/physics/catamaran_three_dof_dynamics.gd": "4ea917668478d011dde89547da865b00e1600c7b5263c255fea8e846ea3321d2"
+					"res://scripts/physics/catamaran_three_dof_dynamics.gd": "2c3d2ba368e1d681d284278d1ee20b56d9f898009f5f00c3ec38618b59a7820e"
 				},
 				"before": {
 					"res://data/rl/long_beach_ais_port_ops_benchmark_v2.json": "1d676e7446f22206f6113777524d46724545e58e55c1df73a9d359795a415a1f",
 					"res://data/rl/port_ops_safety_supervisor_v3.json": "1edee032e44132c4c15ade0de73ff3f0ba3ed9b2a25206faa0c6ca8a50f26de3",
 					"res://data/verification/catamaran_usv_dynamics_reference_v2.json": "d9dbd9fd61827952b50194f10e1a7331f7b154b7b7a69805de726e5bfd648c8f",
-					"res://player.gd": "a031fc53409eaca87af860536a615c047f51260a8c60ad65579c5cd8138caa6a",
+					"res://player.gd": "2b744d77774f6f9c9bc376dc12dc9c64e894d6331d2f6a074828a3191c525faf",
 					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
 					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
-					"res://scripts/physics/catamaran_three_dof_dynamics.gd": "4ea917668478d011dde89547da865b00e1600c7b5263c255fea8e846ea3321d2"
+					"res://scripts/physics/catamaran_three_dof_dynamics.gd": "2c3d2ba368e1d681d284278d1ee20b56d9f898009f5f00c3ec38618b59a7820e"
 				}
 			},
 			"passed": true
@@ -138,7 +138,7 @@
 	},
 	"errors": [],
 	"existing_policy_changed": false,
-	"generated_at": "2026-08-28T13:34:05",
+	"generated_at": "2026-08-29T14:54:04",
 	"motion_model_changed": false,
 	"named_vessel_dynamics_calibrated": false,
 	"passed": true,

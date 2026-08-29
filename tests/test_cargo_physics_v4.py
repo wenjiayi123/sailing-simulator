@@ -20,6 +20,7 @@ from cargo_rl.catamaran_physics import TwinWaterjetCatamaran
 from cargo_rl.convergence_diagnostics import diagnose_nonconvergence
 from cargo_rl.physics_contract import validate_physics_training_contract
 from cargo_rl.physics_environment import CargoPhysicsV4Env
+from cargo_rl.physics_demonstration import physics_manual_helm
 from ship_rl.environment import load_experiment
 
 
@@ -154,6 +155,15 @@ class CargoPhysicsV4Tests(unittest.TestCase):
         for path, expected_sha in expected.items():
             self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), expected_sha)
 
+    def test_ladder_can_reuse_only_contract_checked_expert_caches(self) -> None:
+        source = (ROOT / "tools/run_cargo_physics_difficulty_ladder_v4.py").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn('"--expert-cache-source"', source)
+        self.assertIn("collector_contract_revalidation_required", source)
+        self.assertIn('"model_or_dagger_state_copied": False', source)
+        self.assertIn('if "contract" not in cached.files', source)
+
     def test_difficulty_ladder_is_monotonic_and_keeps_every_obstacle(self) -> None:
         levels = self.config["cargo_parameters"]["difficulty_ladder"]
         self.assertEqual([item["level"] for item in levels], [1, 2, 3, 4, 5, 6, 7, 8])
@@ -164,6 +174,110 @@ class CargoPhysicsV4Tests(unittest.TestCase):
         )
         self.assertEqual(self.config["cargo_parameters"]["curriculum_obstacles_enabled"], [True, True, True])
         self.assertEqual(self.config["environment_parameters"]["generated_traffic_count"], 6)
+
+    def test_physics_behavior_clone_targets_diagnosed_throttle_failure(self) -> None:
+        initialization = self.config["demonstration_initialization"]
+        self.assertGreaterEqual(
+            float(initialization["behavior_clone_throttle_weight"]),
+            float(initialization["behavior_clone_rudder_weight"]),
+        )
+        schedule = initialization["dagger_schedule"]
+        self.assertEqual(float(schedule[-1]["expert_action_fraction"]), 0.0)
+        self.assertEqual(float(schedule[-2]["expert_action_fraction"]), 0.0)
+        self.assertGreaterEqual(
+            int(initialization["dagger_latest_recovery_epochs"]), 24
+        )
+
+    def test_single_leg_expert_has_inertia_margin_beside_grounded_plate_06(self) -> None:
+        for task in self.dataset["splits"]["train"]:
+            bypasses = task["manual_bypasses"]
+            self.assertEqual(
+                bypasses[3],
+                [{"x": 380.0, "z": 360.0, "detail": "pre-turn west inertia margin"}],
+            )
+            self.assertEqual(
+                bypasses[6],
+                [
+                    {"x": -735.0, "z": 380.0, "detail": "west-channel north centreline"},
+                    {"x": -735.0, "z": 20.0, "detail": "west-channel rock abeam centreline"},
+                    {"x": -735.0, "z": -360.0, "detail": "west-channel south centreline"},
+                ],
+            )
+
+    def test_physics_expert_reduces_throttle_in_boundary_channel(self) -> None:
+        env = CargoPhysicsV4Env(
+            self.config,
+            self.dataset,
+            split="train",
+            discrete_actions=False,
+            max_steps=20,
+            seed=291222,
+            task_index=0,
+            render_mode=None,
+            curriculum_route_length=1,
+            curriculum_obstacles_enabled=True,
+            curriculum_randomization_enabled=False,
+            curriculum_random_segment=True,
+            curriculum_segment_index=7,
+        )
+        env.reset(options={"task_index": 0})
+        physical_action, _rudder, helm = physics_manual_helm(env, env.route[-1], 0.0)
+        self.assertLess(float(helm["boundary_clearance_meters"]), 75.0)
+        self.assertEqual(float(helm["inertia_throttle_cap"]), 0.35)
+        self.assertLessEqual(float(physical_action[0]), 0.35)
+        env.close()
+
+    def test_physics_expert_escapes_parallel_traffic_without_brake_chatter(self) -> None:
+        env = CargoPhysicsV4Env(
+            self.config,
+            self.dataset,
+            split="train",
+            discrete_actions=False,
+            max_steps=1600,
+            seed=320930,
+            task_index=1,
+            render_mode=None,
+            curriculum_route_length=2,
+            curriculum_obstacles_enabled=True,
+            curriculum_randomization_enabled=True,
+            curriculum_random_segment=True,
+            curriculum_segment_index=4,
+        )
+        observation, _info = env.reset(options={"task_index": 1})
+        target_index = 0
+        previous_rudder = 0.0
+        terminated = truncated = False
+        info = {}
+        escape_steps = 0
+        throttle_min = float(self.config["cargo_parameters"]["throttle_action_min"])
+        throttle_max = float(self.config["cargo_parameters"]["throttle_action_max"])
+        while not (terminated or truncated):
+            target = env.route[target_index]
+            if (
+                float(np.linalg.norm(np.asarray(target) - env.state[:2])) < 16.0
+                and target_index < len(env.route) - 1
+            ):
+                target_index += 1
+                target = env.route[target_index]
+            physical_action, previous_rudder, helm = physics_manual_helm(
+                env, target, previous_rudder
+            )
+            escape_steps += int(float(helm["low_speed_dynamic_escape"]) > 0.0)
+            normalized_throttle = 2.0 * (
+                (float(physical_action[0]) - throttle_min)
+                / max(throttle_max - throttle_min, 1e-6)
+            ) - 1.0
+            observation, _reward, terminated, truncated, info = env.step(
+                np.asarray(
+                    [np.clip(normalized_throttle, -1.0, 1.0), physical_action[1]],
+                    dtype=np.float32,
+                )
+            )
+        self.assertTrue(bool(info.get("is_success", False)))
+        self.assertEqual(int(info.get("collisions", 0)), 0)
+        self.assertLessEqual(env.steps, 1600)
+        self.assertGreater(escape_steps, 0)
+        env.close()
 
     def test_nonconvergence_diagnosis_covers_all_material_failure_families(self) -> None:
         report = diagnose_nonconvergence(

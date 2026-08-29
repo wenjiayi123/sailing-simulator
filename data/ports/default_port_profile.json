@@ -6,7 +6,15 @@
     "license": "same_as_project",
     "observed_port_data": false
   },
-  "scenario_order": ["open_water", "harbor"],
+  "scenario_order": [
+    "open_water",
+    "harbor",
+    "auto_berthing",
+    "auto_unberthing",
+    "narrow_channel_head_on",
+    "crossing_starboard",
+    "narrow_channel_overtaking"
+  ],
   "navigation_missions": [
     {
       "name": "开放水域巡航",
@@ -37,6 +45,82 @@
         {"x": -34.0, "z": -50.0}, {"x": 14.0, "z": -33.0},
         {"x": 58.0, "z": -10.0}, {"x": 82.0, "z": 30.0}
       ]
+    },
+    {
+      "name": "自动靠泊评测场",
+      "code": "AUTO-BERTHING-BENCHMARK",
+      "objective": "评测低速进靠、惯性横移抑制、最终船位和船首向对齐",
+      "scenario_key": "auto_berthing",
+      "loop": false,
+      "arrival_radius": 6.0,
+      "planned_speed_knots": 3.0,
+      "spawn": {"x": -142.0, "z": -112.0, "heading_degrees": 76.0},
+      "route": [
+        {"x": -112.0, "z": -96.0}, {"x": -72.0, "z": -70.0},
+        {"x": -28.0, "z": -48.0}, {"x": 18.0, "z": -30.0},
+        {"x": 54.0, "z": -8.0}, {"x": 74.0, "z": 8.0},
+        {"x": 82.0, "z": 18.0}
+      ]
+    },
+    {
+      "name": "自动离泊评测场",
+      "code": "AUTO-UNBERTHING-BENCHMARK",
+      "objective": "评测泊位脱离、低速转首、防波堤出口对线和中止条件",
+      "scenario_key": "auto_unberthing",
+      "loop": false,
+      "arrival_radius": 8.0,
+      "planned_speed_knots": 4.0,
+      "spawn": {"x": 82.0, "z": 18.0, "heading_degrees": 180.0},
+      "route": [
+        {"x": 72.0, "z": 2.0}, {"x": 50.0, "z": -20.0},
+        {"x": 18.0, "z": -38.0}, {"x": -24.0, "z": -54.0},
+        {"x": -70.0, "z": -72.0}, {"x": -118.0, "z": -86.0}
+      ]
+    },
+    {
+      "name": "狭水道对遇",
+      "code": "COLREG-HEAD-ON-CHANNEL",
+      "objective": "在狭水道保持右侧通航并完成对遇会船，记录最小会遇距离",
+      "scenario_key": "narrow_channel_head_on",
+      "loop": false,
+      "arrival_radius": 10.0,
+      "planned_speed_knots": 6.0,
+      "spawn": {"x": -22.0, "z": 176.0, "heading_degrees": 180.0},
+      "route": [
+        {"x": -22.0, "z": 120.0}, {"x": -22.0, "z": 45.0},
+        {"x": -22.0, "z": -35.0}, {"x": -22.0, "z": -112.0},
+        {"x": -22.0, "z": -176.0}
+      ]
+    },
+    {
+      "name": "右舷来船交叉",
+      "code": "COLREG-CROSSING-GIVE-WAY",
+      "objective": "评测给路船早期明显行动、从他船船尾通过及 TCPA/DCPA 余度",
+      "scenario_key": "crossing_starboard",
+      "loop": false,
+      "arrival_radius": 12.0,
+      "planned_speed_knots": 7.0,
+      "spawn": {"x": -182.0, "z": 0.0, "heading_degrees": 90.0},
+      "route": [
+        {"x": -120.0, "z": 0.0}, {"x": -58.0, "z": -18.0},
+        {"x": 12.0, "z": -42.0}, {"x": 92.0, "z": -30.0},
+        {"x": 178.0, "z": -8.0}
+      ]
+    },
+    {
+      "name": "狭水道追越",
+      "code": "COLREG-OVERTAKING-CHANNEL",
+      "objective": "评测追越责任、速差管理、通信同意边界和清爽距离",
+      "scenario_key": "narrow_channel_overtaking",
+      "loop": false,
+      "arrival_radius": 10.0,
+      "planned_speed_knots": 7.0,
+      "spawn": {"x": 18.0, "z": -178.0, "heading_degrees": 0.0},
+      "route": [
+        {"x": 18.0, "z": -125.0}, {"x": -12.0, "z": -62.0},
+        {"x": -18.0, "z": 12.0}, {"x": 8.0, "z": 88.0},
+        {"x": 18.0, "z": 176.0}
+      ]
     }
   ],
   "scenarios": {
@@ -65,7 +149,7 @@
     "harbor": {
       "name": "港口引航水域",
       "description": "PORT PILOTAGE DATA PROFILE",
-      "spawn": {"x": -148.0, "z": -92.0, "heading_degrees": 84.0},
+      "spawn": {"x": -142.0, "z": -112.0, "heading_degrees": 76.0},
       "boundary_half_extent": 180.0,
       "loop_route": false,
       "route": [
@@ -91,6 +175,231 @@
         {"name": "CargoQuay", "position": {"x": 104.0, "z": 18.0}, "size": {"x": 26.0, "y": 6.0, "z": 118.0}},
         {"name": "BerthFinger", "position": {"x": 64.0, "z": 36.0}, "size": {"x": 72.0, "y": 4.0, "z": 12.0}}
       ]
+    },
+    "auto_berthing": {
+      "name": "自动靠泊评测水域",
+      "description": "SIMULATION-ONLY BERTHING BENCHMARK",
+      "task_type": "berthing",
+      "visual_family": "harbor",
+      "dedicated_scene_path": "res://scenes/worlds/tasks/auto_berthing_task_scene.tscn",
+      "visual_profile": {
+        "wallpaper_texture": "res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png",
+        "water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+        "wall_orientation": "vertical",
+        "wall_tilt_degrees": 0.0,
+        "wallpaper_bottom_composition": "landline_at_bottom",
+        "wallpaper_sea_band_max_fraction": 0.03
+      },
+      "spawn": {"x": -142.0, "z": -112.0, "heading_degrees": 76.0},
+      "boundary_half_extent": 180.0,
+      "loop_route": false,
+      "route": [
+        {"x": -112.0, "z": -96.0}, {"x": -72.0, "z": -70.0},
+        {"x": -28.0, "z": -48.0}, {"x": 18.0, "z": -30.0},
+        {"x": 54.0, "z": -8.0}, {"x": 74.0, "z": 8.0},
+        {"x": 82.0, "z": 18.0}
+      ],
+      "rocks": [],
+      "boxes": [
+        {"name": "WestBreakwater", "position": {"x": -174.0, "z": 0.0}, "size": {"x": 12.0, "y": 7.0, "z": 140.0}},
+        {"name": "EastBreakwater", "position": {"x": 132.0, "z": -66.0}, "size": {"x": 16.0, "y": 7.0, "z": 106.0}},
+        {"name": "NorthPier", "position": {"x": 6.0, "z": -92.0}, "size": {"x": 126.0, "y": 5.0, "z": 16.0}},
+        {"name": "SouthPier", "position": {"x": 24.0, "z": 58.0}, "size": {"x": 138.0, "y": 5.0, "z": 16.0}},
+        {"name": "CargoQuay", "position": {"x": 104.0, "z": 18.0}, "size": {"x": 26.0, "y": 6.0, "z": 118.0}},
+        {"name": "BerthFinger", "position": {"x": 64.0, "z": 36.0}, "size": {"x": 72.0, "y": 4.0, "z": 12.0}}
+      ],
+      "evaluation": {
+        "berth_target": {"x": 82.0, "z": 18.0, "heading_degrees": 0.0},
+        "position_tolerance_m": 7.0,
+        "heading_tolerance_degrees": 8.0,
+        "maximum_speed_knots": 0.8,
+        "maximum_sway_mps": 0.25
+      },
+      "realism": {
+        "profile_version": "advanced_mission_realism_v1",
+        "environment": {"time": "08:20", "wind_speed_knots": 8.0, "wind_direction_degrees": 45.0, "wave_height_meters": 0.25, "wave_direction_degrees": 60.0, "wave_period_seconds": 5.8, "visibility_km": 10.0, "current_speed_knots": 0.4, "current_direction_degrees": 70.0, "tide_meters": 0.2},
+        "vessel": {"length_m": 5.7, "beam_m": 2.95, "draft_m": 0.55, "calibration_status": "unverified_reference"},
+        "hydrodynamics": {"water_depth_m": 6.5, "shallow_water_enabled": true, "squat_coefficient": 0.34, "shallow_drag_n_per_mps2": 70.0, "bank_effect_enabled": false, "minimum_ukc_m": 2.0},
+        "required_bridge_domains": ["radar_arpa", "ecdis", "conning", "gmdss", "instructor", "recording_debrief"],
+        "allowed_machinery_faults": ["port_propulsion_loss", "starboard_propulsion_loss", "steering_bias_deg"],
+        "competency_criteria": ["pre_arrival_brief", "speed_reduction_plan", "parallel_body_alignment", "heading_control", "sway_control", "contact_free_stop"]
+      },
+      "traffic": [],
+      "claim_boundary": "Algorithm and operator training benchmark only; no terminal geometry calibration or live actuation authority."
+    },
+    "auto_unberthing": {
+      "name": "自动离泊评测水域",
+      "description": "SIMULATION-ONLY UNBERTHING BENCHMARK",
+      "task_type": "unberthing",
+      "visual_family": "harbor",
+      "dedicated_scene_path": "res://scenes/worlds/tasks/auto_unberthing_task_scene.tscn",
+      "visual_profile": {
+        "wallpaper_texture": "res://assets/generated/tasks/auto_unberthing/auto_unberthing_horizon_v1.png",
+        "water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+        "wall_orientation": "vertical",
+        "wall_tilt_degrees": 0.0,
+        "wallpaper_bottom_composition": "landline_at_bottom",
+        "wallpaper_sea_band_max_fraction": 0.03
+      },
+      "spawn": {"x": 82.0, "z": 18.0, "heading_degrees": 180.0},
+      "boundary_half_extent": 180.0,
+      "loop_route": false,
+      "route": [
+        {"x": 72.0, "z": 2.0}, {"x": 50.0, "z": -20.0},
+        {"x": 18.0, "z": -38.0}, {"x": -24.0, "z": -54.0},
+        {"x": -70.0, "z": -72.0}, {"x": -118.0, "z": -86.0}
+      ],
+      "rocks": [],
+      "boxes": [
+        {"name": "WestBreakwater", "position": {"x": -144.0, "z": -12.0}, "size": {"x": 16.0, "y": 7.0, "z": 142.0}},
+        {"name": "EastBreakwater", "position": {"x": 132.0, "z": -66.0}, "size": {"x": 16.0, "y": 7.0, "z": 106.0}},
+        {"name": "NorthPier", "position": {"x": 6.0, "z": -92.0}, "size": {"x": 126.0, "y": 5.0, "z": 16.0}},
+        {"name": "SouthPier", "position": {"x": 24.0, "z": 58.0}, "size": {"x": 138.0, "y": 5.0, "z": 16.0}},
+        {"name": "CargoQuay", "position": {"x": 104.0, "z": 18.0}, "size": {"x": 26.0, "y": 6.0, "z": 118.0}},
+        {"name": "BerthFinger", "position": {"x": 64.0, "z": 36.0}, "size": {"x": 72.0, "y": 4.0, "z": 12.0}}
+      ],
+      "evaluation": {
+        "berth_origin": {"x": 82.0, "z": 18.0},
+        "minimum_clear_distance_m": 110.0,
+        "maximum_exit_speed_knots": 5.0
+      },
+      "realism": {
+        "profile_version": "advanced_mission_realism_v1",
+        "environment": {"time": "10:10", "wind_speed_knots": 10.0, "wind_direction_degrees": 95.0, "wave_height_meters": 0.35, "wave_direction_degrees": 105.0, "wave_period_seconds": 6.2, "visibility_km": 9.0, "current_speed_knots": 0.7, "current_direction_degrees": 130.0, "tide_meters": 0.4},
+        "vessel": {"length_m": 5.7, "beam_m": 2.95, "draft_m": 0.55, "calibration_status": "unverified_reference"},
+        "hydrodynamics": {"water_depth_m": 6.0, "shallow_water_enabled": true, "squat_coefficient": 0.36, "shallow_drag_n_per_mps2": 78.0, "bank_effect_enabled": false, "minimum_ukc_m": 2.0},
+        "required_bridge_domains": ["radar_arpa", "ecdis", "conning", "gmdss", "instructor", "recording_debrief"],
+        "allowed_machinery_faults": ["port_propulsion_loss", "starboard_propulsion_loss", "steering_bias_deg"],
+        "competency_criteria": ["departure_brief", "all_round_lookout", "astern_control", "turning_basin_control", "breakwater_clearance", "safe_exit_speed"]
+      },
+      "traffic": [],
+      "claim_boundary": "Algorithm and operator training benchmark only; no terminal geometry calibration or live actuation authority."
+    },
+    "narrow_channel_head_on": {
+      "name": "狭水道对遇会船",
+      "description": "COLREG RULE 9/14 RUNTIME ENCOUNTER",
+      "task_type": "head_on",
+      "visual_family": "channel",
+      "dedicated_scene_path": "res://scenes/worlds/tasks/narrow_channel_head_on_task_scene.tscn",
+      "visual_profile": {
+        "wallpaper_texture": "res://assets/generated/tasks/narrow_channel_head_on/narrow_channel_head_on_horizon_v1.png",
+        "water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+        "wall_orientation": "vertical",
+        "wall_tilt_degrees": 0.0,
+        "wallpaper_bottom_composition": "landline_at_bottom",
+        "wallpaper_sea_band_max_fraction": 0.03
+      },
+      "colreg_rule_ids": ["Rule 9", "Rule 14"],
+      "spawn": {"x": -22.0, "z": 176.0, "heading_degrees": 180.0},
+      "boundary_half_extent": 240.0,
+      "loop_route": false,
+      "route": [
+        {"x": -22.0, "z": 120.0}, {"x": -22.0, "z": 45.0},
+        {"x": -22.0, "z": -35.0}, {"x": -22.0, "z": -112.0},
+        {"x": -22.0, "z": -176.0}
+      ],
+      "rocks": [],
+      "boxes": [
+        {"name": "ChannelWestBank", "position": {"x": -88.0, "z": 0.0}, "size": {"x": 70.0, "y": 7.0, "z": 430.0}},
+        {"name": "ChannelEastBank", "position": {"x": 88.0, "z": 0.0}, "size": {"x": 70.0, "y": 7.0, "z": 430.0}}
+      ],
+      "traffic": [
+        {"id": "HEAD-ON-01", "role": "reciprocal_course", "spawn": {"x": 22.0, "z": -176.0, "heading_degrees": 0.0}, "throttle": 0.32, "rudder": 0.0}
+      ],
+      "evaluation": {"minimum_passing_distance_m": 22.0, "tcpa_horizon_seconds": 180.0},
+      "realism": {
+        "profile_version": "advanced_mission_realism_v1",
+        "environment": {"time": "06:40", "wind_speed_knots": 9.0, "wind_direction_degrees": 225.0, "wave_height_meters": 0.45, "wave_direction_degrees": 210.0, "wave_period_seconds": 6.5, "visibility_km": 6.0, "current_speed_knots": 0.8, "current_direction_degrees": 180.0, "tide_meters": 0.1},
+        "vessel": {"length_m": 5.7, "beam_m": 2.95, "draft_m": 0.55, "calibration_status": "unverified_reference"},
+        "hydrodynamics": {"water_depth_m": 4.5, "shallow_water_enabled": true, "squat_coefficient": 0.42, "shallow_drag_n_per_mps2": 96.0, "bank_effect_enabled": true, "channel_center_x_m": 0.0, "navigable_half_width_m": 53.0, "bank_influence_distance_m": 24.0, "bank_suction_force_n": 720.0, "bank_yaw_moment_nm": 1050.0, "minimum_bank_clearance_m": 8.0, "minimum_ukc_m": 2.0},
+        "required_bridge_domains": ["radar_arpa", "ecdis", "conning", "gmdss", "instructor", "recording_debrief"],
+        "allowed_machinery_faults": ["port_propulsion_loss", "starboard_propulsion_loss", "steering_bias_deg"],
+        "competency_criteria": ["rule_9_lane_position", "rule_14_recognition", "early_starboard_action", "safe_speed", "cpa_monitoring", "post_encounter_course_recovery"]
+      },
+      "claim_boundary": "COLREG training scenario; not legal advice, certification or live-vessel control."
+    },
+    "crossing_starboard": {
+      "name": "右舷来船交叉",
+      "description": "COLREG RULE 15/16 RUNTIME ENCOUNTER",
+      "task_type": "crossing_give_way",
+      "visual_family": "open_water",
+      "dedicated_scene_path": "res://scenes/worlds/tasks/crossing_starboard_task_scene.tscn",
+      "visual_profile": {
+        "wallpaper_texture": "res://assets/generated/tasks/crossing_starboard/crossing_starboard_horizon_v1.png",
+        "water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+        "wall_orientation": "vertical",
+        "wall_tilt_degrees": 0.0,
+        "wallpaper_bottom_composition": "landline_at_bottom",
+        "wallpaper_sea_band_max_fraction": 0.03
+      },
+      "colreg_rule_ids": ["Rule 15", "Rule 16"],
+      "spawn": {"x": -182.0, "z": 0.0, "heading_degrees": 90.0},
+      "boundary_half_extent": 240.0,
+      "loop_route": false,
+      "route": [
+        {"x": -120.0, "z": 0.0}, {"x": -58.0, "z": -18.0},
+        {"x": 12.0, "z": -42.0}, {"x": 92.0, "z": -30.0},
+        {"x": 178.0, "z": -8.0}
+      ],
+      "rocks": [],
+      "boxes": [],
+      "traffic": [
+        {"id": "CROSS-STBD-01", "role": "stand_on_starboard", "spawn": {"x": 30.0, "z": -182.0, "heading_degrees": 0.0}, "throttle": 0.34, "rudder": 0.0}
+      ],
+      "evaluation": {"minimum_passing_distance_m": 28.0, "tcpa_horizon_seconds": 180.0, "expected_passing": "astern_of_stand_on_vessel"},
+      "realism": {
+        "profile_version": "advanced_mission_realism_v1",
+        "environment": {"time": "13:30", "wind_speed_knots": 14.0, "wind_direction_degrees": 120.0, "wave_height_meters": 0.8, "wave_direction_degrees": 135.0, "wave_period_seconds": 7.2, "visibility_km": 12.0, "current_speed_knots": 0.6, "current_direction_degrees": 40.0, "tide_meters": 0.3},
+        "vessel": {"length_m": 5.7, "beam_m": 2.95, "draft_m": 0.55, "calibration_status": "unverified_reference"},
+        "hydrodynamics": {"water_depth_m": 20.0, "shallow_water_enabled": true, "squat_coefficient": 0.22, "shallow_drag_n_per_mps2": 30.0, "bank_effect_enabled": false, "minimum_ukc_m": 2.0},
+        "required_bridge_domains": ["radar_arpa", "ecdis", "conning", "gmdss", "instructor", "recording_debrief"],
+        "allowed_machinery_faults": ["port_propulsion_loss", "starboard_propulsion_loss", "steering_bias_deg"],
+        "competency_criteria": ["rule_15_recognition", "early_substantial_action", "astern_passing", "stand_on_track_monitoring", "cpa_monitoring", "course_recovery"]
+      },
+      "claim_boundary": "COLREG training scenario; not legal advice, certification or live-vessel control."
+    },
+    "narrow_channel_overtaking": {
+      "name": "狭水道追越",
+      "description": "COLREG RULE 9/13 RUNTIME ENCOUNTER",
+      "task_type": "overtaking",
+      "visual_family": "channel",
+      "dedicated_scene_path": "res://scenes/worlds/tasks/narrow_channel_overtaking_task_scene.tscn",
+      "visual_profile": {
+        "wallpaper_texture": "res://assets/generated/tasks/narrow_channel_overtaking/narrow_channel_overtaking_horizon_v1.png",
+        "water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+        "wall_orientation": "vertical",
+        "wall_tilt_degrees": 0.0,
+        "wallpaper_bottom_composition": "landline_at_bottom",
+        "wallpaper_sea_band_max_fraction": 0.03
+      },
+      "colreg_rule_ids": ["Rule 9", "Rule 13"],
+      "spawn": {"x": 18.0, "z": -178.0, "heading_degrees": 0.0},
+      "boundary_half_extent": 240.0,
+      "loop_route": false,
+      "route": [
+        {"x": 18.0, "z": -125.0}, {"x": -12.0, "z": -62.0},
+        {"x": -18.0, "z": 12.0}, {"x": 8.0, "z": 88.0},
+        {"x": 18.0, "z": 176.0}
+      ],
+      "rocks": [],
+      "boxes": [
+        {"name": "OvertakeWestBank", "position": {"x": -96.0, "z": 0.0}, "size": {"x": 74.0, "y": 7.0, "z": 430.0}},
+        {"name": "OvertakeEastBank", "position": {"x": 96.0, "z": 0.0}, "size": {"x": 74.0, "y": 7.0, "z": 430.0}}
+      ],
+      "traffic": [
+        {"id": "SLOW-AHEAD-01", "role": "overtaken_vessel", "spawn": {"x": 18.0, "z": -72.0, "heading_degrees": 0.0}, "throttle": 0.18, "rudder": 0.0}
+      ],
+      "evaluation": {"minimum_passing_distance_m": 20.0, "tcpa_horizon_seconds": 180.0, "overtaking_agreement_required": true},
+      "realism": {
+        "profile_version": "advanced_mission_realism_v1",
+        "environment": {"time": "17:40", "wind_speed_knots": 12.0, "wind_direction_degrees": 265.0, "wave_height_meters": 0.5, "wave_direction_degrees": 250.0, "wave_period_seconds": 6.8, "visibility_km": 7.0, "current_speed_knots": 1.2, "current_direction_degrees": 5.0, "tide_meters": 0.2},
+        "vessel": {"length_m": 5.7, "beam_m": 2.95, "draft_m": 0.55, "calibration_status": "unverified_reference"},
+        "hydrodynamics": {"water_depth_m": 5.0, "shallow_water_enabled": true, "squat_coefficient": 0.40, "shallow_drag_n_per_mps2": 92.0, "bank_effect_enabled": true, "channel_center_x_m": 0.0, "navigable_half_width_m": 59.0, "bank_influence_distance_m": 25.0, "bank_suction_force_n": 760.0, "bank_yaw_moment_nm": 1120.0, "minimum_bank_clearance_m": 8.0, "minimum_ukc_m": 2.0},
+        "required_bridge_domains": ["radar_arpa", "ecdis", "conning", "gmdss", "instructor", "recording_debrief"],
+        "allowed_machinery_faults": ["port_propulsion_loss", "starboard_propulsion_loss", "steering_bias_deg"],
+        "competency_criteria": ["rule_13_identification", "agreement_receipt", "bank_clearance", "overtaking_cpa", "time_abreast_control", "safe_lane_return"]
+      },
+      "claim_boundary": "COLREG training scenario; simulated agreement flag is not real VHF authorization."
     }
   }
 }

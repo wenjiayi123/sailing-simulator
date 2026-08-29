@@ -1,0 +1,234 @@
+{
+  "schema_version": "non47_training_function_smoke_v1",
+  "accepted": true,
+  "purpose": "training/checkpoint/inference functional acceptance, not policy convergence",
+  "scenario_keys": [
+    "open_water",
+    "harbor",
+    "auto_berthing",
+    "auto_unberthing",
+    "narrow_channel_head_on",
+    "crossing_starboard",
+    "narrow_channel_overtaking"
+  ],
+  "scenario_count": 7,
+  "observation_dimensions_tested": [
+    36,
+    44
+  ],
+  "dimension_47_used": false,
+  "runs": [
+    {
+      "module": "cargo_circuit_rl",
+      "observation_size": 36,
+      "training_complete": true,
+      "requested_timesteps": 64,
+      "completed_timesteps": 64,
+      "checkpoint_observation_size": 36,
+      "checkpoint_exists": true,
+      "model_exists": true,
+      "model_sha256": "60856f4c1c509bcbbd9c79d9d5bbc3253ae1d88ca342d1cdda6aeeb3eaf80384",
+      "scenario_inference_checks": [
+        {
+          "scenario_key": "open_water",
+          "passed": true,
+          "observation_size": 36,
+          "action": [
+            -0.032446,
+            -0.005899
+          ],
+          "reward": 14.190647,
+          "terminated": false,
+          "truncated": false
+        },
+        {
+          "scenario_key": "harbor",
+          "passed": true,
+          "observation_size": 36,
+          "action": [
+            -0.00743,
+            0.084663
+          ],
+          "reward": 14.200118,
+          "terminated": false,
+          "truncated": false
+        },
+        {
+          "scenario_key": "auto_berthing",
+          "passed": true,
+          "observation_size": 36,
+          "action": [
+            -0.007557,
+            0.085235
+          ],
+          "reward": 14.199843,
+          "terminated": false,
+          "truncated": false
+        },
+        {
+          "scenario_key": "auto_unberthing",
+          "passed": true,
+          "observation_size": 36,
+          "action": [
+            0.019503,
+            0.025976
+          ],
+          "reward": 14.197268,
+          "terminated": false,
+          "truncated": false
+        },
+        {
+          "scenario_key": "narrow_channel_head_on",
+          "passed": true,
+          "observation_size": 36,
+          "action": [
+            -0.008255,
+            0.028101
+          ],
+          "reward": 14.202064,
+          "terminated": false,
+          "truncated": false
+        },
+        {
+          "scenario_key": "crossing_starboard",
+          "passed": true,
+          "observation_size": 36,
+          "action": [
+            -0.000675,
+            0.08102
+          ],
+          "reward": 14.200705,
+          "terminated": false,
+          "truncated": false
+        },
+        {
+          "scenario_key": "narrow_channel_overtaking",
+          "passed": true,
+          "observation_size": 36,
+          "action": [
+            0.015351,
+            0.125614
+          ],
+          "reward": 14.198615,
+          "terminated": false,
+          "truncated": false
+        }
+      ],
+      "all_scenarios_inference_passed": true,
+      "policy_qualification_claimed": false
+    },
+    {
+      "module": "cargo_circuit_dynamic_rl",
+      "observation_size": 44,
+      "training_complete": true,
+      "requested_timesteps": 64,
+      "completed_timesteps": 64,
+      "checkpoint_observation_size": 44,
+      "checkpoint_exists": true,
+      "model_exists": true,
+      "model_sha256": "932ad284e1048db1b8c879cc68cf23e122e93f4862ff9d51b5eadd84bd81a666",
+      "scenario_inference_checks": [
+        {
+          "scenario_key": "open_water",
+          "passed": true,
+          "observation_size": 44,
+          "action": [
+            0.09215,
+            0.029665
+          ],
+          "reward": 14.188249,
+          "terminated": false,
+          "truncated": false
+        },
+        {
+          "scenario_key": "harbor",
+          "passed": true,
+          "observation_size": 44,
+          "action": [
+            0.05288,
+            0.031796
+          ],
+          "reward": 14.200443,
+          "terminated": false,
+          "truncated": false
+        },
+        {
+          "scenario_key": "auto_berthing",
+          "passed": true,
+          "observation_size": 44,
+          "action": [
+            0.053314,
+            0.031559
+          ],
+          "reward": 14.200184,
+          "terminated": false,
+          "truncated": false
+        },
+        {
+          "scenario_key": "auto_unberthing",
+          "passed": true,
+          "observation_size": 44,
+          "action": [
+            0.049561,
+            -0.000867
+          ],
+          "reward": 14.197179,
+          "terminated": false,
+          "truncated": false
+        },
+        {
+          "scenario_key": "narrow_channel_head_on",
+          "passed": true,
+          "observation_size": 44,
+          "action": [
+            0.068602,
+            -0.004308
+          ],
+          "reward": 14.201091,
+          "terminated": false,
+          "truncated": false
+        },
+        {
+          "scenario_key": "crossing_starboard",
+          "passed": true,
+          "observation_size": 44,
+          "action": [
+            0.049451,
+            0.025765
+          ],
+          "reward": 14.201005,
+          "terminated": false,
+          "truncated": false
+        },
+        {
+          "scenario_key": "narrow_channel_overtaking",
+          "passed": true,
+          "observation_size": 44,
+          "action": [
+            0.040038,
+            0.081932
+          ],
+          "reward": 14.199243,
+          "terminated": false,
+          "truncated": false
+        }
+      ],
+      "all_scenarios_inference_passed": true,
+      "policy_qualification_claimed": false
+    }
+  ],
+  "frozen_policy_hashes_before": {
+    "SAC-S1": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+    "RES-SAC-D2": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20"
+  },
+  "frozen_policy_hashes_after": {
+    "SAC-S1": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+    "RES-SAC-D2": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20"
+  },
+  "frozen_policies_unchanged": true,
+  "limitations": [
+    "Only 64 SAC timesteps are used per observation contract.",
+    "Obstacles and environmental disturbances are disabled for this functional smoke.",
+    "Inference success means reset/predict/step completed with finite values; it is not mission qualification."
+  ]
+}

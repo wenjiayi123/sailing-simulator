@@ -29,6 +29,7 @@ RUNTIME_COMPONENT_FILES = {
     "ShipBridgeTeamCollaborationController": "scripts/training/ship_bridge_team_collaboration_controller.gd",
     "ShipFullMissionBridgeSuite": "scripts/navigation/ship_full_mission_bridge_suite.gd",
     "ShipInstructorExerciseController": "scripts/training/ship_instructor_exercise_controller.gd",
+    "ShipAdvancedMissionRealismController": "scripts/training/ship_advanced_mission_realism_controller.gd",
     "ShipSimulationReviewPanel": "scripts/ui/ship_simulation_review_panel.gd",
 }
 
@@ -132,15 +133,21 @@ def evaluate_profile(profile: Mapping[str, Any], root: Path) -> dict[str, Any]:
         and instructor.get("external_approval_required") is True
     )
     preservation = profile.get("preservation_boundary", {})
-    preservation_complete = isinstance(preservation, Mapping) and all(
-        preservation.get(key) is False
-        for key in (
-            "ship_motion_model_modified",
-            "observation_space_modified",
-            "action_space_modified",
-            "reward_function_modified",
-            "existing_policy_modified",
-            "training_performed",
+    preservation_complete = (
+        isinstance(preservation, Mapping)
+        and preservation.get("base_ship_motion_model_replaced") is False
+        and preservation.get("advanced_task_hydrodynamic_extension_enabled") is True
+        and preservation.get("advanced_task_hydrodynamic_extension_scope")
+        == "five_advanced_mission_scenarios_only"
+        and all(
+            preservation.get(key) is False
+            for key in (
+                "observation_space_modified",
+                "action_space_modified",
+                "reward_function_modified",
+                "existing_policy_modified",
+                "training_performed",
+            )
         )
     )
     claims = profile.get("claim_boundary", {})
@@ -312,7 +319,7 @@ def evaluate_runtime_smoke(root: Path) -> dict[str, Any]:
     payload = load_json(path)
     preservation_keys = (
         "training_performed",
-        "ship_motion_model_modified",
+        "base_ship_motion_model_replaced",
         "observation_space_modified",
         "action_space_modified",
         "reward_function_modified",
@@ -329,6 +336,7 @@ def evaluate_runtime_smoke(root: Path) -> dict[str, Any]:
         and payload.get("passed_count") == payload.get("check_count")
         and int(payload.get("check_count", 0)) >= 38
         and all(payload.get(key) is False for key in preservation_keys)
+        and payload.get("advanced_task_hydrodynamic_extension_enabled") is True
     )
     return {
         "passed": passed,
@@ -376,9 +384,14 @@ def build_full_mission_bridge_report(
         "runtime_acceptance": runtime,
         "preserved_policy_inventory": policies,
         "external_acceptance_gate": acceptance,
+        "model_boundary": {
+            "base_ship_motion_model_replaced": False,
+            "advanced_task_hydrodynamic_extension_enabled": True,
+            "advanced_task_hydrodynamic_extension_scope": "five_advanced_mission_scenarios_only",
+            "named_vessel_dynamics_calibrated": False,
+        },
         "claims": {
             "training_performed": False,
-            "ship_motion_model_modified": False,
             "observation_space_modified": False,
             "action_space_modified": False,
             "reward_function_modified": False,

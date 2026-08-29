@@ -764,7 +764,6 @@ def _verify_full_mission_bridge_v1(errors: list[str]) -> None:
     claims = report.get("claims", {})
     for name in (
         "training_performed",
-        "ship_motion_model_modified",
         "observation_space_modified",
         "action_space_modified",
         "reward_function_modified",
@@ -778,6 +777,15 @@ def _verify_full_mission_bridge_v1(errors: list[str]) -> None:
     ):
         if claims.get(name) is not False:
             errors.append(f"full-mission bridge boundary changed: {name}")
+    model_boundary = report.get("model_boundary", {})
+    if not (
+        model_boundary.get("base_ship_motion_model_replaced") is False
+        and model_boundary.get("advanced_task_hydrodynamic_extension_enabled") is True
+        and model_boundary.get("advanced_task_hydrodynamic_extension_scope")
+        == "five_advanced_mission_scenarios_only"
+        and model_boundary.get("named_vessel_dynamics_calibrated") is False
+    ):
+        errors.append("full-mission bridge model boundary is inaccurate")
     for relative, expected_hash in report.get("inputs_sha256", {}).items():
         path = ROOT / str(relative)
         if not path.is_file() or _sha256(path) != expected_hash:
@@ -789,7 +797,8 @@ def _verify_full_mission_bridge_v1(errors: list[str]) -> None:
         and ui.get("passed_count") == ui.get("check_count")
         and int(ui.get("check_count", 0)) >= 38
         and ui.get("training_performed") is False
-        and ui.get("ship_motion_model_modified") is False
+        and ui.get("base_ship_motion_model_replaced") is False
+        and ui.get("advanced_task_hydrodynamic_extension_enabled") is True
         and ui.get("observation_space_modified") is False
         and ui.get("action_space_modified") is False
         and ui.get("reward_function_modified") is False
@@ -999,6 +1008,10 @@ def _verify_port_production_integration_v1(errors: list[str]) -> None:
 
 def _verify_full_visual_asset_release_v1(errors: list[str], strict: bool) -> None:
     report = _load_json(FULL_VISUAL_ASSET_RELEASE)
+    manifest = _load_json(
+        ROOT / "data/verification/visual_asset_release_manifest_v1.json"
+    )
+    expected_asset_count = len(manifest.get("included_assets", []))
     if report.get("schema") != "full-visual-asset-release-audit.v1":
         errors.append("full-visual asset audit schema changed")
     if report.get("status") != "FULL_VISUAL_PACKAGE_READY":
@@ -1006,7 +1019,8 @@ def _verify_full_visual_asset_release_v1(errors: list[str], strict: bool) -> Non
     summary = report.get("summary", {})
     if not (
         summary.get("passed") is True
-        and summary.get("included_asset_count") == 23
+        and expected_asset_count >= 29
+        and summary.get("included_asset_count") == expected_asset_count
         and summary.get("unregistered_media_count") == 0
         and summary.get("runtime_excluded_reference_count") == 0
         and summary.get("unresolved_included_asset_count") == 0
@@ -1156,7 +1170,12 @@ def main() -> int:
         print("project integrity check: FAIL")
         return 1
     print("project integrity check: PASS")
-    print("third-party asset licensing: PASS (23 hash-bound public media files)")
+    asset_count = len(
+        _load_json(
+            ROOT / "data/verification/visual_asset_release_manifest_v1.json"
+        ).get("included_assets", [])
+    )
+    print(f"asset licensing: PASS ({asset_count} hash-bound public media files)")
     return 0
 
 

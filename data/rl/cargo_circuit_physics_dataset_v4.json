@@ -100,10 +100,32 @@
               "detail": "post-conflict east recovery"
             }
           ],
+          [
+            {
+              "x": 380.0,
+              "z": 360.0,
+              "detail": "pre-turn west inertia margin"
+            }
+          ],
           [],
           [],
-          [],
-          [],
+          [
+            {
+              "x": -735.0,
+              "z": 380.0,
+              "detail": "west-channel north centreline"
+            },
+            {
+              "x": -735.0,
+              "z": 20.0,
+              "detail": "west-channel rock abeam centreline"
+            },
+            {
+              "x": -735.0,
+              "z": -360.0,
+              "detail": "west-channel south centreline"
+            }
+          ],
           []
         ],
         "sea_state": {
@@ -181,10 +203,32 @@
               "detail": "post-conflict east recovery"
             }
           ],
+          [
+            {
+              "x": 380.0,
+              "z": 360.0,
+              "detail": "pre-turn west inertia margin"
+            }
+          ],
           [],
           [],
-          [],
-          [],
+          [
+            {
+              "x": -735.0,
+              "z": 380.0,
+              "detail": "west-channel north centreline"
+            },
+            {
+              "x": -735.0,
+              "z": 20.0,
+              "detail": "west-channel rock abeam centreline"
+            },
+            {
+              "x": -735.0,
+              "z": -360.0,
+              "detail": "west-channel south centreline"
+            }
+          ],
           []
         ],
         "sea_state": {
@@ -262,10 +306,32 @@
               "detail": "post-conflict east recovery"
             }
           ],
+          [
+            {
+              "x": 380.0,
+              "z": 360.0,
+              "detail": "pre-turn west inertia margin"
+            }
+          ],
           [],
           [],
-          [],
-          [],
+          [
+            {
+              "x": -735.0,
+              "z": 380.0,
+              "detail": "west-channel north centreline"
+            },
+            {
+              "x": -735.0,
+              "z": 20.0,
+              "detail": "west-channel rock abeam centreline"
+            },
+            {
+              "x": -735.0,
+              "z": -360.0,
+              "detail": "west-channel south centreline"
+            }
+          ],
           []
         ],
         "sea_state": {
@@ -343,10 +409,32 @@
               "detail": "post-conflict east recovery"
             }
           ],
+          [
+            {
+              "x": 380.0,
+              "z": 360.0,
+              "detail": "pre-turn west inertia margin"
+            }
+          ],
           [],
           [],
-          [],
-          [],
+          [
+            {
+              "x": -735.0,
+              "z": 380.0,
+              "detail": "west-channel north centreline"
+            },
+            {
+              "x": -735.0,
+              "z": 20.0,
+              "detail": "west-channel rock abeam centreline"
+            },
+            {
+              "x": -735.0,
+              "z": -360.0,
+              "detail": "west-channel south centreline"
+            }
+          ],
           []
         ],
         "sea_state": {
@@ -424,10 +512,32 @@
               "detail": "post-conflict east recovery"
             }
           ],
+          [
+            {
+              "x": 380.0,
+              "z": 360.0,
+              "detail": "pre-turn west inertia margin"
+            }
+          ],
           [],
           [],
-          [],
-          [],
+          [
+            {
+              "x": -735.0,
+              "z": 380.0,
+              "detail": "west-channel north centreline"
+            },
+            {
+              "x": -735.0,
+              "z": 20.0,
+              "detail": "west-channel rock abeam centreline"
+            },
+            {
+              "x": -735.0,
+              "z": -360.0,
+              "detail": "west-channel south centreline"
+            }
+          ],
           []
         ],
         "sea_state": {
@@ -507,10 +617,32 @@
               "detail": "post-conflict east recovery"
             }
           ],
+          [
+            {
+              "x": 380.0,
+              "z": 360.0,
+              "detail": "pre-turn west inertia margin"
+            }
+          ],
           [],
           [],
-          [],
-          [],
+          [
+            {
+              "x": -735.0,
+              "z": 380.0,
+              "detail": "west-channel north centreline"
+            },
+            {
+              "x": -735.0,
+              "z": 20.0,
+              "detail": "west-channel rock abeam centreline"
+            },
+            {
+              "x": -735.0,
+              "z": -360.0,
+              "detail": "west-channel south centreline"
+            }
+          ],
           []
         ],
         "sea_state": {
@@ -588,10 +720,32 @@
               "detail": "post-conflict east recovery"
             }
           ],
+          [
+            {
+              "x": 380.0,
+              "z": 360.0,
+              "detail": "pre-turn west inertia margin"
+            }
+          ],
           [],
           [],
-          [],
-          [],
+          [
+            {
+              "x": -735.0,
+              "z": 380.0,
+              "detail": "west-channel north centreline"
+            },
+            {
+              "x": -735.0,
+              "z": 20.0,
+              "detail": "west-channel rock abeam centreline"
+            },
+            {
+              "x": -735.0,
+              "z": -360.0,
+              "detail": "west-channel south centreline"
+            }
+          ],
           []
         ],
         "sea_state": {
@@ -669,10 +823,32 @@
               "detail": "post-conflict east recovery"
             }
           ],
+          [
+            {
+              "x": 380.0,
+              "z": 360.0,
+              "detail": "pre-turn west inertia margin"
+            }
+          ],
           [],
           [],
-          [],
-          [],
+          [
+            {
+              "x": -735.0,
+              "z": 380.0,
+              "detail": "west-channel north centreline"
+            },
+            {
+              "x": -735.0,
+              "z": 20.0,
+              "detail": "west-channel rock abeam centreline"
+            },
+            {
+              "x": -735.0,
+              "z": -360.0,
+              "detail": "west-channel south centreline"
+            }
+          ],
           []
         ],
         "sea_state": {
@@ -752,10 +928,32 @@
               "detail": "post-conflict east recovery"
             }
           ],
+          [
+            {
+              "x": 380.0,
+              "z": 360.0,
+              "detail": "pre-turn west inertia margin"
+            }
+          ],
           [],
           [],
-          [],
-          [],
+          [
+            {
+              "x": -735.0,
+              "z": 380.0,
+              "detail": "west-channel north centreline"
+            },
+            {
+              "x": -735.0,
+              "z": 20.0,
+              "detail": "west-channel rock abeam centreline"
+            },
+            {
+              "x": -735.0,
+              "z": -360.0,
+              "detail": "west-channel south centreline"
+            }
+          ],
           []
         ],
         "sea_state": {
@@ -833,10 +1031,32 @@
               "detail": "post-conflict east recovery"
             }
           ],
+          [
+            {
+              "x": 380.0,
+              "z": 360.0,
+              "detail": "pre-turn west inertia margin"
+            }
+          ],
           [],
           [],
-          [],
-          [],
+          [
+            {
+              "x": -735.0,
+              "z": 380.0,
+              "detail": "west-channel north centreline"
+            },
+            {
+              "x": -735.0,
+              "z": 20.0,
+              "detail": "west-channel rock abeam centreline"
+            },
+            {
+              "x": -735.0,
+              "z": -360.0,
+              "detail": "west-channel south centreline"
+            }
+          ],
           []
         ],
         "sea_state": {
@@ -914,10 +1134,32 @@
               "detail": "post-conflict east recovery"
             }
           ],
+          [
+            {
+              "x": 380.0,
+              "z": 360.0,
+              "detail": "pre-turn west inertia margin"
+            }
+          ],
           [],
           [],
-          [],
-          [],
+          [
+            {
+              "x": -735.0,
+              "z": 380.0,
+              "detail": "west-channel north centreline"
+            },
+            {
+              "x": -735.0,
+              "z": 20.0,
+              "detail": "west-channel rock abeam centreline"
+            },
+            {
+              "x": -735.0,
+              "z": -360.0,
+              "detail": "west-channel south centreline"
+            }
+          ],
           []
         ],
         "sea_state": {
@@ -995,10 +1237,32 @@
               "detail": "post-conflict east recovery"
             }
           ],
+          [
+            {
+              "x": 380.0,
+              "z": 360.0,
+              "detail": "pre-turn west inertia margin"
+            }
+          ],
           [],
           [],
-          [],
-          [],
+          [
+            {
+              "x": -735.0,
+              "z": 380.0,
+              "detail": "west-channel north centreline"
+            },
+            {
+              "x": -735.0,
+              "z": 20.0,
+              "detail": "west-channel rock abeam centreline"
+            },
+            {
+              "x": -735.0,
+              "z": -360.0,
+              "detail": "west-channel south centreline"
+            }
+          ],
           []
         ],
         "sea_state": {
@@ -1076,10 +1340,32 @@
               "detail": "post-conflict east recovery"
             }
           ],
+          [
+            {
+              "x": 380.0,
+              "z": 360.0,
+              "detail": "pre-turn west inertia margin"
+            }
+          ],
           [],
           [],
-          [],
-          [],
+          [
+            {
+              "x": -735.0,
+              "z": 380.0,
+              "detail": "west-channel north centreline"
+            },
+            {
+              "x": -735.0,
+              "z": 20.0,
+              "detail": "west-channel rock abeam centreline"
+            },
+            {
+              "x": -735.0,
+              "z": -360.0,
+              "detail": "west-channel south centreline"
+            }
+          ],
           []
         ],
         "sea_state": {

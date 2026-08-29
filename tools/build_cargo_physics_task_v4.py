@@ -60,6 +60,28 @@ def main() -> int:
                 {"x": 520.0, "z": -130.0, "detail": "pre-drift east offset"},
                 {"x": 520.0, "z": 120.0, "detail": "post-conflict east recovery"},
             ]
+            # A zero-speed curriculum start at the east rock gate has no
+            # incoming turn history.  Under the shared 3-DOF plant, braking
+            # for crossing traffic can otherwise leave the helm oscillating
+            # beside GroundedPlate_06 until residual surge/sway carries the
+            # vessel into the rock.  Teach the train-only expert to create
+            # westward room before the northbound turn.  The released SAC
+            # actor receives no bypass coordinates or manual helm fallback.
+            bypasses[3] = [
+                {"x": 380.0, "z": 360.0, "detail": "pre-turn west inertia margin"},
+            ]
+            # The west side of GroundedPlate_04 leaves a narrow channel
+            # between terrain and the navigation boundary.  The direct helm
+            # succeeds with only about 14 m of held-out clearance, so tiny
+            # cloned-rudder errors can compound into either a rock strike or
+            # a boundary exit.  These train-only labels hold the channel
+            # centreline; validation and the released actor receive no bypass
+            # coordinates or expert fallback.
+            bypasses[6] = [
+                {"x": -735.0, "z": 380.0, "detail": "west-channel north centreline"},
+                {"x": -735.0, "z": 20.0, "detail": "west-channel rock abeam centreline"},
+                {"x": -735.0, "z": -360.0, "detail": "west-channel south centreline"},
+            ]
             task["manual_bypasses"] = bypasses
 
     config["schema_version"] = "cargo_circuit_physics_experiment_v4"
@@ -75,6 +97,21 @@ def main() -> int:
         {
             "source": "current_map_3dof_manual_helm_train_split_only",
             "actor_behavior_cloning_epochs": 10,
+            # Attempt 10 action-level diagnosis found that the initialized
+            # actor issued strong reverse in 98.3% of its final 1,000 stuck
+            # states while the train-only expert did so in only 1.7%.  The
+            # 47D override corrects that throttle-specific cloning failure;
+            # V3 keeps its historical defaults.
+            "behavior_clone_throttle_weight": 3.0,
+            "behavior_clone_rudder_weight": 1.45,
+            "dagger_latest_recovery_epochs": 24,
+            "dagger_schedule": [
+                {"expert_action_fraction": 0.70, "refit_epochs": 20},
+                {"expert_action_fraction": 0.40, "refit_epochs": 16},
+                {"expert_action_fraction": 0.20, "refit_epochs": 16},
+                {"expert_action_fraction": 0.00, "refit_epochs": 20},
+                {"expert_action_fraction": 0.00, "refit_epochs": 20},
+            ],
             "physics_manual_helm_sha256": hashlib.sha256(PHYSICS_HELM.read_bytes()).hexdigest(),
         }
     )

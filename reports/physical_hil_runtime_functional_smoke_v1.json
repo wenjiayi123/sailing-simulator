@@ -23,10 +23,10 @@
   },
   "timing": {
     "sample_count": 1000,
-    "mean_ms": 0.011729749,
-    "p95_ms": 0.012905549999999997,
-    "p99_ms": 0.02042732,
-    "maximum_ms": 0.076132,
+    "mean_ms": 0.01126703,
+    "p95_ms": 0.0122505,
+    "p99_ms": 0.01397094,
+    "maximum_ms": 0.028142,
     "deadline_ms": 10.0,
     "deadline_met": true
   },
@@ -77,5 +77,5 @@
     "tools/ship_assurance/hil.py": "202c4b980504798faf76185609d48517b3d1784ca8e6f081594ac7e1578c0ecc",
     "tools/run_physical_hil_runtime.py": "cc2daa4579989f3bc128143471377499f770331162c44b0ae21a5e43e7c365f6"
   },
-  "generated_at_utc": "2026-08-28T13:33:44.877578+00:00"
+  "generated_at_utc": "2026-08-29T14:54:23.839044+00:00"
 }

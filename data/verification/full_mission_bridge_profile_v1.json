@@ -98,7 +98,9 @@
     "external_approval_required": true
   },
   "preservation_boundary": {
-    "ship_motion_model_modified": false,
+    "base_ship_motion_model_replaced": false,
+    "advanced_task_hydrodynamic_extension_enabled": true,
+    "advanced_task_hydrodynamic_extension_scope": "five_advanced_mission_scenarios_only",
     "observation_space_modified": false,
     "action_space_modified": false,
     "reward_function_modified": false,

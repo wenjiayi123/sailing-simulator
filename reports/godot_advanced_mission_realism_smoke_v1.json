@@ -1,0 +1,400 @@
+{
+	"acceptance_scope": "Deterministic software function and synthetic completion evidence; not operator or reinforcement-learning policy performance.",
+	"boundary": "Runtime validates bounded software hydrodynamics, faults, predeparture and debrief only; no named-vessel calibration, physical HIL, sea trial or certification claim.",
+	"checks": {
+		"all_five_realism_profiles_runtime_valid": {
+			"detail": [
+				{
+					"bank_effect_enabled": false,
+					"behavioral_status": "PASS",
+					"bridge_ready": true,
+					"debrief_export_status": "EXPORTED",
+					"debrief_score": 100.0,
+					"debrief_status": "PASS",
+					"depth_froude": 0.0291627152237211,
+					"fault_factor_during_test": 0.5,
+					"near_bank_proximity": null,
+					"passed": true,
+					"predeparture_status": "PASS",
+					"scenario_key": "auto_berthing",
+					"squat_m": 0.000159172130534445,
+					"static_ukc_m": 6.15
+				},
+				{
+					"bank_effect_enabled": false,
+					"behavioral_status": "PASS",
+					"bridge_ready": true,
+					"debrief_export_status": "EXPORTED",
+					"debrief_score": 100.0,
+					"debrief_status": "PASS",
+					"depth_froude": 0.0301139923299903,
+					"fault_factor_during_test": 0.5,
+					"near_bank_proximity": null,
+					"passed": true,
+					"predeparture_status": "PASS",
+					"scenario_key": "auto_unberthing",
+					"squat_m": 0.000179719781080934,
+					"static_ukc_m": 5.85
+				},
+				{
+					"bank_effect_enabled": true,
+					"behavioral_status": "PASS",
+					"bridge_ready": true,
+					"debrief_export_status": "EXPORTED",
+					"debrief_score": 100.0,
+					"debrief_status": "PASS",
+					"depth_froude": 0.0677539632225743,
+					"fault_factor_during_test": 0.5,
+					"near_bank_proximity": 0.916666730244954,
+					"passed": true,
+					"predeparture_status": "PASS",
+					"scenario_key": "narrow_channel_head_on",
+					"squat_m": 0.00106531894462555,
+					"static_ukc_m": 4.05
+				},
+				{
+					"bank_effect_enabled": false,
+					"behavioral_status": "PASS",
+					"bridge_ready": true,
+					"debrief_export_status": "EXPORTED",
+					"debrief_score": 100.0,
+					"debrief_status": "PASS",
+					"depth_froude": 0.0196543733975972,
+					"fault_factor_during_test": 0.5,
+					"near_bank_proximity": null,
+					"passed": true,
+					"predeparture_status": "PASS",
+					"scenario_key": "crossing_starboard",
+					"squat_m": 0.0000467596846359373,
+					"static_ukc_m": 19.75
+				},
+				{
+					"bank_effect_enabled": true,
+					"behavioral_status": "PASS",
+					"bridge_ready": true,
+					"debrief_export_status": "EXPORTED",
+					"debrief_score": 100.0,
+					"debrief_status": "PASS",
+					"depth_froude": 0.0827163986217757,
+					"fault_factor_during_test": 0.5,
+					"near_bank_proximity": 0.920000061035156,
+					"passed": true,
+					"predeparture_status": "PASS",
+					"scenario_key": "narrow_channel_overtaking",
+					"squat_m": 0.00151561038238877,
+					"static_ukc_m": 4.65
+				}
+			],
+			"passed": true
+		},
+		"base_scenario_disables_task_realism_forcing": {
+			"detail": {
+				"active": false,
+				"boundary": "Software mission-realism proxy; named-vessel calibration, physical bridge HIL, official charts, witnessed sea trials and certification remain external gates.",
+				"bridge_readiness": {
+					"missing_domains": [
+						"ADVANCED_REALISM_PROFILE_INACTIVE"
+					],
+					"passed": false
+				},
+				"debrief": {},
+				"dnv_certified": false,
+				"environment": {
+					"atmosphere_overlay_alpha": 0.0,
+					"base_time": "10:20",
+					"current_direction_degrees": 65.0,
+					"current_speed_knots": 0.1,
+					"current_vector": "(0.046624, 0.0, 0.021741)",
+					"data_source": "scenario_clear_baseline",
+					"data_status": "zero_fog_default",
+					"fetched_at": "",
+					"fog_density": 0.0,
+					"fog_enabled": false,
+					"index": 0,
+					"key": "clear",
+					"name": "晴天",
+					"observed_at": "",
+					"public_location": {
+						"latitude": 1.2644,
+						"longitude": 103.8223
+					},
+					"sea_state_label": "CALM",
+					"tide_meters": 0.2,
+					"time": "10:20",
+					"time_scale": 1.0,
+					"visibility": "20.0 km",
+					"visibility_km": 20.0,
+					"water_surface_visual": {
+						"connected": true,
+						"flow_direction": "(0.809017, 0.587785)",
+						"vertex_wave_height": 0.0492,
+						"wave_speed": 0.218181818181818
+					},
+					"wave_direction_degrees": 54.0,
+					"wave_height_meters": 0.12,
+					"wave_period_seconds": 5.5,
+					"weather": "CLEAR SKY",
+					"wind_direction_degrees": 38.0,
+					"wind_speed_knots": 3.0,
+					"zero_fog_visual": true
+				},
+				"environment_applied": false,
+				"existing_policy_modified": false,
+				"hydrodynamics": {},
+				"machinery_faults": {
+					"port_propulsion_loss": 0.0,
+					"starboard_propulsion_loss": 0.0,
+					"steering_bias_deg": 0.0
+				},
+				"named_vessel_dynamics_calibrated": false,
+				"operator_action_count": 0,
+				"physical_hil_verified": false,
+				"predeparture_operator": "",
+				"predeparture_passed": false,
+				"production_authority": false,
+				"profile": {},
+				"scenario_key": "open_water",
+				"schema_version": "ship_advanced_mission_realism_runtime_v1",
+				"stcw_approved": false
+			},
+			"passed": true
+		},
+		"blank_predeparture_operator_rejected": {
+			"detail": {
+				"action": "predeparture_check",
+				"detail": {
+					"reason": "ADVANCED_REALISM_PROFILE_INACTIVE"
+				},
+				"elapsed_seconds": 0.0,
+				"existing_policy_modified": false,
+				"production_authority": false,
+				"receipt_id": "AMX-000002",
+				"scenario_key": "open_water",
+				"schema_version": "ship_advanced_mission_realism_receipt_v1",
+				"status": "REJECTED",
+				"utc": "2026-08-29T15:28:21"
+			},
+			"passed": true
+		},
+		"frozen_36_44_policy_artifacts_unchanged": {
+			"detail": {
+				"after": {
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5"
+				},
+				"before": {
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5"
+				}
+			},
+			"passed": true
+		},
+		"main_scene_load_request": {
+			"detail": "res://main.tscn",
+			"passed": true
+		},
+		"realism_components_present": {
+			"detail": {
+				"mission": true,
+				"player": true,
+				"realism": true,
+				"scenario": true
+			},
+			"passed": true
+		},
+		"realism_forcing_changes_three_dof_dynamics": {
+			"detail": {
+				"baseline_surge_mps": 5.00005054473877,
+				"passed": true,
+				"port_loss_surge_mps": 3.87395477294922,
+				"port_loss_yaw_rate_deg_s": -8.77205805482427,
+				"shallow_drag_surge_mps": 4.41402435302734,
+				"steering_bias_yaw_rate_deg_s": 6.83443114437415
+			},
+			"passed": true
+		},
+		"runtime_realism_auto_berthing": {
+			"detail": {
+				"bank_effect_enabled": false,
+				"behavioral_status": "PASS",
+				"bridge_ready": true,
+				"debrief_export_status": "EXPORTED",
+				"debrief_score": 100.0,
+				"debrief_status": "PASS",
+				"depth_froude": 0.0291627152237211,
+				"fault_factor_during_test": 0.5,
+				"near_bank_proximity": null,
+				"passed": true,
+				"predeparture_status": "PASS",
+				"scenario_key": "auto_berthing",
+				"squat_m": 0.000159172130534445,
+				"static_ukc_m": 6.15
+			},
+			"passed": true
+		},
+		"runtime_realism_auto_unberthing": {
+			"detail": {
+				"bank_effect_enabled": false,
+				"behavioral_status": "PASS",
+				"bridge_ready": true,
+				"debrief_export_status": "EXPORTED",
+				"debrief_score": 100.0,
+				"debrief_status": "PASS",
+				"depth_froude": 0.0301139923299903,
+				"fault_factor_during_test": 0.5,
+				"near_bank_proximity": null,
+				"passed": true,
+				"predeparture_status": "PASS",
+				"scenario_key": "auto_unberthing",
+				"squat_m": 0.000179719781080934,
+				"static_ukc_m": 5.85
+			},
+			"passed": true
+		},
+		"runtime_realism_crossing_starboard": {
+			"detail": {
+				"bank_effect_enabled": false,
+				"behavioral_status": "PASS",
+				"bridge_ready": true,
+				"debrief_export_status": "EXPORTED",
+				"debrief_score": 100.0,
+				"debrief_status": "PASS",
+				"depth_froude": 0.0196543733975972,
+				"fault_factor_during_test": 0.5,
+				"near_bank_proximity": null,
+				"passed": true,
+				"predeparture_status": "PASS",
+				"scenario_key": "crossing_starboard",
+				"squat_m": 0.0000467596846359373,
+				"static_ukc_m": 19.75
+			},
+			"passed": true
+		},
+		"runtime_realism_narrow_channel_head_on": {
+			"detail": {
+				"bank_effect_enabled": true,
+				"behavioral_status": "PASS",
+				"bridge_ready": true,
+				"debrief_export_status": "EXPORTED",
+				"debrief_score": 100.0,
+				"debrief_status": "PASS",
+				"depth_froude": 0.0677539632225743,
+				"fault_factor_during_test": 0.5,
+				"near_bank_proximity": 0.916666730244954,
+				"passed": true,
+				"predeparture_status": "PASS",
+				"scenario_key": "narrow_channel_head_on",
+				"squat_m": 0.00106531894462555,
+				"static_ukc_m": 4.05
+			},
+			"passed": true
+		},
+		"runtime_realism_narrow_channel_overtaking": {
+			"detail": {
+				"bank_effect_enabled": true,
+				"behavioral_status": "PASS",
+				"bridge_ready": true,
+				"debrief_export_status": "EXPORTED",
+				"debrief_score": 100.0,
+				"debrief_status": "PASS",
+				"depth_froude": 0.0827163986217757,
+				"fault_factor_during_test": 0.5,
+				"near_bank_proximity": 0.920000061035156,
+				"passed": true,
+				"predeparture_status": "PASS",
+				"scenario_key": "narrow_channel_overtaking",
+				"squat_m": 0.00151561038238877,
+				"static_ukc_m": 4.65
+			},
+			"passed": true
+		}
+	},
+	"errors": [],
+	"generated_at": "2026-08-29T15:28:24",
+	"passed": true,
+	"passed_checks": 12,
+	"scenario_records": [
+		{
+			"bank_effect_enabled": false,
+			"behavioral_status": "PASS",
+			"bridge_ready": true,
+			"debrief_export_status": "EXPORTED",
+			"debrief_score": 100.0,
+			"debrief_status": "PASS",
+			"depth_froude": 0.0291627152237211,
+			"fault_factor_during_test": 0.5,
+			"near_bank_proximity": null,
+			"passed": true,
+			"predeparture_status": "PASS",
+			"scenario_key": "auto_berthing",
+			"squat_m": 0.000159172130534445,
+			"static_ukc_m": 6.15
+		},
+		{
+			"bank_effect_enabled": false,
+			"behavioral_status": "PASS",
+			"bridge_ready": true,
+			"debrief_export_status": "EXPORTED",
+			"debrief_score": 100.0,
+			"debrief_status": "PASS",
+			"depth_froude": 0.0301139923299903,
+			"fault_factor_during_test": 0.5,
+			"near_bank_proximity": null,
+			"passed": true,
+			"predeparture_status": "PASS",
+			"scenario_key": "auto_unberthing",
+			"squat_m": 0.000179719781080934,
+			"static_ukc_m": 5.85
+		},
+		{
+			"bank_effect_enabled": true,
+			"behavioral_status": "PASS",
+			"bridge_ready": true,
+			"debrief_export_status": "EXPORTED",
+			"debrief_score": 100.0,
+			"debrief_status": "PASS",
+			"depth_froude": 0.0677539632225743,
+			"fault_factor_during_test": 0.5,
+			"near_bank_proximity": 0.916666730244954,
+			"passed": true,
+			"predeparture_status": "PASS",
+			"scenario_key": "narrow_channel_head_on",
+			"squat_m": 0.00106531894462555,
+			"static_ukc_m": 4.05
+		},
+		{
+			"bank_effect_enabled": false,
+			"behavioral_status": "PASS",
+			"bridge_ready": true,
+			"debrief_export_status": "EXPORTED",
+			"debrief_score": 100.0,
+			"debrief_status": "PASS",
+			"depth_froude": 0.0196543733975972,
+			"fault_factor_during_test": 0.5,
+			"near_bank_proximity": null,
+			"passed": true,
+			"predeparture_status": "PASS",
+			"scenario_key": "crossing_starboard",
+			"squat_m": 0.0000467596846359373,
+			"static_ukc_m": 19.75
+		},
+		{
+			"bank_effect_enabled": true,
+			"behavioral_status": "PASS",
+			"bridge_ready": true,
+			"debrief_export_status": "EXPORTED",
+			"debrief_score": 100.0,
+			"debrief_status": "PASS",
+			"depth_froude": 0.0827163986217757,
+			"fault_factor_during_test": 0.5,
+			"near_bank_proximity": 0.920000061035156,
+			"passed": true,
+			"predeparture_status": "PASS",
+			"scenario_key": "narrow_channel_overtaking",
+			"squat_m": 0.00151561038238877,
+			"static_ukc_m": 4.65
+		}
+	],
+	"schema_version": "godot_advanced_mission_realism_smoke_v1",
+	"total_checks": 12
+}

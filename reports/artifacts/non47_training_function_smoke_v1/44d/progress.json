@@ -1,0 +1,22 @@
+{
+  "status": "complete",
+  "ok": true,
+  "operation": "train",
+  "stage": "checkpoint_ready",
+  "module": "cargo_circuit_dynamic_rl",
+  "algorithm": "sac",
+  "progress": 1.0,
+  "completed_timesteps": 64,
+  "total_timesteps": 64,
+  "episodes_completed": 60,
+  "mean_reward_20": 90.0995406,
+  "success_rate_20": 1.0,
+  "elapsed_seconds": 0.4038290489999996,
+  "checkpoint_json": "reports/artifacts/non47_training_function_smoke_v1/44d/checkpoint.json",
+  "model_path": "reports/artifacts/non47_training_function_smoke_v1/44d/cargo_dynamic_sac_policy.zip",
+  "render": false,
+  "dataset_split": "train",
+  "dataset_sha256": "06b1f20df3e4d0e6a9cfd367e1f495d9206287e1c3aa8c563b3d581a30df7913",
+  "experiment_sha256": "974ef40793d179ba6bb2759825617599d079685bad1ce555fb38abd9c8354bb8",
+  "observation_size": 44
+}

@@ -1,0 +1,157 @@
+{
+	"boundary": "Native rendered-pixel scene-entry acceptance; not policy performance or training evidence.",
+	"generated_at": "2026-08-29T15:19:39",
+	"passed": true,
+	"passed_scenarios": 7,
+	"records": [
+		{
+			"atmosphere_overlay_alpha": 0.0,
+			"dedicated_scene_expected": false,
+			"dedicated_scene_valid": true,
+			"fog_density": 0.0,
+			"fog_enabled": false,
+			"image_path": "res://docs/screenshots/scenarios/open_water.png",
+			"passed": true,
+			"scenario_key": "open_water",
+			"task_wall_count": 0,
+			"task_walls_vertical": false,
+			"visual_metrics": {
+				"maximum_channel_span": 0.976470589637756,
+				"rendered_scene_not_flat_clear_color": true,
+				"sample_count": 4466,
+				"unique_quantized_color_count": 280
+			},
+			"weather_key": "clear",
+			"weather_name": "晴天",
+			"zero_fog_visual": true
+		},
+		{
+			"atmosphere_overlay_alpha": 0.0,
+			"dedicated_scene_expected": false,
+			"dedicated_scene_valid": true,
+			"fog_density": 0.0,
+			"fog_enabled": false,
+			"image_path": "res://docs/screenshots/scenarios/harbor.png",
+			"passed": true,
+			"scenario_key": "harbor",
+			"task_wall_count": 0,
+			"task_walls_vertical": false,
+			"visual_metrics": {
+				"maximum_channel_span": 0.831372559070587,
+				"rendered_scene_not_flat_clear_color": true,
+				"sample_count": 4466,
+				"unique_quantized_color_count": 180
+			},
+			"weather_key": "clear",
+			"weather_name": "晴天",
+			"zero_fog_visual": true
+		},
+		{
+			"atmosphere_overlay_alpha": 0.0,
+			"dedicated_scene_expected": true,
+			"dedicated_scene_valid": true,
+			"fog_density": 0.0,
+			"fog_enabled": false,
+			"image_path": "res://docs/screenshots/scenarios/auto_berthing.png",
+			"passed": true,
+			"scenario_key": "auto_berthing",
+			"task_wall_count": 4,
+			"task_walls_vertical": true,
+			"visual_metrics": {
+				"maximum_channel_span": 0.917647063732147,
+				"rendered_scene_not_flat_clear_color": true,
+				"sample_count": 4466,
+				"unique_quantized_color_count": 184
+			},
+			"weather_key": "clear",
+			"weather_name": "晴天",
+			"zero_fog_visual": true
+		},
+		{
+			"atmosphere_overlay_alpha": 0.0,
+			"dedicated_scene_expected": true,
+			"dedicated_scene_valid": true,
+			"fog_density": 0.0,
+			"fog_enabled": false,
+			"image_path": "res://docs/screenshots/scenarios/auto_unberthing.png",
+			"passed": true,
+			"scenario_key": "auto_unberthing",
+			"task_wall_count": 4,
+			"task_walls_vertical": true,
+			"visual_metrics": {
+				"maximum_channel_span": 0.941176474094391,
+				"rendered_scene_not_flat_clear_color": true,
+				"sample_count": 4466,
+				"unique_quantized_color_count": 77
+			},
+			"weather_key": "clear",
+			"weather_name": "晴天",
+			"zero_fog_visual": true
+		},
+		{
+			"atmosphere_overlay_alpha": 0.0,
+			"dedicated_scene_expected": true,
+			"dedicated_scene_valid": true,
+			"fog_density": 0.0,
+			"fog_enabled": false,
+			"image_path": "res://docs/screenshots/scenarios/narrow_channel_head_on.png",
+			"passed": true,
+			"scenario_key": "narrow_channel_head_on",
+			"task_wall_count": 4,
+			"task_walls_vertical": true,
+			"visual_metrics": {
+				"maximum_channel_span": 0.976470589637756,
+				"rendered_scene_not_flat_clear_color": true,
+				"sample_count": 4466,
+				"unique_quantized_color_count": 90
+			},
+			"weather_key": "clear",
+			"weather_name": "晴天",
+			"zero_fog_visual": true
+		},
+		{
+			"atmosphere_overlay_alpha": 0.0,
+			"dedicated_scene_expected": true,
+			"dedicated_scene_valid": true,
+			"fog_density": 0.0,
+			"fog_enabled": false,
+			"image_path": "res://docs/screenshots/scenarios/crossing_starboard.png",
+			"passed": true,
+			"scenario_key": "crossing_starboard",
+			"task_wall_count": 4,
+			"task_walls_vertical": true,
+			"visual_metrics": {
+				"maximum_channel_span": 0.858823537826538,
+				"rendered_scene_not_flat_clear_color": true,
+				"sample_count": 4466,
+				"unique_quantized_color_count": 108
+			},
+			"weather_key": "clear",
+			"weather_name": "晴天",
+			"zero_fog_visual": true
+		},
+		{
+			"atmosphere_overlay_alpha": 0.0,
+			"dedicated_scene_expected": true,
+			"dedicated_scene_valid": true,
+			"fog_density": 0.0,
+			"fog_enabled": false,
+			"image_path": "res://docs/screenshots/scenarios/narrow_channel_overtaking.png",
+			"passed": true,
+			"scenario_key": "narrow_channel_overtaking",
+			"task_wall_count": 4,
+			"task_walls_vertical": true,
+			"visual_metrics": {
+				"maximum_channel_span": 0.949019610881805,
+				"rendered_scene_not_flat_clear_color": true,
+				"sample_count": 4466,
+				"unique_quantized_color_count": 108
+			},
+			"weather_key": "clear",
+			"weather_name": "晴天",
+			"zero_fog_visual": true
+		}
+	],
+	"schema_version": "godot_all_scenario_visual_smoke_v1",
+	"total_scenarios": 7
+}

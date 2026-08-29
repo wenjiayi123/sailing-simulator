@@ -1,0 +1,12 @@
+Project-Generated Visual Asset Notice
+
+The visual assets identified with LicenseRef-Project-Generated-Asset in the
+visual asset release manifest were generated or directionally edited for this
+project using an AI image-generation service at the project owner's request.
+
+To the extent the project owner holds rights in those exact generated outputs,
+the project owner makes them available under the Apache License 2.0. The exact
+covered files and SHA-256 digests are recorded in
+data/verification/visual_asset_release_manifest_v1.json. Generated outputs may
+not be unique, and no endorsement, real-port fidelity, or third-party rights
+clearance beyond the recorded generation process is implied.

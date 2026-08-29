@@ -31,6 +31,7 @@ INPUTS = (
     MANIFEST,
     ROOT / "scripts/navigation/ship_gmdss_communications_suite.gd",
     ROOT / "scripts/navigation/ship_full_mission_bridge_suite.gd",
+    ROOT / "scripts/training/ship_advanced_mission_realism_controller.gd",
     ROOT / "scripts/ui/ship_full_mission_bridge_panel.gd",
     ROOT / "tools/godot_full_mission_bridge_smoke.gd",
     ROOT / "tests/test_full_mission_bridge.py",
@@ -75,6 +76,7 @@ def markdown(payload: dict[str, Any]) -> str:
 - 九类岗位、多学员本机网络、复诵、质疑和驾驶台资源管理检查。
 - 八个 45° 软件视景扇区及 360° 扫描回执；只改变镜头，不改变船舶状态转移。
 - 教员确定性故障时间线、报告和复盘链路。
+- 五个高级任务在原三自由度模型上叠加有界浅水、岸壁和机械故障强制；基础模型未被替换，现有策略与强化学习接口未修改。
 
 ## 强制阻断
 

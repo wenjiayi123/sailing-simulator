@@ -118,6 +118,8 @@ const MISSION_PRESETS := [
 @export var route_system_path: NodePath = NodePath("../ShipRouteSystem")
 @export var obstacle_system_path: NodePath = NodePath("../ShipNavigationObstacles")
 @export var scenario_path: NodePath = NodePath("../ShipScenarioController")
+@export var advanced_mission_controller_path: NodePath = NodePath("../ShipAdvancedMissionController")
+@export var advanced_mission_realism_path: NodePath = NodePath("../ShipAdvancedMissionRealismController")
 @export var weather_time_path: NodePath = NodePath("../ShipWeatherTimeController")
 @export_file("*.json") var mission_profile_path: String = "res://data/ports/default_port_profile.json"
 @export var planned_speed_knots: float = 12.0
@@ -130,6 +132,7 @@ var _mission_option: OptionButton
 var _sync_scenario_check: CheckBox
 var _teleport_check: CheckBox
 var _loop_check: CheckBox
+var _overtaking_agreement_check: CheckBox
 var _arrival_spin: SpinBox
 var _planned_speed_spin: SpinBox
 var _chart: NavigationChart
@@ -138,6 +141,8 @@ var _fleet_manager: Node
 var _route_system: Node
 var _obstacle_system: Node
 var _scenario_source: Node
+var _advanced_mission_source: Node
+var _advanced_realism_source: Node
 var _weather_time_source: Node
 var _player: Node3D
 var _mission_presets: Array = []
@@ -413,6 +418,11 @@ func _build_mission_tab() -> Control:
 	_loop_check.button_pressed = loop_route_enabled
 	_loop_check.toggled.connect(_on_loop_toggled)
 	check_row.add_child(_loop_check)
+	_overtaking_agreement_check = CheckBox.new()
+	_overtaking_agreement_check.text = "追越协议确认"
+	_overtaking_agreement_check.button_pressed = false
+	_overtaking_agreement_check.toggled.connect(_on_overtaking_agreement_toggled)
+	check_row.add_child(_overtaking_agreement_check)
 
 	var parameter_grid := GridContainer.new()
 	parameter_grid.columns = 2
@@ -424,6 +434,13 @@ func _build_mission_tab() -> Control:
 	_add_metric(parameter_grid, "scenario_status", "场景海况")
 	_add_metric(parameter_grid, "route_status", "航线状态")
 	_add_metric(parameter_grid, "route_source", "任务数据")
+	_add_metric(parameter_grid, "advanced_task", "高级任务")
+	_add_metric(parameter_grid, "advanced_gate", "验收门槛")
+	_add_metric(parameter_grid, "advanced_traffic", "会遇监视")
+	_add_metric(parameter_grid, "advanced_hydrodynamics", "浅水/岸效应")
+	_add_metric(parameter_grid, "advanced_bridge_readiness", "任务前检查")
+	_add_metric(parameter_grid, "advanced_debrief", "客观复盘")
+	_add_metric(parameter_grid, "advanced_boundary", "能力边界")
 
 	var control_row := HBoxContainer.new()
 	control_row.add_theme_constant_override("separation", 8)
@@ -446,6 +463,19 @@ func _build_mission_tab() -> Control:
 	var export_button := _make_button("导出任务快照")
 	export_button.pressed.connect(_export_plan_snapshot)
 	action_row.add_child(export_button)
+
+	var realism_action_row := HBoxContainer.new()
+	realism_action_row.add_theme_constant_override("separation", 8)
+	root.add_child(realism_action_row)
+	var predeparture_button := _make_button("任务前检查")
+	predeparture_button.pressed.connect(_on_realism_predeparture_pressed)
+	realism_action_row.add_child(predeparture_button)
+	var action_mark_button := _make_button("记录关键操船")
+	action_mark_button.pressed.connect(_on_realism_action_mark_pressed)
+	realism_action_row.add_child(action_mark_button)
+	var debrief_button := _make_button("导出结构化复盘")
+	debrief_button.pressed.connect(_on_realism_debrief_pressed)
+	realism_action_row.add_child(debrief_button)
 
 	var footer := _make_label("", 11, COLOR_MUTED)
 	footer.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -518,6 +548,8 @@ func _resolve_sources() -> void:
 	_route_system = _resolve_node(route_system_path, &"ship_route_system")
 	_obstacle_system = _resolve_node(obstacle_system_path, &"ship_navigation_obstacle_system")
 	_scenario_source = _resolve_node(scenario_path, &"ship_scenario_system")
+	_advanced_mission_source = _resolve_node(advanced_mission_controller_path, &"ship_advanced_mission_controller")
+	_advanced_realism_source = _resolve_node(advanced_mission_realism_path, &"ship_advanced_mission_realism_controller")
 	_weather_time_source = _resolve_node(weather_time_path, &"ship_weather_time_system")
 
 
@@ -606,6 +638,8 @@ func _update_panel() -> void:
 	var loop_active := bool(route_radar.get("loop", false))
 	var obstacle_points := _obstacle_points(obstacle_data)
 	var obstacle_boxes := _obstacle_boxes(obstacle_data)
+	var advanced_mission := _get_advanced_mission_snapshot()
+	var advanced_realism := _get_advanced_realism_snapshot()
 
 	_update_label("mission_code", _active_mission_code)
 	_update_label("mission_eta", "ETA " + _format_seconds(eta_seconds), COLOR_GREEN if route_active else COLOR_AMBER)
@@ -615,6 +649,8 @@ func _update_panel() -> void:
 	_update_label("scenario_status", _scenario_weather_text())
 	_update_label("route_status", "%s  radius %.0fm  %s" % ["ACTIVE" if route_active else "STANDBY", _current_arrival_radius(route_radar), "LOOP" if loop_active else "ONE-WAY"], COLOR_GREEN if route_active else COLOR_AMBER)
 	_update_label("route_source", _mission_profile_status)
+	_update_advanced_mission_labels(advanced_mission)
+	_update_advanced_realism_labels(advanced_realism)
 	_update_label("mission_footer", "N 打开航行任务面板  |  当前计划航速 %.1fkn  |  到达半径 %.0fm  |  航点 %d" % [planned_speed_knots, arrival_radius_meters, route_points.size()])
 	_update_chart_labels(route_data, route_radar, obstacle_points.size() + obstacle_boxes.size())
 	_update_waypoint_manifest(route_points, active_index)
@@ -660,12 +696,31 @@ func _get_obstacle_data() -> Dictionary:
 
 func _on_mission_selected(index: int) -> void:
 	var preset := _preset_by_index(index)
+	if _overtaking_agreement_check != null:
+		_overtaking_agreement_check.set_pressed_no_signal(false)
 	_apply_preset_values_to_controls(preset)
 	_update_label("mission_footer", "任务参数已载入；点击“应用任务”后才写入场景、船位与航线。", COLOR_AMBER)
 
 
 func _on_mission_toggle_changed(_enabled: bool) -> void:
 	_update_label("mission_footer", "联动选项已变更；点击“应用任务”后生效。", COLOR_AMBER)
+
+
+func _on_overtaking_agreement_toggled(confirmed: bool) -> void:
+	if _advanced_mission_source == null or not is_instance_valid(_advanced_mission_source):
+		_advanced_mission_source = _resolve_node(advanced_mission_controller_path, &"ship_advanced_mission_controller")
+	if _advanced_mission_source == null or not _advanced_mission_source.has_method("confirm_overtaking_agreement"):
+		_update_label("mission_footer", "追越协议确认失败：高级任务控制器不可用。", COLOR_RED)
+		return
+	var receipt := _advanced_mission_source.call(
+		"confirm_overtaking_agreement",
+		confirmed,
+		"navigation_planning_panel" if confirmed else ""
+	) as Dictionary
+	var accepted := String(receipt.get("status", "")) == "ACCEPTED_SIMULATION_ONLY"
+	var message := "追越模拟协议已%s；不代表真实甚高频通信授权。" % ("确认" if confirmed else "撤销") \
+		if accepted else "当前不是追越场景，未写入协议。"
+	_update_label("mission_footer", message, COLOR_GREEN if accepted and confirmed else COLOR_AMBER)
 
 
 func _on_apply_mission_pressed() -> void:
@@ -704,6 +759,44 @@ func _on_apply_route_settings_pressed() -> void:
 	var ship := _get_active_ship()
 	var leg_start := ship.global_position if ship != null else Vector3.ZERO
 	_apply_route_to_system(_current_route_points_for_config(), loop_route_enabled, leg_start)
+	_update_panel()
+
+
+func _on_realism_predeparture_pressed() -> void:
+	var source := _get_advanced_realism_source()
+	if source == null or not source.has_method("run_predeparture_check"):
+		_update_label("mission_footer", "任务前检查不可用：现实性控制器未连接。", COLOR_RED)
+		return
+	var receipt := source.call("run_predeparture_check", "navigation_operator") as Dictionary
+	var passed := String(receipt.get("status", "")) == "PASS"
+	_update_label("mission_footer", "任务前检查%s。" % ("通过" if passed else "被门禁阻断"), COLOR_GREEN if passed else COLOR_RED)
+	_update_panel()
+
+
+func _on_realism_action_mark_pressed() -> void:
+	var source := _get_advanced_realism_source()
+	if source == null or not source.has_method("record_operator_action"):
+		_update_label("mission_footer", "操作者行动回执不可用。", COLOR_RED)
+		return
+	var receipt := source.call("record_operator_action", "decisive_manoeuvre", "navigation_operator") as Dictionary
+	var accepted := String(receipt.get("status", "")) == "ACCEPTED_SIMULATION_ONLY"
+	_update_label("mission_footer", "关键操船行动%s记录。" % ("已" if accepted else "未"), COLOR_GREEN if accepted else COLOR_RED)
+	_update_panel()
+
+
+func _on_realism_debrief_pressed() -> void:
+	var source := _get_advanced_realism_source()
+	if source == null or not source.has_method("finalize_mission_debrief"):
+		_update_label("mission_footer", "结构化复盘不可用。", COLOR_RED)
+		return
+	var receipt := source.call("finalize_mission_debrief", "navigation_operator") as Dictionary
+	var exported := String(receipt.get("status", "")) == "EXPORTED"
+	var detail := receipt.get("detail", {}) as Dictionary
+	_update_label(
+		"mission_footer",
+		"复盘%s：%s  score=%s" % ["已导出" if exported else "导出失败", detail.get("path", "--"), str(detail.get("score", "--"))],
+		COLOR_GREEN if exported else COLOR_RED,
+	)
 	_update_panel()
 
 
@@ -880,7 +973,9 @@ func _export_plan_snapshot(show_status: bool = true) -> void:
 		"loopRoute": bool(route_radar.get("loop", loop_route_enabled)),
 		"ship": _ship_snapshot(ship),
 		"waypoints": _waypoints_to_payload(route_points),
-		"scenario": _scenario_weather_text()
+		"scenario": _scenario_weather_text(),
+		"advancedMission": _get_advanced_mission_snapshot(),
+		"advancedMissionRealism": _get_advanced_realism_snapshot(),
 	}
 	var file := FileAccess.open(PLAN_EXPORT_PATH, FileAccess.WRITE)
 	if file == null:
@@ -912,6 +1007,118 @@ func _waypoints_to_payload(points: Array[Vector3]) -> Array:
 		var point := points[index]
 		records.append({"name": "WP-%02d" % (index + 1), "x": point.x, "z": point.z})
 	return records
+
+
+func _get_advanced_mission_snapshot() -> Dictionary:
+	if _advanced_mission_source == null or not is_instance_valid(_advanced_mission_source):
+		_advanced_mission_source = _resolve_node(advanced_mission_controller_path, &"ship_advanced_mission_controller")
+	if _advanced_mission_source != null and _advanced_mission_source.has_method("get_advanced_mission_snapshot"):
+		return _advanced_mission_source.call("get_advanced_mission_snapshot") as Dictionary
+	return {}
+
+
+func _get_advanced_realism_source() -> Node:
+	if _advanced_realism_source == null or not is_instance_valid(_advanced_realism_source):
+		_advanced_realism_source = _resolve_node(advanced_mission_realism_path, &"ship_advanced_mission_realism_controller")
+	return _advanced_realism_source
+
+
+func _get_advanced_realism_snapshot() -> Dictionary:
+	var source := _get_advanced_realism_source()
+	if source != null and source.has_method("get_realism_snapshot"):
+		return source.call("get_realism_snapshot") as Dictionary
+	return {}
+
+
+func _update_advanced_realism_labels(snapshot: Dictionary) -> void:
+	if snapshot.is_empty() or not bool(snapshot.get("active", false)):
+		_update_label("advanced_hydrodynamics", "基础场景：任务级浅水/岸效应未启用", COLOR_MUTED)
+		_update_label("advanced_bridge_readiness", "高级任务现实性门禁未启用", COLOR_MUTED)
+		_update_label("advanced_debrief", "--", COLOR_MUTED)
+		return
+	var hydro := snapshot.get("hydrodynamics", {}) as Dictionary
+	var bank_clearance: Variant = hydro.get("bank_clearance_m")
+	var hydro_text := "UKC %.2fm  squat %.3fm  Fh %.2f" % [
+		float(hydro.get("under_keel_clearance_m", 0.0)),
+		float(hydro.get("squat_m", 0.0)),
+		float(hydro.get("depth_froude", 0.0)),
+	]
+	if bank_clearance != null:
+		hydro_text += "  岸距 %.1fm  岸效应 %.0f%%" % [float(bank_clearance), float(hydro.get("bank_proximity", 0.0)) * 100.0]
+	var hydro_safe := float(hydro.get("under_keel_clearance_m", 0.0)) >= float(hydro.get("minimum_ukc_m", 0.0))
+	_update_label("advanced_hydrodynamics", hydro_text, COLOR_GREEN if hydro_safe else COLOR_RED)
+	var bridge := snapshot.get("bridge_readiness", {}) as Dictionary
+	var predeparture := bool(snapshot.get("predeparture_passed", false))
+	_update_label(
+		"advanced_bridge_readiness",
+		"设备域 %s  |  任务前检查 %s" % ["READY" if bool(bridge.get("passed", false)) else "BLOCKED", "PASS" if predeparture else "PENDING"],
+		COLOR_GREEN if predeparture else COLOR_AMBER,
+	)
+	var debrief := snapshot.get("debrief", {}) as Dictionary
+	_update_label(
+		"advanced_debrief",
+		"%s  score %.1f/100  样本 %d  行动回执 %d" % [
+			String(debrief.get("status", "NOT_YET_PASS")),
+			float(debrief.get("score", 0.0)),
+			int(debrief.get("sample_count", 0)),
+			int(snapshot.get("operator_action_count", 0)),
+		],
+		COLOR_GREEN if bool(debrief.get("passed", false)) else COLOR_AMBER,
+	)
+
+
+func _update_advanced_mission_labels(snapshot: Dictionary) -> void:
+	if snapshot.is_empty():
+		_update_label("advanced_task", "--", COLOR_AMBER)
+		_update_label("advanced_gate", "高级任务运行时不可用", COLOR_AMBER)
+		_update_label("advanced_traffic", "--")
+		_update_label("advanced_boundary", "仅供模拟与训练")
+		return
+	var task_type := String(snapshot.get("task_type", "route_following"))
+	var rules := snapshot.get("colreg_rule_ids", []) as Array
+	var task_text := task_type
+	if not rules.is_empty():
+		task_text += "  |  COLREG " + ", ".join(rules)
+	_update_label("advanced_task", task_text)
+	var gate := snapshot.get("gate", {}) as Dictionary
+	var gate_status := String(gate.get("status", "MONITOR"))
+	var gate_text := gate_status
+	match task_type:
+		"berthing":
+			gate_text += "  泊位距离 %.1fm  首向误差 %.1f°  速度 %.2fkn  横移 %.2fm/s" % [
+				float(gate.get("berth_distance_m", 0.0)),
+				float(gate.get("heading_error_degrees", 0.0)),
+				float(gate.get("speed_knots", 0.0)),
+				float(gate.get("sway_mps", 0.0)),
+			]
+		"unberthing":
+			gate_text += "  离泊位 %.1fm  出口速度 %.2fkn" % [
+				float(gate.get("clear_distance_m", 0.0)),
+				float(gate.get("speed_knots", 0.0)),
+			]
+		"head_on", "crossing_give_way", "overtaking":
+			gate_text += "  最小会遇 %.1fm / 要求 %.1fm" % [
+				float(gate.get("minimum_passing_distance_m", 0.0)),
+				float(gate.get("required_passing_distance_m", 0.0)),
+			]
+			if bool(gate.get("overtaking_agreement_required", false)):
+				gate_text += "  追越协议 %s" % ("已确认" if bool(gate.get("overtaking_agreement_confirmed", false)) else "未确认")
+	var behavioral := snapshot.get("behavioral_assessment", {}) as Dictionary
+	if task_type in ["head_on", "crossing_give_way", "overtaking"]:
+		gate_text += "  行为证据 %s" % String(behavioral.get("status", "NOT_YET_PASS"))
+	var complete_gate := bool(gate.get("passed", false)) \
+		and (bool(behavioral.get("passed", false)) if task_type in ["head_on", "crossing_give_way", "overtaking"] else true)
+	_update_label("advanced_gate", gate_text, COLOR_GREEN if complete_gate else COLOR_AMBER)
+	var traffic_count := int(snapshot.get("traffic_count", 0))
+	var traffic_text := "目标船 %d" % traffic_count
+	if snapshot.get("nearest_distance_m") != null:
+		traffic_text += "  距离 %.1fm  TCPA %.1fs  DCPA %.1fm" % [
+			float(snapshot.get("nearest_distance_m", 0.0)),
+			float(snapshot.get("nearest_tcpa_s", 0.0)),
+			float(snapshot.get("nearest_dcpa_m", 0.0)),
+		]
+	_update_label("advanced_traffic", traffic_text, COLOR_AMBER if traffic_count > 0 else COLOR_TEXT)
+	_update_label("advanced_boundary", String(snapshot.get("claim_boundary", "仅供模拟与训练")), COLOR_MUTED)
 
 
 func _horizontal_distance(a: Vector3, b: Vector3) -> float:

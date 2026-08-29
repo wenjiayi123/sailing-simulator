@@ -2571,5 +2571,5 @@
     "evidence_completeness_refusal_gate_passed": true
   },
   "boundary": "PASS means the software verification and anti-overclaim gates executed successfully. Complex COLREG scenarios use an authored local-rule template; PASS does not mean official local rules, vessel calibration, COLREG certification, physical HIL, sea trial or production authorization.",
-  "generated_at_utc": "2026-08-28T15:54:01.188848+00:00"
+  "generated_at_utc": "2026-08-29T14:55:55.636920+00:00"
 }

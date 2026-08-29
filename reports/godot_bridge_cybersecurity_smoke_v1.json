@@ -349,21 +349,21 @@
 		"panel_default_deny_action_reaches_suite": {
 			"detail": {
 				"action": "network_flow",
-				"audit_hash": "9f95515a6cc4e944cd49a3c07776ec88ce1f444bfcb67b9152786dac3b668872",
+				"audit_hash": "415c688f721a597c0359072e8308c05c086ec70be794073f4d09d0ffa701b6af",
 				"detail": {
 					"mapped_to_actuation": false,
 					"reason": "DEFAULT_DENY",
 					"service": "DIRECT_CONTROL"
 				},
 				"network_message_mapped_to_actuation": false,
-				"previous_audit_hash": "5aed1c589dc18b18ef944c53726ab84a4f8d43059cf00cddc7cac8707c6b230a",
+				"previous_audit_hash": "ca2b78fe3fb487ef0be8a180effeb344c48b69d93c9dd5bf797a1775c3d61363",
 				"production_authority": false,
 				"receipt_id": "CYBER-000023",
 				"schema_version": "ship_bridge_cybersecurity_receipt_v1",
 				"sequence": 23,
 				"status": "REJECTED",
 				"subject": "EXTERNAL_EXCHANGE>SAFETY_CONTROL",
-				"utc": "2026-08-28T15:57:45"
+				"utc": "2026-08-29T14:54:46"
 			},
 			"passed": true
 		},
@@ -377,7 +377,7 @@
 		"panel_login_reaches_runtime_authentication": {
 			"detail": {
 				"action": "authenticate",
-				"audit_hash": "5aed1c589dc18b18ef944c53726ab84a4f8d43059cf00cddc7cac8707c6b230a",
+				"audit_hash": "ca2b78fe3fb487ef0be8a180effeb344c48b69d93c9dd5bf797a1775c3d61363",
 				"detail": {
 					"production_identity_provider": false,
 					"role": "SECURITY_ADMIN",
@@ -385,14 +385,14 @@
 					"username": "security_admin"
 				},
 				"network_message_mapped_to_actuation": false,
-				"previous_audit_hash": "e1a20ef90b5617098abf0c388003ccc4d83d6aea556feebf17e76bda30f9a418",
+				"previous_audit_hash": "bdd599d67bf97efbffd2fb01c7c42270560a90ca6352a95b657fb9fcf0980e45",
 				"production_authority": false,
 				"receipt_id": "CYBER-000022",
 				"schema_version": "ship_bridge_cybersecurity_receipt_v1",
 				"sequence": 22,
 				"status": "AUTHENTICATED_TRAINING_ONLY",
 				"subject": "REDACTED_SESSION_TOKEN",
-				"utc": "2026-08-28T15:57:45"
+				"utc": "2026-08-29T14:54:46"
 			},
 			"passed": true
 		},
@@ -423,17 +423,17 @@
 				"security": {
 					"active_sessions": [
 						{
-							"expires_msec": 611099,
+							"expires_msec": 611077,
 							"role": "OPERATOR",
 							"username": "bridge_operator"
 						},
 						{
-							"expires_msec": 611105,
+							"expires_msec": 611082,
 							"role": "SECURITY_ADMIN",
 							"username": "security_admin"
 						},
 						{
-							"expires_msec": 611253,
+							"expires_msec": 611210,
 							"role": "SECURITY_ADMIN",
 							"username": "security_admin"
 						}
@@ -451,7 +451,7 @@
 							"sequence": 1,
 							"severity": "LOW",
 							"subject": "",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -464,7 +464,7 @@
 							"sequence": 2,
 							"severity": "HIGH",
 							"subject": "bridge_operator",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -478,7 +478,7 @@
 							"sequence": 3,
 							"severity": "MEDIUM",
 							"subject": "bridge_operator",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -492,7 +492,7 @@
 							"sequence": 4,
 							"severity": "HIGH",
 							"subject": "bridge_operator",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -506,7 +506,7 @@
 							"sequence": 5,
 							"severity": "HIGH",
 							"subject": "bridge_operator",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -521,7 +521,7 @@
 							"sequence": 6,
 							"severity": "HIGH",
 							"subject": "bridge_operator",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -534,7 +534,7 @@
 							"sequence": 7,
 							"severity": "HIGH",
 							"subject": "bridge_operator",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -553,7 +553,7 @@
 							"sequence": 8,
 							"severity": "CRITICAL",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -566,7 +566,7 @@
 							"sequence": 9,
 							"severity": "HIGH",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -585,7 +585,7 @@
 							"sequence": 10,
 							"severity": "HIGH",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -604,7 +604,7 @@
 							"sequence": 11,
 							"severity": "HIGH",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -623,7 +623,7 @@
 							"sequence": 12,
 							"severity": "HIGH",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -642,7 +642,7 @@
 							"sequence": 13,
 							"severity": "HIGH",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -661,7 +661,7 @@
 							"sequence": 14,
 							"severity": "HIGH",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -680,7 +680,7 @@
 							"sequence": 15,
 							"severity": "HIGH",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -699,12 +699,12 @@
 							"sequence": 16,
 							"severity": "HIGH",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": true,
 							"acknowledged_by": "security_admin",
-							"acknowledged_utc": "2026-08-28T15:57:45",
+							"acknowledged_utc": "2026-08-29T14:54:46",
 							"alert_id": "CYBER-ALERT-000017",
 							"detail": {
 								"penetration_case": {
@@ -720,7 +720,7 @@
 							"sequence": 17,
 							"severity": "HIGH",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -735,12 +735,12 @@
 							"sequence": 18,
 							"severity": "HIGH",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						}
 					],
 					"allowed_flow_count": 8,
 					"audit_chain": {
-						"chain_head_sha256": "9f95515a6cc4e944cd49a3c07776ec88ce1f444bfcb67b9152786dac3b668872",
+						"chain_head_sha256": "415c688f721a597c0359072e8308c05c086ec70be794073f4d09d0ffa701b6af",
 						"errors": [],
 						"passed": true,
 						"record_count": 23
@@ -800,17 +800,17 @@
 				"security": {
 					"active_sessions": [
 						{
-							"expires_msec": 611099,
+							"expires_msec": 611077,
 							"role": "OPERATOR",
 							"username": "bridge_operator"
 						},
 						{
-							"expires_msec": 611105,
+							"expires_msec": 611082,
 							"role": "SECURITY_ADMIN",
 							"username": "security_admin"
 						},
 						{
-							"expires_msec": 611253,
+							"expires_msec": 611210,
 							"role": "SECURITY_ADMIN",
 							"username": "security_admin"
 						}
@@ -828,7 +828,7 @@
 							"sequence": 1,
 							"severity": "LOW",
 							"subject": "",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -841,7 +841,7 @@
 							"sequence": 2,
 							"severity": "HIGH",
 							"subject": "bridge_operator",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -855,7 +855,7 @@
 							"sequence": 3,
 							"severity": "MEDIUM",
 							"subject": "bridge_operator",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -869,7 +869,7 @@
 							"sequence": 4,
 							"severity": "HIGH",
 							"subject": "bridge_operator",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -883,7 +883,7 @@
 							"sequence": 5,
 							"severity": "HIGH",
 							"subject": "bridge_operator",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -898,7 +898,7 @@
 							"sequence": 6,
 							"severity": "HIGH",
 							"subject": "bridge_operator",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -911,7 +911,7 @@
 							"sequence": 7,
 							"severity": "HIGH",
 							"subject": "bridge_operator",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -930,7 +930,7 @@
 							"sequence": 8,
 							"severity": "CRITICAL",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -943,7 +943,7 @@
 							"sequence": 9,
 							"severity": "HIGH",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -962,7 +962,7 @@
 							"sequence": 10,
 							"severity": "HIGH",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -981,7 +981,7 @@
 							"sequence": 11,
 							"severity": "HIGH",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -1000,7 +1000,7 @@
 							"sequence": 12,
 							"severity": "HIGH",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -1019,7 +1019,7 @@
 							"sequence": 13,
 							"severity": "HIGH",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -1038,7 +1038,7 @@
 							"sequence": 14,
 							"severity": "HIGH",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -1057,7 +1057,7 @@
 							"sequence": 15,
 							"severity": "HIGH",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -1076,12 +1076,12 @@
 							"sequence": 16,
 							"severity": "HIGH",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": true,
 							"acknowledged_by": "security_admin",
-							"acknowledged_utc": "2026-08-28T15:57:45",
+							"acknowledged_utc": "2026-08-29T14:54:46",
 							"alert_id": "CYBER-ALERT-000017",
 							"detail": {
 								"penetration_case": {
@@ -1097,7 +1097,7 @@
 							"sequence": 17,
 							"severity": "HIGH",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						},
 						{
 							"acknowledged": false,
@@ -1112,12 +1112,12 @@
 							"sequence": 18,
 							"severity": "HIGH",
 							"subject": "security_admin",
-							"utc": "2026-08-28T15:57:45"
+							"utc": "2026-08-29T14:54:46"
 						}
 					],
 					"allowed_flow_count": 8,
 					"audit_chain": {
-						"chain_head_sha256": "9f95515a6cc4e944cd49a3c07776ec88ce1f444bfcb67b9152786dac3b668872",
+						"chain_head_sha256": "415c688f721a597c0359072e8308c05c086ec70be794073f4d09d0ffa701b6af",
 						"errors": [],
 						"passed": true,
 						"record_count": 23
@@ -1330,7 +1330,7 @@
 	"disaster_recovery_field_verified": false,
 	"errors": [],
 	"existing_policy_modified": false,
-	"generated_at": "2026-08-28T15:57:45",
+	"generated_at": "2026-08-29T14:54:46",
 	"hardware_secure_boot_verified": false,
 	"independent_penetration_test_completed": false,
 	"network_messages_mapped_to_actuation": false,

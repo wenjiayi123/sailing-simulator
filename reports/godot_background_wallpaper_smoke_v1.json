@@ -1,0 +1,80 @@
+{
+	"checks": {
+		"all_walls_use_local_material_override": {
+			"detail": [
+				"res://assets/textures/backgrounds/background_candidates/taoyuan_far_paradise_eye_level_v6_sky_extended_2048_v2.png",
+				"res://assets/textures/backgrounds/background_candidates/taoyuan_far_paradise_eye_level_v6_sky_extended_2048_v2.png",
+				"res://assets/textures/backgrounds/background_candidates/taoyuan_far_paradise_eye_level_v6_sky_extended_2048_v2.png",
+				"res://assets/textures/backgrounds/background_candidates/taoyuan_far_paradise_eye_level_v6_sky_extended_2048_v2.png"
+			],
+			"passed": true
+		},
+		"background_wall_root_present": {
+			"detail": "BackgroundWalls:<Node3D#55415145941>",
+			"passed": true
+		},
+		"four_background_walls_are_vertical": {
+			"detail": [
+				{
+					"name": "FarBackground_North",
+					"up_dot": 1.0
+				},
+				{
+					"name": "FarBackground_South",
+					"up_dot": 1.0
+				},
+				{
+					"name": "FarBackground_East",
+					"up_dot": 1.0
+				},
+				{
+					"name": "FarBackground_West",
+					"up_dot": 1.0
+				}
+			],
+			"passed": true
+		},
+		"four_background_walls_present": {
+			"detail": [
+				"FarBackground_North",
+				"FarBackground_South",
+				"FarBackground_East",
+				"FarBackground_West"
+			],
+			"passed": true
+		},
+		"four_background_walls_visible": {
+			"detail": [
+				true,
+				true,
+				true,
+				true
+			],
+			"passed": true
+		},
+		"local_wallpaper_applied_when_configured": {
+			"detail": {
+				"config_present": true,
+				"status": "APPLIED_LOCAL_WALLPAPER"
+			},
+			"passed": true
+		},
+		"local_water_applied_when_configured": {
+			"detail": {
+				"config_present": true,
+				"status": "APPLIED_LOCAL_WATER"
+			},
+			"passed": true
+		},
+		"main_scene_load_request": {
+			"detail": 0,
+			"passed": true
+		}
+	},
+	"errors": [],
+	"generated_at": "2026-08-29T15:28:34",
+	"passed": true,
+	"passed_checks": 8,
+	"schema_version": "godot_background_wallpaper_smoke_v1",
+	"total_checks": 8
+}

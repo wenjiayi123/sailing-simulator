@@ -1,0 +1,2770 @@
+{
+	"acceptance_scope": "Low-difficulty deterministic function-gate acceptance; not reinforcement-learning policy performance.",
+	"boundary": "Simulation and operator-training task maps only; no calibrated port geometry, certification, legal advice, or live-vessel actuation authority.",
+	"checks": {
+		"advanced_metrics_visible_in_navigation_panel": {
+			"detail": [
+				"mission_code",
+				"mission_eta",
+				"mission_distance",
+				"mission_name",
+				"mission_objective",
+				"scenario_status",
+				"route_status",
+				"route_source",
+				"advanced_task",
+				"advanced_gate",
+				"advanced_traffic",
+				"advanced_hydrodynamics",
+				"advanced_bridge_readiness",
+				"advanced_debrief",
+				"advanced_boundary",
+				"mission_footer",
+				"chart_active_wp",
+				"chart_cross_track",
+				"chart_obstacles",
+				"chart_loop",
+				"waypoint_manifest"
+			],
+			"passed": true
+		},
+		"advanced_mission_components_present": {
+			"detail": {
+				"mission_controller": true,
+				"planning_panel": true,
+				"scenario_controller": true
+			},
+			"passed": true
+		},
+		"all_five_advanced_scenarios_runtime_valid": {
+			"detail": [
+				{
+					"dedicated_scene": {
+						"base_environment_active": false,
+						"dedicated_scene": true,
+						"feature_tags": [
+							"precision_berth_target",
+							"container_terminal",
+							"gantry_cranes",
+							"fenders_and_bollards",
+							"leading_lights"
+						],
+						"production_authority": false,
+						"scene_key": "auto_berthing",
+						"scene_path": "res://scenes/worlds/tasks/auto_berthing_task_scene.tscn",
+						"scene_title": "BERTH A-17 // PRECISION APPROACH BASIN",
+						"task_wall_count": 4,
+						"task_wallpaper_texture": "res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png",
+						"task_walls_vertical": true,
+						"task_water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+						"uses_legacy_rock_environment": false,
+						"visual_node_count": 105,
+						"visual_profile": {
+							"applied": true,
+							"profile_id": "auto_berthing",
+							"wall_count": 4,
+							"wall_orientation_status": "VERTICAL_LOCKED",
+							"wall_tilt_degrees": 0.0,
+							"wallpaper_bottom_composition": "landline_at_bottom",
+							"wallpaper_sea_band_max_fraction": 0.03,
+							"wallpaper_status": "TASK_VISUAL_PROFILE",
+							"wallpaper_texture": "res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png",
+							"walls_vertical": true,
+							"water_status": "TASK_VISUAL_PROFILE",
+							"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+						}
+					},
+					"gate": {
+						"berth_distance_m": 258.90673828125,
+						"collision_free": true,
+						"heading_error_degrees": 75.9946108189078,
+						"passed": false,
+						"speed_knots": 0.454403863071442,
+						"status": "ACTIVE",
+						"sway_mps": 0.007127670571208
+					},
+					"immediate_own_position": {
+						"x": -142.0,
+						"z": -112.0
+					},
+					"nearest_dcpa_m": null,
+					"nearest_distance_m": null,
+					"nearest_tcpa_s": null,
+					"own_ship": {
+						"collision_warning": "CLEAR",
+						"heading_degrees": 75.9946108189078,
+						"position": {
+							"x": -141.920639038086,
+							"z": -111.970176696777
+						},
+						"speed_knots": 0.454403863071442,
+						"sway_mps": -0.007127670571208
+					},
+					"passed": true,
+					"scenario_key": "auto_berthing",
+					"scenario_player_name": "Player",
+					"task_type": "berthing",
+					"traffic": [],
+					"traffic_count": 0
+				},
+				{
+					"dedicated_scene": {
+						"base_environment_active": false,
+						"dedicated_scene": true,
+						"feature_tags": [
+							"turning_basin",
+							"pilot_station",
+							"tug_service_docks",
+							"departure_gate",
+							"speed_control_lights"
+						],
+						"production_authority": false,
+						"scene_key": "auto_unberthing",
+						"scene_path": "res://scenes/worlds/tasks/auto_unberthing_task_scene.tscn",
+						"scene_title": "PILOT SERVICE HARBOUR // DEPARTURE BASIN",
+						"task_wall_count": 4,
+						"task_wallpaper_texture": "res://assets/generated/tasks/auto_unberthing/auto_unberthing_horizon_v1.png",
+						"task_walls_vertical": true,
+						"task_water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+						"uses_legacy_rock_environment": false,
+						"visual_node_count": 86,
+						"visual_profile": {
+							"applied": true,
+							"profile_id": "auto_unberthing",
+							"wall_count": 4,
+							"wall_orientation_status": "VERTICAL_LOCKED",
+							"wall_tilt_degrees": 0.0,
+							"wallpaper_bottom_composition": "landline_at_bottom",
+							"wallpaper_sea_band_max_fraction": 0.03,
+							"wallpaper_status": "TASK_VISUAL_PROFILE",
+							"wallpaper_texture": "res://assets/generated/tasks/auto_unberthing/auto_unberthing_horizon_v1.png",
+							"walls_vertical": true,
+							"water_status": "TASK_VISUAL_PROFILE",
+							"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+						}
+					},
+					"gate": {
+						"clear_distance_m": 0.123966068029404,
+						"collision_free": true,
+						"passed": false,
+						"speed_knots": 0.462434817724407,
+						"status": "ACTIVE"
+					},
+					"immediate_own_position": {
+						"x": 82.0,
+						"z": 18.0
+					},
+					"nearest_dcpa_m": null,
+					"nearest_distance_m": null,
+					"nearest_tcpa_s": null,
+					"own_ship": {
+						"collision_warning": "CLEAR",
+						"heading_degrees": 180.0,
+						"position": {
+							"x": 82.0961151123047,
+							"z": 17.9217090606689
+						},
+						"speed_knots": 0.462434817724407,
+						"sway_mps": -0.023093095049262
+					},
+					"passed": true,
+					"scenario_key": "auto_unberthing",
+					"scenario_player_name": "Player",
+					"task_type": "unberthing",
+					"traffic": [],
+					"traffic_count": 0
+				},
+				{
+					"dedicated_scene": {
+						"base_environment_active": false,
+						"dedicated_scene": true,
+						"feature_tags": [
+							"stone_revetment_channel",
+							"starboard_lane_lights",
+							"reciprocal_traffic_gate",
+							"distance_marker_posts",
+							"rule_9_14_signage"
+						],
+						"production_authority": false,
+						"scene_key": "narrow_channel_head_on",
+						"scene_path": "res://scenes/worlds/tasks/narrow_channel_head_on_task_scene.tscn",
+						"scene_title": "NARROW CHANNEL N-14 // HEAD-ON PASSING",
+						"task_wall_count": 4,
+						"task_wallpaper_texture": "res://assets/generated/tasks/narrow_channel_head_on/narrow_channel_head_on_horizon_v1.png",
+						"task_walls_vertical": true,
+						"task_water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+						"uses_legacy_rock_environment": false,
+						"visual_node_count": 220,
+						"visual_profile": {
+							"applied": true,
+							"profile_id": "narrow_channel_head_on",
+							"wall_count": 4,
+							"wall_orientation_status": "VERTICAL_LOCKED",
+							"wall_tilt_degrees": 0.0,
+							"wallpaper_bottom_composition": "landline_at_bottom",
+							"wallpaper_sea_band_max_fraction": 0.03,
+							"wallpaper_status": "TASK_VISUAL_PROFILE",
+							"wallpaper_texture": "res://assets/generated/tasks/narrow_channel_head_on/narrow_channel_head_on_horizon_v1.png",
+							"walls_vertical": true,
+							"water_status": "TASK_VISUAL_PROFILE",
+							"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+						}
+					},
+					"gate": {
+						"collision_free": true,
+						"expected_passing": "",
+						"minimum_passing_distance_m": 354.708282470703,
+						"overtaking_agreement_authorizer": "",
+						"overtaking_agreement_confirmed": false,
+						"overtaking_agreement_required": false,
+						"passed": false,
+						"required_passing_distance_m": 22.0,
+						"route_complete": false,
+						"status": "ACTIVE"
+					},
+					"immediate_own_position": {
+						"x": -22.0,
+						"z": 176.0
+					},
+					"nearest_dcpa_m": 314.052581787109,
+					"nearest_distance_m": 354.708282470703,
+					"nearest_tcpa_s": 180.0,
+					"own_ship": {
+						"collision_warning": "CLEAR",
+						"heading_degrees": 180.011237482417,
+						"position": {
+							"x": -22.0030651092529,
+							"z": 175.842422485352
+						},
+						"speed_knots": 0.868415116888404,
+						"sway_mps": 0.0155701925978065
+					},
+					"passed": true,
+					"scenario_key": "narrow_channel_head_on",
+					"scenario_player_name": "Player",
+					"task_type": "head_on",
+					"traffic": [
+						{
+							"collision_layer": 1,
+							"dcpa_m": 314.052581787109,
+							"distance_m": 354.708282470703,
+							"external_agent_control_enabled": true,
+							"id": "HEAD-ON-01",
+							"own_along_traffic_track_m": 351.977325439453,
+							"position": {
+								"x": 21.9969482421875,
+								"z": -176.126281738281
+							},
+							"role": "reciprocal_course",
+							"speed_knots": 0.425466977203667,
+							"tcpa_s": 180.0
+						}
+					],
+					"traffic_count": 1
+				},
+				{
+					"dedicated_scene": {
+						"base_environment_active": false,
+						"dedicated_scene": true,
+						"feature_tags": [
+							"open_sea_crossing_range",
+							"traffic_separation_guides",
+							"starboard_sector_beacons",
+							"offshore_lighthouse",
+							"cpa_reference_grid"
+						],
+						"production_authority": false,
+						"scene_key": "crossing_starboard",
+						"scene_path": "res://scenes/worlds/tasks/crossing_starboard_task_scene.tscn",
+						"scene_title": "OFFSHORE CROSSING RANGE C-15 // GIVE-WAY",
+						"task_wall_count": 4,
+						"task_wallpaper_texture": "res://assets/generated/tasks/crossing_starboard/crossing_starboard_horizon_v1.png",
+						"task_walls_vertical": true,
+						"task_water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+						"uses_legacy_rock_environment": false,
+						"visual_node_count": 79,
+						"visual_profile": {
+							"applied": true,
+							"profile_id": "crossing_starboard",
+							"wall_count": 4,
+							"wall_orientation_status": "VERTICAL_LOCKED",
+							"wall_tilt_degrees": 0.0,
+							"wallpaper_bottom_composition": "landline_at_bottom",
+							"wallpaper_sea_band_max_fraction": 0.03,
+							"wallpaper_status": "TASK_VISUAL_PROFILE",
+							"wallpaper_texture": "res://assets/generated/tasks/crossing_starboard/crossing_starboard_horizon_v1.png",
+							"walls_vertical": true,
+							"water_status": "TASK_VISUAL_PROFILE",
+							"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+						}
+					},
+					"gate": {
+						"collision_free": true,
+						"expected_passing": "astern_of_stand_on_vessel",
+						"minimum_passing_distance_m": 279.380279541016,
+						"overtaking_agreement_authorizer": "",
+						"overtaking_agreement_confirmed": false,
+						"overtaking_agreement_required": false,
+						"passed": false,
+						"required_passing_distance_m": 28.0,
+						"route_complete": false,
+						"status": "ACTIVE"
+					},
+					"immediate_own_position": {
+						"x": -182.0,
+						"z": 0.0
+					},
+					"nearest_dcpa_m": 192.130065917969,
+					"nearest_distance_m": 279.380279541016,
+					"nearest_tcpa_s": 180.0,
+					"own_ship": {
+						"collision_warning": "CLEAR",
+						"heading_degrees": 90.02582744973,
+						"position": {
+							"x": -181.908248901367,
+							"z": 0.0836174264550209
+						},
+						"speed_knots": 0.539049897444606,
+						"sway_mps": 0.0341900251805782
+					},
+					"passed": true,
+					"scenario_key": "crossing_starboard",
+					"scenario_player_name": "Player",
+					"task_type": "crossing_give_way",
+					"traffic": [
+						{
+							"collision_layer": 1,
+							"dcpa_m": 192.130065917969,
+							"distance_m": 279.380279541016,
+							"external_agent_control_enabled": true,
+							"id": "CROSS-STBD-01",
+							"own_along_traffic_track_m": 181.843811035156,
+							"position": {
+								"x": 30.0851192474365,
+								"z": -181.883834838867
+							},
+							"role": "stand_on_starboard",
+							"speed_knots": 0.851437027780652,
+							"tcpa_s": 180.0
+						}
+					],
+					"traffic_count": 1
+				},
+				{
+					"dedicated_scene": {
+						"base_environment_active": false,
+						"dedicated_scene": true,
+						"feature_tags": [
+							"industrial_canal",
+							"overtaking_clearance_lane",
+							"slow_vessel_corridor",
+							"communication_gate_board",
+							"mile_marker_lights"
+						],
+						"production_authority": false,
+						"scene_key": "narrow_channel_overtaking",
+						"scene_path": "res://scenes/worlds/tasks/narrow_channel_overtaking_task_scene.tscn",
+						"scene_title": "INDUSTRIAL CANAL O-13 // CONTROLLED OVERTAKING",
+						"task_wall_count": 4,
+						"task_wallpaper_texture": "res://assets/generated/tasks/narrow_channel_overtaking/narrow_channel_overtaking_horizon_v1.png",
+						"task_walls_vertical": true,
+						"task_water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+						"uses_legacy_rock_environment": false,
+						"visual_node_count": 245,
+						"visual_profile": {
+							"applied": true,
+							"profile_id": "narrow_channel_overtaking",
+							"wall_count": 4,
+							"wall_orientation_status": "VERTICAL_LOCKED",
+							"wall_tilt_degrees": 0.0,
+							"wallpaper_bottom_composition": "landline_at_bottom",
+							"wallpaper_sea_band_max_fraction": 0.03,
+							"wallpaper_status": "TASK_VISUAL_PROFILE",
+							"wallpaper_texture": "res://assets/generated/tasks/narrow_channel_overtaking/narrow_channel_overtaking_horizon_v1.png",
+							"walls_vertical": true,
+							"water_status": "TASK_VISUAL_PROFILE",
+							"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+						}
+					},
+					"gate": {
+						"collision_free": true,
+						"expected_passing": "",
+						"minimum_passing_distance_m": 106.0,
+						"overtaking_agreement_authorizer": "native_smoke",
+						"overtaking_agreement_confirmed": true,
+						"overtaking_agreement_required": true,
+						"passed": false,
+						"required_passing_distance_m": 20.0,
+						"route_complete": false,
+						"status": "ACTIVE"
+					},
+					"immediate_own_position": {
+						"x": 18.0,
+						"z": -178.0
+					},
+					"nearest_dcpa_m": 130.934722900391,
+					"nearest_distance_m": 106.019981384277,
+					"nearest_tcpa_s": 180.0,
+					"own_ship": {
+						"collision_warning": "CLEAR",
+						"heading_degrees": 359.971949963879,
+						"position": {
+							"x": 18.0129985809326,
+							"z": -177.76838684082
+						},
+						"speed_knots": 1.15538933704019,
+						"sway_mps": -0.0370268784463406
+					},
+					"passed": true,
+					"scenario_key": "narrow_channel_overtaking",
+					"scenario_player_name": "Player",
+					"task_type": "overtaking",
+					"traffic": [
+						{
+							"collision_layer": 1,
+							"dcpa_m": 130.934722900391,
+							"distance_m": 106.019981384277,
+							"external_agent_control_enabled": true,
+							"id": "SLOW-AHEAD-01",
+							"own_along_traffic_track_m": -106.019966125488,
+							"position": {
+								"x": 18.0130233764648,
+								"z": -71.748405456543
+							},
+							"role": "overtaken_vessel",
+							"speed_knots": 1.42444704275322,
+							"tcpa_s": 180.0
+						}
+					],
+					"traffic_count": 1
+				}
+			],
+			"passed": true
+		},
+		"all_five_low_difficulty_function_gates_reach_pass": {
+			"detail": [
+				{
+					"completion_method": "stopped_at_berth_target",
+					"gate": {
+						"berth_distance_m": 0.0,
+						"collision_free": true,
+						"heading_error_degrees": 0.0,
+						"passed": true,
+						"speed_knots": 0.0,
+						"status": "PASS",
+						"sway_mps": 0.0
+					},
+					"passed": true,
+					"policy_performance_claimed": false,
+					"production_authority": false,
+					"scenario_key": "auto_berthing"
+				},
+				{
+					"completion_method": "stopped_beyond_minimum_clear_distance",
+					"gate": {
+						"clear_distance_m": 225.424041748047,
+						"collision_free": true,
+						"passed": true,
+						"speed_knots": 0.0,
+						"status": "PASS"
+					},
+					"passed": true,
+					"policy_performance_claimed": false,
+					"production_authority": false,
+					"scenario_key": "auto_unberthing"
+				},
+				{
+					"completion_method": "deterministic_waypoint_gate_traversal",
+					"gate": {
+						"collision_free": true,
+						"expected_passing": "",
+						"minimum_passing_distance_m": 43.9971313476562,
+						"overtaking_agreement_authorizer": "",
+						"overtaking_agreement_confirmed": false,
+						"overtaking_agreement_required": false,
+						"passed": true,
+						"required_passing_distance_m": 22.0,
+						"route_complete": true,
+						"status": "PASS"
+					},
+					"passed": true,
+					"policy_performance_claimed": false,
+					"production_authority": false,
+					"scenario_key": "narrow_channel_head_on"
+				},
+				{
+					"completion_method": "deterministic_waypoint_gate_traversal",
+					"gate": {
+						"collision_free": true,
+						"expected_passing": "astern_of_stand_on_vessel",
+						"minimum_passing_distance_m": 228.285797119141,
+						"overtaking_agreement_authorizer": "",
+						"overtaking_agreement_confirmed": false,
+						"overtaking_agreement_required": false,
+						"passed": true,
+						"required_passing_distance_m": 28.0,
+						"route_complete": true,
+						"status": "PASS"
+					},
+					"passed": true,
+					"policy_performance_claimed": false,
+					"production_authority": false,
+					"scenario_key": "crossing_starboard"
+				},
+				{
+					"completion_method": "deterministic_waypoint_gate_traversal",
+					"gate": {
+						"collision_free": true,
+						"expected_passing": "",
+						"minimum_passing_distance_m": 106.0,
+						"overtaking_agreement_authorizer": "native_smoke",
+						"overtaking_agreement_confirmed": true,
+						"overtaking_agreement_required": true,
+						"passed": true,
+						"required_passing_distance_m": 20.0,
+						"route_complete": true,
+						"status": "PASS"
+					},
+					"passed": true,
+					"policy_performance_claimed": false,
+					"production_authority": false,
+					"scenario_key": "narrow_channel_overtaking"
+				},
+				{
+					"completion_method": "deterministic_waypoint_gate_traversal",
+					"expected_loop": true,
+					"passed": true,
+					"policy_performance_claimed": false,
+					"production_authority": false,
+					"route": {
+						"active": true,
+						"arrival_radius": 16.0,
+						"current_index": 0,
+						"loop": true,
+						"points": [
+							{
+								"active": true,
+								"name": "WP-01",
+								"position": "(0.0, -140.05, -72.0)"
+							},
+							{
+								"active": false,
+								"name": "WP-02",
+								"position": "(72.0, -140.05, -132.0)"
+							},
+							{
+								"active": false,
+								"name": "WP-03",
+								"position": "(46.0, -140.05, -208.0)"
+							},
+							{
+								"active": false,
+								"name": "WP-04",
+								"position": "(-56.0, -140.05, -190.0)"
+							},
+							{
+								"active": false,
+								"name": "WP-05",
+								"position": "(-92.0, -140.05, -96.0)"
+							}
+						]
+					},
+					"scenario_key": "open_water"
+				},
+				{
+					"completion_method": "deterministic_waypoint_gate_traversal",
+					"expected_loop": false,
+					"passed": true,
+					"policy_performance_claimed": false,
+					"production_authority": false,
+					"route": {
+						"active": false,
+						"arrival_radius": 12.0,
+						"current_index": 5,
+						"loop": false,
+						"points": [
+							{
+								"active": false,
+								"name": "WP-01",
+								"position": "(-118.0, -140.05, -86.0)"
+							},
+							{
+								"active": false,
+								"name": "WP-02",
+								"position": "(-74.0, -140.05, -76.0)"
+							},
+							{
+								"active": false,
+								"name": "WP-03",
+								"position": "(-34.0, -140.05, -50.0)"
+							},
+							{
+								"active": false,
+								"name": "WP-04",
+								"position": "(14.0, -140.05, -33.0)"
+							},
+							{
+								"active": false,
+								"name": "WP-05",
+								"position": "(58.0, -140.05, -10.0)"
+							},
+							{
+								"active": false,
+								"name": "WP-06",
+								"position": "(82.0, -140.05, 30.0)"
+							}
+						]
+					},
+					"scenario_key": "harbor"
+				}
+			],
+			"passed": true
+		},
+		"all_seven_low_difficulty_function_flows_valid": {
+			"detail": [
+				{
+					"completion_method": "stopped_at_berth_target",
+					"gate": {
+						"berth_distance_m": 0.0,
+						"collision_free": true,
+						"heading_error_degrees": 0.0,
+						"passed": true,
+						"speed_knots": 0.0,
+						"status": "PASS",
+						"sway_mps": 0.0
+					},
+					"passed": true,
+					"policy_performance_claimed": false,
+					"production_authority": false,
+					"scenario_key": "auto_berthing"
+				},
+				{
+					"completion_method": "stopped_beyond_minimum_clear_distance",
+					"gate": {
+						"clear_distance_m": 225.424041748047,
+						"collision_free": true,
+						"passed": true,
+						"speed_knots": 0.0,
+						"status": "PASS"
+					},
+					"passed": true,
+					"policy_performance_claimed": false,
+					"production_authority": false,
+					"scenario_key": "auto_unberthing"
+				},
+				{
+					"completion_method": "deterministic_waypoint_gate_traversal",
+					"gate": {
+						"collision_free": true,
+						"expected_passing": "",
+						"minimum_passing_distance_m": 43.9971313476562,
+						"overtaking_agreement_authorizer": "",
+						"overtaking_agreement_confirmed": false,
+						"overtaking_agreement_required": false,
+						"passed": true,
+						"required_passing_distance_m": 22.0,
+						"route_complete": true,
+						"status": "PASS"
+					},
+					"passed": true,
+					"policy_performance_claimed": false,
+					"production_authority": false,
+					"scenario_key": "narrow_channel_head_on"
+				},
+				{
+					"completion_method": "deterministic_waypoint_gate_traversal",
+					"gate": {
+						"collision_free": true,
+						"expected_passing": "astern_of_stand_on_vessel",
+						"minimum_passing_distance_m": 228.285797119141,
+						"overtaking_agreement_authorizer": "",
+						"overtaking_agreement_confirmed": false,
+						"overtaking_agreement_required": false,
+						"passed": true,
+						"required_passing_distance_m": 28.0,
+						"route_complete": true,
+						"status": "PASS"
+					},
+					"passed": true,
+					"policy_performance_claimed": false,
+					"production_authority": false,
+					"scenario_key": "crossing_starboard"
+				},
+				{
+					"completion_method": "deterministic_waypoint_gate_traversal",
+					"gate": {
+						"collision_free": true,
+						"expected_passing": "",
+						"minimum_passing_distance_m": 106.0,
+						"overtaking_agreement_authorizer": "native_smoke",
+						"overtaking_agreement_confirmed": true,
+						"overtaking_agreement_required": true,
+						"passed": true,
+						"required_passing_distance_m": 20.0,
+						"route_complete": true,
+						"status": "PASS"
+					},
+					"passed": true,
+					"policy_performance_claimed": false,
+					"production_authority": false,
+					"scenario_key": "narrow_channel_overtaking"
+				},
+				{
+					"completion_method": "deterministic_waypoint_gate_traversal",
+					"expected_loop": true,
+					"passed": true,
+					"policy_performance_claimed": false,
+					"production_authority": false,
+					"route": {
+						"active": true,
+						"arrival_radius": 16.0,
+						"current_index": 0,
+						"loop": true,
+						"points": [
+							{
+								"active": true,
+								"name": "WP-01",
+								"position": "(0.0, -140.05, -72.0)"
+							},
+							{
+								"active": false,
+								"name": "WP-02",
+								"position": "(72.0, -140.05, -132.0)"
+							},
+							{
+								"active": false,
+								"name": "WP-03",
+								"position": "(46.0, -140.05, -208.0)"
+							},
+							{
+								"active": false,
+								"name": "WP-04",
+								"position": "(-56.0, -140.05, -190.0)"
+							},
+							{
+								"active": false,
+								"name": "WP-05",
+								"position": "(-92.0, -140.05, -96.0)"
+							}
+						]
+					},
+					"scenario_key": "open_water"
+				},
+				{
+					"completion_method": "deterministic_waypoint_gate_traversal",
+					"expected_loop": false,
+					"passed": true,
+					"policy_performance_claimed": false,
+					"production_authority": false,
+					"route": {
+						"active": false,
+						"arrival_radius": 12.0,
+						"current_index": 5,
+						"loop": false,
+						"points": [
+							{
+								"active": false,
+								"name": "WP-01",
+								"position": "(-118.0, -140.05, -86.0)"
+							},
+							{
+								"active": false,
+								"name": "WP-02",
+								"position": "(-74.0, -140.05, -76.0)"
+							},
+							{
+								"active": false,
+								"name": "WP-03",
+								"position": "(-34.0, -140.05, -50.0)"
+							},
+							{
+								"active": false,
+								"name": "WP-04",
+								"position": "(14.0, -140.05, -33.0)"
+							},
+							{
+								"active": false,
+								"name": "WP-05",
+								"position": "(58.0, -140.05, -10.0)"
+							},
+							{
+								"active": false,
+								"name": "WP-06",
+								"position": "(82.0, -140.05, 30.0)"
+							}
+						]
+					},
+					"scenario_key": "harbor"
+				}
+			],
+			"passed": true
+		},
+		"dedicated_scene_auto_berthing": {
+			"detail": {
+				"base_environment_active": false,
+				"dedicated_scene": true,
+				"feature_tags": [
+					"precision_berth_target",
+					"container_terminal",
+					"gantry_cranes",
+					"fenders_and_bollards",
+					"leading_lights"
+				],
+				"production_authority": false,
+				"scene_key": "auto_berthing",
+				"scene_path": "res://scenes/worlds/tasks/auto_berthing_task_scene.tscn",
+				"scene_title": "BERTH A-17 // PRECISION APPROACH BASIN",
+				"task_wall_count": 4,
+				"task_wallpaper_texture": "res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png",
+				"task_walls_vertical": true,
+				"task_water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+				"uses_legacy_rock_environment": false,
+				"visual_node_count": 105,
+				"visual_profile": {
+					"applied": true,
+					"profile_id": "auto_berthing",
+					"wall_count": 4,
+					"wall_orientation_status": "VERTICAL_LOCKED",
+					"wall_tilt_degrees": 0.0,
+					"wallpaper_bottom_composition": "landline_at_bottom",
+					"wallpaper_sea_band_max_fraction": 0.03,
+					"wallpaper_status": "TASK_VISUAL_PROFILE",
+					"wallpaper_texture": "res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png",
+					"walls_vertical": true,
+					"water_status": "TASK_VISUAL_PROFILE",
+					"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+				}
+			},
+			"passed": true
+		},
+		"dedicated_scene_auto_unberthing": {
+			"detail": {
+				"base_environment_active": false,
+				"dedicated_scene": true,
+				"feature_tags": [
+					"turning_basin",
+					"pilot_station",
+					"tug_service_docks",
+					"departure_gate",
+					"speed_control_lights"
+				],
+				"production_authority": false,
+				"scene_key": "auto_unberthing",
+				"scene_path": "res://scenes/worlds/tasks/auto_unberthing_task_scene.tscn",
+				"scene_title": "PILOT SERVICE HARBOUR // DEPARTURE BASIN",
+				"task_wall_count": 4,
+				"task_wallpaper_texture": "res://assets/generated/tasks/auto_unberthing/auto_unberthing_horizon_v1.png",
+				"task_walls_vertical": true,
+				"task_water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+				"uses_legacy_rock_environment": false,
+				"visual_node_count": 86,
+				"visual_profile": {
+					"applied": true,
+					"profile_id": "auto_unberthing",
+					"wall_count": 4,
+					"wall_orientation_status": "VERTICAL_LOCKED",
+					"wall_tilt_degrees": 0.0,
+					"wallpaper_bottom_composition": "landline_at_bottom",
+					"wallpaper_sea_band_max_fraction": 0.03,
+					"wallpaper_status": "TASK_VISUAL_PROFILE",
+					"wallpaper_texture": "res://assets/generated/tasks/auto_unberthing/auto_unberthing_horizon_v1.png",
+					"walls_vertical": true,
+					"water_status": "TASK_VISUAL_PROFILE",
+					"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+				}
+			},
+			"passed": true
+		},
+		"dedicated_scene_crossing_starboard": {
+			"detail": {
+				"base_environment_active": false,
+				"dedicated_scene": true,
+				"feature_tags": [
+					"open_sea_crossing_range",
+					"traffic_separation_guides",
+					"starboard_sector_beacons",
+					"offshore_lighthouse",
+					"cpa_reference_grid"
+				],
+				"production_authority": false,
+				"scene_key": "crossing_starboard",
+				"scene_path": "res://scenes/worlds/tasks/crossing_starboard_task_scene.tscn",
+				"scene_title": "OFFSHORE CROSSING RANGE C-15 // GIVE-WAY",
+				"task_wall_count": 4,
+				"task_wallpaper_texture": "res://assets/generated/tasks/crossing_starboard/crossing_starboard_horizon_v1.png",
+				"task_walls_vertical": true,
+				"task_water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+				"uses_legacy_rock_environment": false,
+				"visual_node_count": 79,
+				"visual_profile": {
+					"applied": true,
+					"profile_id": "crossing_starboard",
+					"wall_count": 4,
+					"wall_orientation_status": "VERTICAL_LOCKED",
+					"wall_tilt_degrees": 0.0,
+					"wallpaper_bottom_composition": "landline_at_bottom",
+					"wallpaper_sea_band_max_fraction": 0.03,
+					"wallpaper_status": "TASK_VISUAL_PROFILE",
+					"wallpaper_texture": "res://assets/generated/tasks/crossing_starboard/crossing_starboard_horizon_v1.png",
+					"walls_vertical": true,
+					"water_status": "TASK_VISUAL_PROFILE",
+					"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+				}
+			},
+			"passed": true
+		},
+		"dedicated_scene_narrow_channel_head_on": {
+			"detail": {
+				"base_environment_active": false,
+				"dedicated_scene": true,
+				"feature_tags": [
+					"stone_revetment_channel",
+					"starboard_lane_lights",
+					"reciprocal_traffic_gate",
+					"distance_marker_posts",
+					"rule_9_14_signage"
+				],
+				"production_authority": false,
+				"scene_key": "narrow_channel_head_on",
+				"scene_path": "res://scenes/worlds/tasks/narrow_channel_head_on_task_scene.tscn",
+				"scene_title": "NARROW CHANNEL N-14 // HEAD-ON PASSING",
+				"task_wall_count": 4,
+				"task_wallpaper_texture": "res://assets/generated/tasks/narrow_channel_head_on/narrow_channel_head_on_horizon_v1.png",
+				"task_walls_vertical": true,
+				"task_water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+				"uses_legacy_rock_environment": false,
+				"visual_node_count": 220,
+				"visual_profile": {
+					"applied": true,
+					"profile_id": "narrow_channel_head_on",
+					"wall_count": 4,
+					"wall_orientation_status": "VERTICAL_LOCKED",
+					"wall_tilt_degrees": 0.0,
+					"wallpaper_bottom_composition": "landline_at_bottom",
+					"wallpaper_sea_band_max_fraction": 0.03,
+					"wallpaper_status": "TASK_VISUAL_PROFILE",
+					"wallpaper_texture": "res://assets/generated/tasks/narrow_channel_head_on/narrow_channel_head_on_horizon_v1.png",
+					"walls_vertical": true,
+					"water_status": "TASK_VISUAL_PROFILE",
+					"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+				}
+			},
+			"passed": true
+		},
+		"dedicated_scene_narrow_channel_overtaking": {
+			"detail": {
+				"base_environment_active": false,
+				"dedicated_scene": true,
+				"feature_tags": [
+					"industrial_canal",
+					"overtaking_clearance_lane",
+					"slow_vessel_corridor",
+					"communication_gate_board",
+					"mile_marker_lights"
+				],
+				"production_authority": false,
+				"scene_key": "narrow_channel_overtaking",
+				"scene_path": "res://scenes/worlds/tasks/narrow_channel_overtaking_task_scene.tscn",
+				"scene_title": "INDUSTRIAL CANAL O-13 // CONTROLLED OVERTAKING",
+				"task_wall_count": 4,
+				"task_wallpaper_texture": "res://assets/generated/tasks/narrow_channel_overtaking/narrow_channel_overtaking_horizon_v1.png",
+				"task_walls_vertical": true,
+				"task_water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+				"uses_legacy_rock_environment": false,
+				"visual_node_count": 245,
+				"visual_profile": {
+					"applied": true,
+					"profile_id": "narrow_channel_overtaking",
+					"wall_count": 4,
+					"wall_orientation_status": "VERTICAL_LOCKED",
+					"wall_tilt_degrees": 0.0,
+					"wallpaper_bottom_composition": "landline_at_bottom",
+					"wallpaper_sea_band_max_fraction": 0.03,
+					"wallpaper_status": "TASK_VISUAL_PROFILE",
+					"wallpaper_texture": "res://assets/generated/tasks/narrow_channel_overtaking/narrow_channel_overtaking_horizon_v1.png",
+					"walls_vertical": true,
+					"water_status": "TASK_VISUAL_PROFILE",
+					"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+				}
+			},
+			"passed": true
+		},
+		"default_clear_weather_auto_berthing": {
+			"detail": {
+				"atmosphere_overlay_alpha": 0.0,
+				"base_time": "10:20",
+				"current_direction_degrees": 70.0,
+				"current_speed_knots": 0.4,
+				"current_vector": "(0.193368, 0.0, 0.07038)",
+				"data_source": "scenario_clear_baseline",
+				"data_status": "zero_fog_default",
+				"fetched_at": "",
+				"fog_density": 0.0,
+				"fog_enabled": false,
+				"index": 0,
+				"key": "clear",
+				"name": "晴天",
+				"observed_at": "",
+				"public_location": {
+					"latitude": 1.2644,
+					"longitude": 103.8223
+				},
+				"sea_state_label": "CALM",
+				"tide_meters": 0.2,
+				"time": "10:20",
+				"time_scale": 1.0,
+				"visibility": "20.0 km",
+				"visibility_km": 20.0,
+				"water_surface_visual": {
+					"connected": true,
+					"flow_direction": "(0.866025, 0.5)",
+					"vertex_wave_height": 0.07,
+					"wave_speed": 0.206896551724138
+				},
+				"wave_direction_degrees": 60.0,
+				"wave_height_meters": 0.25,
+				"wave_period_seconds": 5.8,
+				"weather": "CLEAR SKY",
+				"wind_direction_degrees": 45.0,
+				"wind_speed_knots": 8.0,
+				"zero_fog_visual": true
+			},
+			"passed": true
+		},
+		"default_clear_weather_auto_unberthing": {
+			"detail": {
+				"atmosphere_overlay_alpha": 0.0,
+				"base_time": "10:20",
+				"current_direction_degrees": 130.0,
+				"current_speed_knots": 0.7,
+				"current_vector": "(0.275861, 0.0, -0.231475)",
+				"data_source": "scenario_clear_baseline",
+				"data_status": "zero_fog_default",
+				"fetched_at": "",
+				"fog_density": 0.0,
+				"fog_enabled": false,
+				"index": 0,
+				"key": "clear",
+				"name": "晴天",
+				"observed_at": "",
+				"public_location": {
+					"latitude": 1.2644,
+					"longitude": 103.8223
+				},
+				"sea_state_label": "CALM",
+				"tide_meters": 0.4,
+				"time": "10:20",
+				"time_scale": 1.0,
+				"visibility": "20.0 km",
+				"visibility_km": 20.0,
+				"water_surface_visual": {
+					"connected": true,
+					"flow_direction": "(0.965926, -0.258819)",
+					"vertex_wave_height": 0.086,
+					"wave_speed": 0.193548387096774
+				},
+				"wave_direction_degrees": 105.0,
+				"wave_height_meters": 0.35,
+				"wave_period_seconds": 6.2,
+				"weather": "CLEAR SKY",
+				"wind_direction_degrees": 95.0,
+				"wind_speed_knots": 10.0,
+				"zero_fog_visual": true
+			},
+			"passed": true
+		},
+		"default_clear_weather_crossing_starboard": {
+			"detail": {
+				"atmosphere_overlay_alpha": 0.0,
+				"base_time": "10:20",
+				"current_direction_degrees": 40.0,
+				"current_speed_knots": 0.6,
+				"current_vector": "(0.198407, 0.0, 0.236452)",
+				"data_source": "scenario_clear_baseline",
+				"data_status": "zero_fog_default",
+				"fetched_at": "",
+				"fog_density": 0.0,
+				"fog_enabled": false,
+				"index": 0,
+				"key": "clear",
+				"name": "晴天",
+				"observed_at": "",
+				"public_location": {
+					"latitude": 1.2644,
+					"longitude": 103.8223
+				},
+				"sea_state_label": "LIGHT SEA",
+				"tide_meters": 0.3,
+				"time": "10:20",
+				"time_scale": 1.0,
+				"visibility": "20.0 km",
+				"visibility_km": 20.0,
+				"water_surface_visual": {
+					"connected": true,
+					"flow_direction": "(0.707107, -0.707107)",
+					"vertex_wave_height": 0.158,
+					"wave_speed": 0.166666666666667
+				},
+				"wave_direction_degrees": 135.0,
+				"wave_height_meters": 0.8,
+				"wave_period_seconds": 7.2,
+				"weather": "CLEAR SKY",
+				"wind_direction_degrees": 120.0,
+				"wind_speed_knots": 14.0,
+				"zero_fog_visual": true
+			},
+			"passed": true
+		},
+		"default_clear_weather_harbor": {
+			"detail": {
+				"atmosphere_overlay_alpha": 0.0,
+				"base_time": "10:20",
+				"current_direction_degrees": 65.0,
+				"current_speed_knots": 0.1,
+				"current_vector": "(0.046624, 0.0, 0.021741)",
+				"data_source": "scenario_clear_baseline",
+				"data_status": "zero_fog_default",
+				"fetched_at": "",
+				"fog_density": 0.0,
+				"fog_enabled": false,
+				"index": 0,
+				"key": "clear",
+				"name": "晴天",
+				"observed_at": "",
+				"public_location": {
+					"latitude": 1.2644,
+					"longitude": 103.8223
+				},
+				"sea_state_label": "CALM",
+				"tide_meters": 0.2,
+				"time": "10:20",
+				"time_scale": 1.0,
+				"visibility": "20.0 km",
+				"visibility_km": 20.0,
+				"water_surface_visual": {
+					"connected": true,
+					"flow_direction": "(0.809017, 0.587785)",
+					"vertex_wave_height": 0.0492,
+					"wave_speed": 0.218181818181818
+				},
+				"wave_direction_degrees": 54.0,
+				"wave_height_meters": 0.12,
+				"wave_period_seconds": 5.5,
+				"weather": "CLEAR SKY",
+				"wind_direction_degrees": 38.0,
+				"wind_speed_knots": 3.0,
+				"zero_fog_visual": true
+			},
+			"passed": true
+		},
+		"default_clear_weather_narrow_channel_head_on": {
+			"detail": {
+				"atmosphere_overlay_alpha": 0.0,
+				"base_time": "10:20",
+				"current_direction_degrees": 180.0,
+				"current_speed_knots": 0.8,
+				"current_vector": "(0.0, 0.0, -0.411555)",
+				"data_source": "scenario_clear_baseline",
+				"data_status": "zero_fog_default",
+				"fetched_at": "",
+				"fog_density": 0.0,
+				"fog_enabled": false,
+				"index": 0,
+				"key": "clear",
+				"name": "晴天",
+				"observed_at": "",
+				"public_location": {
+					"latitude": 1.2644,
+					"longitude": 103.8223
+				},
+				"sea_state_label": "CALM",
+				"tide_meters": 0.1,
+				"time": "10:20",
+				"time_scale": 1.0,
+				"visibility": "20.0 km",
+				"visibility_km": 20.0,
+				"water_surface_visual": {
+					"connected": true,
+					"flow_direction": "(-0.5, -0.866025)",
+					"vertex_wave_height": 0.102,
+					"wave_speed": 0.184615384615385
+				},
+				"wave_direction_degrees": 210.0,
+				"wave_height_meters": 0.45,
+				"wave_period_seconds": 6.5,
+				"weather": "CLEAR SKY",
+				"wind_direction_degrees": 225.0,
+				"wind_speed_knots": 9.0,
+				"zero_fog_visual": true
+			},
+			"passed": true
+		},
+		"default_clear_weather_narrow_channel_overtaking": {
+			"detail": {
+				"atmosphere_overlay_alpha": 0.0,
+				"base_time": "10:20",
+				"current_direction_degrees": 5.0,
+				"current_speed_knots": 1.2,
+				"current_vector": "(0.053804, 0.0, 0.614984)",
+				"data_source": "scenario_clear_baseline",
+				"data_status": "zero_fog_default",
+				"fetched_at": "",
+				"fog_density": 0.0,
+				"fog_enabled": false,
+				"index": 0,
+				"key": "clear",
+				"name": "晴天",
+				"observed_at": "",
+				"public_location": {
+					"latitude": 1.2644,
+					"longitude": 103.8223
+				},
+				"sea_state_label": "LIGHT SEA",
+				"tide_meters": 0.2,
+				"time": "10:20",
+				"time_scale": 1.0,
+				"visibility": "20.0 km",
+				"visibility_km": 20.0,
+				"water_surface_visual": {
+					"connected": true,
+					"flow_direction": "(-0.939693, -0.34202)",
+					"vertex_wave_height": 0.11,
+					"wave_speed": 0.176470588235294
+				},
+				"wave_direction_degrees": 250.0,
+				"wave_height_meters": 0.5,
+				"wave_period_seconds": 6.8,
+				"weather": "CLEAR SKY",
+				"wind_direction_degrees": 265.0,
+				"wind_speed_knots": 12.0,
+				"zero_fog_visual": true
+			},
+			"passed": true
+		},
+		"default_clear_weather_open_water": {
+			"detail": {
+				"atmosphere_overlay_alpha": 0.0,
+				"base_time": "10:20",
+				"current_direction_degrees": 65.0,
+				"current_speed_knots": 0.1,
+				"current_vector": "(0.046624, 0.0, 0.021741)",
+				"data_source": "scenario_clear_baseline",
+				"data_status": "zero_fog_default",
+				"fetched_at": "",
+				"fog_density": 0.0,
+				"fog_enabled": false,
+				"index": 0,
+				"key": "clear",
+				"name": "晴天",
+				"observed_at": "",
+				"public_location": {
+					"latitude": 1.2644,
+					"longitude": 103.8223
+				},
+				"sea_state_label": "CALM",
+				"tide_meters": 0.2,
+				"time": "10:20",
+				"time_scale": 1.0,
+				"visibility": "20.0 km",
+				"visibility_km": 20.0,
+				"water_surface_visual": {
+					"connected": true,
+					"flow_direction": "(0.809017, 0.587785)",
+					"vertex_wave_height": 0.0492,
+					"wave_speed": 0.218181818181818
+				},
+				"wave_direction_degrees": 54.0,
+				"wave_height_meters": 0.12,
+				"wave_period_seconds": 5.5,
+				"weather": "CLEAR SKY",
+				"wind_direction_degrees": 38.0,
+				"wind_speed_knots": 3.0,
+				"zero_fog_visual": true
+			},
+			"passed": true
+		},
+		"frozen_36_44_policy_artifacts_unchanged": {
+			"detail": {
+				"after": {
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5"
+				},
+				"before": {
+					"res://reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+					"res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5"
+				}
+			},
+			"passed": true
+		},
+		"low_difficulty_completion_auto_berthing": {
+			"detail": {
+				"completion_method": "stopped_at_berth_target",
+				"gate": {
+					"berth_distance_m": 0.0,
+					"collision_free": true,
+					"heading_error_degrees": 0.0,
+					"passed": true,
+					"speed_knots": 0.0,
+					"status": "PASS",
+					"sway_mps": 0.0
+				},
+				"passed": true,
+				"policy_performance_claimed": false,
+				"production_authority": false,
+				"scenario_key": "auto_berthing"
+			},
+			"passed": true
+		},
+		"low_difficulty_completion_auto_unberthing": {
+			"detail": {
+				"completion_method": "stopped_beyond_minimum_clear_distance",
+				"gate": {
+					"clear_distance_m": 225.424041748047,
+					"collision_free": true,
+					"passed": true,
+					"speed_knots": 0.0,
+					"status": "PASS"
+				},
+				"passed": true,
+				"policy_performance_claimed": false,
+				"production_authority": false,
+				"scenario_key": "auto_unberthing"
+			},
+			"passed": true
+		},
+		"low_difficulty_completion_crossing_starboard": {
+			"detail": {
+				"completion_method": "deterministic_waypoint_gate_traversal",
+				"gate": {
+					"collision_free": true,
+					"expected_passing": "astern_of_stand_on_vessel",
+					"minimum_passing_distance_m": 228.285797119141,
+					"overtaking_agreement_authorizer": "",
+					"overtaking_agreement_confirmed": false,
+					"overtaking_agreement_required": false,
+					"passed": true,
+					"required_passing_distance_m": 28.0,
+					"route_complete": true,
+					"status": "PASS"
+				},
+				"passed": true,
+				"policy_performance_claimed": false,
+				"production_authority": false,
+				"scenario_key": "crossing_starboard"
+			},
+			"passed": true
+		},
+		"low_difficulty_completion_harbor": {
+			"detail": {
+				"completion_method": "deterministic_waypoint_gate_traversal",
+				"expected_loop": false,
+				"passed": true,
+				"policy_performance_claimed": false,
+				"production_authority": false,
+				"route": {
+					"active": false,
+					"arrival_radius": 12.0,
+					"current_index": 5,
+					"loop": false,
+					"points": [
+						{
+							"active": false,
+							"name": "WP-01",
+							"position": "(-118.0, -140.05, -86.0)"
+						},
+						{
+							"active": false,
+							"name": "WP-02",
+							"position": "(-74.0, -140.05, -76.0)"
+						},
+						{
+							"active": false,
+							"name": "WP-03",
+							"position": "(-34.0, -140.05, -50.0)"
+						},
+						{
+							"active": false,
+							"name": "WP-04",
+							"position": "(14.0, -140.05, -33.0)"
+						},
+						{
+							"active": false,
+							"name": "WP-05",
+							"position": "(58.0, -140.05, -10.0)"
+						},
+						{
+							"active": false,
+							"name": "WP-06",
+							"position": "(82.0, -140.05, 30.0)"
+						}
+					]
+				},
+				"scenario_key": "harbor"
+			},
+			"passed": true
+		},
+		"low_difficulty_completion_narrow_channel_head_on": {
+			"detail": {
+				"completion_method": "deterministic_waypoint_gate_traversal",
+				"gate": {
+					"collision_free": true,
+					"expected_passing": "",
+					"minimum_passing_distance_m": 43.9971313476562,
+					"overtaking_agreement_authorizer": "",
+					"overtaking_agreement_confirmed": false,
+					"overtaking_agreement_required": false,
+					"passed": true,
+					"required_passing_distance_m": 22.0,
+					"route_complete": true,
+					"status": "PASS"
+				},
+				"passed": true,
+				"policy_performance_claimed": false,
+				"production_authority": false,
+				"scenario_key": "narrow_channel_head_on"
+			},
+			"passed": true
+		},
+		"low_difficulty_completion_narrow_channel_overtaking": {
+			"detail": {
+				"completion_method": "deterministic_waypoint_gate_traversal",
+				"gate": {
+					"collision_free": true,
+					"expected_passing": "",
+					"minimum_passing_distance_m": 106.0,
+					"overtaking_agreement_authorizer": "native_smoke",
+					"overtaking_agreement_confirmed": true,
+					"overtaking_agreement_required": true,
+					"passed": true,
+					"required_passing_distance_m": 20.0,
+					"route_complete": true,
+					"status": "PASS"
+				},
+				"passed": true,
+				"policy_performance_claimed": false,
+				"production_authority": false,
+				"scenario_key": "narrow_channel_overtaking"
+			},
+			"passed": true
+		},
+		"low_difficulty_completion_open_water": {
+			"detail": {
+				"completion_method": "deterministic_waypoint_gate_traversal",
+				"expected_loop": true,
+				"passed": true,
+				"policy_performance_claimed": false,
+				"production_authority": false,
+				"route": {
+					"active": true,
+					"arrival_radius": 16.0,
+					"current_index": 0,
+					"loop": true,
+					"points": [
+						{
+							"active": true,
+							"name": "WP-01",
+							"position": "(0.0, -140.05, -72.0)"
+						},
+						{
+							"active": false,
+							"name": "WP-02",
+							"position": "(72.0, -140.05, -132.0)"
+						},
+						{
+							"active": false,
+							"name": "WP-03",
+							"position": "(46.0, -140.05, -208.0)"
+						},
+						{
+							"active": false,
+							"name": "WP-04",
+							"position": "(-56.0, -140.05, -190.0)"
+						},
+						{
+							"active": false,
+							"name": "WP-05",
+							"position": "(-92.0, -140.05, -96.0)"
+						}
+					]
+				},
+				"scenario_key": "open_water"
+			},
+			"passed": true
+		},
+		"main_scene_load_request": {
+			"detail": 0,
+			"passed": true
+		},
+		"open_water_restores_original_environment_wallpaper_and_collisions": {
+			"detail": {
+				"base_visible": true,
+				"dedicated": {
+					"base_environment_active": true,
+					"dedicated_scene": false,
+					"scene_path": ""
+				},
+				"guard": {
+					"base_environment_active": true,
+					"expected_rock_count": 32,
+					"guard_count": 3,
+					"manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
+					"manifest_schema_version": "large_rock_obstacle_manifest_v1",
+					"missing_manifest_rocks": [],
+					"registered_collision_body_count": 64,
+					"registered_obstacle_count": 32,
+					"restored_transform_count": 0,
+					"rocks": [
+						{
+							"center": {
+								"x": -470.352294921875,
+								"y": -140.734939575195,
+								"z": 282.606811523438
+							},
+							"guard": "WaterlineGuard_GroundedPlate_01_BroadLandMass",
+							"rock": "GroundedPlate_01_BroadLandMass",
+							"size": {
+								"x": 251.529052734375,
+								"y": 10.0,
+								"z": 223.105682373047
+							}
+						},
+						{
+							"center": {
+								"x": -527.353088378906,
+								"y": -140.734939575195,
+								"z": -196.941986083984
+							},
+							"guard": "WaterlineGuard_GroundedPlate_04_WideBridgeSlab",
+							"rock": "GroundedPlate_04_WideBridgeSlab",
+							"size": {
+								"x": 282.304595947266,
+								"y": 10.0,
+								"z": 280.225219726562
+							}
+						},
+						{
+							"center": {
+								"x": -115.591758728027,
+								"y": -140.734939575195,
+								"z": 525.5234375
+							},
+							"guard": "WaterlineGuard_GroundedPlate_07_AncientWallPlate",
+							"rock": "GroundedPlate_07_AncientWallPlate",
+							"size": {
+								"x": 238.29167175293,
+								"y": 10.0,
+								"z": 185.140960693359
+							}
+						}
+					],
+					"shared_background_active": true,
+					"unexpected_scene_rocks": [],
+					"water_level_y": -140.73494
+				},
+				"wallpaper_status": "APPLIED_LOCAL_WALLPAPER"
+			},
+			"passed": true
+		},
+		"overtaking_agreement_explicitly_confirmed": {
+			"detail": {
+				"action": "confirm_overtaking_agreement",
+				"detail": {
+					"authorizer": "native_smoke",
+					"confirmed": true,
+					"real_vhf_authority": false
+				},
+				"existing_policy_modified": false,
+				"production_authority": false,
+				"receipt_id": "AMR-000008",
+				"schema_version": "ship_advanced_mission_receipt_v1",
+				"status": "ACCEPTED_SIMULATION_ONLY",
+				"utc": "2026-08-29T15:28:06"
+			},
+			"passed": true
+		},
+		"overtaking_blank_authorizer_rejected": {
+			"detail": {
+				"action": "confirm_overtaking_agreement",
+				"detail": {
+					"reason": "AUTHORIZER_REQUIRED"
+				},
+				"existing_policy_modified": false,
+				"production_authority": false,
+				"receipt_id": "AMR-000007",
+				"schema_version": "ship_advanced_mission_receipt_v1",
+				"status": "REJECTED",
+				"utc": "2026-08-29T15:28:06"
+			},
+			"passed": true
+		},
+		"repeated_scenario_switches_do_not_exhaust_fleet": {
+			"detail": {
+				"switches": 18
+			},
+			"passed": true
+		},
+		"runtime_auto_berthing": {
+			"detail": {
+				"dedicated_scene": {
+					"base_environment_active": false,
+					"dedicated_scene": true,
+					"feature_tags": [
+						"precision_berth_target",
+						"container_terminal",
+						"gantry_cranes",
+						"fenders_and_bollards",
+						"leading_lights"
+					],
+					"production_authority": false,
+					"scene_key": "auto_berthing",
+					"scene_path": "res://scenes/worlds/tasks/auto_berthing_task_scene.tscn",
+					"scene_title": "BERTH A-17 // PRECISION APPROACH BASIN",
+					"task_wall_count": 4,
+					"task_wallpaper_texture": "res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png",
+					"task_walls_vertical": true,
+					"task_water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+					"uses_legacy_rock_environment": false,
+					"visual_node_count": 105,
+					"visual_profile": {
+						"applied": true,
+						"profile_id": "auto_berthing",
+						"wall_count": 4,
+						"wall_orientation_status": "VERTICAL_LOCKED",
+						"wall_tilt_degrees": 0.0,
+						"wallpaper_bottom_composition": "landline_at_bottom",
+						"wallpaper_sea_band_max_fraction": 0.03,
+						"wallpaper_status": "TASK_VISUAL_PROFILE",
+						"wallpaper_texture": "res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png",
+						"walls_vertical": true,
+						"water_status": "TASK_VISUAL_PROFILE",
+						"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+					}
+				},
+				"gate": {
+					"berth_distance_m": 258.90673828125,
+					"collision_free": true,
+					"heading_error_degrees": 75.9946108189078,
+					"passed": false,
+					"speed_knots": 0.454403863071442,
+					"status": "ACTIVE",
+					"sway_mps": 0.007127670571208
+				},
+				"immediate_own_position": {
+					"x": -142.0,
+					"z": -112.0
+				},
+				"nearest_dcpa_m": null,
+				"nearest_distance_m": null,
+				"nearest_tcpa_s": null,
+				"own_ship": {
+					"collision_warning": "CLEAR",
+					"heading_degrees": 75.9946108189078,
+					"position": {
+						"x": -141.920639038086,
+						"z": -111.970176696777
+					},
+					"speed_knots": 0.454403863071442,
+					"sway_mps": -0.007127670571208
+				},
+				"passed": true,
+				"scenario_key": "auto_berthing",
+				"scenario_player_name": "Player",
+				"task_type": "berthing",
+				"traffic": [],
+				"traffic_count": 0
+			},
+			"passed": true
+		},
+		"runtime_auto_unberthing": {
+			"detail": {
+				"dedicated_scene": {
+					"base_environment_active": false,
+					"dedicated_scene": true,
+					"feature_tags": [
+						"turning_basin",
+						"pilot_station",
+						"tug_service_docks",
+						"departure_gate",
+						"speed_control_lights"
+					],
+					"production_authority": false,
+					"scene_key": "auto_unberthing",
+					"scene_path": "res://scenes/worlds/tasks/auto_unberthing_task_scene.tscn",
+					"scene_title": "PILOT SERVICE HARBOUR // DEPARTURE BASIN",
+					"task_wall_count": 4,
+					"task_wallpaper_texture": "res://assets/generated/tasks/auto_unberthing/auto_unberthing_horizon_v1.png",
+					"task_walls_vertical": true,
+					"task_water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+					"uses_legacy_rock_environment": false,
+					"visual_node_count": 86,
+					"visual_profile": {
+						"applied": true,
+						"profile_id": "auto_unberthing",
+						"wall_count": 4,
+						"wall_orientation_status": "VERTICAL_LOCKED",
+						"wall_tilt_degrees": 0.0,
+						"wallpaper_bottom_composition": "landline_at_bottom",
+						"wallpaper_sea_band_max_fraction": 0.03,
+						"wallpaper_status": "TASK_VISUAL_PROFILE",
+						"wallpaper_texture": "res://assets/generated/tasks/auto_unberthing/auto_unberthing_horizon_v1.png",
+						"walls_vertical": true,
+						"water_status": "TASK_VISUAL_PROFILE",
+						"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+					}
+				},
+				"gate": {
+					"clear_distance_m": 0.123966068029404,
+					"collision_free": true,
+					"passed": false,
+					"speed_knots": 0.462434817724407,
+					"status": "ACTIVE"
+				},
+				"immediate_own_position": {
+					"x": 82.0,
+					"z": 18.0
+				},
+				"nearest_dcpa_m": null,
+				"nearest_distance_m": null,
+				"nearest_tcpa_s": null,
+				"own_ship": {
+					"collision_warning": "CLEAR",
+					"heading_degrees": 180.0,
+					"position": {
+						"x": 82.0961151123047,
+						"z": 17.9217090606689
+					},
+					"speed_knots": 0.462434817724407,
+					"sway_mps": -0.023093095049262
+				},
+				"passed": true,
+				"scenario_key": "auto_unberthing",
+				"scenario_player_name": "Player",
+				"task_type": "unberthing",
+				"traffic": [],
+				"traffic_count": 0
+			},
+			"passed": true
+		},
+		"runtime_crossing_starboard": {
+			"detail": {
+				"dedicated_scene": {
+					"base_environment_active": false,
+					"dedicated_scene": true,
+					"feature_tags": [
+						"open_sea_crossing_range",
+						"traffic_separation_guides",
+						"starboard_sector_beacons",
+						"offshore_lighthouse",
+						"cpa_reference_grid"
+					],
+					"production_authority": false,
+					"scene_key": "crossing_starboard",
+					"scene_path": "res://scenes/worlds/tasks/crossing_starboard_task_scene.tscn",
+					"scene_title": "OFFSHORE CROSSING RANGE C-15 // GIVE-WAY",
+					"task_wall_count": 4,
+					"task_wallpaper_texture": "res://assets/generated/tasks/crossing_starboard/crossing_starboard_horizon_v1.png",
+					"task_walls_vertical": true,
+					"task_water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+					"uses_legacy_rock_environment": false,
+					"visual_node_count": 79,
+					"visual_profile": {
+						"applied": true,
+						"profile_id": "crossing_starboard",
+						"wall_count": 4,
+						"wall_orientation_status": "VERTICAL_LOCKED",
+						"wall_tilt_degrees": 0.0,
+						"wallpaper_bottom_composition": "landline_at_bottom",
+						"wallpaper_sea_band_max_fraction": 0.03,
+						"wallpaper_status": "TASK_VISUAL_PROFILE",
+						"wallpaper_texture": "res://assets/generated/tasks/crossing_starboard/crossing_starboard_horizon_v1.png",
+						"walls_vertical": true,
+						"water_status": "TASK_VISUAL_PROFILE",
+						"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+					}
+				},
+				"gate": {
+					"collision_free": true,
+					"expected_passing": "astern_of_stand_on_vessel",
+					"minimum_passing_distance_m": 279.380279541016,
+					"overtaking_agreement_authorizer": "",
+					"overtaking_agreement_confirmed": false,
+					"overtaking_agreement_required": false,
+					"passed": false,
+					"required_passing_distance_m": 28.0,
+					"route_complete": false,
+					"status": "ACTIVE"
+				},
+				"immediate_own_position": {
+					"x": -182.0,
+					"z": 0.0
+				},
+				"nearest_dcpa_m": 192.130065917969,
+				"nearest_distance_m": 279.380279541016,
+				"nearest_tcpa_s": 180.0,
+				"own_ship": {
+					"collision_warning": "CLEAR",
+					"heading_degrees": 90.02582744973,
+					"position": {
+						"x": -181.908248901367,
+						"z": 0.0836174264550209
+					},
+					"speed_knots": 0.539049897444606,
+					"sway_mps": 0.0341900251805782
+				},
+				"passed": true,
+				"scenario_key": "crossing_starboard",
+				"scenario_player_name": "Player",
+				"task_type": "crossing_give_way",
+				"traffic": [
+					{
+						"collision_layer": 1,
+						"dcpa_m": 192.130065917969,
+						"distance_m": 279.380279541016,
+						"external_agent_control_enabled": true,
+						"id": "CROSS-STBD-01",
+						"own_along_traffic_track_m": 181.843811035156,
+						"position": {
+							"x": 30.0851192474365,
+							"z": -181.883834838867
+						},
+						"role": "stand_on_starboard",
+						"speed_knots": 0.851437027780652,
+						"tcpa_s": 180.0
+					}
+				],
+				"traffic_count": 1
+			},
+			"passed": true
+		},
+		"runtime_narrow_channel_head_on": {
+			"detail": {
+				"dedicated_scene": {
+					"base_environment_active": false,
+					"dedicated_scene": true,
+					"feature_tags": [
+						"stone_revetment_channel",
+						"starboard_lane_lights",
+						"reciprocal_traffic_gate",
+						"distance_marker_posts",
+						"rule_9_14_signage"
+					],
+					"production_authority": false,
+					"scene_key": "narrow_channel_head_on",
+					"scene_path": "res://scenes/worlds/tasks/narrow_channel_head_on_task_scene.tscn",
+					"scene_title": "NARROW CHANNEL N-14 // HEAD-ON PASSING",
+					"task_wall_count": 4,
+					"task_wallpaper_texture": "res://assets/generated/tasks/narrow_channel_head_on/narrow_channel_head_on_horizon_v1.png",
+					"task_walls_vertical": true,
+					"task_water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+					"uses_legacy_rock_environment": false,
+					"visual_node_count": 220,
+					"visual_profile": {
+						"applied": true,
+						"profile_id": "narrow_channel_head_on",
+						"wall_count": 4,
+						"wall_orientation_status": "VERTICAL_LOCKED",
+						"wall_tilt_degrees": 0.0,
+						"wallpaper_bottom_composition": "landline_at_bottom",
+						"wallpaper_sea_band_max_fraction": 0.03,
+						"wallpaper_status": "TASK_VISUAL_PROFILE",
+						"wallpaper_texture": "res://assets/generated/tasks/narrow_channel_head_on/narrow_channel_head_on_horizon_v1.png",
+						"walls_vertical": true,
+						"water_status": "TASK_VISUAL_PROFILE",
+						"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+					}
+				},
+				"gate": {
+					"collision_free": true,
+					"expected_passing": "",
+					"minimum_passing_distance_m": 354.708282470703,
+					"overtaking_agreement_authorizer": "",
+					"overtaking_agreement_confirmed": false,
+					"overtaking_agreement_required": false,
+					"passed": false,
+					"required_passing_distance_m": 22.0,
+					"route_complete": false,
+					"status": "ACTIVE"
+				},
+				"immediate_own_position": {
+					"x": -22.0,
+					"z": 176.0
+				},
+				"nearest_dcpa_m": 314.052581787109,
+				"nearest_distance_m": 354.708282470703,
+				"nearest_tcpa_s": 180.0,
+				"own_ship": {
+					"collision_warning": "CLEAR",
+					"heading_degrees": 180.011237482417,
+					"position": {
+						"x": -22.0030651092529,
+						"z": 175.842422485352
+					},
+					"speed_knots": 0.868415116888404,
+					"sway_mps": 0.0155701925978065
+				},
+				"passed": true,
+				"scenario_key": "narrow_channel_head_on",
+				"scenario_player_name": "Player",
+				"task_type": "head_on",
+				"traffic": [
+					{
+						"collision_layer": 1,
+						"dcpa_m": 314.052581787109,
+						"distance_m": 354.708282470703,
+						"external_agent_control_enabled": true,
+						"id": "HEAD-ON-01",
+						"own_along_traffic_track_m": 351.977325439453,
+						"position": {
+							"x": 21.9969482421875,
+							"z": -176.126281738281
+						},
+						"role": "reciprocal_course",
+						"speed_knots": 0.425466977203667,
+						"tcpa_s": 180.0
+					}
+				],
+				"traffic_count": 1
+			},
+			"passed": true
+		},
+		"runtime_narrow_channel_overtaking": {
+			"detail": {
+				"dedicated_scene": {
+					"base_environment_active": false,
+					"dedicated_scene": true,
+					"feature_tags": [
+						"industrial_canal",
+						"overtaking_clearance_lane",
+						"slow_vessel_corridor",
+						"communication_gate_board",
+						"mile_marker_lights"
+					],
+					"production_authority": false,
+					"scene_key": "narrow_channel_overtaking",
+					"scene_path": "res://scenes/worlds/tasks/narrow_channel_overtaking_task_scene.tscn",
+					"scene_title": "INDUSTRIAL CANAL O-13 // CONTROLLED OVERTAKING",
+					"task_wall_count": 4,
+					"task_wallpaper_texture": "res://assets/generated/tasks/narrow_channel_overtaking/narrow_channel_overtaking_horizon_v1.png",
+					"task_walls_vertical": true,
+					"task_water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+					"uses_legacy_rock_environment": false,
+					"visual_node_count": 245,
+					"visual_profile": {
+						"applied": true,
+						"profile_id": "narrow_channel_overtaking",
+						"wall_count": 4,
+						"wall_orientation_status": "VERTICAL_LOCKED",
+						"wall_tilt_degrees": 0.0,
+						"wallpaper_bottom_composition": "landline_at_bottom",
+						"wallpaper_sea_band_max_fraction": 0.03,
+						"wallpaper_status": "TASK_VISUAL_PROFILE",
+						"wallpaper_texture": "res://assets/generated/tasks/narrow_channel_overtaking/narrow_channel_overtaking_horizon_v1.png",
+						"walls_vertical": true,
+						"water_status": "TASK_VISUAL_PROFILE",
+						"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+					}
+				},
+				"gate": {
+					"collision_free": true,
+					"expected_passing": "",
+					"minimum_passing_distance_m": 106.0,
+					"overtaking_agreement_authorizer": "native_smoke",
+					"overtaking_agreement_confirmed": true,
+					"overtaking_agreement_required": true,
+					"passed": false,
+					"required_passing_distance_m": 20.0,
+					"route_complete": false,
+					"status": "ACTIVE"
+				},
+				"immediate_own_position": {
+					"x": 18.0,
+					"z": -178.0
+				},
+				"nearest_dcpa_m": 130.934722900391,
+				"nearest_distance_m": 106.019981384277,
+				"nearest_tcpa_s": 180.0,
+				"own_ship": {
+					"collision_warning": "CLEAR",
+					"heading_degrees": 359.971949963879,
+					"position": {
+						"x": 18.0129985809326,
+						"z": -177.76838684082
+					},
+					"speed_knots": 1.15538933704019,
+					"sway_mps": -0.0370268784463406
+				},
+				"passed": true,
+				"scenario_key": "narrow_channel_overtaking",
+				"scenario_player_name": "Player",
+				"task_type": "overtaking",
+				"traffic": [
+					{
+						"collision_layer": 1,
+						"dcpa_m": 130.934722900391,
+						"distance_m": 106.019981384277,
+						"external_agent_control_enabled": true,
+						"id": "SLOW-AHEAD-01",
+						"own_along_traffic_track_m": -106.019966125488,
+						"position": {
+							"x": 18.0130233764648,
+							"z": -71.748405456543
+						},
+						"role": "overtaken_vessel",
+						"speed_knots": 1.42444704275322,
+						"tcpa_s": 180.0
+					}
+				],
+				"traffic_count": 1
+			},
+			"passed": true
+		},
+		"scenario_activation_receipts_emitted": {
+			"detail": {
+				"count": 29,
+				"last": {
+					"action": "activate_scenario",
+					"detail": {
+						"own_ship_commanded": false,
+						"scenario_key": "open_water",
+						"task_type": "route_following",
+						"traffic_count": 0
+					},
+					"existing_policy_modified": false,
+					"production_authority": false,
+					"receipt_id": "AMR-000029",
+					"schema_version": "ship_advanced_mission_receipt_v1",
+					"status": "ACCEPTED_SIMULATION_ONLY",
+					"utc": "2026-08-29T15:28:10"
+				}
+			},
+			"passed": true
+		},
+		"seven_profile_missions_visible": {
+			"detail": 7,
+			"passed": true
+		},
+		"seven_scenarios_available": {
+			"detail": [
+				{
+					"index": 0,
+					"key": "open_water",
+					"name": "开放水域",
+					"task_type": "route_following",
+					"traffic_count": 0
+				},
+				{
+					"index": 1,
+					"key": "harbor",
+					"name": "港口引航水域",
+					"task_type": "route_following",
+					"traffic_count": 0
+				},
+				{
+					"index": 2,
+					"key": "auto_berthing",
+					"name": "自动靠泊评测水域",
+					"task_type": "berthing",
+					"traffic_count": 0
+				},
+				{
+					"index": 3,
+					"key": "auto_unberthing",
+					"name": "自动离泊评测水域",
+					"task_type": "unberthing",
+					"traffic_count": 0
+				},
+				{
+					"index": 4,
+					"key": "narrow_channel_head_on",
+					"name": "狭水道对遇会船",
+					"task_type": "head_on",
+					"traffic_count": 1
+				},
+				{
+					"index": 5,
+					"key": "crossing_starboard",
+					"name": "右舷来船交叉",
+					"task_type": "crossing_give_way",
+					"traffic_count": 1
+				},
+				{
+					"index": 6,
+					"key": "narrow_channel_overtaking",
+					"name": "狭水道追越",
+					"task_type": "overtaking",
+					"traffic_count": 1
+				}
+			],
+			"passed": true
+		},
+		"vertical_landline_wallpaper_auto_berthing": {
+			"detail": {
+				"applied": true,
+				"profile_id": "auto_berthing",
+				"wall_count": 4,
+				"wall_orientation_status": "VERTICAL_LOCKED",
+				"wall_tilt_degrees": 0.0,
+				"wallpaper_bottom_composition": "landline_at_bottom",
+				"wallpaper_sea_band_max_fraction": 0.03,
+				"wallpaper_status": "TASK_VISUAL_PROFILE",
+				"wallpaper_texture": "res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png",
+				"walls_vertical": true,
+				"water_status": "TASK_VISUAL_PROFILE",
+				"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+			},
+			"passed": true
+		},
+		"vertical_landline_wallpaper_auto_unberthing": {
+			"detail": {
+				"applied": true,
+				"profile_id": "auto_unberthing",
+				"wall_count": 4,
+				"wall_orientation_status": "VERTICAL_LOCKED",
+				"wall_tilt_degrees": 0.0,
+				"wallpaper_bottom_composition": "landline_at_bottom",
+				"wallpaper_sea_band_max_fraction": 0.03,
+				"wallpaper_status": "TASK_VISUAL_PROFILE",
+				"wallpaper_texture": "res://assets/generated/tasks/auto_unberthing/auto_unberthing_horizon_v1.png",
+				"walls_vertical": true,
+				"water_status": "TASK_VISUAL_PROFILE",
+				"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+			},
+			"passed": true
+		},
+		"vertical_landline_wallpaper_crossing_starboard": {
+			"detail": {
+				"applied": true,
+				"profile_id": "crossing_starboard",
+				"wall_count": 4,
+				"wall_orientation_status": "VERTICAL_LOCKED",
+				"wall_tilt_degrees": 0.0,
+				"wallpaper_bottom_composition": "landline_at_bottom",
+				"wallpaper_sea_band_max_fraction": 0.03,
+				"wallpaper_status": "TASK_VISUAL_PROFILE",
+				"wallpaper_texture": "res://assets/generated/tasks/crossing_starboard/crossing_starboard_horizon_v1.png",
+				"walls_vertical": true,
+				"water_status": "TASK_VISUAL_PROFILE",
+				"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+			},
+			"passed": true
+		},
+		"vertical_landline_wallpaper_narrow_channel_head_on": {
+			"detail": {
+				"applied": true,
+				"profile_id": "narrow_channel_head_on",
+				"wall_count": 4,
+				"wall_orientation_status": "VERTICAL_LOCKED",
+				"wall_tilt_degrees": 0.0,
+				"wallpaper_bottom_composition": "landline_at_bottom",
+				"wallpaper_sea_band_max_fraction": 0.03,
+				"wallpaper_status": "TASK_VISUAL_PROFILE",
+				"wallpaper_texture": "res://assets/generated/tasks/narrow_channel_head_on/narrow_channel_head_on_horizon_v1.png",
+				"walls_vertical": true,
+				"water_status": "TASK_VISUAL_PROFILE",
+				"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+			},
+			"passed": true
+		},
+		"vertical_landline_wallpaper_narrow_channel_overtaking": {
+			"detail": {
+				"applied": true,
+				"profile_id": "narrow_channel_overtaking",
+				"wall_count": 4,
+				"wall_orientation_status": "VERTICAL_LOCKED",
+				"wall_tilt_degrees": 0.0,
+				"wallpaper_bottom_composition": "landline_at_bottom",
+				"wallpaper_sea_band_max_fraction": 0.03,
+				"wallpaper_status": "TASK_VISUAL_PROFILE",
+				"wallpaper_texture": "res://assets/generated/tasks/narrow_channel_overtaking/narrow_channel_overtaking_horizon_v1.png",
+				"walls_vertical": true,
+				"water_status": "TASK_VISUAL_PROFILE",
+				"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+			},
+			"passed": true
+		}
+	},
+	"completion_records": [
+		{
+			"completion_method": "stopped_at_berth_target",
+			"gate": {
+				"berth_distance_m": 0.0,
+				"collision_free": true,
+				"heading_error_degrees": 0.0,
+				"passed": true,
+				"speed_knots": 0.0,
+				"status": "PASS",
+				"sway_mps": 0.0
+			},
+			"passed": true,
+			"policy_performance_claimed": false,
+			"production_authority": false,
+			"scenario_key": "auto_berthing"
+		},
+		{
+			"completion_method": "stopped_beyond_minimum_clear_distance",
+			"gate": {
+				"clear_distance_m": 225.424041748047,
+				"collision_free": true,
+				"passed": true,
+				"speed_knots": 0.0,
+				"status": "PASS"
+			},
+			"passed": true,
+			"policy_performance_claimed": false,
+			"production_authority": false,
+			"scenario_key": "auto_unberthing"
+		},
+		{
+			"completion_method": "deterministic_waypoint_gate_traversal",
+			"gate": {
+				"collision_free": true,
+				"expected_passing": "",
+				"minimum_passing_distance_m": 43.9971313476562,
+				"overtaking_agreement_authorizer": "",
+				"overtaking_agreement_confirmed": false,
+				"overtaking_agreement_required": false,
+				"passed": true,
+				"required_passing_distance_m": 22.0,
+				"route_complete": true,
+				"status": "PASS"
+			},
+			"passed": true,
+			"policy_performance_claimed": false,
+			"production_authority": false,
+			"scenario_key": "narrow_channel_head_on"
+		},
+		{
+			"completion_method": "deterministic_waypoint_gate_traversal",
+			"gate": {
+				"collision_free": true,
+				"expected_passing": "astern_of_stand_on_vessel",
+				"minimum_passing_distance_m": 228.285797119141,
+				"overtaking_agreement_authorizer": "",
+				"overtaking_agreement_confirmed": false,
+				"overtaking_agreement_required": false,
+				"passed": true,
+				"required_passing_distance_m": 28.0,
+				"route_complete": true,
+				"status": "PASS"
+			},
+			"passed": true,
+			"policy_performance_claimed": false,
+			"production_authority": false,
+			"scenario_key": "crossing_starboard"
+		},
+		{
+			"completion_method": "deterministic_waypoint_gate_traversal",
+			"gate": {
+				"collision_free": true,
+				"expected_passing": "",
+				"minimum_passing_distance_m": 106.0,
+				"overtaking_agreement_authorizer": "native_smoke",
+				"overtaking_agreement_confirmed": true,
+				"overtaking_agreement_required": true,
+				"passed": true,
+				"required_passing_distance_m": 20.0,
+				"route_complete": true,
+				"status": "PASS"
+			},
+			"passed": true,
+			"policy_performance_claimed": false,
+			"production_authority": false,
+			"scenario_key": "narrow_channel_overtaking"
+		},
+		{
+			"completion_method": "deterministic_waypoint_gate_traversal",
+			"expected_loop": true,
+			"passed": true,
+			"policy_performance_claimed": false,
+			"production_authority": false,
+			"route": {
+				"active": true,
+				"arrival_radius": 16.0,
+				"current_index": 0,
+				"loop": true,
+				"points": [
+					{
+						"active": true,
+						"name": "WP-01",
+						"position": "(0.0, -140.05, -72.0)"
+					},
+					{
+						"active": false,
+						"name": "WP-02",
+						"position": "(72.0, -140.05, -132.0)"
+					},
+					{
+						"active": false,
+						"name": "WP-03",
+						"position": "(46.0, -140.05, -208.0)"
+					},
+					{
+						"active": false,
+						"name": "WP-04",
+						"position": "(-56.0, -140.05, -190.0)"
+					},
+					{
+						"active": false,
+						"name": "WP-05",
+						"position": "(-92.0, -140.05, -96.0)"
+					}
+				]
+			},
+			"scenario_key": "open_water"
+		},
+		{
+			"completion_method": "deterministic_waypoint_gate_traversal",
+			"expected_loop": false,
+			"passed": true,
+			"policy_performance_claimed": false,
+			"production_authority": false,
+			"route": {
+				"active": false,
+				"arrival_radius": 12.0,
+				"current_index": 5,
+				"loop": false,
+				"points": [
+					{
+						"active": false,
+						"name": "WP-01",
+						"position": "(-118.0, -140.05, -86.0)"
+					},
+					{
+						"active": false,
+						"name": "WP-02",
+						"position": "(-74.0, -140.05, -76.0)"
+					},
+					{
+						"active": false,
+						"name": "WP-03",
+						"position": "(-34.0, -140.05, -50.0)"
+					},
+					{
+						"active": false,
+						"name": "WP-04",
+						"position": "(14.0, -140.05, -33.0)"
+					},
+					{
+						"active": false,
+						"name": "WP-05",
+						"position": "(58.0, -140.05, -10.0)"
+					},
+					{
+						"active": false,
+						"name": "WP-06",
+						"position": "(82.0, -140.05, 30.0)"
+					}
+				]
+			},
+			"scenario_key": "harbor"
+		}
+	],
+	"errors": [],
+	"generated_at": "2026-08-29T15:28:10",
+	"passed": true,
+	"passed_checks": 43,
+	"scenario_records": [
+		{
+			"dedicated_scene": {
+				"base_environment_active": false,
+				"dedicated_scene": true,
+				"feature_tags": [
+					"precision_berth_target",
+					"container_terminal",
+					"gantry_cranes",
+					"fenders_and_bollards",
+					"leading_lights"
+				],
+				"production_authority": false,
+				"scene_key": "auto_berthing",
+				"scene_path": "res://scenes/worlds/tasks/auto_berthing_task_scene.tscn",
+				"scene_title": "BERTH A-17 // PRECISION APPROACH BASIN",
+				"task_wall_count": 4,
+				"task_wallpaper_texture": "res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png",
+				"task_walls_vertical": true,
+				"task_water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+				"uses_legacy_rock_environment": false,
+				"visual_node_count": 105,
+				"visual_profile": {
+					"applied": true,
+					"profile_id": "auto_berthing",
+					"wall_count": 4,
+					"wall_orientation_status": "VERTICAL_LOCKED",
+					"wall_tilt_degrees": 0.0,
+					"wallpaper_bottom_composition": "landline_at_bottom",
+					"wallpaper_sea_band_max_fraction": 0.03,
+					"wallpaper_status": "TASK_VISUAL_PROFILE",
+					"wallpaper_texture": "res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png",
+					"walls_vertical": true,
+					"water_status": "TASK_VISUAL_PROFILE",
+					"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+				}
+			},
+			"gate": {
+				"berth_distance_m": 258.90673828125,
+				"collision_free": true,
+				"heading_error_degrees": 75.9946108189078,
+				"passed": false,
+				"speed_knots": 0.454403863071442,
+				"status": "ACTIVE",
+				"sway_mps": 0.007127670571208
+			},
+			"immediate_own_position": {
+				"x": -142.0,
+				"z": -112.0
+			},
+			"nearest_dcpa_m": null,
+			"nearest_distance_m": null,
+			"nearest_tcpa_s": null,
+			"own_ship": {
+				"collision_warning": "CLEAR",
+				"heading_degrees": 75.9946108189078,
+				"position": {
+					"x": -141.920639038086,
+					"z": -111.970176696777
+				},
+				"speed_knots": 0.454403863071442,
+				"sway_mps": -0.007127670571208
+			},
+			"passed": true,
+			"scenario_key": "auto_berthing",
+			"scenario_player_name": "Player",
+			"task_type": "berthing",
+			"traffic": [],
+			"traffic_count": 0
+		},
+		{
+			"dedicated_scene": {
+				"base_environment_active": false,
+				"dedicated_scene": true,
+				"feature_tags": [
+					"turning_basin",
+					"pilot_station",
+					"tug_service_docks",
+					"departure_gate",
+					"speed_control_lights"
+				],
+				"production_authority": false,
+				"scene_key": "auto_unberthing",
+				"scene_path": "res://scenes/worlds/tasks/auto_unberthing_task_scene.tscn",
+				"scene_title": "PILOT SERVICE HARBOUR // DEPARTURE BASIN",
+				"task_wall_count": 4,
+				"task_wallpaper_texture": "res://assets/generated/tasks/auto_unberthing/auto_unberthing_horizon_v1.png",
+				"task_walls_vertical": true,
+				"task_water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+				"uses_legacy_rock_environment": false,
+				"visual_node_count": 86,
+				"visual_profile": {
+					"applied": true,
+					"profile_id": "auto_unberthing",
+					"wall_count": 4,
+					"wall_orientation_status": "VERTICAL_LOCKED",
+					"wall_tilt_degrees": 0.0,
+					"wallpaper_bottom_composition": "landline_at_bottom",
+					"wallpaper_sea_band_max_fraction": 0.03,
+					"wallpaper_status": "TASK_VISUAL_PROFILE",
+					"wallpaper_texture": "res://assets/generated/tasks/auto_unberthing/auto_unberthing_horizon_v1.png",
+					"walls_vertical": true,
+					"water_status": "TASK_VISUAL_PROFILE",
+					"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+				}
+			},
+			"gate": {
+				"clear_distance_m": 0.123966068029404,
+				"collision_free": true,
+				"passed": false,
+				"speed_knots": 0.462434817724407,
+				"status": "ACTIVE"
+			},
+			"immediate_own_position": {
+				"x": 82.0,
+				"z": 18.0
+			},
+			"nearest_dcpa_m": null,
+			"nearest_distance_m": null,
+			"nearest_tcpa_s": null,
+			"own_ship": {
+				"collision_warning": "CLEAR",
+				"heading_degrees": 180.0,
+				"position": {
+					"x": 82.0961151123047,
+					"z": 17.9217090606689
+				},
+				"speed_knots": 0.462434817724407,
+				"sway_mps": -0.023093095049262
+			},
+			"passed": true,
+			"scenario_key": "auto_unberthing",
+			"scenario_player_name": "Player",
+			"task_type": "unberthing",
+			"traffic": [],
+			"traffic_count": 0
+		},
+		{
+			"dedicated_scene": {
+				"base_environment_active": false,
+				"dedicated_scene": true,
+				"feature_tags": [
+					"stone_revetment_channel",
+					"starboard_lane_lights",
+					"reciprocal_traffic_gate",
+					"distance_marker_posts",
+					"rule_9_14_signage"
+				],
+				"production_authority": false,
+				"scene_key": "narrow_channel_head_on",
+				"scene_path": "res://scenes/worlds/tasks/narrow_channel_head_on_task_scene.tscn",
+				"scene_title": "NARROW CHANNEL N-14 // HEAD-ON PASSING",
+				"task_wall_count": 4,
+				"task_wallpaper_texture": "res://assets/generated/tasks/narrow_channel_head_on/narrow_channel_head_on_horizon_v1.png",
+				"task_walls_vertical": true,
+				"task_water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+				"uses_legacy_rock_environment": false,
+				"visual_node_count": 220,
+				"visual_profile": {
+					"applied": true,
+					"profile_id": "narrow_channel_head_on",
+					"wall_count": 4,
+					"wall_orientation_status": "VERTICAL_LOCKED",
+					"wall_tilt_degrees": 0.0,
+					"wallpaper_bottom_composition": "landline_at_bottom",
+					"wallpaper_sea_band_max_fraction": 0.03,
+					"wallpaper_status": "TASK_VISUAL_PROFILE",
+					"wallpaper_texture": "res://assets/generated/tasks/narrow_channel_head_on/narrow_channel_head_on_horizon_v1.png",
+					"walls_vertical": true,
+					"water_status": "TASK_VISUAL_PROFILE",
+					"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+				}
+			},
+			"gate": {
+				"collision_free": true,
+				"expected_passing": "",
+				"minimum_passing_distance_m": 354.708282470703,
+				"overtaking_agreement_authorizer": "",
+				"overtaking_agreement_confirmed": false,
+				"overtaking_agreement_required": false,
+				"passed": false,
+				"required_passing_distance_m": 22.0,
+				"route_complete": false,
+				"status": "ACTIVE"
+			},
+			"immediate_own_position": {
+				"x": -22.0,
+				"z": 176.0
+			},
+			"nearest_dcpa_m": 314.052581787109,
+			"nearest_distance_m": 354.708282470703,
+			"nearest_tcpa_s": 180.0,
+			"own_ship": {
+				"collision_warning": "CLEAR",
+				"heading_degrees": 180.011237482417,
+				"position": {
+					"x": -22.0030651092529,
+					"z": 175.842422485352
+				},
+				"speed_knots": 0.868415116888404,
+				"sway_mps": 0.0155701925978065
+			},
+			"passed": true,
+			"scenario_key": "narrow_channel_head_on",
+			"scenario_player_name": "Player",
+			"task_type": "head_on",
+			"traffic": [
+				{
+					"collision_layer": 1,
+					"dcpa_m": 314.052581787109,
+					"distance_m": 354.708282470703,
+					"external_agent_control_enabled": true,
+					"id": "HEAD-ON-01",
+					"own_along_traffic_track_m": 351.977325439453,
+					"position": {
+						"x": 21.9969482421875,
+						"z": -176.126281738281
+					},
+					"role": "reciprocal_course",
+					"speed_knots": 0.425466977203667,
+					"tcpa_s": 180.0
+				}
+			],
+			"traffic_count": 1
+		},
+		{
+			"dedicated_scene": {
+				"base_environment_active": false,
+				"dedicated_scene": true,
+				"feature_tags": [
+					"open_sea_crossing_range",
+					"traffic_separation_guides",
+					"starboard_sector_beacons",
+					"offshore_lighthouse",
+					"cpa_reference_grid"
+				],
+				"production_authority": false,
+				"scene_key": "crossing_starboard",
+				"scene_path": "res://scenes/worlds/tasks/crossing_starboard_task_scene.tscn",
+				"scene_title": "OFFSHORE CROSSING RANGE C-15 // GIVE-WAY",
+				"task_wall_count": 4,
+				"task_wallpaper_texture": "res://assets/generated/tasks/crossing_starboard/crossing_starboard_horizon_v1.png",
+				"task_walls_vertical": true,
+				"task_water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+				"uses_legacy_rock_environment": false,
+				"visual_node_count": 79,
+				"visual_profile": {
+					"applied": true,
+					"profile_id": "crossing_starboard",
+					"wall_count": 4,
+					"wall_orientation_status": "VERTICAL_LOCKED",
+					"wall_tilt_degrees": 0.0,
+					"wallpaper_bottom_composition": "landline_at_bottom",
+					"wallpaper_sea_band_max_fraction": 0.03,
+					"wallpaper_status": "TASK_VISUAL_PROFILE",
+					"wallpaper_texture": "res://assets/generated/tasks/crossing_starboard/crossing_starboard_horizon_v1.png",
+					"walls_vertical": true,
+					"water_status": "TASK_VISUAL_PROFILE",
+					"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+				}
+			},
+			"gate": {
+				"collision_free": true,
+				"expected_passing": "astern_of_stand_on_vessel",
+				"minimum_passing_distance_m": 279.380279541016,
+				"overtaking_agreement_authorizer": "",
+				"overtaking_agreement_confirmed": false,
+				"overtaking_agreement_required": false,
+				"passed": false,
+				"required_passing_distance_m": 28.0,
+				"route_complete": false,
+				"status": "ACTIVE"
+			},
+			"immediate_own_position": {
+				"x": -182.0,
+				"z": 0.0
+			},
+			"nearest_dcpa_m": 192.130065917969,
+			"nearest_distance_m": 279.380279541016,
+			"nearest_tcpa_s": 180.0,
+			"own_ship": {
+				"collision_warning": "CLEAR",
+				"heading_degrees": 90.02582744973,
+				"position": {
+					"x": -181.908248901367,
+					"z": 0.0836174264550209
+				},
+				"speed_knots": 0.539049897444606,
+				"sway_mps": 0.0341900251805782
+			},
+			"passed": true,
+			"scenario_key": "crossing_starboard",
+			"scenario_player_name": "Player",
+			"task_type": "crossing_give_way",
+			"traffic": [
+				{
+					"collision_layer": 1,
+					"dcpa_m": 192.130065917969,
+					"distance_m": 279.380279541016,
+					"external_agent_control_enabled": true,
+					"id": "CROSS-STBD-01",
+					"own_along_traffic_track_m": 181.843811035156,
+					"position": {
+						"x": 30.0851192474365,
+						"z": -181.883834838867
+					},
+					"role": "stand_on_starboard",
+					"speed_knots": 0.851437027780652,
+					"tcpa_s": 180.0
+				}
+			],
+			"traffic_count": 1
+		},
+		{
+			"dedicated_scene": {
+				"base_environment_active": false,
+				"dedicated_scene": true,
+				"feature_tags": [
+					"industrial_canal",
+					"overtaking_clearance_lane",
+					"slow_vessel_corridor",
+					"communication_gate_board",
+					"mile_marker_lights"
+				],
+				"production_authority": false,
+				"scene_key": "narrow_channel_overtaking",
+				"scene_path": "res://scenes/worlds/tasks/narrow_channel_overtaking_task_scene.tscn",
+				"scene_title": "INDUSTRIAL CANAL O-13 // CONTROLLED OVERTAKING",
+				"task_wall_count": 4,
+				"task_wallpaper_texture": "res://assets/generated/tasks/narrow_channel_overtaking/narrow_channel_overtaking_horizon_v1.png",
+				"task_walls_vertical": true,
+				"task_water_texture": "res://assets/generated/tasks/shared/task_water_v2.png",
+				"uses_legacy_rock_environment": false,
+				"visual_node_count": 245,
+				"visual_profile": {
+					"applied": true,
+					"profile_id": "narrow_channel_overtaking",
+					"wall_count": 4,
+					"wall_orientation_status": "VERTICAL_LOCKED",
+					"wall_tilt_degrees": 0.0,
+					"wallpaper_bottom_composition": "landline_at_bottom",
+					"wallpaper_sea_band_max_fraction": 0.03,
+					"wallpaper_status": "TASK_VISUAL_PROFILE",
+					"wallpaper_texture": "res://assets/generated/tasks/narrow_channel_overtaking/narrow_channel_overtaking_horizon_v1.png",
+					"walls_vertical": true,
+					"water_status": "TASK_VISUAL_PROFILE",
+					"water_texture": "res://assets/generated/tasks/shared/task_water_v2.png"
+				}
+			},
+			"gate": {
+				"collision_free": true,
+				"expected_passing": "",
+				"minimum_passing_distance_m": 106.0,
+				"overtaking_agreement_authorizer": "native_smoke",
+				"overtaking_agreement_confirmed": true,
+				"overtaking_agreement_required": true,
+				"passed": false,
+				"required_passing_distance_m": 20.0,
+				"route_complete": false,
+				"status": "ACTIVE"
+			},
+			"immediate_own_position": {
+				"x": 18.0,
+				"z": -178.0
+			},
+			"nearest_dcpa_m": 130.934722900391,
+			"nearest_distance_m": 106.019981384277,
+			"nearest_tcpa_s": 180.0,
+			"own_ship": {
+				"collision_warning": "CLEAR",
+				"heading_degrees": 359.971949963879,
+				"position": {
+					"x": 18.0129985809326,
+					"z": -177.76838684082
+				},
+				"speed_knots": 1.15538933704019,
+				"sway_mps": -0.0370268784463406
+			},
+			"passed": true,
+			"scenario_key": "narrow_channel_overtaking",
+			"scenario_player_name": "Player",
+			"task_type": "overtaking",
+			"traffic": [
+				{
+					"collision_layer": 1,
+					"dcpa_m": 130.934722900391,
+					"distance_m": 106.019981384277,
+					"external_agent_control_enabled": true,
+					"id": "SLOW-AHEAD-01",
+					"own_along_traffic_track_m": -106.019966125488,
+					"position": {
+						"x": 18.0130233764648,
+						"z": -71.748405456543
+					},
+					"role": "overtaken_vessel",
+					"speed_knots": 1.42444704275322,
+					"tcpa_s": 180.0
+				}
+			],
+			"traffic_count": 1
+		}
+	],
+	"schema_version": "godot_advanced_mission_smoke_v1",
+	"total_checks": 43
+}

@@ -1,0 +1,4049 @@
+{
+  "schema_version": "advanced_mission_policy_transfer_v1",
+  "scenario_key": "harbor",
+  "policy_name": "RES-SAC-D2",
+  "trained_rl": true,
+  "training_performed": false,
+  "deterministic": true,
+  "observation_size": 44,
+  "action_size": 2,
+  "steps": 99,
+  "elapsed_simulation_seconds": 24.75,
+  "reward": -1644.3711421951143,
+  "route_result": {
+    "task_id": "advanced::harbor::deterministic_transfer",
+    "dataset_split": "test",
+    "is_success": false,
+    "goal_reached": false,
+    "truncated": false,
+    "collisions": 1,
+    "terrain_collisions": 1,
+    "near_misses": 1,
+    "minimum_clearance_meters": -0.08124258428998132,
+    "minimum_dcpa_meters": 140.0,
+    "nearest_obstacle_name": "WestBreakwater",
+    "nearest_obstacle_kind": "shoreline",
+    "max_cross_track_error_meters": 7.317575957239972,
+    "path_length_meters": 26.570359852064026,
+    "waypoint_index": 0,
+    "dynamic_obstacle_count": 0,
+    "observation_size": 44,
+    "last_collision": {
+      "name": "WestBreakwater",
+      "kind": "shoreline",
+      "step": 99
+    },
+    "module": "cargo_circuit_dynamic_rl",
+    "checkpoints_passed": 0,
+    "total_checkpoints": 5,
+    "checkpoint_completion_ratio": 0.0,
+    "cargo_retrieved": false,
+    "minimum_dynamic_clearance_meters": 140.0,
+    "episode": {
+      "r": -1644.371142,
+      "l": 99
+    }
+  },
+  "task_gate": {
+    "route_goal_reached": false,
+    "collision_free": false,
+    "full_mission_gate_passed": false,
+    "boundary": "Frozen-policy route transfer gate in the numeric simulator; not a long-duration operator or field assessment."
+  },
+  "final_state": {
+    "x": -132.4989402545436,
+    "z": -90.91875741571002,
+    "heading_degrees": 326.95616974059294,
+    "speed_mps": 0.09616448357701302,
+    "throttle": 0.09342274144291879,
+    "rudder": -1.0
+  },
+  "trajectory": [
+    {
+      "index": 0,
+      "time": 0.0,
+      "x": -142.0,
+      "z": -112.0,
+      "heading_degrees": 76.0,
+      "speed_mps": 0.0,
+      "throttle": 0.0,
+      "rudder": 0.0,
+      "reward": 0.0,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 21.0,
+      "nearest_tcpa_seconds": 90.0,
+      "nearest_dcpa_meters": 21.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0,
+      "actual_rudder": 0.0,
+      "yaw_rate_degrees_per_second": 0.0,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5
+    },
+    {
+      "index": 1,
+      "time": 0.25,
+      "x": -141.9415,
+      "z": -111.96916,
+      "heading_degrees": 75.8746,
+      "speed_mps": 0.225,
+      "throttle": 0.17443,
+      "rudder": -0.52191,
+      "reward": -0.878414,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 20.96916,
+      "nearest_tcpa_seconds": 22.74405,
+      "nearest_dcpa_meters": 20.33513,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1375,
+      "actual_rudder": -0.175,
+      "yaw_rate_degrees_per_second": -0.50153,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.22307,
+      "policy_rudder_action": -0.52191,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.063846,
+        -0.066102
+      ],
+      "frozen_static_action": [
+        -0.095374,
+        -0.389709
+      ],
+      "combined_action": [
+        -0.223065,
+        -0.521913
+      ]
+    },
+    {
+      "index": 2,
+      "time": 0.5,
+      "x": -141.8286,
+      "z": -111.92403,
+      "heading_degrees": 75.5831,
+      "speed_mps": 0.45,
+      "throttle": 0.1819,
+      "rudder": -0.69824,
+      "reward": -0.714995,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 20.92403,
+      "nearest_tcpa_seconds": 11.57684,
+      "nearest_dcpa_meters": 20.26513,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1819,
+      "actual_rudder": -0.35,
+      "yaw_rate_degrees_per_second": -1.16612,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.212,
+      "policy_rudder_action": -0.69824,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.0388,
+        -0.083453
+      ],
+      "frozen_static_action": [
+        -0.134397,
+        -0.531335
+      ],
+      "combined_action": [
+        -0.211997,
+        -0.698241
+      ]
+    },
+    {
+      "index": 3,
+      "time": 0.75,
+      "x": -141.66159,
+      "z": -111.86348,
+      "heading_degrees": 75.0846,
+      "speed_mps": 0.675,
+      "throttle": 0.29258,
+      "rudder": -0.75938,
+      "reward": -0.567878,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 20.86348,
+      "nearest_tcpa_seconds": 7.95568,
+      "nearest_dcpa_meters": 20.16053,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.29258,
+      "actual_rudder": -0.525,
+      "yaw_rate_degrees_per_second": -1.99376,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.04803,
+      "policy_rudder_action": -0.75938,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.032504,
+        -0.100306
+      ],
+      "frozen_static_action": [
+        0.016976,
+        -0.558763
+      ],
+      "combined_action": [
+        -0.048033,
+        -0.759376
+      ]
+    },
+    {
+      "index": 4,
+      "time": 1.0,
+      "x": -141.441,
+      "z": -111.78562,
+      "heading_degrees": 74.3385,
+      "speed_mps": 0.9,
+      "throttle": 0.41859,
+      "rudder": -0.89783,
+      "reward": -0.421224,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 20.78562,
+      "nearest_tcpa_seconds": 6.2346,
+      "nearest_dcpa_meters": 20.01393,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.41859,
+      "actual_rudder": -0.7,
+      "yaw_rate_degrees_per_second": -2.98447,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.13865,
+      "policy_rudder_action": -0.89783,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.025211,
+        -0.116268
+      ],
+      "frozen_static_action": [
+        0.189076,
+        -0.66529
+      ],
+      "combined_action": [
+        0.138653,
+        -0.897826
+      ]
+    },
+    {
+      "index": 5,
+      "time": 1.25,
+      "x": -141.16766,
+      "z": -111.68771,
+      "heading_degrees": 73.304,
+      "speed_mps": 1.125,
+      "throttle": 0.49107,
+      "rudder": -0.99712,
+      "reward": -0.266151,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 20.68771,
+      "nearest_tcpa_seconds": 5.28307,
+      "nearest_dcpa_meters": 19.81556,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.49107,
+      "actual_rudder": -0.875,
+      "yaw_rate_degrees_per_second": -4.13824,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.24603,
+      "policy_rudder_action": -0.99712,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.018625,
+        -0.132004
+      ],
+      "frozen_static_action": [
+        0.283278,
+        -0.733112
+      ],
+      "combined_action": [
+        0.246029,
+        -0.997119
+      ]
+    },
+    {
+      "index": 6,
+      "time": 1.5,
+      "x": -140.84272,
+      "z": -111.56633,
+      "heading_degrees": 72.0051,
+      "speed_mps": 1.35,
+      "throttle": 0.52674,
+      "rudder": -1.0,
+      "reward": -0.107298,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 20.56633,
+      "nearest_tcpa_seconds": 4.70636,
+      "nearest_dcpa_meters": 19.56031,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.52674,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -5.19529,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.29888,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.015989,
+        -0.148455
+      ],
+      "frozen_static_action": [
+        0.330855,
+        -0.741685
+      ],
+      "combined_action": [
+        0.298877,
+        -1.0
+      ]
+    },
+    {
+      "index": 7,
+      "time": 1.75,
+      "x": -140.46741,
+      "z": -111.41835,
+      "heading_degrees": 70.5899,
+      "speed_mps": 1.575,
+      "throttle": 0.56442,
+      "rudder": -1.0,
+      "reward": 0.049226,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 20.41835,
+      "nearest_tcpa_seconds": 4.30831,
+      "nearest_dcpa_meters": 19.25785,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.56442,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -5.66118,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.35469,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.015428,
+        -0.160174
+      ],
+      "frozen_static_action": [
+        0.38555,
+        -0.75812
+      ],
+      "combined_action": [
+        0.354694,
+        -1.0
+      ]
+    },
+    {
+      "index": 8,
+      "time": 2.0,
+      "x": -140.04319,
+      "z": -111.2404,
+      "heading_degrees": 69.0581,
+      "speed_mps": 1.8,
+      "throttle": 0.49084,
+      "rudder": -1.0,
+      "reward": 0.205698,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 20.2404,
+      "nearest_tcpa_seconds": 4.01908,
+      "nearest_dcpa_meters": 18.90338,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.49084,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -6.12706,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.24569,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.011885,
+        -0.161679
+      ],
+      "frozen_static_action": [
+        0.269461,
+        -0.791785
+      ],
+      "combined_action": [
+        0.245691,
+        -1.0
+      ]
+    },
+    {
+      "index": 9,
+      "time": 2.25,
+      "x": -139.57183,
+      "z": -111.02881,
+      "heading_degrees": 67.4099,
+      "speed_mps": 2.025,
+      "throttle": 0.44956,
+      "rudder": -1.0,
+      "reward": 0.366156,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 20.02881,
+      "nearest_tcpa_seconds": 3.79941,
+      "nearest_dcpa_meters": 18.49213,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.44956,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -6.59294,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.18453,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.015427,
+        -0.163356
+      ],
+      "frozen_static_action": [
+        0.215384,
+        -0.79723
+      ],
+      "combined_action": [
+        0.18453,
+        -1.0
+      ]
+    },
+    {
+      "index": 10,
+      "time": 2.5,
+      "x": -139.05544,
+      "z": -110.77973,
+      "heading_degrees": 65.6451,
+      "speed_mps": 2.25,
+      "throttle": 0.40987,
+      "rudder": -1.0,
+      "reward": 0.526129,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 19.77973,
+      "nearest_tcpa_seconds": 3.62529,
+      "nearest_dcpa_meters": 18.01951,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.40987,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -7.05882,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.12573,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.016662,
+        -0.165206
+      ],
+      "frozen_static_action": [
+        0.159057,
+        -0.8107
+      ],
+      "combined_action": [
+        0.125733,
+        -1.0
+      ]
+    },
+    {
+      "index": 11,
+      "time": 2.75,
+      "x": -138.49649,
+      "z": -110.48908,
+      "heading_degrees": 63.764,
+      "speed_mps": 2.475,
+      "throttle": 0.33601,
+      "rudder": -1.0,
+      "reward": 0.684932,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 19.48908,
+      "nearest_tcpa_seconds": 3.48103,
+      "nearest_dcpa_meters": 17.48133,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.33601,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -7.52471,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.01631,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.01835,
+        -0.166448
+      ],
+      "frozen_static_action": [
+        0.053013,
+        -0.821398
+      ],
+      "combined_action": [
+        0.016312,
+        -1.0
+      ]
+    },
+    {
+      "index": 12,
+      "time": 3.0,
+      "x": -137.98225,
+      "z": -110.20026,
+      "heading_degrees": 61.9669,
+      "speed_mps": 2.3125,
+      "throttle": 0.23502,
+      "rudder": -1.0,
+      "reward": 0.557967,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 19.20026,
+      "nearest_tcpa_seconds": 3.90217,
+      "nearest_dcpa_meters": 16.94761,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.23502,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -7.18824,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.13331,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.021755,
+        -0.168071
+      ],
+      "frozen_static_action": [
+        -0.089798,
+        -0.833322
+      ],
+      "combined_action": [
+        -0.133307,
+        -1.0
+      ]
+    },
+    {
+      "index": 13,
+      "time": 3.25,
+      "x": -137.51163,
+      "z": -109.91646,
+      "heading_degrees": 60.254,
+      "speed_mps": 2.15,
+      "throttle": 0.18782,
+      "rudder": -1.0,
+      "reward": 0.430679,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 18.91646,
+      "nearest_tcpa_seconds": 4.36536,
+      "nearest_dcpa_meters": 16.4239,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.18782,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -6.85176,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.20323,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.02935,
+        -0.167797
+      ],
+      "frozen_static_action": [
+        -0.14453,
+        -0.824213
+      ],
+      "combined_action": [
+        -0.20323,
+        -1.0
+      ]
+    },
+    {
+      "index": 14,
+      "time": 3.5,
+      "x": -137.08346,
+      "z": -109.64065,
+      "heading_degrees": 58.6251,
+      "speed_mps": 1.9875,
+      "throttle": 0.11513,
+      "rudder": -1.0,
+      "reward": 0.297054,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 18.64065,
+      "nearest_tcpa_seconds": 4.88301,
+      "nearest_dcpa_meters": 15.915,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.11513,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -6.51529,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.31092,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.033907,
+        -0.167542
+      ],
+      "frozen_static_action": [
+        -0.243109,
+        -0.817271
+      ],
+      "combined_action": [
+        -0.310923,
+        -1.0
+      ]
+    },
+    {
+      "index": 15,
+      "time": 3.75,
+      "x": -136.69652,
+      "z": -109.37558,
+      "heading_degrees": 57.0804,
+      "speed_mps": 1.825,
+      "throttle": 0.03006,
+      "rudder": -1.0,
+      "reward": 0.161529,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 18.37558,
+      "nearest_tcpa_seconds": 5.47201,
+      "nearest_dcpa_meters": 15.4251,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.03006,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -6.17882,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.43694,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.039665,
+        -0.167676
+      ],
+      "frozen_static_action": [
+        -0.357611,
+        -0.809596
+      ],
+      "combined_action": [
+        -0.436941,
+        -1.0
+      ]
+    },
+    {
+      "index": 16,
+      "time": 4.0,
+      "x": -136.39813,
+      "z": -109.15793,
+      "heading_degrees": 55.7428,
+      "speed_mps": 1.425,
+      "throttle": -0.02056,
+      "rudder": -1.0,
+      "reward": -0.153442,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 18.15793,
+      "nearest_tcpa_seconds": 7.17281,
+      "nearest_dcpa_meters": 15.00787,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": -0.02056,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -5.35059,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.51194,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.04632,
+        -0.167596
+      ],
+      "frozen_static_action": [
+        -0.419304,
+        -0.804919
+      ],
+      "combined_action": [
+        -0.511944,
+        -1.0
+      ]
+    },
+    {
+      "index": 17,
+      "time": 4.25,
+      "x": -136.13726,
+      "z": -108.95748,
+      "heading_degrees": 54.4893,
+      "speed_mps": 1.2625,
+      "throttle": 0.10303,
+      "rudder": -1.0,
+      "reward": -0.292922,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 17.95748,
+      "nearest_tcpa_seconds": 8.26194,
+      "nearest_dcpa_meters": 14.61751,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.10303,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -5.01412,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.32885,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.053892,
+        -0.166087
+      ],
+      "frozen_static_action": [
+        -0.221064,
+        -0.813912
+      ],
+      "combined_action": [
+        -0.328848,
+        -1.0
+      ]
+    },
+    {
+      "index": 18,
+      "time": 4.5,
+      "x": -135.83586,
+      "z": -108.71718,
+      "heading_degrees": 53.1193,
+      "speed_mps": 1.4875,
+      "throttle": 0.2865,
+      "rudder": -1.0,
+      "reward": -0.136735,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 17.71718,
+      "nearest_tcpa_seconds": 7.14823,
+      "nearest_dcpa_meters": 14.17174,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.24053,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -5.48,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.05704,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.052086,
+        -0.164285
+      ],
+      "frozen_static_action": [
+        0.047135,
+        -0.871019
+      ],
+      "combined_action": [
+        -0.057037,
+        -1.0
+      ]
+    },
+    {
+      "index": 19,
+      "time": 4.75,
+      "x": -135.57148,
+      "z": -108.49537,
+      "heading_degrees": 51.8334,
+      "speed_mps": 1.325,
+      "throttle": -0.01294,
+      "rudder": -1.0,
+      "reward": -0.281927,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 17.49537,
+      "nearest_tcpa_seconds": 8.15945,
+      "nearest_dcpa_meters": 13.75516,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.10303,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -5.14353,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.50065,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.042086,
+        -0.166585
+      ],
+      "frozen_static_action": [
+        -0.416475,
+        -0.864421
+      ],
+      "combined_action": [
+        -0.500647,
+        -1.0
+      ]
+    },
+    {
+      "index": 20,
+      "time": 5.0,
+      "x": -135.34285,
+      "z": -108.29391,
+      "heading_degrees": 50.6316,
+      "speed_mps": 1.1625,
+      "throttle": 0.0379,
+      "rudder": -1.0,
+      "reward": -0.412132,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 17.29391,
+      "nearest_tcpa_seconds": 9.43621,
+      "nearest_dcpa_meters": 13.36964,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0379,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.80706,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.42534,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.052019,
+        -0.166734
+      ],
+      "frozen_static_action": [
+        -0.321297,
+        -0.860721
+      ],
+      "combined_action": [
+        -0.425335,
+        -1.0
+      ]
+    },
+    {
+      "index": 21,
+      "time": 5.25,
+      "x": -135.14877,
+      "z": -108.11448,
+      "heading_degrees": 49.514,
+      "speed_mps": 1.0,
+      "throttle": 0.09725,
+      "rudder": -1.0,
+      "reward": -0.552685,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 17.11448,
+      "nearest_tcpa_seconds": 11.11179,
+      "nearest_dcpa_meters": 13.01666,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.09725,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.47059,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.3374,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.057884,
+        -0.166783
+      ],
+      "frozen_static_action": [
+        -0.221633,
+        -0.860081
+      ],
+      "combined_action": [
+        -0.337401,
+        -1.0
+      ]
+    },
+    {
+      "index": 22,
+      "time": 5.5,
+      "x": -134.91624,
+      "z": -107.89355,
+      "heading_degrees": 48.2799,
+      "speed_mps": 1.225,
+      "throttle": 0.2567,
+      "rudder": -1.0,
+      "reward": -0.396647,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 16.89355,
+      "nearest_tcpa_seconds": 9.17758,
+      "nearest_dcpa_meters": 12.60942,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.23475,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.93647,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.10119,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.057326,
+        -0.166262
+      ],
+      "frozen_static_action": [
+        0.013467,
+        -0.872635
+      ],
+      "combined_action": [
+        -0.101186,
+        -1.0
+      ]
+    },
+    {
+      "index": 23,
+      "time": 5.75,
+      "x": -134.71761,
+      "z": -107.69572,
+      "heading_degrees": 47.1299,
+      "speed_mps": 1.0625,
+      "throttle": -0.03585,
+      "rudder": -1.0,
+      "reward": -0.54554,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 16.69572,
+      "nearest_tcpa_seconds": 10.69059,
+      "nearest_dcpa_meters": 12.23625,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.09725,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.6,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.53459,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.047124,
+        -0.168211
+      ],
+      "frozen_static_action": [
+        -0.440337,
+        -0.867006
+      ],
+      "combined_action": [
+        -0.534585,
+        -1.0
+      ]
+    },
+    {
+      "index": 24,
+      "time": 6.0,
+      "x": -134.55164,
+      "z": -107.52249,
+      "heading_degrees": 46.064,
+      "speed_mps": 0.9,
+      "throttle": 0.08622,
+      "rudder": -1.0,
+      "reward": -0.680884,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 16.52249,
+      "nearest_tcpa_seconds": 12.73801,
+      "nearest_dcpa_meters": 11.89809,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.08622,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.26353,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.35374,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.057516,
+        -0.168109
+      ],
+      "frozen_static_action": [
+        -0.23871,
+        -0.854833
+      ],
+      "combined_action": [
+        -0.353742,
+        -1.0
+      ]
+    },
+    {
+      "index": 25,
+      "time": 6.25,
+      "x": -134.34923,
+      "z": -107.30609,
+      "heading_degrees": 44.8816,
+      "speed_mps": 1.125,
+      "throttle": 0.31285,
+      "rudder": -1.0,
+      "reward": -0.524597,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 16.30609,
+      "nearest_tcpa_seconds": 10.27017,
+      "nearest_dcpa_meters": 11.5063,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.22372,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.72941,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.018,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.061294,
+        -0.167392
+      ],
+      "frozen_static_action": [
+        0.104584,
+        -0.854774
+      ],
+      "combined_action": [
+        -0.018004,
+        -1.0
+      ]
+    },
+    {
+      "index": 26,
+      "time": 6.5,
+      "x": -134.17879,
+      "z": -107.11525,
+      "heading_degrees": 43.7834,
+      "speed_mps": 0.9625,
+      "throttle": -0.07533,
+      "rudder": -1.0,
+      "reward": -0.676582,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 16.11525,
+      "nearest_tcpa_seconds": 12.08788,
+      "nearest_dcpa_meters": 11.15069,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.08622,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.39294,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.59308,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.050188,
+        -0.17001
+      ],
+      "frozen_static_action": [
+        -0.492699,
+        -0.847839
+      ],
+      "combined_action": [
+        -0.593075,
+        -1.0
+      ]
+    },
+    {
+      "index": 27,
+      "time": 6.75,
+      "x": -133.97402,
+      "z": -106.8795,
+      "heading_degrees": 42.5687,
+      "speed_mps": 1.1875,
+      "throttle": 0.14602,
+      "rudder": -1.0,
+      "reward": -0.510768,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 15.8795,
+      "nearest_tcpa_seconds": 9.84819,
+      "nearest_dcpa_meters": 10.74206,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.14602,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.85882,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.26516,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.060961,
+        -0.169656
+      ],
+      "frozen_static_action": [
+        -0.143238,
+        -0.830394
+      ],
+      "combined_action": [
+        -0.265161,
+        -1.0
+      ]
+    },
+    {
+      "index": 28,
+      "time": 7.0,
+      "x": -133.80048,
+      "z": -106.67028,
+      "heading_degrees": 41.4381,
+      "speed_mps": 1.025,
+      "throttle": -0.17354,
+      "rudder": -1.0,
+      "reward": -0.663106,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 15.67028,
+      "nearest_tcpa_seconds": 11.46103,
+      "nearest_dcpa_meters": 10.37075,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.00852,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.52235,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.73858,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.054492,
+        -0.172285
+      ],
+      "frozen_static_action": [
+        -0.629598,
+        -0.817098
+      ],
+      "combined_action": [
+        -0.738582,
+        -1.0
+      ]
+    },
+    {
+      "index": 29,
+      "time": 7.25,
+      "x": -133.65681,
+      "z": -106.48893,
+      "heading_degrees": 40.3916,
+      "speed_mps": 0.8625,
+      "throttle": -0.00663,
+      "rudder": -1.0,
+      "reward": -0.803202,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 15.48893,
+      "nearest_tcpa_seconds": 13.67755,
+      "nearest_dcpa_meters": 10.03696,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": -0.00663,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.18588,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.4913,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.065002,
+        -0.171978
+      ],
+      "frozen_static_action": [
+        -0.361292,
+        -0.789617
+      ],
+      "combined_action": [
+        -0.491297,
+        -1.0
+      ]
+    },
+    {
+      "index": 30,
+      "time": 7.5,
+      "x": -133.48093,
+      "z": -106.26122,
+      "heading_degrees": 39.2287,
+      "speed_mps": 1.0875,
+      "throttle": 0.22475,
+      "rudder": -1.0,
+      "reward": -0.647035,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 15.26122,
+      "nearest_tcpa_seconds": 10.87059,
+      "nearest_dcpa_meters": 9.65145,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.13087,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.65176,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.14852,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.069021,
+        -0.171244
+      ],
+      "frozen_static_action": [
+        -0.010482,
+        -0.753893
+      ],
+      "combined_action": [
+        -0.148523,
+        -1.0
+      ]
+    },
+    {
+      "index": 31,
+      "time": 7.75,
+      "x": -133.33413,
+      "z": -106.06224,
+      "heading_degrees": 38.1499,
+      "speed_mps": 0.925,
+      "throttle": -0.15169,
+      "rudder": -1.0,
+      "reward": -0.802131,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 15.06224,
+      "nearest_tcpa_seconds": 12.80532,
+      "nearest_dcpa_meters": 9.30426,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": -0.00663,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.31529,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.7062,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.058146,
+        -0.173578
+      ],
+      "frozen_static_action": [
+        -0.58991,
+        -0.755919
+      ],
+      "combined_action": [
+        -0.706203,
+        -1.0
+      ]
+    },
+    {
+      "index": 32,
+      "time": 8.0,
+      "x": -133.21505,
+      "z": -105.8932,
+      "heading_degrees": 37.1551,
+      "speed_mps": 0.7625,
+      "throttle": 0.03162,
+      "rudder": -1.0,
+      "reward": -0.940717,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 14.8932,
+      "nearest_tcpa_seconds": 15.56711,
+      "nearest_dcpa_meters": 8.99513,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.03162,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.97882,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.43464,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.068269,
+        -0.174022
+      ],
+      "frozen_static_action": [
+        -0.298106,
+        -0.674457
+      ],
+      "combined_action": [
+        -0.434644,
+        -1.0
+      ]
+    },
+    {
+      "index": 33,
+      "time": 8.25,
+      "x": -133.06583,
+      "z": -105.67648,
+      "heading_degrees": 36.047,
+      "speed_mps": 0.9875,
+      "throttle": 0.31541,
+      "rudder": -0.99728,
+      "reward": -0.786137,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 14.67648,
+      "nearest_tcpa_seconds": 12.01665,
+      "nearest_dcpa_meters": 8.63635,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.16912,
+      "actual_rudder": -0.99728,
+      "yaw_rate_degrees_per_second": -4.43259,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.01421,
+      "policy_rudder_action": -0.99728,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.069689,
+        -0.173081
+      ],
+      "frozen_static_action": [
+        0.125165,
+        -0.651113
+      ],
+      "combined_action": [
+        -0.014214,
+        -0.997275
+      ]
+    },
+    {
+      "index": 34,
+      "time": 8.5,
+      "x": -132.94343,
+      "z": -105.49052,
+      "heading_degrees": 35.0544,
+      "speed_mps": 0.825,
+      "throttle": -0.07453,
+      "rudder": -0.96645,
+      "reward": -0.940119,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 14.49052,
+      "nearest_tcpa_seconds": 14.37824,
+      "nearest_dcpa_meters": 8.32269,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.03162,
+      "actual_rudder": -0.96645,
+      "yaw_rate_degrees_per_second": -3.97039,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.5919,
+      "policy_rudder_action": -0.96645,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.058595,
+        -0.174875
+      ],
+      "frozen_static_action": [
+        -0.474714,
+        -0.616698
+      ],
+      "combined_action": [
+        -0.591903,
+        -0.966447
+      ]
+    },
+    {
+      "index": 35,
+      "time": 8.75,
+      "x": -132.79269,
+      "z": -105.25579,
+      "heading_degrees": 34.0006,
+      "speed_mps": 1.05,
+      "throttle": 0.19124,
+      "rudder": -0.92154,
+      "reward": -0.779289,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 14.25579,
+      "nearest_tcpa_seconds": 11.25571,
+      "nearest_dcpa_meters": 7.97186,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.16912,
+      "actual_rudder": -0.92154,
+      "yaw_rate_degrees_per_second": -4.21524,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.19816,
+      "policy_rudder_action": -0.92154,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.068673,
+        -0.172799
+      ],
+      "frozen_static_action": [
+        -0.060811,
+        -0.575943
+      ],
+      "combined_action": [
+        -0.198158,
+        -0.921542
+      ]
+    },
+    {
+      "index": 36,
+      "time": 9.0,
+      "x": -132.6681,
+      "z": -105.05247,
+      "heading_degrees": 32.9412,
+      "speed_mps": 0.8875,
+      "throttle": -0.12563,
+      "rudder": -1.0,
+      "reward": -0.933756,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 14.05247,
+      "nearest_tcpa_seconds": 13.28816,
+      "nearest_dcpa_meters": 7.64142,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.03162,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.23765,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.66761,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.053032,
+        -0.163416
+      ],
+      "frozen_static_action": [
+        -0.561542,
+        -0.792188
+      ],
+      "combined_action": [
+        -0.667606,
+        -1.0
+      ]
+    },
+    {
+      "index": 37,
+      "time": 9.25,
+      "x": -132.59941,
+      "z": -104.93209,
+      "heading_degrees": 32.0888,
+      "speed_mps": 0.4875,
+      "throttle": -0.10974,
+      "rudder": -1.0,
+      "reward": -1.251132,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 13.93209,
+      "nearest_tcpa_seconds": 24.21257,
+      "nearest_dcpa_meters": 7.40119,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": -0.10588,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.40941,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.64406,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.062037,
+        -0.166006
+      ],
+      "frozen_static_action": [
+        -0.519987,
+        -0.864631
+      ],
+      "combined_action": [
+        -0.644062,
+        -1.0
+      ]
+    },
+    {
+      "index": 38,
+      "time": 9.5,
+      "x": -132.55322,
+      "z": -104.84557,
+      "heading_degrees": 31.3206,
+      "speed_mps": 0.325,
+      "throttle": 0.5735,
+      "rudder": -1.0,
+      "reward": -1.417509,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 13.84557,
+      "nearest_tcpa_seconds": 36.39348,
+      "nearest_dcpa_meters": 7.19729,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.03162,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.07294,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.36815,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.079622,
+        -0.163068
+      ],
+      "frozen_static_action": [
+        0.527395,
+        -0.806328
+      ],
+      "combined_action": [
+        0.36815,
+        -1.0
+      ]
+    },
+    {
+      "index": 39,
+      "time": 9.75,
+      "x": -132.47941,
+      "z": -104.71003,
+      "heading_degrees": 30.54,
+      "speed_mps": 0.55,
+      "throttle": 0.64698,
+      "rudder": -0.88235,
+      "reward": -1.230565,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 13.71003,
+      "nearest_tcpa_seconds": 21.46927,
+      "nearest_dcpa_meters": 6.9666,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.16912,
+      "actual_rudder": -0.88235,
+      "yaw_rate_degrees_per_second": -3.12247,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.477,
+      "policy_rudder_action": -0.88235,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.077898,
+        -0.160234
+      ],
+      "frozen_static_action": [
+        0.632796,
+        -0.561877
+      ],
+      "combined_action": [
+        0.477001,
+        -0.882346
+      ]
+    },
+    {
+      "index": 40,
+      "time": 10.0,
+      "x": -132.42741,
+      "z": -104.60879,
+      "heading_degrees": 29.7394,
+      "speed_mps": 0.3875,
+      "throttle": 0.028,
+      "rudder": -1.0,
+      "reward": -1.393526,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 13.60879,
+      "nearest_tcpa_seconds": 30.49391,
+      "nearest_dcpa_meters": 6.75072,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.03162,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.20235,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.44,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.060836,
+        -0.154338
+      ],
+      "frozen_static_action": [
+        -0.318331,
+        -0.754385
+      ],
+      "combined_action": [
+        -0.440003,
+        -1.0
+      ]
+    },
+    {
+      "index": 41,
+      "time": 10.25,
+      "x": -132.34964,
+      "z": -104.45752,
+      "heading_degrees": 28.8223,
+      "speed_mps": 0.6125,
+      "throttle": 0.51075,
+      "rudder": -1.0,
+      "reward": -1.222765,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 13.45752,
+      "nearest_tcpa_seconds": 19.24962,
+      "nearest_dcpa_meters": 6.48781,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.16912,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.66824,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.27518,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.075855,
+        -0.162406
+      ],
+      "frozen_static_action": [
+        0.426895,
+        -0.775391
+      ],
+      "combined_action": [
+        0.275185,
+        -1.0
+      ]
+    },
+    {
+      "index": 42,
+      "time": 10.5,
+      "x": -132.2929,
+      "z": -104.34106,
+      "heading_degrees": 27.9894,
+      "speed_mps": 0.45,
+      "throttle": 0.02078,
+      "rudder": -1.0,
+      "reward": -1.364529,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 13.34106,
+      "nearest_tcpa_seconds": 26.17916,
+      "nearest_dcpa_meters": 6.26107,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.03162,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.33176,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.4507,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.061544,
+        -0.165493
+      ],
+      "frozen_static_action": [
+        -0.32761,
+        -0.845751
+      ],
+      "combined_action": [
+        -0.450698,
+        -1.0
+      ]
+    },
+    {
+      "index": 43,
+      "time": 10.75,
+      "x": -132.21224,
+      "z": -104.17364,
+      "heading_degrees": 27.04,
+      "speed_mps": 0.675,
+      "throttle": 0.48397,
+      "rudder": -1.0,
+      "reward": -1.204842,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 13.17364,
+      "nearest_tcpa_seconds": 17.38315,
+      "nearest_dcpa_meters": 5.9889,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.16912,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.79765,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.2355,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.074057,
+        -0.164722
+      ],
+      "frozen_static_action": [
+        0.383618,
+        -0.812736
+      ],
+      "combined_action": [
+        0.235505,
+        -1.0
+      ]
+    },
+    {
+      "index": 44,
+      "time": 11.0,
+      "x": -132.15177,
+      "z": -104.04154,
+      "heading_degrees": 26.1747,
+      "speed_mps": 0.5125,
+      "throttle": -0.0747,
+      "rudder": -1.0,
+      "reward": -1.351662,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 13.04154,
+      "nearest_tcpa_seconds": 22.83742,
+      "nearest_dcpa_meters": 5.75275,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.03162,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.46118,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.59215,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.060591,
+        -0.167437
+      ],
+      "frozen_static_action": [
+        -0.470967,
+        -0.928501
+      ],
+      "combined_action": [
+        -0.592149,
+        -1.0
+      ]
+    },
+    {
+      "index": 45,
+      "time": 11.25,
+      "x": -132.06935,
+      "z": -103.85759,
+      "heading_degrees": 25.1929,
+      "speed_mps": 0.7375,
+      "throttle": 0.29082,
+      "rudder": -1.0,
+      "reward": -1.188792,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 12.85759,
+      "nearest_tcpa_seconds": 15.77569,
+      "nearest_dcpa_meters": 5.47306,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.16912,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.92706,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.05063,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.072438,
+        -0.166885
+      ],
+      "frozen_static_action": [
+        0.094247,
+        -0.915623
+      ],
+      "combined_action": [
+        -0.05063,
+        -1.0
+      ]
+    },
+    {
+      "index": 46,
+      "time": 11.5,
+      "x": -132.00626,
+      "z": -103.70945,
+      "heading_degrees": 24.2953,
+      "speed_mps": 0.575,
+      "throttle": -0.07982,
+      "rudder": -1.0,
+      "reward": -1.333265,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 12.70945,
+      "nearest_tcpa_seconds": 20.14586,
+      "nearest_dcpa_meters": 5.22917,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.03162,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.59059,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.59974,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.058805,
+        -0.169844
+      ],
+      "frozen_static_action": [
+        -0.482128,
+        -0.945635
+      ],
+      "combined_action": [
+        -0.599739,
+        -1.0
+      ]
+    },
+    {
+      "index": 47,
+      "time": 11.75,
+      "x": -131.92326,
+      "z": -103.50862,
+      "heading_degrees": 23.2811,
+      "speed_mps": 0.8,
+      "throttle": 0.25891,
+      "rudder": -1.0,
+      "reward": -1.181343,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 12.50862,
+      "nearest_tcpa_seconds": 14.36266,
+      "nearest_dcpa_meters": 4.94395,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.16912,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.05647,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.09791,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.070524,
+        -0.169261
+      ],
+      "frozen_static_action": [
+        0.043139,
+        -0.946438
+      ],
+      "combined_action": [
+        -0.097909,
+        -1.0
+      ]
+    },
+    {
+      "index": 48,
+      "time": 12.0,
+      "x": -131.85871,
+      "z": -103.3441,
+      "heading_degrees": 22.3511,
+      "speed_mps": 0.6375,
+      "throttle": -0.082,
+      "rudder": -1.0,
+      "reward": -1.327098,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 12.3441,
+      "nearest_tcpa_seconds": 17.90855,
+      "nearest_dcpa_meters": 4.69424,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.03162,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.72,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.60296,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.057945,
+        -0.171718
+      ],
+      "frozen_static_action": [
+        -0.487072,
+        -0.968605
+      ],
+      "combined_action": [
+        -0.602962,
+        -1.0
+      ]
+    },
+    {
+      "index": 49,
+      "time": 12.25,
+      "x": -131.77642,
+      "z": -103.1261,
+      "heading_degrees": 21.3047,
+      "speed_mps": 0.8625,
+      "throttle": 0.22003,
+      "rudder": -1.0,
+      "reward": -1.179763,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 12.1261,
+      "nearest_tcpa_seconds": 13.09846,
+      "nearest_dcpa_meters": 4.40574,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.16912,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.18588,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.15551,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.069285,
+        -0.171256
+      ],
+      "frozen_static_action": [
+        -0.016944,
+        -0.967714
+      ],
+      "combined_action": [
+        -0.155514,
+        -1.0
+      ]
+    },
+    {
+      "index": 50,
+      "time": 12.5,
+      "x": -131.71164,
+      "z": -102.9449,
+      "heading_degrees": 20.3423,
+      "speed_mps": 0.7,
+      "throttle": -0.03179,
+      "rudder": -1.0,
+      "reward": -1.32475,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 11.9449,
+      "nearest_tcpa_seconds": 15.99989,
+      "nearest_dcpa_meters": 4.15239,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.03162,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.84941,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.52858,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.056761,
+        -0.17384
+      ],
+      "frozen_static_action": [
+        -0.415062,
+        -0.971365
+      ],
+      "combined_action": [
+        -0.528584,
+        -1.0
+      ]
+    },
+    {
+      "index": 51,
+      "time": 12.75,
+      "x": -131.6314,
+      "z": -102.70948,
+      "heading_degrees": 19.2635,
+      "speed_mps": 0.925,
+      "throttle": 0.16281,
+      "rudder": -1.0,
+      "reward": -1.182232,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 11.70948,
+      "nearest_tcpa_seconds": 11.95014,
+      "nearest_dcpa_meters": 3.86311,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.16281,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.31529,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.24028,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.067821,
+        -0.173525
+      ],
+      "frozen_static_action": [
+        -0.104634,
+        -0.981337
+      ],
+      "combined_action": [
+        -0.240277,
+        -1.0
+      ]
+    },
+    {
+      "index": 52,
+      "time": 13.0,
+      "x": -131.5677,
+      "z": -102.51135,
+      "heading_degrees": 18.2688,
+      "speed_mps": 0.7625,
+      "throttle": -0.05344,
+      "rudder": -1.0,
+      "reward": -1.331602,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 11.51135,
+      "nearest_tcpa_seconds": 14.33591,
+      "nearest_dcpa_meters": 3.60852,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.02531,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.97882,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.56066,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.055772,
+        -0.176368
+      ],
+      "frozen_static_action": [
+        -0.449111,
+        -0.983157
+      ],
+      "combined_action": [
+        -0.560656,
+        -1.0
+      ]
+    },
+    {
+      "index": 53,
+      "time": 13.25,
+      "x": -131.49092,
+      "z": -102.25834,
+      "heading_degrees": 17.1576,
+      "speed_mps": 0.9875,
+      "throttle": 0.2991,
+      "rudder": -1.0,
+      "reward": -1.203486,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 11.25834,
+      "nearest_tcpa_seconds": 10.89348,
+      "nearest_dcpa_meters": 3.32123,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.16281,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.44471,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.03837,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.066505,
+        -0.176191
+      ],
+      "frozen_static_action": [
+        0.094643,
+        -0.986809
+      ],
+      "combined_action": [
+        -0.038367,
+        -1.0
+      ]
+    },
+    {
+      "index": 54,
+      "time": 13.5,
+      "x": -131.42968,
+      "z": -102.04309,
+      "heading_degrees": 16.1306,
+      "speed_mps": 0.825,
+      "throttle": 0.03305,
+      "rudder": -1.0,
+      "reward": -1.349766,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 11.04309,
+      "nearest_tcpa_seconds": 12.85859,
+      "nearest_dcpa_meters": 3.06807,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.03305,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.10824,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.43252,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.054615,
+        -0.17896
+      ],
+      "frozen_static_action": [
+        -0.323288,
+        -0.987797
+      ],
+      "combined_action": [
+        -0.432518,
+        -1.0
+      ]
+    },
+    {
+      "index": 55,
+      "time": 13.75,
+      "x": -131.35785,
+      "z": -101.77241,
+      "heading_degrees": 14.987,
+      "speed_mps": 1.05,
+      "throttle": 0.37147,
+      "rudder": -1.0,
+      "reward": -1.226283,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 10.77241,
+      "nearest_tcpa_seconds": 9.91045,
+      "nearest_dcpa_meters": 2.78575,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.17055,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.57412,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.06884,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.064781,
+        -0.178541
+      ],
+      "frozen_static_action": [
+        0.198404,
+        -0.992551
+      ],
+      "combined_action": [
+        0.068842,
+        -1.0
+      ]
+    },
+    {
+      "index": 56,
+      "time": 14.0,
+      "x": -131.3005,
+      "z": -101.53994,
+      "heading_degrees": 13.9276,
+      "speed_mps": 0.8875,
+      "throttle": 0.0381,
+      "rudder": -1.0,
+      "reward": -1.377328,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 10.53994,
+      "nearest_tcpa_seconds": 11.52684,
+      "nearest_dcpa_meters": 2.53692,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0381,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.23765,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.42504,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.052897,
+        -0.181427
+      ],
+      "frozen_static_action": [
+        -0.319246,
+        -0.99036
+      ],
+      "combined_action": [
+        -0.42504,
+        -1.0
+      ]
+    },
+    {
+      "index": 57,
+      "time": 14.25,
+      "x": -131.23516,
+      "z": -101.25156,
+      "heading_degrees": 12.7517,
+      "speed_mps": 1.1125,
+      "throttle": 0.46969,
+      "rudder": -1.0,
+      "reward": -1.263239,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 10.25156,
+      "nearest_tcpa_seconds": 8.9876,
+      "nearest_dcpa_meters": 2.2628,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1756,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.70353,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.21436,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.062932,
+        -0.181432
+      ],
+      "frozen_static_action": [
+        0.34022,
+        -0.992757
+      ],
+      "combined_action": [
+        0.214356,
+        -1.0
+      ]
+    },
+    {
+      "index": 58,
+      "time": 14.5,
+      "x": -131.18322,
+      "z": -101.00184,
+      "heading_degrees": 11.66,
+      "speed_mps": 0.95,
+      "throttle": -0.02019,
+      "rudder": -1.0,
+      "reward": -1.418283,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 10.00184,
+      "nearest_tcpa_seconds": 10.311,
+      "nearest_dcpa_meters": 2.0214,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0381,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.36706,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.5114,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.051019,
+        -0.184135
+      ],
+      "frozen_static_action": [
+        -0.409361,
+        -0.991953
+      ],
+      "combined_action": [
+        -0.511399,
+        -1.0
+      ]
+    },
+    {
+      "index": 59,
+      "time": 14.75,
+      "x": -131.12598,
+      "z": -100.69585,
+      "heading_degrees": 10.4517,
+      "speed_mps": 1.175,
+      "throttle": 0.42056,
+      "rudder": -1.0,
+      "reward": -1.307582,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 9.69585,
+      "nearest_tcpa_seconds": 8.11487,
+      "nearest_dcpa_meters": 1.7589,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1756,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.83294,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.14157,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.061113,
+        -0.184303
+      ],
+      "frozen_static_action": [
+        0.263793,
+        -0.995246
+      ],
+      "combined_action": [
+        0.141568,
+        -1.0
+      ]
+    },
+    {
+      "index": 60,
+      "time": 15.0,
+      "x": -131.08101,
+      "z": -100.42896,
+      "heading_degrees": 9.3276,
+      "speed_mps": 1.0125,
+      "throttle": -0.14757,
+      "rudder": -1.0,
+      "reward": -1.466844,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 9.42896,
+      "nearest_tcpa_seconds": 9.18942,
+      "nearest_dcpa_meters": 1.52824,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0381,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.49647,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.7001,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.049357,
+        -0.187058
+      ],
+      "frozen_static_action": [
+        -0.601384,
+        -0.996613
+      ],
+      "combined_action": [
+        -0.700099,
+        -1.0
+      ]
+    },
+    {
+      "index": 61,
+      "time": 15.25,
+      "x": -131.03354,
+      "z": -100.10554,
+      "heading_degrees": 8.087,
+      "speed_mps": 1.2375,
+      "throttle": 0.33266,
+      "rudder": -1.0,
+      "reward": -1.365383,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 9.10554,
+      "nearest_tcpa_seconds": 7.28484,
+      "nearest_dcpa_meters": 1.28094,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1756,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.96235,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.01135,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.059299,
+        -0.187153
+      ],
+      "frozen_static_action": [
+        0.129949,
+        -0.997167
+      ],
+      "combined_action": [
+        0.011352,
+        -1.0
+      ]
+    },
+    {
+      "index": 62,
+      "time": 15.5,
+      "x": -130.99717,
+      "z": -99.82164,
+      "heading_degrees": 6.9306,
+      "speed_mps": 1.075,
+      "throttle": -0.15623,
+      "rudder": -1.0,
+      "reward": -1.521126,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 8.82164,
+      "nearest_tcpa_seconds": 8.14621,
+      "nearest_dcpa_meters": 1.06448,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0381,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.62588,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.71294,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.046802,
+        -0.190446
+      ],
+      "frozen_static_action": [
+        -0.619334,
+        -0.998207
+      ],
+      "combined_action": [
+        -0.712938,
+        -1.0
+      ]
+    },
+    {
+      "index": 63,
+      "time": 15.75,
+      "x": -130.96118,
+      "z": -99.48111,
+      "heading_degrees": 5.6576,
+      "speed_mps": 1.3,
+      "throttle": 0.30808,
+      "rudder": -1.0,
+      "reward": -1.434754,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 8.48111,
+      "nearest_tcpa_seconds": 6.49215,
+      "nearest_dcpa_meters": 0.8361,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1756,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -5.09176,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.02507,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.056845,
+        -0.19041
+      ],
+      "frozen_static_action": [
+        0.088616,
+        -0.998235
+      ],
+      "combined_action": [
+        -0.025074,
+        -1.0
+      ]
+    },
+    {
+      "index": 64,
+      "time": 16.0,
+      "x": -130.93508,
+      "z": -99.18048,
+      "heading_degrees": 4.4688,
+      "speed_mps": 1.1375,
+      "throttle": -0.16799,
+      "rudder": -1.0,
+      "reward": -1.591915,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 8.18048,
+      "nearest_tcpa_seconds": 7.16977,
+      "nearest_dcpa_meters": 0.63739,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0381,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.75529,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.73036,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.044297,
+        -0.19394
+      ],
+      "frozen_static_action": [
+        -0.641763,
+        -0.998886
+      ],
+      "combined_action": [
+        -0.730357,
+        -1.0
+      ]
+    },
+    {
+      "index": 65,
+      "time": 16.25,
+      "x": -130.91234,
+      "z": -98.82326,
+      "heading_degrees": 3.1635,
+      "speed_mps": 1.3625,
+      "throttle": 0.28625,
+      "rudder": -1.0,
+      "reward": -1.519746,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 7.82326,
+      "nearest_tcpa_seconds": 5.73309,
+      "nearest_dcpa_meters": 0.43173,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1756,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -5.22118,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.0574,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.053922,
+        -0.194038
+      ],
+      "frozen_static_action": [
+        0.050442,
+        -0.998684
+      ],
+      "combined_action": [
+        -0.057402,
+        -1.0
+      ]
+    },
+    {
+      "index": 66,
+      "time": 16.5,
+      "x": -130.89822,
+      "z": -98.50631,
+      "heading_degrees": 1.9423,
+      "speed_mps": 1.2,
+      "throttle": -0.15369,
+      "rudder": -1.0,
+      "reward": -1.67705,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 7.50631,
+      "nearest_tcpa_seconds": 6.25167,
+      "nearest_dcpa_meters": 0.25442,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0381,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.88471,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.70917,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.041258,
+        -0.197502
+      ],
+      "frozen_static_action": [
+        -0.62665,
+        -0.999278
+      ],
+      "combined_action": [
+        -0.709166,
+        -1.0
+      ]
+    },
+    {
+      "index": 67,
+      "time": 16.75,
+      "x": -130.89052,
+      "z": -98.13297,
+      "heading_degrees": 0.6047,
+      "speed_mps": 1.425,
+      "throttle": 0.27868,
+      "rudder": -1.0,
+      "reward": -1.62147,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 7.13297,
+      "nearest_tcpa_seconds": 5.00531,
+      "nearest_dcpa_meters": 0.07528,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1756,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -5.35059,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.06862,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.050506,
+        -0.197514
+      ],
+      "frozen_static_action": [
+        0.032389,
+        -0.99911
+      ],
+      "combined_action": [
+        -0.068624,
+        -1.0
+      ]
+    },
+    {
+      "index": 68,
+      "time": 17.0,
+      "x": -130.89014,
+      "z": -97.80025,
+      "heading_degrees": 359.3511,
+      "speed_mps": 1.2625,
+      "throttle": -0.10072,
+      "rudder": -1.0,
+      "reward": -1.77829,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 6.80025,
+      "nearest_tcpa_seconds": 5.38599,
+      "nearest_dcpa_meters": 0.07701,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0381,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -5.01412,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.63069,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.037965,
+        -0.20096
+      ],
+      "frozen_static_action": [
+        -0.554765,
+        -0.999437
+      ],
+      "combined_action": [
+        -0.630695,
+        -1.0
+      ]
+    },
+    {
+      "index": 69,
+      "time": 17.25,
+      "x": -130.8993,
+      "z": -97.41149,
+      "heading_degrees": 357.9811,
+      "speed_mps": 1.4875,
+      "throttle": 0.33134,
+      "rudder": -1.0,
+      "reward": -1.743299,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 6.41149,
+      "nearest_tcpa_seconds": 4.30757,
+      "nearest_dcpa_meters": 0.22587,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1756,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -5.48,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.00939,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.046569,
+        -0.200833
+      ],
+      "frozen_static_action": [
+        0.102527,
+        -0.999291
+      ],
+      "combined_action": [
+        0.009389,
+        -1.0
+      ]
+    },
+    {
+      "index": 70,
+      "time": 17.5,
+      "x": -130.91445,
+      "z": -97.06367,
+      "heading_degrees": 356.6953,
+      "speed_mps": 1.325,
+      "throttle": -0.05347,
+      "rudder": -1.0,
+      "reward": -1.901311,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 6.06367,
+      "nearest_tcpa_seconds": 4.56874,
+      "nearest_dcpa_meters": 0.34955,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0381,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -5.14353,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.5607,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.033636,
+        -0.204072
+      ],
+      "frozen_static_action": [
+        -0.493431,
+        -0.999569
+      ],
+      "combined_action": [
+        -0.560702,
+        -1.0
+      ]
+    },
+    {
+      "index": 71,
+      "time": 17.75,
+      "x": -130.94093,
+      "z": -96.67465,
+      "heading_degrees": 355.3226,
+      "speed_mps": 1.49259,
+      "throttle": 0.34704,
+      "rudder": -1.0,
+      "reward": -1.909071,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 5.67465,
+      "nearest_tcpa_seconds": 3.78923,
+      "nearest_dcpa_meters": 0.46274,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1756,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -5.49053,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.03265,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.042294,
+        -0.204231
+      ],
+      "frozen_static_action": [
+        0.117239,
+        -0.999228
+      ],
+      "combined_action": [
+        0.032651,
+        -1.0
+      ]
+    },
+    {
+      "index": 72,
+      "time": 18.0,
+      "x": -130.97155,
+      "z": -96.32681,
+      "heading_degrees": 354.0341,
+      "speed_mps": 1.33009,
+      "throttle": -0.04517,
+      "rudder": -1.0,
+      "reward": -2.064884,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 5.32681,
+      "nearest_tcpa_seconds": 3.98318,
+      "nearest_dcpa_meters": 0.55365,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0381,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -5.15406,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.5484,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.030585,
+        -0.20645
+      ],
+      "frozen_static_action": [
+        -0.487227,
+        -0.99946
+      ],
+      "combined_action": [
+        -0.548396,
+        -1.0
+      ]
+    },
+    {
+      "index": 73,
+      "time": 18.25,
+      "x": -131.01526,
+      "z": -95.93961,
+      "heading_degrees": 352.6615,
+      "speed_mps": 1.49259,
+      "throttle": 0.23264,
+      "rudder": -1.0,
+      "reward": -2.082969,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 4.93961,
+      "nearest_tcpa_seconds": 3.28232,
+      "nearest_dcpa_meters": 0.63094,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1756,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -5.49053,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.13683,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.038513,
+        -0.206646
+      ],
+      "frozen_static_action": [
+        -0.059801,
+        -0.99854
+      ],
+      "combined_action": [
+        -0.136826,
+        -1.0
+      ]
+    },
+    {
+      "index": 74,
+      "time": 18.5,
+      "x": -131.0612,
+      "z": -95.59373,
+      "heading_degrees": 351.373,
+      "speed_mps": 1.33009,
+      "throttle": -0.16193,
+      "rudder": -1.0,
+      "reward": -2.238784,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 4.59373,
+      "nearest_tcpa_seconds": 3.41464,
+      "nearest_dcpa_meters": 0.68907,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0381,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -5.15406,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.72138,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.026857,
+        -0.20842
+      ],
+      "frozen_static_action": [
+        -0.667667,
+        -0.999508
+      ],
+      "combined_action": [
+        -0.721381,
+        -1.0
+      ]
+    },
+    {
+      "index": 75,
+      "time": 18.75,
+      "x": -131.10709,
+      "z": -95.28901,
+      "heading_degrees": 350.1686,
+      "speed_mps": 1.16759,
+      "throttle": -0.00429,
+      "rudder": -1.0,
+      "reward": -2.363585,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 4.28901,
+      "nearest_tcpa_seconds": 3.61945,
+      "nearest_dcpa_meters": 0.73235,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": -0.00429,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.81759,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.48783,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.034887,
+        -0.208163
+      ],
+      "frozen_static_action": [
+        -0.418058,
+        -0.999302
+      ],
+      "combined_action": [
+        -0.487832,
+        -1.0
+      ]
+    },
+    {
+      "index": 76,
+      "time": 19.0,
+      "x": -131.15724,
+      "z": -94.99403,
+      "heading_degrees": 348.9824,
+      "speed_mps": 1.13231,
+      "throttle": 0.20462,
+      "rudder": -1.0,
+      "reward": -2.44873,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 3.99403,
+      "nearest_tcpa_seconds": 3.4623,
+      "nearest_dcpa_meters": 0.7633,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.13321,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.74456,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.17834,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.038062,
+        -0.206637
+      ],
+      "frozen_static_action": [
+        -0.102216,
+        -0.998314
+      ],
+      "combined_action": [
+        -0.178341,
+        -1.0
+      ]
+    },
+    {
+      "index": 77,
+      "time": 19.25,
+      "x": -131.2042,
+      "z": -94.73986,
+      "heading_degrees": 347.8804,
+      "speed_mps": 0.96981,
+      "throttle": 0.0356,
+      "rudder": -1.0,
+      "reward": -2.559424,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 3.73986,
+      "nearest_tcpa_seconds": 3.77032,
+      "nearest_dcpa_meters": 0.78519,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0356,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.40808,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.42874,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.030173,
+        -0.205172
+      ],
+      "frozen_static_action": [
+        -0.368393,
+        -0.998036
+      ],
+      "combined_action": [
+        -0.428739,
+        -1.0
+      ]
+    },
+    {
+      "index": 78,
+      "time": 19.5,
+      "x": -131.26917,
+      "z": -94.4321,
+      "heading_degrees": 346.6619,
+      "speed_mps": 1.19481,
+      "throttle": 0.35773,
+      "rudder": -1.0,
+      "reward": -2.574601,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 3.4321,
+      "nearest_tcpa_seconds": 2.79502,
+      "nearest_dcpa_meters": 0.79177,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1731,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.87397,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.04849,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.036633,
+        -0.203782
+      ],
+      "frozen_static_action": [
+        0.121758,
+        -0.995437
+      ],
+      "combined_action": [
+        0.048492,
+        -1.0
+      ]
+    },
+    {
+      "index": 79,
+      "time": 19.75,
+      "x": -131.32972,
+      "z": -94.1651,
+      "heading_degrees": 345.5276,
+      "speed_mps": 1.03231,
+      "throttle": -0.20657,
+      "rudder": -1.0,
+      "reward": -2.694579,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 3.1651,
+      "nearest_tcpa_seconds": 2.96873,
+      "nearest_dcpa_meters": 0.791,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0356,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.5375,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.78751,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.023561,
+        -0.206881
+      ],
+      "frozen_static_action": [
+        -0.740392,
+        -0.998914
+      ],
+      "combined_action": [
+        -0.787514,
+        -1.0
+      ]
+    },
+    {
+      "index": 80,
+      "time": 20.0,
+      "x": -131.38397,
+      "z": -93.93846,
+      "heading_degrees": 344.4773,
+      "speed_mps": 0.86981,
+      "throttle": 0.03755,
+      "rudder": -1.0,
+      "reward": -2.774543,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 2.93846,
+      "nearest_tcpa_seconds": 3.25504,
+      "nearest_dcpa_meters": 0.78639,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.03755,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.20103,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.42585,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.031417,
+        -0.20592
+      ],
+      "frozen_static_action": [
+        -0.363018,
+        -0.997737
+      ],
+      "combined_action": [
+        -0.425852,
+        -1.0
+      ]
+    },
+    {
+      "index": 81,
+      "time": 20.25,
+      "x": -131.45862,
+      "z": -93.65917,
+      "heading_degrees": 343.3106,
+      "speed_mps": 1.09481,
+      "throttle": 0.27565,
+      "rudder": -1.0,
+      "reward": -2.795577,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 2.65917,
+      "nearest_tcpa_seconds": 2.32656,
+      "nearest_dcpa_meters": 0.76367,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.17505,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.66691,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.07311,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.03346,
+        -0.203215
+      ],
+      "frozen_static_action": [
+        -0.006186,
+        -0.994979
+      ],
+      "combined_action": [
+        -0.073106,
+        -1.0
+      ]
+    },
+    {
+      "index": 82,
+      "time": 20.5,
+      "x": -131.52582,
+      "z": -93.4201,
+      "heading_degrees": 342.228,
+      "speed_mps": 0.93231,
+      "throttle": -0.25401,
+      "rudder": -1.0,
+      "reward": -2.897798,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 2.4201,
+      "nearest_tcpa_seconds": 2.47192,
+      "nearest_dcpa_meters": 0.73869,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.03755,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.33044,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.8578,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.019902,
+        -0.206338
+      ],
+      "frozen_static_action": [
+        -0.817997,
+        -0.999008
+      ],
+      "combined_action": [
+        -0.8578,
+        -1.0
+      ]
+    },
+    {
+      "index": 83,
+      "time": 20.75,
+      "x": -131.56443,
+      "z": -93.27689,
+      "heading_degrees": 341.3524,
+      "speed_mps": 0.53231,
+      "throttle": -0.03177,
+      "rudder": -1.0,
+      "reward": -2.980964,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 2.27689,
+      "nearest_tcpa_seconds": 4.0528,
+      "nearest_dcpa_meters": 0.72803,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": -0.03177,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.5022,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.52856,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.028094,
+        -0.205269
+      ],
+      "frozen_static_action": [
+        -0.472368,
+        -0.997347
+      ],
+      "combined_action": [
+        -0.528555,
+        -1.0
+      ]
+    },
+    {
+      "index": 84,
+      "time": 21.0,
+      "x": -131.62412,
+      "z": -93.08146,
+      "heading_degrees": 340.3604,
+      "speed_mps": 0.75731,
+      "throttle": 0.76134,
+      "rudder": -1.0,
+      "reward": -3.018412,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 2.08146,
+      "nearest_tcpa_seconds": 2.58858,
+      "nearest_dcpa_meters": 0.69958,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.10573,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.96808,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.64644,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.040902,
+        -0.196715
+      ],
+      "frozen_static_action": [
+        0.728239,
+        -0.973729
+      ],
+      "combined_action": [
+        0.646435,
+        -1.0
+      ]
+    },
+    {
+      "index": 85,
+      "time": 21.25,
+      "x": -131.70717,
+      "z": -92.83469,
+      "heading_degrees": 339.2519,
+      "speed_mps": 0.98231,
+      "throttle": 0.22,
+      "rudder": -1.0,
+      "reward": -3.043885,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 1.83469,
+      "nearest_tcpa_seconds": 1.7466,
+      "nearest_dcpa_meters": 0.64996,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.22,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.43397,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.15556,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.0259,
+        -0.201053
+      ],
+      "frozen_static_action": [
+        -0.103755,
+        -0.992726
+      ],
+      "combined_action": [
+        -0.155556,
+        -1.0
+      ]
+    },
+    {
+      "index": 86,
+      "time": 21.5,
+      "x": -131.77924,
+      "z": -92.62724,
+      "heading_degrees": 338.2275,
+      "speed_mps": 0.81981,
+      "throttle": -0.29151,
+      "rudder": -1.0,
+      "reward": -3.108611,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 1.62724,
+      "nearest_tcpa_seconds": 1.8433,
+      "nearest_dcpa_meters": 0.60358,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0825,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.0975,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.91335,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.013032,
+        -0.204737
+      ],
+      "frozen_static_action": [
+        -0.887286,
+        -0.998864
+      ],
+      "combined_action": [
+        -0.91335,
+        -1.0
+      ]
+    },
+    {
+      "index": 87,
+      "time": 21.75,
+      "x": -131.81561,
+      "z": -92.51322,
+      "heading_degrees": 337.4102,
+      "speed_mps": 0.41981,
+      "throttle": -0.04666,
+      "rudder": -1.0,
+      "reward": -3.147266,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 1.51322,
+      "nearest_tcpa_seconds": 3.32797,
+      "nearest_dcpa_meters": 0.58128,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": -0.04666,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.26926,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.5506,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.021398,
+        -0.203076
+      ],
+      "frozen_static_action": [
+        -0.507808,
+        -0.996862
+      ],
+      "combined_action": [
+        -0.550604,
+        -1.0
+      ]
+    },
+    {
+      "index": 88,
+      "time": 22.0,
+      "x": -131.87601,
+      "z": -92.3483,
+      "heading_degrees": 336.4764,
+      "speed_mps": 0.64481,
+      "throttle": 0.71774,
+      "rudder": -1.0,
+      "reward": -3.196718,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 1.3483,
+      "nearest_tcpa_seconds": 1.91722,
+      "nearest_dcpa_meters": 0.53814,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.09084,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.73514,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.58184,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.038361,
+        -0.194061
+      ],
+      "frozen_static_action": [
+        0.65856,
+        -0.962517
+      ],
+      "combined_action": [
+        0.581838,
+        -1.0
+      ]
+    },
+    {
+      "index": 89,
+      "time": 22.25,
+      "x": -131.96249,
+      "z": -92.13343,
+      "heading_degrees": 335.4262,
+      "speed_mps": 0.86981,
+      "throttle": 0.32449,
+      "rudder": -1.0,
+      "reward": -3.229861,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 1.13343,
+      "nearest_tcpa_seconds": 1.18504,
+      "nearest_dcpa_meters": 0.47135,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.22834,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -4.20103,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.00075,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.022781,
+        -0.199108
+      ],
+      "frozen_static_action": [
+        0.044808,
+        -0.987593
+      ],
+      "combined_action": [
+        -0.000753,
+        -1.0
+      ]
+    },
+    {
+      "index": 90,
+      "time": 22.5,
+      "x": -132.04188,
+      "z": -91.94218,
+      "heading_degrees": 334.4265,
+      "speed_mps": 0.77216,
+      "throttle": -0.26136,
+      "rudder": -1.0,
+      "reward": -3.28501,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.94218,
+      "nearest_tcpa_seconds": 1.10065,
+      "nearest_dcpa_meters": 0.40671,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.09084,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.99882,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.86869,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.008246,
+        -0.202802
+      ],
+      "frozen_static_action": [
+        -0.852195,
+        -0.998323
+      ],
+      "combined_action": [
+        -0.868687,
+        -1.0
+      ]
+    },
+    {
+      "index": 91,
+      "time": 22.75,
+      "x": -132.07925,
+      "z": -91.84171,
+      "heading_degrees": 333.6338,
+      "speed_mps": 0.37216,
+      "throttle": -0.1458,
+      "rudder": -1.0,
+      "reward": -3.275563,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.84171,
+      "nearest_tcpa_seconds": 2.02641,
+      "nearest_dcpa_meters": 0.37381,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": -0.04666,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.17059,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.69748,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.015397,
+        -0.202275
+      ],
+      "frozen_static_action": [
+        -0.666682,
+        -0.997398
+      ],
+      "combined_action": [
+        -0.697476,
+        -1.0
+      ]
+    },
+    {
+      "index": 92,
+      "time": 23.0,
+      "x": -132.14372,
+      "z": -91.6919,
+      "heading_degrees": 332.7247,
+      "speed_mps": 0.59716,
+      "throttle": 0.49585,
+      "rudder": -1.0,
+      "reward": -3.342296,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.6919,
+      "nearest_tcpa_seconds": 1.02983,
+      "nearest_dcpa_meters": 0.31707,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.09084,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.63647,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.2531,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.033785,
+        -0.192967
+      ],
+      "frozen_static_action": [
+        0.320674,
+        -0.956756
+      ],
+      "combined_action": [
+        0.253104,
+        -1.0
+      ]
+    },
+    {
+      "index": 93,
+      "time": 23.25,
+      "x": -132.19096,
+      "z": -91.57893,
+      "heading_degrees": 331.8997,
+      "speed_mps": 0.43466,
+      "throttle": -0.02267,
+      "rudder": -1.0,
+      "reward": -3.350965,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.57893,
+      "nearest_tcpa_seconds": 1.17491,
+      "nearest_dcpa_meters": 0.27268,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": -0.02267,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.3,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.51506,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.017878,
+        -0.198222
+      ],
+      "frozen_static_action": [
+        -0.479309,
+        -0.987891
+      ],
+      "combined_action": [
+        -0.515065,
+        -1.0
+      ]
+    },
+    {
+      "index": 94,
+      "time": 23.5,
+      "x": -132.26707,
+      "z": -91.41763,
+      "heading_degrees": 330.9582,
+      "speed_mps": 0.65966,
+      "throttle": 0.215,
+      "rudder": -1.0,
+      "reward": -3.396719,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.41763,
+      "nearest_tcpa_seconds": 0.5535,
+      "nearest_dcpa_meters": 0.20274,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.11483,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.76588,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.16296,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.027371,
+        -0.195012
+      ],
+      "frozen_static_action": [
+        -0.10822,
+        -0.953347
+      ],
+      "combined_action": [
+        -0.162962,
+        -1.0
+      ]
+    },
+    {
+      "index": 95,
+      "time": 23.75,
+      "x": -132.32508,
+      "z": -91.29277,
+      "heading_degrees": 330.1009,
+      "speed_mps": 0.49716,
+      "throttle": -0.19721,
+      "rudder": -1.0,
+      "reward": -3.414849,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.29277,
+      "nearest_tcpa_seconds": 0.51051,
+      "nearest_dcpa_meters": 0.14594,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": -0.02267,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.42941,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.77365,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.011788,
+        -0.199613
+      ],
+      "frozen_static_action": [
+        -0.750074,
+        -0.993977
+      ],
+      "combined_action": [
+        -0.773649,
+        -1.0
+      ]
+    },
+    {
+      "index": 96,
+      "time": 24.0,
+      "x": -132.36381,
+      "z": -91.20369,
+      "heading_degrees": 329.3276,
+      "speed_mps": 0.33466,
+      "throttle": -0.04408,
+      "rudder": -1.0,
+      "reward": -3.402141,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.20369,
+      "nearest_tcpa_seconds": 0.52351,
+      "nearest_dcpa_meters": 0.10391,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": -0.04408,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.09294,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.54678,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.02195,
+        -0.196739
+      ],
+      "frozen_static_action": [
+        -0.502882,
+        -0.983122
+      ],
+      "combined_action": [
+        -0.546781,
+        -1.0
+      ]
+    },
+    {
+      "index": 97,
+      "time": 24.25,
+      "x": -132.4331,
+      "z": -91.06736,
+      "heading_degrees": 328.4379,
+      "speed_mps": 0.55966,
+      "throttle": 0.2003,
+      "rudder": -1.0,
+      "reward": -3.469403,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.06736,
+      "nearest_tcpa_seconds": 0.10255,
+      "nearest_dcpa_meters": 0.03526,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.09342,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.55882,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.18474,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.028069,
+        -0.191964
+      ],
+      "frozen_static_action": [
+        -0.128603,
+        -0.94181
+      ],
+      "combined_action": [
+        -0.184741,
+        -1.0
+      ]
+    },
+    {
+      "index": 98,
+      "time": 24.5,
+      "x": -132.45045,
+      "z": -91.01648,
+      "heading_degrees": 327.7553,
+      "speed_mps": 0.15966,
+      "throttle": -0.21433,
+      "rudder": -1.0,
+      "reward": -3.420988,
+      "collision": false,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.01648,
+      "nearest_tcpa_seconds": 0.08732,
+      "nearest_dcpa_meters": 0.00879,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": -0.04408,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -2.73059,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.79901,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.012131,
+        -0.197186
+      ],
+      "frozen_static_action": [
+        -0.774743,
+        -0.989522
+      ],
+      "combined_action": [
+        -0.799006,
+        -1.0
+      ]
+    },
+    {
+      "index": 99,
+      "time": 24.75,
+      "x": -132.49894,
+      "z": -90.91876,
+      "heading_degrees": 326.9562,
+      "speed_mps": 0.09616,
+      "throttle": 0.47803,
+      "rudder": -1.0,
+      "reward": -1503.493471,
+      "collision": true,
+      "nearest_obstacle_name": "WestBreakwater",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": -0.08124,
+      "nearest_tcpa_seconds": 90.0,
+      "nearest_dcpa_meters": 71.98401,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.09342,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -2.59912,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.22671,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.033098,
+        -0.185375
+      ],
+      "frozen_static_action": [
+        0.292901,
+        -0.886503
+      ],
+      "combined_action": [
+        0.226705,
+        -1.0
+      ]
+    }
+  ],
+  "claim_boundary": "Zero-training out-of-distribution transfer baseline in the numeric simulator. Not evidence of berthing convergence, Godot three-DOF sway control, or field readiness."
+}

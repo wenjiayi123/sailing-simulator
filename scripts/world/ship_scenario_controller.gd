@@ -13,12 +13,23 @@ const HARBOR_BOUNDARY_HALF_EXTENT := 180.0
 @export var player_path: NodePath = NodePath("../Player")
 @export var route_system_path: NodePath = NodePath("../ShipRouteSystem")
 @export var obstacle_system_path: NodePath = NodePath("../ShipNavigationObstacles")
+@export var base_environment_path: NodePath = NodePath("../NavigationEnvironment")
+@export var large_rock_guard_path: NodePath = NodePath("../LargeRockCollisionGuard")
+@export var weather_time_path: NodePath = NodePath("../ShipWeatherTimeController")
 @export_file("*.json") var port_profile_path: String = "res://data/ports/default_port_profile.json"
 
 var _player: Node3D
 var _route_system: Node
 var _obstacle_system: Node
+var _base_environment: Node3D
+var _large_rock_guard: Node
+var _weather_time: Node
+var _background_controller: Node
 var _harbor_root: Node3D
+var _dedicated_scene_root: Node3D
+var _active_dedicated_scene: Node3D
+var _active_dedicated_scene_path := ""
+var _dedicated_scene_error := ""
 var _scenario_index := 0
 var _scenario_keys: Array[String] = ["open_water", "harbor"]
 var _port_profile: Dictionary = {}
@@ -30,8 +41,19 @@ func _ready() -> void:
 	_resolve_targets()
 	_load_port_profile()
 	_build_harbor_visuals()
-	apply_scenario(0, false)
+	_ensure_dedicated_scene_root()
+	var startup_key := OS.get_environment("SHIP_START_SCENARIO_KEY").strip_edges()
+	if startup_key.is_empty():
+		apply_scenario(0, false)
+	else:
+		# A dedicated PackedScene cannot be attached while the main scene is still
+		# inside its child-setup pass. Defer only the inspection/startup override.
+		call_deferred("_apply_startup_scenario", startup_key)
 	set_process_unhandled_input(true)
+
+
+func _apply_startup_scenario(startup_key: String) -> void:
+	apply_scenario(get_scenario_index_by_key(startup_key), true)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -49,6 +71,7 @@ func apply_scenario(index: int, teleport_ship: bool = true) -> void:
 	if _route_system == null or _obstacle_system == null or _player == null or not is_instance_valid(_player) or not _player.is_in_group(&"player"):
 		_resolve_targets()
 	var key := _scenario_keys[_scenario_index] if not _scenario_keys.is_empty() else "open_water"
+	_reset_default_clear_weather()
 	if _harbor_root != null:
 		_harbor_root.visible = key == "harbor"
 	if not _apply_profile_scenario(key, teleport_ship):
@@ -69,9 +92,19 @@ func get_scenario_status() -> Dictionary:
 		"key": key,
 		"name": String(scenario.get("name", "港口引航水域" if key == "harbor" else "开放水域")),
 		"description": String(scenario.get("description", "PORT PROFILE")),
+		"task_type": String(scenario.get("task_type", "route_following")),
+		"visual_family": String(scenario.get("visual_family", key)),
+		"colreg_rule_ids": (scenario.get("colreg_rule_ids", []) as Array).duplicate(),
+		"traffic_count": (scenario.get("traffic", []) as Array).size(),
+		"claim_boundary": String(scenario.get("claim_boundary", "simulation only")),
+		"dedicated_scene_path": String(scenario.get("dedicated_scene_path", "")),
+		"dedicated_scene_active": _active_dedicated_scene != null and is_instance_valid(_active_dedicated_scene),
+		"base_environment_active": _active_dedicated_scene == null or not is_instance_valid(_active_dedicated_scene),
+		"dedicated_scene_error": _dedicated_scene_error,
 		"data_profile": String(_port_profile.get("name", "built-in fallback")),
 		"data_source": _port_profile.get("source", {}),
 		"profile_path": _port_profile_loaded_path,
+		"default_weather_mode": "clear",
 	}
 
 
@@ -88,22 +121,68 @@ func get_scenario_index_by_key(key: String) -> int:
 	return found if found >= 0 else 0
 
 
+func get_scenario_count() -> int:
+	return _scenario_keys.size()
+
+
+func list_scenarios() -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	var scenarios := _port_profile.get("scenarios", {}) as Dictionary
+	for index in range(_scenario_keys.size()):
+		var key := _scenario_keys[index]
+		var scenario := scenarios.get(key, {}) as Dictionary
+		result.append({
+			"index": index,
+			"key": key,
+			"name": String(scenario.get("name", key)),
+			"task_type": String(scenario.get("task_type", "route_following")),
+			"traffic_count": (scenario.get("traffic", []) as Array).size(),
+		})
+	return result
+
+
+func get_current_scenario_config() -> Dictionary:
+	if _scenario_keys.is_empty():
+		return {}
+	var scenarios := _port_profile.get("scenarios", {}) as Dictionary
+	return (scenarios.get(_scenario_keys[_scenario_index], {}) as Dictionary).duplicate(true)
+
+
+func get_active_dedicated_scene_snapshot() -> Dictionary:
+	if _active_dedicated_scene == null or not is_instance_valid(_active_dedicated_scene):
+		return {
+			"dedicated_scene": false,
+			"scene_path": "",
+			"base_environment_active": true,
+		}
+	var snapshot: Dictionary = {}
+	if _active_dedicated_scene.has_method("get_scene_snapshot"):
+		snapshot = _active_dedicated_scene.call("get_scene_snapshot") as Dictionary
+	snapshot["scene_path"] = _active_dedicated_scene_path
+	snapshot["base_environment_active"] = false
+	if _background_controller != null and _background_controller.has_method("get_visual_profile_status"):
+		snapshot["visual_profile"] = _background_controller.call("get_visual_profile_status")
+	return snapshot
+
+
 func _apply_open_water(teleport_ship: bool) -> void:
+	_activate_visual_scene({}, "open_water")
 	if _harbor_root != null:
 		_harbor_root.visible = false
 	var spawn := Vector3(0.36, SHIP_Y, -0.05)
 	_configure_route(_open_water_route(), true, spawn)
-	_configure_obstacles(OPEN_WATER_BOUNDARY_HALF_EXTENT, _open_water_rocks(), [])
+	_configure_obstacles(OPEN_WATER_BOUNDARY_HALF_EXTENT, _open_water_rocks(), [], true)
 	if teleport_ship:
 		_place_ship(spawn, 214.0)
 
 
 func _apply_harbor(teleport_ship: bool) -> void:
+	_activate_visual_scene({}, "harbor")
 	if _harbor_root != null:
 		_harbor_root.visible = true
 	var spawn := Vector3(-148.0, SHIP_Y, -92.0)
 	_configure_route(_harbor_route(), false, spawn)
-	_configure_obstacles(HARBOR_BOUNDARY_HALF_EXTENT, _harbor_buoy_rocks(), _harbor_box_obstacles())
+	_configure_obstacles(HARBOR_BOUNDARY_HALF_EXTENT, _harbor_buoy_rocks(), _harbor_box_obstacles(), true)
 	if teleport_ship:
 		_place_ship(spawn, 84.0)
 
@@ -113,9 +192,16 @@ func _configure_route(points: Array[Vector3], loop_enabled: bool, leg_start: Vec
 		_route_system.call("configure_route", points, loop_enabled, leg_start)
 
 
-func _configure_obstacles(boundary_half_extent: float, rocks: Array[Vector3], boxes: Array[Dictionary]) -> void:
+func _configure_obstacles(
+	boundary_half_extent: float,
+	rocks: Array[Vector3],
+	boxes: Array[Dictionary],
+	builtin_visuals_enabled: bool,
+) -> void:
 	if _obstacle_system != null and _obstacle_system.has_method("configure_navigation_area"):
 		_obstacle_system.call("configure_navigation_area", boundary_half_extent, rocks, boxes)
+	if _obstacle_system != null and _obstacle_system.has_method("set_runtime_visuals_enabled"):
+		_obstacle_system.call("set_runtime_visuals_enabled", builtin_visuals_enabled)
 
 
 func _place_ship(position: Vector3, heading_degrees: float) -> void:
@@ -175,6 +261,9 @@ func _apply_profile_scenario(key: String, teleport_ship: bool) -> bool:
 	var scenario := scenarios.get(key, {}) as Dictionary
 	if scenario.is_empty():
 		return false
+	var dedicated_scene_active := _activate_visual_scene(scenario, key)
+	if _harbor_root != null:
+		_harbor_root.visible = not dedicated_scene_active and String(scenario.get("visual_family", key)) == "harbor"
 	var route: Array[Vector3] = []
 	for raw_point in scenario.get("route", []) as Array:
 		var point := raw_point as Dictionary
@@ -196,11 +285,23 @@ func _apply_profile_scenario(key: String, teleport_ship: bool) -> bool:
 		})
 	var spawn_data := scenario.get("spawn", {}) as Dictionary
 	var spawn := Vector3(float(spawn_data.get("x", 0.0)), SHIP_Y, float(spawn_data.get("z", 0.0)))
+	_apply_profile_route_parameters(key)
 	_configure_route(route, bool(scenario.get("loop_route", false)), spawn)
-	_configure_obstacles(float(scenario.get("boundary_half_extent", 180.0)), rocks, boxes)
+	_configure_obstacles(float(scenario.get("boundary_half_extent", 180.0)), rocks, boxes, not dedicated_scene_active)
 	if teleport_ship:
 		_place_ship(spawn, float(spawn_data.get("heading_degrees", 180.0)))
 	return true
+
+
+func _apply_profile_route_parameters(key: String) -> void:
+	if _route_system == null:
+		return
+	for raw_mission in _port_profile.get("navigation_missions", []) as Array:
+		var mission := raw_mission as Dictionary
+		if String(mission.get("scenario_key", "")) != key:
+			continue
+		_route_system.set("arrival_radius", float(mission.get("arrival_radius", _route_system.get("arrival_radius"))))
+		return
 
 
 func _resolve_targets() -> void:
@@ -217,6 +318,138 @@ func _resolve_targets() -> void:
 	_obstacle_system = get_node_or_null(obstacle_system_path)
 	if _obstacle_system == null:
 		_obstacle_system = get_tree().get_first_node_in_group(&"ship_navigation_obstacle_system")
+
+	_base_environment = get_node_or_null(base_environment_path) as Node3D
+	_large_rock_guard = get_node_or_null(large_rock_guard_path)
+	_weather_time = get_node_or_null(weather_time_path)
+	if _weather_time == null:
+		_weather_time = get_tree().get_first_node_in_group(&"ship_weather_time_system")
+	_background_controller = _base_environment.get_node_or_null("BackgroundWalls") if _base_environment != null else null
+
+
+func _reset_default_clear_weather() -> void:
+	if _weather_time == null or not is_instance_valid(_weather_time):
+		_weather_time = get_node_or_null(weather_time_path)
+		if _weather_time == null:
+			_weather_time = get_tree().get_first_node_in_group(&"ship_weather_time_system")
+	if _weather_time != null and _weather_time.has_method("apply_zero_fog_clear_baseline"):
+		_weather_time.call("apply_zero_fog_clear_baseline", {})
+	elif _weather_time != null and _weather_time.has_method("apply_mode"):
+		_weather_time.call("apply_mode", 0)
+
+
+func _ensure_dedicated_scene_root() -> void:
+	if _dedicated_scene_root != null and is_instance_valid(_dedicated_scene_root):
+		return
+	_dedicated_scene_root = Node3D.new()
+	_dedicated_scene_root.name = "DedicatedTaskSceneRoot"
+	get_parent().add_child.call_deferred(_dedicated_scene_root)
+
+
+func _activate_visual_scene(scenario: Dictionary, key: String) -> bool:
+	_dedicated_scene_error = ""
+	var scene_path := String(scenario.get("dedicated_scene_path", "")).strip_edges()
+	if scene_path.is_empty():
+		_clear_dedicated_scene()
+		_restore_base_visual_profile()
+		_set_base_environment_active(true)
+		return false
+	_set_base_environment_active(false)
+	if (
+		_active_dedicated_scene != null
+		and is_instance_valid(_active_dedicated_scene)
+		and _active_dedicated_scene_path == scene_path
+	):
+		return true
+	_clear_dedicated_scene()
+	_ensure_dedicated_scene_root()
+	if _dedicated_scene_root.get_parent() == null:
+		get_parent().add_child(_dedicated_scene_root)
+	if not ResourceLoader.exists(scene_path, "PackedScene"):
+		_dedicated_scene_error = "SCENE_RESOURCE_UNAVAILABLE: %s" % scene_path
+		push_error(_dedicated_scene_error)
+		_set_base_environment_active(true)
+		return false
+	var packed_variant: Variant = load(scene_path)
+	if not (packed_variant is PackedScene):
+		_dedicated_scene_error = "SCENE_RESOURCE_INVALID: %s" % scene_path
+		push_error(_dedicated_scene_error)
+		_set_base_environment_active(true)
+		return false
+	var instance_variant: Variant = (packed_variant as PackedScene).instantiate()
+	if not (instance_variant is Node3D):
+		_dedicated_scene_error = "SCENE_ROOT_INVALID: %s" % scene_path
+		push_error(_dedicated_scene_error)
+		_set_base_environment_active(true)
+		return false
+	_active_dedicated_scene = instance_variant as Node3D
+	_active_dedicated_scene.name = "Dedicated_%s" % key
+	_dedicated_scene_root.add_child(_active_dedicated_scene)
+	_active_dedicated_scene_path = scene_path
+	_apply_task_visual_profile(scenario, key)
+	return true
+
+
+func _clear_dedicated_scene() -> void:
+	if _active_dedicated_scene != null and is_instance_valid(_active_dedicated_scene):
+		if _active_dedicated_scene.get_parent() != null:
+			_active_dedicated_scene.get_parent().remove_child(_active_dedicated_scene)
+		_active_dedicated_scene.queue_free()
+	_active_dedicated_scene = null
+	_active_dedicated_scene_path = ""
+
+
+func _apply_task_visual_profile(scenario: Dictionary, key: String) -> void:
+	if _background_controller == null or not is_instance_valid(_background_controller):
+		_resolve_targets()
+	if _background_controller == null:
+		return
+	var profile := scenario.get("visual_profile", {}) as Dictionary
+	var wallpaper_path := String(profile.get("wallpaper_texture", "")).strip_edges()
+	var water_path := String(profile.get("water_texture", "")).strip_edges()
+	var wallpaper_bottom_composition := String(profile.get("wallpaper_bottom_composition", "landline_at_bottom"))
+	var wallpaper_sea_band_max_fraction := minf(float(profile.get("wallpaper_sea_band_max_fraction", 0.03)), 0.03)
+	if wallpaper_path.is_empty() or water_path.is_empty():
+		_restore_base_visual_profile()
+		return
+	if _background_controller.has_method("apply_task_visual_profile"):
+		var result := _background_controller.call(
+			"apply_task_visual_profile",
+			key,
+			wallpaper_path,
+			water_path,
+			0.0,
+			wallpaper_bottom_composition,
+			wallpaper_sea_band_max_fraction,
+		) as Dictionary
+		if not bool(result.get("applied", false)):
+			_dedicated_scene_error = "TASK_VISUAL_PROFILE_FAILED: %s" % str(result)
+	if _active_dedicated_scene != null and _active_dedicated_scene.has_method("apply_task_visual_profile"):
+		var dedicated_result := _active_dedicated_scene.call(
+			"apply_task_visual_profile",
+			wallpaper_path,
+			water_path,
+			wallpaper_bottom_composition,
+			wallpaper_sea_band_max_fraction,
+		) as Dictionary
+		if not bool(dedicated_result.get("applied", false)):
+			_dedicated_scene_error = "DEDICATED_TASK_VISUAL_PROFILE_FAILED: %s" % str(dedicated_result)
+
+
+func _restore_base_visual_profile() -> void:
+	if _background_controller == null or not is_instance_valid(_background_controller):
+		_resolve_targets()
+	if _background_controller != null and _background_controller.has_method("restore_base_visuals"):
+		_background_controller.call("restore_base_visuals")
+
+
+func _set_base_environment_active(active: bool) -> void:
+	if _large_rock_guard == null or not is_instance_valid(_large_rock_guard):
+		_large_rock_guard = get_node_or_null(large_rock_guard_path)
+	if _large_rock_guard != null and _large_rock_guard.has_method("set_base_environment_active"):
+		_large_rock_guard.call("set_base_environment_active", active)
+	elif _base_environment != null:
+		_base_environment.visible = active
 
 
 func _open_water_route() -> Array[Vector3]:

@@ -26,10 +26,10 @@
 					},
 					"receipt_id": "BRM-000013",
 					"sequence": 13,
-					"session_id": "BRIDGE-20260828-009801",
+					"session_id": "BRIDGE-20260829-012045",
 					"status": "EXECUTED",
 					"subject": "MSG-000002",
-					"utc": "2026-08-28T13:34:05"
+					"utc": "2026-08-29T14:54:22"
 				},
 				"challenge": {
 					"action": "send_message",
@@ -40,10 +40,10 @@
 					},
 					"receipt_id": "BRM-000012",
 					"sequence": 12,
-					"session_id": "BRIDGE-20260828-009801",
+					"session_id": "BRIDGE-20260829-012045",
 					"status": "EXECUTED",
 					"subject": "MSG-000002",
-					"utc": "2026-08-28T13:34:05"
+					"utc": "2026-08-29T14:54:22"
 				}
 			},
 			"passed": true
@@ -64,10 +64,10 @@
 				},
 				"receipt_id": "BRM-000010",
 				"sequence": 10,
-				"session_id": "BRIDGE-20260828-009801",
+				"session_id": "BRIDGE-20260829-012045",
 				"status": "EXECUTED",
 				"subject": "MSG-000001",
-				"utc": "2026-08-28T13:34:05"
+				"utc": "2026-08-29T14:54:22"
 			},
 			"passed": true
 		},
@@ -84,10 +84,10 @@
 				},
 				"receipt_id": "BRM-000005",
 				"sequence": 5,
-				"session_id": "BRIDGE-20260828-009801",
+				"session_id": "BRIDGE-20260829-012045",
 				"status": "REJECTED",
 				"subject": "MASTER",
-				"utc": "2026-08-28T13:34:05"
+				"utc": "2026-08-29T14:54:22"
 			},
 			"passed": true
 		},
@@ -99,10 +99,10 @@
 				},
 				"receipt_id": "BRM-000009",
 				"sequence": 9,
-				"session_id": "BRIDGE-20260828-009801",
+				"session_id": "BRIDGE-20260829-012045",
 				"status": "REJECTED",
 				"subject": "MSG-000001",
-				"utc": "2026-08-28T13:34:05"
+				"utc": "2026-08-29T14:54:22"
 			},
 			"passed": true
 		},
@@ -133,14 +133,14 @@
 					"plan": "Hold course and monitor CPA",
 					"role": "MASTER",
 					"station_id": "MASTER-01",
-					"utc": "2026-08-28T13:34:05"
+					"utc": "2026-08-29T14:54:22"
 				},
 				"receipt_id": "BRM-000011",
 				"sequence": 11,
-				"session_id": "BRIDGE-20260828-009801",
+				"session_id": "BRIDGE-20260829-012045",
 				"status": "EXECUTED",
 				"subject": "BRIEF-0001",
-				"utc": "2026-08-28T13:34:05"
+				"utc": "2026-08-29T14:54:22"
 			},
 			"passed": true
 		},
@@ -153,10 +153,10 @@
 				},
 				"receipt_id": "BRM-000006",
 				"sequence": 6,
-				"session_id": "BRIDGE-20260828-009801",
+				"session_id": "BRIDGE-20260829-012045",
 				"status": "REJECTED",
 				"subject": "HELM-03",
-				"utc": "2026-08-28T13:34:05"
+				"utc": "2026-08-29T14:54:22"
 			},
 			"passed": true
 		},
@@ -170,7 +170,7 @@
 				"encrypted": false,
 				"last_error": "",
 				"listening": true,
-				"port": 50622,
+				"port": 63422,
 				"production_authority": false,
 				"protocol": "ship_bridge_team_udp_v1",
 				"received_packets": 0,
@@ -192,10 +192,10 @@
 				},
 				"receipt_id": "BRM-000007",
 				"sequence": 7,
-				"session_id": "BRIDGE-20260828-009801",
+				"session_id": "BRIDGE-20260829-012045",
 				"status": "EXECUTED",
 				"subject": "MSG-000001",
-				"utc": "2026-08-28T13:34:05"
+				"utc": "2026-08-29T14:54:22"
 			},
 			"passed": true
 		},
@@ -207,10 +207,10 @@
 				},
 				"receipt_id": "BRM-000014",
 				"sequence": 14,
-				"session_id": "BRIDGE-20260828-009801",
+				"session_id": "BRIDGE-20260829-012045",
 				"status": "REJECTED",
 				"subject": "0.0.0.0",
-				"utc": "2026-08-28T13:34:05"
+				"utc": "2026-08-29T14:54:22"
 			},
 			"passed": true
 		},
@@ -223,10 +223,10 @@
 				},
 				"receipt_id": "BRM-000021",
 				"sequence": 21,
-				"session_id": "BRIDGE-20260828-011087",
+				"session_id": "BRIDGE-20260829-013672",
 				"status": "ACCEPTED",
 				"subject": "MASTER-01",
-				"utc": "2026-08-28T13:34:07"
+				"utc": "2026-08-29T14:54:24"
 			},
 			"passed": true
 		},
@@ -240,10 +240,10 @@
 					},
 					"receipt_id": "BRM-000004",
 					"sequence": 4,
-					"session_id": "BRIDGE-20260828-009801",
+					"session_id": "BRIDGE-20260829-012045",
 					"status": "ACCEPTED",
 					"subject": "HELM-03",
-					"utc": "2026-08-28T13:34:05"
+					"utc": "2026-08-29T14:54:22"
 				},
 				"master": {
 					"action": "join_station",
@@ -253,10 +253,10 @@
 					},
 					"receipt_id": "BRM-000002",
 					"sequence": 2,
-					"session_id": "BRIDGE-20260828-009801",
+					"session_id": "BRIDGE-20260829-012045",
 					"status": "ACCEPTED",
 					"subject": "MASTER-01",
-					"utc": "2026-08-28T13:34:05"
+					"utc": "2026-08-29T14:54:22"
 				},
 				"oow": {
 					"action": "join_station",
@@ -266,10 +266,10 @@
 					},
 					"receipt_id": "BRM-000003",
 					"sequence": 3,
-					"session_id": "BRIDGE-20260828-009801",
+					"session_id": "BRIDGE-20260829-012045",
 					"status": "ACCEPTED",
 					"subject": "OOW-02",
-					"utc": "2026-08-28T13:34:05"
+					"utc": "2026-08-29T14:54:22"
 				}
 			},
 			"passed": true
@@ -282,10 +282,10 @@
 				},
 				"receipt_id": "BRM-000001",
 				"sequence": 1,
-				"session_id": "BRIDGE-20260828-009801",
+				"session_id": "BRIDGE-20260829-012045",
 				"status": "ACCEPTED",
-				"subject": "BRIDGE-20260828-009801",
-				"utc": "2026-08-28T13:34:05"
+				"subject": "BRIDGE-20260829-012045",
+				"utc": "2026-08-29T14:54:22"
 			},
 			"passed": true
 		},
@@ -295,7 +295,7 @@
 				"encrypted": false,
 				"last_error": "",
 				"listening": true,
-				"port": 50622,
+				"port": 63422,
 				"production_authority": false,
 				"protocol": "ship_bridge_team_udp_v1",
 				"received_packets": 1,
@@ -327,16 +327,16 @@
 				},
 				"receipt_id": "BRM-000008",
 				"sequence": 8,
-				"session_id": "BRIDGE-20260828-009801",
+				"session_id": "BRIDGE-20260829-012045",
 				"status": "REJECTED",
 				"subject": "MSG-000001",
-				"utc": "2026-08-28T13:34:05"
+				"utc": "2026-08-29T14:54:22"
 			},
 			"passed": true
 		}
 	},
 	"errors": [],
-	"generated_at": "2026-08-28T13:34:07",
+	"generated_at": "2026-08-29T14:54:24",
 	"passed": true,
 	"passed_checks": 21,
 	"schema_version": "godot_bridge_team_collaboration_smoke_v1",

@@ -1484,7 +1484,7 @@ func _build_interface() -> void:
 	_add_hotkey_line(key_stack, "Z/X/C", "RL / 船队 / 训练")
 	_add_hotkey_line(key_stack, "V/N/W", "风险 / 海图 / 海况")
 	_add_hotkey_line(key_stack, "B/Y/J/U/Q", "驾驶台 / 港作 / 协同 / HIL / 安全案例")
-	_add_hotkey_line(key_stack, "P/I/O", "复盘 / AIS / 教员")
+	_add_hotkey_line(key_stack, "P/I/O/F9", "复盘/AIS/教员/避碰")
 	_add_hotkey_line(key_stack, "G/T/1-4", "场景 / 天气 / 预设")
 	_add_hotkey_line(key_stack, "L/BK", "HUD编辑 / 还原")
 	_add_hotkey_line(key_stack, "E", "交互确认")

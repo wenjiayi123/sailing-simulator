@@ -86,7 +86,7 @@ class FullMissionBridgeTests(unittest.TestCase):
         self.assertIn("DISTRESS_REQUIRES_GUARDED_TWO_STEP_FLOW", gmdss)
         self.assertIn('"real_radio_transmission": false', gmdss)
         self.assertIn("func sweep_all_visual_sectors", bridge)
-        self.assertIn('"ship_motion_model_modified": false', bridge)
+        self.assertIn('"visual_action_modified_ship_motion_model": false', bridge)
         self.assertIn('"existing_policy_modified": false', bridge)
         self.assertIn("ShipExecutionControlSuite", bridge)
 
@@ -103,9 +103,16 @@ class FullMissionBridgeTests(unittest.TestCase):
         self.assertFalse(
             report["external_acceptance_gate"]["evidence_package_complete"]
         )
+        self.assertFalse(report["model_boundary"]["base_ship_motion_model_replaced"])
+        self.assertTrue(
+            report["model_boundary"]["advanced_task_hydrodynamic_extension_enabled"]
+        )
+        self.assertFalse(
+            report["model_boundary"]["named_vessel_dynamics_calibrated"]
+        )
         self.assertTrue(all(value is False for value in report["claims"].values()))
         payload = build_payload()
-        self.assertEqual(len(payload["inputs_sha256"]), 7)
+        self.assertEqual(len(payload["inputs_sha256"]), 8)
 
 
 if __name__ == "__main__":

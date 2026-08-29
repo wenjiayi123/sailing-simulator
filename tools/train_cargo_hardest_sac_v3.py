@@ -133,7 +133,16 @@ class ExpertAnchoredSAC(SAC):
                 rudder_anchor = F.mse_loss(
                     predicted_anchor_actions[:, 1], anchor_actions[:, 1]
                 )
-                anchor_loss = 0.55 * throttle_anchor + 1.45 * rudder_anchor
+                throttle_weight = float(
+                    getattr(self, "expert_anchor_throttle_weight", 0.55)
+                )
+                rudder_weight = float(
+                    getattr(self, "expert_anchor_rudder_weight", 1.45)
+                )
+                anchor_loss = (
+                    throttle_weight * throttle_anchor
+                    + rudder_weight * rudder_anchor
+                )
                 actor_loss = (
                     rl_actor_loss
                     + self.expert_anchor_coefficient * anchor_loss
@@ -200,6 +209,39 @@ def _hardest_behavior_clone(*args, **kwargs):
     import numpy as np
     import torch
 
+    config = _training_context.get("config")
+    dataset = _training_context.get("dataset")
+    if config is None or dataset is None:
+        raise ValueError("V3 DAgger requires train-only collector context")
+    initialization = config.get("demonstration_initialization", {})
+    throttle_weight = float(
+        initialization.get("behavior_clone_throttle_weight", 0.55)
+    )
+    rudder_weight = float(
+        initialization.get("behavior_clone_rudder_weight", 1.45)
+    )
+    raw_schedule = initialization.get("dagger_schedule")
+    if raw_schedule is None:
+        dagger_schedule = ((0.70, 24), (0.40, 16), (0.20, 8))
+    else:
+        dagger_schedule = tuple(
+            (
+                float(item["expert_action_fraction"]),
+                int(item["refit_epochs"]),
+            )
+            for item in raw_schedule
+        )
+        if not dagger_schedule:
+            raise ValueError("DAgger schedule must contain at least one round")
+        if any(
+            not 0.0 <= expert_fraction <= 1.0 or refit_epochs <= 0
+            for expert_fraction, refit_epochs in dagger_schedule
+        ):
+            raise ValueError("DAgger schedule values are outside the safe range")
+    latest_recovery_epochs = int(
+        initialization.get("dagger_latest_recovery_epochs", 0)
+    )
+
     observations = np.asarray(demonstrations["observations"], dtype=np.float32)
     actions = np.asarray(demonstrations["actions"], dtype=np.float32)
     expert_sample_count = int(len(observations))
@@ -241,7 +283,10 @@ def _hardest_behavior_clone(*args, **kwargs):
                 rudder_loss = torch.nn.functional.mse_loss(
                     predicted_actions[:, 1], action_tensor[:, 1]
                 )
-                loss = 0.55 * throttle_loss + 1.45 * rudder_loss
+                loss = (
+                    throttle_weight * throttle_loss
+                    + rudder_weight * rudder_loss
+                )
                 optimizer.zero_grad()
                 loss.backward()
                 torch.nn.utils.clip_grad_norm_(actor.parameters(), 1.0)
@@ -254,10 +299,6 @@ def _hardest_behavior_clone(*args, **kwargs):
 
     fit_actor(observations, actions, epochs)
 
-    config = _training_context.get("config")
-    dataset = _training_context.get("dataset")
-    if config is None or dataset is None:
-        raise ValueError("V3 DAgger requires train-only collector context")
     cargo = config.get("cargo_parameters", {})
     throttle_min = float(cargo.get("throttle_action_min", -0.35))
     throttle_max = float(cargo.get("throttle_action_max", 1.0))
@@ -265,7 +306,6 @@ def _hardest_behavior_clone(*args, **kwargs):
     aggregated_observations = [observations]
     aggregated_actions = [actions]
     task_count = len(dataset["splits"]["train"])
-    dagger_schedule = ((0.70, 24), (0.40, 16), (0.20, 8))
     for round_index, (expert_fraction, refit_epochs) in enumerate(
         dagger_schedule, start=1
     ):
@@ -351,6 +391,17 @@ def _hardest_behavior_clone(*args, **kwargs):
         observations = np.concatenate(aggregated_observations, axis=0)
         actions = np.concatenate(aggregated_actions, axis=0)
         fit_actor(observations, actions, refit_epochs)
+        if latest_recovery_epochs > 0:
+            # Attempt 11 proved that fitting the mixed corpus *after* rare
+            # recovery states reintroduced the strong-reverse local optimum.
+            # Consolidate globally first, then finish on the exact states the
+            # current policy induced so the next pure-policy rollout tests the
+            # correction rather than a subsequently forgotten version of it.
+            fit_actor(
+                aggregated_observations[-1],
+                aggregated_actions[-1],
+                latest_recovery_epochs,
+            )
     for group, learning_rate in zip(optimizer.param_groups, original_learning_rates):
         # Once cloning has produced a stable long-horizon policy, SAC should
         # refine it with small Q-driven steps instead of erasing it in a few
@@ -362,6 +413,8 @@ def _hardest_behavior_clone(*args, **kwargs):
         model.policy.actor.log_std.bias.fill_(-3.0)
     model.expert_anchor_observations = observations
     model.expert_anchor_actions = actions
+    model.expert_anchor_throttle_weight = throttle_weight
+    model.expert_anchor_rudder_weight = rudder_weight
     model.rl_actor_updates = 0
     model.post_clone_actor_sha256 = _actor_sha256(actor)
     return {
@@ -379,7 +432,12 @@ def _hardest_behavior_clone(*args, **kwargs):
         "final_loss": final_loss,
         "final_epoch_throttle_mse": final_throttle_loss,
         "final_epoch_rudder_mse": final_rudder_loss,
-        "loss_weights": {"throttle": 0.55, "rudder": 1.45},
+        "loss_weights": {
+            "throttle": throttle_weight,
+            "rudder": rudder_weight,
+        },
+        "dagger_latest_recovery_epochs": latest_recovery_epochs,
+        "dagger_fit_order": "aggregate_then_latest_policy_states",
         "initial_log_std": -3.0,
         "initial_action_std": float(torch.exp(torch.tensor(-3.0)).item()),
         "v3_exploration_guard": True,

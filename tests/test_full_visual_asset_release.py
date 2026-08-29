@@ -19,7 +19,10 @@ class FullVisualAssetReleaseTests(unittest.TestCase):
     def test_all_visual_media_is_registered_or_explicitly_local_only(self) -> None:
         report = build_report()
         self.assertTrue(report["summary"]["passed"], report["errors"])
-        self.assertEqual(report["summary"]["included_asset_count"], 23)
+        self.assertEqual(
+            report["summary"]["included_asset_count"],
+            len(self.manifest["included_assets"]),
+        )
         self.assertEqual(report["summary"]["unregistered_media_count"], 0)
         self.assertEqual(report["summary"]["unresolved_included_asset_count"], 0)
 

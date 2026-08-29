@@ -180,11 +180,12 @@
 		"review_ingests_auditable_debrief": {
 			"detail": {
 				"boundary": {
-					"changesMotionModel": false,
 					"changesPolicy": false,
 					"equipmentFaultsAffectDisplaysOnly": true,
+					"equipmentTimelineChangesMotionModel": false,
 					"productionAuthority": false,
-					"statement": "研究级教员站与复盘证据，不等同于认可的全任务驾驶台教员站或海上试验。"
+					"statement": "研究级教员站与复盘证据，不等同于认可的全任务驾驶台教员站或海上试验。",
+					"taskRealismChangesDynamicsWhenActive": false
 				},
 				"fault_matrix_count": 9,
 				"format": "ship_instructor_debrief_v2",
@@ -215,14 +216,14 @@
 					"drift_angle_degrees": 0.0,
 					"gnss_valid": false,
 					"heading_degrees": 187.5,
-					"position": "(0.433639, -140.1851, 0.002173)",
+					"position": "(0.455386, -140.1851, 0.020331)",
 					"rudder": 0.0,
-					"speed_knots": 0.0939508424680978,
+					"speed_knots": 0.106988699462146,
 					"speed_log_valid": true,
-					"speed_mps": 0.0483325012028217,
+					"speed_mps": 0.055039756000042,
 					"throttle": 0.0,
-					"true_position": "(0.433639, -140.1851, 0.002173)",
-					"velocity_xz_mps": "(-0.006309, -0.047919)"
+					"true_position": "(0.455386, -140.1851, 0.020331)",
+					"velocity_xz_mps": "(-0.007184, -0.054569)"
 				}
 			},
 			"passed": true
@@ -261,7 +262,7 @@
 				"status": "ACCEPTED",
 				"subject": "",
 				"template_key": "sensor_disagreement",
-				"utc": "2026-08-28T11:03:29"
+				"utc": "2026-08-29T14:54:04"
 			},
 			"passed": true
 		},
@@ -396,7 +397,7 @@
 						"status": "REJECTED",
 						"subject": "unknown_fault",
 						"template_key": "",
-						"utc": "2026-08-28T11:03:29"
+						"utc": "2026-08-29T14:54:04"
 					},
 					{
 						"action": "load_exercise",
@@ -410,7 +411,7 @@
 						"status": "ACCEPTED",
 						"subject": "",
 						"template_key": "sensor_disagreement",
-						"utc": "2026-08-28T11:03:29"
+						"utc": "2026-08-29T14:54:04"
 					},
 					{
 						"action": "start_exercise",
@@ -424,7 +425,7 @@
 						"status": "ACCEPTED",
 						"subject": "",
 						"template_key": "sensor_disagreement",
-						"utc": "2026-08-28T11:03:29"
+						"utc": "2026-08-29T14:54:04"
 					},
 					{
 						"action": "marker",
@@ -438,7 +439,7 @@
 						"status": "EXECUTED",
 						"subject": "SD-00",
 						"template_key": "sensor_disagreement",
-						"utc": "2026-08-28T11:03:29"
+						"utc": "2026-08-29T14:54:04"
 					}
 				],
 				"running": true,
@@ -500,13 +501,13 @@
 				"status": "REJECTED",
 				"subject": "unknown_fault",
 				"template_key": "",
-				"utc": "2026-08-28T11:03:29"
+				"utc": "2026-08-29T14:54:04"
 			},
 			"passed": true
 		}
 	},
 	"errors": [],
-	"generated_at": "2026-08-28T11:03:29",
+	"generated_at": "2026-08-29T14:54:04",
 	"passed": true,
 	"passed_checks": 16,
 	"schema_version": "godot_instructor_debrief_smoke_v2",

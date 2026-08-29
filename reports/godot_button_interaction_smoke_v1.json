@@ -11,8 +11,8 @@
 		},
 		"ais_rows": {
 			"detail": [
-				2,
-				2
+				3,
+				3
 			],
 			"passed": true
 		},
@@ -113,7 +113,7 @@
 			"passed": true
 		},
 		"cargo_present": {
-			"detail": "CargoCircuitRLPanel:<CanvasLayer#75614915750>",
+			"detail": "CargoCircuitRLPanel:<CanvasLayer#76554439851>",
 			"passed": true
 		},
 		"cargo_private_boundary_0  人工物理可达性验收": {
@@ -446,59 +446,69 @@
 		},
 		"instructor_pill_scene": {
 			"detail": {
+				"base_environment_active": false,
+				"claim_boundary": "Algorithm and operator training benchmark only; no terminal geometry calibration or live actuation authority.",
+				"colreg_rule_ids": [],
 				"data_profile": "航行模拟器默认水域配置",
 				"data_source": {
 					"license": "same_as_project",
 					"observed_port_data": false,
 					"type": "project_native_geometry"
 				},
-				"description": "OPEN WATER ROUTE",
-				"index": 0,
-				"key": "open_water",
-				"name": "开放水域",
-				"profile_path": "res://data/ports/default_port_profile.json"
+				"dedicated_scene_active": true,
+				"dedicated_scene_error": "",
+				"dedicated_scene_path": "res://scenes/worlds/tasks/auto_berthing_task_scene.tscn",
+				"default_weather_mode": "clear",
+				"description": "SIMULATION-ONLY BERTHING BENCHMARK",
+				"index": 2,
+				"key": "auto_berthing",
+				"name": "自动靠泊评测水域",
+				"profile_path": "res://data/ports/default_port_profile.json",
+				"task_type": "berthing",
+				"traffic_count": 0,
+				"visual_family": "harbor"
 			},
 			"passed": true
 		},
 		"instructor_pill_ship": {
-			"detail": "Player",
+			"detail": "MissionTraffic_SLOW-AHEAD-01",
 			"passed": true
 		},
 		"instructor_pill_weather": {
 			"detail": {
-				"base_time": "10:20",
-				"current_direction_degrees": 65.0,
-				"current_speed_knots": 0.1,
-				"current_vector": "(0.046624, 0.0, 0.021741)",
+				"base_time": "07:40",
+				"current_direction_degrees": 42.0,
+				"current_speed_knots": 0.7,
+				"current_vector": "(0.240961, 0.0, 0.267614)",
 				"data_source": "scenario_override",
 				"data_status": "manual_scenario",
 				"fetched_at": "",
-				"index": 0,
-				"key": "clear",
-				"name": "晴天",
+				"index": 1,
+				"key": "mist",
+				"name": "薄雾",
 				"observed_at": "",
 				"public_location": {
 					"latitude": 1.2644,
 					"longitude": 103.8223
 				},
-				"sea_state_label": "CALM",
-				"tide_meters": 0.2,
-				"time": "10:20",
+				"sea_state_label": "LIGHT SEA",
+				"tide_meters": 0.4,
+				"time": "07:40",
 				"time_scale": 1.0,
-				"visibility": "20.0 km",
-				"visibility_km": 20.0,
+				"visibility": "2.5 km",
+				"visibility_km": 2.5,
 				"water_surface_visual": {
 					"connected": true,
-					"flow_direction": "(0.809017, 0.587785)",
-					"vertex_wave_height": 0.0492,
-					"wave_speed": 0.218181818181818
+					"flow_direction": "(0.87462, 0.48481)",
+					"vertex_wave_height": 0.158,
+					"wave_speed": 0.193548387096774
 				},
-				"wave_direction_degrees": 54.0,
-				"wave_height_meters": 0.12,
-				"wave_period_seconds": 5.5,
-				"weather": "CLEAR SKY",
-				"wind_direction_degrees": 38.0,
-				"wind_speed_knots": 3.0
+				"wave_direction_degrees": 61.0,
+				"wave_height_meters": 0.8,
+				"wave_period_seconds": 6.2,
+				"weather": "LIGHT MIST",
+				"wind_direction_degrees": 52.0,
+				"wind_speed_knots": 10.0
 			},
 			"passed": true
 		},
@@ -511,38 +521,58 @@
 			"passed": true
 		},
 		"instructor_reset_fleet": {
-			"detail": 2,
+			"detail": 3,
 			"passed": true
 		},
 		"instructor_scene_开放水域": {
 			"detail": {
+				"base_environment_active": true,
+				"claim_boundary": "simulation only",
+				"colreg_rule_ids": [],
 				"data_profile": "航行模拟器默认水域配置",
 				"data_source": {
 					"license": "same_as_project",
 					"observed_port_data": false,
 					"type": "project_native_geometry"
 				},
+				"dedicated_scene_active": false,
+				"dedicated_scene_error": "",
+				"dedicated_scene_path": "",
+				"default_weather_mode": "clear",
 				"description": "OPEN WATER ROUTE",
 				"index": 0,
 				"key": "open_water",
 				"name": "开放水域",
-				"profile_path": "res://data/ports/default_port_profile.json"
+				"profile_path": "res://data/ports/default_port_profile.json",
+				"task_type": "route_following",
+				"traffic_count": 0,
+				"visual_family": "open_water"
 			},
 			"passed": true
 		},
 		"instructor_scene_简易港口": {
 			"detail": {
+				"base_environment_active": true,
+				"claim_boundary": "simulation only",
+				"colreg_rule_ids": [],
 				"data_profile": "航行模拟器默认水域配置",
 				"data_source": {
 					"license": "same_as_project",
 					"observed_port_data": false,
 					"type": "project_native_geometry"
 				},
+				"dedicated_scene_active": false,
+				"dedicated_scene_error": "",
+				"dedicated_scene_path": "",
+				"default_weather_mode": "clear",
 				"description": "PORT PILOTAGE DATA PROFILE",
 				"index": 1,
 				"key": "harbor",
 				"name": "港口引航水域",
-				"profile_path": "res://data/ports/default_port_profile.json"
+				"profile_path": "res://data/ports/default_port_profile.json",
+				"task_type": "route_following",
+				"traffic_count": 0,
+				"visual_family": "harbor"
 			},
 			"passed": true
 		},
@@ -680,7 +710,7 @@
 						"status": "EXECUTED",
 						"subject": "radar_power_loss",
 						"template_key": "",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "equipment_fault",
@@ -695,7 +725,7 @@
 						"status": "EXECUTED",
 						"subject": "ais_loss",
 						"template_key": "",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "equipment_fault",
@@ -710,7 +740,7 @@
 						"status": "EXECUTED",
 						"subject": "gyro_bias_deg",
 						"template_key": "",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "equipment_restore_all",
@@ -723,7 +753,7 @@
 						"status": "EXECUTED",
 						"subject": "",
 						"template_key": "",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "load_exercise",
@@ -737,7 +767,7 @@
 						"status": "ACCEPTED",
 						"subject": "",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "start_exercise",
@@ -751,7 +781,7 @@
 						"status": "ACCEPTED",
 						"subject": "",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "marker",
@@ -765,7 +795,7 @@
 						"status": "EXECUTED",
 						"subject": "RV-00",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "equipment_fault",
@@ -780,7 +810,7 @@
 						"status": "EXECUTED",
 						"subject": "radar_power_loss",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "pause_exercise",
@@ -793,7 +823,7 @@
 						"status": "ACCEPTED",
 						"subject": "",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "equipment_restore_all",
@@ -806,7 +836,7 @@
 						"status": "EXECUTED",
 						"subject": "",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "reset_exercise",
@@ -820,7 +850,7 @@
 						"status": "ACCEPTED",
 						"subject": "",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "load_exercise",
@@ -834,7 +864,7 @@
 						"status": "ACCEPTED",
 						"subject": "",
 						"template_key": "sensor_disagreement",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					}
 				],
 				"running": false,
@@ -1019,7 +1049,7 @@
 						"status": "EXECUTED",
 						"subject": "radar_power_loss",
 						"template_key": "",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "equipment_fault",
@@ -1034,7 +1064,7 @@
 						"status": "EXECUTED",
 						"subject": "ais_loss",
 						"template_key": "",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "equipment_fault",
@@ -1049,7 +1079,7 @@
 						"status": "EXECUTED",
 						"subject": "gyro_bias_deg",
 						"template_key": "",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "equipment_restore_all",
@@ -1062,7 +1092,7 @@
 						"status": "EXECUTED",
 						"subject": "",
 						"template_key": "",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "load_exercise",
@@ -1076,7 +1106,7 @@
 						"status": "ACCEPTED",
 						"subject": "",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "start_exercise",
@@ -1090,7 +1120,7 @@
 						"status": "ACCEPTED",
 						"subject": "",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "marker",
@@ -1104,7 +1134,7 @@
 						"status": "EXECUTED",
 						"subject": "RV-00",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "equipment_fault",
@@ -1119,7 +1149,7 @@
 						"status": "EXECUTED",
 						"subject": "radar_power_loss",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "pause_exercise",
@@ -1132,7 +1162,7 @@
 						"status": "ACCEPTED",
 						"subject": "",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					}
 				],
 				"running": false,
@@ -1299,7 +1329,7 @@
 						"status": "EXECUTED",
 						"subject": "radar_power_loss",
 						"template_key": "",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "equipment_fault",
@@ -1314,7 +1344,7 @@
 						"status": "EXECUTED",
 						"subject": "ais_loss",
 						"template_key": "",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "equipment_fault",
@@ -1329,7 +1359,7 @@
 						"status": "EXECUTED",
 						"subject": "gyro_bias_deg",
 						"template_key": "",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "equipment_restore_all",
@@ -1342,7 +1372,7 @@
 						"status": "EXECUTED",
 						"subject": "",
 						"template_key": "",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "load_exercise",
@@ -1356,7 +1386,7 @@
 						"status": "ACCEPTED",
 						"subject": "",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "start_exercise",
@@ -1370,7 +1400,7 @@
 						"status": "ACCEPTED",
 						"subject": "",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "marker",
@@ -1384,7 +1414,7 @@
 						"status": "EXECUTED",
 						"subject": "RV-00",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "equipment_fault",
@@ -1399,7 +1429,7 @@
 						"status": "EXECUTED",
 						"subject": "radar_power_loss",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "pause_exercise",
@@ -1412,7 +1442,7 @@
 						"status": "ACCEPTED",
 						"subject": "",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "equipment_restore_all",
@@ -1425,7 +1455,7 @@
 						"status": "EXECUTED",
 						"subject": "",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "reset_exercise",
@@ -1439,7 +1469,7 @@
 						"status": "ACCEPTED",
 						"subject": "",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					}
 				],
 				"running": false,
@@ -1606,7 +1636,7 @@
 						"status": "EXECUTED",
 						"subject": "radar_power_loss",
 						"template_key": "",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "equipment_fault",
@@ -1621,7 +1651,7 @@
 						"status": "EXECUTED",
 						"subject": "ais_loss",
 						"template_key": "",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "equipment_fault",
@@ -1636,7 +1666,7 @@
 						"status": "EXECUTED",
 						"subject": "gyro_bias_deg",
 						"template_key": "",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "equipment_restore_all",
@@ -1649,7 +1679,7 @@
 						"status": "EXECUTED",
 						"subject": "",
 						"template_key": "",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "load_exercise",
@@ -1663,7 +1693,7 @@
 						"status": "ACCEPTED",
 						"subject": "",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "start_exercise",
@@ -1677,7 +1707,7 @@
 						"status": "ACCEPTED",
 						"subject": "",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					},
 					{
 						"action": "marker",
@@ -1691,7 +1721,7 @@
 						"status": "EXECUTED",
 						"subject": "RV-00",
 						"template_key": "restricted_visibility_bridge",
-						"utc": "2026-08-28T15:51:25"
+						"utc": "2026-08-29T14:53:42"
 					}
 				],
 				"running": true,
@@ -1903,39 +1933,34 @@
 		"navigation_apply_mission": {
 			"detail": {
 				"active": true,
-				"arrival_radius": 12.0,
+				"arrival_radius": 10.0,
 				"current_index": 0,
 				"loop": false,
 				"points": [
 					{
 						"active": true,
 						"name": "WP-01",
-						"position": "(-118.0, -140.05, -86.0)"
+						"position": "(18.0, -140.05, -125.0)"
 					},
 					{
 						"active": false,
 						"name": "WP-02",
-						"position": "(-74.0, -140.05, -76.0)"
+						"position": "(-12.0, -140.05, -62.0)"
 					},
 					{
 						"active": false,
 						"name": "WP-03",
-						"position": "(-34.0, -140.05, -50.0)"
+						"position": "(-18.0, -140.05, 12.0)"
 					},
 					{
 						"active": false,
 						"name": "WP-04",
-						"position": "(14.0, -140.05, -33.0)"
+						"position": "(8.0, -140.05, 88.0)"
 					},
 					{
 						"active": false,
 						"name": "WP-05",
-						"position": "(58.0, -140.05, -10.0)"
-					},
-					{
-						"active": false,
-						"name": "WP-06",
-						"position": "(82.0, -140.05, 30.0)"
+						"position": "(18.0, -140.05, 176.0)"
 					}
 				]
 			},
@@ -1944,39 +1969,34 @@
 		"navigation_apply_settings": {
 			"detail": {
 				"active": true,
-				"arrival_radius": 12.0,
+				"arrival_radius": 10.0,
 				"current_index": 0,
 				"loop": true,
 				"points": [
 					{
 						"active": true,
 						"name": "WP-01",
-						"position": "(-118.0, -140.05, -86.0)"
+						"position": "(18.0, -140.05, -125.0)"
 					},
 					{
 						"active": false,
 						"name": "WP-02",
-						"position": "(-74.0, -140.05, -76.0)"
+						"position": "(-12.0, -140.05, -62.0)"
 					},
 					{
 						"active": false,
 						"name": "WP-03",
-						"position": "(-34.0, -140.05, -50.0)"
+						"position": "(-18.0, -140.05, 12.0)"
 					},
 					{
 						"active": false,
 						"name": "WP-04",
-						"position": "(14.0, -140.05, -33.0)"
+						"position": "(8.0, -140.05, 88.0)"
 					},
 					{
 						"active": false,
 						"name": "WP-05",
-						"position": "(58.0, -140.05, -10.0)"
-					},
-					{
-						"active": false,
-						"name": "WP-06",
-						"position": "(82.0, -140.05, 30.0)"
+						"position": "(18.0, -140.05, 176.0)"
 					}
 				]
 			},
@@ -1999,6 +2019,26 @@
 			"passed": true
 		},
 		"navigation_mission_1": {
+			"detail": "任务参数已载入；点击“应用任务”后才写入场景、船位与航线。",
+			"passed": true
+		},
+		"navigation_mission_2": {
+			"detail": "任务参数已载入；点击“应用任务”后才写入场景、船位与航线。",
+			"passed": true
+		},
+		"navigation_mission_3": {
+			"detail": "任务参数已载入；点击“应用任务”后才写入场景、船位与航线。",
+			"passed": true
+		},
+		"navigation_mission_4": {
+			"detail": "任务参数已载入；点击“应用任务”后才写入场景、船位与航线。",
+			"passed": true
+		},
+		"navigation_mission_5": {
+			"detail": "任务参数已载入；点击“应用任务”后才写入场景、船位与航线。",
+			"passed": true
+		},
+		"navigation_mission_6": {
 			"detail": "任务参数已载入；点击“应用任务”后才写入场景、船位与航线。",
 			"passed": true
 		},
@@ -2129,7 +2169,7 @@
 			"passed": true
 		},
 		"overview_present": {
-			"detail": "ShipSystemOverviewPanel:<CanvasLayer#75380034712>",
+			"detail": "ShipSystemOverviewPanel:<CanvasLayer#76319558813>",
 			"passed": true
 		},
 		"review_clear": {
@@ -2147,7 +2187,7 @@
 		"review_score": {
 			"detail": {
 				"average_deviation_meters": 0.0,
-				"average_speed_knots": 0.1,
+				"average_speed_knots": 0.04,
 				"carbon_tons": 0.0,
 				"collision_count": 0,
 				"distance_nm": 0.0,
@@ -2166,7 +2206,7 @@
 				"fuel_tons": 0.0,
 				"grounding_count": 0,
 				"max_deviation_meters": 0.0,
-				"max_speed_knots": 0.1,
+				"max_speed_knots": 0.04,
 				"notes": "航迹稳定，无重大扣分",
 				"risk_event_resolved_count": 0,
 				"route_score": 100.0,
@@ -2175,10 +2215,10 @@
 					{
 						"collision": false,
 						"deviation": 0.0,
-						"speed_knots": 0.1,
+						"speed_knots": 0.04,
 						"t": 0.0,
-						"x": -148.0,
-						"z": -92.0
+						"x": 18.0,
+						"z": -178.0
 					}
 				],
 				"score": 100.0,
@@ -2562,7 +2602,7 @@
 			"passed": true
 		},
 		"rl_training_started": {
-			"detail": "真实无渲染训练已启动: los_pid  pid=13791  split=train  config=rl_training_config.json  params=training_parameters.json",
+			"detail": "真实无渲染训练已启动: los_pid  pid=47182  split=train  config=rl_training_config.json  params=training_parameters.json",
 			"passed": true
 		},
 		"rl_training_terminated": {
@@ -2571,7 +2611,7 @@
 		},
 		"runtime_inventory_coverage": {
 			"detail": {
-				"button_count": 288.0,
+				"button_count": 296.0,
 				"errors": []
 			},
 			"passed": true
@@ -2583,10 +2623,10 @@
 		"weather_refresh": {
 			"detail": {
 				"base_time": "10:20",
-				"current_direction_degrees": 65.0,
-				"current_speed_knots": 0.1,
-				"current_vector": "(0.046624, 0.0, 0.021741)",
-				"data_source": "scenario_override",
+				"current_direction_degrees": 5.0,
+				"current_speed_knots": 1.2,
+				"current_vector": "(0.053804, 0.0, 0.614984)",
+				"data_source": "manual_override",
 				"data_status": "refreshing",
 				"fetched_at": "",
 				"index": 0,
@@ -2597,24 +2637,24 @@
 					"latitude": 1.2644,
 					"longitude": 103.8223
 				},
-				"sea_state_label": "CALM",
+				"sea_state_label": "LIGHT SEA",
 				"tide_meters": 0.2,
-				"time": "10:20",
+				"time": "17:40",
 				"time_scale": 1.0,
-				"visibility": "20.0 km",
-				"visibility_km": 20.0,
+				"visibility": "7.0 km",
+				"visibility_km": 7.0,
 				"water_surface_visual": {
 					"connected": true,
-					"flow_direction": "(0.809017, 0.587785)",
-					"vertex_wave_height": 0.0492,
-					"wave_speed": 0.218181818181818
+					"flow_direction": "(-0.939693, -0.34202)",
+					"vertex_wave_height": 0.11,
+					"wave_speed": 0.176470588235294
 				},
-				"wave_direction_degrees": 54.0,
-				"wave_height_meters": 0.12,
-				"wave_period_seconds": 5.5,
+				"wave_direction_degrees": 250.0,
+				"wave_height_meters": 0.5,
+				"wave_period_seconds": 6.8,
 				"weather": "CLEAR SKY",
-				"wind_direction_degrees": 38.0,
-				"wind_speed_knots": 3.0
+				"wind_direction_degrees": 265.0,
+				"wind_speed_knots": 12.0
 			},
 			"passed": true
 		},
@@ -2656,9 +2696,9 @@
 		}
 	},
 	"errors": [],
-	"generated_at": "2026-08-28T15:51:25",
+	"generated_at": "2026-08-29T14:53:43",
 	"passed": true,
-	"passed_checks": 198,
+	"passed_checks": 203,
 	"schema_version": "godot_button_interaction_smoke_v1",
-	"total_checks": 198
+	"total_checks": 203
 }

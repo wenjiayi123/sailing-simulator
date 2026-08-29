@@ -29,6 +29,17 @@ __pycache__/
 !/reports/artifacts/cargo_circuit_rl_v1/**/*.zip
 !/reports/artifacts/cargo_circuit_dynamic_rl_v2/
 !/reports/artifacts/cargo_circuit_dynamic_rl_v2/**/*.zip
+!/reports/artifacts/non47_training_function_smoke_v1/
+!/reports/artifacts/non47_training_function_smoke_v1/**/*.zip
 *.csv.import
 *.svg.import
 *.translation
+
+# Superseded task-scene image trials stay local; the selected release assets are
+# hash-bound in data/verification/visual_asset_release_manifest_v1.json.
+/assets/generated/tasks/auto_berthing/auto_berthing_horizon_v1.png*
+/assets/generated/tasks/auto_berthing/auto_berthing_horizon_v2.png*
+/assets/generated/tasks/auto_berthing/auto_berthing_horizon_v3.png*
+/assets/generated/tasks/auto_berthing/auto_berthing_water_v1.png*
+/assets/generated/tasks/auto_berthing/auto_berthing_water_v2.png*
+/assets/generated/tasks/shared/task_water_v1.png*

@@ -78,7 +78,7 @@
     "check_count": 61,
     "errors": [],
     "file": "reports/godot_bridge_cybersecurity_smoke_v1.json",
-    "file_sha256": "856c30c4162433b8a991f2e307692436ba83f7b6cbd6c193b530439db522f206"
+    "file_sha256": "b1c80b2d2302d2fa582f94f8b0c27ab7fa27f63a99c018fb64e531e07bdd5fd5"
   },
   "preserved_policy_inventory": {
     "passed": true,
@@ -155,5 +155,5 @@
     "tools/godot_bridge_cybersecurity_smoke.gd": "76effc2f9d56926fa4678e2ba680c64d1dee632cd9a8092088199a112a6bf6ab",
     "tests/test_maritime_cybersecurity.py": "5216bf546e7d8b30e890b8903c435ab3542beb3be15d24b09f912d88d9205fc7"
   },
-  "generated_at_utc": "2026-08-28T15:58:03.142575+00:00"
+  "generated_at_utc": "2026-08-29T15:20:20.973304+00:00"
 }

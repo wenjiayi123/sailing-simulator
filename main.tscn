@@ -74,6 +74,8 @@
 [ext_resource type="Script" path="res://scripts/ui/ship_bridge_cybersecurity_panel.gd" id="106_bridge_cybersecurity_panel"]
 [ext_resource type="Script" path="res://scripts/integration/ship_port_production_gateway.gd" id="107_port_production_gateway"]
 [ext_resource type="Script" path="res://scripts/ui/ship_port_integration_panel.gd" id="108_port_integration_panel"]
+[ext_resource type="Script" path="res://scripts/training/ship_advanced_mission_controller.gd" id="109_advanced_mission"]
+[ext_resource type="Script" path="res://scripts/training/ship_advanced_mission_realism_controller.gd" id="110_advanced_mission_realism"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig7tw"]
 albedo_color = Color(0.43529412, 0.65882355, 0.41568628, 1)
@@ -3126,6 +3128,12 @@ script = ExtResource("68_ship_audio")
 
 [node name="ShipFleetManager" type="Node3D" parent="." unique_id=1515663597]
 script = ExtResource("69_fleet_manager")
+
+[node name="ShipAdvancedMissionController" type="Node" parent="."]
+script = ExtResource("109_advanced_mission")
+
+[node name="ShipAdvancedMissionRealismController" type="Node" parent="."]
+script = ExtResource("110_advanced_mission_realism")
 
 [node name="ShipPolicyReplayController" type="Node" parent="."]
 script = ExtResource("80_policy_replay")

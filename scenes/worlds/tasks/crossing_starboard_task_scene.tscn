@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/ship_dedicated_task_scene.gd" id="1_task_scene"]
+
+[node name="CrossingStarboardTaskScene" type="Node3D"]
+script = ExtResource("1_task_scene")
+scene_key = "crossing_starboard"
+scene_title = "OFFSHORE CROSSING RANGE C-15 // GIVE-WAY"

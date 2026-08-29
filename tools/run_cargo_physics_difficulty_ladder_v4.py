@@ -9,6 +9,7 @@ import hashlib
 import json
 import math
 import os
+import shutil
 import time
 from pathlib import Path
 from typing import Any, Dict, Mapping, Sequence
@@ -22,6 +23,7 @@ from stable_baselines3.common.vec_env import DummyVecEnv
 import train_cargo_physics_sac_v4 as physics_entry
 from cargo_rl.convergence_diagnostics import diagnose_nonconvergence
 from cargo_rl.environment import cargo_experiment_fingerprint
+import cargo_rl.physics_demonstration as physics_demo
 from cargo_rl.physics_contract import validate_physics_training_contract
 from cargo_rl.physics_environment import (
     PHYSICS_OBSERVATION_CONTRACT,
@@ -59,9 +61,10 @@ def _initialization_contract(config: Mapping[str, Any], dataset: Mapping[str, An
         ROOT / "tools/cargo_rl/physics_environment.py",
         ROOT / "tools/cargo_rl/catamaran_physics.py",
         ROOT / "tools/train_cargo_hardest_sac_v3.py",
+        Path(__file__).resolve(),
     )
     payload = {
-        "format": "sac_p47_expert_initialization_contract_v1",
+        "format": "sac_p47_expert_initialization_contract_v2",
         "dataset_sha256": dataset_fingerprint(dataset),
         "rollout_relevant_config_sha256": hashlib.sha256(
             json.dumps(relevant_config, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
@@ -96,6 +99,139 @@ def _cached_demonstrations(path: Path) -> Dict[str, Any]:
         "dones": cached["dones"],
         "episodes": episodes,
         "successes": successes,
+    }
+
+
+def _write_demonstration_cache(path: Path, demonstrations: Mapping[str, Any]) -> None:
+    """Persist the exact merged expert corpus used for replay prefill."""
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    np.savez_compressed(
+        path,
+        observations=np.asarray(demonstrations["observations"], dtype=np.float32),
+        next_observations=np.asarray(
+            demonstrations["next_observations"], dtype=np.float32
+        ),
+        actions=np.asarray(demonstrations["actions"], dtype=np.float32),
+        rewards=np.asarray(demonstrations["rewards"], dtype=np.float32),
+        dones=np.asarray(demonstrations["dones"], dtype=np.float32),
+        episodes=np.asarray(int(demonstrations["episodes"])),
+        successes=np.asarray(int(demonstrations["successes"])),
+    )
+
+
+def _seed_expert_caches(
+    source_dir: Path | None,
+    run_expert_cache: Path,
+    run_segment_cache: Path,
+) -> Dict[str, Any]:
+    """Copy only contract-bearing expert caches into an independent run.
+
+    Both collectors compare the embedded contract against the current dataset,
+    configuration, source hash and seed before accepting these files. A stale
+    seed is therefore regenerated rather than trusted. Actor/critic models and
+    DAgger state are intentionally never copied by this path.
+    """
+
+    record: Dict[str, Any] = {
+        "requested": source_dir is not None,
+        "source": str(source_dir) if source_dir is not None else None,
+        "copied": [],
+        "model_or_dagger_state_copied": False,
+        "collector_contract_revalidation_required": True,
+    }
+    if source_dir is None:
+        return record
+    resolved_source = source_dir.expanduser().resolve()
+    if not resolved_source.is_dir():
+        raise ValueError(f"SAC-P47 expert cache source is not a directory: {resolved_source}")
+    if resolved_source == run_expert_cache.parent.resolve():
+        raise ValueError("SAC-P47 expert cache source must differ from the new run directory")
+    for filename, destination in (
+        ("expert_demonstrations_v4.npz", run_expert_cache),
+        ("expert_demonstrations_segments_v4.npz", run_segment_cache),
+    ):
+        source = resolved_source / filename
+        if not source.is_file():
+            raise ValueError(f"SAC-P47 expert cache source is incomplete: {source}")
+        with np.load(source, allow_pickle=False) as cached:
+            if "contract" not in cached.files:
+                raise ValueError(f"SAC-P47 expert cache lacks an embedded contract: {source}")
+            contract = json.loads(str(cached["contract"].item()))
+            if not isinstance(contract, dict) or not str(contract.get("format", "")).startswith("cargo_circuit_"):
+                raise ValueError(f"SAC-P47 expert cache contract is malformed: {source}")
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, destination)
+        record["copied"].append(
+            {
+                "source": str(source),
+                "destination": str(destination),
+                "sha256": hashlib.sha256(destination.read_bytes()).hexdigest(),
+                "embedded_contract_format": contract["format"],
+            }
+        )
+    return record
+
+
+def _write_anchor_cache(path: Path, model: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    np.savez_compressed(
+        path,
+        observations=np.asarray(model.expert_anchor_observations, dtype=np.float32),
+        actions=np.asarray(model.expert_anchor_actions, dtype=np.float32),
+    )
+
+
+def _restore_anchor_cache(path: Path, model: Any, cloning: Mapping[str, Any]) -> None:
+    cached = np.load(path, allow_pickle=False)
+    observations = np.asarray(cached["observations"], dtype=np.float32)
+    actions = np.asarray(cached["actions"], dtype=np.float32)
+    if (
+        observations.ndim != 2
+        or observations.shape[1] != PHYSICS_OBSERVATION_SIZE
+        or actions.shape != (len(observations), 2)
+    ):
+        raise ValueError("SAC-P47 expert anchor cache contract is invalid")
+    weights = cloning.get("loss_weights", {})
+    model.expert_anchor_observations = observations
+    model.expert_anchor_actions = actions
+    model.expert_anchor_throttle_weight = float(weights.get("throttle", 0.55))
+    model.expert_anchor_rudder_weight = float(weights.get("rudder", 1.45))
+    model.rl_actor_updates = int(getattr(model, "rl_actor_updates", 0))
+
+
+def _initialization_policy_gate(rows: Sequence[Mapping[str, Any]]) -> Dict[str, Any]:
+    """Require a deterministic full-circuit train pass before costly SAC."""
+
+    passed = bool(
+        rows
+        and all(
+            bool(row["success"])
+            and bool(row["cargo_retrieved"])
+            and int(row["checkpoints_passed"]) == int(row["total_checkpoints"])
+            and int(row["collisions"]) == 0
+            and float(row["minimum_clearance_meters"]) > 0.0
+            and float(row["minimum_dynamic_clearance_meters"]) > 0.0
+            and float(row["minimum_boundary_clearance_meters"]) > 0.0
+            for row in rows
+        )
+    )
+    return {
+        "passed": passed,
+        "evaluated_train_episodes": len(rows),
+        "success_rate": float(
+            np.mean([bool(row["success"]) for row in rows])
+        )
+        if rows
+        else 0.0,
+        "total_collisions": int(sum(int(row["collisions"]) for row in rows)),
+        "checkpoint_completion_ratios": [
+            float(row["checkpoint_completion_ratio"]) for row in rows
+        ],
+        "rule": (
+            "all deterministic train-split full-circuit episodes must complete "
+            "with zero collision before SAC updates"
+        ),
     }
 
 
@@ -354,13 +490,70 @@ def _gate(
     }
 
 
+def _initialization_failure(
+    *,
+    exc: Exception,
+    output: Path,
+    progress_path: Path,
+    physics_contract: Mapping[str, Any],
+) -> Dict[str, Any]:
+    """Persist a fail-closed receipt instead of leaving stale running state."""
+
+    message = str(exc)
+    failure_context: Dict[str, Any] = {}
+    marker = "failed fast: "
+    if marker in message:
+        try:
+            failure_context = json.loads(message.split(marker, 1)[1])
+        except json.JSONDecodeError:
+            failure_context = {}
+    receipt = {
+        "format": "cargo_circuit_physics_expert_initialization_failure_v4",
+        "status": "blocked",
+        "stage": "expert_initialization_failed",
+        "strategy_id": "SAC-P47",
+        "error_type": type(exc).__name__,
+        "error": message,
+        "failure_context": failure_context,
+        "physics_contract": dict(physics_contract),
+        "existing_strategies_modified": False,
+        "failed_model_retained": False,
+        "rule": "do not start SAC updates until every initialization demonstration succeeds",
+    }
+    receipt_path = output / "expert_initialization_failure.json"
+    write_json_atomic(receipt_path, receipt)
+    write_json_atomic(
+        progress_path,
+        {
+            "status": "blocked",
+            "operation": "difficulty_ladder_train",
+            "stage": "expert_initialization_failed",
+            "strategy_id": "SAC-P47",
+            "failure_receipt": str(receipt_path),
+            "existing_strategies_modified": False,
+            "render": False,
+        },
+    )
+    return receipt
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--seed", type=int, default=292000)
+    parser.add_argument("--start-level", type=int, default=1)
     parser.add_argument("--max-level", type=int, default=8)
     parser.add_argument("--timesteps-scale", type=float, default=1.0)
+    parser.add_argument(
+        "--expert-cache-source",
+        type=Path,
+        default=None,
+        help=(
+            "Initialization-cache directory from a prior independent attempt. "
+            "Only expert NPZ files are copied; collectors revalidate embedded contracts."
+        ),
+    )
     args = parser.parse_args()
 
     torch.set_num_threads(1)
@@ -371,6 +564,24 @@ def main() -> int:
     config_path = args.config.expanduser().resolve()
     output = args.output_dir.expanduser().resolve()
     output.mkdir(parents=True, exist_ok=True)
+    run_initialization_dir = output / "initialization_cache"
+    run_initialization_dir.mkdir(parents=True, exist_ok=True)
+    run_expert_cache = run_initialization_dir / "expert_demonstrations_v4.npz"
+    run_segment_cache = run_initialization_dir / "expert_demonstrations_segments_v4.npz"
+    run_anchor_cache = run_initialization_dir / "expert_anchor_labels_v4.npz"
+    run_initialization_model = run_initialization_dir / "sac_p47_expert_initialized"
+    run_initialization_manifest = run_initialization_dir / "sac_p47_expert_initialized.json"
+    expert_cache_seed = _seed_expert_caches(
+        args.expert_cache_source,
+        run_expert_cache,
+        run_segment_cache,
+    )
+    # The tracked V4 cache and the V1/V2/V3 policies are immutable inputs.
+    # Any cache rebuilt for this ladder attempt stays under its ignored output
+    # directory so a failed run cannot overwrite prior evidence.
+    physics_entry.EXPERT_CACHE = run_expert_cache
+    physics_entry.hardest_demo.EXPERT_CACHE = run_expert_cache
+    physics_demo.SEGMENT_EXPERT_CACHE = run_segment_cache
     progress_path = output / "progress.json"
     ladder_report_path = output / "difficulty_ladder_report.json"
     champion_model_path = output / "sac_p47_champion"
@@ -390,8 +601,12 @@ def main() -> int:
     levels = [
         item
         for item in base_config["cargo_parameters"]["difficulty_ladder"]
-        if int(item["level"]) <= max(1, args.max_level)
+        if max(1, args.start_level)
+        <= int(item["level"])
+        <= max(max(1, args.start_level), args.max_level)
     ]
+    if not levels:
+        raise ValueError("SAC-P47 ladder has no levels in the requested range")
     total_requested = sum(max(1, int(round(float(item["training_timesteps"]) * args.timesteps_scale))) for item in levels)
     request = TrainRequest(
         algorithm="sac",
@@ -417,13 +632,57 @@ def main() -> int:
     imports = physics_entry.cargo_trainer._cargo_sb3_imports()
     initialization_contract = _initialization_contract(base_config, dataset, request)
     cached_initialization = None
-    if INITIALIZATION_MANIFEST.exists() and INITIALIZATION_MODEL.with_suffix(".zip").exists():
-        candidate = json.loads(INITIALIZATION_MANIFEST.read_text(encoding="utf-8"))
-        if candidate.get("contract") == initialization_contract:
+    cached_model_path: Path | None = None
+    cached_demonstration_path: Path | None = None
+    cached_anchor_path: Path | None = None
+    historical_cache_candidates = []
+    for previous_output in reversed(
+        sorted((ROOT / "output").glob("cargo_physics_sac_p47_ladder_attempt_*"))
+    ):
+        previous_initialization = previous_output / "initialization_cache"
+        if previous_initialization.resolve() == run_initialization_dir.resolve():
+            continue
+        historical_cache_candidates.append(
+            (
+                previous_initialization / "sac_p47_expert_initialized.json",
+                previous_initialization / "sac_p47_expert_initialized",
+                previous_initialization / "expert_demonstrations_v4.npz",
+                previous_initialization / "expert_anchor_labels_v4.npz",
+            )
+        )
+    cache_candidates = (
+        (
+            run_initialization_manifest,
+            run_initialization_model,
+            run_expert_cache,
+            run_anchor_cache,
+        ),
+        (
+            INITIALIZATION_MANIFEST,
+            INITIALIZATION_MODEL,
+            ROOT / "reports/artifacts/cargo_circuit_physics_v4/expert_demonstrations_v4.npz",
+            ROOT / "reports/artifacts/cargo_circuit_physics_v4/expert_anchor_labels_v4.npz",
+        ),
+        *historical_cache_candidates,
+    )
+    for manifest_path, model_path, demonstrations_path, anchor_path in cache_candidates:
+        if not manifest_path.exists() or not model_path.with_suffix(".zip").exists():
+            continue
+        candidate = json.loads(manifest_path.read_text(encoding="utf-8"))
+        if (
+            candidate.get("contract") == initialization_contract
+            and bool(candidate.get("initialization_policy_gate", {}).get("passed", False))
+            and demonstrations_path.exists()
+            and anchor_path.exists()
+        ):
             cached_initialization = candidate
+            cached_model_path = model_path.with_suffix(".zip")
+            cached_demonstration_path = demonstrations_path
+            cached_anchor_path = anchor_path
+            break
     if cached_initialization is not None:
         model = physics_entry.hardest_train.ExpertAnchoredSAC.load(
-            INITIALIZATION_MODEL.with_suffix(".zip"), env=vector_env, device="cpu"
+            cached_model_path, env=vector_env, device="cpu"
         )
     else:
         model = physics_entry.hardest_train._hardest_build_cargo_model("sac", vector_env, request, imports)
@@ -438,44 +697,106 @@ def main() -> int:
             "strategy_id": "SAC-P47",
             "progress": 0.0,
             "render": False,
+            "expert_cache_seed": expert_cache_seed,
         },
     )
     if cached_initialization is not None:
-        demonstrations = _cached_demonstrations(physics_entry.EXPERT_CACHE)
+        demonstrations = _cached_demonstrations(cached_demonstration_path)
         cloning = dict(cached_initialization["cloning"])
+        _restore_anchor_cache(cached_anchor_path, model, cloning)
+        initialization_gate = dict(cached_initialization["initialization_policy_gate"])
         print("SAC-P47 expert initialization cache: accepted", flush=True)
     else:
-        physics_entry.hardest_train._training_context.clear()
-        physics_entry.hardest_train._training_context.update(
-            {"config": base_config, "dataset": dataset, "seed": args.seed}
-        )
-        demonstrations = physics_entry.collect_physics_training_demonstrations(
-            base_config,
-            dataset,
-            seed=int(base_config["demonstration_initialization"].get("fixed_seed", args.seed + 7000)),
-            max_steps=5200,
-        )
-        cloning = physics_entry.hardest_train._hardest_behavior_clone(
-            model,
-            demonstrations,
-            epochs=int(base_config["demonstration_initialization"].get("actor_behavior_cloning_epochs", 10)),
-            batch_size=request.batch_size,
-            seed=args.seed + 8000,
-        )
-        INITIALIZATION_CACHE_DIR.mkdir(parents=True, exist_ok=True)
-        model.save(INITIALIZATION_MODEL)
+        try:
+            physics_entry.hardest_train._training_context.clear()
+            physics_entry.hardest_train._training_context.update(
+                {"config": base_config, "dataset": dataset, "seed": args.seed}
+            )
+            demonstrations = physics_entry.collect_physics_training_demonstrations(
+                base_config,
+                dataset,
+                seed=int(base_config["demonstration_initialization"].get("fixed_seed", args.seed + 7000)),
+                max_steps=5200,
+            )
+            cloning = physics_entry.hardest_train._hardest_behavior_clone(
+                model,
+                demonstrations,
+                epochs=int(base_config["demonstration_initialization"].get("actor_behavior_cloning_epochs", 10)),
+                batch_size=request.batch_size,
+                seed=args.seed + 8000,
+            )
+            _write_demonstration_cache(run_expert_cache, demonstrations)
+            _write_anchor_cache(run_anchor_cache, model)
+            initialization_rows, _initialization_trajectory = _evaluate(
+                model,
+                initial_level_config,
+                dataset,
+                levels[0],
+                split="train",
+                sweeps=1,
+                seed=args.seed + 25000 + int(levels[0]["level"]) * 1000,
+            )
+            initialization_gate = _initialization_policy_gate(initialization_rows)
+        except Exception as exc:
+            _initialization_failure(
+                exc=exc,
+                output=output,
+                progress_path=progress_path,
+                physics_contract=physics_contract,
+            )
+            vector_env.close()
+            return 2
+        model.save(run_initialization_model)
         write_json_atomic(
-            INITIALIZATION_MANIFEST,
+            run_initialization_manifest,
             {
-                "format": "sac_p47_expert_initialization_cache_v1",
+                "format": "sac_p47_expert_initialization_cache_v2",
                 "contract": initialization_contract,
                 "cloning": cloning,
                 "expert_episodes": int(demonstrations["episodes"]),
                 "expert_successes": int(demonstrations["successes"]),
+                "initialization_policy_gate": initialization_gate,
                 "trained_rl": False,
                 "dropdown_strategy": False,
+                "expert_cache_seed": expert_cache_seed,
             },
         )
+        if not bool(initialization_gate["passed"]):
+            write_json_atomic(
+                ladder_report_path,
+                {
+                    "format": "cargo_circuit_physics_difficulty_ladder_v4",
+                    "strategy_id": "SAC-P47",
+                    "status": "initialization_policy_not_converged_stop",
+                    "initialization_policy_gate": initialization_gate,
+                    "initialization_rows": initialization_rows,
+                    "sac_updates_started": False,
+                    "failed_initialization_model": str(
+                        run_initialization_model.with_suffix(".zip")
+                    ),
+                    "existing_strategies_modified": False,
+                },
+            )
+            write_json_atomic(
+                progress_path,
+                {
+                    "status": "blocked",
+                    "operation": "difficulty_ladder_train",
+                    "stage": "initialization_policy_not_converged",
+                    "strategy_id": "SAC-P47",
+                    "initialization_policy_gate": initialization_gate,
+                    "sac_updates_started": False,
+                    "ladder_report": str(ladder_report_path),
+                    "render": False,
+                },
+            )
+            print(
+                "SAC-P47 initialization policy did not pass the full-circuit "
+                "gate -> diagnose before SAC",
+                flush=True,
+            )
+            vector_env.close()
+            return 2
     physics_entry.cargo_trainer._prefill_off_policy_replay(model, demonstrations)
 
     ladder_records = []
@@ -504,7 +825,7 @@ def main() -> int:
             total_timesteps=phase_steps,
             callback=callback,
             progress_bar=False,
-            reset_num_timesteps=int(level["level"]) == 1,
+            reset_num_timesteps=int(level["level"]) == int(levels[0]["level"]),
         )
         phase_start = int(model.num_timesteps)
         actor_updates = int(getattr(model, "rl_actor_updates", 0))
@@ -585,6 +906,8 @@ def main() -> int:
             print(f"{level['id']} CONVERGED -> promote", flush=True)
         else:
             failed_level = dict(level)
+            failed_model_path = output / f"sac_p47_failed_{str(level['id']).lower()}"
+            model.save(failed_model_path)
             diagnosis = diagnose_nonconvergence(
                 level=level,
                 physics_contract=physics_contract,
@@ -594,6 +917,8 @@ def main() -> int:
                 previous_level_passed=champion_level is not None,
             )
             record["status"] = "not_converged_stop"
+            record["failed_model_path"] = str(failed_model_path.with_suffix(".zip"))
+            record["failed_model_retained_as_champion"] = False
             record["nonconvergence_diagnosis"] = diagnosis
             print(f"{level['id']} NOT CONVERGED -> diagnose and stop", flush=True)
         ladder_records.append(record)
@@ -606,7 +931,8 @@ def main() -> int:
                 "levels": ladder_records,
                 "highest_converged_level": champion_level,
                 "first_nonconverged_level": failed_level,
-                "failed_model_retained": False,
+                "failed_model_retained": failed_level is not None,
+                "failed_model_is_champion": False,
                 "existing_strategies_modified": False,
             },
         )

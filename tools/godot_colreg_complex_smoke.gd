@@ -171,9 +171,9 @@ func _run() -> void:
 	root.visible = false
 	var event := InputEventKey.new()
 	event.pressed = true
-	event.physical_keycode = KEY_R
+	event.physical_keycode = KEY_F9
 	panel.call("_unhandled_input", event)
-	_record("hotkey_R_opens_complex_colreg_panel", root.visible, root.visible)
+	_record("hotkey_F9_opens_complex_colreg_panel", root.visible, root.visible)
 	var next_button := _find_button(root, "下一个")
 	var previous_button := _find_button(root, "上一个")
 	var next_case_button := _find_button(root, "检查下一个案例")
@@ -211,7 +211,7 @@ func _run() -> void:
 		and not bool(snapshot.get("ship_motion_model_modified", true)),
 		snapshot,
 	)
-	var close_button := _find_button(root, "关闭 R")
+	var close_button := _find_button(root, "关闭 F9")
 	if close_button != null:
 		close_button.pressed.emit()
 	_record("close_button_hides_panel", close_button != null and not root.visible, root.visible)

@@ -50,7 +50,7 @@
     "check_count": 53,
     "errors": [],
     "file": "reports/godot_port_production_integration_smoke_v1.json",
-    "file_sha256": "42104fe34a4d809b2a1c1b946fb8fdce6106ca47150219f1a988086f8f80913e"
+    "file_sha256": "23486a521b2a6661813bc385c269f5e7fb5f3387364cae6468fe47f2627da87c"
   },
   "preserved_policy_inventory": {
     "passed": true,
@@ -138,5 +138,5 @@
     "tools/godot_port_production_integration_smoke.gd": "455f8355682ae2194820b56553b477ab7fb9c490792b5376df87be17c723b4ee",
     "tests/test_port_production_integration.py": "20be4866f65d4fbab5f5f2080c70fad6f3b2754b8eedef278e1b7f36030fd6a5"
   },
-  "generated_at_utc": "2026-08-28T15:58:03.891043+00:00"
+  "generated_at_utc": "2026-08-29T15:20:20.923646+00:00"
 }

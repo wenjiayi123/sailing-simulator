@@ -1,0 +1,128 @@
+{
+  "schema_version": "non47_training_function_cargo_circuit_rl_v1",
+  "module": "cargo_circuit_rl",
+  "headless": true,
+  "render": false,
+  "delta": 0.25,
+  "dataset": {
+    "path": "res://reports/artifacts/non47_training_function_smoke_v1/36d/dataset.json",
+    "training_split": "train",
+    "validation_split": "validation",
+    "evaluation_split": "test"
+  },
+  "algorithm_decision": {
+    "primary": "sac",
+    "reason": "direct continuous throttle/rudder learning on the single hardest current-map task",
+    "benchmarks": [
+      "ppo",
+      "td3",
+      "los_pid"
+    ]
+  },
+  "pretraining_feasibility_gate": {
+    "required": false
+  },
+  "demonstration_initialization": {
+    "enabled_for_sac": false
+  },
+  "cargo_parameters": {
+    "checkpoint_bonus": 14.0,
+    "destination_bonus": 90.0,
+    "reverse_penalty": 0.12,
+    "overspeed_penalty": 0.18,
+    "boundary_proximity_penalty": 1.5,
+    "boundary_warning_distance_m": 30.0,
+    "safe_speed_ratio": 0.72,
+    "dynamic_safe_distance_m": 24.0,
+    "dynamic_proximity_penalty": 0.0,
+    "forward_motion_bonus": 0.0,
+    "incomplete_mission_penalty": 0.0,
+    "residual_policy": false,
+    "throttle_action_min": -0.35,
+    "throttle_action_max": 1.0,
+    "curriculum_route_lengths": [
+      1
+    ],
+    "curriculum_obstacles_enabled": [
+      false
+    ],
+    "curriculum_randomization_enabled": [
+      false
+    ],
+    "curriculum_random_segment": [
+      false
+    ],
+    "curriculum_max_steps": [
+      32
+    ],
+    "curriculum_fractions": [
+      1.0
+    ]
+  },
+  "rl_parameters": {
+    "reward_progress": 3.2,
+    "reward_heading": 1.4,
+    "reward_speed": 0.8,
+    "penalty_collision": 1300.0,
+    "penalty_terrain_collision": 1500.0,
+    "penalty_boundary": 1300.0,
+    "penalty_rudder": 0.36,
+    "penalty_proximity": 3.4,
+    "penalty_predicted_collision": 6.0,
+    "penalty_cross_track": 0.012,
+    "penalty_action_slew": 0.028,
+    "penalty_step": 0.005,
+    "safe_distance": 48.0
+  },
+  "environment_parameters": {
+    "vessel_radius_m": 3.2,
+    "obstacle_inflation_m": 1.8,
+    "cliff_inflation_m": 3.0,
+    "boundary_margin_m": 5.0,
+    "sensor_range_m": 180.0,
+    "tcpa_horizon_seconds": 100.0,
+    "terminate_on_collision": true,
+    "merge_scene_obstacles": false,
+    "domain_randomization": false,
+    "randomize_evaluation": false,
+    "start_position_jitter_m": 0.0,
+    "start_heading_jitter_degrees": 0.0,
+    "obstacle_position_jitter_m": 0.0,
+    "obstacle_size_jitter_m": 0.0,
+    "current_speed_jitter_knots": 0.0,
+    "current_direction_jitter_degrees": 0.0,
+    "wind_speed_jitter_knots": 0.0,
+    "wind_direction_jitter_degrees": 0.0,
+    "wave_height_jitter_m": 0.0,
+    "wave_direction_jitter_degrees": 0.0,
+    "wind_leeway_factor": 0.012,
+    "wave_drift_mps_per_meter": 0.06,
+    "sensor_distance_noise_std_m": 0.0,
+    "sensor_bearing_noise_degrees": 0.0,
+    "generated_traffic_count": 0,
+    "generated_traffic_speed_knots": 1.5,
+    "generated_traffic_radius_m": 5.5
+  },
+  "ships": [
+    {
+      "performance": {
+        "max_forward_speed": 8.5,
+        "max_reverse_speed": 2.2,
+        "acceleration": 0.9,
+        "deceleration": 0.65,
+        "brake_acceleration": 1.6,
+        "throttle_response": 0.55,
+        "rudder_response": 0.7,
+        "max_turn_rate_degrees": 20.0,
+        "low_speed_turn_factor": 0.12,
+        "reverse_turn_factor": 0.45
+      }
+    }
+  ],
+  "world": {
+    "obstacles": {
+      "rocks": [],
+      "boxes": []
+    }
+  }
+}

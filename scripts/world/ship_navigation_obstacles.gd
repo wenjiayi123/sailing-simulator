@@ -29,6 +29,7 @@ extends Node3D
 var _temporary_obstacle_index := 0
 var _evaluation_visual_clock := 0.0
 var _training_environment_preview: Node3D
+var _runtime_visuals_enabled := true
 
 
 func _ready() -> void:
@@ -139,6 +140,16 @@ func configure_navigation_area(
 		next_boxes.append(obstacle.duplicate(true))
 	box_obstacles = next_boxes
 	_rebuild_navigation_obstacles()
+
+
+func set_runtime_visuals_enabled(enabled: bool) -> void:
+	_runtime_visuals_enabled = enabled
+	for child in find_children("*", "VisualInstance3D", true, false):
+		if child is VisualInstance3D:
+			(child as VisualInstance3D).visible = enabled
+	for child in find_children("*", "Light3D", true, false):
+		if child is Light3D:
+			(child as Light3D).visible = enabled
 
 
 func add_temporary_box_obstacle(
@@ -359,6 +370,7 @@ func _add_wall(body_name: String, position: Vector3, size: Vector3) -> void:
 	mesh.size = size
 	visual.mesh = mesh
 	visual.material_override = _make_material(Color(0.16, 0.85, 1.0, 0.16), true)
+	visual.visible = _runtime_visuals_enabled
 	body.add_child(visual)
 
 
@@ -383,6 +395,7 @@ func _add_box_obstacle(body_name: String, center_position: Vector3, size: Vector
 	mesh.size = size
 	visual.mesh = mesh
 	visual.material_override = _make_material(color, color.a < 1.0)
+	visual.visible = _runtime_visuals_enabled
 	body.add_child(visual)
 
 	if body_name.begins_with("RL_OBSTACLE"):
@@ -485,6 +498,7 @@ func _add_rock(body_name: String, position: Vector3, radius: float, height: floa
 	rock_mesh.height = height
 	visual.mesh = rock_mesh
 	visual.material_override = _make_material(Color(0.18, 0.22, 0.24, 0.92), true)
+	visual.visible = _runtime_visuals_enabled
 	body.add_child(visual)
 
 	var cap := MeshInstance3D.new()
@@ -495,6 +509,7 @@ func _add_rock(body_name: String, position: Vector3, radius: float, height: floa
 	cap.mesh = beacon_mesh
 	cap.position.y = height * 0.5 + 0.18
 	cap.material_override = _make_material(Color(1.0, 0.70, 0.24, 0.72), true)
+	cap.visible = _runtime_visuals_enabled
 	body.add_child(cap)
 
 

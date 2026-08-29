@@ -1,0 +1,2052 @@
+{
+  "schema_version": "advanced_mission_policy_transfer_v1",
+  "scenario_key": "auto_unberthing",
+  "policy_name": "RES-SAC-D2",
+  "trained_rl": true,
+  "training_performed": false,
+  "deterministic": true,
+  "observation_size": 44,
+  "action_size": 2,
+  "steps": 49,
+  "elapsed_simulation_seconds": 12.25,
+  "reward": -1656.338391511649,
+  "route_result": {
+    "task_id": "advanced::auto_unberthing::deterministic_transfer",
+    "dataset_split": "test",
+    "is_success": false,
+    "goal_reached": false,
+    "truncated": false,
+    "collisions": 1,
+    "terrain_collisions": 1,
+    "near_misses": 1,
+    "minimum_clearance_meters": -0.008410027782019824,
+    "minimum_dcpa_meters": 140.0,
+    "nearest_obstacle_name": "CargoQuay",
+    "nearest_obstacle_kind": "shoreline",
+    "max_cross_track_error_meters": 2.558670014942085,
+    "path_length_meters": 3.6603519285975454,
+    "waypoint_index": 0,
+    "dynamic_obstacle_count": 0,
+    "observation_size": 44,
+    "last_collision": {
+      "name": "CargoQuay",
+      "kind": "shoreline",
+      "step": 49
+    },
+    "module": "cargo_circuit_dynamic_rl",
+    "checkpoints_passed": 0,
+    "total_checkpoints": 5,
+    "checkpoint_completion_ratio": 0.0,
+    "cargo_retrieved": false,
+    "minimum_dynamic_clearance_meters": 140.0,
+    "episode": {
+      "r": -1656.338392,
+      "l": 49
+    }
+  },
+  "task_gate": {
+    "route_goal_reached": false,
+    "minimum_clear_distance_passed": false,
+    "exit_speed_passed": true,
+    "clear_distance_m": 3.3687065498671718,
+    "speed_knots": 0.27335336790787723,
+    "full_mission_gate_passed": false,
+    "boundary": "Frozen-policy transfer checked against the configured route, clearance and exit-speed gates."
+  },
+  "final_state": {
+    "x": 83.00841002778202,
+    "z": 14.785767115626708,
+    "heading_degrees": 154.8521465772951,
+    "speed_mps": 0.140625,
+    "throttle": 0.19410274326801302,
+    "rudder": -0.863398551940918
+  },
+  "trajectory": [
+    {
+      "index": 0,
+      "time": 0.0,
+      "x": 82.0,
+      "z": 18.0,
+      "heading_degrees": 180.0,
+      "speed_mps": 0.0,
+      "throttle": 0.0,
+      "rudder": 0.0,
+      "reward": 0.0,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 1.0,
+      "nearest_tcpa_seconds": 90.0,
+      "nearest_dcpa_meters": 1.0,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0,
+      "actual_rudder": 0.0,
+      "yaw_rate_degrees_per_second": 0.0,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5
+    },
+    {
+      "index": 1,
+      "time": 0.25,
+      "x": 82.00382,
+      "z": 17.96087,
+      "heading_degrees": 180.1254,
+      "speed_mps": 0.225,
+      "throttle": 0.80133,
+      "rudder": 0.56226,
+      "reward": -3.173577,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.99618,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 0.99618,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1375,
+      "actual_rudder": 0.175,
+      "yaw_rate_degrees_per_second": 0.50153,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.70567,
+      "policy_rudder_action": 0.56226,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.135864,
+        -0.090623
+      ],
+      "frozen_static_action": [
+        0.977397,
+        0.743506
+      ],
+      "combined_action": [
+        0.705669,
+        0.562261
+      ]
+    },
+    {
+      "index": 2,
+      "time": 0.5,
+      "x": 82.00752,
+      "z": 17.86548,
+      "heading_degrees": 180.1254,
+      "speed_mps": 0.45,
+      "throttle": 0.48273,
+      "rudder": -1.0,
+      "reward": -3.042533,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.99248,
+      "nearest_tcpa_seconds": 0.0,
+      "nearest_dcpa_meters": 0.99248,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.275,
+      "actual_rudder": 0.0,
+      "yaw_rate_degrees_per_second": 0.0,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.23367,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.084989,
+        -0.069802
+      ],
+      "frozen_static_action": [
+        0.403645,
+        -0.962815
+      ],
+      "combined_action": [
+        0.233667,
+        -1.0
+      ]
+    },
+    {
+      "index": 3,
+      "time": 0.75,
+      "x": 82.01159,
+      "z": 17.71385,
+      "heading_degrees": 179.9592,
+      "speed_mps": 0.675,
+      "throttle": -0.25138,
+      "rudder": -1.0,
+      "reward": -2.866066,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.98841,
+      "nearest_tcpa_seconds": 0.00104,
+      "nearest_dcpa_meters": 0.98841,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1375,
+      "actual_rudder": -0.175,
+      "yaw_rate_degrees_per_second": -0.66459,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.85389,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.072046,
+        -0.090692
+      ],
+      "frozen_static_action": [
+        -0.709801,
+        -0.982057
+      ],
+      "combined_action": [
+        -0.853893,
+        -1.0
+      ]
+    },
+    {
+      "index": 4,
+      "time": 1.0,
+      "x": 82.0163,
+      "z": 17.60284,
+      "heading_degrees": 179.6564,
+      "speed_mps": 0.5125,
+      "throttle": -0.35,
+      "rudder": -1.0,
+      "reward": -2.952769,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.9837,
+      "nearest_tcpa_seconds": 0.01151,
+      "nearest_dcpa_meters": 0.98368,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0,
+      "actual_rudder": -0.35,
+      "yaw_rate_degrees_per_second": -1.21141,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -1.0,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.090861,
+        -0.134977
+      ],
+      "frozen_static_action": [
+        -0.984508,
+        -0.933398
+      ],
+      "combined_action": [
+        -1.0,
+        -1.0
+      ]
+    },
+    {
+      "index": 5,
+      "time": 1.25,
+      "x": 82.02059,
+      "z": 17.59184,
+      "heading_degrees": 179.3108,
+      "speed_mps": 0.1125,
+      "throttle": -0.35,
+      "rudder": -1.0,
+      "reward": -3.21909,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.97941,
+      "nearest_tcpa_seconds": 0.10472,
+      "nearest_dcpa_meters": 0.97934,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": -0.1375,
+      "actual_rudder": -0.525,
+      "yaw_rate_degrees_per_second": -1.38229,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -1.0,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.105868,
+        -0.150959
+      ],
+      "frozen_static_action": [
+        -0.837813,
+        -0.909448
+      ],
+      "combined_action": [
+        -1.0,
+        -1.0
+      ]
+    },
+    {
+      "index": 6,
+      "time": 1.5,
+      "x": 82.02453,
+      "z": 17.60895,
+      "heading_degrees": 179.1008,
+      "speed_mps": 0.0,
+      "throttle": 0.76631,
+      "rudder": 0.01323,
+      "reward": -3.369237,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.97547,
+      "nearest_tcpa_seconds": 90.0,
+      "nearest_dcpa_meters": 0.97547,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0,
+      "actual_rudder": -0.35,
+      "yaw_rate_degrees_per_second": -0.84,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.65379,
+      "policy_rudder_action": 0.01323,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.128215,
+        -0.157102
+      ],
+      "frozen_static_action": [
+        0.910224,
+        0.327436
+      ],
+      "combined_action": [
+        0.653795,
+        0.013232
+      ]
+    },
+    {
+      "index": 7,
+      "time": 1.75,
+      "x": 82.02948,
+      "z": 17.56983,
+      "heading_degrees": 178.9754,
+      "speed_mps": 0.225,
+      "throttle": 0.80257,
+      "rudder": 0.63114,
+      "reward": -3.163839,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.97052,
+      "nearest_tcpa_seconds": 0.07713,
+      "nearest_dcpa_meters": 0.97036,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1375,
+      "actual_rudder": -0.175,
+      "yaw_rate_degrees_per_second": -0.50153,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.70751,
+      "policy_rudder_action": 0.63114,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.140608,
+        -0.124489
+      ],
+      "frozen_static_action": [
+        0.988732,
+        0.880119
+      ],
+      "combined_action": [
+        0.707515,
+        0.63114
+      ]
+    },
+    {
+      "index": 8,
+      "time": 2.0,
+      "x": 82.03601,
+      "z": 17.47447,
+      "heading_degrees": 178.6839,
+      "speed_mps": 0.45,
+      "throttle": 0.40286,
+      "rudder": -0.82147,
+      "reward": -3.055244,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.96399,
+      "nearest_tcpa_seconds": 0.0492,
+      "nearest_dcpa_meters": 0.96373,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.275,
+      "actual_rudder": -0.35,
+      "yaw_rate_degrees_per_second": -1.16612,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.11534,
+      "policy_rudder_action": -0.82147,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.102168,
+        -0.127008
+      ],
+      "frozen_static_action": [
+        0.319679,
+        -0.56745
+      ],
+      "combined_action": [
+        0.115343,
+        -0.821466
+      ]
+    },
+    {
+      "index": 9,
+      "time": 2.25,
+      "x": 82.0453,
+      "z": 17.32292,
+      "heading_degrees": 178.1855,
+      "speed_mps": 0.675,
+      "throttle": -0.35,
+      "rudder": -1.0,
+      "reward": -2.890763,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.9547,
+      "nearest_tcpa_seconds": 0.04479,
+      "nearest_dcpa_meters": 0.95422,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1375,
+      "actual_rudder": -0.525,
+      "yaw_rate_degrees_per_second": -1.99376,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -1.0,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.089586,
+        -0.148326
+      ],
+      "frozen_static_action": [
+        -0.835271,
+        -0.821163
+      ],
+      "combined_action": [
+        -1.0,
+        -1.0
+      ]
+    },
+    {
+      "index": 10,
+      "time": 2.5,
+      "x": 82.05466,
+      "z": 17.21203,
+      "heading_degrees": 177.5797,
+      "speed_mps": 0.5125,
+      "throttle": -0.35,
+      "rudder": -1.0,
+      "reward": -2.966652,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.94534,
+      "nearest_tcpa_seconds": 0.07789,
+      "nearest_dcpa_meters": 0.9445,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0,
+      "actual_rudder": -0.7,
+      "yaw_rate_degrees_per_second": -2.42282,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -1.0,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.09979,
+        -0.165486
+      ],
+      "frozen_static_action": [
+        -0.984886,
+        -0.932546
+      ],
+      "combined_action": [
+        -1.0,
+        -1.0
+      ]
+    },
+    {
+      "index": 11,
+      "time": 2.75,
+      "x": 82.06008,
+      "z": 17.20106,
+      "heading_degrees": 177.0038,
+      "speed_mps": 0.1125,
+      "throttle": -0.35,
+      "rudder": -1.0,
+      "reward": -3.228608,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.93992,
+      "nearest_tcpa_seconds": 0.43671,
+      "nearest_dcpa_meters": 0.93864,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": -0.1375,
+      "actual_rudder": -0.875,
+      "yaw_rate_degrees_per_second": -2.30382,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -1.0,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.114713,
+        -0.180609
+      ],
+      "frozen_static_action": [
+        -0.861108,
+        -0.910315
+      ],
+      "combined_action": [
+        -1.0,
+        -1.0
+      ]
+    },
+    {
+      "index": 12,
+      "time": 3.0,
+      "x": 82.06402,
+      "z": 17.21818,
+      "heading_degrees": 176.5838,
+      "speed_mps": 0.0,
+      "throttle": 0.78017,
+      "rudder": 0.20062,
+      "reward": -3.381866,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.93598,
+      "nearest_tcpa_seconds": 90.0,
+      "nearest_dcpa_meters": 0.93598,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0,
+      "actual_rudder": -0.7,
+      "yaw_rate_degrees_per_second": -1.68,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.67432,
+      "policy_rudder_action": 0.20062,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.136328,
+        -0.18397
+      ],
+      "frozen_static_action": [
+        0.946978,
+        0.568557
+      ],
+      "combined_action": [
+        0.674323,
+        0.200617
+      ]
+    },
+    {
+      "index": 13,
+      "time": 3.25,
+      "x": 82.07169,
+      "z": 17.17916,
+      "heading_degrees": 176.2076,
+      "speed_mps": 0.225,
+      "throttle": 0.79493,
+      "rudder": 0.53554,
+      "reward": -3.168741,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.92831,
+      "nearest_tcpa_seconds": 0.27289,
+      "nearest_dcpa_meters": 0.92628,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1375,
+      "actual_rudder": -0.525,
+      "yaw_rate_degrees_per_second": -1.50459,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.6962,
+      "policy_rudder_action": 0.53554,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.14738,
+        -0.155582
+      ],
+      "frozen_static_action": [
+        0.990959,
+        0.846707
+      ],
+      "combined_action": [
+        0.696199,
+        0.535543
+      ]
+    },
+    {
+      "index": 14,
+      "time": 3.5,
+      "x": 82.08422,
+      "z": 17.08411,
+      "heading_degrees": 175.6246,
+      "speed_mps": 0.45,
+      "throttle": 0.48802,
+      "rudder": -0.76135,
+      "reward": -3.06945,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.91578,
+      "nearest_tcpa_seconds": 0.15526,
+      "nearest_dcpa_meters": 0.91312,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.275,
+      "actual_rudder": -0.7,
+      "yaw_rate_degrees_per_second": -2.33224,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.24151,
+      "policy_rudder_action": -0.76135,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.11042,
+        -0.156683
+      ],
+      "frozen_static_action": [
+        0.46235,
+        -0.447983
+      ],
+      "combined_action": [
+        0.24151,
+        -0.761349
+      ]
+    },
+    {
+      "index": 15,
+      "time": 3.75,
+      "x": 82.10347,
+      "z": 16.93317,
+      "heading_degrees": 174.7939,
+      "speed_mps": 0.675,
+      "throttle": -0.35,
+      "rudder": -1.0,
+      "reward": -2.929512,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.89653,
+      "nearest_tcpa_seconds": 0.12052,
+      "nearest_dcpa_meters": 0.89283,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1375,
+      "actual_rudder": -0.875,
+      "yaw_rate_degrees_per_second": -3.32294,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -1.0,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.098167,
+        -0.178599
+      ],
+      "frozen_static_action": [
+        -0.806738,
+        -0.761687
+      ],
+      "combined_action": [
+        -1.0,
+        -1.0
+      ]
+    },
+    {
+      "index": 16,
+      "time": 4.0,
+      "x": 82.12097,
+      "z": 16.82288,
+      "heading_degrees": 173.9286,
+      "speed_mps": 0.5125,
+      "throttle": -0.35,
+      "rudder": -1.0,
+      "reward": -2.997246,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.87903,
+      "nearest_tcpa_seconds": 0.18141,
+      "nearest_dcpa_meters": 0.8741,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -3.46118,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -1.0,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.104122,
+        -0.202722
+      ],
+      "frozen_static_action": [
+        -0.969899,
+        -0.894564
+      ],
+      "combined_action": [
+        -1.0,
+        -1.0
+      ]
+    },
+    {
+      "index": 17,
+      "time": 4.25,
+      "x": 82.12821,
+      "z": 16.81207,
+      "heading_degrees": 173.2703,
+      "speed_mps": 0.1125,
+      "throttle": -0.21119,
+      "rudder": -1.0,
+      "reward": -3.249567,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.87179,
+      "nearest_tcpa_seconds": 0.90809,
+      "nearest_dcpa_meters": 0.86578,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": -0.1375,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -2.63294,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.79436,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.116664,
+        -0.210833
+      ],
+      "frozen_static_action": [
+        -0.561031,
+        -0.76596
+      ],
+      "combined_action": [
+        -0.794359,
+        -1.0
+      ]
+    },
+    {
+      "index": 18,
+      "time": 4.5,
+      "x": 82.13216,
+      "z": 16.82918,
+      "heading_degrees": 172.7753,
+      "speed_mps": 0.0,
+      "throttle": 0.78679,
+      "rudder": 0.18567,
+      "reward": -3.386674,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.86784,
+      "nearest_tcpa_seconds": 90.0,
+      "nearest_dcpa_meters": 0.86784,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0,
+      "actual_rudder": -0.825,
+      "yaw_rate_degrees_per_second": -1.98,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.68413,
+      "policy_rudder_action": 0.18567,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.136003,
+        -0.19797
+      ],
+      "frozen_static_action": [
+        0.956137,
+        0.58161
+      ],
+      "combined_action": [
+        0.684132,
+        0.18567
+      ]
+    },
+    {
+      "index": 19,
+      "time": 4.75,
+      "x": 82.14363,
+      "z": 16.79055,
+      "heading_degrees": 172.3096,
+      "speed_mps": 0.225,
+      "throttle": 0.79778,
+      "rudder": 0.50863,
+      "reward": -3.189098,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.85637,
+      "nearest_tcpa_seconds": 0.50933,
+      "nearest_dcpa_meters": 0.84867,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1375,
+      "actual_rudder": -0.65,
+      "yaw_rate_degrees_per_second": -1.86282,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.70042,
+      "policy_rudder_action": 0.50863,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.147253,
+        -0.171985
+      ],
+      "frozen_static_action": [
+        0.994923,
+        0.852601
+      ],
+      "combined_action": [
+        0.700416,
+        0.508631
+      ]
+    },
+    {
+      "index": 20,
+      "time": 5.0,
+      "x": 82.1634,
+      "z": 16.69629,
+      "heading_degrees": 171.914,
+      "speed_mps": 0.45,
+      "throttle": 0.6677,
+      "rudder": -0.39487,
+      "reward": -3.08131,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.8366,
+      "nearest_tcpa_seconds": 0.2615,
+      "nearest_dcpa_meters": 0.82828,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.275,
+      "actual_rudder": -0.475,
+      "yaw_rate_degrees_per_second": -1.58259,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.5077,
+      "policy_rudder_action": -0.39487,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.110426,
+        -0.173069
+      ],
+      "frozen_static_action": [
+        0.728556,
+        -0.048727
+      ],
+      "combined_action": [
+        0.507705,
+        -0.394865
+      ]
+    },
+    {
+      "index": 21,
+      "time": 5.25,
+      "x": 82.19288,
+      "z": 16.5466,
+      "heading_degrees": 171.2969,
+      "speed_mps": 0.675,
+      "throttle": -0.35,
+      "rudder": -1.0,
+      "reward": -2.987614,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.80712,
+      "nearest_tcpa_seconds": 0.18093,
+      "nearest_dcpa_meters": 0.79782,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1375,
+      "actual_rudder": -0.65,
+      "yaw_rate_degrees_per_second": -2.46847,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -1.0,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.092067,
+        -0.16371
+      ],
+      "frozen_static_action": [
+        -0.88853,
+        -0.830961
+      ],
+      "combined_action": [
+        -1.0,
+        -1.0
+      ]
+    },
+    {
+      "index": 22,
+      "time": 5.5,
+      "x": 82.21779,
+      "z": 16.43732,
+      "heading_degrees": 170.583,
+      "speed_mps": 0.5125,
+      "throttle": -0.35,
+      "rudder": -1.0,
+      "reward": -3.032001,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.78221,
+      "nearest_tcpa_seconds": 0.24972,
+      "nearest_dcpa_meters": 0.77167,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0,
+      "actual_rudder": -0.825,
+      "yaw_rate_degrees_per_second": -2.85547,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -1.0,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.097835,
+        -0.187525
+      ],
+      "frozen_static_action": [
+        -0.9715,
+        -0.850057
+      ],
+      "combined_action": [
+        -1.0,
+        -1.0
+      ]
+    },
+    {
+      "index": 23,
+      "time": 5.75,
+      "x": 82.22666,
+      "z": 16.42674,
+      "heading_degrees": 169.9248,
+      "speed_mps": 0.1125,
+      "throttle": -0.25598,
+      "rudder": -1.0,
+      "reward": -3.266984,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.77334,
+      "nearest_tcpa_seconds": 1.20257,
+      "nearest_dcpa_meters": 0.76142,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": -0.1375,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -2.63294,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.86071,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.11183,
+        -0.200202
+      ],
+      "frozen_static_action": [
+        -0.637045,
+        -0.721218
+      ],
+      "combined_action": [
+        -0.860705,
+        -1.0
+      ]
+    },
+    {
+      "index": 24,
+      "time": 6.0,
+      "x": 82.2306,
+      "z": 16.44386,
+      "heading_degrees": 169.4298,
+      "speed_mps": 0.0,
+      "throttle": 0.80112,
+      "rudder": 0.28214,
+      "reward": -3.406478,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.7694,
+      "nearest_tcpa_seconds": 90.0,
+      "nearest_dcpa_meters": 0.7694,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0,
+      "actual_rudder": -0.825,
+      "yaw_rate_degrees_per_second": -1.98,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.70537,
+      "policy_rudder_action": 0.28214,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.133201,
+        -0.201998
+      ],
+      "frozen_static_action": [
+        0.971769,
+        0.686138
+      ],
+      "combined_action": [
+        0.705368,
+        0.282142
+      ]
+    },
+    {
+      "index": 25,
+      "time": 6.25,
+      "x": 82.24532,
+      "z": 16.40576,
+      "heading_degrees": 168.964,
+      "speed_mps": 0.225,
+      "throttle": 0.80174,
+      "rudder": 0.49493,
+      "reward": -3.210164,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.75468,
+      "nearest_tcpa_seconds": 0.64207,
+      "nearest_dcpa_meters": 0.74073,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1375,
+      "actual_rudder": -0.65,
+      "yaw_rate_degrees_per_second": -1.86282,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.70628,
+      "policy_rudder_action": 0.49493,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.144952,
+        -0.176734
+      ],
+      "frozen_static_action": [
+        0.996183,
+        0.848396
+      ],
+      "combined_action": [
+        0.70628,
+        0.494928
+      ]
+    },
+    {
+      "index": 26,
+      "time": 6.5,
+      "x": 82.27167,
+      "z": 16.31263,
+      "heading_degrees": 168.5102,
+      "speed_mps": 0.45,
+      "throttle": 0.64948,
+      "rudder": -0.54488,
+      "reward": -3.121726,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.72833,
+      "nearest_tcpa_seconds": 0.3224,
+      "nearest_dcpa_meters": 0.71373,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.275,
+      "actual_rudder": -0.54488,
+      "yaw_rate_degrees_per_second": -1.81542,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.48072,
+      "policy_rudder_action": -0.54488,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.108158,
+        -0.177893
+      ],
+      "frozen_static_action": [
+        0.697032,
+        -0.189094
+      ],
+      "combined_action": [
+        0.480717,
+        -0.544881
+      ]
+    },
+    {
+      "index": 27,
+      "time": 6.75,
+      "x": 82.3112,
+      "z": 16.16479,
+      "heading_degrees": 167.8267,
+      "speed_mps": 0.675,
+      "throttle": -0.3423,
+      "rudder": -1.0,
+      "reward": -3.030319,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.6888,
+      "nearest_tcpa_seconds": 0.21518,
+      "nearest_dcpa_meters": 0.67331,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1375,
+      "actual_rudder": -0.71988,
+      "yaw_rate_degrees_per_second": -2.73385,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.98859,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.09144,
+        -0.174419
+      ],
+      "frozen_static_action": [
+        -0.805713,
+        -0.657845
+      ],
+      "combined_action": [
+        -0.988593,
+        -1.0
+      ]
+    },
+    {
+      "index": 28,
+      "time": 7.0,
+      "x": 82.34386,
+      "z": 16.05704,
+      "heading_degrees": 167.0524,
+      "speed_mps": 0.5125,
+      "throttle": -0.35,
+      "rudder": -1.0,
+      "reward": -3.075017,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.65614,
+      "nearest_tcpa_seconds": 0.28686,
+      "nearest_dcpa_meters": 0.63946,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0,
+      "actual_rudder": -0.89488,
+      "yaw_rate_degrees_per_second": -3.09734,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -1.0,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.097081,
+        -0.197516
+      ],
+      "frozen_static_action": [
+        -0.954872,
+        -0.794452
+      ],
+      "combined_action": [
+        -1.0,
+        -1.0
+      ]
+    },
+    {
+      "index": 29,
+      "time": 7.25,
+      "x": 82.35442,
+      "z": 16.04682,
+      "heading_degrees": 166.3942,
+      "speed_mps": 0.1125,
+      "throttle": -0.22582,
+      "rudder": -1.0,
+      "reward": -3.292472,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.64558,
+      "nearest_tcpa_seconds": 1.34993,
+      "nearest_dcpa_meters": 0.62747,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": -0.1375,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -2.63294,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.81603,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.110325,
+        -0.209773
+      ],
+      "frozen_static_action": [
+        -0.595376,
+        -0.711399
+      ],
+      "combined_action": [
+        -0.816025,
+        -1.0
+      ]
+    },
+    {
+      "index": 30,
+      "time": 7.5,
+      "x": 82.35836,
+      "z": 16.06394,
+      "heading_degrees": 165.8992,
+      "speed_mps": 0.0,
+      "throttle": 0.80912,
+      "rudder": 0.28907,
+      "reward": -3.424668,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.64164,
+      "nearest_tcpa_seconds": 90.0,
+      "nearest_dcpa_meters": 0.64164,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0,
+      "actual_rudder": -0.825,
+      "yaw_rate_degrees_per_second": -1.98,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.71722,
+      "policy_rudder_action": 0.28907,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.130864,
+        -0.205415
+      ],
+      "frozen_static_action": [
+        0.978945,
+        0.6999
+      ],
+      "combined_action": [
+        0.717216,
+        0.289071
+      ]
+    },
+    {
+      "index": 31,
+      "time": 7.75,
+      "x": 82.37646,
+      "z": 16.02661,
+      "heading_degrees": 165.4335,
+      "speed_mps": 0.225,
+      "throttle": 0.8056,
+      "rudder": 0.47034,
+      "reward": -3.23966,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.62354,
+      "nearest_tcpa_seconds": 0.697,
+      "nearest_dcpa_meters": 0.6035,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1375,
+      "actual_rudder": -0.65,
+      "yaw_rate_degrees_per_second": -1.86282,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.712,
+      "policy_rudder_action": 0.47034,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.142314,
+        -0.181099
+      ],
+      "frozen_static_action": [
+        0.99663,
+        0.832537
+      ],
+      "combined_action": [
+        0.712003,
+        0.470339
+      ]
+    },
+    {
+      "index": 32,
+      "time": 8.0,
+      "x": 82.40945,
+      "z": 15.93505,
+      "heading_degrees": 165.0378,
+      "speed_mps": 0.45,
+      "throttle": 0.71601,
+      "rudder": -0.31923,
+      "reward": -3.154011,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.59055,
+      "nearest_tcpa_seconds": 0.33882,
+      "nearest_dcpa_meters": 0.57053,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.275,
+      "actual_rudder": -0.475,
+      "yaw_rate_degrees_per_second": -1.58259,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.57928,
+      "policy_rudder_action": -0.31923,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.105672,
+        -0.181502
+      ],
+      "frozen_static_action": [
+        0.790622,
+        0.043776
+      ],
+      "combined_action": [
+        0.579278,
+        -0.319228
+      ]
+    },
+    {
+      "index": 33,
+      "time": 8.25,
+      "x": 82.45872,
+      "z": 15.78961,
+      "heading_degrees": 164.4207,
+      "speed_mps": 0.675,
+      "throttle": -0.31512,
+      "rudder": -0.9507,
+      "reward": -3.091193,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.54128,
+      "nearest_tcpa_seconds": 0.21537,
+      "nearest_dcpa_meters": 0.5214,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1375,
+      "actual_rudder": -0.65,
+      "yaw_rate_degrees_per_second": -2.46847,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.94833,
+      "policy_rudder_action": -0.9507,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.087572,
+        -0.172315
+      ],
+      "frozen_static_action": [
+        -0.773189,
+        -0.606074
+      ],
+      "combined_action": [
+        -0.948333,
+        -0.950704
+      ]
+    },
+    {
+      "index": 34,
+      "time": 8.5,
+      "x": 82.49861,
+      "z": 15.68375,
+      "heading_degrees": 163.7068,
+      "speed_mps": 0.5125,
+      "throttle": -0.35,
+      "rudder": -1.0,
+      "reward": -3.125179,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.50139,
+      "nearest_tcpa_seconds": 0.27447,
+      "nearest_dcpa_meters": 0.48126,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0,
+      "actual_rudder": -0.825,
+      "yaw_rate_degrees_per_second": -2.85547,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -1.0,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.093151,
+        -0.19475
+      ],
+      "frozen_static_action": [
+        -0.950035,
+        -0.824144
+      ],
+      "combined_action": [
+        -1.0,
+        -1.0
+      ]
+    },
+    {
+      "index": 35,
+      "time": 8.75,
+      "x": 82.51075,
+      "z": 15.67396,
+      "heading_degrees": 163.0486,
+      "speed_mps": 0.1125,
+      "throttle": -0.22563,
+      "rudder": -1.0,
+      "reward": -3.321041,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.48925,
+      "nearest_tcpa_seconds": 1.26796,
+      "nearest_dcpa_meters": 0.46799,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": -0.1375,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -2.63294,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.81574,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.106344,
+        -0.207418
+      ],
+      "frozen_static_action": [
+        -0.603054,
+        -0.735627
+      ],
+      "combined_action": [
+        -0.815741,
+        -1.0
+      ]
+    },
+    {
+      "index": 36,
+      "time": 9.0,
+      "x": 82.5147,
+      "z": 15.69108,
+      "heading_degrees": 162.5536,
+      "speed_mps": 0.0,
+      "throttle": 0.81635,
+      "rudder": 0.31859,
+      "reward": -3.448777,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.4853,
+      "nearest_tcpa_seconds": 90.0,
+      "nearest_dcpa_meters": 0.4853,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0,
+      "actual_rudder": -0.825,
+      "yaw_rate_degrees_per_second": -1.98,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.72793,
+      "policy_rudder_action": 0.31859,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.128126,
+        -0.208897
+      ],
+      "frozen_static_action": [
+        0.984185,
+        0.736381
+      ],
+      "combined_action": [
+        0.727932,
+        0.318588
+      ]
+    },
+    {
+      "index": 37,
+      "time": 9.25,
+      "x": 82.53594,
+      "z": 15.65467,
+      "heading_degrees": 162.0879,
+      "speed_mps": 0.225,
+      "throttle": 0.80989,
+      "rudder": 0.45106,
+      "reward": -3.273199,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.46406,
+      "nearest_tcpa_seconds": 0.63433,
+      "nearest_dcpa_meters": 0.44156,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1375,
+      "actual_rudder": -0.65,
+      "yaw_rate_degrees_per_second": -1.86282,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.71835,
+      "policy_rudder_action": 0.45106,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.139309,
+        -0.185134
+      ],
+      "frozen_static_action": [
+        0.996973,
+        0.821323
+      ],
+      "combined_action": [
+        0.718354,
+        0.451055
+      ]
+    },
+    {
+      "index": 38,
+      "time": 9.5,
+      "x": 82.57523,
+      "z": 15.56498,
+      "heading_degrees": 161.6922,
+      "speed_mps": 0.45,
+      "throttle": 0.7386,
+      "rudder": -0.3889,
+      "reward": -3.201933,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.42477,
+      "nearest_tcpa_seconds": 0.29651,
+      "nearest_dcpa_meters": 0.40327,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.275,
+      "actual_rudder": -0.475,
+      "yaw_rate_degrees_per_second": -1.58259,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.61275,
+      "policy_rudder_action": -0.3889,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.103015,
+        -0.184304
+      ],
+      "frozen_static_action": [
+        0.818777,
+        -0.020294
+      ],
+      "combined_action": [
+        0.612747,
+        -0.388902
+      ]
+    },
+    {
+      "index": 39,
+      "time": 9.75,
+      "x": 82.63391,
+      "z": 15.42247,
+      "heading_degrees": 161.0751,
+      "speed_mps": 0.675,
+      "throttle": -0.26252,
+      "rudder": -0.94623,
+      "reward": -3.148567,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.36609,
+      "nearest_tcpa_seconds": 0.1759,
+      "nearest_dcpa_meters": 0.34631,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1375,
+      "actual_rudder": -0.65,
+      "yaw_rate_degrees_per_second": -2.46847,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.8704,
+      "policy_rudder_action": -0.94623,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.084859,
+        -0.175615
+      ],
+      "frozen_static_action": [
+        -0.70068,
+        -0.595002
+      ],
+      "combined_action": [
+        -0.870398,
+        -0.946233
+      ]
+    },
+    {
+      "index": 40,
+      "time": 10.0,
+      "x": 82.68091,
+      "z": 15.31891,
+      "heading_degrees": 160.3612,
+      "speed_mps": 0.5125,
+      "throttle": -0.35,
+      "rudder": -1.0,
+      "reward": -3.181299,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.31909,
+      "nearest_tcpa_seconds": 0.20925,
+      "nearest_dcpa_meters": 0.30053,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0,
+      "actual_rudder": -0.825,
+      "yaw_rate_degrees_per_second": -2.85547,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -1.0,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.089805,
+        -0.197605
+      ],
+      "frozen_static_action": [
+        -0.93834,
+        -0.847303
+      ],
+      "combined_action": [
+        -1.0,
+        -1.0
+      ]
+    },
+    {
+      "index": 41,
+      "time": 10.25,
+      "x": 82.69461,
+      "z": 15.30965,
+      "heading_degrees": 159.703,
+      "speed_mps": 0.1125,
+      "throttle": -0.18318,
+      "rudder": -1.0,
+      "reward": -3.355808,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.30539,
+      "nearest_tcpa_seconds": 0.94164,
+      "nearest_dcpa_meters": 0.28642,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": -0.1375,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -2.63294,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.75286,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.103366,
+        -0.209977
+      ],
+      "frozen_static_action": [
+        -0.546127,
+        -0.719905
+      ],
+      "combined_action": [
+        -0.752859,
+        -1.0
+      ]
+    },
+    {
+      "index": 42,
+      "time": 10.5,
+      "x": 82.69856,
+      "z": 15.32677,
+      "heading_degrees": 159.208,
+      "speed_mps": 0.0,
+      "throttle": 0.81989,
+      "rudder": 0.1619,
+      "reward": -3.469779,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.30144,
+      "nearest_tcpa_seconds": 90.0,
+      "nearest_dcpa_meters": 0.30144,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0,
+      "actual_rudder": -0.825,
+      "yaw_rate_degrees_per_second": -1.98,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.73318,
+      "policy_rudder_action": 0.1619,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.125029,
+        -0.211593
+      ],
+      "frozen_static_action": [
+        0.983235,
+        0.585083
+      ],
+      "combined_action": [
+        0.733177,
+        0.161896
+      ]
+    },
+    {
+      "index": 43,
+      "time": 10.75,
+      "x": 82.7229,
+      "z": 15.29146,
+      "heading_degrees": 158.7423,
+      "speed_mps": 0.225,
+      "throttle": 0.81418,
+      "rudder": 0.46321,
+      "reward": -3.317537,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.2771,
+      "nearest_tcpa_seconds": 0.44652,
+      "nearest_dcpa_meters": 0.25825,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1375,
+      "actual_rudder": -0.65,
+      "yaw_rate_degrees_per_second": -1.86282,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.72471,
+      "policy_rudder_action": 0.46321,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.13619,
+        -0.188737
+      ],
+      "frozen_static_action": [
+        0.997089,
+        0.840681
+      ],
+      "combined_action": [
+        0.724709,
+        0.463207
+      ]
+    },
+    {
+      "index": 44,
+      "time": 11.0,
+      "x": 82.76841,
+      "z": 15.20404,
+      "heading_degrees": 158.3162,
+      "speed_mps": 0.45,
+      "throttle": 0.76043,
+      "rudder": -0.51153,
+      "reward": -3.258197,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.23159,
+      "nearest_tcpa_seconds": 0.19015,
+      "nearest_dcpa_meters": 0.2152,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.275,
+      "actual_rudder": -0.51153,
+      "yaw_rate_degrees_per_second": -1.70429,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.64508,
+      "policy_rudder_action": -0.51153,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.099782,
+        -0.186726
+      ],
+      "frozen_static_action": [
+        0.844642,
+        -0.138077
+      ],
+      "combined_action": [
+        0.645077,
+        -0.511529
+      ]
+    },
+    {
+      "index": 45,
+      "time": 11.25,
+      "x": 82.83649,
+      "z": 15.06506,
+      "heading_degrees": 157.6644,
+      "speed_mps": 0.675,
+      "throttle": -0.25901,
+      "rudder": -1.0,
+      "reward": -3.215237,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.16351,
+      "nearest_tcpa_seconds": 0.09206,
+      "nearest_dcpa_meters": 0.15124,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1375,
+      "actual_rudder": -0.68653,
+      "yaw_rate_degrees_per_second": -2.6072,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.86521,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.082418,
+        -0.181563
+      ],
+      "frozen_static_action": [
+        -0.70037,
+        -0.715656
+      ],
+      "combined_action": [
+        -0.865206,
+        -1.0
+      ]
+    },
+    {
+      "index": 46,
+      "time": 11.5,
+      "x": 82.89066,
+      "z": 14.96431,
+      "heading_degrees": 156.919,
+      "speed_mps": 0.5125,
+      "throttle": -0.35,
+      "rudder": -1.0,
+      "reward": -3.240366,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.10934,
+      "nearest_tcpa_seconds": 0.08364,
+      "nearest_dcpa_meters": 0.10058,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0,
+      "actual_rudder": -0.86153,
+      "yaw_rate_degrees_per_second": -2.9819,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -1.0,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.086538,
+        -0.203333
+      ],
+      "frozen_static_action": [
+        -0.930394,
+        -0.850219
+      ],
+      "combined_action": [
+        -1.0,
+        -1.0
+      ]
+    },
+    {
+      "index": 47,
+      "time": 11.75,
+      "x": 82.90593,
+      "z": 14.95568,
+      "heading_degrees": 156.2607,
+      "speed_mps": 0.1125,
+      "throttle": -0.0809,
+      "rudder": -1.0,
+      "reward": -3.397668,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.09407,
+      "nearest_tcpa_seconds": 0.33662,
+      "nearest_dcpa_meters": 0.08611,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": -0.0809,
+      "actual_rudder": -1.0,
+      "yaw_rate_degrees_per_second": -2.63294,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": -0.60133,
+      "policy_rudder_action": -1.0,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.099824,
+        -0.215409
+      ],
+      "frozen_static_action": [
+        -0.401681,
+        -0.650354
+      ],
+      "combined_action": [
+        -0.601329,
+        -1.0
+      ]
+    },
+    {
+      "index": 48,
+      "time": 12.0,
+      "x": 82.9447,
+      "z": 14.89595,
+      "heading_degrees": 155.6216,
+      "speed_mps": 0.3375,
+      "throttle": 0.82728,
+      "rudder": -0.00768,
+      "reward": -3.380947,
+      "collision": false,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": 0.0553,
+      "nearest_tcpa_seconds": 0.06763,
+      "nearest_dcpa_meters": 0.05037,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.0566,
+      "actual_rudder": -0.825,
+      "yaw_rate_degrees_per_second": -2.55653,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.74413,
+      "policy_rudder_action": -0.00768,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.118333,
+        -0.212748
+      ],
+      "frozen_static_action": [
+        0.980792,
+        0.417816
+      ],
+      "combined_action": [
+        0.744125,
+        -0.00768
+      ]
+    },
+    {
+      "index": 49,
+      "time": 12.25,
+      "x": 83.00841,
+      "z": 14.78577,
+      "heading_degrees": 154.8521,
+      "speed_mps": 0.14062,
+      "throttle": 0.6078,
+      "rudder": -0.8634,
+      "reward": -1503.28871,
+      "collision": true,
+      "nearest_obstacle_name": "CargoQuay",
+      "nearest_obstacle_kind": "shoreline",
+      "nearest_clearance_meters": -0.00841,
+      "nearest_tcpa_seconds": 42.74435,
+      "nearest_dcpa_meters": 20.36779,
+      "nearest_is_dynamic": false,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [],
+      "actual_throttle": 0.1941,
+      "actual_rudder": -0.8634,
+      "yaw_rate_degrees_per_second": -2.32356,
+      "checkpoints_passed": 0,
+      "total_checkpoints": 5,
+      "policy_throttle_action": 0.41896,
+      "policy_rudder_action": -0.8634,
+      "strategy": "RES-SAC-D2",
+      "raw_policy_action": [
+        -0.099475,
+        -0.207591
+      ],
+      "frozen_static_action": [
+        0.617909,
+        -0.448217
+      ],
+      "combined_action": [
+        0.418959,
+        -0.863399
+      ]
+    }
+  ],
+  "claim_boundary": "Zero-training out-of-distribution transfer baseline in the numeric simulator. Not evidence of berthing convergence, Godot three-DOF sway control, or field readiness."
+}

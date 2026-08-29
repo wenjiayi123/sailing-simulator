@@ -20,6 +20,7 @@ var _missing_manifest_rocks: Array[String] = []
 var _unexpected_scene_rocks: Array[String] = []
 var _restored_transform_count := 0
 var _registered_collision_body_count := 0
+var _base_environment_active := true
 
 
 func _ready() -> void:
@@ -66,10 +67,24 @@ func rebuild_guards() -> void:
 		var rock_name := String(raw_name)
 		if not found_names.has(rock_name):
 			_missing_manifest_rocks.append(rock_name)
+	_apply_base_environment_state()
+
+
+func set_base_environment_active(active: bool) -> void:
+	_base_environment_active = active
+	_apply_base_environment_state()
+
+
+func is_base_environment_active() -> bool:
+	return _base_environment_active
 
 
 func get_guard_status() -> Dictionary:
+	var environment := get_node_or_null(navigation_environment_path) as Node3D
+	var shared_background := environment.get_node_or_null("BackgroundWalls") as Node3D if environment != null else null
 	return {
+		"base_environment_active": _base_environment_active,
+		"shared_background_active": shared_background != null and shared_background.visible,
 		"manifest_schema_version": LARGE_ROCK_MANIFEST.manifest_schema_version(),
 		"manifest_id": LARGE_ROCK_MANIFEST.manifest_id(),
 		"expected_rock_count": LARGE_ROCK_MANIFEST.expected_rock_count(),
@@ -85,9 +100,62 @@ func get_guard_status() -> Dictionary:
 
 
 func get_navigation_obstacle_records() -> Array[Dictionary]:
+	if not _base_environment_active:
+		return []
 	if _obstacle_records.is_empty():
 		rebuild_guards()
 	return _obstacle_records.duplicate(true)
+
+
+func _apply_base_environment_state() -> void:
+	var environment := get_node_or_null(navigation_environment_path) as Node3D
+	if environment != null:
+		# The original four-wall panorama and bright lake surface are the shared
+		# visual foundation for every task. Dedicated tasks only suppress the old
+		# floating-rock world and its collision bodies.
+		environment.visible = true
+		_set_legacy_visual_tree_enabled(environment, _base_environment_active)
+		_set_collision_tree_enabled(environment, _base_environment_active)
+	visible = _base_environment_active
+	_set_collision_tree_enabled(self, _base_environment_active)
+
+
+func _set_legacy_visual_tree_enabled(environment: Node3D, enabled: bool) -> void:
+	var shared_background := environment.get_node_or_null("BackgroundWalls") as Node3D
+	for raw_child in environment.get_children():
+		var child := raw_child as Node3D
+		if child == null:
+			continue
+		if child == shared_background:
+			child.visible = true
+			continue
+		if enabled:
+			child.visible = bool(child.get_meta("dedicated_scene_saved_visible", child.visible))
+		else:
+			if not child.has_meta("dedicated_scene_saved_visible"):
+				child.set_meta("dedicated_scene_saved_visible", child.visible)
+			child.visible = false
+
+
+func _set_collision_tree_enabled(root: Node, enabled: bool) -> void:
+	var collision_nodes: Array[Node] = []
+	if root is CollisionObject3D:
+		collision_nodes.append(root)
+	for child in root.find_children("*", "CollisionObject3D", true, false):
+		collision_nodes.append(child)
+	for raw_node in collision_nodes:
+		var body := raw_node as CollisionObject3D
+		if body == null:
+			continue
+		if enabled:
+			body.collision_layer = int(body.get_meta("dedicated_scene_saved_collision_layer", body.collision_layer))
+			body.collision_mask = int(body.get_meta("dedicated_scene_saved_collision_mask", body.collision_mask))
+		else:
+			if not body.has_meta("dedicated_scene_saved_collision_layer"):
+				body.set_meta("dedicated_scene_saved_collision_layer", body.collision_layer)
+				body.set_meta("dedicated_scene_saved_collision_mask", body.collision_mask)
+			body.collision_layer = 0
+			body.collision_mask = 0
 
 
 func _register_navigation_obstacle(rock_root: Node3D) -> void:

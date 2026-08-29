@@ -2,6 +2,35 @@
   <img src="docs/readme-hero.svg" alt="AI智能船舶自主航行模拟器与强化学习训练平台" width="100%" />
 </p>
 
+<h2 align="center">零雾晴天多任务场景 / Zero-fog clear-sky missions</h2>
+
+<p align="center">
+  <img src="docs/screenshots/scenarios/open_water.png" alt="零雾晴天开放水域场景，显示主船、航线、雷达和完整驾驶界面" width="100%" />
+  <br /><sub>开放水域 / Open water — 原生 Godot 实时画面，进入场景时雾开关关闭、雾密度为 0、大气叠色透明度为 0。</sub>
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/scenarios/auto_berthing.png" alt="零雾晴天自动靠泊评测场" width="49%" />
+  <img src="docs/screenshots/scenarios/auto_unberthing.png" alt="零雾晴天自动离泊评测场" width="49%" />
+  <br /><sub>自动靠泊 / Auto berthing　·　自动离泊 / Auto unberthing</sub>
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/scenarios/narrow_channel_head_on.png" alt="零雾晴天狭水道对遇场景" width="49%" />
+  <img src="docs/screenshots/scenarios/crossing_starboard.png" alt="零雾晴天右舷来船交叉场景" width="49%" />
+  <br /><sub>狭水道对遇 / Head-on　·　右舷交叉 / Starboard crossing</sub>
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/scenarios/narrow_channel_overtaking.png" alt="零雾晴天狭水道追越场景" width="49%" />
+  <img src="docs/screenshots/scenarios/harbor.png" alt="零雾晴天港口引航水域场景" width="49%" />
+  <br /><sub>狭水道追越 / Overtaking　·　港口引航 / Harbor pilotage</sub>
+</p>
+
+<p align="center">
+  <sub>全部 7 个场景由同一原生渲染验收逐场切换并截图；报告同时拒绝薄雾模式、非零雾密度、非透明大气叠色和纯色空画面。详见 <a href="reports/godot_all_scenario_visual_smoke_v1.json">7 场景视觉回归</a>。</sub>
+</p>
+
 <h2 align="center">实际策略渲染视频 / Real Policy Rendering</h2>
 
 <p align="center">
@@ -80,7 +109,7 @@ Godot 4.7 owns vessel control, port geometry, risk envelopes, and 3D trajectory 
 
 当前场景实际包含 **32 个大型悬岩实例**（另外 2 个节点只是说明标签，不再误计为岩石）。它们的完整变换已锁入版本化清单，逐个核验结果为 **32/32 位置匹配、64/64 精确碰撞形状、32/32 雷达障碍、32/32 训练快照障碍**，且扰动恢复探针通过。两份历史冻结策略是在旧障碍契约下训练的，当前都会在 `GroundedPlate_06_TwistedButtressMesa` 触发一次实体碰撞守卫；Godot 会 fail-closed 停止回放而不会继续穿模。要在现地图完整播放，必须按新障碍快照重新训练并冻结新 checkpoint，不能把旧轨迹改写成“兼容”。运行 `make godot-large-rock-training-contract GODOT=/path/to/Godot` 可复核新训练契约；`make godot-cargo-collision-smoke` 会保留并报告旧策略的不兼容失败。
 
-The module's 11-file public-evidence manifest includes runtime source, frozen weights, checkpoints, held-out trajectories, episode summaries, a replay controller, and control-panel source. Exact map geometry and the complete Godot scene are intentionally outside that small evidence manifest; the separately audited full-visual bundle now includes the simulator runtime and all 23 licensed/hash-bound public media files while excluding unlicensed local legacy assets. Stable-Baselines3 archives may contain Python-serialized objects; load only hash-matched files from a trusted repository revision.
+The module's 11-file public-evidence manifest includes runtime source, frozen weights, checkpoints, held-out trajectories, episode summaries, a replay controller, and control-panel source. Exact map geometry and the complete Godot scene are intentionally outside that small evidence manifest; the separately audited full-visual bundle now includes the simulator runtime and all 36 licensed/hash-bound public media files while excluding unlicensed local legacy assets. Stable-Baselines3 archives may contain Python-serialized objects; load only hash-matched files from a trusted repository revision.
 
 > [!IMPORTANT]
 > 当前结果来自数值仿真与固定留出任务，不代表实船海试、COLREGs 认证或商业航行许可。公开环境输入、仿真动力学与真实传感/执行数据始终分层标注。
@@ -467,9 +496,9 @@ python3 tools/public_data_pipeline.py weather \
 
 ## 许可证与参考资料 / License & references
 
-源代码采用 [Apache License 2.0](LICENSE)。公开数据的来源与署名要求见[数据来源](docs/DATA_SOURCES.md)，模型与模拟结果的计算口径见[模拟器指标体系](docs/SIMULATOR_METRICS.md)。完整视觉包内 23 项媒体逐项记录于[机器可读资产台账](data/verification/visual_asset_release_manifest_v1.json)和[资产权利说明](THIRD_PARTY_ASSETS.md)；来源未闭环的旧素材仅本地保留并由打包器排除，不因代码许可证而重新授权。
+源代码采用 [Apache License 2.0](LICENSE)。公开数据的来源与署名要求见[数据来源](docs/DATA_SOURCES.md)，模型与模拟结果的计算口径见[模拟器指标体系](docs/SIMULATOR_METRICS.md)。完整视觉包内 36 项媒体逐项记录于[机器可读资产台账](data/verification/visual_asset_release_manifest_v1.json)和[资产权利说明](THIRD_PARTY_ASSETS.md)；来源未闭环的旧素材仅本地保留并由打包器排除，不因代码许可证而重新授权。
 
-Source code is available under the [Apache License 2.0](LICENSE). See [data sources](docs/DATA_SOURCES.md) for provenance and attribution, and [simulator metrics](docs/SIMULATOR_METRICS.md) for calculation methods. The 23 public media files in the full-visual bundle are individually bound to origin, license, and SHA-256 in the [machine-readable ledger](data/verification/visual_asset_release_manifest_v1.json) and [asset rights notice](THIRD_PARTY_ASSETS.md). Unresolved legacy assets remain local-only and are not relicensed or packaged.
+Source code is available under the [Apache License 2.0](LICENSE). See [data sources](docs/DATA_SOURCES.md) for provenance and attribution, and [simulator metrics](docs/SIMULATOR_METRICS.md) for calculation methods. The 36 public media files in the full-visual bundle are individually bound to origin, license, and SHA-256 in the [machine-readable ledger](data/verification/visual_asset_release_manifest_v1.json) and [asset rights notice](THIRD_PARTY_ASSETS.md). Unresolved legacy assets remain local-only and are not relicensed or packaged.
 
 ## 学术顾问与致谢 / Academic Advisor & Acknowledgements
 

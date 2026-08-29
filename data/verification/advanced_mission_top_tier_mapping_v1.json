@@ -1,0 +1,53 @@
+{
+  "schema_version": "advanced_mission_top_tier_mapping_v1",
+  "generated_for": "five_advanced_maritime_task_scenes",
+  "references": [
+    {
+      "id": "IMO-STCW-A-I-12",
+      "url": "https://wwwcdn.imo.org/localresources/en/OurWork/HumanElement/Documents/34.pdf",
+      "benchmark": "real-time operating environment, bridge controls and communications, day/night and variable visibility, own-ship dynamics with weather/tide/current and ship interaction, VTS communication, restricted-water shallow-water and bank effects"
+    },
+    {
+      "id": "DNV-ST-0033-2025",
+      "url": "https://www.dnv.com/news/2025/dnv-revises-maritime-simulator-standard-to-support-safer-and-more-adaptable-training/",
+      "benchmark": "physical and behavioural realism, training objectives and independent simulator-system assessment"
+    },
+    {
+      "id": "KONGSBERG-K-SIM-NAVIGATION",
+      "url": "https://www.kongsberg.com/globalassets/kongsberg-maritime/documents/msim-brochures/k-sim-navy_brochure_2025.pdf",
+      "benchmark": "radar/ARPA, ECDIS, bridge instrumentation, communications, weather, watchkeeping, instructor control and full scenario sound"
+    },
+    {
+      "id": "WARTSILA-NTPRO-TUG",
+      "url": "https://www.wartsila.com/marine/products/simulation-and-training/navigational-simulators/tug-simulator",
+      "benchmark": "full-mission tug operations, joint training, dedicated hardware, real controls and DNV Class A certification path"
+    }
+  ],
+  "software_capabilities": [
+    {"id": "TASK-GEOMETRY", "status": "PASS", "evidence": "five dedicated PackedScenes, collision geometry, routes and task-specific vertical wallpaper profiles"},
+    {"id": "TASK-ENVIRONMENT", "status": "PASS", "evidence": "per-task wind, wave, current, tide, visibility and time baseline applied through the runtime sea-state controller"},
+    {"id": "TASK-HYDRODYNAMICS", "status": "PASS_BOUNDED_PROXY", "evidence": "three-DOF dynamics plus bounded squat, under-keel-clearance, shallow-water drag and channel bank-force/yaw proxies"},
+    {"id": "TASK-TRAFFIC-COLREG", "status": "PASS_SIMULATION", "evidence": "deterministic target vessels, TCPA/DCPA, minimum separation, expected passing side and explicit overtaking agreement receipt"},
+    {"id": "TASK-BRIDGE", "status": "PASS_SOFTWARE", "evidence": "radar/ARPA, ECDIS, conning, GMDSS trainer, instructor and recording/debrief readiness gate"},
+    {"id": "TASK-FAULTS", "status": "PASS_SOFTWARE", "evidence": "persistent port/starboard propulsion loss and steering bias with operator identity, receipts and explicit restore"},
+    {"id": "TASK-ASSESSMENT", "status": "PASS_SOFTWARE", "evidence": "predeparture gate, task-specific competencies, runtime sampling and 100-point safety/mission/procedure debrief"}
+  ],
+  "external_gates": [
+    {"id": "NAMED-VESSEL-CALIBRATION", "status": "BLOCKED", "required": "measured displacement/CG, actuator maps, turning-circle, zig-zag, stopping and multi-load trial time series with error bounds"},
+    {"id": "OFFICIAL-NAVIGATION-PRODUCTS", "status": "BLOCKED", "required": "licensed official ENC/update service and approved equipment integration"},
+    {"id": "PHYSICAL-FULL-MISSION-BRIDGE", "status": "BLOCKED", "required": "multi-channel visual system, measured field of view/synchronisation/latency, real bridge controls, audio and non-loopback multi-station network"},
+    {"id": "PHYSICAL-HIL", "status": "BLOCKED", "required": "target controller/RTOS, real I/O, independent emergency stop, raw timing logs and witnessed tests"},
+    {"id": "TUG-MOORING-FIDELITY", "status": "BLOCKED", "required": "validated tug, towline, mooring-line, fender/contact and anchor models plus operator trials"},
+    {"id": "CERTIFICATION", "status": "BLOCKED", "required": "competent authority approval and independent DNV-ST-0033/STCW assessment for the declared training scope"},
+    {"id": "SEA-TRIAL-AND-PRODUCTION", "status": "BLOCKED", "required": "approved operational design domain, physical HIL, named-vessel calibration, shadow operation, rollback drills, witnessed sea trials and legal authority"}
+  ],
+  "claims": {
+    "named_vessel_dynamics_calibrated": false,
+    "official_enc_verified": false,
+    "physical_hil_verified": false,
+    "stcw_approved": false,
+    "dnv_certified": false,
+    "real_vessel_sea_trial_completed": false,
+    "production_authority": false
+  }
+}

@@ -110,6 +110,7 @@ func duplicate_selected_ship_nearby() -> Node3D:
 
 
 func spawn_ship_at(position: Vector3, config: Dictionary = {}) -> Node3D:
+	_prune_invalid_ships()
 	_resolve_prototype()
 	if _prototype_ship == null or _ships.size() >= max_ship_count:
 		return null

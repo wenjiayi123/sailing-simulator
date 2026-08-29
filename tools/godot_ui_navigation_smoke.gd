@@ -77,6 +77,25 @@ func _run() -> void:
 		_finish()
 		return
 	_record("main_scene_ready", true, main.name)
+	var camera_player := main.get_node_or_null("Player")
+	if camera_player != null and camera_player.has_method("apply_ship_camera_orbit_input"):
+		var pitch_before := float(camera_player.get("camera_pitch"))
+		camera_player.call("apply_ship_camera_orbit_input", 0.0, -1.0, 0.25)
+		var pitch_after_r := float(camera_player.get("camera_pitch"))
+		camera_player.call("apply_ship_camera_orbit_input", 0.0, 1.0, 0.25)
+		var pitch_after_f := float(camera_player.get("camera_pitch"))
+		camera_player.set("camera_pitch", pitch_before)
+		_record(
+			"camera_R_F_pitch_controls_remain_operational",
+			pitch_after_r < pitch_before and pitch_after_f > pitch_after_r,
+			{
+				"pitch_before": pitch_before,
+				"pitch_after_R": pitch_after_r,
+				"pitch_after_F": pitch_after_f,
+			},
+		)
+	else:
+		_record("camera_R_F_pitch_controls_remain_operational", false, "Player camera orbit API unavailable")
 	var weather := main.get_node_or_null("ShipWeatherTimeController")
 	var telemetry_hud := main.get_node_or_null("ShipTelemetryHUD")
 	var world_environment := main.get_node_or_null("WorldEnvironment") as WorldEnvironment
@@ -180,7 +199,7 @@ func _run() -> void:
 		"bridge_team_J": [panels["ShipBridgeTeamPanel"], KEY_J],
 		"physical_bridge_U": [panels["ShipPhysicalBridgeReadinessPanel"], KEY_U],
 		"safety_case_Q": [panels["ShipSafetyCasePanel"], KEY_Q],
-		"colreg_complex_R": [panels["ShipColregComplexPanel"], KEY_R],
+		"colreg_complex_F9": [panels["ShipColregComplexPanel"], KEY_F9],
 		"rl_generalization_T": [panels["ShipRlGeneralizationPanel"], KEY_T],
 		"full_mission_bridge_F12": [panels["ShipFullMissionBridgePanel"], KEY_F12],
 		"bridge_cybersecurity_F11": [panels["ShipBridgeCybersecurityPanel"], KEY_F11],
@@ -193,6 +212,11 @@ func _run() -> void:
 			_send_key(specification[0], specification[1]),
 			"panel root must become visible",
 		)
+	_record(
+		"camera_R_key_does_not_open_colreg_panel",
+		not _send_key(panels["ShipColregComplexPanel"], KEY_R),
+		"R must remain exclusive to camera pitch; COLREG opens on F9",
+	)
 
 	var cargo_controller := main.get_node_or_null("CargoCircuitReplayController")
 	_record(

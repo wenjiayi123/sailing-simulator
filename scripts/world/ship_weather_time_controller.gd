@@ -203,6 +203,9 @@ func cycle_mode() -> void:
 
 func get_weather_time_status() -> Dictionary:
 	var mode: Dictionary = MODES[_mode_index]
+	var fog_enabled := _environment != null and _environment.fog_enabled
+	var fog_density := float(_environment.fog_density) if _environment != null else 0.0
+	var overlay_alpha := float(_overlay_rect.color.a) if _overlay_rect != null else 0.0
 	return {
 		"index": _mode_index,
 		"key": String(mode["key"]),
@@ -212,6 +215,10 @@ func get_weather_time_status() -> Dictionary:
 		"base_time": String(mode["time"]),
 		"visibility": "%.1f km" % visibility_km,
 		"visibility_km": visibility_km,
+		"fog_enabled": fog_enabled,
+		"fog_density": fog_density,
+		"atmosphere_overlay_alpha": overlay_alpha,
+		"zero_fog_visual": not fog_enabled and is_zero_approx(fog_density) and is_zero_approx(overlay_alpha),
 		"wind_speed_knots": wind_speed_knots,
 		"wind_direction_degrees": wind_direction_degrees,
 		"wave_height_meters": wave_height_meters,
@@ -263,6 +270,37 @@ func apply_sea_state(config: Dictionary) -> void:
 	_apply_sea_state_effects()
 	_apply_time_of_day_lighting()
 	weather_time_changed.emit(get_weather_time_status())
+
+
+func apply_zero_fog_clear_baseline(config: Dictionary = {}) -> void:
+	# Scene entry is always a genuinely clear visual baseline. Mission-specific
+	# wind, wave, current and tide remain active, while restricted visibility and
+	# task time are opt-in weather changes rather than hidden entry haze.
+	apply_mode(0)
+	var clear_config := config.duplicate(true)
+	clear_config.erase("visibility_km")
+	clear_config.erase("time")
+	clear_config.erase("time_scale")
+	if not clear_config.is_empty():
+		apply_sea_state(clear_config)
+	visibility_km = 20.0
+	_force_zero_fog_visual()
+	_data_source = "scenario_clear_baseline"
+	_data_status = "zero_fog_default"
+	_data_observed_at = ""
+	weather_time_changed.emit(get_weather_time_status())
+
+
+func _force_zero_fog_visual() -> void:
+	if _environment == null:
+		_resolve_targets()
+	if _environment != null:
+		_environment.fog_enabled = false
+		_environment.fog_density = 0.0
+	if _overlay_rect != null:
+		var clear_overlay := MODES[0]["overlay"] as Color
+		clear_overlay.a = 0.0
+		_overlay_rect.color = clear_overlay
 
 
 func get_current_vector_mps() -> Vector3:
@@ -509,7 +547,12 @@ func _apply_time_of_day_lighting() -> void:
 func _visibility_to_fog_density(value_km: float) -> float:
 	if value_km >= 20.0:
 		return 0.0
-	return clampf((20.0 - value_km) / 20.0, 0.0, 1.0) * 0.030
+	# Convert meteorological optical range from kilometres to the exponential
+	# extinction scale used by the renderer. The old 0.0-0.03 interpolation
+	# treated kilometres like scene metres: a declared 12 km clear-weather range
+	# became dense fog within a few hundred metres and erased task backdrops.
+	var visibility_m := maxf(value_km * 1000.0, 100.0)
+	return clampf(3.912 / visibility_m, 0.0, 0.040)
 
 
 func _parse_visibility_km(text: String) -> float:

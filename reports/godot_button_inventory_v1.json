@@ -1,6 +1,6 @@
 {
 	"boundary": "Runtime inventory and signal-binding audit. Disabled controls are recorded explicitly; action outcomes are covered by the interaction smoke.",
-	"button_count": 288,
+	"button_count": 296,
 	"buttons": [
 		{
 			"class": "Button",
@@ -856,6 +856,26 @@
 				{
 					"disabled": false,
 					"text": "港口引航"
+				},
+				{
+					"disabled": false,
+					"text": "自动靠泊评测场"
+				},
+				{
+					"disabled": false,
+					"text": "自动离泊评测场"
+				},
+				{
+					"disabled": false,
+					"text": "狭水道对遇"
+				},
+				{
+					"disabled": false,
+					"text": "右舷来船交叉"
+				},
+				{
+					"disabled": false,
+					"text": "狭水道追越"
 				}
 			],
 			"panel": "ShipNavigationPlanningPanel",
@@ -905,6 +925,16 @@
 			"visible": true
 		},
 		{
+			"class": "CheckBox",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipNavigationPlanningPanel",
+			"signal": "toggled",
+			"text": "追越协议确认",
+			"tooltip": "",
+			"visible": true
+		},
+		{
 			"class": "Button",
 			"disabled": false,
 			"handler_count": 1,
@@ -921,6 +951,36 @@
 			"panel": "ShipNavigationPlanningPanel",
 			"signal": "pressed",
 			"text": "导出任务快照",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipNavigationPlanningPanel",
+			"signal": "pressed",
+			"text": "任务前检查",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipNavigationPlanningPanel",
+			"signal": "pressed",
+			"text": "记录关键操船",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipNavigationPlanningPanel",
+			"signal": "pressed",
+			"text": "导出结构化复盘",
 			"tooltip": "",
 			"visible": true
 		},
@@ -1485,6 +1545,46 @@
 			"panel": "ShipInstructorConsolePanel",
 			"signal": "pressed",
 			"text": "恢复设备",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "左推进损失 50%",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "右推进损失 50%",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "操舵偏差 +8°",
+			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipInstructorConsolePanel",
+			"signal": "pressed",
+			"text": "恢复机械",
 			"tooltip": "",
 			"visible": true
 		},
@@ -2713,7 +2813,7 @@
 			"handler_count": 1,
 			"panel": "ShipColregComplexPanel",
 			"signal": "pressed",
-			"text": "关闭 R",
+			"text": "关闭 F9",
 			"tooltip": "",
 			"visible": true
 		},
@@ -3525,7 +3625,7 @@
 		}
 	],
 	"errors": [],
-	"generated_at": "2026-08-28T15:50:43",
+	"generated_at": "2026-08-29T14:53:18",
 	"passed": true,
 	"schema_version": "godot_button_inventory_v1"
 }

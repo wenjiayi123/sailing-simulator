@@ -78,6 +78,11 @@ const SHIP_SELECTION_RING_COLOR := Color(0.28, 0.96, 1.0, 0.74)
 @export var camera_turn_back_offset: float = 1.15
 @export var camera_turn_focus_offset: float = 0.82
 @export var camera_turn_response: float = 3.7
+@export_group("Ship Camera Occlusion")
+@export var camera_occlusion_enabled: bool = true
+@export_flags_3d_physics var camera_occlusion_mask: int = 0xFFFFFFFF
+@export var camera_occlusion_margin: float = 0.8
+@export var camera_occlusion_minimum_distance: float = 3.2
 @export_group("Ship Camera Autopilot")
 @export var camera_heading_follow_reactivation_delay: float = 1.25
 @export var camera_heading_follow_response: float = 8.0
@@ -527,10 +532,42 @@ func _apply_camera_orbit(delta: float = 0.0, immediate: bool = false) -> void:
 			_damping_alpha(camera_focus_damping, delta)
 		)
 
-	player_camera.global_position = camera_follow_position + _get_camera_shake_offset()
+	var unobstructed_position := _resolve_camera_obstruction(camera_focus_position, camera_follow_position)
+	player_camera.global_position = unobstructed_position + _get_camera_shake_offset()
 	if player_camera.global_position.distance_squared_to(camera_focus_position) > 0.001:
 		player_camera.look_at(camera_focus_position, Vector3.UP)
 	_update_visual_camera_facing()
+
+
+func _resolve_camera_obstruction(focus_position: Vector3, desired_position: Vector3) -> Vector3:
+	if not camera_occlusion_enabled or not is_inside_tree():
+		return desired_position
+	var offset := desired_position - focus_position
+	var desired_distance := offset.length()
+	if desired_distance <= camera_occlusion_minimum_distance:
+		return desired_position
+	var excluded: Array[RID] = []
+	if self is CollisionObject3D:
+		excluded.append((self as CollisionObject3D).get_rid())
+	var query := PhysicsRayQueryParameters3D.create(
+		focus_position,
+		desired_position,
+		camera_occlusion_mask,
+		excluded,
+	)
+	query.hit_from_inside = true
+	query.collide_with_areas = true
+	query.collide_with_bodies = true
+	var hit := get_world_3d().direct_space_state.intersect_ray(query)
+	if hit.is_empty():
+		return desired_position
+	var hit_position := hit.get("position", desired_position) as Vector3
+	var safe_distance := clampf(
+		focus_position.distance_to(hit_position) - camera_occlusion_margin,
+		camera_occlusion_minimum_distance,
+		desired_distance,
+	)
+	return focus_position + offset.normalized() * safe_distance
 
 
 func _get_camera_speed_ratio() -> float:
@@ -905,11 +942,21 @@ func _get_ship_environment_forcing() -> Dictionary:
 	var current_direction := deg_to_rad(float(status.get("current_direction_degrees", 0.0)))
 	var current_vector := Vector3(sin(current_direction), 0.0, cos(current_direction)) * current_speed
 	var yaw_arm := float(config.get("environment_yaw_arm_m", 0.0))
+	var mission_forcing: Dictionary = {}
+	var mission_realism := get_tree().get_first_node_in_group(&"ship_advanced_mission_realism_controller")
+	if mission_realism != null and mission_realism.has_method("get_hydrodynamic_forcing"):
+		mission_forcing = mission_realism.call("get_hydrodynamic_forcing", self) as Dictionary
 	return {
 		"current_vector_mps": current_vector,
 		"wind_force_body_n": wind_body,
 		"wave_force_body_n": wave_body,
 		"environment_yaw_moment_nm": (wind_body.y + wave_body.y) * yaw_arm,
+		"hydrodynamic_force_body_n": mission_forcing.get("hydrodynamic_force_body_n", Vector2.ZERO),
+		"hydrodynamic_yaw_moment_nm": float(mission_forcing.get("hydrodynamic_yaw_moment_nm", 0.0)),
+		"port_thrust_factor": float(mission_forcing.get("port_thrust_factor", 1.0)),
+		"starboard_thrust_factor": float(mission_forcing.get("starboard_thrust_factor", 1.0)),
+		"steering_bias_deg": float(mission_forcing.get("steering_bias_deg", 0.0)),
+		"mission_realism_model_id": String(mission_forcing.get("model_id", "inactive")),
 	}
 
 
@@ -1028,6 +1075,11 @@ func get_ship_telemetry() -> Dictionary:
 		"port_throttle": float(_catamaran_dynamics_status.get("port_throttle", ship_throttle)),
 		"starboard_throttle": float(_catamaran_dynamics_status.get("starboard_throttle", ship_throttle)),
 		"steering_angle_deg": float(_catamaran_dynamics_status.get("steering_angle_deg", ship_rudder)),
+		"hydrodynamic_force_body_n": _catamaran_dynamics_status.get("hydrodynamic_force_body_n", Vector2.ZERO),
+		"hydrodynamic_yaw_moment_nm": float(_catamaran_dynamics_status.get("hydrodynamic_yaw_moment_nm", 0.0)),
+		"port_thrust_factor": float(_catamaran_dynamics_status.get("port_thrust_factor", 1.0)),
+		"starboard_thrust_factor": float(_catamaran_dynamics_status.get("starboard_thrust_factor", 1.0)),
+		"steering_bias_deg": float(_catamaran_dynamics_status.get("steering_bias_deg", 0.0)),
 	}
 
 

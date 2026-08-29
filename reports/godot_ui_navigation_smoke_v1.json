@@ -3,14 +3,14 @@
 	"checks": {
 		"basic_navigation_forward_motion": {
 			"detail": {
-				"displacement_m": 14.9725818634033,
-				"speed_mps": 9.18132400512695
+				"displacement_m": 14.9673776626587,
+				"speed_mps": 9.1809606552124
 			},
 			"passed": true
 		},
 		"basic_navigation_rudder_response": {
 			"detail": {
-				"heading_change_radians": 0.403300913172313
+				"heading_change_radians": 0.403302105265208
 			},
 			"passed": true
 		},
@@ -98,6 +98,18 @@
 			"detail": "system overview -> Xiaoyi assistant",
 			"passed": true
 		},
+		"camera_R_F_pitch_controls_remain_operational": {
+			"detail": {
+				"pitch_after_F": 0.50943951023932,
+				"pitch_after_R": 0.20943951023932,
+				"pitch_before": 0.412410441597387
+			},
+			"passed": true
+		},
+		"camera_R_key_does_not_open_colreg_panel": {
+			"detail": "R must remain exclusive to camera pitch; COLREG opens on F9",
+			"passed": true
+		},
 		"cargo_replay_controller_present": {
 			"detail": "CargoCircuitReplayController",
 			"passed": true
@@ -129,7 +141,7 @@
 			"detail": {
 				"algorithm": "sac",
 				"dataset_split": "test",
-				"displacement_m": 218.094497680664,
+				"displacement_m": 218.098083496094,
 				"trained_rl": true
 			},
 			"passed": true
@@ -154,7 +166,7 @@
 			"detail": "panel root must become visible",
 			"passed": true
 		},
-		"hotkey_colreg_complex_R": {
+		"hotkey_colreg_complex_F9": {
 			"detail": "panel root must become visible",
 			"passed": true
 		},
@@ -236,14 +248,14 @@
 		},
 		"human_navigation_calm_water_three_dof_handling": {
 			"detail": {
-				"drift_angle_degrees": 9.42097331759707,
+				"drift_angle_degrees": 9.42097505161861,
 				"motion_mode": "three_dof_reference"
 			},
 			"passed": true
 		},
 		"human_navigation_input_motion": {
 			"detail": {
-				"displacement_m": 6.5809645652771,
+				"displacement_m": 6.58096551895142,
 				"speed_mps": 6.96411323547363
 			},
 			"passed": true
@@ -392,9 +404,9 @@
 		}
 	},
 	"errors": [],
-	"generated_at": "2026-08-28T15:51:01",
+	"generated_at": "2026-08-29T14:53:43",
 	"passed": true,
-	"passed_checks": 84,
+	"passed_checks": 86,
 	"schema_version": "godot_ui_navigation_smoke_v1",
-	"total_checks": 84
+	"total_checks": 86
 }

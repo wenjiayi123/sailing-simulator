@@ -28,7 +28,32 @@
     "actor_behavior_cloning_epochs": 10,
     "replay_buffer_prefill": true,
     "note": "Expert actions initialize SAC only; validation/test execute the neural policy without manual targets or fallback control.",
-    "physics_manual_helm_sha256": "1f9b36a058c086608a329c490e625accaba702bfbdc631b2a21ee37cd6701571"
+    "behavior_clone_throttle_weight": 3.0,
+    "behavior_clone_rudder_weight": 1.45,
+    "dagger_latest_recovery_epochs": 24,
+    "dagger_schedule": [
+      {
+        "expert_action_fraction": 0.7,
+        "refit_epochs": 20
+      },
+      {
+        "expert_action_fraction": 0.4,
+        "refit_epochs": 16
+      },
+      {
+        "expert_action_fraction": 0.2,
+        "refit_epochs": 16
+      },
+      {
+        "expert_action_fraction": 0.0,
+        "refit_epochs": 20
+      },
+      {
+        "expert_action_fraction": 0.0,
+        "refit_epochs": 20
+      }
+    ],
+    "physics_manual_helm_sha256": "ce1748171b9b854a97f61d3ad3b51f16dcd9dd113f54e582b3a67799477373f5"
   },
   "cargo_parameters": {
     "checkpoint_bonus": 55.0,

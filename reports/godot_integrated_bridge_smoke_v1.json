@@ -133,7 +133,7 @@
 		}
 	},
 	"errors": [],
-	"generated_at": "2026-08-28T13:34:05",
+	"generated_at": "2026-08-29T14:53:35",
 	"passed": true,
 	"passed_checks": 15,
 	"schema_version": "godot_integrated_bridge_smoke_v1",

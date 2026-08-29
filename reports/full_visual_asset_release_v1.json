@@ -25,6 +25,12 @@
     "assets/audio/sfx/gather_herb.wav",
     "assets/audio/sfx/gather_peach.wav",
     "assets/audio/sfx/gather_stone.wav",
+    "assets/generated/tasks/auto_berthing/auto_berthing_horizon_v1.png",
+    "assets/generated/tasks/auto_berthing/auto_berthing_horizon_v2.png",
+    "assets/generated/tasks/auto_berthing/auto_berthing_horizon_v3.png",
+    "assets/generated/tasks/auto_berthing/auto_berthing_water_v1.png",
+    "assets/generated/tasks/auto_berthing/auto_berthing_water_v2.png",
+    "assets/generated/tasks/shared/task_water_v1.png",
     "assets/textures/backgrounds/background_candidates/taoyuan_far_paradise_eye_level_v6_sky_extended_2048_v2.png",
     "assets/textures/backgrounds/taoyuan_lake_rock_floor_v1.png",
     "assets/textures/world/soft_cloud_ladder/cloud_bridge_deck_skin.png",
@@ -215,6 +221,72 @@
         "sha256_matches": true,
         "source_recorded": true
       },
+      "path": "assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png",
+      "sha256": "b861474dd0b38e97c006dc94cfc23068d84968447032590523496ee91b8de11c"
+    },
+    {
+      "checks": {
+        "exists": true,
+        "license_recorded": true,
+        "origin_recorded": true,
+        "sha256_matches": true,
+        "source_recorded": true
+      },
+      "path": "assets/generated/tasks/auto_unberthing/auto_unberthing_horizon_v1.png",
+      "sha256": "a9ac8fb497fd3ea1f1dd918d9b5646bf988727eaefcfabd82ea31e4e44215370"
+    },
+    {
+      "checks": {
+        "exists": true,
+        "license_recorded": true,
+        "origin_recorded": true,
+        "sha256_matches": true,
+        "source_recorded": true
+      },
+      "path": "assets/generated/tasks/crossing_starboard/crossing_starboard_horizon_v1.png",
+      "sha256": "febbec02fe968fd822a46a79a0111f102f1bc23e63ddeb156cd9459bdd476b7c"
+    },
+    {
+      "checks": {
+        "exists": true,
+        "license_recorded": true,
+        "origin_recorded": true,
+        "sha256_matches": true,
+        "source_recorded": true
+      },
+      "path": "assets/generated/tasks/narrow_channel_head_on/narrow_channel_head_on_horizon_v1.png",
+      "sha256": "1be72a2feaccdd026f406f2474a2f65267212b013b1409021b624150c307ea5d"
+    },
+    {
+      "checks": {
+        "exists": true,
+        "license_recorded": true,
+        "origin_recorded": true,
+        "sha256_matches": true,
+        "source_recorded": true
+      },
+      "path": "assets/generated/tasks/narrow_channel_overtaking/narrow_channel_overtaking_horizon_v1.png",
+      "sha256": "f9900cd711d5b90fd3fdabe09f4f3445c41a4bd14a40ebd76b5822a5e867d19d"
+    },
+    {
+      "checks": {
+        "exists": true,
+        "license_recorded": true,
+        "origin_recorded": true,
+        "sha256_matches": true,
+        "source_recorded": true
+      },
+      "path": "assets/generated/tasks/shared/task_water_v2.png",
+      "sha256": "b321b256fb44b98eb6d33d3710e09703dd701986d91807e76e5e4da11d9b921f"
+    },
+    {
+      "checks": {
+        "exists": true,
+        "license_recorded": true,
+        "origin_recorded": true,
+        "sha256_matches": true,
+        "source_recorded": true
+      },
       "path": "docs/media/cargo-circuit-sac-heldout-test-poster.jpg",
       "sha256": "01c26d490c52d6f9752e16cb4da49c21476636b74f9bffe6801fc79c0ed30527"
     },
@@ -314,6 +386,83 @@
         "sha256_matches": true,
         "source_recorded": true
       },
+      "path": "docs/screenshots/scenarios/auto_berthing.png",
+      "sha256": "6585b8fb38c8fc6f269b5acde19d585750c8d42bb1ec171fb3501882ebb31aa8"
+    },
+    {
+      "checks": {
+        "exists": true,
+        "license_recorded": true,
+        "origin_recorded": true,
+        "sha256_matches": true,
+        "source_recorded": true
+      },
+      "path": "docs/screenshots/scenarios/auto_unberthing.png",
+      "sha256": "c08ccd29164bf429b360085e41079497c55842d65b0946f869a4a67d2180b23a"
+    },
+    {
+      "checks": {
+        "exists": true,
+        "license_recorded": true,
+        "origin_recorded": true,
+        "sha256_matches": true,
+        "source_recorded": true
+      },
+      "path": "docs/screenshots/scenarios/crossing_starboard.png",
+      "sha256": "31fd530f3d99fce1ad3bbee0ba40bf0d16f3d764edb2cc60bbb764d83641fab9"
+    },
+    {
+      "checks": {
+        "exists": true,
+        "license_recorded": true,
+        "origin_recorded": true,
+        "sha256_matches": true,
+        "source_recorded": true
+      },
+      "path": "docs/screenshots/scenarios/harbor.png",
+      "sha256": "52a9c6044ff310f0faefcfd65b263179f6ec9958a92a98c3ccf7e4bd546f5fa4"
+    },
+    {
+      "checks": {
+        "exists": true,
+        "license_recorded": true,
+        "origin_recorded": true,
+        "sha256_matches": true,
+        "source_recorded": true
+      },
+      "path": "docs/screenshots/scenarios/narrow_channel_head_on.png",
+      "sha256": "09723f5aa6342f87afa0eab58845b94ac84b5e76f2f55e9951caf445d3795e82"
+    },
+    {
+      "checks": {
+        "exists": true,
+        "license_recorded": true,
+        "origin_recorded": true,
+        "sha256_matches": true,
+        "source_recorded": true
+      },
+      "path": "docs/screenshots/scenarios/narrow_channel_overtaking.png",
+      "sha256": "25163304013c59c6e178d34472a6eac2952a1a745a8c601444dfd1a0cf824e57"
+    },
+    {
+      "checks": {
+        "exists": true,
+        "license_recorded": true,
+        "origin_recorded": true,
+        "sha256_matches": true,
+        "source_recorded": true
+      },
+      "path": "docs/screenshots/scenarios/open_water.png",
+      "sha256": "c54870dac9140b6aaa1f3313f721bae96e82b3f33d9129c1af989c27080706dc"
+    },
+    {
+      "checks": {
+        "exists": true,
+        "license_recorded": true,
+        "origin_recorded": true,
+        "sha256_matches": true,
+        "source_recorded": true
+      },
       "path": "reports/cargo_circuit_presentation_panel.png",
       "sha256": "4587cc61d3b9cc61b93500f09437dcd7576245e5f03b34f2e808ad17674879d6"
     },
@@ -352,16 +501,16 @@
     }
   ],
   "input_sha256": {
-    "media_inventory": "837ba53e4244e52236e24651c10bc669812a4d48e76979d0a1e1b97b85ef9e0e",
-    "runtime_reference_set": "efef7ecb01f01f7f0ac899a0cf2c6c7ae0f0472f6221b49a7c6f844dea3b68ea",
-    "visual_asset_release_manifest_v1.json": "1f98c09151ea683b9aa8004e8c325f0cb6d544f62361c069c23b965abbafd0f3"
+    "media_inventory": "628a5dcdd2840e1dc1adc79879752ec786dd0f4a445205595c8d629d3a6f26e3",
+    "runtime_reference_set": "e23d1401282904652b71b480988495d3cf881dceecb0b8984b8756065f47e084",
+    "visual_asset_release_manifest_v1.json": "37d1a0066673a817be6013d9b8bb4edf01005b603dc87f0d433eb2737aacce13"
   },
   "runtime_excluded_references": [],
   "schema": "full-visual-asset-release-audit.v1",
   "status": "FULL_VISUAL_PACKAGE_READY",
   "summary": {
-    "excluded_local_asset_file_count": 55,
-    "included_asset_count": 23,
+    "excluded_local_asset_file_count": 61,
+    "included_asset_count": 36,
     "passed": true,
     "runtime_excluded_reference_count": 0,
     "unregistered_media_count": 0,

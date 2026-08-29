@@ -23,6 +23,7 @@ const COLOR_MUTED := Color(0.56, 0.70, 0.76, 0.92)
 @export var review_panel_path: NodePath = NodePath("../ShipSimulationReviewPanel")
 @export var ais_panel_path: NodePath = NodePath("../ShipAISFleetPanel")
 @export var exercise_controller_path: NodePath = NodePath("../ShipInstructorExerciseController")
+@export var advanced_realism_path: NodePath = NodePath("../ShipAdvancedMissionRealismController")
 
 var _root: Control
 var _pause_button: Button
@@ -43,6 +44,7 @@ var _navigation_panel: Node
 var _review_panel: Node
 var _ais_panel: Node
 var _exercise_controller: Node
+var _advanced_realism: Node
 var _refresh_timer := 0.0
 var _incident_log: Array[Dictionary] = []
 var _event_log: Array[Dictionary] = []
@@ -185,6 +187,7 @@ func _build_interface() -> void:
 	_add_section(grid, "天气切换", _build_weather_controls())
 	_add_section(grid, "重置 / 报告", _build_reset_report_controls())
 	_add_section(grid, "设备故障矩阵", _build_equipment_fault_controls())
+	_add_section(grid, "任务机械故障", _build_mission_machinery_fault_controls())
 	_add_section(grid, "演练时间线", _build_exercise_timeline_controls())
 
 	_log_label = _make_label("--", 11, COLOR_MUTED)
@@ -344,6 +347,30 @@ func _build_equipment_fault_controls() -> Control:
 	return root
 
 
+func _build_mission_machinery_fault_controls() -> Control:
+	var root := VBoxContainer.new()
+	root.add_theme_constant_override("separation", 6)
+	var row_a := HBoxContainer.new()
+	row_a.add_theme_constant_override("separation", 6)
+	root.add_child(row_a)
+	var port_button := _make_button("左推进损失 50%")
+	port_button.pressed.connect(_on_mission_machinery_fault_pressed.bind("port_propulsion_loss", 0.5))
+	row_a.add_child(port_button)
+	var starboard_button := _make_button("右推进损失 50%")
+	starboard_button.pressed.connect(_on_mission_machinery_fault_pressed.bind("starboard_propulsion_loss", 0.5))
+	row_a.add_child(starboard_button)
+	var row_b := HBoxContainer.new()
+	row_b.add_theme_constant_override("separation", 6)
+	root.add_child(row_b)
+	var steering_button := _make_button("操舵偏差 +8°")
+	steering_button.pressed.connect(_on_mission_machinery_fault_pressed.bind("steering_bias_deg", 8.0))
+	row_b.add_child(steering_button)
+	var restore_button := _make_button("恢复机械")
+	restore_button.pressed.connect(_on_restore_mission_machinery_faults_pressed)
+	row_b.add_child(restore_button)
+	return root
+
+
 func _build_exercise_timeline_controls() -> Control:
 	var root := VBoxContainer.new()
 	root.add_theme_constant_override("separation", 6)
@@ -443,6 +470,9 @@ func _resolve_sources() -> void:
 	_exercise_controller = get_node_or_null(exercise_controller_path)
 	if _exercise_controller == null:
 		_exercise_controller = get_tree().get_first_node_in_group(&"ship_instructor_exercise_controller")
+	_advanced_realism = get_node_or_null(advanced_realism_path)
+	if _advanced_realism == null:
+		_advanced_realism = get_tree().get_first_node_in_group(&"ship_advanced_mission_realism_controller")
 
 
 func _refresh_status() -> void:
@@ -653,6 +683,25 @@ func _on_clear_equipment_faults_pressed() -> void:
 	_log_receipt(receipt, "设备故障恢复")
 
 
+func _on_mission_machinery_fault_pressed(fault_key: String, value: float) -> void:
+	_resolve_sources()
+	if _advanced_realism == null or not _advanced_realism.has_method("inject_machinery_fault"):
+		_log("任务机械故障控制器未就绪")
+		_announce_scenario_action("MACHINERY ERROR  高级任务现实性控制器未就绪", COLOR_RED)
+		return
+	var receipt := _advanced_realism.call("inject_machinery_fault", fault_key, value, "instructor_panel") as Dictionary
+	_log_receipt(receipt, "任务机械故障注入")
+
+
+func _on_restore_mission_machinery_faults_pressed() -> void:
+	_resolve_sources()
+	if _advanced_realism == null or not _advanced_realism.has_method("restore_machinery_faults"):
+		_log("任务机械故障控制器未就绪")
+		return
+	var receipt := _advanced_realism.call("restore_machinery_faults", "instructor_panel") as Dictionary
+	_log_receipt(receipt, "任务机械故障恢复")
+
+
 func _on_load_exercise_pressed(template_key: String) -> void:
 	_resolve_sources()
 	if _exercise_controller == null or not _exercise_controller.has_method("load_exercise"):
@@ -727,6 +776,9 @@ func _build_report_payload() -> Dictionary:
 	var exercise := {}
 	if _exercise_controller != null and _exercise_controller.has_method("get_exercise_snapshot"):
 		exercise = _exercise_controller.call("get_exercise_snapshot") as Dictionary
+	var mission_realism := {}
+	if _advanced_realism != null and _advanced_realism.has_method("get_realism_snapshot"):
+		mission_realism = _advanced_realism.call("get_realism_snapshot") as Dictionary
 	return {
 		"schemaVersion": "ship_instructor_debrief_v2",
 		"generatedAt": Time.get_datetime_string_from_system(false, true),
@@ -744,6 +796,7 @@ func _build_report_payload() -> Dictionary:
 		"actionLog": _event_log.duplicate(true),
 		"exerciseTimeline": exercise,
 		"equipmentFaultMatrix": exercise.get("fault_matrix", []),
+		"advancedMissionRealism": mission_realism,
 		"scenarioInjectionSummary": {
 			"scenario": _scenario_name(),
 			"weather": _weather_name(),
@@ -753,7 +806,8 @@ func _build_report_payload() -> Dictionary:
 		},
 		"assuranceBoundary": {
 			"productionAuthority": false,
-			"changesMotionModel": false,
+			"equipmentTimelineChangesMotionModel": false,
+			"taskRealismChangesDynamicsWhenActive": bool(mission_realism.get("active", false)),
 			"changesPolicy": false,
 			"equipmentFaultsAffectDisplaysOnly": true,
 			"statement": "研究级教员站与复盘证据，不等同于认可的全任务驾驶台教员站或海上试验。"

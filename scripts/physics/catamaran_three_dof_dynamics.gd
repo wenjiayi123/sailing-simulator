@@ -50,7 +50,9 @@ func step(throttle_command: float, steering_command: float, delta: float, forcin
 	var differential := _f("differential_thrust_gain") * steering_target
 	var port_target := clampf(throttle_target + differential, -1.0, 1.0)
 	var starboard_target := clampf(throttle_target - differential, -1.0, 1.0)
-	var angle_target := deg_to_rad(_f("max_steering_angle_deg")) * steering_target
+	var steering_bias := deg_to_rad(float(forcing.get("steering_bias_deg", 0.0)))
+	var maximum_steering := deg_to_rad(_f("max_steering_angle_deg"))
+	var angle_target := clampf(maximum_steering * steering_target + steering_bias, -maximum_steering, maximum_steering)
 	for _index in range(substeps):
 		port_throttle = _actuator_step(
 			port_throttle,
@@ -129,6 +131,11 @@ func get_status(forcing: Dictionary = {}) -> Dictionary:
 		"current_vector_mps": current,
 		"wind_force_body_n": forcing.get("wind_force_body_n", Vector2.ZERO),
 		"wave_force_body_n": forcing.get("wave_force_body_n", Vector2.ZERO),
+		"hydrodynamic_force_body_n": forcing.get("hydrodynamic_force_body_n", Vector2.ZERO),
+		"hydrodynamic_yaw_moment_nm": float(forcing.get("hydrodynamic_yaw_moment_nm", 0.0)),
+		"port_thrust_factor": clampf(float(forcing.get("port_thrust_factor", 1.0)), 0.0, 1.0),
+		"starboard_thrust_factor": clampf(float(forcing.get("starboard_thrust_factor", 1.0)), 0.0, 1.0),
+		"steering_bias_deg": float(forcing.get("steering_bias_deg", 0.0)),
 		"simulation_time_s": simulation_time_s,
 		"integration_substeps": int(config.get("integration_substeps", 4)),
 		"finite_state": finite_state,
@@ -143,8 +150,8 @@ func _derivative(state: Vector4, forcing: Dictionary) -> Vector4:
 	var surge := state.x
 	var sway := state.y
 	var yaw_rate := state.z
-	var port_thrust := _signed_thrust(port_throttle)
-	var starboard_thrust := _signed_thrust(starboard_throttle)
+	var port_thrust := _signed_thrust(port_throttle) * clampf(float(forcing.get("port_thrust_factor", 1.0)), 0.0, 1.0)
+	var starboard_thrust := _signed_thrust(starboard_throttle) * clampf(float(forcing.get("starboard_thrust_factor", 1.0)), 0.0, 1.0)
 	var combined_thrust := port_thrust + starboard_thrust
 	var axial_thrust := combined_thrust * cos(steering_angle_rad)
 	var steering_lateral := -combined_thrust * sin(steering_angle_rad) * _f("steering_lateral_efficiency")
@@ -156,9 +163,11 @@ func _derivative(state: Vector4, forcing: Dictionary) -> Vector4:
 		+ _f("yaw_drag_quadratic_nm_per_radps2") * absf(yaw_rate) * yaw_rate
 	var wind_force := forcing.get("wind_force_body_n", Vector2.ZERO) as Vector2
 	var wave_force := forcing.get("wave_force_body_n", Vector2.ZERO) as Vector2
-	var environment_yaw := float(forcing.get("environment_yaw_moment_nm", 0.0))
-	var force_x := axial_thrust - surge_drag + wind_force.x + wave_force.x
-	var force_y := steering_lateral - sway_drag + wind_force.y + wave_force.y
+	var hydrodynamic_force := forcing.get("hydrodynamic_force_body_n", Vector2.ZERO) as Vector2
+	var environment_yaw := float(forcing.get("environment_yaw_moment_nm", 0.0)) \
+		+ float(forcing.get("hydrodynamic_yaw_moment_nm", 0.0))
+	var force_x := axial_thrust - surge_drag + wind_force.x + wave_force.x + hydrodynamic_force.x
+	var force_y := steering_lateral - sway_drag + wind_force.y + wave_force.y + hydrodynamic_force.y
 	var differential_moment := (port_thrust - starboard_thrust) * _f("twin_waterjet_half_spacing_m")
 	var steering_moment := _f("steering_x_m") * steering_lateral
 	var moment := differential_moment + steering_moment - yaw_drag + environment_yaw

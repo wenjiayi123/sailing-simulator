@@ -10,9 +10,15 @@ video, or audio file is identified by path, SHA-256, origin, and license in
   are distributed under Apache-2.0. They replace legacy runtime references for
   the icon, hidden animation atlas, horizon, water floor, cloud bridge, rock
   albedo, and Xiaoyi officer portrait.
-- `docs/readme-hero.svg`, `docs/screenshots/*.png`, and the four registered
+- `docs/readme-hero.svg`, the registered PNG files under `docs/screenshots/`
+  (including `docs/screenshots/scenarios/`), and the four registered
   report screenshots are project-authored documentation artwork or project
   runtime captures and are distributed under Apache-2.0.
+- The six registered files under `assets/generated/tasks/` are project-directed
+  image-generation outputs for the five task horizons and their shared water
+  texture. Their prompts, runtime purpose, paths, and hashes are recorded in
+  `docs/TASK_VISUAL_ASSET_PROVENANCE.md`; they are distributed under
+  `LicenseRef-Project-Generated-Asset`.
 - The exact cargo-circuit MP4 and its poster/GIF derivatives are supplied by the
   project owner for public redistribution under
   `LicenseRef-User-Authorized-Public-Redistribution`. Their permission is

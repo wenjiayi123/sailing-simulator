@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-const TOGGLE_PANEL_KEY := KEY_R
+const TOGGLE_PANEL_KEY := KEY_F9
 const CATALOG_PATH := "res://data/verification/colreg_complex_scenario_catalog_v2.json"
 const LOCAL_RULES_PATH := "res://data/verification/local_navigation_rules_template_v1.json"
 const REPORT_PATH := "res://reports/colreg_complex_assurance_v2.json"
@@ -113,7 +113,7 @@ func _build_interface() -> void:
 	header.add_child(_button("重新运行规则验收", _run_assessment))
 	header.add_child(_button("导出场景证据包", _export_evidence))
 	header.add_child(_button("重新载入", _reload))
-	header.add_child(_button("关闭 R", func() -> void: _root.visible = false))
+	header.add_child(_button("关闭 F9", func() -> void: _root.visible = false))
 	_status_label = _rich("等待复杂规则报告", 88.0)
 	stack.add_child(_status_label)
 	var chooser := HBoxContainer.new()

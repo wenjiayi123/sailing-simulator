@@ -1936,6 +1936,7 @@
   "trajectory_conflicts": [],
   "water_level_y": -140.73494,
   "waterline_guard_status": {
+    "base_environment_active": true,
     "expected_rock_count": 32,
     "guard_count": 3,
     "manifest_id": "taoyuan_large_rocks_reviewed_2026_08_24",
@@ -1988,6 +1989,7 @@
         }
       }
     ],
+    "shared_background_active": true,
     "unexpected_scene_rocks": [],
     "water_level_y": -140.73494
   }

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" path="res://scenes/objects/terrain/floating_rock_3a_demo.tscn" id="31_floating_rock_3a"]
 [ext_resource type="PackedScene" path="res://scenes/objects/terrain/grounded_rock_plate_3a_demo.tscn" id="32_grounded_rock_plate_3a"]
 [ext_resource type="Script" uid="uid://cwewgx255qxn1" path="res://scripts/world/rock3a_water_flow_global_control.gd" id="34_water_flow_control"]
+[ext_resource type="Script" path="res://scripts/world/ship_background_wallpaper_controller.gd" id="35_background_wallpaper"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lake_floor_static"]
 resource_name = "mat_navigation_water_floor_static"
@@ -80,6 +81,7 @@ script = ExtResource("22_soft_cloud_ladder")
 
 [node name="BackgroundWalls" type="Node3D" parent="." unique_id=1036583732]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+script = ExtResource("35_background_wallpaper")
 
 [node name="LakeFloor" type="MeshInstance3D" parent="BackgroundWalls" unique_id=1936081888]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -70, 0)

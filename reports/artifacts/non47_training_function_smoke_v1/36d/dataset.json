@@ -1,0 +1,989 @@
+{
+  "schema_version": "non47_training_function_dataset_v1",
+  "name": "Seven-scenario low-difficulty training-function smoke",
+  "source": {
+    "profile": "res://data/ports/default_port_profile.json",
+    "simulation_only": true,
+    "purpose": "trainer and inference wiring; not policy qualification"
+  },
+  "splits": {
+    "train": [
+      {
+        "id": "non47::train::open_water",
+        "scenario_key": "open_water",
+        "start": {
+          "x": 0.36,
+          "z": -0.05,
+          "heading_degrees": 214.0
+        },
+        "route": [
+          {
+            "x": -4.113543227765973,
+            "z": -6.682300580440334
+          },
+          {
+            "x": 72.0,
+            "z": -132.0
+          },
+          {
+            "x": 46.0,
+            "z": -208.0
+          },
+          {
+            "x": -56.0,
+            "z": -190.0
+          },
+          {
+            "x": -92.0,
+            "z": -96.0
+          }
+        ],
+        "arrival_radius": 16.0,
+        "boundary_half_extent": 780.0,
+        "obstacles": [],
+        "dynamic_obstacles": [],
+        "sea_state": {
+          "wind_speed_knots": 0.0,
+          "wind_direction_degrees": 0.0,
+          "wave_height_meters": 0.0,
+          "wave_direction_degrees": 0.0,
+          "wave_period_seconds": 4.0,
+          "current_speed_knots": 0.0,
+          "current_direction_degrees": 0.0
+        }
+      },
+      {
+        "id": "non47::train::harbor",
+        "scenario_key": "harbor",
+        "start": {
+          "x": -142.0,
+          "z": -112.0,
+          "heading_degrees": 76.0
+        },
+        "route": [
+          {
+            "x": -134.23763418979203,
+            "z": -110.06462483520266
+          },
+          {
+            "x": -74.0,
+            "z": -76.0
+          },
+          {
+            "x": -34.0,
+            "z": -50.0
+          },
+          {
+            "x": 14.0,
+            "z": -33.0
+          },
+          {
+            "x": 58.0,
+            "z": -10.0
+          },
+          {
+            "x": 82.0,
+            "z": 30.0
+          }
+        ],
+        "arrival_radius": 12.0,
+        "boundary_half_extent": 260.0,
+        "obstacles": [],
+        "dynamic_obstacles": [],
+        "sea_state": {
+          "wind_speed_knots": 0.0,
+          "wind_direction_degrees": 0.0,
+          "wave_height_meters": 0.0,
+          "wave_direction_degrees": 0.0,
+          "wave_period_seconds": 4.0,
+          "current_speed_knots": 0.0,
+          "current_direction_degrees": 0.0
+        }
+      },
+      {
+        "id": "non47::train::auto_berthing",
+        "scenario_key": "auto_berthing",
+        "start": {
+          "x": -142.0,
+          "z": -112.0,
+          "heading_degrees": 76.0
+        },
+        "route": [
+          {
+            "x": -134.23763418979203,
+            "z": -110.06462483520266
+          },
+          {
+            "x": -72.0,
+            "z": -70.0
+          },
+          {
+            "x": -28.0,
+            "z": -48.0
+          },
+          {
+            "x": 18.0,
+            "z": -30.0
+          },
+          {
+            "x": 54.0,
+            "z": -8.0
+          },
+          {
+            "x": 74.0,
+            "z": 8.0
+          },
+          {
+            "x": 82.0,
+            "z": 18.0
+          }
+        ],
+        "arrival_radius": 8.0,
+        "boundary_half_extent": 260.0,
+        "obstacles": [],
+        "dynamic_obstacles": [],
+        "sea_state": {
+          "wind_speed_knots": 0.0,
+          "wind_direction_degrees": 0.0,
+          "wave_height_meters": 0.0,
+          "wave_direction_degrees": 0.0,
+          "wave_period_seconds": 4.0,
+          "current_speed_knots": 0.0,
+          "current_direction_degrees": 0.0
+        }
+      },
+      {
+        "id": "non47::train::auto_unberthing",
+        "scenario_key": "auto_unberthing",
+        "start": {
+          "x": 82.0,
+          "z": 18.0,
+          "heading_degrees": 180.0
+        },
+        "route": [
+          {
+            "x": 82.0,
+            "z": 10.0
+          },
+          {
+            "x": 50.0,
+            "z": -20.0
+          },
+          {
+            "x": 18.0,
+            "z": -38.0
+          },
+          {
+            "x": -24.0,
+            "z": -54.0
+          },
+          {
+            "x": -70.0,
+            "z": -72.0
+          },
+          {
+            "x": -118.0,
+            "z": -86.0
+          }
+        ],
+        "arrival_radius": 8.0,
+        "boundary_half_extent": 260.0,
+        "obstacles": [],
+        "dynamic_obstacles": [],
+        "sea_state": {
+          "wind_speed_knots": 0.0,
+          "wind_direction_degrees": 0.0,
+          "wave_height_meters": 0.0,
+          "wave_direction_degrees": 0.0,
+          "wave_period_seconds": 4.0,
+          "current_speed_knots": 0.0,
+          "current_direction_degrees": 0.0
+        }
+      },
+      {
+        "id": "non47::train::narrow_channel_head_on",
+        "scenario_key": "narrow_channel_head_on",
+        "start": {
+          "x": -22.0,
+          "z": 176.0,
+          "heading_degrees": 180.0
+        },
+        "route": [
+          {
+            "x": -22.0,
+            "z": 168.0
+          },
+          {
+            "x": -22.0,
+            "z": 45.0
+          },
+          {
+            "x": -22.0,
+            "z": -35.0
+          },
+          {
+            "x": -22.0,
+            "z": -112.0
+          },
+          {
+            "x": -22.0,
+            "z": -176.0
+          }
+        ],
+        "arrival_radius": 10.0,
+        "boundary_half_extent": 260.0,
+        "obstacles": [],
+        "dynamic_obstacles": [],
+        "sea_state": {
+          "wind_speed_knots": 0.0,
+          "wind_direction_degrees": 0.0,
+          "wave_height_meters": 0.0,
+          "wave_direction_degrees": 0.0,
+          "wave_period_seconds": 4.0,
+          "current_speed_knots": 0.0,
+          "current_direction_degrees": 0.0
+        }
+      },
+      {
+        "id": "non47::train::crossing_starboard",
+        "scenario_key": "crossing_starboard",
+        "start": {
+          "x": -182.0,
+          "z": 0.0,
+          "heading_degrees": 90.0
+        },
+        "route": [
+          {
+            "x": -174.0,
+            "z": 4.898587196589413e-16
+          },
+          {
+            "x": -58.0,
+            "z": -18.0
+          },
+          {
+            "x": 12.0,
+            "z": -42.0
+          },
+          {
+            "x": 92.0,
+            "z": -30.0
+          },
+          {
+            "x": 178.0,
+            "z": -8.0
+          }
+        ],
+        "arrival_radius": 12.0,
+        "boundary_half_extent": 260.0,
+        "obstacles": [],
+        "dynamic_obstacles": [],
+        "sea_state": {
+          "wind_speed_knots": 0.0,
+          "wind_direction_degrees": 0.0,
+          "wave_height_meters": 0.0,
+          "wave_direction_degrees": 0.0,
+          "wave_period_seconds": 4.0,
+          "current_speed_knots": 0.0,
+          "current_direction_degrees": 0.0
+        }
+      },
+      {
+        "id": "non47::train::narrow_channel_overtaking",
+        "scenario_key": "narrow_channel_overtaking",
+        "start": {
+          "x": 18.0,
+          "z": -178.0,
+          "heading_degrees": 0.0
+        },
+        "route": [
+          {
+            "x": 18.0,
+            "z": -170.0
+          },
+          {
+            "x": -12.0,
+            "z": -62.0
+          },
+          {
+            "x": -18.0,
+            "z": 12.0
+          },
+          {
+            "x": 8.0,
+            "z": 88.0
+          },
+          {
+            "x": 18.0,
+            "z": 176.0
+          }
+        ],
+        "arrival_radius": 10.0,
+        "boundary_half_extent": 260.0,
+        "obstacles": [],
+        "dynamic_obstacles": [],
+        "sea_state": {
+          "wind_speed_knots": 0.0,
+          "wind_direction_degrees": 0.0,
+          "wave_height_meters": 0.0,
+          "wave_direction_degrees": 0.0,
+          "wave_period_seconds": 4.0,
+          "current_speed_knots": 0.0,
+          "current_direction_degrees": 0.0
+        }
+      }
+    ],
+    "validation": [
+      {
+        "id": "non47::validation::open_water",
+        "scenario_key": "open_water",
+        "start": {
+          "x": 0.36,
+          "z": -0.05,
+          "heading_degrees": 214.0
+        },
+        "route": [
+          {
+            "x": -4.113543227765973,
+            "z": -6.682300580440334
+          },
+          {
+            "x": 72.0,
+            "z": -132.0
+          },
+          {
+            "x": 46.0,
+            "z": -208.0
+          },
+          {
+            "x": -56.0,
+            "z": -190.0
+          },
+          {
+            "x": -92.0,
+            "z": -96.0
+          }
+        ],
+        "arrival_radius": 16.0,
+        "boundary_half_extent": 780.0,
+        "obstacles": [],
+        "dynamic_obstacles": [],
+        "sea_state": {
+          "wind_speed_knots": 0.0,
+          "wind_direction_degrees": 0.0,
+          "wave_height_meters": 0.0,
+          "wave_direction_degrees": 0.0,
+          "wave_period_seconds": 4.0,
+          "current_speed_knots": 0.0,
+          "current_direction_degrees": 0.0
+        }
+      },
+      {
+        "id": "non47::validation::harbor",
+        "scenario_key": "harbor",
+        "start": {
+          "x": -142.0,
+          "z": -112.0,
+          "heading_degrees": 76.0
+        },
+        "route": [
+          {
+            "x": -134.23763418979203,
+            "z": -110.06462483520266
+          },
+          {
+            "x": -74.0,
+            "z": -76.0
+          },
+          {
+            "x": -34.0,
+            "z": -50.0
+          },
+          {
+            "x": 14.0,
+            "z": -33.0
+          },
+          {
+            "x": 58.0,
+            "z": -10.0
+          },
+          {
+            "x": 82.0,
+            "z": 30.0
+          }
+        ],
+        "arrival_radius": 12.0,
+        "boundary_half_extent": 260.0,
+        "obstacles": [],
+        "dynamic_obstacles": [],
+        "sea_state": {
+          "wind_speed_knots": 0.0,
+          "wind_direction_degrees": 0.0,
+          "wave_height_meters": 0.0,
+          "wave_direction_degrees": 0.0,
+          "wave_period_seconds": 4.0,
+          "current_speed_knots": 0.0,
+          "current_direction_degrees": 0.0
+        }
+      },
+      {
+        "id": "non47::validation::auto_berthing",
+        "scenario_key": "auto_berthing",
+        "start": {
+          "x": -142.0,
+          "z": -112.0,
+          "heading_degrees": 76.0
+        },
+        "route": [
+          {
+            "x": -134.23763418979203,
+            "z": -110.06462483520266
+          },
+          {
+            "x": -72.0,
+            "z": -70.0
+          },
+          {
+            "x": -28.0,
+            "z": -48.0
+          },
+          {
+            "x": 18.0,
+            "z": -30.0
+          },
+          {
+            "x": 54.0,
+            "z": -8.0
+          },
+          {
+            "x": 74.0,
+            "z": 8.0
+          },
+          {
+            "x": 82.0,
+            "z": 18.0
+          }
+        ],
+        "arrival_radius": 8.0,
+        "boundary_half_extent": 260.0,
+        "obstacles": [],
+        "dynamic_obstacles": [],
+        "sea_state": {
+          "wind_speed_knots": 0.0,
+          "wind_direction_degrees": 0.0,
+          "wave_height_meters": 0.0,
+          "wave_direction_degrees": 0.0,
+          "wave_period_seconds": 4.0,
+          "current_speed_knots": 0.0,
+          "current_direction_degrees": 0.0
+        }
+      },
+      {
+        "id": "non47::validation::auto_unberthing",
+        "scenario_key": "auto_unberthing",
+        "start": {
+          "x": 82.0,
+          "z": 18.0,
+          "heading_degrees": 180.0
+        },
+        "route": [
+          {
+            "x": 82.0,
+            "z": 10.0
+          },
+          {
+            "x": 50.0,
+            "z": -20.0
+          },
+          {
+            "x": 18.0,
+            "z": -38.0
+          },
+          {
+            "x": -24.0,
+            "z": -54.0
+          },
+          {
+            "x": -70.0,
+            "z": -72.0
+          },
+          {
+            "x": -118.0,
+            "z": -86.0
+          }
+        ],
+        "arrival_radius": 8.0,
+        "boundary_half_extent": 260.0,
+        "obstacles": [],
+        "dynamic_obstacles": [],
+        "sea_state": {
+          "wind_speed_knots": 0.0,
+          "wind_direction_degrees": 0.0,
+          "wave_height_meters": 0.0,
+          "wave_direction_degrees": 0.0,
+          "wave_period_seconds": 4.0,
+          "current_speed_knots": 0.0,
+          "current_direction_degrees": 0.0
+        }
+      },
+      {
+        "id": "non47::validation::narrow_channel_head_on",
+        "scenario_key": "narrow_channel_head_on",
+        "start": {
+          "x": -22.0,
+          "z": 176.0,
+          "heading_degrees": 180.0
+        },
+        "route": [
+          {
+            "x": -22.0,
+            "z": 168.0
+          },
+          {
+            "x": -22.0,
+            "z": 45.0
+          },
+          {
+            "x": -22.0,
+            "z": -35.0
+          },
+          {
+            "x": -22.0,
+            "z": -112.0
+          },
+          {
+            "x": -22.0,
+            "z": -176.0
+          }
+        ],
+        "arrival_radius": 10.0,
+        "boundary_half_extent": 260.0,
+        "obstacles": [],
+        "dynamic_obstacles": [],
+        "sea_state": {
+          "wind_speed_knots": 0.0,
+          "wind_direction_degrees": 0.0,
+          "wave_height_meters": 0.0,
+          "wave_direction_degrees": 0.0,
+          "wave_period_seconds": 4.0,
+          "current_speed_knots": 0.0,
+          "current_direction_degrees": 0.0
+        }
+      },
+      {
+        "id": "non47::validation::crossing_starboard",
+        "scenario_key": "crossing_starboard",
+        "start": {
+          "x": -182.0,
+          "z": 0.0,
+          "heading_degrees": 90.0
+        },
+        "route": [
+          {
+            "x": -174.0,
+            "z": 4.898587196589413e-16
+          },
+          {
+            "x": -58.0,
+            "z": -18.0
+          },
+          {
+            "x": 12.0,
+            "z": -42.0
+          },
+          {
+            "x": 92.0,
+            "z": -30.0
+          },
+          {
+            "x": 178.0,
+            "z": -8.0
+          }
+        ],
+        "arrival_radius": 12.0,
+        "boundary_half_extent": 260.0,
+        "obstacles": [],
+        "dynamic_obstacles": [],
+        "sea_state": {
+          "wind_speed_knots": 0.0,
+          "wind_direction_degrees": 0.0,
+          "wave_height_meters": 0.0,
+          "wave_direction_degrees": 0.0,
+          "wave_period_seconds": 4.0,
+          "current_speed_knots": 0.0,
+          "current_direction_degrees": 0.0
+        }
+      },
+      {
+        "id": "non47::validation::narrow_channel_overtaking",
+        "scenario_key": "narrow_channel_overtaking",
+        "start": {
+          "x": 18.0,
+          "z": -178.0,
+          "heading_degrees": 0.0
+        },
+        "route": [
+          {
+            "x": 18.0,
+            "z": -170.0
+          },
+          {
+            "x": -12.0,
+            "z": -62.0
+          },
+          {
+            "x": -18.0,
+            "z": 12.0
+          },
+          {
+            "x": 8.0,
+            "z": 88.0
+          },
+          {
+            "x": 18.0,
+            "z": 176.0
+          }
+        ],
+        "arrival_radius": 10.0,
+        "boundary_half_extent": 260.0,
+        "obstacles": [],
+        "dynamic_obstacles": [],
+        "sea_state": {
+          "wind_speed_knots": 0.0,
+          "wind_direction_degrees": 0.0,
+          "wave_height_meters": 0.0,
+          "wave_direction_degrees": 0.0,
+          "wave_period_seconds": 4.0,
+          "current_speed_knots": 0.0,
+          "current_direction_degrees": 0.0
+        }
+      }
+    ],
+    "test": [
+      {
+        "id": "non47::test::open_water",
+        "scenario_key": "open_water",
+        "start": {
+          "x": 0.36,
+          "z": -0.05,
+          "heading_degrees": 214.0
+        },
+        "route": [
+          {
+            "x": -4.113543227765973,
+            "z": -6.682300580440334
+          },
+          {
+            "x": 72.0,
+            "z": -132.0
+          },
+          {
+            "x": 46.0,
+            "z": -208.0
+          },
+          {
+            "x": -56.0,
+            "z": -190.0
+          },
+          {
+            "x": -92.0,
+            "z": -96.0
+          }
+        ],
+        "arrival_radius": 16.0,
+        "boundary_half_extent": 780.0,
+        "obstacles": [],
+        "dynamic_obstacles": [],
+        "sea_state": {
+          "wind_speed_knots": 0.0,
+          "wind_direction_degrees": 0.0,
+          "wave_height_meters": 0.0,
+          "wave_direction_degrees": 0.0,
+          "wave_period_seconds": 4.0,
+          "current_speed_knots": 0.0,
+          "current_direction_degrees": 0.0
+        }
+      },
+      {
+        "id": "non47::test::harbor",
+        "scenario_key": "harbor",
+        "start": {
+          "x": -142.0,
+          "z": -112.0,
+          "heading_degrees": 76.0
+        },
+        "route": [
+          {
+            "x": -134.23763418979203,
+            "z": -110.06462483520266
+          },
+          {
+            "x": -74.0,
+            "z": -76.0
+          },
+          {
+            "x": -34.0,
+            "z": -50.0
+          },
+          {
+            "x": 14.0,
+            "z": -33.0
+          },
+          {
+            "x": 58.0,
+            "z": -10.0
+          },
+          {
+            "x": 82.0,
+            "z": 30.0
+          }
+        ],
+        "arrival_radius": 12.0,
+        "boundary_half_extent": 260.0,
+        "obstacles": [],
+        "dynamic_obstacles": [],
+        "sea_state": {
+          "wind_speed_knots": 0.0,
+          "wind_direction_degrees": 0.0,
+          "wave_height_meters": 0.0,
+          "wave_direction_degrees": 0.0,
+          "wave_period_seconds": 4.0,
+          "current_speed_knots": 0.0,
+          "current_direction_degrees": 0.0
+        }
+      },
+      {
+        "id": "non47::test::auto_berthing",
+        "scenario_key": "auto_berthing",
+        "start": {
+          "x": -142.0,
+          "z": -112.0,
+          "heading_degrees": 76.0
+        },
+        "route": [
+          {
+            "x": -134.23763418979203,
+            "z": -110.06462483520266
+          },
+          {
+            "x": -72.0,
+            "z": -70.0
+          },
+          {
+            "x": -28.0,
+            "z": -48.0
+          },
+          {
+            "x": 18.0,
+            "z": -30.0
+          },
+          {
+            "x": 54.0,
+            "z": -8.0
+          },
+          {
+            "x": 74.0,
+            "z": 8.0
+          },
+          {
+            "x": 82.0,
+            "z": 18.0
+          }
+        ],
+        "arrival_radius": 8.0,
+        "boundary_half_extent": 260.0,
+        "obstacles": [],
+        "dynamic_obstacles": [],
+        "sea_state": {
+          "wind_speed_knots": 0.0,
+          "wind_direction_degrees": 0.0,
+          "wave_height_meters": 0.0,
+          "wave_direction_degrees": 0.0,
+          "wave_period_seconds": 4.0,
+          "current_speed_knots": 0.0,
+          "current_direction_degrees": 0.0
+        }
+      },
+      {
+        "id": "non47::test::auto_unberthing",
+        "scenario_key": "auto_unberthing",
+        "start": {
+          "x": 82.0,
+          "z": 18.0,
+          "heading_degrees": 180.0
+        },
+        "route": [
+          {
+            "x": 82.0,
+            "z": 10.0
+          },
+          {
+            "x": 50.0,
+            "z": -20.0
+          },
+          {
+            "x": 18.0,
+            "z": -38.0
+          },
+          {
+            "x": -24.0,
+            "z": -54.0
+          },
+          {
+            "x": -70.0,
+            "z": -72.0
+          },
+          {
+            "x": -118.0,
+            "z": -86.0
+          }
+        ],
+        "arrival_radius": 8.0,
+        "boundary_half_extent": 260.0,
+        "obstacles": [],
+        "dynamic_obstacles": [],
+        "sea_state": {
+          "wind_speed_knots": 0.0,
+          "wind_direction_degrees": 0.0,
+          "wave_height_meters": 0.0,
+          "wave_direction_degrees": 0.0,
+          "wave_period_seconds": 4.0,
+          "current_speed_knots": 0.0,
+          "current_direction_degrees": 0.0
+        }
+      },
+      {
+        "id": "non47::test::narrow_channel_head_on",
+        "scenario_key": "narrow_channel_head_on",
+        "start": {
+          "x": -22.0,
+          "z": 176.0,
+          "heading_degrees": 180.0
+        },
+        "route": [
+          {
+            "x": -22.0,
+            "z": 168.0
+          },
+          {
+            "x": -22.0,
+            "z": 45.0
+          },
+          {
+            "x": -22.0,
+            "z": -35.0
+          },
+          {
+            "x": -22.0,
+            "z": -112.0
+          },
+          {
+            "x": -22.0,
+            "z": -176.0
+          }
+        ],
+        "arrival_radius": 10.0,
+        "boundary_half_extent": 260.0,
+        "obstacles": [],
+        "dynamic_obstacles": [],
+        "sea_state": {
+          "wind_speed_knots": 0.0,
+          "wind_direction_degrees": 0.0,
+          "wave_height_meters": 0.0,
+          "wave_direction_degrees": 0.0,
+          "wave_period_seconds": 4.0,
+          "current_speed_knots": 0.0,
+          "current_direction_degrees": 0.0
+        }
+      },
+      {
+        "id": "non47::test::crossing_starboard",
+        "scenario_key": "crossing_starboard",
+        "start": {
+          "x": -182.0,
+          "z": 0.0,
+          "heading_degrees": 90.0
+        },
+        "route": [
+          {
+            "x": -174.0,
+            "z": 4.898587196589413e-16
+          },
+          {
+            "x": -58.0,
+            "z": -18.0
+          },
+          {
+            "x": 12.0,
+            "z": -42.0
+          },
+          {
+            "x": 92.0,
+            "z": -30.0
+          },
+          {
+            "x": 178.0,
+            "z": -8.0
+          }
+        ],
+        "arrival_radius": 12.0,
+        "boundary_half_extent": 260.0,
+        "obstacles": [],
+        "dynamic_obstacles": [],
+        "sea_state": {
+          "wind_speed_knots": 0.0,
+          "wind_direction_degrees": 0.0,
+          "wave_height_meters": 0.0,
+          "wave_direction_degrees": 0.0,
+          "wave_period_seconds": 4.0,
+          "current_speed_knots": 0.0,
+          "current_direction_degrees": 0.0
+        }
+      },
+      {
+        "id": "non47::test::narrow_channel_overtaking",
+        "scenario_key": "narrow_channel_overtaking",
+        "start": {
+          "x": 18.0,
+          "z": -178.0,
+          "heading_degrees": 0.0
+        },
+        "route": [
+          {
+            "x": 18.0,
+            "z": -170.0
+          },
+          {
+            "x": -12.0,
+            "z": -62.0
+          },
+          {
+            "x": -18.0,
+            "z": 12.0
+          },
+          {
+            "x": 8.0,
+            "z": 88.0
+          },
+          {
+            "x": 18.0,
+            "z": 176.0
+          }
+        ],
+        "arrival_radius": 10.0,
+        "boundary_half_extent": 260.0,
+        "obstacles": [],
+        "dynamic_obstacles": [],
+        "sea_state": {
+          "wind_speed_knots": 0.0,
+          "wind_direction_degrees": 0.0,
+          "wave_height_meters": 0.0,
+          "wave_direction_degrees": 0.0,
+          "wave_period_seconds": 4.0,
+          "current_speed_knots": 0.0,
+          "current_direction_degrees": 0.0
+        }
+      }
+    ]
+  }
+}

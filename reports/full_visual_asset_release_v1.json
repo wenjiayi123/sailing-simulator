@@ -25,12 +25,6 @@
     "assets/audio/sfx/gather_herb.wav",
     "assets/audio/sfx/gather_peach.wav",
     "assets/audio/sfx/gather_stone.wav",
-    "assets/generated/tasks/auto_berthing/auto_berthing_horizon_v1.png",
-    "assets/generated/tasks/auto_berthing/auto_berthing_horizon_v2.png",
-    "assets/generated/tasks/auto_berthing/auto_berthing_horizon_v3.png",
-    "assets/generated/tasks/auto_berthing/auto_berthing_water_v1.png",
-    "assets/generated/tasks/auto_berthing/auto_berthing_water_v2.png",
-    "assets/generated/tasks/shared/task_water_v1.png",
     "assets/textures/backgrounds/background_candidates/taoyuan_far_paradise_eye_level_v6_sky_extended_2048_v2.png",
     "assets/textures/backgrounds/taoyuan_lake_rock_floor_v1.png",
     "assets/textures/world/soft_cloud_ladder/cloud_bridge_deck_skin.png",
@@ -501,7 +495,7 @@
     }
   ],
   "input_sha256": {
-    "media_inventory": "628a5dcdd2840e1dc1adc79879752ec786dd0f4a445205595c8d629d3a6f26e3",
+    "media_inventory": "1035b158065f4de07e43c6a822848c3a8993905ce6f81a031fd1fe1a1f12201a",
     "runtime_reference_set": "e23d1401282904652b71b480988495d3cf881dceecb0b8984b8756065f47e084",
     "visual_asset_release_manifest_v1.json": "37d1a0066673a817be6013d9b8bb4edf01005b603dc87f0d433eb2737aacce13"
   },
@@ -509,7 +503,7 @@
   "schema": "full-visual-asset-release-audit.v1",
   "status": "FULL_VISUAL_PACKAGE_READY",
   "summary": {
-    "excluded_local_asset_file_count": 61,
+    "excluded_local_asset_file_count": 55,
     "included_asset_count": 36,
     "passed": true,
     "runtime_excluded_reference_count": 0,

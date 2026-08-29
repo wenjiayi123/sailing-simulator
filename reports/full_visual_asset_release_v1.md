@@ -3,7 +3,7 @@
 Status: `FULL_VISUAL_PACKAGE_READY`
 
 - Included and hash-bound assets: 36
-- Local-only excluded files retained: 61
+- Local-only excluded files retained: 55
 - Unregistered media: 0
 - Runtime links to excluded assets: 0
 - Unresolved included assets: 0

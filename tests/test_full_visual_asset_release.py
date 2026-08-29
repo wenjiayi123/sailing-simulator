@@ -13,6 +13,10 @@ MANIFEST_PATH = ROOT / "data/verification/visual_asset_release_manifest_v1.json"
 
 
 class FullVisualAssetReleaseTests(unittest.TestCase):
+    def test_media_inventory_respects_git_release_boundary(self) -> None:
+        source = (ROOT / "tools/audit_full_visual_release.py").read_text(encoding="utf-8")
+        self.assertIn('"ls-files", "--cached", "--others", "--exclude-standard"', source)
+
     def setUp(self) -> None:
         self.manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
 

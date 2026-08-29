@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 from typing import Any
 
@@ -55,8 +56,25 @@ def _excluded(relative: str, exclusions: list[dict[str, Any]]) -> bool:
 
 
 def _media_files() -> list[Path]:
+    candidates: list[Path]
+    try:
+        completed = subprocess.run(
+            ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+        )
+        candidates = [
+            ROOT / raw.decode("utf-8", errors="surrogateescape")
+            for raw in completed.stdout.split(b"\0")
+            if raw
+        ]
+    except (FileNotFoundError, subprocess.CalledProcessError):
+        # Exported source bundles may not retain .git. In that case the package
+        # filesystem itself is the release boundary.
+        candidates = list(ROOT.rglob("*"))
     result: list[Path] = []
-    for path in ROOT.rglob("*"):
+    for path in candidates:
         if not path.is_file() or path.is_symlink() or path.suffix.lower() not in MEDIA_SUFFIXES:
             continue
         relative = path.relative_to(ROOT)

@@ -1,0 +1,33 @@
+{
+  "schema_version": "mission_rl_ui_fix_receipt_v1",
+  "passed": true,
+  "ui_source_sha256": "d4f5011f784188cdf84d8f63850ef2162c6216a52d23a7b98fb456864171d4a2",
+  "headless": {
+    "checks": 57,
+    "passed": true,
+    "receipt": "acceptance_02.json"
+  },
+  "rendered": {
+    "checks": 64,
+    "passed": true,
+    "receipt": "rendered_acceptance_01.json"
+  },
+  "python_regression": {
+    "passed": true,
+    "tests": 15,
+    "command": ".venv/bin/python -m unittest tests.test_mission_rl_admission tests.test_mission_rl_traffic tests.test_mission_rl -v"
+  },
+  "visually_inspected": [
+    "rendered_01/running.png",
+    "rendered_01/unavailable.png",
+    "rendered_01/rejected.png",
+    "rendered_01/stopped.png",
+    "rendered_01/completed.png"
+  ],
+  "scene_admission": {
+    "qualified": 6,
+    "overtaking_admitted": false,
+    "audit_entries_match": 7
+  },
+  "production_authority": false
+}

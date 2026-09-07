@@ -1,0 +1,10 @@
+{
+  "status": "DIAGNOSTIC_RESTART",
+  "observed_frame": 1800,
+  "observed_waypoint": 0,
+  "observed_position_xz": [
+    8.143552,
+    -108.5375
+  ],
+  "reason": "Native trajectory diverged from numeric rollout. Restart with intermediate state and observation capture; policy is not admitted."
+}

@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://1puthffyfgaa"]
 
+[ext_resource type="Script" path="res://scripts/rl/mission_rl_controller.gd" id="mission_direct_rl"]
+[ext_resource type="Script" path="res://scripts/rl/mission_rl_traffic_controller.gd" id="mission_traffic_rl"]
 [ext_resource type="Script" uid="uid://jhcagtqy1xpp" path="res://player.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="2_2cqfq"]
 [ext_resource type="Texture2D" path="res://assets/generated/release/legacy_animation_placeholder.svg" id="8_6iyjs"]
@@ -3134,6 +3136,12 @@ script = ExtResource("109_advanced_mission")
 
 [node name="ShipAdvancedMissionRealismController" type="Node" parent="."]
 script = ExtResource("110_advanced_mission_realism")
+
+[node name="MissionRLController" type="Node" parent="."]
+script = ExtResource("mission_direct_rl")
+
+[node name="MissionRLTrafficController" type="Node" parent="."]
+script = ExtResource("mission_traffic_rl")
 
 [node name="ShipPolicyReplayController" type="Node" parent="."]
 script = ExtResource("80_policy_replay")

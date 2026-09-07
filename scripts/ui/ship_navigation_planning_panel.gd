@@ -129,6 +129,12 @@ const MISSION_PRESETS := [
 var _root: Control
 var _tabs: TabContainer
 var _mission_option: OptionButton
+var _mission_rl_button: Button
+var _mission_rl_label: Label
+var _mission_rl_pending := false
+var _mission_rl_request_id := 0
+var _mission_rl_display_state := ""
+var _mission_rl_start_error := ""
 var _sync_scenario_check: CheckBox
 var _teleport_check: CheckBox
 var _loop_check: CheckBox
@@ -279,6 +285,8 @@ func _ready() -> void:
 	_resolve_sources()
 	_load_mission_presets()
 	_build_interface()
+	if _scenario_source != null and _scenario_source.has_signal("scenario_changed"):
+		_scenario_source.connect("scenario_changed", _on_external_scenario_changed)
 	_update_panel()
 	set_process(true)
 	set_process_unhandled_input(true)
@@ -382,9 +390,13 @@ func _build_interface() -> void:
 
 
 func _build_mission_tab() -> Control:
+	var scroll := ScrollContainer.new()
+	scroll.name = "任务"
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	var root := VBoxContainer.new()
-	root.name = "任务"
+	root.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	root.add_theme_constant_override("separation", 8)
+	scroll.add_child(root)
 
 	var preset_row := HBoxContainer.new()
 	preset_row.add_theme_constant_override("separation", 8)
@@ -399,6 +411,20 @@ func _build_mission_tab() -> Control:
 	var apply_button := _make_button("应用任务")
 	apply_button.pressed.connect(_on_apply_mission_pressed)
 	preset_row.add_child(apply_button)
+	var rl_row := VBoxContainer.new()
+	rl_row.add_theme_constant_override("separation", 5)
+	root.add_child(rl_row)
+	_mission_rl_button = _make_button("启用场景强化学习")
+	_mission_rl_button.name = "MissionRLButton"
+	_mission_rl_button.custom_minimum_size.y = 38.0
+	_mission_rl_button.add_theme_font_size_override("font_size", 14)
+	_mission_rl_button.toggle_mode = true
+	_mission_rl_button.pressed.connect(_on_mission_rl_pressed)
+	rl_row.add_child(_mission_rl_button)
+	_mission_rl_label = _make_label("正在读取策略验收结果", 13, COLOR_MUTED)
+	_mission_rl_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_mission_rl_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	rl_row.add_child(_mission_rl_label)
 
 	var check_row := HBoxContainer.new()
 	check_row.add_theme_constant_override("separation", 10)
@@ -484,7 +510,7 @@ func _build_mission_tab() -> Control:
 	root.add_child(footer)
 	_labels["mission_footer"] = footer
 
-	return root
+	return scroll
 
 
 func _build_chart_tab() -> Control:
@@ -625,6 +651,7 @@ func _resolve_node3d(path: NodePath, group_name: StringName) -> Node3D:
 
 
 func _update_panel() -> void:
+	_update_mission_rl_controls()
 	var ship := _get_active_ship()
 	var route_data := _get_route_telemetry(ship.global_position if ship != null else Vector3.ZERO)
 	var route_radar := _get_route_radar_data()
@@ -695,11 +722,31 @@ func _get_obstacle_data() -> Dictionary:
 
 
 func _on_mission_selected(index: int) -> void:
+	_cancel_mission_rl_request()
 	var preset := _preset_by_index(index)
 	if _overtaking_agreement_check != null:
 		_overtaking_agreement_check.set_pressed_no_signal(false)
 	_apply_preset_values_to_controls(preset)
 	_update_label("mission_footer", "任务参数已载入；点击“应用任务”后才写入场景、船位与航线。", COLOR_AMBER)
+	_update_mission_rl_controls()
+
+
+func _on_external_scenario_changed(_snapshot: Dictionary) -> void:
+	_cancel_mission_rl_request()
+	var current_key := String((_scenario_source.call("get_scenario_status") as Dictionary).get("key", ""))
+	for index in range(_mission_presets.size()):
+		var preset := _mission_presets[index] as Dictionary
+		if String(preset.get("scenario_key", "")) != current_key:
+			continue
+		_mission_option.select(index)
+		_active_mission_name = String(preset["name"])
+		_active_mission_code = String(preset["code"])
+		_active_objective = String(preset["objective"])
+		_apply_preset_values_to_controls(preset)
+		if _overtaking_agreement_check != null:
+			_overtaking_agreement_check.set_pressed_no_signal(false)
+		_update_panel()
+		return
 
 
 func _on_mission_toggle_changed(_enabled: bool) -> void:
@@ -724,14 +771,18 @@ func _on_overtaking_agreement_toggled(confirmed: bool) -> void:
 
 
 func _on_apply_mission_pressed() -> void:
+	_cancel_mission_rl_request()
 	var preset := _preset_by_index(_mission_option.selected)
 	_active_mission_name = String(preset["name"])
 	_active_mission_code = String(preset["code"])
 	_active_objective = String(preset["objective"])
 	_apply_preset_values_to_controls(preset)
-	if _sync_scenario_check != null and _sync_scenario_check.button_pressed:
+	var linked := _sync_scenario_check != null and _sync_scenario_check.button_pressed
+	if linked:
 		_apply_scenario_from_preset(preset)
-	if _teleport_check != null and _teleport_check.button_pressed:
+	# Linked scenarios already reset the vessel to their authoritative spawn.
+	# A legacy mission-preset spawn must not overwrite the validated scene state.
+	if not linked and _teleport_check != null and _teleport_check.button_pressed:
 		_place_active_ship(preset.get("spawn", Vector3.ZERO) as Vector3, float(preset.get("heading", 0.0)))
 	var ship := _get_active_ship()
 	var leg_start := ship.global_position if ship != null else preset.get("spawn", Vector3.ZERO) as Vector3
@@ -919,6 +970,127 @@ func _current_arrival_radius(route_radar: Dictionary) -> float:
 
 func _planned_speed_mps() -> float:
 	return maxf(planned_speed_knots / KNOTS_PER_MPS, 0.01)
+
+
+func _cancel_mission_rl_request() -> void:
+	# A pending click must never start a different task after selection/application.
+	_mission_rl_request_id += 1
+	_mission_rl_pending = false
+	_mission_rl_start_error = ""
+
+
+func _mission_rl_selection_applied() -> bool:
+	var preset := _preset_by_index(_mission_option.selected)
+	if _scenario_source == null:
+		return false
+	var current_key := String((_scenario_source.call("get_scenario_status") as Dictionary).get("key", ""))
+	return String(preset.get("scenario_key", "")) == current_key and String(preset.get("code", "")) == _active_mission_code
+
+
+func _set_mission_rl_presentation(state: String, title: String, message: String, color: Color, disabled: bool, running: bool = false) -> void:
+	_mission_rl_button.text = title
+	_mission_rl_button.disabled = disabled
+	_mission_rl_button.set_pressed_no_signal(running)
+	_mission_rl_button.tooltip_text = message
+	_mission_rl_label.text = message
+	_mission_rl_label.tooltip_text = message
+	if state == _mission_rl_display_state:
+		return
+	_mission_rl_display_state = state
+	_mission_rl_label.add_theme_color_override("font_color", color)
+	for theme_name in ["font_color", "font_hover_color", "font_pressed_color", "font_hover_pressed_color", "font_disabled_color", "font_focus_color"]:
+		_mission_rl_button.add_theme_color_override(theme_name, color)
+	for theme_name in ["normal", "hover", "pressed", "hover_pressed", "disabled", "focus"]:
+		var fill := Color(color.r * 0.12, color.g * 0.12, color.b * 0.12, 1.0)
+		if theme_name in ["pressed", "hover_pressed"]:
+			fill = Color(color.r * 0.28, color.g * 0.28, color.b * 0.28, 1.0)
+		elif theme_name in ["hover", "focus"]:
+			fill = Color(color.r * 0.20, color.g * 0.20, color.b * 0.20, 1.0)
+		var style := _panel_style(fill, color)
+		style.shadow_size = 0
+		_mission_rl_button.add_theme_stylebox_override(theme_name, style)
+
+
+func _update_mission_rl_controls() -> void:
+	if _mission_rl_button == null:
+		return
+	var controller := get_tree().get_first_node_in_group(&"mission_rl_controller")
+	if controller == null:
+		_set_mission_rl_presentation("unavailable", "暂不可用 · 强化学习模块未就绪", "未找到场景强化学习模块，请重新启动模拟器。", COLOR_AMBER, true)
+		return
+	var running := bool(controller.get("active"))
+	var applied := _mission_rl_selection_applied()
+	if running:
+		var total := (controller.get("route") as Array).size()
+		var progress := "已运行 %.1f 秒 · 航点 %d/%d" % [float(controller.get("elapsed")), int(controller.get("waypoint")) + 1, total]
+		var message := "%s：SAC 正在自主操船\n%s；按 N 收起面板观看。" % [_active_mission_name, progress]
+		if not applied:
+			message = "%s仍由 SAC 控制；所选新任务尚未应用。\n点击“应用任务”后切换；此按钮可停止当前策略。" % _active_mission_name
+		_set_mission_rl_presentation("running", "已接管 · 点击停止强化学习", message, COLOR_GREEN, false, true)
+		return
+	if _mission_rl_pending:
+		_set_mission_rl_presentation("starting", "正在启用强化学习…", "已收到操作，正在核验当前任务与策略，请稍候。", COLOR_AMBER, true)
+		return
+	if not applied:
+		_set_mission_rl_presentation("unapplied", "请先应用所选任务", "任务选择已改变。点击“应用任务”后，才会显示该任务的强化学习状态。", COLOR_AMBER, true)
+		return
+	var entry := controller.call("current_strategy") as Dictionary
+	if not bool(entry.get("live_switch_admitted", false)):
+		var reason := String(entry.get("status_zh", "本场景尚无通过验收的强化学习策略"))
+		if String(entry.get("status", "")) == "NOT_CONVERGED":
+			reason = "完整任务尚未收敛，策略未通过验收，暂不能接管。"
+		_set_mission_rl_presentation("unavailable", "暂不可用 · 未通过策略验收", "%s：%s\n请切换至已通过验收的任务。" % [_active_mission_name, reason], COLOR_AMBER, true)
+		return
+	var notice := String(controller.get("status"))
+	if not _mission_rl_start_error.is_empty():
+		notice = _mission_rl_start_error
+	if notice == "强化学习任务完成":
+		_set_mission_rl_presentation("completed", "任务已完成 · 请重新应用任务", "强化学习已完成本次航行。重新观看：勾选“重定位船舶”，再点击“应用任务”。", COLOR_GREEN, true)
+	elif notice.begins_with("任务失败"):
+		_set_mission_rl_presentation("failed", "运行已中止 · 请重新应用任务", notice + "。请重新应用任务后再启用。", COLOR_RED, true)
+	elif not _mission_rl_start_error.is_empty() or notice.begins_with("拒绝") or notice.begins_with("请先") or notice.begins_with("航线"):
+		_set_mission_rl_presentation("rejected", "启用失败 · 点击重试", notice, COLOR_RED, false)
+	elif notice.begins_with("已停止") or notice == "强化学习已停止":
+		_set_mission_rl_presentation("stopped", "已停止 · 启用场景强化学习", "已停止强化学习接管。如已驶离起点，请先勾选“重定位船舶”并重新应用任务。", COLOR_AMBER, false)
+	else:
+		_set_mission_rl_presentation("ready", "启用场景强化学习", "策略已通过验收。点击启用后，当前三维画面将显示 SAC 实时自主航行。", COLOR_ACCENT, false)
+
+
+func _on_mission_rl_pressed() -> void:
+	if _mission_rl_pending:
+		return
+	var controller := get_tree().get_first_node_in_group(&"mission_rl_controller")
+	if controller == null:
+		_update_mission_rl_controls()
+		return
+	if bool(controller.get("active")):
+		_cancel_mission_rl_request()
+		controller.set("auto_switch", false)
+		controller.call("stop", "已停止场景强化学习")
+	else:
+		var entry := controller.call("current_strategy") as Dictionary
+		if not _mission_rl_selection_applied() or not bool(entry.get("live_switch_admitted", false)):
+			_update_mission_rl_controls()
+			return
+		_mission_rl_start_error = ""
+		_mission_rl_pending = true
+		_mission_rl_request_id += 1
+		var request_id := _mission_rl_request_id
+		_update_mission_rl_controls()
+		# Allow a rendered acknowledgement before synchronous model verification.
+		await get_tree().create_timer(0.1).timeout
+		if request_id != _mission_rl_request_id:
+			return
+		_mission_rl_pending = false
+		if not is_instance_valid(controller):
+			_update_mission_rl_controls()
+			return
+		var started := bool(controller.call("start_current"))
+		if not started:
+			_mission_rl_start_error = String(controller.get("status"))
+			if _mission_rl_start_error.is_empty():
+				_mission_rl_start_error = "策略未能启用，请重新应用任务后重试。"
+	_update_panel()
 
 
 func _update_chart_labels(route_data: Dictionary, route_radar: Dictionary, obstacle_count: int) -> void:

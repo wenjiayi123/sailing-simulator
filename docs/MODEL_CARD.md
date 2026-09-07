@@ -2,6 +2,7 @@
 
 ## 策略库存
 
+- 场景强化学习 V1：新增独立 40 维直接动作 SAC 策略与逐场景准入目录，覆盖训练、完整任务验证、冻结测试和 Godot 实时神经推理。历史模型不覆盖；仅通过独立测试和原生任务验收者进入场景接管。最新结果见 [场景强化学习审计](../reports/mission_rl_coverage_audit_v1.json) 与 [整改说明](SCENE_RL_REMEDIATION_V1.md)。
 - V1：PPO、SAC、TD3、DQN、LOS-PID，固定公开海况场景。
 - V2：PPO、SAC、TD3、DQN、A2C、DDPG、TRPO、LOS-PID、LQR、MPC，长滩港历史 AIS + ENC + 海况的 45 维环境。
 - V3：不删除、不重训、不覆盖 V2；对每个 V2 策略新增一个 `base+safety_v3` 组合策略。Safety V3 是运行时模型预测投影层，不是新训练神经网络。

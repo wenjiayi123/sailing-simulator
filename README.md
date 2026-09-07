@@ -116,6 +116,21 @@ The module's 11-file public-evidence manifest includes runtime source, frozen we
 >
 > Current results come from numerical simulation and fixed held-out tasks; they are not sea-trial results, COLREGs certification, or commercial navigation authorization. Public environmental inputs, simulated dynamics, and real sensing/actuation data are labelled separately.
 
+## 场景强化学习接管 / Scene-policy takeover
+
+新增六类 40 维 SAC 场景策略，直接输出连续油门和舵角。六类各通过 20 次独立扰动测试，合计 120/120 次成功且零碰撞，并通过 Godot 原生闭环验收；原有 36/44 维取货策略和失败实验保留。
+
+| 任务场景 | 独立测试 | 原生接管 |
+|---|---:|---|
+| 开放水域、港口引航 | 各 20/20 | 可用 |
+| 自动靠泊、自动离泊 | 各 20/20 | 可用 |
+| 狭水道对遇、右舷来船交叉 | 各 20/20 | 可用 |
+| 狭水道追越 | 完整任务未收敛 | 不可用，显示原因 |
+
+按 **N → 选择任务 → 应用任务 → 启用场景强化学习**。按钮先显示“正在启用”，接管后保持绿色“已接管”，并显示运行时间和航点进度；按 N 收起面板即可观看实时自主航行。停止、拒绝启用、运行失败和完成均保留明确状态。已启用后，切换合格任务会自动匹配网络。港口引航的应用流程已修正为场景的正式起点。
+
+参见[场景训练与业务验收](reports/mission_rl_remediation_results_v1.md)、[操作与修复说明](docs/SCENE_RL_REMEDIATION_V1.md)、[原生按钮验收](reports/artifacts/mission_rl_ui_v1/README.md)。上述结果限于固定场景几何、单次训练种子和小范围扰动的仿真验收；追越、47 维候选及跨港泛化不列为已通过能力，实船控制权限保持关闭。
+
 ## 真实港口十算法覆盖基准 / Real-port ten-method coverage benchmark
 
 v2 在不改写 v1 已冻结模型和指标的前提下，新增 `ship_port_dataset_v3` 港口数据契约与 45 维港口环境。数据包由 NOAA 2025-01-01 至 2025-01-07 七个全国 AccessAIS 日档流式筛选构建，叠加 NOAA ENC Direct 派生岸线/固定危险/水深/航道/限制区/TSS，以及同期 Open-Meteo 风、浪、流、能见度和模式海平面。

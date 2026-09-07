@@ -1,0 +1,11 @@
+{
+  "phase": "sac_learning",
+  "timesteps": 62000,
+  "actor_critic_updates": 15249,
+  "this_run_timesteps": 62000,
+  "steps_per_second": 160.17689551088952,
+  "recent_episode_success_rate": 0.475,
+  "recent_mean_reward": -74.91650585314919,
+  "episode_count": 1610,
+  "test_accessed": false
+}

@@ -1,0 +1,2009 @@
+{
+  "episodes": [
+    {
+      "scenario_key": "narrow_channel_overtaking",
+      "split": "validation",
+      "success": false,
+      "gates": {
+        "all_waypoints": false,
+        "collision_free": true,
+        "positive_clearance": true,
+        "under_keel_clearance": true,
+        "bank_clearance": true,
+        "separation": false,
+        "agreement": true,
+        "passed_ahead": false,
+        "traffic_lane_valid": true
+      },
+      "reward": -591.7331891026524,
+      "steps": 97,
+      "duration_seconds": 48.5,
+      "path_length_m": 256.5105635176962,
+      "actuator_effort_proxy": 44.35253923088311,
+      "action_total_variation": 43.93345773220062,
+      "collisions": 0,
+      "minimum_clearance_m": 12.507327103743078,
+      "minimum_separation_m": 18.90732710374308,
+      "minimum_ukc_m": 4.2925,
+      "minimum_bank_m": 39.49097496622391,
+      "waypoints_completed": 3,
+      "total_waypoints": 5,
+      "final_distance_m": 19.299480801406187,
+      "final_speed_knots": 10.914966854176043,
+      "final_sway_mps": 0.13178660691022068,
+      "final_heading_degrees": 13.628347028275519,
+      "first_substantial_action": {
+        "time": 10.5,
+        "distance": 74.79087217051527,
+        "tcpa": 23.80743039682117,
+        "side": "PORT"
+      },
+      "curriculum_reset": false,
+      "action_source": "neural_policy_direct",
+      "controller_fallback_steps": 0,
+      "production_authority": false,
+      "traffic_max_cross_track_m": 0.5148195389594115,
+      "traffic_collisions": 0,
+      "traffic_action_source": "SAC_neural_network_direct",
+      "seed": 0
+    },
+    {
+      "scenario_key": "narrow_channel_overtaking",
+      "split": "validation",
+      "success": false,
+      "gates": {
+        "all_waypoints": false,
+        "collision_free": true,
+        "positive_clearance": true,
+        "under_keel_clearance": true,
+        "bank_clearance": true,
+        "separation": false,
+        "agreement": true,
+        "passed_ahead": false,
+        "traffic_lane_valid": true
+      },
+      "reward": -595.0045394280348,
+      "steps": 96,
+      "duration_seconds": 48.0,
+      "path_length_m": 253.04636172477692,
+      "actuator_effort_proxy": 43.707217279076595,
+      "action_total_variation": 49.675843834877014,
+      "collisions": 0,
+      "minimum_clearance_m": 13.132686869915771,
+      "minimum_separation_m": 19.53268686991577,
+      "minimum_ukc_m": 4.2925,
+      "minimum_bank_m": 39.080975413261385,
+      "waypoints_completed": 3,
+      "total_waypoints": 5,
+      "final_distance_m": 22.625775880727673,
+      "final_speed_knots": 10.957262423822941,
+      "final_sway_mps": 0.16015992492320785,
+      "final_heading_degrees": 13.345486013986708,
+      "first_substantial_action": {
+        "time": 10.5,
+        "distance": 74.67828686535266,
+        "tcpa": 23.701702861292176,
+        "side": "PORT"
+      },
+      "curriculum_reset": false,
+      "action_source": "neural_policy_direct",
+      "controller_fallback_steps": 0,
+      "production_authority": false,
+      "traffic_max_cross_track_m": 0.5650513313656518,
+      "traffic_collisions": 0,
+      "traffic_action_source": "SAC_neural_network_direct",
+      "seed": 10001
+    },
+    {
+      "scenario_key": "narrow_channel_overtaking",
+      "split": "validation",
+      "success": false,
+      "gates": {
+        "all_waypoints": false,
+        "collision_free": true,
+        "positive_clearance": true,
+        "under_keel_clearance": true,
+        "bank_clearance": true,
+        "separation": false,
+        "agreement": true,
+        "passed_ahead": false,
+        "traffic_lane_valid": true
+      },
+      "reward": -586.3710248252777,
+      "steps": 92,
+      "duration_seconds": 46.0,
+      "path_length_m": 251.04319871421498,
+      "actuator_effort_proxy": 44.352927072346205,
+      "action_total_variation": 42.14620053768158,
+      "collisions": 0,
+      "minimum_clearance_m": 13.563230159812596,
+      "minimum_separation_m": 19.963230159812596,
+      "minimum_ukc_m": 4.2925,
+      "minimum_bank_m": 39.2007942195093,
+      "waypoints_completed": 3,
+      "total_waypoints": 5,
+      "final_distance_m": 25.32858190750283,
+      "final_speed_knots": 10.282075109084964,
+      "final_sway_mps": 0.15252841206765796,
+      "final_heading_degrees": 15.78271408927329,
+      "first_substantial_action": {
+        "time": 10.0,
+        "distance": 76.47123488709414,
+        "tcpa": 25.32774777119107,
+        "side": "PORT"
+      },
+      "curriculum_reset": false,
+      "action_source": "neural_policy_direct",
+      "controller_fallback_steps": 0,
+      "production_authority": false,
+      "traffic_max_cross_track_m": 0.7086745349714327,
+      "traffic_collisions": 0,
+      "traffic_action_source": "SAC_neural_network_direct",
+      "seed": 10002
+    }
+  ],
+  "nominal_trajectory": [
+    {
+      "time": 0.0,
+      "x": 18.0,
+      "z": -178.0,
+      "heading_degrees": 0.0,
+      "speed": 0.0,
+      "sway_mps": 0.0,
+      "yaw_rate_radps": 0.0,
+      "throttle_command": 0.0,
+      "rudder_command": 0.0,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "x": 18.0,
+          "z": -72.0,
+          "heading_degrees": 0.0
+        }
+      ]
+    },
+    {
+      "time": 0.5,
+      "x": 18.019082054043988,
+      "z": -177.49342786492065,
+      "heading_degrees": 359.6756353659341,
+      "speed": 1.085663540464835,
+      "sway_mps": -0.011004069188120242,
+      "yaw_rate_radps": -0.03726111433259643,
+      "throttle_command": 0.9894506454467774,
+      "rudder_command": -0.6071127176284791,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "x": 18.01411626582069,
+          "z": -71.6676311600715,
+          "heading_degrees": 0.014646051653468323
+        }
+      ]
+    },
+    {
+      "time": 1.0,
+      "x": 18.034004856938633,
+      "z": -176.09006966720102,
+      "heading_degrees": 357.3427978073844,
+      "speed": 3.258968405474218,
+      "sway_mps": 0.09617546722045157,
+      "yaw_rate_radps": -0.12646656800568407,
+      "throttle_command": 0.9801704406738282,
+      "rudder_command": -0.45070811808109285,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "x": 18.006621662822386,
+          "z": -71.2118725943576,
+          "heading_degrees": 0.19467973425082336
+        }
+      ]
+    },
+    {
+      "time": 1.5,
+      "x": 17.963615908212123,
+      "z": -173.68524877986488,
+      "heading_degrees": 353.5540635793531,
+      "speed": 4.893070624174886,
+      "sway_mps": 0.1836959479958775,
+      "yaw_rate_radps": -0.11146578115775571,
+      "throttle_command": 0.9844932556152345,
+      "rudder_command": 0.32624458074569707,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "x": 17.983561557429873,
+          "z": -70.57663858344137,
+          "heading_degrees": 0.5181837892324941
+        }
+      ]
+    },
+    {
+      "time": 2.0,
+      "x": 17.712772255941218,
+      "z": -170.75857259756336,
+      "heading_degrees": 351.72448969044365,
+      "speed": 5.494020751375968,
+      "sway_mps": 0.08230215545050046,
+      "yaw_rate_radps": -0.010896382585749636,
+      "throttle_command": 0.9733484268188478,
+      "rudder_command": 0.3703065514564515,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "x": 17.95202702078498,
+          "z": -69.7476426017919,
+          "heading_degrees": 0.9096399829690006
+        }
+      ]
+    },
+    {
+      "time": 2.5,
+      "x": 17.348090686492114,
+      "z": -167.68155110082873,
+      "heading_degrees": 351.98280183966375,
+      "speed": 5.653440557045822,
+      "sway_mps": -0.027326838469312234,
+      "yaw_rate_radps": 0.00357669674657174,
+      "throttle_command": 0.9474631309509279,
+      "rudder_command": -0.26521545350551606,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "x": 17.918992218324963,
+          "z": -68.73305228886512,
+          "heading_degrees": 1.3129590126990534
+        }
+      ]
+    },
+    {
+      "time": 3.0,
+      "x": 16.95488807844382,
+      "z": -164.56576402182,
+      "heading_degrees": 351.83747006222427,
+      "speed": 5.694525198089012,
+      "sway_mps": -0.06113696181508613,
+      "yaw_rate_radps": -0.003668820388143027,
+      "throttle_command": 0.9432313919067384,
+      "rudder_command": 0.11129133701324467,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "x": 17.89042346752193,
+          "z": -67.5536200480309,
+          "heading_degrees": 1.6944524254762696
+        }
+      ]
+    },
+    {
+      "time": 3.5,
+      "x": 16.535121135400487,
+      "z": -161.4425551211242,
+      "heading_degrees": 351.96559356588665,
+      "speed": 5.7049227390650925,
+      "sway_mps": -0.11274956283959296,
+      "yaw_rate_radps": 0.01227987389774756,
+      "throttle_command": 0.9399618148803711,
+      "rudder_command": 0.054700881242752075,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "x": 17.870715269623208,
+          "z": -66.23660989080732,
+          "heading_degrees": 2.0399432524253096
+        }
+      ]
+    },
+    {
+      "time": 4.0,
+      "x": 16.109464126948534,
+      "z": -158.31715893023437,
+      "heading_degrees": 352.2489370734724,
+      "speed": 5.707872738179579,
+      "sway_mps": -0.12622460567164528,
+      "yaw_rate_radps": 0.0008670426938078074,
+      "throttle_command": 0.9395071983337403,
+      "rudder_command": -0.10416145920753483,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "x": 17.862532383819612,
+          "z": -64.8107353332276,
+          "heading_degrees": 2.3451349789426827
+        }
+      ]
+    },
+    {
+      "time": 4.5,
+      "x": 15.689117442428463,
+      "z": -155.1876598020716,
+      "heading_degrees": 352.203935233495,
+      "speed": 5.719320487982129,
+      "sway_mps": -0.1254898889386079,
+      "yaw_rate_radps": 0.0036097928420648507,
+      "throttle_command": 0.9533000946044924,
+      "rudder_command": 0.10924322605133052,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "x": 17.86685816532394,
+          "z": -63.30266961578872,
+          "heading_degrees": 2.611143576652276
+        }
+      ]
+    },
+    {
+      "time": 5.0,
+      "x": 15.267304829651598,
+      "z": -152.05158410061824,
+      "heading_degrees": 352.3777923302049,
+      "speed": 5.732822020821595,
+      "sway_mps": -0.1300481458961622,
+      "yaw_rate_radps": 0.003036246131165872,
+      "throttle_command": 0.9582947731018067,
+      "rudder_command": -0.060371425747871355,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "x": 17.883167663501006,
+          "z": -61.73576770057139,
+          "heading_degrees": 2.8444195548000404
+        }
+      ]
+    },
+    {
+      "time": 5.5,
+      "x": 14.852063885815387,
+      "z": -148.90789615726808,
+      "heading_degrees": 352.39538293014954,
+      "speed": 5.745436830292281,
+      "sway_mps": -0.1238486800711445,
+      "yaw_rate_radps": 0.001233824990744529,
+      "throttle_command": 0.9637809753417971,
+      "rudder_command": 0.039258611202239946,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "x": 17.90976335509563,
+          "z": -60.129734215094665,
+          "heading_degrees": 3.051698016971032
+        }
+      ]
+    },
+    {
+      "time": 6.0,
+      "x": 14.43694646500471,
+      "z": -145.75826367502248,
+      "heading_degrees": 352.55318055655204,
+      "speed": 5.75604835600052,
+      "sway_mps": -0.13920175957027278,
+      "yaw_rate_radps": 0.010741747907880857,
+      "throttle_command": 0.9687623977661134,
+      "rudder_command": 0.05091320872306826,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "x": 17.9442003963246,
+          "z": -58.49979415601893,
+          "heading_degrees": 3.2326441984825403
+        }
+      ]
+    },
+    {
+      "time": 6.5,
+      "x": 14.02514202997066,
+      "z": -142.60299034454738,
+      "heading_degrees": 352.9426646745797,
+      "speed": 5.764884153832514,
+      "sway_mps": -0.1610470389906884,
+      "yaw_rate_radps": 0.014375636703175721,
+      "throttle_command": 0.9729418754577638,
+      "rudder_command": 0.0034851670265197976,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "x": 17.983635277725433,
+          "z": -56.85693429215233,
+          "heading_degrees": 3.3813700661704518
+        }
+      ]
+    },
+    {
+      "time": 7.0,
+      "x": 13.622014978485756,
+      "z": -139.44186557492955,
+      "heading_degrees": 353.5218980969531,
+      "speed": 5.772158922040766,
+      "sway_mps": -0.20229229822057235,
+      "yaw_rate_radps": 0.030342939829442375,
+      "throttle_command": 0.9778488159179689,
+      "rudder_command": 0.12576348185539243,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "x": 18.025200193229033,
+          "z": -55.208638769017945,
+          "heading_degrees": 3.4897562985859385
+        }
+      ]
+    },
+    {
+      "time": 7.5,
+      "x": 13.234634210853303,
+      "z": -136.27490684499543,
+      "heading_degrees": 354.6095032143372,
+      "speed": 5.775165827497946,
+      "sway_mps": -0.25653548125761083,
+      "yaw_rate_radps": 0.041872441356123995,
+      "throttle_command": 0.9780510902404785,
+      "rudder_command": 0.03093823790550232,
+      "waypoint_index": 0,
+      "dynamic_obstacles": [
+        {
+          "x": 18.066391466274386,
+          "z": -53.559591340768804,
+          "heading_degrees": 3.550704603720862
+        }
+      ]
+    },
+    {
+      "time": 8.0,
+      "x": 12.882337901741318,
+      "z": -133.10158964570041,
+      "heading_degrees": 356.0144791690516,
+      "speed": 5.7729643418210435,
+      "sway_mps": -0.3173416092000066,
+      "yaw_rate_radps": 0.059945875003203156,
+      "throttle_command": 0.9795953750610352,
+      "rudder_command": 0.15845437645912175,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.105400454729477,
+          "z": -51.9122931604011,
+          "heading_degrees": 3.5604943425046853
+        }
+      ]
+    },
+    {
+      "time": 8.5,
+      "x": 12.59671977542708,
+      "z": -129.9823775305623,
+      "heading_degrees": 356.86832364929086,
+      "speed": 5.487597118449419,
+      "sway_mps": -0.23300537873859858,
+      "yaw_rate_radps": -0.02575830683073636,
+      "throttle_command": 0.5774281501770021,
+      "rudder_command": -0.627936664223671,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.14130281576099,
+          "z": -50.26768543320798,
+          "heading_degrees": 3.519786804020235
+        }
+      ]
+    },
+    {
+      "time": 9.0,
+      "x": 12.37345384538163,
+      "z": -126.99963612118324,
+      "heading_degrees": 354.6199400543515,
+      "speed": 5.304741343700012,
+      "sway_mps": -0.010433641911371258,
+      "yaw_rate_radps": -0.11775703559329694,
+      "throttle_command": 0.7312169075012208,
+      "rudder_command": -0.2356953263282776,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.174072127809136,
+          "z": -48.62555583001692,
+          "heading_degrees": 3.4344146812961918
+        }
+      ]
+    },
+    {
+      "time": 9.5,
+      "x": 12.1020001088592,
+      "z": -124.06565643971041,
+      "heading_degrees": 351.62004079117884,
+      "speed": 5.283217322828395,
+      "sway_mps": 0.06707370827882525,
+      "yaw_rate_radps": -0.0645378751535532,
+      "throttle_command": 0.7682687759399415,
+      "rudder_command": 0.5081283330917358,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.204430180284778,
+          "z": -46.984821296912884,
+          "heading_degrees": 3.3150724953054813
+        }
+      ]
+    },
+    {
+      "time": 10.0,
+      "x": 11.736818450632274,
+      "z": -121.13281091794623,
+      "heading_degrees": 350.3766369376896,
+      "speed": 5.340098869697314,
+      "sway_mps": 0.0577541174351289,
+      "yaw_rate_radps": -0.04759126933288107,
+      "throttle_command": 0.8212751388549805,
+      "rudder_command": -0.34912415444850925,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.23356523994081,
+          "z": -45.343898679935705,
+          "heading_degrees": 3.17550007478961
+        }
+      ]
+    },
+    {
+      "time": 10.5,
+      "x": 11.317266572007888,
+      "z": -118.16879971383764,
+      "heading_degrees": 348.55964201056565,
+      "speed": 5.433618220865123,
+      "sway_mps": 0.12291571941901011,
+      "yaw_rate_radps": -0.07483939534684543,
+      "throttle_command": 0.8760772705078127,
+      "rudder_command": -0.08895261585712433,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.262776383322056,
+          "z": -43.70112583122402,
+          "heading_degrees": 3.0300284552002745
+        }
+      ]
+    },
+    {
+      "time": 11.0,
+      "x": 10.818969936795195,
+      "z": -115.17252144569603,
+      "heading_degrees": 346.6037955790709,
+      "speed": 5.514029973635566,
+      "sway_mps": 0.13809396151844028,
+      "yaw_rate_radps": -0.052028400619363396,
+      "throttle_command": 0.8872130393981935,
+      "rudder_command": 0.14924423098564144,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.293114736040227,
+          "z": -42.055149581196495,
+          "heading_degrees": 2.891080528141112
+        }
+      ]
+    },
+    {
+      "time": 11.5,
+      "x": 10.237895328379045,
+      "z": -112.15898777294514,
+      "heading_degrees": 345.04164585339305,
+      "speed": 5.56969382205298,
+      "sway_mps": 0.17085120939442824,
+      "yaw_rate_radps": -0.07382627602600139,
+      "throttle_command": 0.9035409927368164,
+      "rudder_command": -0.3462622076272965,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.325086954288597,
+          "z": -40.405210461169425,
+          "heading_degrees": 2.767122694466178
+        }
+      ]
+    },
+    {
+      "time": 12.0,
+      "x": 9.588872346994084,
+      "z": -109.13773522408202,
+      "heading_degrees": 342.2528066405932,
+      "speed": 5.604623440093001,
+      "sway_mps": 0.2787402940056681,
+      "yaw_rate_radps": -0.11561007489299496,
+      "throttle_command": 0.9143878936767579,
+      "rudder_command": -0.17035506963729857,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.358474672664798,
+          "z": -38.75127706274103,
+          "heading_degrees": 2.6614615718365084
+        }
+      ]
+    },
+    {
+      "time": 12.5,
+      "x": 8.826709235186103,
+      "z": -106.12622204603437,
+      "heading_degrees": 338.8410344310499,
+      "speed": 5.646051239843125,
+      "sway_mps": 0.34376508797757205,
+      "yaw_rate_radps": -0.11552329876816832,
+      "throttle_command": 0.9419515609741212,
+      "rudder_command": -0.027509829401969887,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.392307740637836,
+          "z": -37.09401386823444,
+          "heading_degrees": 2.5721109622665157
+        }
+      ]
+    },
+    {
+      "time": 13.0,
+      "x": 7.917574569633337,
+      "z": -103.14006002023562,
+      "heading_degrees": 335.74589347160196,
+      "speed": 5.679923929474056,
+      "sway_mps": 0.34963989575640164,
+      "yaw_rate_radps": -0.10122875119367968,
+      "throttle_command": 0.942170524597168,
+      "rudder_command": -0.06504515111446385,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.42500582405107,
+          "z": -35.4345995148488,
+          "heading_degrees": 2.4927465415290095
+        }
+      ]
+    },
+    {
+      "time": 13.5,
+      "x": 6.864577666289764,
+      "z": -100.19663489831598,
+      "heading_degrees": 333.10256969577995,
+      "speed": 5.692286285884059,
+      "sway_mps": 0.3186242548804685,
+      "yaw_rate_radps": -0.08174956297829108,
+      "throttle_command": 0.9299107551574709,
+      "rudder_command": -0.0002420276403427568,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.45467001803363,
+          "z": -33.774440634475695,
+          "heading_degrees": 2.4145504108622773
+        }
+      ]
+    },
+    {
+      "time": 14.0,
+      "x": 5.683393399493088,
+      "z": -97.30891008105611,
+      "heading_degrees": 331.11633145696345,
+      "speed": 5.688716240681044,
+      "sway_mps": 0.2545980094079262,
+      "yaw_rate_radps": -0.05649195446737998,
+      "throttle_command": 0.9167797088623048,
+      "rudder_command": 0.029460811614990257,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.479467701922726,
+          "z": -32.11484451933774,
+          "heading_degrees": 2.328560900048262
+        }
+      ]
+    },
+    {
+      "time": 14.5,
+      "x": 4.400280441053881,
+      "z": -94.47832642589483,
+      "heading_degrees": 329.8056439342928,
+      "speed": 5.674640175338981,
+      "sway_mps": 0.17851733565376163,
+      "yaw_rate_radps": -0.036657258677762136,
+      "throttle_command": 0.9029023170471192,
+      "rudder_command": 0.008842474222183205,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.49802278091981,
+          "z": -30.456719499448997,
+          "heading_degrees": 2.228026441166134
+        }
+      ]
+    },
+    {
+      "time": 15.0,
+      "x": 3.0425140815865714,
+      "z": -91.69924884633483,
+      "heading_degrees": 329.0365746544599,
+      "speed": 5.654783006050265,
+      "sway_mps": 0.09497350783297794,
+      "yaw_rate_radps": -0.015878581357215267,
+      "throttle_command": 0.8907674789428711,
+      "rudder_command": 0.06632479429244997,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.509715564312405,
+          "z": -28.80036493016928,
+          "heading_degrees": 2.1102507760188507
+        }
+      ]
+    },
+    {
+      "time": 15.5,
+      "x": 1.6331363186746817,
+      "z": -88.96592938646276,
+      "heading_degrees": 328.9630088621419,
+      "speed": 5.620383370631492,
+      "sway_mps": -0.009168962564637817,
+      "yaw_rate_radps": 0.01167053860439922,
+      "throttle_command": 0.8633130073547365,
+      "rudder_command": 0.10650471448898313,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.51481953895941,
+          "z": -27.14539451644871,
+          "heading_degrees": 1.9775231088342573
+        }
+      ]
+    },
+    {
+      "time": 16.0,
+      "x": 0.19997952044607162,
+      "z": -86.27029802068225,
+      "heading_degrees": 329.67469562974014,
+      "speed": 5.575958558021628,
+      "sway_mps": -0.12535705295782518,
+      "yaw_rate_radps": 0.03670528393827277,
+      "throttle_command": 0.8427143096923829,
+      "rudder_command": 0.09720731973648067,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.514448197646402,
+          "z": -25.490809895915632,
+          "heading_degrees": 1.8369303264347951
+        }
+      ]
+    },
+    {
+      "time": 16.5,
+      "x": -1.2265922733825279,
+      "z": -83.59715954143701,
+      "heading_degrees": 331.11444257722457,
+      "speed": 5.524607031324946,
+      "sway_mps": -0.24292668306047616,
+      "yaw_rate_radps": 0.0653062403424615,
+      "throttle_command": 0.8210236549377442,
+      "rudder_command": 0.1794166743755341,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.510334307479507,
+          "z": -23.835210057915173,
+          "heading_degrees": 1.6990976920833165
+        }
+      ]
+    },
+    {
+      "time": 17.0,
+      "x": -2.6113738730324214,
+      "z": -80.9305773775655,
+      "heading_degrees": 333.30440229332777,
+      "speed": 5.456498823545172,
+      "sway_mps": -0.34044830342385257,
+      "yaw_rate_radps": 0.08428531988911576,
+      "throttle_command": 0.7823566436767578,
+      "rudder_command": 0.11504406332969663,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.50449850901614,
+          "z": -22.17709245385255,
+          "heading_degrees": 1.5761355296335706
+        }
+      ]
+    },
+    {
+      "time": 17.5,
+      "x": -3.9078446367893087,
+      "z": -78.26525734748252,
+      "heading_degrees": 335.5720046839159,
+      "speed": 5.330959544199068,
+      "sway_mps": -0.3629369709604558,
+      "yaw_rate_radps": 0.06744591696469247,
+      "throttle_command": 0.68132381439209,
+      "rudder_command": -0.06306848227977757,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.49887764974128,
+          "z": -20.515180818420728,
+          "heading_degrees": 1.4792294616033332
+        }
+      ]
+    },
+    {
+      "time": 18.0,
+      "x": -5.090447596463755,
+      "z": -75.61981786841325,
+      "heading_degrees": 337.18252274498656,
+      "speed": 5.180528656012844,
+      "sway_mps": -0.3341047273544148,
+      "yaw_rate_radps": 0.04817358302715865,
+      "throttle_command": 0.6238925933837892,
+      "rudder_command": 0.04724881649017332,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.494980904013534,
+          "z": -18.84870864569305,
+          "heading_degrees": 1.416373566802862
+        }
+      ]
+    },
+    {
+      "time": 18.5,
+      "x": -6.171497483780164,
+      "z": -73.01060720417223,
+      "heading_degrees": 338.34718356500144,
+      "speed": 5.024065714426243,
+      "sway_mps": -0.29274859473213644,
+      "yaw_rate_radps": 0.03216966568962299,
+      "throttle_command": 0.5654377937316896,
+      "rudder_command": -0.026628774404525712,
+      "waypoint_index": 1,
+      "dynamic_obstacles": [
+        {
+          "x": 18.493632075114355,
+          "z": -17.177597671065595,
+          "heading_degrees": 1.3907080962820841
+        }
+      ]
+    },
+    {
+      "time": 19.0,
+      "x": -7.16505106696671,
+      "z": -70.44843118456681,
+      "heading_degrees": 338.98068961206644,
+      "speed": 4.867755687178626,
+      "sway_mps": -0.2381191246108291,
+      "yaw_rate_radps": 0.01154663463581127,
+      "throttle_command": 0.5149438858032228,
+      "rudder_command": -0.06450360119342802,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.494843956196206,
+          "z": -15.50249441353502,
+          "heading_degrees": 1.399799771366975
+        }
+      ]
+    },
+    {
+      "time": 19.5,
+      "x": -8.127223774298791,
+      "z": -67.86915796962072,
+      "heading_degrees": 339.67643434724135,
+      "speed": 5.100685164281846,
+      "sway_mps": -0.26899976154121225,
+      "yaw_rate_radps": 0.054869917109655886,
+      "throttle_command": 0.9820245742797852,
+      "rudder_command": 0.5149496614933015,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.49785334951775,
+          "z": -13.824658382738875,
+          "heading_degrees": 1.4359947902913492
+        }
+      ]
+    },
+    {
+      "time": 20.0,
+      "x": -9.12321335065766,
+      "z": -65.12073181827692,
+      "heading_degrees": 342.0217571253817,
+      "speed": 5.435235962016884,
+      "sway_mps": -0.3745796418354558,
+      "yaw_rate_radps": 0.09646235430711753,
+      "throttle_command": 0.976921844482422,
+      "rudder_command": 0.056615096330642656,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.501319181727073,
+          "z": -12.14572593646198,
+          "heading_degrees": 1.4878552366411437
+        }
+      ]
+    },
+    {
+      "time": 20.5,
+      "x": -10.077752936546583,
+      "z": -62.213374199293284,
+      "heading_degrees": 344.57635514700314,
+      "speed": 5.624304061419794,
+      "sway_mps": -0.39923740022069465,
+      "yaw_rate_radps": 0.0734964534539834,
+      "throttle_command": 0.9768795013427735,
+      "rudder_command": -0.08854434192180638,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.503651656107984,
+          "z": -10.467398290345216,
+          "heading_degrees": 1.5424431165379073
+        }
+      ]
+    },
+    {
+      "time": 21.0,
+      "x": -10.94933367082127,
+      "z": -59.20700975981503,
+      "heading_degrees": 346.4509496819468,
+      "speed": 5.711436586546476,
+      "sway_mps": -0.39753721105921563,
+      "yaw_rate_radps": 0.0662647255373427,
+      "throttle_command": 0.9831933975219728,
+      "rudder_command": 0.16735961437225344,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.503403031053388,
+          "z": -8.791116865659417,
+          "heading_degrees": 1.5878765201903065
+        }
+      ]
+    },
+    {
+      "time": 21.5,
+      "x": -11.741842515375355,
+      "z": -56.144419386261355,
+      "heading_degrees": 348.327078469844,
+      "speed": 5.7533626437847625,
+      "sway_mps": -0.39800283070328396,
+      "yaw_rate_radps": 0.059655574692796136,
+      "throttle_command": 0.9852520942687989,
+      "rudder_command": -0.012971511483192422,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.499626918186994,
+          "z": -7.1177915106425145,
+          "heading_degrees": 1.6156162839292734
+        }
+      ]
+    },
+    {
+      "time": 22.0,
+      "x": -12.448559992015088,
+      "z": -53.04183946342027,
+      "heading_degrees": 349.84653069191364,
+      "speed": 5.776765830682979,
+      "sway_mps": -0.3781564448774046,
+      "yaw_rate_radps": 0.04826769070274463,
+      "throttle_command": 0.9867151260375978,
+      "rudder_command": 0.04532305598258968,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.49211783846131,
+          "z": -5.447636901022997,
+          "heading_degrees": 1.6220286106151496
+        }
+      ]
+    },
+    {
+      "time": 22.5,
+      "x": -13.0793228269644,
+      "z": -49.912297382663965,
+      "heading_degrees": 351.15650157712287,
+      "speed": 5.788978546937266,
+      "sway_mps": -0.36142201367509713,
+      "yaw_rate_radps": 0.043834264121840875,
+      "throttle_command": 0.988063430786133,
+      "rudder_command": 0.04422569870948789,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.481476673619152,
+          "z": -3.7801513807044884,
+          "heading_degrees": 1.6089274335509842
+        }
+      ]
+    },
+    {
+      "time": 23.0,
+      "x": -13.640572862794198,
+      "z": -46.763354795944046,
+      "heading_degrees": 352.32822097117827,
+      "speed": 5.795996364849886,
+      "sway_mps": -0.3405592900030661,
+      "yaw_rate_radps": 0.03701912805577055,
+      "throttle_command": 0.9887416839599611,
+      "rudder_command": 0.012033659219741866,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.46899618338459,
+          "z": -2.114243985287441,
+          "heading_degrees": 1.583003667312979
+        }
+      ]
+    },
+    {
+      "time": 23.5,
+      "x": -14.137346536356606,
+      "z": -43.59963313888308,
+      "heading_degrees": 353.2913603633151,
+      "speed": 5.800611578446934,
+      "sway_mps": -0.3149605698544187,
+      "yaw_rate_radps": 0.031009290359504033,
+      "throttle_command": 0.9889328002929688,
+      "rudder_command": 0.028190970420837402,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.456403431554964,
+          "z": -0.44848433638662777,
+          "heading_degrees": 1.5542155203166843
+        }
+      ]
+    },
+    {
+      "time": 24.0,
+      "x": -14.576774479875034,
+      "z": -40.42475162323847,
+      "heading_degrees": 354.0531764438993,
+      "speed": 5.804329311184396,
+      "sway_mps": -0.2807346886447763,
+      "yaw_rate_radps": 0.02065435340134328,
+      "throttle_command": 0.9893932342529298,
+      "rudder_command": -0.02008132040500643,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.445520268306613,
+          "z": 1.2185770139085632,
+          "heading_degrees": 1.5334959631593157
+        }
+      ]
+    },
+    {
+      "time": 24.5,
+      "x": -14.967547105579424,
+      "z": -37.24135911970009,
+      "heading_degrees": 354.5453986270909,
+      "speed": 5.807921993430038,
+      "sway_mps": -0.24683462899789113,
+      "yaw_rate_radps": 0.016087837555277637,
+      "throttle_command": 0.9902797698974611,
+      "rudder_command": 0.03592368960380554,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.437909666765062,
+          "z": 2.8880864343090518,
+          "heading_degrees": 1.5302876008880357
+        }
+      ]
+    },
+    {
+      "time": 25.0,
+      "x": -15.321900709696116,
+      "z": -34.05198522106248,
+      "heading_degrees": 355.0340615609371,
+      "speed": 5.8102339285338545,
+      "sway_mps": -0.22826460732826068,
+      "yaw_rate_radps": 0.018275388191792127,
+      "throttle_command": 0.9908533096313478,
+      "rudder_command": 0.02904726862907414,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.4345710938505,
+          "z": 4.56063245714998,
+          "heading_degrees": 1.550406486975776
+        }
+      ]
+    },
+    {
+      "time": 25.5,
+      "x": -15.644387758496928,
+      "z": -30.858298591548714,
+      "heading_degrees": 355.68570964857844,
+      "speed": 5.809327353614287,
+      "sway_mps": -0.23283557895760779,
+      "yaw_rate_radps": 0.02919702324840175,
+      "throttle_command": 0.9913876533508302,
+      "rudder_command": 0.08421337604522705,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.435738449761438,
+          "z": 6.23611237462611,
+          "heading_degrees": 1.5946486528984851
+        }
+      ]
+    },
+    {
+      "time": 26.0,
+      "x": -15.93183790728081,
+      "z": -27.661039185258314,
+      "heading_degrees": 356.60429097113985,
+      "speed": 5.808525608347867,
+      "sway_mps": -0.2431480082856173,
+      "yaw_rate_radps": 0.03163420807502258,
+      "throttle_command": 0.9905725479125979,
+      "rudder_command": 0.00039145946502683326,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.44082129549587,
+          "z": 7.913747299373578,
+          "heading_degrees": 1.6584893577779338
+        }
+      ]
+    },
+    {
+      "time": 26.5,
+      "x": -16.176315288065286,
+      "z": -24.45960644804859,
+      "heading_degrees": 357.51034945331367,
+      "speed": 5.807415885369173,
+      "sway_mps": -0.2508791738429866,
+      "yaw_rate_radps": 0.0334148169222913,
+      "throttle_command": 0.9899509429931642,
+      "rudder_command": 0.060824370384216286,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.448510741393477,
+          "z": 9.592241042676317,
+          "heading_degrees": 1.7329505421285927
+        }
+      ]
+    },
+    {
+      "time": 27.0,
+      "x": -16.37856016117996,
+      "z": -21.256009878565198,
+      "heading_degrees": 358.519707832477,
+      "speed": 5.801324574670186,
+      "sway_mps": -0.26525575885621666,
+      "yaw_rate_radps": 0.03622261143308121,
+      "throttle_command": 0.984467124938965,
+      "rudder_command": 0.03606401681900029,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.45704076399864,
+          "z": 11.270048442033515,
+          "heading_degrees": 1.8064262004767937
+        }
+      ]
+    },
+    {
+      "time": 27.5,
+      "x": -16.53525720575516,
+      "z": -18.053351407715223,
+      "heading_degrees": 359.56583417826675,
+      "speed": 5.789749773994925,
+      "sway_mps": -0.278233807042953,
+      "yaw_rate_radps": 0.03672871008675698,
+      "throttle_command": 0.9766703605651857,
+      "rudder_command": 0.04050342440605159,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.464557300045527,
+          "z": 12.945696943442385,
+          "heading_degrees": 1.8670628911231097
+        }
+      ]
+    },
+    {
+      "time": 28.0,
+      "x": -16.645030241803816,
+      "z": -14.855375730184074,
+      "heading_degrees": 0.6250087373564244,
+      "speed": 5.771040107855526,
+      "sway_mps": -0.29043749249990475,
+      "yaw_rate_radps": 0.037270367530661076,
+      "throttle_command": 0.9637302398681641,
+      "rudder_command": 0.04373443722724912,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.46951345809653,
+          "z": 14.618095073185982,
+          "heading_degrees": 1.9051882138110745
+        }
+      ]
+    },
+    {
+      "time": 28.5,
+      "x": -16.705546929596167,
+      "z": -11.665323693083955,
+      "heading_degrees": 1.5708011207820614,
+      "speed": 5.751369495771798,
+      "sway_mps": -0.28324376699773307,
+      "yaw_rate_radps": 0.025785119530055703,
+      "throttle_command": 0.9552968978881836,
+      "rudder_command": -0.03385891914367678,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.470995841628024,
+          "z": 16.286764275092573,
+          "heading_degrees": 1.9152879637111773
+        }
+      ]
+    },
+    {
+      "time": 29.0,
+      "x": -16.721662822353004,
+      "z": -8.482529339412517,
+      "heading_degrees": 2.322084341200309,
+      "speed": 5.738768202903519,
+      "sway_mps": -0.2866522950373561,
+      "yaw_rate_radps": 0.03310145167527159,
+      "throttle_command": 0.9563530921936035,
+      "rudder_command": 0.1348000586032867,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.468903876217887,
+          "z": 17.951945599644887,
+          "heading_degrees": 1.897143979582478
+        }
+      ]
+    },
+    {
+      "time": 29.5,
+      "x": -16.700853080427247,
+      "z": -5.30694904048277,
+      "heading_degrees": 3.526050950355751,
+      "speed": 5.716843688684867,
+      "sway_mps": -0.318644502167845,
+      "yaw_rate_radps": 0.049233337747642714,
+      "throttle_command": 0.9369601249694824,
+      "rudder_command": 0.07572942972183228,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.463945925096308,
+          "z": 19.614557397658956,
+          "heading_degrees": 1.8559296571582629
+        }
+      ]
+    },
+    {
+      "time": 30.0,
+      "x": -16.624323049963365,
+      "z": -2.1447821402503537,
+      "heading_degrees": 4.859324527781133,
+      "speed": 5.68634483522952,
+      "sway_mps": -0.31782481341676616,
+      "yaw_rate_radps": 0.03823963221736352,
+      "throttle_command": 0.916363048553467,
+      "rudder_command": -0.05548101067543032,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.45746425137256,
+          "z": 21.27601062961156,
+          "heading_degrees": 1.8011547367755052
+        }
+      ]
+    },
+    {
+      "time": 30.5,
+      "x": -16.481559527736717,
+      "z": 0.9998705206856499,
+      "heading_degrees": 5.494344717276708,
+      "speed": 5.6592232408628655,
+      "sway_mps": -0.2557061260529268,
+      "yaw_rate_radps": 0.003611901485762134,
+      "throttle_command": 0.904463577270508,
+      "rudder_command": -0.11310218572616582,
+      "waypoint_index": 2,
+      "dynamic_obstacles": [
+        {
+          "x": 18.451137001491603,
+          "z": 22.93791915449616,
+          "heading_degrees": 1.7446800476756703
+        }
+      ]
+    },
+    {
+      "time": 31.0,
+      "x": -16.293841585145696,
+      "z": 4.129554662028932,
+      "heading_degrees": 5.133969796025588,
+      "speed": 5.6421741067124245,
+      "sway_mps": -0.16447140312533923,
+      "yaw_rate_radps": -0.025806116440478238,
+      "throttle_command": 0.9014873504638673,
+      "rudder_command": -0.056962388753891036,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.446623315271435,
+          "z": 24.601766302831674,
+          "heading_degrees": 1.6982690476459377
+        }
+      ]
+    },
+    {
+      "time": 31.5,
+      "x": -16.11832433073353,
+      "z": 7.1128277949697205,
+      "heading_degrees": 4.884040710433655,
+      "speed": 4.948393502121339,
+      "sway_mps": -0.180006803652273,
+      "yaw_rate_radps": 0.023350695887550878,
+      "throttle_command": -0.05783734321594236,
+      "rudder_command": 0.6263977527618408,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.445219413389715,
+          "z": 26.26859937723005,
+          "heading_degrees": 1.6711865067266418
+        }
+      ]
+    },
+    {
+      "time": 32.0,
+      "x": -15.9848088833797,
+      "z": 9.67799211712015,
+      "heading_degrees": 6.601415678092902,
+      "speed": 4.159220174839984,
+      "sway_mps": -0.2735022117548313,
+      "yaw_rate_radps": 0.09351707165335164,
+      "throttle_command": 0.12421598434448244,
+      "rudder_command": 0.615966272354126,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.447586404728884,
+          "z": 27.938817406251033,
+          "heading_degrees": 1.6683292933283973
+        }
+      ]
+    },
+    {
+      "time": 32.5,
+      "x": -15.840515085458437,
+      "z": 11.916757589230306,
+      "heading_degrees": 9.97500915219789,
+      "speed": 3.6012588792471374,
+      "sway_mps": -0.35526386605305627,
+      "yaw_rate_radps": 0.13730757140887503,
+      "throttle_command": 0.11912584304809581,
+      "rudder_command": 0.5914769649505615,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.453599489152673,
+          "z": 29.612096331171916,
+          "heading_degrees": 1.6892517255621144
+        }
+      ]
+    },
+    {
+      "time": 33.0,
+      "x": -15.653114680593308,
+      "z": 13.874499725618236,
+      "heading_degrees": 14.066984699999995,
+      "speed": 2.9876740114863356,
+      "sway_mps": -0.37849548217221246,
+      "yaw_rate_radps": 0.1399790988145497,
+      "throttle_command": -0.10574898719787595,
+      "rudder_command": 0.47485807538032543,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.46235234305663,
+          "z": 31.287465676313598,
+          "heading_degrees": 1.728278106014474
+        }
+      ]
+    },
+    {
+      "time": 33.5,
+      "x": -15.442337418203467,
+      "z": 15.490113725756574,
+      "heading_degrees": 17.373327892637665,
+      "speed": 2.2782819696914034,
+      "sway_mps": -0.3343514331878206,
+      "yaw_rate_radps": 0.09032945330992759,
+      "throttle_command": -0.5034079074859619,
+      "rudder_command": 0.20454570651054382,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.472326589101847,
+          "z": 32.96351891134398,
+          "heading_degrees": 1.7757564707497473
+        }
+      ]
+    },
+    {
+      "time": 34.0,
+      "x": -15.244187442782852,
+      "z": 16.788155783005532,
+      "heading_degrees": 19.445865727789474,
+      "speed": 1.752504415566145,
+      "sway_mps": -0.2749487565526767,
+      "yaw_rate_radps": 0.057612366695006884,
+      "throttle_command": -0.08806076049804679,
+      "rudder_command": 0.5860179960727693,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.48170230462596,
+          "z": 34.63871273614619,
+          "heading_degrees": 1.8201612680980368
+        }
+      ]
+    },
+    {
+      "time": 34.5,
+      "x": -15.035447268713298,
+      "z": 17.96433637344206,
+      "heading_degrees": 21.397549358048877,
+      "speed": 2.0465596482146005,
+      "sway_mps": -0.2775492477642377,
+      "yaw_rate_radps": 0.09976886190936567,
+      "throttle_command": 0.9505826950073243,
+      "rudder_command": 0.5879044711589813,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.488746834300326,
+          "z": 36.311693240156984,
+          "heading_degrees": 1.8505667597652842
+        }
+      ]
+    },
+    {
+      "time": 35.0,
+      "x": -14.707824249239312,
+      "z": 19.35767984706058,
+      "heading_degrees": 24.77669253531817,
+      "speed": 2.144321072580328,
+      "sway_mps": -0.30403573524766575,
+      "yaw_rate_radps": 0.11448431001708936,
+      "throttle_command": -0.4475337982177734,
+      "rudder_command": 0.43028151988983165,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.49219143474422,
+          "z": 37.981582105922904,
+          "heading_degrees": 1.858969858341441
+        }
+      ]
+    },
+    {
+      "time": 35.5,
+      "x": -14.395309998361618,
+      "z": 20.574025491960594,
+      "heading_degrees": 27.392888139531536,
+      "speed": 1.643137596356905,
+      "sway_mps": -0.2718332594460632,
+      "yaw_rate_radps": 0.07129492589527722,
+      "throttle_command": -0.4223405838012695,
+      "rudder_command": 0.01467934250831604,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.491503614113526,
+          "z": 39.64816408719986,
+          "heading_degrees": 1.841995397660492
+        }
+      ]
+    },
+    {
+      "time": 36.0,
+      "x": -14.113057700690465,
+      "z": 21.623985373206814,
+      "heading_degrees": 29.20131057563636,
+      "speed": 1.7191279788587912,
+      "sway_mps": -0.2504683725512124,
+      "yaw_rate_radps": 0.06910131971806853,
+      "throttle_command": 0.9092254638671876,
+      "rudder_command": 0.41815495491027843,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.48699176022046,
+          "z": 41.311936303533024,
+          "heading_degrees": 1.8016676586889038
+        }
+      ]
+    },
+    {
+      "time": 36.5,
+      "x": -13.721830656136198,
+      "z": 22.8029441802501,
+      "heading_degrees": 31.28982507485297,
+      "speed": 1.78971819359943,
+      "sway_mps": -0.24219338788094924,
+      "yaw_rate_radps": 0.06552982984011098,
+      "throttle_command": -0.39048628807067864,
+      "rudder_command": 0.07355253696441655,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.479725701767915,
+          "z": 42.97400747161892,
+          "heading_degrees": 1.7450245201823826
+        }
+      ]
+    },
+    {
+      "time": 37.0,
+      "x": -13.370428350112032,
+      "z": 23.841832037080962,
+      "heading_degrees": 32.78474112494485,
+      "speed": 1.3928160564634875,
+      "sway_mps": -0.21266238396041448,
+      "yaw_rate_radps": 0.0405478112727581,
+      "throttle_command": -0.348005199432373,
+      "rudder_command": -0.25992830991745,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.471301898471136,
+          "z": 44.63586656211523,
+          "heading_degrees": 1.682643574491582
+        }
+      ]
+    },
+    {
+      "time": 37.5,
+      "x": -13.050669208591486,
+      "z": 24.77513082311755,
+      "heading_degrees": 33.68333898670533,
+      "speed": 1.6263568903290633,
+      "sway_mps": -0.18811978449382447,
+      "yaw_rate_radps": 0.027086084246210326,
+      "throttle_command": 0.9328977584838868,
+      "rudder_command": 0.30863696336746216,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.463511559153567,
+          "z": 46.299069197730866,
+          "heading_degrees": 1.6264324811344362
+        }
+      ]
+    },
+    {
+      "time": 38.0,
+      "x": -12.429769398419166,
+      "z": 26.128449689229285,
+      "heading_degrees": 34.74670470979238,
+      "speed": 3.2048333575670145,
+      "sway_mps": -0.2077916011097135,
+      "yaw_rate_radps": 0.04993057890189474,
+      "throttle_command": 0.8826072692871095,
+      "rudder_command": 0.16928700208663938,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.457980345181486,
+          "z": 47.96490898264042,
+          "heading_degrees": 1.5871553526694235
+        }
+      ]
+    },
+    {
+      "time": 38.5,
+      "x": -11.455662268027275,
+      "z": 27.943630878840427,
+      "heading_degrees": 36.01634780569333,
+      "speed": 3.505591213144416,
+      "sway_mps": -0.19478244255218066,
+      "yaw_rate_radps": 0.02833240894119288,
+      "throttle_command": -0.3544441223144531,
+      "rudder_command": -0.4495145231485367,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.455845241972796,
+          "z": 49.634144550462075,
+          "heading_degrees": 1.5722050971674675
+        }
+      ]
+    },
+    {
+      "time": 39.0,
+      "x": -10.569150083590822,
+      "z": 29.57160245595867,
+      "heading_degrees": 36.2983419607451,
+      "speed": 2.808580704240412,
+      "sway_mps": -0.1548170525270736,
+      "yaw_rate_radps": -0.004854796431057692,
+      "throttle_command": -0.12950215339660642,
+      "rudder_command": -0.42050777971744535,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.45752503988767,
+          "z": 51.30684034680414,
+          "heading_degrees": 1.5840681178400071
+        }
+      ]
+    },
+    {
+      "time": 39.5,
+      "x": -9.839794839771884,
+      "z": 30.954742226983477,
+      "heading_degrees": 35.781086070238935,
+      "speed": 2.4202619217709507,
+      "sway_mps": -0.110644099506121,
+      "yaw_rate_radps": -0.03187353965406819,
+      "throttle_command": 0.17622900009155285,
+      "rudder_command": -0.17178670167922977,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.462628172276286,
+          "z": 52.982353718107134,
+          "heading_degrees": 1.6197663311298964
+        }
+      ]
+    },
+    {
+      "time": 40.0,
+      "x": -9.145326419460226,
+      "z": 32.28456250287328,
+      "heading_degrees": 34.68030392931135,
+      "speed": 2.5280186120287604,
+      "sway_mps": -0.0713089947175704,
+      "yaw_rate_radps": -0.040075625285757414,
+      "throttle_command": 0.30621166229248054,
+      "rudder_command": 0.07098658680915837,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.470023082210425,
+          "z": 54.65946943383353,
+          "heading_degrees": 1.6714523146038436
+        }
+      ]
+    },
+    {
+      "time": 40.5,
+      "x": -8.389379224400125,
+      "z": 33.72287808013175,
+      "heading_degrees": 33.717336907963464,
+      "speed": 2.849231490554846,
+      "sway_mps": -0.05877121710424379,
+      "yaw_rate_radps": -0.024247018899491504,
+      "throttle_command": 0.2987842559814454,
+      "rudder_command": 0.14805466532707212,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.478068741636072,
+          "z": 56.3366523566362,
+          "heading_degrees": 1.7280735007202659
+        }
+      ]
+    },
+    {
+      "time": 41.0,
+      "x": -7.576619758247773,
+      "z": 35.27519995091295,
+      "heading_degrees": 33.194809518093024,
+      "speed": 2.9794557041451126,
+      "sway_mps": -0.06037801162007384,
+      "yaw_rate_radps": -0.015892204914672872,
+      "throttle_command": 0.14149618148803722,
+      "rudder_command": -0.07817399799823765,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.48496560777737,
+          "z": 58.01236542111353,
+          "heading_degrees": 1.7776981189753989
+        }
+      ]
+    },
+    {
+      "time": 41.5,
+      "x": -6.769100178080026,
+      "z": 36.84253930766696,
+      "heading_degrees": 32.68718644553442,
+      "speed": 2.940080285990561,
+      "sway_mps": -0.05925279284499881,
+      "yaw_rate_radps": -0.02066510282091605,
+      "throttle_command": 0.16293296813964853,
+      "rudder_command": -0.0993357837200165,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.489150916640536,
+          "z": 59.68538758141315,
+          "heading_degrees": 1.8099994455622832
+        }
+      ]
+    },
+    {
+      "time": 42.0,
+      "x": -5.981050255600681,
+      "z": 38.405895999372206,
+      "heading_degrees": 32.03646437641347,
+      "speed": 2.95110553933312,
+      "sway_mps": -0.0581233639658846,
+      "yaw_rate_radps": -0.023552953222729534,
+      "throttle_command": 0.23326282501220708,
+      "rudder_command": -0.00775995552539821,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.489643542058328,
+          "z": 61.35506672987207,
+          "heading_degrees": 1.818384025875818
+        }
+      ]
+    },
+    {
+      "time": 42.5,
+      "x": -5.188716129365324,
+      "z": 40.00939195663799,
+      "heading_degrees": 31.376752018253363,
+      "speed": 3.0826773582533598,
+      "sway_mps": -0.06018454881189749,
+      "yaw_rate_radps": -0.02217003973953496,
+      "throttle_command": 0.29301614761352546,
+      "rudder_command": -0.006651207804679871,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.486254514379198,
+          "z": 63.02145537188499,
+          "heading_degrees": 1.801343531375858
+        }
+      ]
+    },
+    {
+      "time": 43.0,
+      "x": -4.366310473674569,
+      "z": 41.69695758857825,
+      "heading_degrees": 30.725517856500463,
+      "speed": 3.2869889113246837,
+      "sway_mps": -0.05874029147074444,
+      "yaw_rate_radps": -0.024475084202949193,
+      "throttle_command": 0.32593526840209963,
+      "rudder_command": -0.07353483140468597,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.479617591849518,
+          "z": 64.68529984511454,
+          "heading_degrees": 1.7627836249190458
+        }
+      ]
+    },
+    {
+      "time": 43.5,
+      "x": -3.5006513050006527,
+      "z": 43.491363712636414,
+      "heading_degrees": 29.93245371346195,
+      "speed": 3.5394809091441317,
+      "sway_mps": -0.04711533706232391,
+      "yaw_rate_radps": -0.0312879663627731,
+      "throttle_command": 0.38928575515747077,
+      "rudder_command": -0.08125643134117122,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.471043036632313,
+          "z": 66.3478835230556,
+          "heading_degrees": 1.711192273723315
+        }
+      ]
+    },
+    {
+      "time": 44.0,
+      "x": -2.5821088667582925,
+      "z": 45.416686179357164,
+      "heading_degrees": 28.914367987222583,
+      "speed": 3.8458320070730654,
+      "sway_mps": -0.023768255190134552,
+      "yaw_rate_radps": -0.04000731182711123,
+      "throttle_command": 0.4720060348510743,
+      "rudder_command": -0.09187732636928558,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.462237304935545,
+          "z": 68.01075558824837,
+          "heading_degrees": 1.657821297892475
+        }
+      ]
+    },
+    {
+      "time": 44.5,
+      "x": -1.608545079405053,
+      "z": 47.491956185019134,
+      "heading_degrees": 27.652111385105705,
+      "speed": 4.160288129274319,
+      "sway_mps": 0.009490117427869406,
+      "yaw_rate_radps": -0.047677785942809005,
+      "throttle_command": 0.5313462257385254,
+      "rudder_command": -0.07940540611743929,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.45495289838704,
+          "z": 69.67540266767632,
+          "heading_degrees": 1.6143065440853945
+        }
+      ]
+    },
+    {
+      "time": 45.0,
+      "x": -0.5946514122546038,
+      "z": 49.71185658499092,
+      "heading_degrees": 26.189472247750633,
+      "speed": 4.428331852552095,
+      "sway_mps": 0.04915312004590592,
+      "yaw_rate_radps": -0.05446344947068274,
+      "throttle_command": 0.5764577865600587,
+      "rudder_command": -0.09151848852634425,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.450636712678012,
+          "z": 71.34293391790403,
+          "heading_degrees": 1.590228113917347
+        }
+      ]
+    },
+    {
+      "time": 45.5,
+      "x": 0.44025871594335814,
+      "z": 52.06368386204941,
+      "heading_degrees": 24.500217130438422,
+      "speed": 4.678407575113048,
+      "sway_mps": 0.09640553606118588,
+      "yaw_rate_radps": -0.0641775564564221,
+      "throttle_command": 0.6650617599487306,
+      "rudder_command": -0.12002889513969417,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.450139147295427,
+          "z": 73.01384714612676,
+          "heading_degrees": 1.5911083404133262
+        }
+      ]
+    },
+    {
+      "time": 46.0,
+      "x": 1.4827251421257361,
+      "z": 54.55271411539954,
+      "heading_degrees": 22.49281683105764,
+      "speed": 4.9339338938025845,
+      "sway_mps": 0.1514028548161921,
+      "yaw_rate_radps": -0.0760348457125891,
+      "throttle_command": 0.7592407226562502,
+      "rudder_command": -0.12205193936824799,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.453535827546734,
+          "z": 74.68792512996396,
+          "heading_degrees": 1.6172339927427375
+        }
+      ]
+    },
+    {
+      "time": 46.5,
+      "x": 2.5128299242160126,
+      "z": 57.187705202198146,
+      "heading_degrees": 20.26475021763895,
+      "speed": 5.186513909151787,
+      "sway_mps": 0.19316102927884785,
+      "yaw_rate_radps": -0.07660048940699575,
+      "throttle_command": 0.8547149658203127,
+      "rudder_command": -0.033859655261039734,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.46009918723444,
+          "z": 76.36428260836998,
+          "heading_degrees": 1.6635459185579848
+        }
+      ]
+    },
+    {
+      "time": 47.0,
+      "x": 3.5039487826390983,
+      "z": 59.96321008083879,
+      "heading_degrees": 18.207464525991675,
+      "speed": 5.386464183501982,
+      "sway_mps": 0.20261839626699807,
+      "yaw_rate_radps": -0.0660536702806894,
+      "throttle_command": 0.8979160308837891,
+      "rudder_command": -0.01534948050975804,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.468435570128793,
+          "z": 78.04155252108733,
+          "heading_degrees": 1.7207035016009693
+        }
+      ]
+    },
+    {
+      "time": 47.5,
+      "x": 4.435133360570324,
+      "z": 62.844003825268615,
+      "heading_degrees": 16.42513677411412,
+      "speed": 5.49958159149755,
+      "sway_mps": 0.195603531868244,
+      "yaw_rate_radps": -0.060143852250995555,
+      "throttle_command": 0.897675895690918,
+      "rudder_command": -0.05811910033226009,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.476771408956186,
+          "z": 79.71817169682792,
+          "heading_degrees": 1.7770640152638062
+        }
+      ]
+    },
+    {
+      "time": 48.0,
+      "x": 5.294885302695998,
+      "z": 65.79414091337622,
+      "heading_degrees": 14.83654533365777,
+      "speed": 5.572142999991673,
+      "sway_mps": 0.17097514922394932,
+      "yaw_rate_radps": -0.04825198553344052,
+      "throttle_command": 0.9251731872558594,
+      "rudder_command": 0.027727448940277122,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.4833331430453,
+          "z": 81.39270662775039,
+          "heading_degrees": 1.821128223152013
+        }
+      ]
+    },
+    {
+      "time": 48.5,
+      "x": 6.080580223566891,
+      "z": 68.79620384075889,
+      "heading_degrees": 13.628347028275519,
+      "speed": 5.61513920832974,
+      "sway_mps": 0.13178660691022068,
+      "yaw_rate_radps": -0.0380531719935694,
+      "throttle_command": 0.9239480972290041,
+      "rudder_command": -0.023275876045227073,
+      "waypoint_index": 3,
+      "dynamic_obstacles": [
+        {
+          "x": 18.48673430553123,
+          "z": 83.06415250559846,
+          "heading_degrees": 1.8439345850145041
+        }
+      ]
+    }
+  ]
+}

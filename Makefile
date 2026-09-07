@@ -159,6 +159,7 @@ full-visual-release-verify:
 
 release-check:
 	python3 tools/public_privacy_scan.py
+	$(PYTHON) tools/verify_mission_rl_release.py
 	$(PYTHON) tools/release_check.py --strict-assets
 
 godot-check:

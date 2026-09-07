@@ -1,0 +1,21 @@
+{
+  "status": "INTERRUPTED_ALTERNATIVE_PASSED",
+  "admitted": false,
+  "reason": "Independent single-actor harbor_business_05 passed all 20 held-out tests. Stop this less successful terminal experiment and prioritize native qualification; all checkpoints and failed validations retained.",
+  "last_checkpoint": "terminal_60000.zip",
+  "model_sha256": "b65d41f9ed0a832a1adedd1392abdd630a1176a879be16ed09713e1104a002ad",
+  "checkpoint_timesteps": 60000,
+  "last_progress": {
+    "phase": "sac_learning",
+    "timesteps": 62000,
+    "actor_critic_updates": 15249,
+    "this_run_timesteps": 62000,
+    "steps_per_second": 160.17689551088952,
+    "recent_episode_success_rate": 0.475,
+    "recent_mean_reward": -74.91650585314919,
+    "episode_count": 1610,
+    "test_accessed": false
+  },
+  "test_accessed": false,
+  "production_authority": false
+}

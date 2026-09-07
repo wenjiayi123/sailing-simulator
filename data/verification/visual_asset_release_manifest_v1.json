@@ -1,6 +1,6 @@
 {
   "schema": "visual-asset-release-manifest.v1",
-  "generated_at": "2026-08-29T00:00:00Z",
+  "generated_at": "2026-09-07T00:00:00Z",
   "release_policy": {
     "default_license_for_assets": null,
     "every_included_media_file_requires_ledger_entry": true,
@@ -44,7 +44,8 @@
     {"path": "reports/cargo_circuit_presentation_panel.png", "sha256": "4587cc61d3b9cc61b93500f09437dcd7576245e5f03b34f2e808ad17674879d6", "origin": "project-runtime-screenshot", "license": "Apache-2.0", "source_record": "repository runtime capture"},
     {"path": "reports/cargo_circuit_rock_clearance_after.png", "sha256": "4ec9418de0d4af27a2708b2f7a57c9d13f8ce00cd8f791f72315a5ab1d249887", "origin": "project-runtime-screenshot", "license": "Apache-2.0", "source_record": "repository runtime capture"},
     {"path": "reports/cargo_circuit_west_rock_camera_after.png", "sha256": "f9ec3604e20a125312ac8c19af0051f47eb0c5e0d57b5da2516da6ffbbb4ce01", "origin": "project-runtime-screenshot", "license": "Apache-2.0", "source_record": "repository runtime capture"},
-    {"path": "reports/h_hub_rl_training_center.png", "sha256": "f363cd9259fd16e9ef58e4538f5adfbf89b3d759878c695fe9adbf233d8c19ba", "origin": "project-runtime-screenshot", "license": "Apache-2.0", "source_record": "repository runtime capture"}
+    {"path": "reports/h_hub_rl_training_center.png", "sha256": "f363cd9259fd16e9ef58e4538f5adfbf89b3d759878c695fe9adbf233d8c19ba", "origin": "project-runtime-screenshot", "license": "Apache-2.0", "source_record": "repository runtime capture"},
+    {"path": "reports/artifacts/mission_rl_v1/validation_curves.png", "sha256": "08fb945dbcab4b7094b2f7ad7ec18ca46b727ec1c59151ba52e87bd89bbc8847", "origin": "project-authored-scientific-plot", "license": "Apache-2.0", "source_record": "tools/report_mission_rl.py; frozen validation_history.json records"}
   ],
   "excluded_local_assets": [
     {"path_prefix": "草稿/", "reason": "local character concept drafts are outside the public release"},
@@ -60,7 +61,11 @@
     {"path": "assets/generated/tasks/auto_berthing/auto_berthing_horizon_v3.png", "reason": "superseded task-wall composition retained locally"},
     {"path": "assets/generated/tasks/auto_berthing/auto_berthing_water_v1.png", "reason": "superseded task-water draft retained locally"},
     {"path": "assets/generated/tasks/auto_berthing/auto_berthing_water_v2.png", "reason": "superseded task-water draft retained locally"},
-    {"path": "assets/generated/tasks/shared/task_water_v1.png", "reason": "superseded task-water copy retained locally"}
+    {"path": "assets/generated/tasks/shared/task_water_v1.png", "reason": "superseded task-water copy retained locally"},
+    {"path_prefix": "reports/artifacts/mission_rl_ui_v1/rendered_01/", "reason": "local UI acceptance captures; numeric receipts are public"},
+    {"path": "reports/artifacts/mission_rl_v1/navigation_rl_panel.png", "reason": "local UI acceptance capture"},
+    {"path": "reports/artifacts/mission_rl_v1/navigation_rl_active_panel.png", "reason": "local UI acceptance capture"},
+    {"path": "reports/artifacts/mission_rl_v1/crossing_qualification_01/selection.json", "reason": "original local selection record; portable derivative is selection.public.json"}
   ],
   "claims": {
     "full_visual_package_ready": true,

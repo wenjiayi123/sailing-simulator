@@ -18,6 +18,7 @@ __pycache__/
 /tools/build_*soft_copyright_materials.py
 /tools/qa_strict_soft_copyright_materials.py
 *.zip
+!/reports/artifacts/mission_rl_v1/**/*.zip
 !/reports/artifacts/navigation_benchmark_v1/**/*.zip
 !/reports/artifacts/sac_champion_v5/pilot_pure_20k/sac_policy.zip
 /data/public_cache/*.json
@@ -43,3 +44,9 @@ __pycache__/
 /assets/generated/tasks/auto_berthing/auto_berthing_water_v1.png*
 /assets/generated/tasks/auto_berthing/auto_berthing_water_v2.png*
 /assets/generated/tasks/shared/task_water_v1.png*
+
+# Local UI captures and the original machine-specific selection record stay local.
+/reports/artifacts/mission_rl_ui_v1/rendered_01/
+/reports/artifacts/mission_rl_v1/navigation_rl_panel.png*
+/reports/artifacts/mission_rl_v1/navigation_rl_active_panel.png*
+/reports/artifacts/mission_rl_v1/crossing_qualification_01/selection.json

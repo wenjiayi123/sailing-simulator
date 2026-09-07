@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "models": [
+    {
+      "path": "reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip",
+      "sha256": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+      "frozen_expected_sha256": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5",
+      "unchanged": true
+    },
+    {
+      "path": "reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip",
+      "sha256": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+      "frozen_expected_sha256": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20",
+      "unchanged": true
+    }
+  ]
+}

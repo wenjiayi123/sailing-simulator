@@ -109,7 +109,7 @@ func duplicate_selected_ship_nearby() -> Node3D:
 	return spawn_ship_at(source_position + offset, config)
 
 
-func spawn_ship_at(position: Vector3, config: Dictionary = {}) -> Node3D:
+func spawn_ship_at(position: Vector3, config: Dictionary = {}, isolate_spawn_collision: bool = false) -> Node3D:
 	_prune_invalid_ships()
 	_resolve_prototype()
 	if _prototype_ship == null or _ships.size() >= max_ship_count:
@@ -129,6 +129,13 @@ func spawn_ship_at(position: Vector3, config: Dictionary = {}) -> Node3D:
 	ship.set("external_agent_control_enabled", false)
 	ship.set("camera_enabled", false)
 	ship.set("selectable_ship_agent", true)
+	var spawn_layer := 0
+	var spawn_mask := 0
+	if isolate_spawn_collision and ship is CollisionObject3D:
+		spawn_layer = (ship as CollisionObject3D).collision_layer
+		spawn_mask = (ship as CollisionObject3D).collision_mask
+		(ship as CollisionObject3D).collision_layer = 0
+		(ship as CollisionObject3D).collision_mask = 0
 
 	var parent := _prototype_ship.get_parent()
 	parent.add_child(ship)
@@ -146,7 +153,19 @@ func spawn_ship_at(position: Vector3, config: Dictionary = {}) -> Node3D:
 	_register_ship(ship)
 	select_ship(ship)
 	fleet_changed.emit()
+	if isolate_spawn_collision and ship is CollisionObject3D:
+		_restore_spawn_collision(ship as CollisionObject3D, spawn_layer, spawn_mask)
 	return ship
+
+
+func _restore_spawn_collision(ship: CollisionObject3D, collision_layer: int, collision_mask: int) -> void:
+	# physics_frame is emitted before the physics step. Waiting twice lets the
+	# newly placed body commit its target transform before it becomes a collider.
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	if is_instance_valid(ship) and not ship.is_queued_for_deletion():
+		ship.collision_layer = collision_layer
+		ship.collision_mask = collision_mask
 
 
 func select_ship(ship: Node3D) -> void:

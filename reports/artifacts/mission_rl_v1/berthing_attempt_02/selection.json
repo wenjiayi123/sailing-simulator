@@ -1,0 +1,5 @@
+{
+  "validation_passed": true,
+  "frozen_model": "sac_200000.zip",
+  "sha256": "772e1a7c02a2f598b757a85fa969d5508e457947b349dd287e29835fb0057687"
+}

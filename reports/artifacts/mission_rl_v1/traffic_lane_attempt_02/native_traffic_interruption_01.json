@@ -1,0 +1,7 @@
+{
+  "status": "INTERRUPTED_INFERENCE_CONTRACT_ERROR",
+  "passed": false,
+  "reason": "Traffic actor has 10 observations; the mission actor helper unconditionally inspected observation 14. Added an independent 10D dense-network evaluator; no policy weights changed.",
+  "model_modified": false,
+  "production_authority": false
+}

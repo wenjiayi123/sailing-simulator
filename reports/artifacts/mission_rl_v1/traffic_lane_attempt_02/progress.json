@@ -1,0 +1,6 @@
+{
+  "phase": "traffic_SAC_training",
+  "timesteps": 20000,
+  "actor_critic_updates": 4750,
+  "validation_success_rate": 1.0
+}

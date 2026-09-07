@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "model_path": "reports/artifacts/mission_rl_v1/crossing_attempt_01/sac_25000.zip",
+  "model_sha256": "9714c859722998dbf8f3ab11fb4eff4f918fc0579fab4507d03f2f7feb31a5a1",
+  "validation_seeds": [
+    0,
+    10001,
+    10002,
+    10003,
+    10004,
+    20001,
+    20002,
+    20003,
+    20004
+  ],
+  "source_record_sha256": "6bf8a76dcd41858cdf196924cee30fd7e1c568fe6e7d32087d742b57dd6c9a64",
+  "publication_note": "Local model path normalized relative to repository; selection metrics unchanged."
+}

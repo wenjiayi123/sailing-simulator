@@ -1,0 +1,55 @@
+{
+	"checks": [
+		{
+			"initial_spawn_error_m": 0.0347142890095711,
+			"panel_matches_scene": true,
+			"passed": true,
+			"scenario": "narrow_channel_head_on",
+			"target_collision_armed": true
+		},
+		{
+			"initial_spawn_error_m": 0.0312254074960947,
+			"panel_matches_scene": true,
+			"passed": true,
+			"scenario": "crossing_starboard",
+			"target_collision_armed": true
+		},
+		{
+			"initial_spawn_error_m": 0.0614490322768688,
+			"panel_matches_scene": true,
+			"passed": true,
+			"scenario": "narrow_channel_overtaking",
+			"target_collision_armed": true
+		},
+		{
+			"initial_spawn_error_m": 0.0364509709179401,
+			"panel_matches_scene": true,
+			"passed": true,
+			"scenario": "auto_unberthing",
+			"target_collision_armed": true
+		},
+		{
+			"initial_spawn_error_m": 0.0417489111423492,
+			"panel_matches_scene": true,
+			"passed": true,
+			"scenario": "narrow_channel_head_on",
+			"target_collision_armed": true
+		},
+		{
+			"check": "qualified_strategy_start",
+			"passed": true,
+			"started": true
+		},
+		{
+			"check": "automatic_matching_scene_switch",
+			"passed": true,
+			"strategy": "crossing_starboard"
+		},
+		{
+			"check": "unqualified_scene_cannot_take_control",
+			"passed": true
+		}
+	],
+	"passed": true,
+	"production_authority": false
+}

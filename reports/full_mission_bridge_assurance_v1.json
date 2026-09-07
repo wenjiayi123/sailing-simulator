@@ -66,7 +66,7 @@
     "check_count": 38,
     "errors": [],
     "file": "reports/godot_full_mission_bridge_smoke_v1.json",
-    "file_sha256": "eacaab6f83414d0f1f8fa15a67afa1489539fef5d3d334fff29f19618d276386"
+    "file_sha256": "8d1bec1f6a82aaf001c212f87cd6b4f052c12cf5bc34547fc12dd13aa8856452"
   },
   "preserved_policy_inventory": {
     "passed": true,
@@ -139,10 +139,10 @@
     "data/verification/full_mission_bridge_acceptance_manifest.template.json": "5d9b8ed00f9b5ab2b5d5ab987d02cc1192177e7da60f5e761afa6e92a30309ee",
     "scripts/navigation/ship_gmdss_communications_suite.gd": "89d3f41821aa806bdf24d2cc7e8d5d795612fd679f19e49a23beee388d556e62",
     "scripts/navigation/ship_full_mission_bridge_suite.gd": "eeba6533380a75149547cf67ea32046b1be93c66df7679f5ce3f8294788991ce",
-    "scripts/training/ship_advanced_mission_realism_controller.gd": "0e51d6b867bc8f1aea08240893fe1975d841421bc9529bf93e4cca3a05299b34",
+    "scripts/training/ship_advanced_mission_realism_controller.gd": "93ba25dc889ca977b7051b5f36bdbdc2287041dfc55063c9949ac8a5f7397f88",
     "scripts/ui/ship_full_mission_bridge_panel.gd": "ca4ab582d470962a9e812861338409c46fd7cd807c361a360ccb7a2761c4de04",
     "tools/godot_full_mission_bridge_smoke.gd": "9d59387ac227ca5b93cafc0e37f16068227b095ad4794cd1c257c48a2bb498b0",
     "tests/test_full_mission_bridge.py": "4cdf0a571404030625e67bdf87840601e648b849b259b2493b4130a982bdaff0"
   },
-  "generated_at_utc": "2026-08-29T15:20:20.912935+00:00"
+  "generated_at_utc": "2026-09-07T06:20:51.474068+00:00"
 }

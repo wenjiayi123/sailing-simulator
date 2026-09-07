@@ -1,0 +1,12 @@
+{
+  "status": "INTERRUPTED_CONFIGURATION_DIAGNOSIS",
+  "admitted": false,
+  "reason": "CLI default curriculum=0.7 overrode the full-spawn configuration. Preserved first checkpoint; corrected next run explicitly passes --curriculum 0.",
+  "last_checkpoint": "sac_500000.zip",
+  "model_sha256": "e50630972c0697774faa807fd3ca47217e215f49f53ef1c397fb42ceeb3e89b2",
+  "checkpoint_timesteps": 500000,
+  "test_accessed": false,
+  "native_runtime_verified": false,
+  "production_authority": false,
+  "recorded_at": "2026-09-07T04:53:40.671562+00:00"
+}

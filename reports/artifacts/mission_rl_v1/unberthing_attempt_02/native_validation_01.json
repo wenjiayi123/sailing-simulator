@@ -1,0 +1,2243 @@
+{
+	"action_source": "SAC_neural_network_direct",
+	"actor_path": "res://reports/artifacts/mission_rl_v1/unberthing_attempt_02/actor.json",
+	"actor_sha256": "09f23c1b9ef40f074bb35d5c1125499c402925fc4978af8574c84a11108af923",
+	"controller_fallback_steps": 0,
+	"inference_count": 118,
+	"inference_golden_max_error": 0.000000426918268181531,
+	"initial_observation": [
+		0.188654747009277,
+		0.530805267328282,
+		0.847493816010802,
+		0.319767456054687,
+		0.200277862548828,
+		0.000086405351546339,
+		-0.000415237348837157,
+		-0.00016854477871675,
+		0.0,
+		0.0,
+		0.0,
+		0.707106781186547,
+		0.707106781186548,
+		0.0,
+		0.0,
+		0.0,
+		0.0,
+		0.0,
+		0.231474757194519,
+		-0.275860875844955,
+		0.192870229085286,
+		0.455632739596897,
+		0.0999354044596354,
+		0.000000000000000122464679914735,
+		-1.0,
+		0.0,
+		0.0,
+		0.0,
+		0.0,
+		0.0,
+		1.0,
+		1.0,
+		0.0,
+		1.0,
+		0.0,
+		0.0,
+		0.0,
+		0.0,
+		0.0,
+		1.0
+	],
+	"mission": {
+		"behavioral_assessment": {
+			"criteria": {
+				"task_gate_passed": true
+			},
+			"first_substantial_action_distance_m": null,
+			"first_substantial_action_s": null,
+			"first_substantial_action_side": "NONE",
+			"first_substantial_action_tcpa_s": null,
+			"initial_heading_degrees": 180.0,
+			"maximum_heading_change_degrees": 84.7533330430632,
+			"passed": true,
+			"status": "PASS",
+			"test_only_waypoint_traversal_is_not_behavioral_evidence": true
+		},
+		"claim_boundary": "Algorithm and operator training benchmark only; no terminal geometry calibration or live actuation authority.",
+		"colreg_rule_ids": [],
+		"elapsed_seconds": 59.05,
+		"evaluation": {
+			"berth_origin": {
+				"x": 82.0,
+				"z": 18.0
+			},
+			"maximum_exit_speed_knots": 5.0,
+			"minimum_clear_distance_m": 110.0
+		},
+		"existing_policy_modified": false,
+		"gate": {
+			"clear_distance_m": 218.718734741211,
+			"collision_free": true,
+			"passed": true,
+			"speed_knots": 3.94485715618515,
+			"status": "PASS"
+		},
+		"minimum_observed_separation_m": null,
+		"nearest_dcpa_m": null,
+		"nearest_distance_m": null,
+		"nearest_tcpa_s": null,
+		"overtaking_agreement_authorizer": "",
+		"overtaking_agreement_confirmed": false,
+		"own_ship": {
+			"collision_warning": "CLEAR",
+			"heading_degrees": 258.022024521665,
+			"position": {
+				"x": -113.527458190918,
+				"z": -80.0147857666016
+			},
+			"speed_knots": 3.94485715618515,
+			"sway_mps": -0.0645560622215271
+		},
+		"own_ship_commanded_by_controller": false,
+		"production_authority": false,
+		"scenario_key": "auto_unberthing",
+		"scenario_name": "自动离泊评测水域",
+		"schema_version": "ship_advanced_mission_runtime_v1",
+		"task_type": "unberthing",
+		"traffic": [],
+		"traffic_count": 0,
+		"traffic_uses_deterministic_simulator_commands": true
+	},
+	"passed": true,
+	"physics_frames": 3540,
+	"production_authority": false,
+	"realism": {
+		"active": true,
+		"boundary": "Software mission-realism proxy; named-vessel calibration, physical bridge HIL, official charts, witnessed sea trials and certification remain external gates.",
+		"bridge_readiness": {
+			"missing_domains": [],
+			"passed": true,
+			"required_domains": [
+				"radar_arpa",
+				"ecdis",
+				"conning",
+				"gmdss",
+				"instructor",
+				"recording_debrief"
+			],
+			"states": {
+				"conning": true,
+				"ecdis": true,
+				"gmdss": true,
+				"instructor": true,
+				"radar_arpa": true,
+				"recording_debrief": true
+			}
+		},
+		"debrief": {
+			"active_faults": [],
+			"behavioral_assessment": {
+				"criteria": {
+					"task_gate_passed": true
+				},
+				"first_substantial_action_distance_m": null,
+				"first_substantial_action_s": null,
+				"first_substantial_action_side": "NONE",
+				"first_substantial_action_tcpa_s": null,
+				"initial_heading_degrees": 180.0,
+				"maximum_heading_change_degrees": 84.7533330430632,
+				"passed": true,
+				"status": "PASS",
+				"test_only_waypoint_traversal_is_not_behavioral_evidence": true
+			},
+			"competency_criteria": [
+				"departure_brief",
+				"all_round_lookout",
+				"astern_control",
+				"turning_basin_control",
+				"breakwater_clearance",
+				"safe_exit_speed"
+			],
+			"dnv_certified": false,
+			"elapsed_seconds": 59.05,
+			"latest_hydrodynamics": {
+				"active": true,
+				"bank_clearance_m": null,
+				"bank_effect_enabled": false,
+				"bank_proximity": 0.0,
+				"chart_depth_m": 6.0,
+				"depth_froude": 0.256164856832888,
+				"draft_m": 0.55,
+				"hydrodynamic_force_body_n": "(-405.5641, 0.0)",
+				"hydrodynamic_yaw_moment_nm": 0.0,
+				"minimum_bank_clearance_m": 0.0,
+				"minimum_ukc_m": 2.0,
+				"model_evidence": "generic_research_proxy_not_named_vessel_calibrated",
+				"model_id": "bounded_shallow_bank_proxy_v1",
+				"named_vessel_dynamics_calibrated": false,
+				"port_thrust_factor": 1.0,
+				"production_authority": false,
+				"squat_m": 0.0139053189715935,
+				"starboard_thrust_factor": 1.0,
+				"static_ukc_m": 5.85,
+				"steering_bias_deg": 0.0,
+				"tide_m": 0.4,
+				"under_keel_clearance_m": 5.83609468102841,
+				"water_depth_m": 6.4
+			},
+			"maximum_depth_froude": 0.613,
+			"maximum_squat_m": 0.119,
+			"minimum_bank_clearance_m": null,
+			"minimum_ukc_m": 5.731,
+			"mission_gate": {
+				"clear_distance_m": 218.718734741211,
+				"collision_free": true,
+				"passed": true,
+				"speed_knots": 3.94485715618515,
+				"status": "PASS"
+			},
+			"named_vessel_dynamics_calibrated": false,
+			"operator_actions": [],
+			"passed": false,
+			"physical_hil_verified": false,
+			"predeparture_passed": false,
+			"production_authority": false,
+			"sample_count": 496,
+			"scenario_key": "auto_unberthing",
+			"schema_version": "ship_advanced_mission_debrief_v1",
+			"score": 85.0,
+			"score_breakdown": {
+				"mission": 30.0,
+				"procedure": 5.0,
+				"safety": 50.0
+			},
+			"status": "NOT_YET_PASS",
+			"stcw_approved": false
+		},
+		"dnv_certified": false,
+		"environment": {
+			"atmosphere_overlay_alpha": 0.0,
+			"base_time": "10:20",
+			"current_direction_degrees": 130.0,
+			"current_speed_knots": 0.7,
+			"current_vector": "(0.275861, 0.0, -0.231475)",
+			"data_source": "scenario_clear_baseline",
+			"data_status": "zero_fog_default",
+			"fetched_at": "",
+			"fog_density": 0.0,
+			"fog_enabled": false,
+			"index": 0,
+			"key": "clear",
+			"name": "晴天",
+			"observed_at": "",
+			"public_location": {
+				"latitude": 1.2644,
+				"longitude": 103.8223
+			},
+			"sea_state_label": "CALM",
+			"tide_meters": 0.4,
+			"time": "10:20",
+			"time_scale": 1.0,
+			"visibility": "20.0 km",
+			"visibility_km": 20.0,
+			"water_surface_visual": {
+				"connected": true,
+				"flow_direction": "(0.965926, -0.258819)",
+				"vertex_wave_height": 0.086,
+				"wave_speed": 0.193548387096774
+			},
+			"wave_direction_degrees": 105.0,
+			"wave_height_meters": 0.35,
+			"wave_period_seconds": 6.2,
+			"weather": "CLEAR SKY",
+			"wind_direction_degrees": 95.0,
+			"wind_speed_knots": 10.0,
+			"zero_fog_visual": true
+		},
+		"environment_applied": true,
+		"existing_policy_modified": false,
+		"hydrodynamics": {
+			"active": true,
+			"bank_clearance_m": null,
+			"bank_effect_enabled": false,
+			"bank_proximity": 0.0,
+			"chart_depth_m": 6.0,
+			"depth_froude": 0.256164856832888,
+			"draft_m": 0.55,
+			"hydrodynamic_force_body_n": "(-405.5641, 0.0)",
+			"hydrodynamic_yaw_moment_nm": 0.0,
+			"minimum_bank_clearance_m": 0.0,
+			"minimum_ukc_m": 2.0,
+			"model_evidence": "generic_research_proxy_not_named_vessel_calibrated",
+			"model_id": "bounded_shallow_bank_proxy_v1",
+			"named_vessel_dynamics_calibrated": false,
+			"port_thrust_factor": 1.0,
+			"production_authority": false,
+			"squat_m": 0.0139053189715935,
+			"starboard_thrust_factor": 1.0,
+			"static_ukc_m": 5.85,
+			"steering_bias_deg": 0.0,
+			"tide_m": 0.4,
+			"under_keel_clearance_m": 5.83609468102841,
+			"water_depth_m": 6.4
+		},
+		"machinery_faults": {
+			"port_propulsion_loss": 0.0,
+			"starboard_propulsion_loss": 0.0,
+			"steering_bias_deg": 0.0
+		},
+		"named_vessel_dynamics_calibrated": false,
+		"operator_action_count": 0,
+		"physical_hil_verified": false,
+		"predeparture_operator": "",
+		"predeparture_passed": false,
+		"production_authority": false,
+		"profile": {
+			"allowed_machinery_faults": [
+				"port_propulsion_loss",
+				"starboard_propulsion_loss",
+				"steering_bias_deg"
+			],
+			"competency_criteria": [
+				"departure_brief",
+				"all_round_lookout",
+				"astern_control",
+				"turning_basin_control",
+				"breakwater_clearance",
+				"safe_exit_speed"
+			],
+			"environment": {
+				"current_direction_degrees": 130.0,
+				"current_speed_knots": 0.7,
+				"tide_meters": 0.4,
+				"time": "10:10",
+				"visibility_km": 9.0,
+				"wave_direction_degrees": 105.0,
+				"wave_height_meters": 0.35,
+				"wave_period_seconds": 6.2,
+				"wind_direction_degrees": 95.0,
+				"wind_speed_knots": 10.0
+			},
+			"hydrodynamics": {
+				"bank_effect_enabled": false,
+				"minimum_ukc_m": 2.0,
+				"shallow_drag_n_per_mps2": 78.0,
+				"shallow_water_enabled": true,
+				"squat_coefficient": 0.36,
+				"water_depth_m": 6.0
+			},
+			"profile_version": "advanced_mission_realism_v1",
+			"required_bridge_domains": [
+				"radar_arpa",
+				"ecdis",
+				"conning",
+				"gmdss",
+				"instructor",
+				"recording_debrief"
+			],
+			"vessel": {
+				"beam_m": 2.95,
+				"calibration_status": "unverified_reference",
+				"draft_m": 0.55,
+				"length_m": 5.7
+			}
+		},
+		"scenario_key": "auto_unberthing",
+		"schema_version": "ship_advanced_mission_realism_runtime_v1",
+		"stcw_approved": false
+	},
+	"samples": [
+		{
+			"action": [
+				0.647996544837952,
+				0.649598240852356
+			],
+			"frame": 30,
+			"heading_degrees": 180.336695996369,
+			"last_impact_speed": 0.0,
+			"speed": 0.756425797939301,
+			"sway_mps": -0.0587488561868668,
+			"three_dof_active": true,
+			"time": 0.5,
+			"waypoint": 0,
+			"x": 82.159423828125,
+			"z": 17.7381610870361
+		},
+		{
+			"action": [
+				0.640005230903625,
+				0.648134171962738
+			],
+			"frame": 60,
+			"heading_degrees": 182.742452546587,
+			"last_impact_speed": 0.0,
+			"speed": 2.30401229858398,
+			"sway_mps": -0.197435438632965,
+			"three_dof_active": true,
+			"time": 1.0,
+			"waypoint": 0,
+			"x": 82.3378677368164,
+			"z": 16.8537139892578
+		},
+		{
+			"action": [
+				0.615113437175751,
+				0.646864712238312
+			],
+			"frame": 90,
+			"heading_degrees": 187.86054551811,
+			"last_impact_speed": 0.0,
+			"speed": 3.67999410629272,
+			"sway_mps": -0.415568679571152,
+			"three_dof_active": true,
+			"time": 1.5,
+			"waypoint": 0,
+			"x": 82.4846420288086,
+			"z": 15.201042175293
+		},
+		{
+			"action": [
+				0.554652333259583,
+				0.644059717655182
+			],
+			"frame": 120,
+			"heading_degrees": 194.933739158413,
+			"last_impact_speed": 0.0,
+			"speed": 4.39892959594727,
+			"sway_mps": -0.632912933826447,
+			"three_dof_active": true,
+			"time": 2.0,
+			"waypoint": 0,
+			"x": 82.4740905761719,
+			"z": 13.0204429626465
+		},
+		{
+			"action": [
+				0.4791100025177,
+				0.638134121894836
+			],
+			"frame": 150,
+			"heading_degrees": 202.960536489877,
+			"last_impact_speed": 0.0,
+			"speed": 4.58689737319946,
+			"sway_mps": -0.766061842441559,
+			"three_dof_active": true,
+			"time": 2.5,
+			"waypoint": 0,
+			"x": 82.2083892822266,
+			"z": 10.6505136489868
+		},
+		{
+			"action": [
+				0.438735038042068,
+				0.627425253391266
+			],
+			"frame": 180,
+			"heading_degrees": 211.238561839392,
+			"last_impact_speed": 0.0,
+			"speed": 4.54850959777832,
+			"sway_mps": -0.812849223613739,
+			"three_dof_active": true,
+			"time": 2.99999999999999,
+			"waypoint": 0,
+			"x": 81.653694152832,
+			"z": 8.31967067718506
+		},
+		{
+			"action": [
+				0.4139264523983,
+				0.602340459823608
+			],
+			"frame": 210,
+			"heading_degrees": 219.417303559132,
+			"last_impact_speed": 0.0,
+			"speed": 4.45815420150757,
+			"sway_mps": -0.809477150440216,
+			"three_dof_active": true,
+			"time": 3.49999999999999,
+			"waypoint": 0,
+			"x": 80.817512512207,
+			"z": 6.13589668273926
+		},
+		{
+			"action": [
+				0.413408726453781,
+				0.52557897567749
+			],
+			"frame": 240,
+			"heading_degrees": 227.308644578977,
+			"last_impact_speed": 0.0,
+			"speed": 4.39183282852173,
+			"sway_mps": -0.781925320625305,
+			"three_dof_active": true,
+			"time": 3.99999999999999,
+			"waypoint": 0,
+			"x": 79.7235107421875,
+			"z": 4.14475011825562
+		},
+		{
+			"action": [
+				0.364581674337387,
+				0.40060368180275
+			],
+			"frame": 270,
+			"heading_degrees": 234.688677637554,
+			"last_impact_speed": 0.0,
+			"speed": 4.32750463485718,
+			"sway_mps": -0.735659301280975,
+			"three_dof_active": true,
+			"time": 4.49999999999999,
+			"waypoint": 1,
+			"x": 78.4023132324219,
+			"z": 2.36722588539124
+		},
+		{
+			"action": [
+				0.628268241882324,
+				-0.469024091959
+			],
+			"frame": 300,
+			"heading_degrees": 240.724392863689,
+			"last_impact_speed": 0.0,
+			"speed": 4.531090259552,
+			"sway_mps": -0.621432304382324,
+			"three_dof_active": true,
+			"time": 4.99999999999999,
+			"waypoint": 1,
+			"x": 76.8584365844727,
+			"z": 0.797764241695404
+		},
+		{
+			"action": [
+				0.502529621124268,
+				-0.0355113446712494
+			],
+			"frame": 330,
+			"heading_degrees": 243.952886680571,
+			"last_impact_speed": 0.0,
+			"speed": 4.78235483169556,
+			"sway_mps": -0.465602785348892,
+			"three_dof_active": true,
+			"time": 5.49999999999999,
+			"waypoint": 1,
+			"x": 75.0435943603516,
+			"z": -0.63293468952179
+		},
+		{
+			"action": [
+				0.461273968219757,
+				-0.191273733973503
+			],
+			"frame": 360,
+			"heading_degrees": 245.343171686127,
+			"last_impact_speed": 0.0,
+			"speed": 4.84420108795166,
+			"sway_mps": -0.327747344970703,
+			"three_dof_active": true,
+			"time": 5.99999999999998,
+			"waypoint": 1,
+			"x": 73.0818862915039,
+			"z": -1.95448279380798
+		},
+		{
+			"action": [
+				0.443075180053711,
+				-0.136805906891823
+			],
+			"frame": 390,
+			"heading_degrees": 245.301207003866,
+			"last_impact_speed": 0.0,
+			"speed": 4.81106615066528,
+			"sway_mps": -0.197650000452995,
+			"three_dof_active": true,
+			"time": 6.49999999999998,
+			"waypoint": 1,
+			"x": 71.0768051147461,
+			"z": -3.19282913208008
+		},
+		{
+			"action": [
+				0.43825227022171,
+				-0.080594465136528
+			],
+			"frame": 420,
+			"heading_degrees": 244.33283644372,
+			"last_impact_speed": 0.0,
+			"speed": 4.75415706634521,
+			"sway_mps": -0.0909541621804237,
+			"three_dof_active": true,
+			"time": 6.99999999999998,
+			"waypoint": 1,
+			"x": 69.0801010131836,
+			"z": -4.38796424865723
+		},
+		{
+			"action": [
+				0.438939601182938,
+				-0.0344027169048786
+			],
+			"frame": 450,
+			"heading_degrees": 242.996906083579,
+			"last_impact_speed": 0.0,
+			"speed": 4.70575141906738,
+			"sway_mps": -0.0164289437234402,
+			"three_dof_active": true,
+			"time": 7.49999999999998,
+			"waypoint": 1,
+			"x": 67.1106414794922,
+			"z": -5.57500743865967
+		},
+		{
+			"action": [
+				0.444922506809235,
+				-0.0158969070762396
+			],
+			"frame": 480,
+			"heading_degrees": 241.681015498463,
+			"last_impact_speed": 0.0,
+			"speed": 4.67866659164429,
+			"sway_mps": 0.0267711691558361,
+			"three_dof_active": true,
+			"time": 7.99999999999998,
+			"waypoint": 1,
+			"x": 65.1703796386719,
+			"z": -6.7768611907959
+		},
+		{
+			"action": [
+				0.445683866739273,
+				-0.00996050704270601
+			],
+			"frame": 510,
+			"heading_degrees": 240.549362436018,
+			"last_impact_speed": 0.0,
+			"speed": 4.66854476928711,
+			"sway_mps": 0.0457782559096813,
+			"three_dof_active": true,
+			"time": 8.5,
+			"waypoint": 1,
+			"x": 63.2542152404785,
+			"z": -8.00567817687988
+		},
+		{
+			"action": [
+				0.455113112926483,
+				-0.014501016587019
+			],
+			"frame": 540,
+			"heading_degrees": 239.623612256293,
+			"last_impact_speed": 0.0,
+			"speed": 4.67483901977539,
+			"sway_mps": 0.0505958981812,
+			"three_dof_active": true,
+			"time": 9.00000000000003,
+			"waypoint": 1,
+			"x": 61.356502532959,
+			"z": -9.26578330993652
+		},
+		{
+			"action": [
+				0.458816200494766,
+				-0.0273560732603073
+			],
+			"frame": 570,
+			"heading_degrees": 238.846090841935,
+			"last_impact_speed": 0.0,
+			"speed": 4.69181394577026,
+			"sway_mps": 0.0508832931518555,
+			"three_dof_active": true,
+			"time": 9.50000000000005,
+			"waypoint": 1,
+			"x": 59.4698371887207,
+			"z": -10.558235168457
+		},
+		{
+			"action": [
+				0.467579185962677,
+				-0.0712102502584457
+			],
+			"frame": 600,
+			"heading_degrees": 238.096381957878,
+			"last_impact_speed": 0.0,
+			"speed": 4.71539926528931,
+			"sway_mps": 0.0565738193690777,
+			"three_dof_active": true,
+			"time": 10.0000000000001,
+			"waypoint": 1,
+			"x": 57.5895309448242,
+			"z": -11.881443977356
+		},
+		{
+			"action": [
+				0.468972474336624,
+				-0.0926298126578331
+			],
+			"frame": 630,
+			"heading_degrees": 237.191504836257,
+			"last_impact_speed": 0.0,
+			"speed": 4.73738384246826,
+			"sway_mps": 0.074066624045372,
+			"three_dof_active": true,
+			"time": 10.5000000000001,
+			"waypoint": 1,
+			"x": 55.7134284973145,
+			"z": -13.2347459793091
+		},
+		{
+			"action": [
+				0.461053282022476,
+				-0.0523816421627998
+			],
+			"frame": 660,
+			"heading_degrees": 236.07567049193,
+			"last_impact_speed": 0.0,
+			"speed": 4.74342584609985,
+			"sway_mps": 0.0951205641031265,
+			"three_dof_active": true,
+			"time": 11.0000000000001,
+			"waypoint": 2,
+			"x": 53.8477821350098,
+			"z": -14.6191368103027
+		},
+		{
+			"action": [
+				0.538796722888947,
+				0.572145700454712
+			],
+			"frame": 690,
+			"heading_degrees": 235.46300252338,
+			"last_impact_speed": 0.0,
+			"speed": 4.80360889434814,
+			"sway_mps": 0.0381225012242794,
+			"three_dof_active": true,
+			"time": 11.5000000000002,
+			"waypoint": 2,
+			"x": 51.9963531494141,
+			"z": -16.0481548309326
+		},
+		{
+			"action": [
+				0.543300211429596,
+				0.204291194677353
+			],
+			"frame": 720,
+			"heading_degrees": 236.952284290766,
+			"last_impact_speed": 0.0,
+			"speed": 4.89514923095703,
+			"sway_mps": -0.117231398820877,
+			"three_dof_active": true,
+			"time": 12.0000000000002,
+			"waypoint": 2,
+			"x": 50.1324806213379,
+			"z": -17.5344085693359
+		},
+		{
+			"action": [
+				0.544380366802216,
+				0.121291317045689
+			],
+			"frame": 750,
+			"heading_degrees": 239.627491803742,
+			"last_impact_speed": 0.0,
+			"speed": 4.96096849441528,
+			"sway_mps": -0.252406865358353,
+			"three_dof_active": true,
+			"time": 12.5000000000002,
+			"waypoint": 2,
+			"x": 48.2229156494141,
+			"z": -19.0277500152588
+		},
+		{
+			"action": [
+				0.534248411655426,
+				0.031670056283474
+			],
+			"frame": 780,
+			"heading_degrees": 242.427541514367,
+			"last_impact_speed": 0.0,
+			"speed": 4.99203395843506,
+			"sway_mps": -0.320604890584946,
+			"three_dof_active": true,
+			"time": 13.0000000000002,
+			"waypoint": 2,
+			"x": 46.2522087097168,
+			"z": -20.4753684997559
+		},
+		{
+			"action": [
+				0.518892526626587,
+				-0.0429366230964661
+			],
+			"frame": 810,
+			"heading_degrees": 244.707212772507,
+			"last_impact_speed": 0.0,
+			"speed": 4.99359512329102,
+			"sway_mps": -0.321998596191406,
+			"three_dof_active": true,
+			"time": 13.5000000000003,
+			"waypoint": 2,
+			"x": 44.2243423461914,
+			"z": -21.8450527191162
+		},
+		{
+			"action": [
+				0.492702066898346,
+				-0.0292148794978857
+			],
+			"frame": 840,
+			"heading_degrees": 246.200859030773,
+			"last_impact_speed": 0.0,
+			"speed": 4.96493434906006,
+			"sway_mps": -0.283513724803925,
+			"three_dof_active": true,
+			"time": 14.0000000000003,
+			"waypoint": 2,
+			"x": 42.158130645752,
+			"z": -23.1303215026855
+		},
+		{
+			"action": [
+				0.470971286296844,
+				-0.0267305262386799
+			],
+			"frame": 870,
+			"heading_degrees": 247.033206373598,
+			"last_impact_speed": 0.0,
+			"speed": 4.91264629364014,
+			"sway_mps": -0.232774406671524,
+			"three_dof_active": true,
+			"time": 14.5000000000003,
+			"waypoint": 2,
+			"x": 40.0792503356934,
+			"z": -24.342113494873
+		},
+		{
+			"action": [
+				0.453065544366837,
+				-0.00622036913409829
+			],
+			"frame": 900,
+			"heading_degrees": 247.410820212051,
+			"last_impact_speed": 0.0,
+			"speed": 4.85024499893188,
+			"sway_mps": -0.184170633554459,
+			"three_dof_active": true,
+			"time": 15.0000000000003,
+			"waypoint": 2,
+			"x": 38.0065727233887,
+			"z": -25.4968090057373
+		},
+		{
+			"action": [
+				0.439398616552353,
+				0.00579692842438817
+			],
+			"frame": 930,
+			"heading_degrees": 247.551064486279,
+			"last_impact_speed": 0.0,
+			"speed": 4.7881178855896,
+			"sway_mps": -0.144966155290604,
+			"three_dof_active": true,
+			"time": 15.5000000000003,
+			"waypoint": 2,
+			"x": 35.9502258300781,
+			"z": -26.609884262085
+		},
+		{
+			"action": [
+				0.43120214343071,
+				-0.00278694089502096
+			],
+			"frame": 960,
+			"heading_degrees": 247.595426564938,
+			"last_impact_speed": 0.0,
+			"speed": 4.73425531387329,
+			"sway_mps": -0.114729546010494,
+			"three_dof_active": true,
+			"time": 16.0000000000004,
+			"waypoint": 2,
+			"x": 33.9128952026367,
+			"z": -27.6927604675293
+		},
+		{
+			"action": [
+				0.418361246585846,
+				0.0000769048274378292
+			],
+			"frame": 990,
+			"heading_degrees": 247.585836979344,
+			"last_impact_speed": 0.0,
+			"speed": 4.68524026870728,
+			"sway_mps": -0.091018408536911,
+			"three_dof_active": true,
+			"time": 16.5000000000003,
+			"waypoint": 2,
+			"x": 31.8935661315918,
+			"z": -28.7530689239502
+		},
+		{
+			"action": [
+				0.408894300460815,
+				-0.00700186612084508
+			],
+			"frame": 1020,
+			"heading_degrees": 247.54282727814,
+			"last_impact_speed": 0.0,
+			"speed": 4.63790512084961,
+			"sway_mps": -0.0725194811820984,
+			"three_dof_active": true,
+			"time": 17.0000000000003,
+			"waypoint": 2,
+			"x": 29.8930130004883,
+			"z": -29.795560836792
+		},
+		{
+			"action": [
+				0.399233371019363,
+				-0.012947753071785
+			],
+			"frame": 1050,
+			"heading_degrees": 247.455974592654,
+			"last_impact_speed": 0.0,
+			"speed": 4.59132719039917,
+			"sway_mps": -0.0575076751410961,
+			"three_dof_active": true,
+			"time": 17.5000000000003,
+			"waypoint": 2,
+			"x": 27.911922454834,
+			"z": -30.8238315582275
+		},
+		{
+			"action": [
+				0.391486674547195,
+				-0.0261018611490726
+			],
+			"frame": 1080,
+			"heading_degrees": 247.300130166362,
+			"last_impact_speed": 0.0,
+			"speed": 4.54531908035278,
+			"sway_mps": -0.044348806142807,
+			"three_dof_active": true,
+			"time": 18.0000000000003,
+			"waypoint": 2,
+			"x": 25.9514713287354,
+			"z": -31.8411960601807
+		},
+		{
+			"action": [
+				0.384844303131104,
+				-0.0522518306970596
+			],
+			"frame": 1110,
+			"heading_degrees": 247.022032184116,
+			"last_impact_speed": 0.0,
+			"speed": 4.50076627731323,
+			"sway_mps": -0.0299359001219273,
+			"three_dof_active": true,
+			"time": 18.5000000000002,
+			"waypoint": 3,
+			"x": 24.0126609802246,
+			"z": -32.8513450622559
+		},
+		{
+			"action": [
+				0.57920378446579,
+				0.331462681293488
+			],
+			"frame": 1140,
+			"heading_degrees": 246.891275042645,
+			"last_impact_speed": 0.0,
+			"speed": 4.63734197616577,
+			"sway_mps": -0.0532753467559814,
+			"three_dof_active": true,
+			"time": 19.0000000000002,
+			"waypoint": 3,
+			"x": 22.0659065246582,
+			"z": -33.8756637573242
+		},
+		{
+			"action": [
+				0.51037871837616,
+				-0.0043183988891542
+			],
+			"frame": 1170,
+			"heading_degrees": 247.736715858109,
+			"last_impact_speed": 0.0,
+			"speed": 4.80707979202271,
+			"sway_mps": -0.116162940859795,
+			"three_dof_active": true,
+			"time": 19.5000000000002,
+			"waypoint": 3,
+			"x": 20.0367584228516,
+			"z": -34.946403503418
+		},
+		{
+			"action": [
+				0.490903258323669,
+				0.112337321043015
+			],
+			"frame": 1200,
+			"heading_degrees": 248.899760469979,
+			"last_impact_speed": 0.0,
+			"speed": 4.86777496337891,
+			"sway_mps": -0.164330914616585,
+			"three_dof_active": true,
+			"time": 20.0000000000001,
+			"waypoint": 3,
+			"x": 17.9492835998535,
+			"z": -36.0228118896484
+		},
+		{
+			"action": [
+				0.488211452960968,
+				-0.00739200320094824
+			],
+			"frame": 1230,
+			"heading_degrees": 250.185468449153,
+			"last_impact_speed": 0.0,
+			"speed": 4.87770175933838,
+			"sway_mps": -0.193462774157524,
+			"three_dof_active": true,
+			"time": 20.5000000000001,
+			"waypoint": 3,
+			"x": 15.8349599838257,
+			"z": -37.0747375488281
+		},
+		{
+			"action": [
+				0.475136578083038,
+				0.0324233323335648
+			],
+			"frame": 1260,
+			"heading_degrees": 251.273626866963,
+			"last_impact_speed": 0.0,
+			"speed": 4.86692190170288,
+			"sway_mps": -0.196777388453484,
+			"three_dof_active": true,
+			"time": 21.0000000000001,
+			"waypoint": 3,
+			"x": 13.7044897079468,
+			"z": -38.0859451293945
+		},
+		{
+			"action": [
+				0.461923450231552,
+				-0.0150207430124283
+			],
+			"frame": 1290,
+			"heading_degrees": 252.142064929362,
+			"last_impact_speed": 0.0,
+			"speed": 4.84186029434204,
+			"sway_mps": -0.18444599211216,
+			"three_dof_active": true,
+			"time": 21.5000000000001,
+			"waypoint": 3,
+			"x": 11.5672559738159,
+			"z": -39.0532112121582
+		},
+		{
+			"action": [
+				0.444798976182938,
+				0.0143272234126925
+			],
+			"frame": 1320,
+			"heading_degrees": 252.74775927477,
+			"last_impact_speed": 0.0,
+			"speed": 4.80465126037598,
+			"sway_mps": -0.162528574466705,
+			"three_dof_active": true,
+			"time": 22.0,
+			"waypoint": 3,
+			"x": 9.43143653869629,
+			"z": -39.9779052734375
+		},
+		{
+			"action": [
+				0.430507600307465,
+				0.00265023717656732
+			],
+			"frame": 1350,
+			"heading_degrees": 253.18588175908,
+			"last_impact_speed": 0.0,
+			"speed": 4.75858974456787,
+			"sway_mps": -0.13995985686779,
+			"three_dof_active": true,
+			"time": 22.5,
+			"waypoint": 3,
+			"x": 7.30541181564331,
+			"z": -40.8653297424316
+		},
+		{
+			"action": [
+				0.415153801441193,
+				0.019445663318038
+			],
+			"frame": 1380,
+			"heading_degrees": 253.513177593918,
+			"last_impact_speed": 0.0,
+			"speed": 4.70618486404419,
+			"sway_mps": -0.120140865445137,
+			"three_dof_active": true,
+			"time": 23.0,
+			"waypoint": 3,
+			"x": 5.19491147994995,
+			"z": -41.7204933166504
+		},
+		{
+			"action": [
+				0.40462127327919,
+				0.0159358289092779
+			],
+			"frame": 1410,
+			"heading_degrees": 253.803194256266,
+			"last_impact_speed": 0.0,
+			"speed": 4.65172147750854,
+			"sway_mps": -0.105827838182449,
+			"three_dof_active": true,
+			"time": 23.4999999999999,
+			"waypoint": 3,
+			"x": 3.10406732559204,
+			"z": -42.5480003356934
+		},
+		{
+			"action": [
+				0.399569928646088,
+				0.000690678774844855
+			],
+			"frame": 1440,
+			"heading_degrees": 254.066436577068,
+			"last_impact_speed": 0.0,
+			"speed": 4.60262537002563,
+			"sway_mps": -0.094770185649395,
+			"three_dof_active": true,
+			"time": 23.9999999999999,
+			"waypoint": 3,
+			"x": 1.03321170806885,
+			"z": -43.3515205383301
+		},
+		{
+			"action": [
+				0.387050986289978,
+				0.00972883030772209
+			],
+			"frame": 1470,
+			"heading_degrees": 254.274409007105,
+			"last_impact_speed": 0.0,
+			"speed": 4.55375385284424,
+			"sway_mps": -0.0860459804534912,
+			"three_dof_active": true,
+			"time": 24.4999999999999,
+			"waypoint": 3,
+			"x": -1.01875567436218,
+			"z": -44.1346168518066
+		},
+		{
+			"action": [
+				0.374613434076309,
+				0.00166123209055513
+			],
+			"frame": 1500,
+			"heading_degrees": 254.438012528295,
+			"last_impact_speed": 0.0,
+			"speed": 4.49919319152832,
+			"sway_mps": -0.0799353942275047,
+			"three_dof_active": true,
+			"time": 24.9999999999999,
+			"waypoint": 3,
+			"x": -3.0489354133606,
+			"z": -44.9001960754395
+		},
+		{
+			"action": [
+				0.361805230379105,
+				0.00725039606913924
+			],
+			"frame": 1530,
+			"heading_degrees": 254.554262347968,
+			"last_impact_speed": 0.0,
+			"speed": 4.4392671585083,
+			"sway_mps": -0.0756612569093704,
+			"three_dof_active": true,
+			"time": 25.4999999999998,
+			"waypoint": 3,
+			"x": -5.05370235443115,
+			"z": -45.6503372192383
+		},
+		{
+			"action": [
+				0.350012481212616,
+				0.00625826139003038
+			],
+			"frame": 1560,
+			"heading_degrees": 254.639229901243,
+			"last_impact_speed": 0.0,
+			"speed": 4.37682723999023,
+			"sway_mps": -0.0730518996715546,
+			"three_dof_active": true,
+			"time": 25.9999999999998,
+			"waypoint": 3,
+			"x": -7.03033828735352,
+			"z": -46.3870086669922
+		},
+		{
+			"action": [
+				0.343265980482101,
+				0.00267382944002748
+			],
+			"frame": 1590,
+			"heading_degrees": 254.69949949048,
+			"last_impact_speed": 0.0,
+			"speed": 4.31928873062134,
+			"sway_mps": -0.070712998509407,
+			"three_dof_active": true,
+			"time": 26.4999999999998,
+			"waypoint": 3,
+			"x": -8.97880363464355,
+			"z": -47.1118698120117
+		},
+		{
+			"action": [
+				0.333646267652512,
+				-0.00212029204703867
+			],
+			"frame": 1620,
+			"heading_degrees": 254.729012737883,
+			"last_impact_speed": 0.0,
+			"speed": 4.26808643341064,
+			"sway_mps": -0.0671451911330223,
+			"three_dof_active": true,
+			"time": 26.9999999999997,
+			"waypoint": 3,
+			"x": -10.9021081924438,
+			"z": -47.826587677002
+		},
+		{
+			"action": [
+				0.323802679777145,
+				-0.00598036032170057
+			],
+			"frame": 1650,
+			"heading_degrees": 254.717804397455,
+			"last_impact_speed": 0.0,
+			"speed": 4.22042465209961,
+			"sway_mps": -0.0614712797105312,
+			"three_dof_active": true,
+			"time": 27.4999999999997,
+			"waypoint": 3,
+			"x": -12.8023862838745,
+			"z": -48.5322723388672
+		},
+		{
+			"action": [
+				0.31396746635437,
+				-0.0135630201548338
+			],
+			"frame": 1680,
+			"heading_degrees": 254.656899600626,
+			"last_impact_speed": 0.0,
+			"speed": 4.17466831207275,
+			"sway_mps": -0.0533337257802486,
+			"three_dof_active": true,
+			"time": 27.9999999999997,
+			"waypoint": 3,
+			"x": -14.6807556152344,
+			"z": -49.2297401428223
+		},
+		{
+			"action": [
+				0.300590604543686,
+				-0.0309329740703106
+			],
+			"frame": 1710,
+			"heading_degrees": 254.524742270376,
+			"last_impact_speed": 0.0,
+			"speed": 4.12597227096558,
+			"sway_mps": -0.0419851802289486,
+			"three_dof_active": true,
+			"time": 28.4999999999997,
+			"waypoint": 3,
+			"x": -16.5369396209717,
+			"z": -49.9196662902832
+		},
+		{
+			"action": [
+				0.288164258003235,
+				-0.0607788227498531
+			],
+			"frame": 1740,
+			"heading_degrees": 254.269081459553,
+			"last_impact_speed": 0.0,
+			"speed": 4.07130861282349,
+			"sway_mps": -0.0258545279502869,
+			"three_dof_active": true,
+			"time": 28.9999999999996,
+			"waypoint": 4,
+			"x": -18.3681201934814,
+			"z": -50.6026496887207
+		},
+		{
+			"action": [
+				0.602882146835327,
+				0.349432677030563
+			],
+			"frame": 1770,
+			"heading_degrees": 254.150618658588,
+			"last_impact_speed": 0.0,
+			"speed": 4.31689310073853,
+			"sway_mps": -0.0418797023594379,
+			"three_dof_active": true,
+			"time": 29.4999999999996,
+			"waypoint": 4,
+			"x": -20.2262401580811,
+			"z": -51.2995758056641
+		},
+		{
+			"action": [
+				0.515146493911743,
+				0.0295381303876638
+			],
+			"frame": 1800,
+			"heading_degrees": 255.049915515658,
+			"last_impact_speed": 0.0,
+			"speed": 4.65629291534424,
+			"sway_mps": -0.101708076894283,
+			"three_dof_active": true,
+			"time": 29.9999999999996,
+			"waypoint": 4,
+			"x": -22.2506084442139,
+			"z": -52.0507850646973
+		},
+		{
+			"action": [
+				0.465981930494308,
+				0.165354177355766
+			],
+			"frame": 1830,
+			"heading_degrees": 256.435808709578,
+			"last_impact_speed": 0.0,
+			"speed": 4.79673624038696,
+			"sway_mps": -0.159466996788979,
+			"three_dof_active": true,
+			"time": 30.4999999999995,
+			"waypoint": 4,
+			"x": -24.3959178924561,
+			"z": -52.8145484924316
+		},
+		{
+			"action": [
+				0.453229129314423,
+				-0.00411218777298927
+			],
+			"frame": 1860,
+			"heading_degrees": 258.102081168926,
+			"last_impact_speed": 0.0,
+			"speed": 4.81195020675659,
+			"sway_mps": -0.200977638363838,
+			"three_dof_active": true,
+			"time": 30.9999999999995,
+			"waypoint": 4,
+			"x": -26.5840473175049,
+			"z": -53.5490264892578
+		},
+		{
+			"action": [
+				0.420306593179703,
+				0.0796214267611504
+			],
+			"frame": 1890,
+			"heading_degrees": 259.599005917994,
+			"last_impact_speed": 0.0,
+			"speed": 4.76441287994385,
+			"sway_mps": -0.215084940195084,
+			"three_dof_active": true,
+			"time": 31.4999999999995,
+			"waypoint": 4,
+			"x": -28.7769050598145,
+			"z": -54.2291488647461
+		},
+		{
+			"action": [
+				0.398574233055115,
+				0.0103898625820875
+			],
+			"frame": 1920,
+			"heading_degrees": 260.939191485988,
+			"last_impact_speed": 0.0,
+			"speed": 4.68400287628174,
+			"sway_mps": -0.21439890563488,
+			"three_dof_active": true,
+			"time": 31.9999999999995,
+			"waypoint": 4,
+			"x": -30.9491367340088,
+			"z": -54.8491859436035
+		},
+		{
+			"action": [
+				0.372882753610611,
+				0.0521080158650875
+			],
+			"frame": 1950,
+			"heading_degrees": 262.049623150681,
+			"last_impact_speed": 0.0,
+			"speed": 4.58923625946045,
+			"sway_mps": -0.202888861298561,
+			"three_dof_active": true,
+			"time": 32.4999999999994,
+			"waypoint": 4,
+			"x": -33.0885009765625,
+			"z": -55.4096641540527
+		},
+		{
+			"action": [
+				0.347216457128525,
+				0.00119516567792743
+			],
+			"frame": 1980,
+			"heading_degrees": 262.994183671381,
+			"last_impact_speed": 0.0,
+			"speed": 4.48497581481934,
+			"sway_mps": -0.18625670671463,
+			"three_dof_active": true,
+			"time": 32.9999999999994,
+			"waypoint": 4,
+			"x": -35.1867408752441,
+			"z": -55.9160652160645
+		},
+		{
+			"action": [
+				0.323458313941956,
+				0.0148527920246124
+			],
+			"frame": 2010,
+			"heading_degrees": 263.726407271163,
+			"last_impact_speed": 0.0,
+			"speed": 4.37639474868774,
+			"sway_mps": -0.164407759904861,
+			"three_dof_active": true,
+			"time": 33.4999999999994,
+			"waypoint": 4,
+			"x": -37.238525390625,
+			"z": -56.3737831115723
+		},
+		{
+			"action": [
+				0.317677706480026,
+				-0.0261028259992599
+			],
+			"frame": 2040,
+			"heading_degrees": 264.260808102014,
+			"last_impact_speed": 0.0,
+			"speed": 4.28226327896118,
+			"sway_mps": -0.139256536960602,
+			"three_dof_active": true,
+			"time": 33.9999999999994,
+			"waypoint": 4,
+			"x": -39.2437591552734,
+			"z": -56.7903594970703
+		},
+		{
+			"action": [
+				0.290057957172394,
+				-0.000166866040672176
+			],
+			"frame": 2070,
+			"heading_degrees": 264.57395861508,
+			"last_impact_speed": 0.0,
+			"speed": 4.19182777404785,
+			"sway_mps": -0.112595476210117,
+			"three_dof_active": true,
+			"time": 34.4999999999993,
+			"waypoint": 4,
+			"x": -41.2079963684082,
+			"z": -57.1737632751465
+		},
+		{
+			"action": [
+				0.279513299465179,
+				-0.0263661928474903
+			],
+			"frame": 2100,
+			"heading_degrees": 264.730697796154,
+			"last_impact_speed": 0.0,
+			"speed": 4.10204553604126,
+			"sway_mps": -0.0875736027956009,
+			"three_dof_active": true,
+			"time": 34.9999999999993,
+			"waypoint": 4,
+			"x": -43.1288528442383,
+			"z": -57.5317153930664
+		},
+		{
+			"action": [
+				0.257847100496292,
+				-0.00462166126817465
+			],
+			"frame": 2130,
+			"heading_degrees": 264.748148929483,
+			"last_impact_speed": 0.0,
+			"speed": 4.00999879837036,
+			"sway_mps": -0.0651673600077629,
+			"three_dof_active": true,
+			"time": 35.4999999999993,
+			"waypoint": 4,
+			"x": -45.0066146850586,
+			"z": -57.8706588745117
+		},
+		{
+			"action": [
+				0.252003490924835,
+				-0.0270800273865461
+			],
+			"frame": 2160,
+			"heading_degrees": 264.680796434078,
+			"last_impact_speed": 0.0,
+			"speed": 3.92075085639954,
+			"sway_mps": -0.0466612726449966,
+			"three_dof_active": true,
+			"time": 35.9999999999992,
+			"waypoint": 4,
+			"x": -46.839225769043,
+			"z": -58.1963043212891
+		},
+		{
+			"action": [
+				0.222152456641197,
+				-0.0304510239511728
+			],
+			"frame": 2190,
+			"heading_degrees": 264.519228309261,
+			"last_impact_speed": 0.0,
+			"speed": 3.81967449188232,
+			"sway_mps": -0.0305991899222136,
+			"three_dof_active": true,
+			"time": 36.4999999999992,
+			"waypoint": 4,
+			"x": -48.6263427734375,
+			"z": -58.5129814147949
+		},
+		{
+			"action": [
+				0.213339328765869,
+				-0.046525165438652
+			],
+			"frame": 2220,
+			"heading_degrees": 264.256238705459,
+			"last_impact_speed": 0.0,
+			"speed": 3.70818567276001,
+			"sway_mps": -0.0165605247020721,
+			"three_dof_active": true,
+			"time": 36.9999999999992,
+			"waypoint": 4,
+			"x": -50.359245300293,
+			"z": -58.8240509033203
+		},
+		{
+			"action": [
+				0.188600152730942,
+				-0.0454936996102333
+			],
+			"frame": 2250,
+			"heading_degrees": 263.879704036894,
+			"last_impact_speed": 0.0,
+			"speed": 3.58619451522827,
+			"sway_mps": -0.00437123468145728,
+			"three_dof_active": true,
+			"time": 37.4999999999992,
+			"waypoint": 4,
+			"x": -52.0344200134277,
+			"z": -59.1331100463867
+		},
+		{
+			"action": [
+				0.18612764775753,
+				-0.0534974858164787
+			],
+			"frame": 2280,
+			"heading_degrees": 263.403475927204,
+			"last_impact_speed": 0.0,
+			"speed": 3.46594524383545,
+			"sway_mps": 0.00561504671350121,
+			"three_dof_active": true,
+			"time": 37.9999999999991,
+			"waypoint": 4,
+			"x": -53.6470680236816,
+			"z": -59.4434013366699
+		},
+		{
+			"action": [
+				0.163580074906349,
+				-0.0594141408801079
+			],
+			"frame": 2310,
+			"heading_degrees": 262.835552527907,
+			"last_impact_speed": 0.0,
+			"speed": 3.34601330757141,
+			"sway_mps": 0.0138977263122797,
+			"three_dof_active": true,
+			"time": 38.4999999999991,
+			"waypoint": 4,
+			"x": -55.1999397277832,
+			"z": -59.758129119873
+		},
+		{
+			"action": [
+				0.163463994860649,
+				-0.0599871166050434
+			],
+			"frame": 2340,
+			"heading_degrees": 262.187087537917,
+			"last_impact_speed": 0.0,
+			"speed": 3.23433494567871,
+			"sway_mps": 0.0207802876830101,
+			"three_dof_active": true,
+			"time": 38.9999999999991,
+			"waypoint": 4,
+			"x": -56.6923561096191,
+			"z": -60.0794105529785
+		},
+		{
+			"action": [
+				0.14484067261219,
+				-0.0606990717351437
+			],
+			"frame": 2370,
+			"heading_degrees": 261.476973260478,
+			"last_impact_speed": 0.0,
+			"speed": 3.12986326217651,
+			"sway_mps": 0.0265601146966219,
+			"three_dof_active": true,
+			"time": 39.499999999999,
+			"waypoint": 4,
+			"x": -58.1303253173828,
+			"z": -60.4094390869141
+		},
+		{
+			"action": [
+				0.141813352704048,
+				-0.0748536437749863
+			],
+			"frame": 2400,
+			"heading_degrees": 260.719177432444,
+			"last_impact_speed": 0.0,
+			"speed": 3.03314280509949,
+			"sway_mps": 0.0320301502943039,
+			"three_dof_active": true,
+			"time": 39.999999999999,
+			"waypoint": 4,
+			"x": -59.5153694152832,
+			"z": -60.7490310668945
+		},
+		{
+			"action": [
+				0.126974478363991,
+				-0.0933308303356171
+			],
+			"frame": 2430,
+			"heading_degrees": 259.898974165963,
+			"last_impact_speed": 0.0,
+			"speed": 2.94214653968811,
+			"sway_mps": 0.0384532660245895,
+			"three_dof_active": true,
+			"time": 40.499999999999,
+			"waypoint": 4,
+			"x": -60.8522453308105,
+			"z": -61.0988883972168
+		},
+		{
+			"action": [
+				0.132395014166832,
+				-0.115602351725101
+			],
+			"frame": 2460,
+			"heading_degrees": 258.986324289065,
+			"last_impact_speed": 0.0,
+			"speed": 2.86578822135925,
+			"sway_mps": 0.046626940369606,
+			"three_dof_active": true,
+			"time": 40.999999999999,
+			"waypoint": 4,
+			"x": -62.1438674926758,
+			"z": -61.4595527648926
+		},
+		{
+			"action": [
+				0.120849221944809,
+				-0.133568659424782
+			],
+			"frame": 2490,
+			"heading_degrees": 257.946120629418,
+			"last_impact_speed": 0.0,
+			"speed": 2.80058360099792,
+			"sway_mps": 0.056535080075264,
+			"three_dof_active": true,
+			"time": 41.4999999999989,
+			"waypoint": 4,
+			"x": -63.3986015319824,
+			"z": -61.8332328796387
+		},
+		{
+			"action": [
+				0.121372327208519,
+				-0.160214781761169
+			],
+			"frame": 2520,
+			"heading_degrees": 256.753870128658,
+			"last_impact_speed": 0.0,
+			"speed": 2.740642786026,
+			"sway_mps": 0.0674191862344742,
+			"three_dof_active": true,
+			"time": 41.9999999999989,
+			"waypoint": 4,
+			"x": -64.6182327270508,
+			"z": -62.2219390869141
+		},
+		{
+			"action": [
+				0.117722235620022,
+				-0.172475591301918
+			],
+			"frame": 2550,
+			"heading_degrees": 255.386008634147,
+			"last_impact_speed": 0.0,
+			"speed": 2.68648290634155,
+			"sway_mps": 0.0783112570643425,
+			"three_dof_active": true,
+			"time": 42.4999999999989,
+			"waypoint": 4,
+			"x": -65.8054046630859,
+			"z": -62.6288146972656
+		},
+		{
+			"action": [
+				0.0862157046794891,
+				-0.159839898347855
+			],
+			"frame": 2580,
+			"heading_degrees": 253.860185354701,
+			"last_impact_speed": 0.0,
+			"speed": 2.6034049987793,
+			"sway_mps": 0.0861824154853821,
+			"three_dof_active": true,
+			"time": 42.9999999999988,
+			"waypoint": 4,
+			"x": -66.9549560546875,
+			"z": -63.0559463500977
+		},
+		{
+			"action": [
+				0.0956718102097511,
+				-0.145255103707314
+			],
+			"frame": 2610,
+			"heading_degrees": 252.249462823872,
+			"last_impact_speed": 0.0,
+			"speed": 2.50500226020813,
+			"sway_mps": 0.0885487794876099,
+			"three_dof_active": true,
+			"time": 43.4999999999988,
+			"waypoint": 4,
+			"x": -68.0500259399414,
+			"z": -63.5018577575684
+		},
+		{
+			"action": [
+				0.0950201973319054,
+				-0.1464564204216
+			],
+			"frame": 2640,
+			"heading_degrees": 250.610736517446,
+			"last_impact_speed": 0.0,
+			"speed": 2.42055797576904,
+			"sway_mps": 0.086176760494709,
+			"three_dof_active": true,
+			"time": 43.9999999999988,
+			"waypoint": 4,
+			"x": -69.0919418334961,
+			"z": -63.9682312011719
+		},
+		{
+			"action": [
+				0.13453271985054,
+				-0.141567081212997
+			],
+			"frame": 2670,
+			"heading_degrees": 248.96048768189,
+			"last_impact_speed": 0.0,
+			"speed": 2.39300751686096,
+			"sway_mps": 0.0817688703536987,
+			"three_dof_active": true,
+			"time": 44.4999999999988,
+			"waypoint": 5,
+			"x": -70.0938720703125,
+			"z": -64.4595413208008
+		},
+		{
+			"action": [
+				0.633329749107361,
+				0.625484108924866
+			],
+			"frame": 2700,
+			"heading_degrees": 247.730917027504,
+			"last_impact_speed": 0.0,
+			"speed": 2.94650149345398,
+			"sway_mps": 0.0419823043048382,
+			"three_dof_active": true,
+			"time": 44.9999999999987,
+			"waypoint": 5,
+			"x": -71.1759796142578,
+			"z": -65.0263214111328
+		},
+		{
+			"action": [
+				0.57162868976593,
+				0.473948687314987
+			],
+			"frame": 2730,
+			"heading_degrees": 248.714641852904,
+			"last_impact_speed": 0.0,
+			"speed": 3.86030244827271,
+			"sway_mps": -0.0959381908178329,
+			"three_dof_active": true,
+			"time": 45.4999999999987,
+			"waypoint": 5,
+			"x": -72.6236343383789,
+			"z": -65.7932586669922
+		},
+		{
+			"action": [
+				0.409371882677078,
+				0.11504352837801
+			],
+			"frame": 2760,
+			"heading_degrees": 251.782271054454,
+			"last_impact_speed": 0.0,
+			"speed": 4.37645530700684,
+			"sway_mps": -0.248784229159355,
+			"three_dof_active": true,
+			"time": 45.9999999999987,
+			"waypoint": 5,
+			"x": -74.419189453125,
+			"z": -66.6993789672852
+		},
+		{
+			"action": [
+				0.3858263194561,
+				0.0599065534770489
+			],
+			"frame": 2790,
+			"heading_degrees": 255.127752351439,
+			"last_impact_speed": 0.0,
+			"speed": 4.50677633285522,
+			"sway_mps": -0.32310688495636,
+			"three_dof_active": true,
+			"time": 46.4999999999986,
+			"waypoint": 5,
+			"x": -76.3796539306641,
+			"z": -67.5881958007812
+		},
+		{
+			"action": [
+				0.378578543663025,
+				-0.0582550428807735
+			],
+			"frame": 2820,
+			"heading_degrees": 257.882756964488,
+			"last_impact_speed": 0.0,
+			"speed": 4.50599670410156,
+			"sway_mps": -0.322765171527863,
+			"three_dof_active": true,
+			"time": 46.9999999999986,
+			"waypoint": 5,
+			"x": -78.3978271484375,
+			"z": -68.3854827880859
+		},
+		{
+			"action": [
+				0.365005731582642,
+				-0.055336132645607
+			],
+			"frame": 2850,
+			"heading_degrees": 259.718411285064,
+			"last_impact_speed": 0.0,
+			"speed": 4.47200918197632,
+			"sway_mps": -0.277311533689499,
+			"three_dof_active": true,
+			"time": 47.4999999999986,
+			"waypoint": 5,
+			"x": -80.4337463378906,
+			"z": -69.0810546875
+		},
+		{
+			"action": [
+				0.337182074785233,
+				-0.0778610035777092
+			],
+			"frame": 2880,
+			"heading_degrees": 260.718316828608,
+			"last_impact_speed": 0.0,
+			"speed": 4.41194009780884,
+			"sway_mps": -0.21564307808876,
+			"three_dof_active": true,
+			"time": 47.9999999999986,
+			"waypoint": 5,
+			"x": -82.4650039672852,
+			"z": -69.692512512207
+		},
+		{
+			"action": [
+				0.32250502705574,
+				-0.0894448459148407
+			],
+			"frame": 2910,
+			"heading_degrees": 261.020955680542,
+			"last_impact_speed": 0.0,
+			"speed": 4.33413362503052,
+			"sway_mps": -0.150504112243652,
+			"three_dof_active": true,
+			"time": 48.4999999999985,
+			"waypoint": 5,
+			"x": -84.4716110229492,
+			"z": -70.2428436279297
+		},
+		{
+			"action": [
+				0.303694039583206,
+				-0.0958586484193802
+			],
+			"frame": 2940,
+			"heading_degrees": 260.759222831547,
+			"last_impact_speed": 0.0,
+			"speed": 4.24602079391479,
+			"sway_mps": -0.0883910730481148,
+			"three_dof_active": true,
+			"time": 48.9999999999985,
+			"waypoint": 5,
+			"x": -86.4423446655273,
+			"z": -70.755012512207
+		},
+		{
+			"action": [
+				0.279113292694092,
+				-0.0853746831417084
+			],
+			"frame": 2970,
+			"heading_degrees": 260.076135612654,
+			"last_impact_speed": 0.0,
+			"speed": 4.14159393310547,
+			"sway_mps": -0.0340920872986317,
+			"three_dof_active": true,
+			"time": 49.4999999999985,
+			"waypoint": 5,
+			"x": -88.3671798706055,
+			"z": -71.2484741210938
+		},
+		{
+			"action": [
+				0.251324355602264,
+				-0.0334447287023067
+			],
+			"frame": 3000,
+			"heading_degrees": 259.165377698157,
+			"last_impact_speed": 0.0,
+			"speed": 4.0158486366272,
+			"sway_mps": 0.00562020111829042,
+			"three_dof_active": true,
+			"time": 49.9999999999984,
+			"waypoint": 5,
+			"x": -90.234001159668,
+			"z": -71.7376708984375
+		},
+		{
+			"action": [
+				0.235952347517014,
+				0.0288093183189631
+			],
+			"frame": 3030,
+			"heading_degrees": 258.285724465141,
+			"last_impact_speed": 0.0,
+			"speed": 3.88221478462219,
+			"sway_mps": 0.024000121280551,
+			"three_dof_active": true,
+			"time": 50.4999999999984,
+			"waypoint": 5,
+			"x": -92.0327987670898,
+			"z": -72.2317276000977
+		},
+		{
+			"action": [
+				0.207420229911804,
+				0.0012908197240904
+			],
+			"frame": 3060,
+			"heading_degrees": 257.621768606113,
+			"last_impact_speed": 0.0,
+			"speed": 3.74094891548157,
+			"sway_mps": 0.0246016848832369,
+			"three_dof_active": true,
+			"time": 50.9999999999984,
+			"waypoint": 5,
+			"x": -93.7605514526367,
+			"z": -72.7336044311523
+		},
+		{
+			"action": [
+				0.191558510065079,
+				0.0179413128644228
+			],
+			"frame": 3090,
+			"heading_degrees": 257.151216383623,
+			"last_impact_speed": 0.0,
+			"speed": 3.5967800617218,
+			"sway_mps": 0.0166419055312872,
+			"three_dof_active": true,
+			"time": 51.4999999999984,
+			"waypoint": 5,
+			"x": -95.4135513305664,
+			"z": -73.2400360107422
+		},
+		{
+			"action": [
+				0.171275973320007,
+				0.00147562148049474
+			],
+			"frame": 3120,
+			"heading_degrees": 256.840948210386,
+			"last_impact_speed": 0.0,
+			"speed": 3.45513510704041,
+			"sway_mps": 0.00577827589586377,
+			"three_dof_active": true,
+			"time": 51.9999999999983,
+			"waypoint": 5,
+			"x": -96.9933700561523,
+			"z": -73.7472839355469
+		},
+		{
+			"action": [
+				0.157125905156136,
+				0.00562227657064795
+			],
+			"frame": 3150,
+			"heading_degrees": 256.629854383898,
+			"last_impact_speed": 0.0,
+			"speed": 3.31871366500854,
+			"sway_mps": -0.0038317630533129,
+			"three_dof_active": true,
+			"time": 52.4999999999983,
+			"waypoint": 5,
+			"x": -98.5022964477539,
+			"z": -74.2511978149414
+		},
+		{
+			"action": [
+				0.139642670750618,
+				-0.00465695280581713
+			],
+			"frame": 3180,
+			"heading_degrees": 256.48056010902,
+			"last_impact_speed": 0.0,
+			"speed": 3.18665266036987,
+			"sway_mps": -0.0107158794999123,
+			"three_dof_active": true,
+			"time": 52.9999999999983,
+			"waypoint": 5,
+			"x": -99.944091796875,
+			"z": -74.7487030029297
+		},
+		{
+			"action": [
+				0.13310743868351,
+				-0.000203784307814203
+			],
+			"frame": 3210,
+			"heading_degrees": 256.359495005981,
+			"last_impact_speed": 0.0,
+			"speed": 3.06430625915527,
+			"sway_mps": -0.0146755399182439,
+			"three_dof_active": true,
+			"time": 53.4999999999982,
+			"waypoint": 5,
+			"x": -101.322067260742,
+			"z": -75.2373733520508
+		},
+		{
+			"action": [
+				0.124542310833931,
+				-0.0136629082262516
+			],
+			"frame": 3240,
+			"heading_degrees": 256.251017941583,
+			"last_impact_speed": 0.0,
+			"speed": 2.95504021644592,
+			"sway_mps": -0.016429740935564,
+			"three_dof_active": true,
+			"time": 53.9999999999982,
+			"waypoint": 5,
+			"x": -102.643013000488,
+			"z": -75.7167434692383
+		},
+		{
+			"action": [
+				0.121586427092552,
+				-0.0140279298648238
+			],
+			"frame": 3270,
+			"heading_degrees": 256.128641442224,
+			"last_impact_speed": 0.0,
+			"speed": 2.85916328430176,
+			"sway_mps": -0.0167155377566814,
+			"three_dof_active": true,
+			"time": 54.4999999999982,
+			"waypoint": 5,
+			"x": -103.913269042969,
+			"z": -76.1871948242188
+		},
+		{
+			"action": [
+				0.0913013443350792,
+				0.0471281260251999
+			],
+			"frame": 3300,
+			"heading_degrees": 256.011947660254,
+			"last_impact_speed": 0.0,
+			"speed": 2.74802279472351,
+			"sway_mps": -0.0187742691487074,
+			"three_dof_active": true,
+			"time": 54.9999999999982,
+			"waypoint": 5,
+			"x": -105.134422302246,
+			"z": -76.6491470336914
+		},
+		{
+			"action": [
+				0.110736019909382,
+				0.0570354722440243
+			],
+			"frame": 3330,
+			"heading_degrees": 256.000630036799,
+			"last_impact_speed": 0.0,
+			"speed": 2.64358282089233,
+			"sway_mps": -0.0254595391452312,
+			"three_dof_active": true,
+			"time": 55.4999999999981,
+			"waypoint": 5,
+			"x": -106.299217224121,
+			"z": -77.1010818481445
+		},
+		{
+			"action": [
+				0.100905701518059,
+				0.0612396039068699
+			],
+			"frame": 3360,
+			"heading_degrees": 256.135410159691,
+			"last_impact_speed": 0.0,
+			"speed": 2.55959987640381,
+			"sway_mps": -0.0358838923275471,
+			"three_dof_active": true,
+			"time": 55.9999999999981,
+			"waypoint": 5,
+			"x": -107.419212341309,
+			"z": -77.5448760986328
+		},
+		{
+			"action": [
+				0.103744901716709,
+				0.0548103600740433
+			],
+			"frame": 3390,
+			"heading_degrees": 256.403228707237,
+			"last_impact_speed": 0.0,
+			"speed": 2.48710584640503,
+			"sway_mps": -0.0478099174797535,
+			"three_dof_active": true,
+			"time": 56.4999999999981,
+			"waypoint": 5,
+			"x": -108.500640869141,
+			"z": -77.9803009033203
+		},
+		{
+			"action": [
+				0.100723549723625,
+				0.0372661426663399
+			],
+			"frame": 3420,
+			"heading_degrees": 256.756834430757,
+			"last_impact_speed": 0.0,
+			"speed": 2.4266312122345,
+			"sway_mps": -0.0585654862225056,
+			"three_dof_active": true,
+			"time": 56.999999999998,
+			"waypoint": 5,
+			"x": -109.550575256348,
+			"z": -78.406982421875
+		},
+		{
+			"action": [
+				0.100692436099052,
+				0.0313463062047958
+			],
+			"frame": 3450,
+			"heading_degrees": 257.135397665505,
+			"last_impact_speed": 0.0,
+			"speed": 2.37653017044067,
+			"sway_mps": -0.0661963522434235,
+			"three_dof_active": true,
+			"time": 57.499999999998,
+			"waypoint": 5,
+			"x": -110.574440002441,
+			"z": -78.8242111206055
+		},
+		{
+			"action": [
+				0.0957239866256714,
+				0.0147501053288579
+			],
+			"frame": 3480,
+			"heading_degrees": 257.496366332951,
+			"last_impact_speed": 0.0,
+			"speed": 2.33363270759583,
+			"sway_mps": -0.0698215216398239,
+			"three_dof_active": true,
+			"time": 57.999999999998,
+			"waypoint": 5,
+			"x": -111.577354431152,
+			"z": -79.2315979003906
+		},
+		{
+			"action": [
+				0.0910257399082184,
+				0.00314248842187226
+			],
+			"frame": 3510,
+			"heading_degrees": 257.801368430338,
+			"last_impact_speed": 0.0,
+			"speed": 2.29328465461731,
+			"sway_mps": -0.0691543817520142,
+			"three_dof_active": true,
+			"time": 58.499999999998,
+			"waypoint": 5,
+			"x": -112.561569213867,
+			"z": -79.6285781860352
+		},
+		{
+			"action": [
+				0.0835311189293861,
+				-0.0165703948587179
+			],
+			"frame": 3540,
+			"heading_degrees": 258.022024521665,
+			"last_impact_speed": 0.0,
+			"speed": 2.25122594833374,
+			"sway_mps": -0.0645560622215271,
+			"three_dof_active": true,
+			"time": 58.9999999999979,
+			"waypoint": 5,
+			"x": -113.527458190918,
+			"z": -80.0147857666016
+		}
+	],
+	"scenario_key": "auto_unberthing",
+	"schema_version": "mission_rl_native_closed_loop_v1",
+	"started": true,
+	"status": "强化学习任务完成",
+	"trajectory_teleporting": false
+}

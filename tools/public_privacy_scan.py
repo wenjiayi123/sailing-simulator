@@ -60,6 +60,20 @@ EMAIL_RE = re.compile(r"(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b")
 PHONE_RE = re.compile(r"(?<![0-9A-Za-z.])1[3-9]\d{9}(?![0-9A-Za-z.])")
 PRIVATE_KEY_RE = re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----")
 
+# These exact source lines describe continuing a paused policy/training run.
+# Keep frozen sources byte-identical without exempting comments/files generally.
+CONTINUATION_SOURCE_LINES = {
+    "var resume := auto_switch",
+    "if resume:",
+    "# constant 1000 on a resumed model silently skips replay warmup.",
+}
+
+
+def _contains_forbidden_topic(path: Path, line: str) -> bool:
+    if path.suffix in {".py", ".gd"} and line.strip() in CONTINUATION_SOURCE_LINES:
+        return False
+    return FORBIDDEN_TERM_RE.search(line) is not None
+
 
 def _publishable_files() -> list[Path]:
     completed = subprocess.run(
@@ -109,6 +123,10 @@ def main() -> int:
             )
             for label, pattern in checks:
                 if is_scanner and label == "forbidden topic":
+                    continue
+                if label == "forbidden topic":
+                    if _contains_forbidden_topic(path, line):
+                        findings.append((relative, line_number, label))
                     continue
                 if pattern.search(line):
                     findings.append((relative, line_number, label))

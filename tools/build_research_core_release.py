@@ -32,8 +32,11 @@ GLOBS = (
     "tools/*.sh",
     "tools/ship_rl/*.py",
     "tools/cargo_rl/*.py",
+    "tools/mission_rl/*.py",
+    "tools/mission_rl/*.c",
     "tests/*.py",
     "data/rl/*.json",
+    "data/rl/mission_rl_deployments_v1/*.json",
     "data/public/*.json",
     "data/public/*.csv",
     "data/ports/*.json",
@@ -53,7 +56,16 @@ GLOBS = (
     "reports/artifacts/cargo_circuit_dynamic_rl_v2/**/*.json",
     "reports/artifacts/cargo_circuit_dynamic_rl_v2/**/*.csv",
     "reports/artifacts/cargo_circuit_dynamic_rl_v2/**/*.zip",
+    "reports/artifacts/mission_rl_v1/**/*.json",
+    "reports/artifacts/mission_rl_v1/**/*.zip",
+    "reports/artifacts/mission_rl_v1/**/*.npz",
+    "reports/artifacts/mission_rl_v1/training_sources/*.py",
+    "reports/artifacts/mission_rl_ui_v1/*.json",
+    "reports/artifacts/mission_rl_ui_v1/*.md",
 )
+LOCAL_ONLY_FILES = {
+    "reports/artifacts/mission_rl_v1/crossing_qualification_01/selection.json",
+}
 FORBIDDEN_PREFIXES = (
     "assets/",
     "characters/",
@@ -100,7 +112,8 @@ def _selected_files() -> list[Path]:
             relative = path.relative_to(ROOT).as_posix() if path.is_file() else ""
             lowered = relative.lower()
             forbidden = bool(
-                relative.startswith(FORBIDDEN_PREFIXES)
+                relative in LOCAL_ONLY_FILES
+                or relative.startswith(FORBIDDEN_PREFIXES)
                 or lowered.endswith(FORBIDDEN_SUFFIXES)
                 or any(value in lowered for value in FORBIDDEN_CONTAINS)
             )

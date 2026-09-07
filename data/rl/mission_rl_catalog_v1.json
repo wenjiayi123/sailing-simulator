@@ -1,0 +1,176 @@
+{
+  "schema_version": "mission_rl_catalog_v1",
+  "scenarios": {
+    "open_water": {
+      "name": "开放水域",
+      "status": "PASS",
+      "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
+      "live_switch_admitted": true,
+      "strategy_id": "SAC-MISSION-open_water-open_water_attempt_01",
+      "timesteps": 75000,
+      "actor_critic_updates": 18250,
+      "numeric_admitted": true,
+      "native_runtime_verified": true,
+      "source_hashes_match": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/open_water_attempt_01/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/open_water_attempt_01/native_validation_05.json"
+      ],
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/open_water_attempt_01.json",
+      "actor_sha256": "f43ff9e0f10223b47f81715f145029ac0f6dff746b45b3a30904486a3e46eafe",
+      "test_summary": {
+        "episodes": 20,
+        "success_rate": 1.0,
+        "collisions": 0,
+        "mean_duration_seconds": 95.375,
+        "minimum_clearance_m": 24.37805062895205,
+        "minimum_separation_m": null
+      }
+    },
+    "harbor": {
+      "name": "港口引航水域",
+      "status": "PASS",
+      "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
+      "live_switch_admitted": true,
+      "strategy_id": "SAC-MISSION-harbor-harbor_business_05",
+      "timesteps": 350000,
+      "actor_critic_updates": 86500,
+      "numeric_admitted": true,
+      "native_runtime_verified": true,
+      "source_hashes_match": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/harbor_business_05/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/harbor_business_05/native_validation_05.json"
+      ],
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/harbor_business_05.json",
+      "actor_sha256": "88fad1f4fbfbc910688e893f1648312e9410822d34089bc9f4736dfcf21900c2",
+      "test_summary": {
+        "episodes": 20,
+        "success_rate": 1.0,
+        "collisions": 0,
+        "mean_duration_seconds": 64.725,
+        "minimum_clearance_m": 1.7158649722962673,
+        "minimum_separation_m": null
+      }
+    },
+    "auto_berthing": {
+      "name": "自动靠泊评测水域",
+      "status": "PASS",
+      "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
+      "live_switch_admitted": true,
+      "strategy_id": "SAC-MISSION-auto_berthing-berthing_attempt_02",
+      "timesteps": 200000,
+      "actor_critic_updates": 49500,
+      "numeric_admitted": true,
+      "native_runtime_verified": true,
+      "source_hashes_match": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/berthing_attempt_02/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/berthing_attempt_02/native_validation_05.json"
+      ],
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/berthing_attempt_02.json",
+      "actor_sha256": "7598731b0dc1276c7b7063de72d68cf6ab91234ec4ea9989aff0035099ef5b9f",
+      "test_summary": {
+        "episodes": 20,
+        "success_rate": 1.0,
+        "collisions": 0,
+        "mean_duration_seconds": 74.675,
+        "minimum_clearance_m": 8.725992479486042,
+        "minimum_separation_m": null
+      }
+    },
+    "auto_unberthing": {
+      "name": "自动离泊评测水域",
+      "status": "PASS",
+      "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
+      "live_switch_admitted": true,
+      "strategy_id": "SAC-MISSION-auto_unberthing-unberthing_attempt_02",
+      "timesteps": 75000,
+      "actor_critic_updates": 18250,
+      "numeric_admitted": true,
+      "native_runtime_verified": true,
+      "source_hashes_match": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/unberthing_attempt_02/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/unberthing_attempt_02/native_validation_05.json"
+      ],
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/unberthing_attempt_02.json",
+      "actor_sha256": "62463604d3b7610464a14c2ca7a7956a75fc8596f15aa93eb773777479f18a16",
+      "test_summary": {
+        "episodes": 20,
+        "success_rate": 1.0,
+        "collisions": 0,
+        "mean_duration_seconds": 60.175,
+        "minimum_clearance_m": 4.262949802737498,
+        "minimum_separation_m": null
+      }
+    },
+    "narrow_channel_head_on": {
+      "name": "狭水道对遇会船",
+      "status": "PASS",
+      "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
+      "live_switch_admitted": true,
+      "strategy_id": "SAC-MISSION-narrow_channel_head_on-head_on_attempt_02",
+      "timesteps": 75000,
+      "actor_critic_updates": 18250,
+      "numeric_admitted": true,
+      "native_runtime_verified": true,
+      "source_hashes_match": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/head_on_attempt_02/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/head_on_attempt_02/native_validation_05.json"
+      ],
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/head_on_attempt_02.json",
+      "actor_sha256": "f7d56f425eb0faab188403abd1262a5c9464c87c8c786076c5d40d442c5d779d",
+      "test_summary": {
+        "episodes": 20,
+        "success_rate": 1.0,
+        "collisions": 0,
+        "mean_duration_seconds": 83.575,
+        "minimum_clearance_m": 20.593524330124353,
+        "minimum_separation_m": 27.048254993941114
+      }
+    },
+    "crossing_starboard": {
+      "name": "右舷来船交叉",
+      "status": "PASS",
+      "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
+      "live_switch_admitted": true,
+      "strategy_id": "SAC-MISSION-crossing_starboard-crossing_qualification_01",
+      "timesteps": 25000,
+      "actor_critic_updates": 5750,
+      "numeric_admitted": true,
+      "native_runtime_verified": true,
+      "source_hashes_match": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/crossing_qualification_01/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/crossing_qualification_01/native_validation_05.json"
+      ],
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/crossing_qualification_01.json",
+      "actor_sha256": "d72a0509e648a9339769892e3d811c6ac09ea7452f5313fd6b00613becd6a546",
+      "test_summary": {
+        "episodes": 20,
+        "success_rate": 1.0,
+        "collisions": 0,
+        "mean_duration_seconds": 75.7,
+        "minimum_clearance_m": 53.853062420852794,
+        "minimum_separation_m": 126.44028874794331
+      }
+    },
+    "narrow_channel_overtaking": {
+      "name": "狭水道追越",
+      "status": "NOT_CONVERGED",
+      "status_zh": "强化学习候选仍未通过完整任务验收",
+      "live_switch_admitted": false,
+      "strategy_id": "SAC-MISSION-narrow_channel_overtaking-overtaking_clearance_curriculum_12",
+      "timesteps": 727000,
+      "actor_critic_updates": 180250,
+      "numeric_admitted": false,
+      "native_runtime_verified": false,
+      "source_hashes_match": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/overtaking_clearance_curriculum_12/receipt.json",
+      "native_receipts": []
+    }
+  },
+  "production_authority": false
+}

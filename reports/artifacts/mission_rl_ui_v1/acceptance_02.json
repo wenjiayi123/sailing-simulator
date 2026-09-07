@@ -1,0 +1,645 @@
+{
+	"all_task_count": 7,
+	"berthing_completion": "actual_neural_closed_loop",
+	"checks": [
+		{
+			"detail": 0.0267590582370758,
+			"name": "open_water_applied_spawn_matches_scene",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "启用场景强化学习",
+				"disabled": false,
+				"message": "策略已通过验收。点击启用后，当前三维画面将显示 SAC 实时自主航行。",
+				"pressed": false,
+				"state": "ready",
+				"status": "UI 验收切换"
+			},
+			"name": "open_water_ready",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "正在启用强化学习…",
+				"disabled": true,
+				"message": "已收到操作，正在核验当前任务与策略，请稍候。",
+				"pressed": false,
+				"state": "starting",
+				"status": "UI 验收切换"
+			},
+			"name": "open_water_click_acknowledged",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": true,
+				"button": "已接管 · 点击停止强化学习",
+				"disabled": false,
+				"message": "开放水域巡航：SAC 正在自主操船\n已运行 0.2 秒 · 航点 1/5；按 N 收起面板观看。",
+				"pressed": true,
+				"state": "running",
+				"status": "场景强化学习接管：SAC-MISSION-open_water-open_water_attempt_01"
+			},
+			"name": "open_water_running",
+			"passed": true
+		},
+		{
+			"detail": "(0.649997, 0.485594)",
+			"name": "open_water_neural_commands",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "已停止 · 启用场景强化学习",
+				"disabled": false,
+				"message": "已停止强化学习接管。如已驶离起点，请先勾选“重定位船舶”并重新应用任务。",
+				"pressed": false,
+				"state": "stopped",
+				"status": "已停止场景强化学习"
+			},
+			"name": "open_water_stop_persists",
+			"passed": true
+		},
+		{
+			"detail": 0.005272485781461,
+			"name": "harbor_applied_spawn_matches_scene",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "启用场景强化学习",
+				"disabled": false,
+				"message": "策略已通过验收。点击启用后，当前三维画面将显示 SAC 实时自主航行。",
+				"pressed": false,
+				"state": "ready",
+				"status": "任务已切换，正在核验匹配策略"
+			},
+			"name": "harbor_ready",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "正在启用强化学习…",
+				"disabled": true,
+				"message": "已收到操作，正在核验当前任务与策略，请稍候。",
+				"pressed": false,
+				"state": "starting",
+				"status": "任务已切换，正在核验匹配策略"
+			},
+			"name": "harbor_click_acknowledged",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": true,
+				"button": "已接管 · 点击停止强化学习",
+				"disabled": false,
+				"message": "港口引航：SAC 正在自主操船\n已运行 0.2 秒 · 航点 1/6；按 N 收起面板观看。",
+				"pressed": true,
+				"state": "running",
+				"status": "场景强化学习接管：SAC-MISSION-harbor-harbor_business_05"
+			},
+			"name": "harbor_running",
+			"passed": true
+		},
+		{
+			"detail": "(0.604639, -0.623606)",
+			"name": "harbor_neural_commands",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "已停止 · 启用场景强化学习",
+				"disabled": false,
+				"message": "已停止强化学习接管。如已驶离起点，请先勾选“重定位船舶”并重新应用任务。",
+				"pressed": false,
+				"state": "stopped",
+				"status": "已停止场景强化学习"
+			},
+			"name": "harbor_stop_persists",
+			"passed": true
+		},
+		{
+			"detail": 0.0210150312632322,
+			"name": "auto_berthing_applied_spawn_matches_scene",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "启用场景强化学习",
+				"disabled": false,
+				"message": "策略已通过验收。点击启用后，当前三维画面将显示 SAC 实时自主航行。",
+				"pressed": false,
+				"state": "ready",
+				"status": "任务已切换，正在核验匹配策略"
+			},
+			"name": "auto_berthing_ready",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "正在启用强化学习…",
+				"disabled": true,
+				"message": "已收到操作，正在核验当前任务与策略，请稍候。",
+				"pressed": false,
+				"state": "starting",
+				"status": "任务已切换，正在核验匹配策略"
+			},
+			"name": "auto_berthing_click_acknowledged",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": true,
+				"button": "已接管 · 点击停止强化学习",
+				"disabled": false,
+				"message": "自动靠泊评测场：SAC 正在自主操船\n已运行 0.2 秒 · 航点 1/7；按 N 收起面板观看。",
+				"pressed": true,
+				"state": "running",
+				"status": "场景强化学习接管：SAC-MISSION-auto_berthing-berthing_attempt_02"
+			},
+			"name": "auto_berthing_running",
+			"passed": true
+		},
+		{
+			"detail": "(0.642533, -0.577152)",
+			"name": "auto_berthing_neural_commands",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "已停止 · 启用场景强化学习",
+				"disabled": false,
+				"message": "已停止强化学习接管。如已驶离起点，请先勾选“重定位船舶”并重新应用任务。",
+				"pressed": false,
+				"state": "stopped",
+				"status": "已停止场景强化学习"
+			},
+			"name": "auto_berthing_stop_persists",
+			"passed": true
+		},
+		{
+			"detail": 0.0364509709179401,
+			"name": "auto_unberthing_applied_spawn_matches_scene",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "启用场景强化学习",
+				"disabled": false,
+				"message": "策略已通过验收。点击启用后，当前三维画面将显示 SAC 实时自主航行。",
+				"pressed": false,
+				"state": "ready",
+				"status": "任务已切换，正在核验匹配策略"
+			},
+			"name": "auto_unberthing_ready",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "正在启用强化学习…",
+				"disabled": true,
+				"message": "已收到操作，正在核验当前任务与策略，请稍候。",
+				"pressed": false,
+				"state": "starting",
+				"status": "任务已切换，正在核验匹配策略"
+			},
+			"name": "auto_unberthing_click_acknowledged",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": true,
+				"button": "已接管 · 点击停止强化学习",
+				"disabled": false,
+				"message": "自动离泊评测场：SAC 正在自主操船\n已运行 0.2 秒 · 航点 1/6；按 N 收起面板观看。",
+				"pressed": true,
+				"state": "running",
+				"status": "场景强化学习接管：SAC-MISSION-auto_unberthing-unberthing_attempt_02"
+			},
+			"name": "auto_unberthing_running",
+			"passed": true
+		},
+		{
+			"detail": "(0.647947, 0.649605)",
+			"name": "auto_unberthing_neural_commands",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "已停止 · 启用场景强化学习",
+				"disabled": false,
+				"message": "已停止强化学习接管。如已驶离起点，请先勾选“重定位船舶”并重新应用任务。",
+				"pressed": false,
+				"state": "stopped",
+				"status": "已停止场景强化学习"
+			},
+			"name": "auto_unberthing_stop_persists",
+			"passed": true
+		},
+		{
+			"detail": 0.0417489111423492,
+			"name": "narrow_channel_head_on_applied_spawn_matches_scene",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "启用场景强化学习",
+				"disabled": false,
+				"message": "策略已通过验收。点击启用后，当前三维画面将显示 SAC 实时自主航行。",
+				"pressed": false,
+				"state": "ready",
+				"status": "任务已切换，正在核验匹配策略"
+			},
+			"name": "narrow_channel_head_on_ready",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "正在启用强化学习…",
+				"disabled": true,
+				"message": "已收到操作，正在核验当前任务与策略，请稍候。",
+				"pressed": false,
+				"state": "starting",
+				"status": "任务已切换，正在核验匹配策略"
+			},
+			"name": "narrow_channel_head_on_click_acknowledged",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": true,
+				"button": "已接管 · 点击停止强化学习",
+				"disabled": false,
+				"message": "狭水道对遇：SAC 正在自主操船\n已运行 0.2 秒 · 航点 1/5；按 N 收起面板观看。",
+				"pressed": true,
+				"state": "running",
+				"status": "场景强化学习接管：SAC-MISSION-narrow_channel_head_on-head_on_attempt_02"
+			},
+			"name": "narrow_channel_head_on_running",
+			"passed": true
+		},
+		{
+			"detail": "(0.64657, 0.642413)",
+			"name": "narrow_channel_head_on_neural_commands",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "已停止 · 启用场景强化学习",
+				"disabled": false,
+				"message": "已停止强化学习接管。如已驶离起点，请先勾选“重定位船舶”并重新应用任务。",
+				"pressed": false,
+				"state": "stopped",
+				"status": "已停止场景强化学习"
+			},
+			"name": "narrow_channel_head_on_stop_persists",
+			"passed": true
+		},
+		{
+			"detail": 0.0312254074960947,
+			"name": "crossing_starboard_applied_spawn_matches_scene",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "启用场景强化学习",
+				"disabled": false,
+				"message": "策略已通过验收。点击启用后，当前三维画面将显示 SAC 实时自主航行。",
+				"pressed": false,
+				"state": "ready",
+				"status": "任务已切换，正在核验匹配策略"
+			},
+			"name": "crossing_starboard_ready",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "正在启用强化学习…",
+				"disabled": true,
+				"message": "已收到操作，正在核验当前任务与策略，请稍候。",
+				"pressed": false,
+				"state": "starting",
+				"status": "任务已切换，正在核验匹配策略"
+			},
+			"name": "crossing_starboard_click_acknowledged",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": true,
+				"button": "已接管 · 点击停止强化学习",
+				"disabled": false,
+				"message": "右舷来船交叉：SAC 正在自主操船\n已运行 0.2 秒 · 航点 1/5；按 N 收起面板观看。",
+				"pressed": true,
+				"state": "running",
+				"status": "场景强化学习接管：SAC-MISSION-crossing_starboard-crossing_qualification_01"
+			},
+			"name": "crossing_starboard_running",
+			"passed": true
+		},
+		{
+			"detail": "(0.59265, 0.632157)",
+			"name": "crossing_starboard_neural_commands",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "已停止 · 启用场景强化学习",
+				"disabled": false,
+				"message": "已停止强化学习接管。如已驶离起点，请先勾选“重定位船舶”并重新应用任务。",
+				"pressed": false,
+				"state": "stopped",
+				"status": "已停止场景强化学习"
+			},
+			"name": "crossing_starboard_stop_persists",
+			"passed": true
+		},
+		{
+			"detail": 0.0614490322768688,
+			"name": "narrow_channel_overtaking_applied_spawn_matches_scene",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "暂不可用 · 未通过策略验收",
+				"disabled": true,
+				"message": "狭水道追越：完整任务尚未收敛，策略未通过验收，暂不能接管。\n请切换至已通过验收的任务。",
+				"pressed": false,
+				"state": "unavailable",
+				"status": "任务已切换，正在核验匹配策略"
+			},
+			"name": "narrow_channel_overtaking_unavailable_reason",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "暂不可用 · 未通过策略验收",
+				"disabled": true,
+				"message": "狭水道追越：完整任务尚未收敛，策略未通过验收，暂不能接管。\n请切换至已通过验收的任务。",
+				"pressed": false,
+				"state": "unavailable",
+				"status": "任务已切换，正在核验匹配策略"
+			},
+			"name": "narrow_channel_overtaking_blocked_click",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": true,
+				"button": "已接管 · 点击停止强化学习",
+				"disabled": false,
+				"message": "开放水域巡航：SAC 正在自主操船\n已运行 0.2 秒 · 航点 1/5；按 N 收起面板观看。",
+				"pressed": true,
+				"state": "running",
+				"status": "场景强化学习接管：SAC-MISSION-open_water-open_water_attempt_01"
+			},
+			"name": "auto_switch_0",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": true,
+				"button": "已接管 · 点击停止强化学习",
+				"disabled": false,
+				"message": "港口引航：SAC 正在自主操船\n已运行 0.1 秒 · 航点 1/6；按 N 收起面板观看。",
+				"pressed": true,
+				"state": "running",
+				"status": "场景强化学习接管：SAC-MISSION-harbor-harbor_business_05"
+			},
+			"name": "auto_switch_1",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": true,
+				"button": "已接管 · 点击停止强化学习",
+				"disabled": false,
+				"message": "自动靠泊评测场：SAC 正在自主操船\n已运行 0.1 秒 · 航点 1/7；按 N 收起面板观看。",
+				"pressed": true,
+				"state": "running",
+				"status": "场景强化学习接管：SAC-MISSION-auto_berthing-berthing_attempt_02"
+			},
+			"name": "auto_switch_2",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": true,
+				"button": "已接管 · 点击停止强化学习",
+				"disabled": false,
+				"message": "自动离泊评测场：SAC 正在自主操船\n已运行 0.1 秒 · 航点 1/6；按 N 收起面板观看。",
+				"pressed": true,
+				"state": "running",
+				"status": "场景强化学习接管：SAC-MISSION-auto_unberthing-unberthing_attempt_02"
+			},
+			"name": "auto_switch_3",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": true,
+				"button": "已接管 · 点击停止强化学习",
+				"disabled": false,
+				"message": "狭水道对遇：SAC 正在自主操船\n已运行 0.1 秒 · 航点 1/5；按 N 收起面板观看。",
+				"pressed": true,
+				"state": "running",
+				"status": "场景强化学习接管：SAC-MISSION-narrow_channel_head_on-head_on_attempt_02"
+			},
+			"name": "auto_switch_4",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": true,
+				"button": "已接管 · 点击停止强化学习",
+				"disabled": false,
+				"message": "右舷来船交叉：SAC 正在自主操船\n已运行 0.1 秒 · 航点 1/5；按 N 收起面板观看。",
+				"pressed": true,
+				"state": "running",
+				"status": "场景强化学习接管：SAC-MISSION-crossing_starboard-crossing_qualification_01"
+			},
+			"name": "auto_switch_5",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "暂不可用 · 未通过策略验收",
+				"disabled": true,
+				"message": "狭水道追越：完整任务尚未收敛，策略未通过验收，暂不能接管。\n请切换至已通过验收的任务。",
+				"pressed": false,
+				"state": "unavailable",
+				"status": "强化学习候选仍未通过完整任务验收"
+			},
+			"name": "auto_switch_unqualified",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "请先应用所选任务",
+				"disabled": true,
+				"message": "任务选择已改变。点击“应用任务”后，才会显示该任务的强化学习状态。",
+				"pressed": false,
+				"state": "unapplied",
+				"status": "任务已切换，正在核验匹配策略"
+			},
+			"name": "selected_but_not_applied",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "请先应用所选任务",
+				"disabled": true,
+				"message": "任务选择已改变。点击“应用任务”后，才会显示该任务的强化学习状态。",
+				"pressed": false,
+				"state": "unapplied",
+				"status": "任务已切换，正在核验匹配策略"
+			},
+			"name": "unapplied_click_cannot_start_previous_task",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "请先应用所选任务",
+				"disabled": true,
+				"message": "任务选择已改变。点击“应用任务”后，才会显示该任务的强化学习状态。",
+				"pressed": false,
+				"state": "unapplied",
+				"status": "任务已切换，正在核验匹配策略"
+			},
+			"name": "pending_start_cancelled_by_selection",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "启用失败 · 点击重试",
+				"disabled": false,
+				"message": "请先应用任务，复位至已验证的强化学习起点",
+				"pressed": false,
+				"state": "rejected",
+				"status": "请先应用任务，复位至已验证的强化学习起点"
+			},
+			"name": "outside_spawn_rejected_visibly",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "启用失败 · 点击重试",
+				"disabled": false,
+				"message": "请先应用任务，复位至已验证的强化学习起点",
+				"pressed": false,
+				"state": "rejected",
+				"status": "请先应用任务，复位至已验证的强化学习起点"
+			},
+			"name": "rejection_persists_after_refresh",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": true,
+				"button": "已接管 · 点击停止强化学习",
+				"disabled": false,
+				"message": "自动靠泊评测场：SAC 正在自主操船\n已运行 0.2 秒 · 航点 1/7；按 N 收起面板观看。",
+				"pressed": true,
+				"state": "running",
+				"status": "场景强化学习接管：SAC-MISSION-auto_berthing-berthing_attempt_02"
+			},
+			"name": "reset_and_retry",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "运行已中止 · 请重新应用任务",
+				"disabled": true,
+				"message": "任务失败：发生碰撞。请重新应用任务后再启用。",
+				"pressed": false,
+				"state": "failed",
+				"status": "任务失败：发生碰撞"
+			},
+			"name": "failure_fixture_persists",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "任务已完成 · 请重新应用任务",
+				"disabled": true,
+				"message": "强化学习已完成本次航行。重新观看：勾选“重定位船舶”，再点击“应用任务”。",
+				"pressed": false,
+				"state": "completed",
+				"status": "强化学习任务完成"
+			},
+			"name": "real_berthing_completion_visible",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "任务已完成 · 请重新应用任务",
+				"disabled": true,
+				"message": "强化学习已完成本次航行。重新观看：勾选“重定位船舶”，再点击“应用任务”。",
+				"pressed": false,
+				"state": "completed",
+				"status": "强化学习任务完成"
+			},
+			"name": "completion_survives_panel_reopen",
+			"passed": true
+		},
+		{
+			"detail": {
+				"active": false,
+				"button": "启用场景强化学习",
+				"disabled": false,
+				"message": "策略已通过验收。点击启用后，当前三维画面将显示 SAC 实时自主航行。",
+				"pressed": false,
+				"state": "ready",
+				"status": "任务已切换，正在核验匹配策略"
+			},
+			"name": "completed_task_can_be_reapplied",
+			"passed": true
+		},
+		{
+			"detail": null,
+			"name": "ui_source_unchanged_during_execution",
+			"passed": true
+		}
+	],
+	"fixtures": [
+		"spawn_offset_for_rejection",
+		"injected_collision_stop_for_failure_display"
+	],
+	"input_method": "native_viewport_mouse_events",
+	"passed": true,
+	"production_authority": false,
+	"qualified_scenarios": 6,
+	"schema_version": "mission_rl_ui_acceptance_v1",
+	"ui_source_sha256": "d4f5011f784188cdf84d8f63850ef2162c6216a52d23a7b98fb456864171d4a2"
+}

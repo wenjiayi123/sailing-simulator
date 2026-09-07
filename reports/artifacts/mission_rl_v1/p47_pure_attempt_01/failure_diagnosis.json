@@ -1,0 +1,24 @@
+{
+  "status": "L1_NOT_CONVERGED",
+  "successes": 6,
+  "timeouts": 7,
+  "collision_episodes": 3,
+  "decision_delta_seconds": 0.25,
+  "gamma": 0.995,
+  "effective_discount_horizon_steps": 199.99999999999983,
+  "effective_discount_horizon_seconds": 49.99999999999996,
+  "median_success_steps": 1497,
+  "observed_issues": [
+    "7 validation episodes exhausted the 2000-step budget without completion",
+    "3 validation episodes collided with terrain or the boundary",
+    "Large heading/drift excursions show unstable learned manoeuvres",
+    "100000 steps produced only 79 training episodes; long-horizon feedback and state coverage remain insufficient"
+  ],
+  "causal_claim_boundary": "Discount horizon and training coverage are hypotheses supported by logs, not isolated causal ablations. No higher difficulty or full circuit admission.",
+  "next_required_rl_work": [
+    "Use coherent near-goal to full-leg curriculum with full obstacle map retained",
+    "Compare longer-horizon reward propagation and balanced failure costs in an independent L1 experiment",
+    "Repeat both held-out sweeps before any ladder promotion"
+  ],
+  "production_authority": false
+}

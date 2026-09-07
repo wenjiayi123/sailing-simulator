@@ -171,22 +171,12 @@ func _spawn_traffic_ship(definition: Dictionary) -> void:
 		SHIP_Y,
 		float(spawn.get("z", 0.0))
 	)
-	var ship_variant: Variant = _fleet_manager.call("spawn_ship_at", position, {})
+	var ship_variant: Variant = _fleet_manager.call("spawn_ship_at", position, {}, true)
 	if not (ship_variant is Node3D):
 		return
 	var ship := ship_variant as Node3D
-	# A duplicated CharacterBody enters the physics server at its source pose
-	# before its target transform is synchronized. Temporarily removing its
-	# collision prevents the own ship from being carried by that one-frame spawn
-	# displacement. Collision is restored after the target pose is committed.
-	var collision_layer := 0
-	var collision_mask := 0
-	if ship is CollisionObject3D:
-		var collision_ship := ship as CollisionObject3D
-		collision_layer = collision_ship.collision_layer
-		collision_mask = collision_ship.collision_mask
-		collision_ship.collision_layer = 0
-		collision_ship.collision_mask = 0
+	# Fleet creation isolates collision before add_child, while the clone is
+	# still outside the physics server. Its target pose commits before arming.
 	ship.name = "MissionTraffic_%s" % String(definition.get("id", _traffic_ships.size() + 1))
 	ship.add_to_group(&"ship_advanced_mission_traffic")
 	if ship.has_method("set_ship_navigation_spawn"):
@@ -199,16 +189,6 @@ func _spawn_traffic_ship(definition: Dictionary) -> void:
 		)
 	_traffic_ships.append(ship)
 	_traffic_definitions.append(definition.duplicate(true))
-	if ship is CollisionObject3D:
-		_arm_traffic_collision_after_physics(ship as CollisionObject3D, collision_layer, collision_mask)
-
-
-func _arm_traffic_collision_after_physics(ship: CollisionObject3D, collision_layer: int, collision_mask: int) -> void:
-	await get_tree().physics_frame
-	if ship == null or not is_instance_valid(ship) or not _traffic_ships.has(ship):
-		return
-	ship.collision_layer = collision_layer
-	ship.collision_mask = collision_mask
 
 
 func _clear_mission_traffic() -> void:

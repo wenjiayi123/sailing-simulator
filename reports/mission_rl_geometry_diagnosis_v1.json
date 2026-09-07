@@ -1,0 +1,444 @@
+{
+  "scenarios": [
+    {
+      "scenario_key": "open_water",
+      "spawn_clearance_m": 118.27898689588022,
+      "route": [
+        {
+          "waypoint_index": 0,
+          "target_clearance_m": 57.28308055437864,
+          "straight_segment_minimum_clearance_m": 57.28308055437864,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            0.0,
+            -72.0
+          ]
+        },
+        {
+          "waypoint_index": 1,
+          "target_clearance_m": 41.90772935672255,
+          "straight_segment_minimum_clearance_m": 41.24665157523959,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            65.78975741239893,
+            -126.82479784366576
+          ]
+        },
+        {
+          "waypoint_index": 2,
+          "target_clearance_m": 61.02819946431775,
+          "straight_segment_minimum_clearance_m": 41.90772935672255,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            72.0,
+            -132.0
+          ]
+        },
+        {
+          "waypoint_index": 3,
+          "target_clearance_m": 61.82112361825881,
+          "straight_segment_minimum_clearance_m": 61.02819946431775,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            46.0,
+            -208.0
+          ]
+        },
+        {
+          "waypoint_index": 4,
+          "target_clearance_m": 39.99349550499537,
+          "straight_segment_minimum_clearance_m": 24.02148948946252,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -79.00751879699249,
+            -129.9248120300752
+          ]
+        }
+      ],
+      "note": "Negative route-leg clearance means detour is required; negative target clearance means the target center is inside an inflated solid. Arrival circles may still intersect navigable water."
+    },
+    {
+      "scenario_key": "harbor",
+      "spawn_clearance_m": 25.8,
+      "route": [
+        {
+          "waypoint_index": 0,
+          "target_clearance_m": 15.04828759089466,
+          "straight_segment_minimum_clearance_m": 12.061495831257986,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -124.73381294964028,
+            -93.29496402877697
+          ]
+        },
+        {
+          "waypoint_index": 1,
+          "target_clearance_m": 15.588294228055936,
+          "straight_segment_minimum_clearance_m": 13.228165936135404,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -101.0391061452514,
+            -82.14525139664805
+          ]
+        },
+        {
+          "waypoint_index": 2,
+          "target_clearance_m": 20.8,
+          "straight_segment_minimum_clearance_m": 5.472802853726255,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -56.032085561497325,
+            -64.32085561497325
+          ]
+        },
+        {
+          "waypoint_index": 3,
+          "target_clearance_m": 21.410455730027934,
+          "straight_segment_minimum_clearance_m": 15.779628577959897,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -18.321608040201006,
+            -44.447236180904525
+          ]
+        },
+        {
+          "waypoint_index": 4,
+          "target_clearance_m": 11.196078054371139,
+          "straight_segment_minimum_clearance_m": -3.4797521007452517,
+          "straight_segment_requires_detour": true,
+          "closest_point": [
+            40.62564102564103,
+            -19.08205128205128
+          ]
+        },
+        {
+          "waypoint_index": 5,
+          "target_clearance_m": -3.2,
+          "straight_segment_minimum_clearance_m": -7.484153005464483,
+          "straight_segment_requires_detour": true,
+          "closest_point": [
+            75.44262295081967,
+            19.07103825136612
+          ]
+        }
+      ],
+      "note": "Negative route-leg clearance means detour is required; negative target clearance means the target center is inside an inflated solid. Arrival circles may still intersect navigable water."
+    },
+    {
+      "scenario_key": "auto_berthing",
+      "spawn_clearance_m": 34.8,
+      "route": [
+        {
+          "waypoint_index": 0,
+          "target_clearance_m": 51.8,
+          "straight_segment_minimum_clearance_m": 34.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -142.0,
+            -112.0
+          ]
+        },
+        {
+          "waypoint_index": 1,
+          "target_clearance_m": 17.318284528683193,
+          "straight_segment_minimum_clearance_m": 17.318284528683193,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -72.0,
+            -70.0
+          ]
+        },
+        {
+          "waypoint_index": 2,
+          "target_clearance_m": 32.8,
+          "straight_segment_minimum_clearance_m": 16.030403415324074,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -65.68205128205128,
+            -66.84102564102564
+          ]
+        },
+        {
+          "waypoint_index": 3,
+          "target_clearance_m": 50.8,
+          "straight_segment_minimum_clearance_m": 32.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -28.0,
+            -48.0
+          ]
+        },
+        {
+          "waypoint_index": 4,
+          "target_clearance_m": 33.8,
+          "straight_segment_minimum_clearance_m": 33.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            54.0,
+            -8.0
+          ]
+        },
+        {
+          "waypoint_index": 5,
+          "target_clearance_m": 13.8,
+          "straight_segment_minimum_clearance_m": 13.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            74.0,
+            8.0
+          ]
+        },
+        {
+          "waypoint_index": 6,
+          "target_clearance_m": 5.8,
+          "straight_segment_minimum_clearance_m": 5.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            82.0,
+            18.0
+          ]
+        }
+      ],
+      "note": "Negative route-leg clearance means detour is required; negative target clearance means the target center is inside an inflated solid. Arrival circles may still intersect navigable water."
+    },
+    {
+      "scenario_key": "auto_unberthing",
+      "spawn_clearance_m": 5.8,
+      "route": [
+        {
+          "waypoint_index": 0,
+          "target_clearance_m": 15.8,
+          "straight_segment_minimum_clearance_m": 5.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            82.0,
+            18.0
+          ]
+        },
+        {
+          "waypoint_index": 1,
+          "target_clearance_m": 37.8,
+          "straight_segment_minimum_clearance_m": 15.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            72.0,
+            2.0
+          ]
+        },
+        {
+          "waypoint_index": 2,
+          "target_clearance_m": 42.8,
+          "straight_segment_minimum_clearance_m": 37.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            50.0,
+            -20.0
+          ]
+        },
+        {
+          "waypoint_index": 3,
+          "target_clearance_m": 26.8,
+          "straight_segment_minimum_clearance_m": 26.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -24.0,
+            -54.0
+          ]
+        },
+        {
+          "waypoint_index": 4,
+          "target_clearance_m": 14.491806012954132,
+          "straight_segment_minimum_clearance_m": 12.712552779588261,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -62.687179487179485,
+            -69.13846153846154
+          ]
+        },
+        {
+          "waypoint_index": 5,
+          "target_clearance_m": 15.04828759089466,
+          "straight_segment_minimum_clearance_m": 14.491806012954132,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -70.0,
+            -72.0
+          ]
+        }
+      ],
+      "note": "Negative route-leg clearance means detour is required; negative target clearance means the target center is inside an inflated solid. Arrival circles may still intersect navigable water."
+    },
+    {
+      "scenario_key": "narrow_channel_head_on",
+      "spawn_clearance_m": 27.8,
+      "route": [
+        {
+          "waypoint_index": 0,
+          "target_clearance_m": 27.8,
+          "straight_segment_minimum_clearance_m": 27.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -22.0,
+            176.0
+          ]
+        },
+        {
+          "waypoint_index": 1,
+          "target_clearance_m": 27.8,
+          "straight_segment_minimum_clearance_m": 27.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -22.0,
+            120.0
+          ]
+        },
+        {
+          "waypoint_index": 2,
+          "target_clearance_m": 27.8,
+          "straight_segment_minimum_clearance_m": 27.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -22.0,
+            45.0
+          ]
+        },
+        {
+          "waypoint_index": 3,
+          "target_clearance_m": 27.8,
+          "straight_segment_minimum_clearance_m": 27.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -22.0,
+            -35.0
+          ]
+        },
+        {
+          "waypoint_index": 4,
+          "target_clearance_m": 27.8,
+          "straight_segment_minimum_clearance_m": 27.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -22.0,
+            -112.0
+          ]
+        }
+      ],
+      "note": "Negative route-leg clearance means detour is required; negative target clearance means the target center is inside an inflated solid. Arrival circles may still intersect navigable water."
+    },
+    {
+      "scenario_key": "crossing_starboard",
+      "spawn_clearance_m": 54.8,
+      "route": [
+        {
+          "waypoint_index": 0,
+          "target_clearance_m": 116.8,
+          "straight_segment_minimum_clearance_m": 54.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -182.0,
+            0.0
+          ]
+        },
+        {
+          "waypoint_index": 1,
+          "target_clearance_m": 178.8,
+          "straight_segment_minimum_clearance_m": 116.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -120.0,
+            0.0
+          ]
+        },
+        {
+          "waypoint_index": 2,
+          "target_clearance_m": 194.8,
+          "straight_segment_minimum_clearance_m": 178.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -58.0,
+            -18.0
+          ]
+        },
+        {
+          "waypoint_index": 3,
+          "target_clearance_m": 144.8,
+          "straight_segment_minimum_clearance_m": 144.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            92.0,
+            -30.0
+          ]
+        },
+        {
+          "waypoint_index": 4,
+          "target_clearance_m": 58.8,
+          "straight_segment_minimum_clearance_m": 58.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            178.0,
+            -8.0
+          ]
+        }
+      ],
+      "note": "Negative route-leg clearance means detour is required; negative target clearance means the target center is inside an inflated solid. Arrival circles may still intersect navigable water."
+    },
+    {
+      "scenario_key": "narrow_channel_overtaking",
+      "spawn_clearance_m": 37.8,
+      "route": [
+        {
+          "waypoint_index": 0,
+          "target_clearance_m": 37.8,
+          "straight_segment_minimum_clearance_m": 37.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            18.0,
+            -178.0
+          ]
+        },
+        {
+          "waypoint_index": 1,
+          "target_clearance_m": 43.8,
+          "straight_segment_minimum_clearance_m": 37.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            18.0,
+            -125.0
+          ]
+        },
+        {
+          "waypoint_index": 2,
+          "target_clearance_m": 37.8,
+          "straight_segment_minimum_clearance_m": 37.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -18.0,
+            12.0
+          ]
+        },
+        {
+          "waypoint_index": 3,
+          "target_clearance_m": 47.8,
+          "straight_segment_minimum_clearance_m": 37.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            -18.0,
+            12.0
+          ]
+        },
+        {
+          "waypoint_index": 4,
+          "target_clearance_m": 37.8,
+          "straight_segment_minimum_clearance_m": 37.8,
+          "straight_segment_requires_detour": false,
+          "closest_point": [
+            18.0,
+            176.0
+          ]
+        }
+      ],
+      "note": "Negative route-leg clearance means detour is required; negative target clearance means the target center is inside an inflated solid. Arrival circles may still intersect navigable water."
+    }
+  ],
+  "geometry_modified": false
+}

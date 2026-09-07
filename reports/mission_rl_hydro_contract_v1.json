@@ -1,0 +1,24 @@
+{
+	"checks": [
+		{
+			"force_x_n": -483.463256835938,
+			"ground_speed_mps": 4.0,
+			"passed": true,
+			"surge_mps": 2.0
+		},
+		{
+			"force_x_n": 483.463256835938,
+			"ground_speed_mps": 4.0,
+			"passed": true,
+			"surge_mps": -2.0
+		},
+		{
+			"force_x_n": 0.0,
+			"ground_speed_mps": 4.0,
+			"passed": true,
+			"surge_mps": 0.0
+		}
+	],
+	"passed": true,
+	"source_sha256": "93ba25dc889ca977b7051b5f36bdbdc2287041dfc55063c9949ac8a5f7397f88"
+}

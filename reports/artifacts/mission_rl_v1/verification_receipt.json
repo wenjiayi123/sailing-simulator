@@ -1,0 +1,153 @@
+{
+  "regression_suite": {
+    "passed": true,
+    "tests": 53,
+    "command": ".venv/bin/python -m unittest tests.test_mission_rl tests.test_mission_rl_admission tests.test_mission_rl_traffic tests.test_advanced_mission_maps tests.test_cargo_runtime_collision_regression tests.test_cargo_physics_v4 -v",
+    "duration_seconds": 21.615
+  },
+  "ui_capture": {
+    "path": "reports/artifacts/mission_rl_v1/navigation_rl_panel.png",
+    "visually_inspected": true,
+    "observed": "Native N panel task matches the scene; enabling switches the button to stop and both panel and bridge HUD show RL control.",
+    "active_path": "reports/artifacts/mission_rl_v1/navigation_rl_active_panel.png",
+    "active_visually_inspected": true
+  },
+  "production_authority": false,
+  "hydrodynamic_contract": {
+    "checks": [
+      {
+        "force_x_n": -483.463256835938,
+        "ground_speed_mps": 4.0,
+        "passed": true,
+        "surge_mps": 2.0
+      },
+      {
+        "force_x_n": 483.463256835938,
+        "ground_speed_mps": 4.0,
+        "passed": true,
+        "surge_mps": -2.0
+      },
+      {
+        "force_x_n": 0.0,
+        "ground_speed_mps": 4.0,
+        "passed": true,
+        "surge_mps": 0.0
+      }
+    ],
+    "passed": true,
+    "source_sha256": "93ba25dc889ca977b7051b5f36bdbdc2287041dfc55063c9949ac8a5f7397f88"
+  },
+  "scene_switch": {
+    "checks": [
+      {
+        "initial_spawn_error_m": 0.0347142890095711,
+        "panel_matches_scene": true,
+        "passed": true,
+        "scenario": "narrow_channel_head_on",
+        "target_collision_armed": true
+      },
+      {
+        "initial_spawn_error_m": 0.0312254074960947,
+        "panel_matches_scene": true,
+        "passed": true,
+        "scenario": "crossing_starboard",
+        "target_collision_armed": true
+      },
+      {
+        "initial_spawn_error_m": 0.0614490322768688,
+        "panel_matches_scene": true,
+        "passed": true,
+        "scenario": "narrow_channel_overtaking",
+        "target_collision_armed": true
+      },
+      {
+        "initial_spawn_error_m": 0.0364509709179401,
+        "panel_matches_scene": true,
+        "passed": true,
+        "scenario": "auto_unberthing",
+        "target_collision_armed": true
+      },
+      {
+        "initial_spawn_error_m": 0.0417489111423492,
+        "panel_matches_scene": true,
+        "passed": true,
+        "scenario": "narrow_channel_head_on",
+        "target_collision_armed": true
+      },
+      {
+        "check": "qualified_strategy_start",
+        "passed": true,
+        "started": true
+      },
+      {
+        "check": "automatic_matching_scene_switch",
+        "passed": true,
+        "strategy": "crossing_starboard"
+      },
+      {
+        "check": "unqualified_scene_cannot_take_control",
+        "passed": true
+      }
+    ],
+    "passed": true,
+    "production_authority": false
+  },
+  "additional_curriculum_boundary_test": {
+    "passed": true,
+    "new_tests": 1,
+    "suite_tests": 4,
+    "command": ".venv/bin/python -m unittest tests.test_mission_rl_traffic -v"
+  },
+  "unique_regression_tests_passed": 54,
+  "final_scene_admission": {
+    "open_water": {
+      "admitted": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/open_water_attempt_01/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/open_water_attempt_01/native_validation_05.json"
+      ]
+    },
+    "harbor": {
+      "admitted": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/harbor_business_05/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/harbor_business_05/native_validation_05.json"
+      ]
+    },
+    "auto_berthing": {
+      "admitted": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/berthing_attempt_02/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/berthing_attempt_02/native_validation_05.json"
+      ]
+    },
+    "auto_unberthing": {
+      "admitted": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/unberthing_attempt_02/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/unberthing_attempt_02/native_validation_05.json"
+      ]
+    },
+    "narrow_channel_head_on": {
+      "admitted": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/head_on_attempt_02/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/head_on_attempt_02/native_validation_05.json"
+      ]
+    },
+    "crossing_starboard": {
+      "admitted": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/crossing_qualification_01/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/crossing_qualification_01/native_validation_05.json"
+      ]
+    },
+    "narrow_channel_overtaking": {
+      "admitted": false,
+      "receipt_path": "reports/artifacts/mission_rl_v1/overtaking_clearance_curriculum_12/receipt.json",
+      "native_receipts": []
+    }
+  },
+  "all_started_experiments_finalized_or_interrupted_with_receipt": true,
+  "final_catalog_sha256": "b2d8ef2e97624b7eb7f5d86746cd4e335deb69b4e4699218bf65f180e29270db"
+}

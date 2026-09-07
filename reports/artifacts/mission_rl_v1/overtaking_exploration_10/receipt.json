@@ -1,0 +1,15 @@
+{
+  "status": "TRAINING_EXPLORATION_ONLY",
+  "algorithm": "SAC_actor_with_Gaussian_exploration",
+  "parent_actor_sha256": "2e467bcaa7702b4470996c89168cd958baa4c0cfb2a942c4015d829d8004d24d",
+  "traffic_policy_sha256": "733940861f55b792c87bb200aa97a00216bfe0f50b27d965c92b0d822666484e",
+  "source_sha256": "12f05ccb2f831764eaf9ef004f96129544c15dfab88f9d2e2c431f8a37d34eaf",
+  "episodes": 300,
+  "successes": 0,
+  "environment_steps": 28332,
+  "demonstrations_used": false,
+  "controller_fallback_steps": 0,
+  "test_accessed": false,
+  "admitted": false,
+  "production_authority": false
+}

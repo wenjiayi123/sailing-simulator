@@ -1,0 +1,29 @@
+{
+  "status": "L1_NOT_CONVERGED",
+  "gate": {
+    "passed": false,
+    "evaluated_episodes": 16,
+    "success_rate": 0.375,
+    "total_collisions": 3,
+    "minimum_clearance_meters": -1.0432432920309225,
+    "minimum_dynamic_clearance_meters": 11.569291080396997,
+    "actor_updates_after_warmup": 24500,
+    "required_held_out_sweeps": 2,
+    "requires_all_episodes_successful": true,
+    "requires_zero_collision": true,
+    "requires_positive_static_dynamic_and_boundary_clearance": true,
+    "requires_all_32_large_rocks": true,
+    "requires_all_6_dynamic_vessels": true,
+    "requires_trained_sac_actor_updates": true
+  },
+  "timesteps": 100000,
+  "actor_critic_updates": 24500,
+  "actor_weights_changed": true,
+  "expert_actions": 0,
+  "test_accessed": false,
+  "full_circuit_admitted": false,
+  "model_sha256": "b099729ec2a0bf2f853e9f8b19d275cd63585d3bba0e5c2f582ba35406839cbd",
+  "elapsed_seconds": 1275.773548871,
+  "production_authority": false,
+  "decision": "Stop and diagnose first failed level; existing full-circuit policies remain unchanged."
+}

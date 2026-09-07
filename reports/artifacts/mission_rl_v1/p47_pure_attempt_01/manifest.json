@@ -1,0 +1,29 @@
+{
+  "algorithm": "SAC",
+  "expert_actions": 0,
+  "demonstrations_used": false,
+  "level": {
+    "level": 1,
+    "id": "P47-L1",
+    "name": "单航段·固定海况",
+    "route_length": 1,
+    "random_segment": true,
+    "randomization_enabled": false,
+    "dynamic_traffic_speed_knots": 0.4,
+    "randomization_multiplier": 0.0,
+    "max_steps": 2000,
+    "training_timesteps": 100000
+  },
+  "source_hashes": {
+    "tools/train_cargo_physics_pure_rl_v1.py": "dae12aa967a200e2a1d95856dfc83d27fa5e41fddb4245e50a7b74c86b3db3a1",
+    "tools/cargo_rl/physics_accelerated.py": "f87fe2db525686f791b6a1c88aba255a33b90e8b28bfd4bfa3fa37184cefa763",
+    "tools/mission_rl/plant.py": "6cfc783f8fd0c570b3e67bcda656f5fa91ad2cb4e850529e782975be24d2dcd1",
+    "tools/mission_rl/plant.c": "73712f1278049ce103d4d5ea1179357c5349c77a33eccf8ab76d95a880aafa57",
+    "tools/cargo_rl/physics_environment.py": "c0f7dd7fe2f24dcaa7328e1826f030287c782d3a5decca74b12a9e82e5429dc6",
+    "data/rl/cargo_circuit_physics_experiment_v4.json": "56d63fc2bf404b3d4a1ca55171957421d4b34e185b39ac2ffd599ea4185d4778",
+    "data/rl/cargo_circuit_physics_dataset_v4.json": "d67c4b4588ee34f399342531bcd8b9f9b4d698ed1fd9002b88832954c4ec7330"
+  },
+  "static_obstacles": 38,
+  "traffic": 6,
+  "seed": 90747
+}

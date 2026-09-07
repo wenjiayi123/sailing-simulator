@@ -1,0 +1,770 @@
+{
+  "schema_version": "mission_rl_coverage_audit_v1",
+  "generated_at": "2026-09-07T05:43:49.681880+00:00",
+  "scenarios": {
+    "open_water": {
+      "name": "开放水域",
+      "status": "PASS",
+      "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
+      "live_switch_admitted": true,
+      "strategy_id": "SAC-MISSION-open_water-open_water_attempt_01",
+      "timesteps": 75000,
+      "actor_critic_updates": 18250,
+      "numeric_admitted": true,
+      "native_runtime_verified": true,
+      "source_hashes_match": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/open_water_attempt_01/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/open_water_attempt_01/native_validation_05.json"
+      ],
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/open_water_attempt_01.json",
+      "actor_sha256": "f43ff9e0f10223b47f81715f145029ac0f6dff746b45b3a30904486a3e46eafe",
+      "test_summary": {
+        "episodes": 20,
+        "success_rate": 1.0,
+        "collisions": 0,
+        "mean_duration_seconds": 95.375,
+        "minimum_clearance_m": 24.37805062895205,
+        "minimum_separation_m": null
+      }
+    },
+    "harbor": {
+      "name": "港口引航水域",
+      "status": "PASS",
+      "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
+      "live_switch_admitted": true,
+      "strategy_id": "SAC-MISSION-harbor-harbor_business_05",
+      "timesteps": 350000,
+      "actor_critic_updates": 86500,
+      "numeric_admitted": true,
+      "native_runtime_verified": true,
+      "source_hashes_match": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/harbor_business_05/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/harbor_business_05/native_validation_05.json"
+      ],
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/harbor_business_05.json",
+      "actor_sha256": "88fad1f4fbfbc910688e893f1648312e9410822d34089bc9f4736dfcf21900c2",
+      "test_summary": {
+        "episodes": 20,
+        "success_rate": 1.0,
+        "collisions": 0,
+        "mean_duration_seconds": 64.725,
+        "minimum_clearance_m": 1.7158649722962673,
+        "minimum_separation_m": null
+      }
+    },
+    "auto_berthing": {
+      "name": "自动靠泊评测水域",
+      "status": "PASS",
+      "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
+      "live_switch_admitted": true,
+      "strategy_id": "SAC-MISSION-auto_berthing-berthing_attempt_02",
+      "timesteps": 200000,
+      "actor_critic_updates": 49500,
+      "numeric_admitted": true,
+      "native_runtime_verified": true,
+      "source_hashes_match": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/berthing_attempt_02/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/berthing_attempt_02/native_validation_05.json"
+      ],
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/berthing_attempt_02.json",
+      "actor_sha256": "7598731b0dc1276c7b7063de72d68cf6ab91234ec4ea9989aff0035099ef5b9f",
+      "test_summary": {
+        "episodes": 20,
+        "success_rate": 1.0,
+        "collisions": 0,
+        "mean_duration_seconds": 74.675,
+        "minimum_clearance_m": 8.725992479486042,
+        "minimum_separation_m": null
+      }
+    },
+    "auto_unberthing": {
+      "name": "自动离泊评测水域",
+      "status": "PASS",
+      "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
+      "live_switch_admitted": true,
+      "strategy_id": "SAC-MISSION-auto_unberthing-unberthing_attempt_02",
+      "timesteps": 75000,
+      "actor_critic_updates": 18250,
+      "numeric_admitted": true,
+      "native_runtime_verified": true,
+      "source_hashes_match": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/unberthing_attempt_02/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/unberthing_attempt_02/native_validation_05.json"
+      ],
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/unberthing_attempt_02.json",
+      "actor_sha256": "62463604d3b7610464a14c2ca7a7956a75fc8596f15aa93eb773777479f18a16",
+      "test_summary": {
+        "episodes": 20,
+        "success_rate": 1.0,
+        "collisions": 0,
+        "mean_duration_seconds": 60.175,
+        "minimum_clearance_m": 4.262949802737498,
+        "minimum_separation_m": null
+      }
+    },
+    "narrow_channel_head_on": {
+      "name": "狭水道对遇会船",
+      "status": "PASS",
+      "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
+      "live_switch_admitted": true,
+      "strategy_id": "SAC-MISSION-narrow_channel_head_on-head_on_attempt_02",
+      "timesteps": 75000,
+      "actor_critic_updates": 18250,
+      "numeric_admitted": true,
+      "native_runtime_verified": true,
+      "source_hashes_match": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/head_on_attempt_02/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/head_on_attempt_02/native_validation_05.json"
+      ],
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/head_on_attempt_02.json",
+      "actor_sha256": "f7d56f425eb0faab188403abd1262a5c9464c87c8c786076c5d40d442c5d779d",
+      "test_summary": {
+        "episodes": 20,
+        "success_rate": 1.0,
+        "collisions": 0,
+        "mean_duration_seconds": 83.575,
+        "minimum_clearance_m": 20.593524330124353,
+        "minimum_separation_m": 27.048254993941114
+      }
+    },
+    "crossing_starboard": {
+      "name": "右舷来船交叉",
+      "status": "PASS",
+      "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
+      "live_switch_admitted": true,
+      "strategy_id": "SAC-MISSION-crossing_starboard-crossing_qualification_01",
+      "timesteps": 25000,
+      "actor_critic_updates": 5750,
+      "numeric_admitted": true,
+      "native_runtime_verified": true,
+      "source_hashes_match": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/crossing_qualification_01/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/crossing_qualification_01/native_validation_05.json"
+      ],
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/crossing_qualification_01.json",
+      "actor_sha256": "d72a0509e648a9339769892e3d811c6ac09ea7452f5313fd6b00613becd6a546",
+      "test_summary": {
+        "episodes": 20,
+        "success_rate": 1.0,
+        "collisions": 0,
+        "mean_duration_seconds": 75.7,
+        "minimum_clearance_m": 53.853062420852794,
+        "minimum_separation_m": 126.44028874794331
+      }
+    },
+    "narrow_channel_overtaking": {
+      "name": "狭水道追越",
+      "status": "NOT_CONVERGED",
+      "status_zh": "强化学习候选仍未通过完整任务验收",
+      "live_switch_admitted": false,
+      "strategy_id": "SAC-MISSION-narrow_channel_overtaking-overtaking_clearance_curriculum_12",
+      "timesteps": 727000,
+      "actor_critic_updates": 180250,
+      "numeric_admitted": false,
+      "native_runtime_verified": false,
+      "source_hashes_match": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/overtaking_clearance_curriculum_12/receipt.json",
+      "native_receipts": []
+    }
+  },
+  "candidate_receipts": [
+    {
+      "strategy_id": "SAC-MISSION-crossing_starboard-crossing_qualification_01",
+      "status": "PASS",
+      "timesteps": 25000,
+      "actor_critic_updates": 5750,
+      "numeric_admitted": true,
+      "native_runtime_verified": true,
+      "source_hashes_match": true,
+      "live_switch_admitted": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/crossing_qualification_01/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/crossing_qualification_01/native_validation_05.json"
+      ],
+      "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/crossing_qualification_01.json",
+      "actor_sha256": "d72a0509e648a9339769892e3d811c6ac09ea7452f5313fd6b00613becd6a546",
+      "test_summary": {
+        "episodes": 20,
+        "success_rate": 1.0,
+        "collisions": 0,
+        "mean_duration_seconds": 75.7,
+        "minimum_clearance_m": 53.853062420852794,
+        "minimum_separation_m": 126.44028874794331
+      }
+    },
+    {
+      "strategy_id": "SAC-MISSION-narrow_channel_head_on-head_on_attempt_02",
+      "status": "PASS",
+      "timesteps": 75000,
+      "actor_critic_updates": 18250,
+      "numeric_admitted": true,
+      "native_runtime_verified": true,
+      "source_hashes_match": true,
+      "live_switch_admitted": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/head_on_attempt_02/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/head_on_attempt_02/native_validation_05.json"
+      ],
+      "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/head_on_attempt_02.json",
+      "actor_sha256": "f7d56f425eb0faab188403abd1262a5c9464c87c8c786076c5d40d442c5d779d",
+      "test_summary": {
+        "episodes": 20,
+        "success_rate": 1.0,
+        "collisions": 0,
+        "mean_duration_seconds": 83.575,
+        "minimum_clearance_m": 20.593524330124353,
+        "minimum_separation_m": 27.048254993941114
+      }
+    },
+    {
+      "strategy_id": "SAC-MISSION-auto_unberthing-unberthing_attempt_02",
+      "status": "PASS",
+      "timesteps": 75000,
+      "actor_critic_updates": 18250,
+      "numeric_admitted": true,
+      "native_runtime_verified": true,
+      "source_hashes_match": true,
+      "live_switch_admitted": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/unberthing_attempt_02/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/unberthing_attempt_02/native_validation_05.json"
+      ],
+      "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/unberthing_attempt_02.json",
+      "actor_sha256": "62463604d3b7610464a14c2ca7a7956a75fc8596f15aa93eb773777479f18a16",
+      "test_summary": {
+        "episodes": 20,
+        "success_rate": 1.0,
+        "collisions": 0,
+        "mean_duration_seconds": 60.175,
+        "minimum_clearance_m": 4.262949802737498,
+        "minimum_separation_m": null
+      }
+    },
+    {
+      "strategy_id": "SAC-MISSION-open_water-open_water_attempt_01",
+      "status": "PASS",
+      "timesteps": 75000,
+      "actor_critic_updates": 18250,
+      "numeric_admitted": true,
+      "native_runtime_verified": true,
+      "source_hashes_match": true,
+      "live_switch_admitted": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/open_water_attempt_01/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/open_water_attempt_01/native_validation_05.json"
+      ],
+      "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/open_water_attempt_01.json",
+      "actor_sha256": "f43ff9e0f10223b47f81715f145029ac0f6dff746b45b3a30904486a3e46eafe",
+      "test_summary": {
+        "episodes": 20,
+        "success_rate": 1.0,
+        "collisions": 0,
+        "mean_duration_seconds": 95.375,
+        "minimum_clearance_m": 24.37805062895205,
+        "minimum_separation_m": null
+      }
+    },
+    {
+      "strategy_id": "SAC-MISSION-auto_berthing-berthing_attempt_02",
+      "status": "PASS",
+      "timesteps": 200000,
+      "actor_critic_updates": 49500,
+      "numeric_admitted": true,
+      "native_runtime_verified": true,
+      "source_hashes_match": true,
+      "live_switch_admitted": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/berthing_attempt_02/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/berthing_attempt_02/native_validation_05.json"
+      ],
+      "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/berthing_attempt_02.json",
+      "actor_sha256": "7598731b0dc1276c7b7063de72d68cf6ab91234ec4ea9989aff0035099ef5b9f",
+      "test_summary": {
+        "episodes": 20,
+        "success_rate": 1.0,
+        "collisions": 0,
+        "mean_duration_seconds": 74.675,
+        "minimum_clearance_m": 8.725992479486042,
+        "minimum_separation_m": null
+      }
+    },
+    {
+      "strategy_id": "SAC-MISSION-harbor-harbor_attempt_01",
+      "status": "NOT_CONVERGED",
+      "timesteps": 275000,
+      "actor_critic_updates": 68250,
+      "numeric_admitted": false,
+      "native_runtime_verified": false,
+      "source_hashes_match": true,
+      "live_switch_admitted": false,
+      "receipt_path": "reports/artifacts/mission_rl_v1/harbor_attempt_01/receipt.json",
+      "native_receipts": [],
+      "status_zh": "强化学习候选仍未通过完整任务验收"
+    },
+    {
+      "strategy_id": "SAC-MISSION-narrow_channel_overtaking-overtaking_attempt_01",
+      "status": "NOT_CONVERGED",
+      "timesteps": 300000,
+      "actor_critic_updates": 74500,
+      "numeric_admitted": false,
+      "native_runtime_verified": false,
+      "source_hashes_match": true,
+      "live_switch_admitted": false,
+      "receipt_path": "reports/artifacts/mission_rl_v1/overtaking_attempt_01/receipt.json",
+      "native_receipts": [],
+      "status_zh": "强化学习候选仍未通过完整任务验收"
+    },
+    {
+      "strategy_id": "SAC-MISSION-narrow_channel_overtaking-overtaking_business_02",
+      "status": "NOT_CONVERGED",
+      "timesteps": 300000,
+      "actor_critic_updates": 74500,
+      "numeric_admitted": false,
+      "native_runtime_verified": false,
+      "source_hashes_match": true,
+      "live_switch_admitted": false,
+      "receipt_path": "reports/artifacts/mission_rl_v1/overtaking_business_02/receipt.json",
+      "native_receipts": [],
+      "status_zh": "强化学习候选仍未通过完整任务验收"
+    },
+    {
+      "strategy_id": "SAC-MISSION-harbor-harbor_business_02",
+      "status": "NOT_CONVERGED",
+      "timesteps": 275000,
+      "actor_critic_updates": 68250,
+      "numeric_admitted": false,
+      "native_runtime_verified": false,
+      "source_hashes_match": true,
+      "live_switch_admitted": false,
+      "receipt_path": "reports/artifacts/mission_rl_v1/harbor_business_02/receipt.json",
+      "native_receipts": [],
+      "status_zh": "强化学习候选仍未通过完整任务验收"
+    },
+    {
+      "strategy_id": "SAC-MISSION-HARBOR-TRANSIT-TERMINAL-V1",
+      "status": "NOT_CONVERGED",
+      "timesteps": 100000,
+      "actor_critic_updates": 24750,
+      "numeric_admitted": false,
+      "native_runtime_verified": false,
+      "source_hashes_match": true,
+      "live_switch_admitted": false,
+      "receipt_path": "reports/artifacts/mission_rl_v1/harbor_terminal_03/receipt.json",
+      "native_receipts": [],
+      "status_zh": "强化学习候选仍未通过完整任务验收"
+    },
+    {
+      "strategy_id": "SAC-MISSION-narrow_channel_overtaking-overtaking_full_authority_03",
+      "status": "NOT_CONVERGED",
+      "timesteps": 450000,
+      "actor_critic_updates": 112000,
+      "numeric_admitted": false,
+      "native_runtime_verified": false,
+      "source_hashes_match": true,
+      "live_switch_admitted": false,
+      "receipt_path": "reports/artifacts/mission_rl_v1/overtaking_full_authority_03/receipt.json",
+      "native_receipts": [],
+      "status_zh": "强化学习候选仍未通过完整任务验收"
+    },
+    {
+      "strategy_id": "SAC-MISSION-HARBOR-TRANSIT-TERMINAL-V1",
+      "status": "NOT_CONVERGED",
+      "timesteps": 100000,
+      "actor_critic_updates": 24750,
+      "numeric_admitted": false,
+      "native_runtime_verified": false,
+      "source_hashes_match": true,
+      "live_switch_admitted": false,
+      "receipt_path": "reports/artifacts/mission_rl_v1/harbor_terminal_04/receipt.json",
+      "native_receipts": [],
+      "status_zh": "强化学习候选仍未通过完整任务验收"
+    },
+    {
+      "strategy_id": "SAC-MISSION-harbor-harbor_business_05",
+      "status": "PASS",
+      "timesteps": 350000,
+      "actor_critic_updates": 86500,
+      "numeric_admitted": true,
+      "native_runtime_verified": true,
+      "source_hashes_match": true,
+      "live_switch_admitted": true,
+      "receipt_path": "reports/artifacts/mission_rl_v1/harbor_business_05/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/harbor_business_05/native_validation_05.json"
+      ],
+      "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/harbor_business_05.json",
+      "actor_sha256": "88fad1f4fbfbc910688e893f1648312e9410822d34089bc9f4736dfcf21900c2",
+      "test_summary": {
+        "episodes": 20,
+        "success_rate": 1.0,
+        "collisions": 0,
+        "mean_duration_seconds": 64.725,
+        "minimum_clearance_m": 1.7158649722962673,
+        "minimum_separation_m": null
+      }
+    },
+    {
+      "strategy_id": "SAC-MISSION-narrow_channel_overtaking-overtaking_constrained_04",
+      "status": "NOT_CONVERGED",
+      "timesteps": 575000,
+      "actor_critic_updates": 142750,
+      "numeric_admitted": false,
+      "native_runtime_verified": false,
+      "source_hashes_match": true,
+      "live_switch_admitted": false,
+      "receipt_path": "reports/artifacts/mission_rl_v1/overtaking_constrained_04/receipt.json",
+      "native_receipts": [],
+      "status_zh": "强化学习候选仍未通过完整任务验收"
+    },
+    {
+      "strategy_id": "SAC-MISSION-narrow_channel_overtaking-overtaking_full_mission_06",
+      "status": "NOT_CONVERGED",
+      "timesteps": 700000,
+      "actor_critic_updates": 173000,
+      "numeric_admitted": false,
+      "native_runtime_verified": false,
+      "source_hashes_match": true,
+      "live_switch_admitted": false,
+      "receipt_path": "reports/artifacts/mission_rl_v1/overtaking_full_mission_06/receipt.json",
+      "native_receipts": [],
+      "status_zh": "强化学习候选仍未通过完整任务验收"
+    },
+    {
+      "strategy_id": "SAC-MISSION-narrow_channel_overtaking-overtaking_dual_sac_07",
+      "status": "NOT_CONVERGED",
+      "timesteps": 775000,
+      "actor_critic_updates": 192250,
+      "numeric_admitted": false,
+      "native_runtime_verified": false,
+      "source_hashes_match": true,
+      "live_switch_admitted": false,
+      "receipt_path": "reports/artifacts/mission_rl_v1/overtaking_dual_sac_07/receipt.json",
+      "native_receipts": [],
+      "status_zh": "强化学习候选仍未通过完整任务验收"
+    },
+    {
+      "strategy_id": "SAC-MISSION-narrow_channel_overtaking-overtaking_dual_sac_08",
+      "status": "NOT_CONVERGED",
+      "timesteps": 727000,
+      "actor_critic_updates": 180250,
+      "numeric_admitted": false,
+      "native_runtime_verified": false,
+      "source_hashes_match": true,
+      "live_switch_admitted": false,
+      "receipt_path": "reports/artifacts/mission_rl_v1/overtaking_dual_sac_08/receipt.json",
+      "native_receipts": [],
+      "status_zh": "强化学习候选仍未通过完整任务验收"
+    },
+    {
+      "strategy_id": "SAC-MISSION-narrow_channel_overtaking-overtaking_dual_sac_09",
+      "status": "NOT_CONVERGED",
+      "timesteps": 727000,
+      "actor_critic_updates": 180250,
+      "numeric_admitted": false,
+      "native_runtime_verified": false,
+      "source_hashes_match": true,
+      "live_switch_admitted": false,
+      "receipt_path": "reports/artifacts/mission_rl_v1/overtaking_dual_sac_09/receipt.json",
+      "native_receipts": [],
+      "status_zh": "强化学习候选仍未通过完整任务验收"
+    },
+    {
+      "strategy_id": "SAC-MISSION-narrow_channel_overtaking-overtaking_clearance_curriculum_12",
+      "status": "NOT_CONVERGED",
+      "timesteps": 727000,
+      "actor_critic_updates": 180250,
+      "numeric_admitted": false,
+      "native_runtime_verified": false,
+      "source_hashes_match": true,
+      "live_switch_admitted": false,
+      "receipt_path": "reports/artifacts/mission_rl_v1/overtaking_clearance_curriculum_12/receipt.json",
+      "native_receipts": [],
+      "status_zh": "强化学习候选仍未通过完整任务验收"
+    }
+  ],
+  "existing_rl_benchmarks": [
+    {
+      "module": "navigation_benchmark_v1.json",
+      "algorithm": "ppo",
+      "held_out_episodes": 30,
+      "success_rate": 0.6333333333333333,
+      "collision_rate": 0.3,
+      "port_compliant_completion_rate": null,
+      "source": "reports/navigation_benchmark_v1.json"
+    },
+    {
+      "module": "navigation_benchmark_v1.json",
+      "algorithm": "sac",
+      "held_out_episodes": 30,
+      "success_rate": 1.0,
+      "collision_rate": 0.0,
+      "port_compliant_completion_rate": null,
+      "source": "reports/navigation_benchmark_v1.json"
+    },
+    {
+      "module": "navigation_benchmark_v1.json",
+      "algorithm": "td3",
+      "held_out_episodes": 30,
+      "success_rate": 0.26666666666666666,
+      "collision_rate": 0.7,
+      "port_compliant_completion_rate": null,
+      "source": "reports/navigation_benchmark_v1.json"
+    },
+    {
+      "module": "navigation_benchmark_v1.json",
+      "algorithm": "dqn",
+      "held_out_episodes": 30,
+      "success_rate": 0.7,
+      "collision_rate": 0.3,
+      "port_compliant_completion_rate": null,
+      "source": "reports/navigation_benchmark_v1.json"
+    },
+    {
+      "module": "port_ops_benchmark_v2.json",
+      "algorithm": "ppo",
+      "held_out_episodes": 130,
+      "success_rate": 0.0,
+      "collision_rate": 0.2153846153846154,
+      "port_compliant_completion_rate": 0.0,
+      "source": "reports/port_ops_benchmark_v2.json"
+    },
+    {
+      "module": "port_ops_benchmark_v2.json",
+      "algorithm": "sac",
+      "held_out_episodes": 130,
+      "success_rate": 0.0,
+      "collision_rate": 0.23076923076923078,
+      "port_compliant_completion_rate": 0.0,
+      "source": "reports/port_ops_benchmark_v2.json"
+    },
+    {
+      "module": "port_ops_benchmark_v2.json",
+      "algorithm": "td3",
+      "held_out_episodes": 130,
+      "success_rate": 0.007692307692307693,
+      "collision_rate": 0.13846153846153847,
+      "port_compliant_completion_rate": 0.0,
+      "source": "reports/port_ops_benchmark_v2.json"
+    },
+    {
+      "module": "port_ops_benchmark_v2.json",
+      "algorithm": "dqn",
+      "held_out_episodes": 130,
+      "success_rate": 0.0,
+      "collision_rate": 0.12307692307692308,
+      "port_compliant_completion_rate": 0.0,
+      "source": "reports/port_ops_benchmark_v2.json"
+    },
+    {
+      "module": "port_ops_benchmark_v2.json",
+      "algorithm": "a2c",
+      "held_out_episodes": 130,
+      "success_rate": 0.0,
+      "collision_rate": 0.2153846153846154,
+      "port_compliant_completion_rate": 0.0,
+      "source": "reports/port_ops_benchmark_v2.json"
+    },
+    {
+      "module": "port_ops_benchmark_v2.json",
+      "algorithm": "ddpg",
+      "held_out_episodes": 130,
+      "success_rate": 0.0,
+      "collision_rate": 0.23076923076923078,
+      "port_compliant_completion_rate": 0.0,
+      "source": "reports/port_ops_benchmark_v2.json"
+    },
+    {
+      "module": "port_ops_benchmark_v2.json",
+      "algorithm": "trpo",
+      "held_out_episodes": 130,
+      "success_rate": 0.0,
+      "collision_rate": 0.23076923076923078,
+      "port_compliant_completion_rate": 0.0,
+      "source": "reports/port_ops_benchmark_v2.json"
+    }
+  ],
+  "frozen_cargo_results": {
+    "static_sac_s1": {
+      "dataset_split": "test",
+      "accepted": true,
+      "cargo_retrieved": true,
+      "checkpoints_passed": 7,
+      "total_checkpoints": 7,
+      "collisions": 0,
+      "terrain_collisions": 0,
+      "near_misses": 9,
+      "reverse_steps": 0,
+      "minimum_safety_envelope_clearance_meters": 2.4793280875477173,
+      "minimum_boundary_clearance_meters": 6.271080000000012,
+      "path_efficiency": 0.9114456337232855,
+      "elapsed_seconds": 177.75
+    },
+    "dynamic_res_sac_d2": {
+      "dataset_split": "test",
+      "accepted": true,
+      "cargo_retrieved": true,
+      "checkpoints_passed": 7,
+      "total_checkpoints": 7,
+      "dynamic_traffic_count": 6,
+      "collisions": 0,
+      "terrain_collisions": 0,
+      "near_misses": 8,
+      "reverse_steps": 0,
+      "minimum_clearance_meters": 3.051357956303768,
+      "minimum_dynamic_clearance_meters": 6.663154168939917,
+      "minimum_boundary_clearance_meters": 3.276530000000008,
+      "path_efficiency": 0.8954785368052649,
+      "elapsed_seconds": 173.75,
+      "released_policy_has_manual_bypass_points": false
+    }
+  },
+  "p47_previous": {
+    "status": "NO_SAC_UPDATES",
+    "latest_preserved_attempt": 13,
+    "source": "reports/cargo_circuit_physics_difficulty_ladder_attempt_13.md",
+    "reason": "Complete expert initialization did not produce a successful pure neural policy; interrupted before SAC actor/critic updates."
+  },
+  "p47_current": [
+    {
+      "path": "reports/artifacts/mission_rl_v1/p47_pure_attempt_01/receipt.json",
+      "status": "L1_NOT_CONVERGED",
+      "gate": {
+        "passed": false,
+        "evaluated_episodes": 16,
+        "success_rate": 0.375,
+        "total_collisions": 3,
+        "minimum_clearance_meters": -1.0432432920309225,
+        "minimum_dynamic_clearance_meters": 11.569291080396997,
+        "actor_updates_after_warmup": 24500,
+        "required_held_out_sweeps": 2,
+        "requires_all_episodes_successful": true,
+        "requires_zero_collision": true,
+        "requires_positive_static_dynamic_and_boundary_clearance": true,
+        "requires_all_32_large_rocks": true,
+        "requires_all_6_dynamic_vessels": true,
+        "requires_trained_sac_actor_updates": true
+      },
+      "timesteps": 100000,
+      "actor_critic_updates": 24500,
+      "actor_weights_changed": true,
+      "expert_actions": 0,
+      "test_accessed": false,
+      "full_circuit_admitted": false,
+      "model_sha256": "b099729ec2a0bf2f853e9f8b19d275cd63585d3bba0e5c2f582ba35406839cbd",
+      "elapsed_seconds": 1275.773548871,
+      "production_authority": false,
+      "decision": "Stop and diagnose first failed level; existing full-circuit policies remain unchanged."
+    }
+  ],
+  "traffic_rl": [
+    {
+      "path": "reports/artifacts/mission_rl_v1/traffic_lane_attempt_02/receipt.json",
+      "algorithm": "SAC",
+      "role": "slow_traffic_lane_holding",
+      "config": {
+        "decision_frames": 30,
+        "target_x": 18.0,
+        "target_speed_mps": 3.0,
+        "action_low": [
+          0.0,
+          -0.4
+        ],
+        "action_high": [
+          0.35,
+          0.4
+        ]
+      },
+      "source_hashes": {
+        "tools/train_traffic_lane_rl_v2.py": "776e0fc884f44caf6c2987d7fd70c497937bc637264078c4a5459b4a3dd45694",
+        "tools/mission_rl/traffic_lane.py": "b7171730d52168b61fcacf9ff75ea665600429943482f1c61f7f06c8ca05a09a",
+        "tools/mission_rl/traffic_lane_v2.py": "ad74916c902c8d1beb1d41f0a59a00d2a8ecccd6bc0f0bc0c196d62acd4668dd",
+        "tools/mission_rl/plant.py": "6cfc783f8fd0c570b3e67bcda656f5fa91ad2cb4e850529e782975be24d2dcd1",
+        "tools/mission_rl/plant.c": "73712f1278049ce103d4d5ea1179357c5349c77a33eccf8ab76d95a880aafa57",
+        "tools/mission_rl/environment.py": "1cc2d5e063897f79786f16552b594b048fe22e078cc25d434f6b439b7ba3f9a4",
+        "data/ports/default_port_profile.json": "3134cfc10d669884e02dfaa757aeb1f04cf9eb000090816b81b2edc756a21a37",
+        "data/verification/catamaran_usv_dynamics_reference_v2.json": "d9dbd9fd61827952b50194f10e1a7331f7b154b7b7a69805de726e5bfd648c8f"
+      },
+      "seed": 90731,
+      "demonstrations_used": false,
+      "controller_fallback": false,
+      "production_authority": false,
+      "status": "PASS",
+      "admitted_numeric": true,
+      "timesteps": 20000,
+      "actor_critic_updates": 4750,
+      "elapsed_seconds": 71.550877778,
+      "model_sha256": "82971008a0cef0cf56ee94234770fe82f59e69a3a9bbab230c2c8ae12bf6342a"
+    },
+    {
+      "path": "reports/artifacts/mission_rl_v1/traffic_lane_attempt_01/receipt.json",
+      "algorithm": "SAC",
+      "role": "slow_traffic_lane_holding",
+      "config": {
+        "decision_frames": 30,
+        "target_x": 18.0,
+        "target_speed_mps": 3.0,
+        "action_low": [
+          0.0,
+          -0.4
+        ],
+        "action_high": [
+          0.35,
+          0.4
+        ]
+      },
+      "source_hashes": {
+        "tools/train_traffic_lane_rl.py": "bba9d70fc432bc74cd568a6a0d4d42851fbf4afb97e4096d0be2199794ce30e5",
+        "tools/mission_rl/traffic_lane.py": "b7171730d52168b61fcacf9ff75ea665600429943482f1c61f7f06c8ca05a09a",
+        "tools/mission_rl/plant.py": "6cfc783f8fd0c570b3e67bcda656f5fa91ad2cb4e850529e782975be24d2dcd1",
+        "tools/mission_rl/plant.c": "73712f1278049ce103d4d5ea1179357c5349c77a33eccf8ab76d95a880aafa57",
+        "tools/mission_rl/environment.py": "1cc2d5e063897f79786f16552b594b048fe22e078cc25d434f6b439b7ba3f9a4",
+        "data/ports/default_port_profile.json": "3134cfc10d669884e02dfaa757aeb1f04cf9eb000090816b81b2edc756a21a37",
+        "data/verification/catamaran_usv_dynamics_reference_v2.json": "d9dbd9fd61827952b50194f10e1a7331f7b154b7b7a69805de726e5bfd648c8f"
+      },
+      "seed": 90731,
+      "demonstrations_used": false,
+      "controller_fallback": false,
+      "production_authority": false,
+      "status": "PASS",
+      "admitted_numeric": true,
+      "timesteps": 120000,
+      "actor_critic_updates": 29750,
+      "elapsed_seconds": 389.70764155300003,
+      "model_sha256": "814a3170bae4f3710cd957bc56c17599f46a7f8578dc6edba01a9a7b7dcab35e"
+    }
+  ],
+  "untrained_modules": [
+    {
+      "module": "410-cell cross-port and OOD generalization campaign",
+      "reason": "evaluation specification exists, no complete training campaign"
+    },
+    {
+      "module": "tug/anchor/mooring/thruster procedural training",
+      "reason": "No force-bearing environment, action-transition-reward contract or learned model; procedural UI completion cannot establish RL training."
+    }
+  ],
+  "business_metrics": [
+    "complete mission success",
+    "collision count",
+    "minimum passing distance",
+    "bank and under-keel clearance",
+    "berthing pose/speed/sway",
+    "completion time",
+    "actuator effort proxy"
+  ],
+  "production_authority": false,
+  "live_data_verified": false,
+  "simulation_mode": true
+}

@@ -29,6 +29,10 @@ jobs:
           python -m pip check
       - name: Compile Python sources
         run: python -m compileall -q tools tests
+      - name: Check public-tree privacy and frozen scene-policy admission
+        run: |
+          python tools/public_privacy_scan.py
+          python tools/verify_mission_rl_release.py
       - name: Run environment, split, controller, data and evidence tests
         run: python -m unittest discover -s tests -v
       - name: Rebuild the fixed scenarios from the bundled public hourly data

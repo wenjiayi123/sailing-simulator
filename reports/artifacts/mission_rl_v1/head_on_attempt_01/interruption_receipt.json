@@ -1,0 +1,8 @@
+{
+  "status": "INTERRUPTED_REPORT_SERIALIZATION",
+  "reason": "SB3 vector wrapper inserted a numpy terminal_observation into report info; learner checkpoint is preserved at 25000 steps. No final test was accessed and no promotion occurred.",
+  "timesteps": 25000,
+  "checkpoint": "reports/artifacts/mission_rl_v1/head_on_attempt_01/sac_25000.zip",
+  "admitted": false,
+  "test_accessed": false
+}

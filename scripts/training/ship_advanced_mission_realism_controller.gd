@@ -176,7 +176,9 @@ func get_hydrodynamic_forcing(ship: Node3D) -> Dictionary:
 	var forcing := _hydrodynamics_for_state(
 		ship.global_position,
 		float(telemetry.get("heading_degrees", 0.0)),
-		float(telemetry.get("speed", 0.0)),
+		# Hydrodynamic drag/squat depend on water-relative surge, not ground
+		# speed. Ground speed includes current and breaks the RL plant contract.
+		float(telemetry.get("surge_mps", telemetry.get("speed", 0.0))),
 		true,
 	)
 	if ship != _controlled_ship():

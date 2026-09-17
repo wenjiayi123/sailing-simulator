@@ -514,29 +514,3 @@ python3 tools/public_data_pipeline.py weather \
 源代码采用 [Apache License 2.0](LICENSE)。公开数据的来源与署名要求见[数据来源](docs/DATA_SOURCES.md)，模型与模拟结果的计算口径见[模拟器指标体系](docs/SIMULATOR_METRICS.md)。完整视觉包内 36 项媒体逐项记录于[机器可读资产台账](data/verification/visual_asset_release_manifest_v1.json)和[资产权利说明](THIRD_PARTY_ASSETS.md)；来源未闭环的旧素材仅本地保留并由打包器排除，不因代码许可证而重新授权。
 
 Source code is available under the [Apache License 2.0](LICENSE). See [data sources](docs/DATA_SOURCES.md) for provenance and attribution, and [simulator metrics](docs/SIMULATOR_METRICS.md) for calculation methods. The 36 public media files in the full-visual bundle are individually bound to origin, license, and SHA-256 in the [machine-readable ledger](data/verification/visual_asset_release_manifest_v1.json) and [asset rights notice](THIRD_PARTY_ASSETS.md). Unresolved legacy assets remain local-only and are not relicensed or packaged.
-
-## 学术顾问与致谢 / Academic Advisor & Acknowledgements
-
-### [Hamid Reza Karimi 教授 / Prof. Dr. Hamid Reza Karimi](https://www.ae-info.org/ae/Member/Karimi_Hamid_Reza)
-
-- **米兰理工大学机械工程系应用力学教授**
-  （Professor of Applied Mechanics, Department of Mechanical Engineering, Politecnico di Milano）
-- **欧洲科学院院士**
-  （Ordinary Member of Academia Europaea, MAE）
-- **欧洲科学与艺术院院士**
-  （Member of the European Academy of Sciences and Arts, MEASA）
-- **欧洲科学院院士**
-  （Member of the European Academy of Sciences, MEurASc）
-- **国家人工智能科学院院士**
-  （Member of the National Academy of Artificial Intelligence, MNAAI）
-- **国际声学与振动研究所杰出会士**
-  （Distinguished Fellow of the International Institute of Acoustics and Vibration, DFIIAV）
-- **国际状态监测学会会士**
-  （Fellow of the International Society for Condition Monitoring, FISCM）
-- **亚太人工智能学会会士**
-  （Fellow of the Asia-Pacific Artificial Intelligence Association, FAAIA）
-- **国际声学与振动研究所理事**
-  （Member of the Board of Directors of the International Institute of Acoustics and Vibration, IIAV）
-
-> 谨向 Karimi 教授为本项目提供的学术支持与指导致以诚挚谢意。
-> *With sincere appreciation to Professor Karimi for his academic support and guidance on this project.*

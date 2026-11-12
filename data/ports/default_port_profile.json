@@ -85,7 +85,7 @@
       "loop": false,
       "arrival_radius": 10.0,
       "planned_speed_knots": 6.0,
-      "spawn": {"x": -22.0, "z": 176.0, "heading_degrees": 180.0},
+      "spawn": {"x": -4.0, "z": 176.0, "heading_degrees": 180.0},
       "route": [
         {"x": -22.0, "z": 120.0}, {"x": -22.0, "z": 45.0},
         {"x": -22.0, "z": -35.0}, {"x": -22.0, "z": -112.0},
@@ -290,7 +290,7 @@
         "wallpaper_sea_band_max_fraction": 0.03
       },
       "colreg_rule_ids": ["Rule 9", "Rule 14"],
-      "spawn": {"x": -22.0, "z": 176.0, "heading_degrees": 180.0},
+      "spawn": {"x": -4.0, "z": 176.0, "heading_degrees": 180.0},
       "boundary_half_extent": 240.0,
       "loop_route": false,
       "route": [
@@ -387,7 +387,7 @@
         {"name": "OvertakeEastBank", "position": {"x": 96.0, "z": 0.0}, "size": {"x": 74.0, "y": 7.0, "z": 430.0}}
       ],
       "traffic": [
-        {"id": "SLOW-AHEAD-01", "role": "overtaken_vessel", "spawn": {"x": 18.0, "z": -72.0, "heading_degrees": 0.0}, "throttle": 0.18, "rudder": 0.0}
+        {"id": "SLOW-AHEAD-01", "role": "overtaken_vessel", "spawn": {"x": 18.0, "z": -115.0, "heading_degrees": 0.0}, "throttle": 0.18, "rudder": 0.0}
       ],
       "evaluation": {"minimum_passing_distance_m": 20.0, "tcpa_horizon_seconds": 180.0, "overtaking_agreement_required": true},
       "realism": {

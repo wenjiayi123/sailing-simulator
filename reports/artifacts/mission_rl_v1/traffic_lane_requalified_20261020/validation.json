@@ -1,0 +1,62 @@
+[
+  {
+    "success": true,
+    "steps": 180,
+    "max_cross_track_m": 0.5148195511455889,
+    "max_heading_error_deg": 3.5604940369573486,
+    "mean_speed_error_after_10s_mps": 0.28032105573048416,
+    "collisions": 0,
+    "reward": 157.58824301862518,
+    "action_source": "traffic_SAC_direct",
+    "controller_fallback_steps": 0,
+    "seed": 0
+  },
+  {
+    "success": true,
+    "steps": 180,
+    "max_cross_track_m": 3.378265096805656,
+    "max_heading_error_deg": 2.4076916379247373,
+    "mean_speed_error_after_10s_mps": 0.2717686726018157,
+    "collisions": 0,
+    "reward": 149.37286462473585,
+    "action_source": "traffic_SAC_direct",
+    "controller_fallback_steps": 0,
+    "seed": 11001
+  },
+  {
+    "success": true,
+    "steps": 180,
+    "max_cross_track_m": 0.6070432365665717,
+    "max_heading_error_deg": 4.953447553256198,
+    "mean_speed_error_after_10s_mps": 0.28325921977919677,
+    "collisions": 0,
+    "reward": 157.8342768563236,
+    "action_source": "traffic_SAC_direct",
+    "controller_fallback_steps": 0,
+    "seed": 11002
+  },
+  {
+    "success": true,
+    "steps": 180,
+    "max_cross_track_m": 2.161860434337626,
+    "max_heading_error_deg": 4.349787145251206,
+    "mean_speed_error_after_10s_mps": 0.2748369827826308,
+    "collisions": 0,
+    "reward": 156.6101991584522,
+    "action_source": "traffic_SAC_direct",
+    "controller_fallback_steps": 0,
+    "seed": 11003
+  },
+  {
+    "success": true,
+    "steps": 180,
+    "max_cross_track_m": 3.426646605974586,
+    "max_heading_error_deg": 5.105837189442997,
+    "mean_speed_error_after_10s_mps": 0.26802222596559316,
+    "collisions": 0,
+    "reward": 152.43007695072737,
+    "action_source": "traffic_SAC_direct",
+    "controller_fallback_steps": 0,
+    "seed": 11004
+  }
+]

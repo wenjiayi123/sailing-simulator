@@ -153,7 +153,7 @@ func _build_interface() -> void:
 	portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	header.add_child(portrait)
-	var title := _make_label("小懿全系统助手 / Instructor", 16, COLOR_ACCENT)
+	var title := _make_label("舷鸥全系统助手 / Instructor", 16, COLOR_ACCENT)
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(title)
 	var hide_button := _make_button("收起")

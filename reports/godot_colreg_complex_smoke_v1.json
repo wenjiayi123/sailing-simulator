@@ -26,7 +26,7 @@
 			"passed": true
 		},
 		"complex_colreg_panel_root_present": {
-			"detail": "ShipColregComplexRoot:<Control#247212289429>",
+			"detail": "ShipColregComplexRoot:<Control#248319585714>",
 			"passed": true
 		},
 		"export_button_present": {
@@ -37,7 +37,7 @@
 			"detail": {
 				"directory": "user://colreg_complex_evidence",
 				"files_sha256": {
-					"user://colreg_complex_evidence/colreg_complex_assurance_v2.json": "bacab307530edd7f5f6a6f050579c4c4223aaaba9f1aa141967575b947eb8bce",
+					"user://colreg_complex_evidence/colreg_complex_assurance_v2.json": "f2697e344f9a6a1e9982338e9d2b44ef32b200e671bf1d58725dc1bbc03129f4",
 					"user://colreg_complex_evidence/colreg_complex_scenario_catalog_v2.json": "66f4839be7410ce3c2a2cf06fa132124c2f782f784ab33092bb375ce53b35bb0",
 					"user://colreg_complex_evidence/local_navigation_rules_template_v1.json": "41f3bbd86f9183aa909a006c4059e99e8387c560c76e0394156cd7d67646c559"
 				},
@@ -54,7 +54,7 @@
 				"last_export": {
 					"directory": "user://colreg_complex_evidence",
 					"files_sha256": {
-						"user://colreg_complex_evidence/colreg_complex_assurance_v2.json": "bacab307530edd7f5f6a6f050579c4c4223aaaba9f1aa141967575b947eb8bce",
+						"user://colreg_complex_evidence/colreg_complex_assurance_v2.json": "f2697e344f9a6a1e9982338e9d2b44ef32b200e671bf1d58725dc1bbc03129f4",
 						"user://colreg_complex_evidence/colreg_complex_scenario_catalog_v2.json": "66f4839be7410ce3c2a2cf06fa132124c2f782f784ab33092bb375ce53b35bb0",
 						"user://colreg_complex_evidence/local_navigation_rules_template_v1.json": "41f3bbd86f9183aa909a006c4059e99e8387c560c76e0394156cd7d67646c559"
 					},
@@ -2048,7 +2048,7 @@
 						"training_performed": false
 					},
 					"functional_assurance_passed": true,
-					"generated_at_utc": "2026-08-29T14:54:23.340155+00:00",
+					"generated_at_utc": "2026-09-12T13:23:45.624201+00:00",
 					"inputs_sha256": {
 						"data/verification/colreg_complex_scenario_catalog_v2.json": "66f4839be7410ce3c2a2cf06fa132124c2f782f784ab33092bb375ce53b35bb0",
 						"data/verification/colreg_encounter_catalog_v1.json": "d349f4420292e0ca90f735320e3e14cc8a5dcd54dc95aa38972454546a0144fb",
@@ -2438,7 +2438,7 @@
 	"colreg_certified": false,
 	"errors": [],
 	"existing_policy_modified": false,
-	"generated_at": "2026-08-29T14:54:23",
+	"generated_at": "2026-09-12T13:23:45",
 	"official_local_rules_connected": false,
 	"passed": true,
 	"passed_count": 25,

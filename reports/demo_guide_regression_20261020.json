@@ -1,0 +1,348 @@
+{
+	"checks": [
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_trained-evidence",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_cockpit",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_hub",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_overview",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_training",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_parameters",
+			"passed": true
+		},
+		{
+			"detail": "回放已启动：sac · test split · 712 个样本。请在场景中观察航迹。",
+			"name": "single_click_replay",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_restore",
+			"passed": true
+		},
+		{
+			"detail": "回放已启动：sac · test split · 696 个样本。请在场景中观察航迹。",
+			"name": "single_click_dynamic-replay",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_dynamic-restore",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_navigation",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_harbor",
+			"passed": true
+		},
+		{
+			"detail": "N 面板的场景、周围环境和对应 SAC 已切换。绿色原生按钮显示接管状态；可直接点击栏内其他 N 场景，或使用独立手动停止。",
+			"name": "single_click_policy-open_water",
+			"passed": true
+		},
+		{
+			"detail": [
+				"res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png",
+				"res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png",
+				"res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png",
+				"res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png"
+			],
+			"name": "scene_wallpaper_open_water",
+			"passed": true
+		},
+		{
+			"detail": "N 面板的场景、周围环境和对应 SAC 已切换。绿色原生按钮显示接管状态；可直接点击栏内其他 N 场景，或使用独立手动停止。",
+			"name": "single_click_policy-harbor",
+			"passed": true
+		},
+		{
+			"detail": [
+				"res://assets/textures/backgrounds/background_candidates/taoyuan_far_paradise_eye_level_v6_sky_extended_2048_v2.png",
+				"res://assets/textures/backgrounds/background_candidates/taoyuan_far_paradise_eye_level_v6_sky_extended_2048_v2.png",
+				"res://assets/textures/backgrounds/background_candidates/taoyuan_far_paradise_eye_level_v6_sky_extended_2048_v2.png",
+				"res://assets/textures/backgrounds/background_candidates/taoyuan_far_paradise_eye_level_v6_sky_extended_2048_v2.png"
+			],
+			"name": "scene_wallpaper_harbor",
+			"passed": true
+		},
+		{
+			"detail": "N 面板的场景、周围环境和对应 SAC 已切换。绿色原生按钮显示接管状态；可直接点击栏内其他 N 场景，或使用独立手动停止。",
+			"name": "single_click_policy-auto_berthing",
+			"passed": true
+		},
+		{
+			"detail": [
+				"res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png",
+				"res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png",
+				"res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png",
+				"res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png"
+			],
+			"name": "scene_wallpaper_auto_berthing",
+			"passed": true
+		},
+		{
+			"detail": [
+				"res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png",
+				"res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png",
+				"res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png",
+				"res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png"
+			],
+			"name": "dedicated_scene_wallpaper_auto_berthing",
+			"passed": true
+		},
+		{
+			"detail": "N 面板的场景、周围环境和对应 SAC 已切换。绿色原生按钮显示接管状态；可直接点击栏内其他 N 场景，或使用独立手动停止。",
+			"name": "single_click_policy-auto_unberthing",
+			"passed": true
+		},
+		{
+			"detail": [
+				"res://assets/generated/tasks/auto_unberthing/auto_unberthing_horizon_v1.png",
+				"res://assets/generated/tasks/auto_unberthing/auto_unberthing_horizon_v1.png",
+				"res://assets/generated/tasks/auto_unberthing/auto_unberthing_horizon_v1.png",
+				"res://assets/generated/tasks/auto_unberthing/auto_unberthing_horizon_v1.png"
+			],
+			"name": "scene_wallpaper_auto_unberthing",
+			"passed": true
+		},
+		{
+			"detail": [
+				"res://assets/generated/tasks/auto_unberthing/auto_unberthing_horizon_v1.png",
+				"res://assets/generated/tasks/auto_unberthing/auto_unberthing_horizon_v1.png",
+				"res://assets/generated/tasks/auto_unberthing/auto_unberthing_horizon_v1.png",
+				"res://assets/generated/tasks/auto_unberthing/auto_unberthing_horizon_v1.png"
+			],
+			"name": "dedicated_scene_wallpaper_auto_unberthing",
+			"passed": true
+		},
+		{
+			"detail": "N 面板的场景、周围环境和对应 SAC 已切换。绿色原生按钮显示接管状态；可直接点击栏内其他 N 场景，或使用独立手动停止。",
+			"name": "single_click_policy-narrow_channel_head_on",
+			"passed": true
+		},
+		{
+			"detail": [
+				"res://assets/generated/tasks/narrow_channel_head_on/narrow_channel_head_on_horizon_v1.png",
+				"res://assets/generated/tasks/narrow_channel_head_on/narrow_channel_head_on_horizon_v1.png",
+				"res://assets/generated/tasks/narrow_channel_head_on/narrow_channel_head_on_horizon_v1.png",
+				"res://assets/generated/tasks/narrow_channel_head_on/narrow_channel_head_on_horizon_v1.png"
+			],
+			"name": "scene_wallpaper_narrow_channel_head_on",
+			"passed": true
+		},
+		{
+			"detail": [
+				"res://assets/generated/tasks/narrow_channel_head_on/narrow_channel_head_on_horizon_v1.png",
+				"res://assets/generated/tasks/narrow_channel_head_on/narrow_channel_head_on_horizon_v1.png",
+				"res://assets/generated/tasks/narrow_channel_head_on/narrow_channel_head_on_horizon_v1.png",
+				"res://assets/generated/tasks/narrow_channel_head_on/narrow_channel_head_on_horizon_v1.png"
+			],
+			"name": "dedicated_scene_wallpaper_narrow_channel_head_on",
+			"passed": true
+		},
+		{
+			"detail": "N 面板的场景、周围环境和对应 SAC 已切换。绿色原生按钮显示接管状态；可直接点击栏内其他 N 场景，或使用独立手动停止。",
+			"name": "single_click_policy-crossing_starboard",
+			"passed": true
+		},
+		{
+			"detail": [
+				"res://assets/generated/tasks/crossing_starboard/crossing_starboard_horizon_v1.png",
+				"res://assets/generated/tasks/crossing_starboard/crossing_starboard_horizon_v1.png",
+				"res://assets/generated/tasks/crossing_starboard/crossing_starboard_horizon_v1.png",
+				"res://assets/generated/tasks/crossing_starboard/crossing_starboard_horizon_v1.png"
+			],
+			"name": "scene_wallpaper_crossing_starboard",
+			"passed": true
+		},
+		{
+			"detail": [
+				"res://assets/generated/tasks/crossing_starboard/crossing_starboard_horizon_v1.png",
+				"res://assets/generated/tasks/crossing_starboard/crossing_starboard_horizon_v1.png",
+				"res://assets/generated/tasks/crossing_starboard/crossing_starboard_horizon_v1.png",
+				"res://assets/generated/tasks/crossing_starboard/crossing_starboard_horizon_v1.png"
+			],
+			"name": "dedicated_scene_wallpaper_crossing_starboard",
+			"passed": true
+		},
+		{
+			"detail": "N 面板的场景、周围环境和对应 SAC 已切换。绿色原生按钮显示接管状态；可直接点击栏内其他 N 场景，或使用独立手动停止。",
+			"name": "single_click_policy-narrow_channel_overtaking",
+			"passed": true
+		},
+		{
+			"detail": [
+				"res://assets/generated/tasks/narrow_channel_overtaking/narrow_channel_overtaking_horizon_v1.png",
+				"res://assets/generated/tasks/narrow_channel_overtaking/narrow_channel_overtaking_horizon_v1.png",
+				"res://assets/generated/tasks/narrow_channel_overtaking/narrow_channel_overtaking_horizon_v1.png",
+				"res://assets/generated/tasks/narrow_channel_overtaking/narrow_channel_overtaking_horizon_v1.png"
+			],
+			"name": "scene_wallpaper_narrow_channel_overtaking",
+			"passed": true
+		},
+		{
+			"detail": [
+				"res://assets/generated/tasks/narrow_channel_overtaking/narrow_channel_overtaking_horizon_v1.png",
+				"res://assets/generated/tasks/narrow_channel_overtaking/narrow_channel_overtaking_horizon_v1.png",
+				"res://assets/generated/tasks/narrow_channel_overtaking/narrow_channel_overtaking_horizon_v1.png",
+				"res://assets/generated/tasks/narrow_channel_overtaking/narrow_channel_overtaking_horizon_v1.png"
+			],
+			"name": "dedicated_scene_wallpaper_narrow_channel_overtaking",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_ais",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_weather",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_risk",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_instructor",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_bridge",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_fusion",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_execution",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_vessel",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_port",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_team",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_physical",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_safety",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_colreg",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_generalization",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_full-bridge",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_cyber",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_review",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_integration",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "single_click_closing",
+			"passed": true
+		},
+		{
+			"detail": "N 面板的场景、周围环境和对应 SAC 已切换。绿色原生按钮显示接管状态；可直接点击栏内其他 N 场景，或使用独立手动停止。",
+			"name": "pending_scene_switch_cancels_old_start",
+			"passed": true
+		},
+		{
+			"detail": null,
+			"name": "manual_stop_available",
+			"passed": true
+		},
+		{
+			"detail": null,
+			"name": "unconfirmed_overtaking_rejected",
+			"passed": true
+		},
+		{
+			"detail": "原生页面结果已出现。完成当前讲解后，再进入下一步。",
+			"name": "previous_executes_destination",
+			"passed": true
+		},
+		{
+			"detail": null,
+			"name": "picker_executes_destination",
+			"passed": true
+		},
+		{
+			"detail": null,
+			"name": "pending_start_stays_cancelled",
+			"passed": true
+		}
+	],
+	"passed": true,
+	"production_authority": false,
+	"step_count": 38,
+	"visual_acceptance": "owner_manual"
+}

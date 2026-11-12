@@ -216,14 +216,14 @@
 					"drift_angle_degrees": 0.0,
 					"gnss_valid": false,
 					"heading_degrees": 187.5,
-					"position": "(0.455386, -140.1851, 0.020331)",
+					"position": "(0.438745, -140.1851, 0.006283)",
 					"rudder": 0.0,
-					"speed_knots": 0.106988699462146,
+					"speed_knots": 0.097124414860189,
 					"speed_log_valid": true,
-					"speed_mps": 0.055039756000042,
+					"speed_mps": 0.0499651283025742,
 					"throttle": 0.0,
-					"true_position": "(0.455386, -140.1851, 0.020331)",
-					"velocity_xz_mps": "(-0.007184, -0.054569)"
+					"true_position": "(0.438745, -140.1851, 0.006283)",
+					"velocity_xz_mps": "(-0.006522, -0.049538)"
 				}
 			},
 			"passed": true
@@ -262,7 +262,7 @@
 				"status": "ACCEPTED",
 				"subject": "",
 				"template_key": "sensor_disagreement",
-				"utc": "2026-08-29T14:54:04"
+				"utc": "2026-09-12T13:22:50"
 			},
 			"passed": true
 		},
@@ -397,7 +397,7 @@
 						"status": "REJECTED",
 						"subject": "unknown_fault",
 						"template_key": "",
-						"utc": "2026-08-29T14:54:04"
+						"utc": "2026-09-12T13:22:50"
 					},
 					{
 						"action": "load_exercise",
@@ -411,7 +411,7 @@
 						"status": "ACCEPTED",
 						"subject": "",
 						"template_key": "sensor_disagreement",
-						"utc": "2026-08-29T14:54:04"
+						"utc": "2026-09-12T13:22:50"
 					},
 					{
 						"action": "start_exercise",
@@ -425,7 +425,7 @@
 						"status": "ACCEPTED",
 						"subject": "",
 						"template_key": "sensor_disagreement",
-						"utc": "2026-08-29T14:54:04"
+						"utc": "2026-09-12T13:22:50"
 					},
 					{
 						"action": "marker",
@@ -439,7 +439,7 @@
 						"status": "EXECUTED",
 						"subject": "SD-00",
 						"template_key": "sensor_disagreement",
-						"utc": "2026-08-29T14:54:04"
+						"utc": "2026-09-12T13:22:50"
 					}
 				],
 				"running": true,
@@ -501,13 +501,13 @@
 				"status": "REJECTED",
 				"subject": "unknown_fault",
 				"template_key": "",
-				"utc": "2026-08-29T14:54:04"
+				"utc": "2026-09-12T13:22:50"
 			},
 			"passed": true
 		}
 	},
 	"errors": [],
-	"generated_at": "2026-08-29T14:54:04",
+	"generated_at": "2026-09-12T13:22:50",
 	"passed": true,
 	"passed_checks": 16,
 	"schema_version": "godot_instructor_debrief_smoke_v2",

@@ -344,7 +344,7 @@ func _run() -> void:
 		and bool((restored_guard.call("get_guard_status") as Dictionary).get("base_environment_active", false))
 		and not bool(restored_dedicated.get("dedicated_scene", true))
 		and wallpaper_root != null
-		and String(wallpaper_root.get_meta("wallpaper_override_status", "")) in ["APPLIED_LOCAL_WALLPAPER", "DEFAULT_RELEASE_TEXTURE"],
+		and String(wallpaper_root.get_meta("wallpaper_override_status", "")) == "STARTUP_PORT_HORIZON",
 		{
 			"base_visible": restored_base.visible if restored_base != null else false,
 			"guard": restored_guard.call("get_guard_status") if restored_guard != null else {},

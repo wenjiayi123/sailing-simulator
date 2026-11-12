@@ -6,18 +6,18 @@
       "status": "PASS",
       "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
       "live_switch_admitted": true,
-      "strategy_id": "SAC-MISSION-open_water-open_water_attempt_01",
+      "strategy_id": "SAC-MISSION-open_water-open_water_requalified_20261020",
       "timesteps": 75000,
       "actor_critic_updates": 18250,
       "numeric_admitted": true,
       "native_runtime_verified": true,
       "source_hashes_match": true,
-      "receipt_path": "reports/artifacts/mission_rl_v1/open_water_attempt_01/receipt.json",
+      "receipt_path": "reports/artifacts/mission_rl_v1/open_water_requalified_20261020/receipt.json",
       "native_receipts": [
-        "reports/artifacts/mission_rl_v1/open_water_attempt_01/native_validation_05.json"
+        "reports/artifacts/mission_rl_v1/open_water_requalified_20261020/native_validation_20261020.json"
       ],
-      "actor_path": "res://data/rl/mission_rl_deployments_v1/open_water_attempt_01.json",
-      "actor_sha256": "f43ff9e0f10223b47f81715f145029ac0f6dff746b45b3a30904486a3e46eafe",
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/open_water_requalified_20261020.json",
+      "actor_sha256": "3a289fee3fe2bcf1eae94daea64a5dc48e016f07d60c3e2fa056c818e26525c2",
       "test_summary": {
         "episodes": 20,
         "success_rate": 1.0,
@@ -32,18 +32,18 @@
       "status": "PASS",
       "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
       "live_switch_admitted": true,
-      "strategy_id": "SAC-MISSION-harbor-harbor_business_05",
+      "strategy_id": "SAC-MISSION-harbor-harbor_requalified_20261020",
       "timesteps": 350000,
       "actor_critic_updates": 86500,
       "numeric_admitted": true,
       "native_runtime_verified": true,
       "source_hashes_match": true,
-      "receipt_path": "reports/artifacts/mission_rl_v1/harbor_business_05/receipt.json",
+      "receipt_path": "reports/artifacts/mission_rl_v1/harbor_requalified_20261020/receipt.json",
       "native_receipts": [
-        "reports/artifacts/mission_rl_v1/harbor_business_05/native_validation_05.json"
+        "reports/artifacts/mission_rl_v1/harbor_requalified_20261020/native_validation_20261020.json"
       ],
-      "actor_path": "res://data/rl/mission_rl_deployments_v1/harbor_business_05.json",
-      "actor_sha256": "88fad1f4fbfbc910688e893f1648312e9410822d34089bc9f4736dfcf21900c2",
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/harbor_requalified_20261020.json",
+      "actor_sha256": "42478bd538bc92a9016e0fe9ea9089bac93669527a3d77545dc38235f0c70014",
       "test_summary": {
         "episodes": 20,
         "success_rate": 1.0,
@@ -58,18 +58,18 @@
       "status": "PASS",
       "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
       "live_switch_admitted": true,
-      "strategy_id": "SAC-MISSION-auto_berthing-berthing_attempt_02",
+      "strategy_id": "SAC-MISSION-auto_berthing-auto_berthing_requalified_20261020",
       "timesteps": 200000,
       "actor_critic_updates": 49500,
       "numeric_admitted": true,
       "native_runtime_verified": true,
       "source_hashes_match": true,
-      "receipt_path": "reports/artifacts/mission_rl_v1/berthing_attempt_02/receipt.json",
+      "receipt_path": "reports/artifacts/mission_rl_v1/auto_berthing_requalified_20261020/receipt.json",
       "native_receipts": [
-        "reports/artifacts/mission_rl_v1/berthing_attempt_02/native_validation_05.json"
+        "reports/artifacts/mission_rl_v1/auto_berthing_requalified_20261020/native_validation_20261020.json"
       ],
-      "actor_path": "res://data/rl/mission_rl_deployments_v1/berthing_attempt_02.json",
-      "actor_sha256": "7598731b0dc1276c7b7063de72d68cf6ab91234ec4ea9989aff0035099ef5b9f",
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/auto_berthing_requalified_20261020.json",
+      "actor_sha256": "90b9c12d9566574a8ef339313aa0b301e4c0ee6f0e62e5d55f015100e4ede8e2",
       "test_summary": {
         "episodes": 20,
         "success_rate": 1.0,
@@ -84,18 +84,18 @@
       "status": "PASS",
       "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
       "live_switch_admitted": true,
-      "strategy_id": "SAC-MISSION-auto_unberthing-unberthing_attempt_02",
+      "strategy_id": "SAC-MISSION-auto_unberthing-auto_unberthing_requalified_20261020",
       "timesteps": 75000,
       "actor_critic_updates": 18250,
       "numeric_admitted": true,
       "native_runtime_verified": true,
       "source_hashes_match": true,
-      "receipt_path": "reports/artifacts/mission_rl_v1/unberthing_attempt_02/receipt.json",
+      "receipt_path": "reports/artifacts/mission_rl_v1/auto_unberthing_requalified_20261020/receipt.json",
       "native_receipts": [
-        "reports/artifacts/mission_rl_v1/unberthing_attempt_02/native_validation_05.json"
+        "reports/artifacts/mission_rl_v1/auto_unberthing_requalified_20261020/native_validation_20261020.json"
       ],
-      "actor_path": "res://data/rl/mission_rl_deployments_v1/unberthing_attempt_02.json",
-      "actor_sha256": "62463604d3b7610464a14c2ca7a7956a75fc8596f15aa93eb773777479f18a16",
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/auto_unberthing_requalified_20261020.json",
+      "actor_sha256": "fef346917122929cffd08991aa34c68b6e7920f9d70a4a9c07b46db72dc6b996",
       "test_summary": {
         "episodes": 20,
         "success_rate": 1.0,
@@ -110,25 +110,25 @@
       "status": "PASS",
       "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
       "live_switch_admitted": true,
-      "strategy_id": "SAC-MISSION-narrow_channel_head_on-head_on_attempt_02",
-      "timesteps": 75000,
-      "actor_critic_updates": 18250,
+      "strategy_id": "SAC-MISSION-narrow_channel_head_on-narrow_channel_head_on_requalified_20261020",
+      "timesteps": 87000,
+      "actor_critic_updates": 20750,
       "numeric_admitted": true,
       "native_runtime_verified": true,
       "source_hashes_match": true,
-      "receipt_path": "reports/artifacts/mission_rl_v1/head_on_attempt_02/receipt.json",
+      "receipt_path": "reports/artifacts/mission_rl_v1/narrow_channel_head_on_requalified_20261020/receipt.json",
       "native_receipts": [
-        "reports/artifacts/mission_rl_v1/head_on_attempt_02/native_validation_05.json"
+        "reports/artifacts/mission_rl_v1/narrow_channel_head_on_requalified_20261020/native_validation_20261020.json"
       ],
-      "actor_path": "res://data/rl/mission_rl_deployments_v1/head_on_attempt_02.json",
-      "actor_sha256": "f7d56f425eb0faab188403abd1262a5c9464c87c8c786076c5d40d442c5d779d",
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/narrow_channel_head_on_requalified_20261020.json",
+      "actor_sha256": "a80afa0982a868b819b5252ed2cd0b7452e0880f2c23214ae2771e9c4de7f80e",
       "test_summary": {
         "episodes": 20,
         "success_rate": 1.0,
         "collisions": 0,
-        "mean_duration_seconds": 83.575,
-        "minimum_clearance_m": 20.593524330124353,
-        "minimum_separation_m": 27.048254993941114
+        "mean_duration_seconds": 86.45,
+        "minimum_clearance_m": 19.323288200622045,
+        "minimum_separation_m": 25.794058530462415
       }
     },
     "crossing_starboard": {
@@ -136,18 +136,18 @@
       "status": "PASS",
       "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
       "live_switch_admitted": true,
-      "strategy_id": "SAC-MISSION-crossing_starboard-crossing_qualification_01",
+      "strategy_id": "SAC-MISSION-crossing_starboard-crossing_starboard_requalified_20261020",
       "timesteps": 25000,
       "actor_critic_updates": 5750,
       "numeric_admitted": true,
       "native_runtime_verified": true,
       "source_hashes_match": true,
-      "receipt_path": "reports/artifacts/mission_rl_v1/crossing_qualification_01/receipt.json",
+      "receipt_path": "reports/artifacts/mission_rl_v1/crossing_starboard_requalified_20261020/receipt.json",
       "native_receipts": [
-        "reports/artifacts/mission_rl_v1/crossing_qualification_01/native_validation_05.json"
+        "reports/artifacts/mission_rl_v1/crossing_starboard_requalified_20261020/native_validation_20261020.json"
       ],
-      "actor_path": "res://data/rl/mission_rl_deployments_v1/crossing_qualification_01.json",
-      "actor_sha256": "d72a0509e648a9339769892e3d811c6ac09ea7452f5313fd6b00613becd6a546",
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/crossing_starboard_requalified_20261020.json",
+      "actor_sha256": "4826bfda1134df4c0f8cd4ce1fdd3bada6da34857d82e8fbf2f54cb10b2e016b",
       "test_summary": {
         "episodes": 20,
         "success_rate": 1.0,
@@ -159,17 +159,29 @@
     },
     "narrow_channel_overtaking": {
       "name": "狭水道追越",
-      "status": "NOT_CONVERGED",
-      "status_zh": "强化学习候选仍未通过完整任务验收",
-      "live_switch_admitted": false,
-      "strategy_id": "SAC-MISSION-narrow_channel_overtaking-overtaking_clearance_curriculum_12",
+      "status": "PASS",
+      "status_zh": "强化学习已通过数值与原生验收，可按场景切换",
+      "live_switch_admitted": true,
+      "strategy_id": "SAC-MISSION-narrow_channel_overtaking-narrow_channel_overtaking_requalified_20261020_v2",
       "timesteps": 727000,
       "actor_critic_updates": 180250,
-      "numeric_admitted": false,
-      "native_runtime_verified": false,
+      "numeric_admitted": true,
+      "native_runtime_verified": true,
       "source_hashes_match": true,
-      "receipt_path": "reports/artifacts/mission_rl_v1/overtaking_clearance_curriculum_12/receipt.json",
-      "native_receipts": []
+      "receipt_path": "reports/artifacts/mission_rl_v1/narrow_channel_overtaking_requalified_20261020_v2/receipt.json",
+      "native_receipts": [
+        "reports/artifacts/mission_rl_v1/narrow_channel_overtaking_requalified_20261020_v2/native_validation_20261020.json"
+      ],
+      "actor_path": "res://data/rl/mission_rl_deployments_v1/narrow_channel_overtaking_requalified_20261020_v2.json",
+      "actor_sha256": "ae4bc7d46cc7eeb42e7d59be67d4455c31557cab13a0d2ae4050d6cccb2931d9",
+      "test_summary": {
+        "episodes": 20,
+        "success_rate": 1.0,
+        "collisions": 0,
+        "mean_duration_seconds": 58.6,
+        "minimum_clearance_m": 20.789346373488236,
+        "minimum_separation_m": 27.19936275603743
+      }
     }
   },
   "production_authority": false

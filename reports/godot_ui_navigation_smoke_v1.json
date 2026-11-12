@@ -3,14 +3,14 @@
 	"checks": {
 		"basic_navigation_forward_motion": {
 			"detail": {
-				"displacement_m": 14.9673776626587,
-				"speed_mps": 9.1809606552124
+				"displacement_m": 14.9716129302979,
+				"speed_mps": 9.18125438690186
 			},
 			"passed": true
 		},
 		"basic_navigation_rudder_response": {
 			"detail": {
-				"heading_change_radians": 0.403302105265208
+				"heading_change_radians": 0.403301151590892
 			},
 			"passed": true
 		},
@@ -141,7 +141,7 @@
 			"detail": {
 				"algorithm": "sac",
 				"dataset_split": "test",
-				"displacement_m": 218.098083496094,
+				"displacement_m": 218.095687866211,
 				"trained_rl": true
 			},
 			"passed": true
@@ -248,14 +248,14 @@
 		},
 		"human_navigation_calm_water_three_dof_handling": {
 			"detail": {
-				"drift_angle_degrees": 9.42097505161861,
+				"drift_angle_degrees": 9.42097614257932,
 				"motion_mode": "three_dof_reference"
 			},
 			"passed": true
 		},
 		"human_navigation_input_motion": {
 			"detail": {
-				"displacement_m": 6.58096551895142,
+				"displacement_m": 6.5809645652771,
 				"speed_mps": 6.96411323547363
 			},
 			"passed": true
@@ -404,7 +404,7 @@
 		}
 	},
 	"errors": [],
-	"generated_at": "2026-08-29T14:53:43",
+	"generated_at": "2026-09-12T13:19:25",
 	"passed": true,
 	"passed_checks": 86,
 	"schema_version": "godot_ui_navigation_smoke_v1",

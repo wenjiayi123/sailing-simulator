@@ -1,0 +1,185 @@
+{
+  "schema_version": "ship_demo_data_readiness.v1",
+  "generated_at": "2026-10-23T07:20:23.649243+00:00",
+  "sources": {
+    "profile": {
+      "path": "data/ports/default_port_profile.json",
+      "sha256": "24e07fc6245322e787943a0206f3470a8887d78ce091cef5dd0f03813b6e2965"
+    },
+    "research_dataset": {
+      "path": "data/rl/long_beach_ais_port_ops_benchmark_v2.json",
+      "sha256": "1d676e7446f22206f6113777524d46724545e58e55c1df73a9d359795a415a1f"
+    },
+    "mission_catalog": {
+      "path": "data/rl/mission_rl_catalog_v1.json",
+      "sha256": "414988f8d96edf1db6752ce6b17a30279772c64e3c28dd946edc06451c3597a8"
+    }
+  },
+  "profile_name": "航行模拟器默认水域配置",
+  "profile_missions": [
+    {
+      "code": "OPEN-WATER-PATROL",
+      "scenario": "open_water",
+      "route_points": 5,
+      "route_ready": true,
+      "scene_ready": true,
+      "speed_knots": 12.0,
+      "source_class": "project_native_geometry"
+    },
+    {
+      "code": "HARBOR-PILOTAGE",
+      "scenario": "harbor",
+      "route_points": 6,
+      "route_ready": true,
+      "scene_ready": true,
+      "speed_knots": 6.0,
+      "source_class": "project_native_geometry"
+    },
+    {
+      "code": "AUTO-BERTHING-BENCHMARK",
+      "scenario": "auto_berthing",
+      "route_points": 7,
+      "route_ready": true,
+      "scene_ready": true,
+      "speed_knots": 3.0,
+      "source_class": "project_native_geometry"
+    },
+    {
+      "code": "AUTO-UNBERTHING-BENCHMARK",
+      "scenario": "auto_unberthing",
+      "route_points": 6,
+      "route_ready": true,
+      "scene_ready": true,
+      "speed_knots": 4.0,
+      "source_class": "project_native_geometry"
+    },
+    {
+      "code": "COLREG-HEAD-ON-CHANNEL",
+      "scenario": "narrow_channel_head_on",
+      "route_points": 5,
+      "route_ready": true,
+      "scene_ready": true,
+      "speed_knots": 6.0,
+      "source_class": "project_native_geometry"
+    },
+    {
+      "code": "COLREG-CROSSING-GIVE-WAY",
+      "scenario": "crossing_starboard",
+      "route_points": 5,
+      "route_ready": true,
+      "scene_ready": true,
+      "speed_knots": 7.0,
+      "source_class": "project_native_geometry"
+    },
+    {
+      "code": "COLREG-OVERTAKING-CHANNEL",
+      "scenario": "narrow_channel_overtaking",
+      "route_points": 5,
+      "route_ready": true,
+      "scene_ready": true,
+      "speed_knots": 7.0,
+      "source_class": "project_native_geometry"
+    }
+  ],
+  "mission_count": 7,
+  "profile_source": {
+    "type": "project_native_geometry",
+    "license": "same_as_project",
+    "observed_port_data": false
+  },
+  "research": {
+    "schema_version": "ship_port_contract_report_v1",
+    "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+    "port": {
+      "id": "us_lgb_long_beach",
+      "name": "Port of Long Beach research area",
+      "country": "United States",
+      "timezone": "America/Los_Angeles",
+      "jurisdiction": [
+        "United States Coast Guard",
+        "Port of Long Beach",
+        "Los Angeles-Long Beach Vessel Traffic Service"
+      ]
+    },
+    "split_sizes": {
+      "train": 207,
+      "validation": 72,
+      "test": 130
+    },
+    "task_count": 409,
+    "route_point_count": 2280,
+    "filtered_ais_rows": 85435,
+    "distinct_mmsi": 137,
+    "dynamic_target_instances": 646,
+    "shared_feature_counts": {
+      "terrain": 11,
+      "obstacles": 50,
+      "depth_areas": 32,
+      "fairways": 12,
+      "restricted_areas": 3,
+      "traffic_separation": 1
+    },
+    "task_field_coverage": {
+      "vessel_dimensions": 1.0,
+      "draft": 1.0,
+      "wind_wave_current": 1.0,
+      "visibility": 1.0,
+      "tide": 1.0,
+      "speed_limit": 1.0
+    },
+    "factor_coverage": {
+      "historical_ais": true,
+      "shoreline_and_fixed_hazards": true,
+      "bathymetry_or_depth_areas": true,
+      "fairways_and_restricted_areas": true,
+      "wind_wave_current": true,
+      "visibility_and_tide": true,
+      "vessel_dimensions_and_draft": true,
+      "dynamic_traffic": true,
+      "speed_limits": true,
+      "colreg_encounter_context": true
+    },
+    "deployment_factor_coverage": {
+      "hydrographic_datum_and_ukc": false,
+      "current_official_charts_and_notices": false,
+      "local_vts_and_regulatory_rules": false,
+      "pilotage_tug_and_berth_constraints": false,
+      "live_traffic_weather_and_sensor_latency": false,
+      "calibrated_vessel_manoeuvring": false,
+      "certified_control_and_communications": false,
+      "failsafe_redundancy_and_human_authority": false
+    },
+    "research_training_ready": true,
+    "live_control_ready": false,
+    "errors": [],
+    "warnings": [
+      "live control remains fail-closed until telemetry, chart updates, vessel calibration, control certification, and human authority are verified"
+    ]
+  },
+  "replacement": [
+    {
+      "input": "港区与航线",
+      "current": "原生工程几何、7类任务航线",
+      "replace": "user://port_profile.json；ship_port_profile_v1，核验坐标、单位和场景键"
+    },
+    {
+      "input": "港口研究任务",
+      "current": "Long Beach历史AIS与声明的环境/船型派生",
+      "replace": "保持现有port dataset合同，保留URL、SHA256、时间隔离和变量来源"
+    },
+    {
+      "input": "天气、流、潮与传感器",
+      "current": "研究集/工程场景输入",
+      "replace": "授权水文气象与现有传感器/船岸桥适配器，核验参考面与延迟"
+    },
+    {
+      "input": "算法/控制器",
+      "current": "原有冻结策略和准入回执",
+      "replace": "按原有模型目录登记、独立测试与原生闭环验收；展示报告不改准入"
+    }
+  ],
+  "boundary": "路线配置、研究字段覆盖与现场真实性是三种口径。字段存在不表示海图、水深、船舶操纵性或气象均为现场实测。不得用模拟数据补齐海图更新、实船校准、硬件/控制验收。",
+  "production_authority": false,
+  "live_control_ready": false,
+  "existing_models_modified": false
+}

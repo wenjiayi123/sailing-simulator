@@ -1,16 +1,7 @@
 {
 	"checks": {
-		"all_walls_use_local_material_override": {
-			"detail": [
-				"res://assets/textures/backgrounds/background_candidates/taoyuan_far_paradise_eye_level_v6_sky_extended_2048_v2.png",
-				"res://assets/textures/backgrounds/background_candidates/taoyuan_far_paradise_eye_level_v6_sky_extended_2048_v2.png",
-				"res://assets/textures/backgrounds/background_candidates/taoyuan_far_paradise_eye_level_v6_sky_extended_2048_v2.png",
-				"res://assets/textures/backgrounds/background_candidates/taoyuan_far_paradise_eye_level_v6_sky_extended_2048_v2.png"
-			],
-			"passed": true
-		},
 		"background_wall_root_present": {
-			"detail": "BackgroundWalls:<Node3D#55415145941>",
+			"detail": "BackgroundWalls:<Node3D#56203675092>",
 			"passed": true
 		},
 		"four_background_walls_are_vertical": {
@@ -52,29 +43,29 @@
 			],
 			"passed": true
 		},
-		"local_wallpaper_applied_when_configured": {
-			"detail": {
-				"config_present": true,
-				"status": "APPLIED_LOCAL_WALLPAPER"
-			},
-			"passed": true
-		},
 		"local_water_applied_when_configured": {
 			"detail": {
-				"config_present": true,
-				"status": "APPLIED_LOCAL_WATER"
+				"config_present": false,
+				"status": "DEFAULT_RELEASE_TEXTURE"
 			},
 			"passed": true
 		},
 		"main_scene_load_request": {
 			"detail": 0,
 			"passed": true
+		},
+		"startup_scene_uses_port_wallpaper": {
+			"detail": {
+				"config_present": false,
+				"status": "STARTUP_PORT_HORIZON"
+			},
+			"passed": true
 		}
 	},
 	"errors": [],
-	"generated_at": "2026-08-29T15:28:34",
+	"generated_at": "2026-11-06T04:49:44",
 	"passed": true,
-	"passed_checks": 8,
+	"passed_checks": 7,
 	"schema_version": "godot_background_wallpaper_smoke_v1",
-	"total_checks": 8
+	"total_checks": 7
 }

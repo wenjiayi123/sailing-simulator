@@ -27,7 +27,7 @@ const HUB_MODULES := [
 	{"label": "海况与时间", "node": "ShipWeatherSeaPanel", "method": "show_panel"},
 	{"label": "AIS 船队态势", "node": "ShipAISFleetPanel", "method": "show_panel"},
 	{"label": "训练与仿真复盘", "node": "ShipSimulationReviewPanel", "method": "show_panel"},
-	{"label": "小懿系统助手", "node": "ShipInstructorConsolePanel", "method": "show_panel"},
+	{"label": "舷鸥系统助手", "node": "ShipInstructorConsolePanel", "method": "show_panel"},
 	{"label": "系统与指标总览", "node": "ShipSystemOverviewPanel", "method": "show_panel"},
 ]
 

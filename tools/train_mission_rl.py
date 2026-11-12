@@ -56,7 +56,11 @@ def export_actor(model,path,metadata):
     for layer in model.actor.latent_pi:
         if isinstance(layer,torch.nn.Linear):layers.append({'weight':layer.weight.detach().cpu().tolist(),'bias':layer.bias.detach().cpu().tolist(),'activation':'relu'})
     layers.append({'weight':model.actor.mu.weight.detach().cpu().tolist(),'bias':model.actor.mu.bias.detach().cpu().tolist(),'activation':'tanh'})
-    write(path,{**metadata,'layers':layers,'observation_contract':CONTRACT,'observation_size':40,'action_low':CONFIG['action_low'],'action_high':CONFIG['action_high']})
+    # A qualifier may export a checkpoint with a different throttle range from
+    # the training module's defaults (overtaking uses 1.0, other tasks 0.65).
+    # Bind unscaling to this checkpoint's contract, just like evaluation does.
+    action_config={**CONFIG,**metadata.get('config',{})}
+    write(path,{**metadata,'layers':layers,'observation_contract':CONTRACT,'observation_size':40,'action_low':action_config['action_low'],'action_high':action_config['action_high']})
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--scenario',choices=SCENARIOS,required=True);p.add_argument('--output',required=True)

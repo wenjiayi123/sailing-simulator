@@ -75,13 +75,13 @@
 						}
 					},
 					"gate": {
-						"berth_distance_m": 258.90673828125,
+						"berth_distance_m": 258.914398193359,
 						"collision_free": true,
-						"heading_error_degrees": 75.9946108189078,
+						"heading_error_degrees": 75.9954782529324,
 						"passed": false,
-						"speed_knots": 0.454403863071442,
+						"speed_knots": 0.450380869189203,
 						"status": "ACTIVE",
-						"sway_mps": 0.007127670571208
+						"sway_mps": 0.00655793678015471
 					},
 					"immediate_own_position": {
 						"x": -142.0,
@@ -92,13 +92,13 @@
 					"nearest_tcpa_s": null,
 					"own_ship": {
 						"collision_warning": "CLEAR",
-						"heading_degrees": 75.9946108189078,
+						"heading_degrees": 75.9954782529324,
 						"position": {
-							"x": -141.920639038086,
-							"z": -111.970176696777
+							"x": -141.927886962891,
+							"z": -111.972961425781
 						},
-						"speed_knots": 0.454403863071442,
-						"sway_mps": -0.007127670571208
+						"speed_knots": 0.450380869189203,
+						"sway_mps": -0.00655793678015471
 					},
 					"passed": true,
 					"scenario_key": "auto_berthing",
@@ -144,10 +144,10 @@
 						}
 					},
 					"gate": {
-						"clear_distance_m": 0.123966068029404,
+						"clear_distance_m": 0.111307844519615,
 						"collision_free": true,
 						"passed": false,
-						"speed_knots": 0.462434817724407,
+						"speed_knots": 0.462292886613786,
 						"status": "ACTIVE"
 					},
 					"immediate_own_position": {
@@ -161,11 +161,11 @@
 						"collision_warning": "CLEAR",
 						"heading_degrees": 180.0,
 						"position": {
-							"x": 82.0961151123047,
-							"z": 17.9217090606689
+							"x": 82.0861663818359,
+							"z": 17.9295387268066
 						},
-						"speed_knots": 0.462434817724407,
-						"sway_mps": -0.023093095049262
+						"speed_knots": 0.462292886613786,
+						"sway_mps": -0.02093237452209
 					},
 					"passed": true,
 					"scenario_key": "auto_unberthing",
@@ -213,7 +213,7 @@
 					"gate": {
 						"collision_free": true,
 						"expected_passing": "",
-						"minimum_passing_distance_m": 354.708282470703,
+						"minimum_passing_distance_m": 354.708190917969,
 						"overtaking_agreement_authorizer": "",
 						"overtaking_agreement_confirmed": false,
 						"overtaking_agreement_required": false,
@@ -226,18 +226,18 @@
 						"x": -22.0,
 						"z": 176.0
 					},
-					"nearest_dcpa_m": 314.052581787109,
-					"nearest_distance_m": 354.708282470703,
+					"nearest_dcpa_m": 313.897399902344,
+					"nearest_distance_m": 354.708190917969,
 					"nearest_tcpa_s": 180.0,
 					"own_ship": {
 						"collision_warning": "CLEAR",
 						"heading_degrees": 180.011237482417,
 						"position": {
 							"x": -22.0030651092529,
-							"z": 175.842422485352
+							"z": 175.841873168945
 						},
-						"speed_knots": 0.868415116888404,
-						"sway_mps": 0.0155701925978065
+						"speed_knots": 0.874357048351765,
+						"sway_mps": 0.0155699700117111
 					},
 					"passed": true,
 					"scenario_key": "narrow_channel_head_on",
@@ -246,17 +246,17 @@
 					"traffic": [
 						{
 							"collision_layer": 1,
-							"dcpa_m": 314.052581787109,
-							"distance_m": 354.708282470703,
+							"dcpa_m": 313.897399902344,
+							"distance_m": 354.708190917969,
 							"external_agent_control_enabled": true,
 							"id": "HEAD-ON-01",
-							"own_along_traffic_track_m": 351.977325439453,
+							"own_along_traffic_track_m": 351.977233886719,
 							"position": {
-								"x": 21.9969482421875,
-								"z": -176.126281738281
+								"x": 21.9969253540039,
+								"z": -176.126724243164
 							},
 							"role": "reciprocal_course",
-							"speed_knots": 0.425466977203667,
+							"speed_knots": 0.429717205690563,
 							"tcpa_s": 180.0
 						}
 					],
@@ -301,7 +301,7 @@
 					"gate": {
 						"collision_free": true,
 						"expected_passing": "astern_of_stand_on_vessel",
-						"minimum_passing_distance_m": 279.380279541016,
+						"minimum_passing_distance_m": 279.383178710938,
 						"overtaking_agreement_authorizer": "",
 						"overtaking_agreement_confirmed": false,
 						"overtaking_agreement_required": false,
@@ -314,18 +314,18 @@
 						"x": -182.0,
 						"z": 0.0
 					},
-					"nearest_dcpa_m": 192.130065917969,
-					"nearest_distance_m": 279.380279541016,
+					"nearest_dcpa_m": 194.277313232422,
+					"nearest_distance_m": 279.383178710938,
 					"nearest_tcpa_s": 180.0,
 					"own_ship": {
 						"collision_warning": "CLEAR",
-						"heading_degrees": 90.02582744973,
+						"heading_degrees": 90.0236896005198,
 						"position": {
-							"x": -181.908248901367,
-							"z": 0.0836174264550209
+							"x": -181.912826538086,
+							"z": 0.0802469849586487
 						},
-						"speed_knots": 0.539049897444606,
-						"sway_mps": 0.0341900251805782
+						"speed_knots": 0.532805276163697,
+						"sway_mps": 0.032816331833601
 					},
 					"passed": true,
 					"scenario_key": "crossing_starboard",
@@ -334,17 +334,17 @@
 					"traffic": [
 						{
 							"collision_layer": 1,
-							"dcpa_m": 192.130065917969,
-							"distance_m": 279.380279541016,
+							"dcpa_m": 194.277313232422,
+							"distance_m": 279.383178710938,
 							"external_agent_control_enabled": true,
 							"id": "CROSS-STBD-01",
-							"own_along_traffic_track_m": 181.843811035156,
+							"own_along_traffic_track_m": 181.857818603516,
 							"position": {
-								"x": 30.0851192474365,
-								"z": -181.883834838867
+								"x": 30.0811023712158,
+								"z": -181.891021728516
 							},
 							"role": "stand_on_starboard",
-							"speed_knots": 0.851437027780652,
+							"speed_knots": 0.818297214141011,
 							"tcpa_s": 180.0
 						}
 					],
@@ -402,18 +402,18 @@
 						"x": 18.0,
 						"z": -178.0
 					},
-					"nearest_dcpa_m": 130.934722900391,
-					"nearest_distance_m": 106.019981384277,
+					"nearest_dcpa_m": 129.187561035156,
+					"nearest_distance_m": 106.017677307129,
 					"nearest_tcpa_s": 180.0,
 					"own_ship": {
 						"collision_warning": "CLEAR",
-						"heading_degrees": 359.971949963879,
+						"heading_degrees": 359.974260960719,
 						"position": {
-							"x": 18.0129985809326,
-							"z": -177.76838684082
+							"x": 18.0127182006836,
+							"z": -177.777130126953
 						},
-						"speed_knots": 1.15538933704019,
-						"sway_mps": -0.0370268784463406
+						"speed_knots": 1.16868266279197,
+						"sway_mps": -0.0355524756014347
 					},
 					"passed": true,
 					"scenario_key": "narrow_channel_overtaking",
@@ -422,17 +422,17 @@
 					"traffic": [
 						{
 							"collision_layer": 1,
-							"dcpa_m": 130.934722900391,
-							"distance_m": 106.019981384277,
+							"dcpa_m": 129.187561035156,
+							"distance_m": 106.017677307129,
 							"external_agent_control_enabled": true,
 							"id": "SLOW-AHEAD-01",
-							"own_along_traffic_track_m": -106.019966125488,
+							"own_along_traffic_track_m": -106.01766204834,
 							"position": {
-								"x": 18.0130233764648,
-								"z": -71.748405456543
+								"x": 18.0127010345459,
+								"z": -71.7594528198242
 							},
 							"role": "overtaken_vessel",
-							"speed_knots": 1.42444704275322,
+							"speed_knots": 1.41889736253476,
 							"tcpa_s": 180.0
 						}
 					],
@@ -478,7 +478,7 @@
 					"gate": {
 						"collision_free": true,
 						"expected_passing": "",
-						"minimum_passing_distance_m": 43.9971313476562,
+						"minimum_passing_distance_m": 43.9971084594727,
 						"overtaking_agreement_authorizer": "",
 						"overtaking_agreement_confirmed": false,
 						"overtaking_agreement_required": false,
@@ -497,7 +497,7 @@
 					"gate": {
 						"collision_free": true,
 						"expected_passing": "astern_of_stand_on_vessel",
-						"minimum_passing_distance_m": 228.285797119141,
+						"minimum_passing_distance_m": 228.293853759766,
 						"overtaking_agreement_authorizer": "",
 						"overtaking_agreement_confirmed": false,
 						"overtaking_agreement_required": false,
@@ -657,7 +657,7 @@
 					"gate": {
 						"collision_free": true,
 						"expected_passing": "",
-						"minimum_passing_distance_m": 43.9971313476562,
+						"minimum_passing_distance_m": 43.9971084594727,
 						"overtaking_agreement_authorizer": "",
 						"overtaking_agreement_confirmed": false,
 						"overtaking_agreement_required": false,
@@ -676,7 +676,7 @@
 					"gate": {
 						"collision_free": true,
 						"expected_passing": "astern_of_stand_on_vessel",
-						"minimum_passing_distance_m": 228.285797119141,
+						"minimum_passing_distance_m": 228.293853759766,
 						"overtaking_agreement_authorizer": "",
 						"overtaking_agreement_confirmed": false,
 						"overtaking_agreement_required": false,
@@ -1338,7 +1338,7 @@
 				"gate": {
 					"collision_free": true,
 					"expected_passing": "astern_of_stand_on_vessel",
-					"minimum_passing_distance_m": 228.285797119141,
+					"minimum_passing_distance_m": 228.293853759766,
 					"overtaking_agreement_authorizer": "",
 					"overtaking_agreement_confirmed": false,
 					"overtaking_agreement_required": false,
@@ -1409,7 +1409,7 @@
 				"gate": {
 					"collision_free": true,
 					"expected_passing": "",
-					"minimum_passing_distance_m": 43.9971313476562,
+					"minimum_passing_distance_m": 43.9971084594727,
 					"overtaking_agreement_authorizer": "",
 					"overtaking_agreement_confirmed": false,
 					"overtaking_agreement_required": false,
@@ -1578,7 +1578,7 @@
 				"receipt_id": "AMR-000008",
 				"schema_version": "ship_advanced_mission_receipt_v1",
 				"status": "ACCEPTED_SIMULATION_ONLY",
-				"utc": "2026-08-29T15:28:06"
+				"utc": "2026-09-12T13:24:41"
 			},
 			"passed": true
 		},
@@ -1593,7 +1593,7 @@
 				"receipt_id": "AMR-000007",
 				"schema_version": "ship_advanced_mission_receipt_v1",
 				"status": "REJECTED",
-				"utc": "2026-08-29T15:28:06"
+				"utc": "2026-09-12T13:24:41"
 			},
 			"passed": true
 		},
@@ -1641,13 +1641,13 @@
 					}
 				},
 				"gate": {
-					"berth_distance_m": 258.90673828125,
+					"berth_distance_m": 258.914398193359,
 					"collision_free": true,
-					"heading_error_degrees": 75.9946108189078,
+					"heading_error_degrees": 75.9954782529324,
 					"passed": false,
-					"speed_knots": 0.454403863071442,
+					"speed_knots": 0.450380869189203,
 					"status": "ACTIVE",
-					"sway_mps": 0.007127670571208
+					"sway_mps": 0.00655793678015471
 				},
 				"immediate_own_position": {
 					"x": -142.0,
@@ -1658,13 +1658,13 @@
 				"nearest_tcpa_s": null,
 				"own_ship": {
 					"collision_warning": "CLEAR",
-					"heading_degrees": 75.9946108189078,
+					"heading_degrees": 75.9954782529324,
 					"position": {
-						"x": -141.920639038086,
-						"z": -111.970176696777
+						"x": -141.927886962891,
+						"z": -111.972961425781
 					},
-					"speed_knots": 0.454403863071442,
-					"sway_mps": -0.007127670571208
+					"speed_knots": 0.450380869189203,
+					"sway_mps": -0.00655793678015471
 				},
 				"passed": true,
 				"scenario_key": "auto_berthing",
@@ -1713,10 +1713,10 @@
 					}
 				},
 				"gate": {
-					"clear_distance_m": 0.123966068029404,
+					"clear_distance_m": 0.111307844519615,
 					"collision_free": true,
 					"passed": false,
-					"speed_knots": 0.462434817724407,
+					"speed_knots": 0.462292886613786,
 					"status": "ACTIVE"
 				},
 				"immediate_own_position": {
@@ -1730,11 +1730,11 @@
 					"collision_warning": "CLEAR",
 					"heading_degrees": 180.0,
 					"position": {
-						"x": 82.0961151123047,
-						"z": 17.9217090606689
+						"x": 82.0861663818359,
+						"z": 17.9295387268066
 					},
-					"speed_knots": 0.462434817724407,
-					"sway_mps": -0.023093095049262
+					"speed_knots": 0.462292886613786,
+					"sway_mps": -0.02093237452209
 				},
 				"passed": true,
 				"scenario_key": "auto_unberthing",
@@ -1785,7 +1785,7 @@
 				"gate": {
 					"collision_free": true,
 					"expected_passing": "astern_of_stand_on_vessel",
-					"minimum_passing_distance_m": 279.380279541016,
+					"minimum_passing_distance_m": 279.383178710938,
 					"overtaking_agreement_authorizer": "",
 					"overtaking_agreement_confirmed": false,
 					"overtaking_agreement_required": false,
@@ -1798,18 +1798,18 @@
 					"x": -182.0,
 					"z": 0.0
 				},
-				"nearest_dcpa_m": 192.130065917969,
-				"nearest_distance_m": 279.380279541016,
+				"nearest_dcpa_m": 194.277313232422,
+				"nearest_distance_m": 279.383178710938,
 				"nearest_tcpa_s": 180.0,
 				"own_ship": {
 					"collision_warning": "CLEAR",
-					"heading_degrees": 90.02582744973,
+					"heading_degrees": 90.0236896005198,
 					"position": {
-						"x": -181.908248901367,
-						"z": 0.0836174264550209
+						"x": -181.912826538086,
+						"z": 0.0802469849586487
 					},
-					"speed_knots": 0.539049897444606,
-					"sway_mps": 0.0341900251805782
+					"speed_knots": 0.532805276163697,
+					"sway_mps": 0.032816331833601
 				},
 				"passed": true,
 				"scenario_key": "crossing_starboard",
@@ -1818,17 +1818,17 @@
 				"traffic": [
 					{
 						"collision_layer": 1,
-						"dcpa_m": 192.130065917969,
-						"distance_m": 279.380279541016,
+						"dcpa_m": 194.277313232422,
+						"distance_m": 279.383178710938,
 						"external_agent_control_enabled": true,
 						"id": "CROSS-STBD-01",
-						"own_along_traffic_track_m": 181.843811035156,
+						"own_along_traffic_track_m": 181.857818603516,
 						"position": {
-							"x": 30.0851192474365,
-							"z": -181.883834838867
+							"x": 30.0811023712158,
+							"z": -181.891021728516
 						},
 						"role": "stand_on_starboard",
-						"speed_knots": 0.851437027780652,
+						"speed_knots": 0.818297214141011,
 						"tcpa_s": 180.0
 					}
 				],
@@ -1876,7 +1876,7 @@
 				"gate": {
 					"collision_free": true,
 					"expected_passing": "",
-					"minimum_passing_distance_m": 354.708282470703,
+					"minimum_passing_distance_m": 354.708190917969,
 					"overtaking_agreement_authorizer": "",
 					"overtaking_agreement_confirmed": false,
 					"overtaking_agreement_required": false,
@@ -1889,18 +1889,18 @@
 					"x": -22.0,
 					"z": 176.0
 				},
-				"nearest_dcpa_m": 314.052581787109,
-				"nearest_distance_m": 354.708282470703,
+				"nearest_dcpa_m": 313.897399902344,
+				"nearest_distance_m": 354.708190917969,
 				"nearest_tcpa_s": 180.0,
 				"own_ship": {
 					"collision_warning": "CLEAR",
 					"heading_degrees": 180.011237482417,
 					"position": {
 						"x": -22.0030651092529,
-						"z": 175.842422485352
+						"z": 175.841873168945
 					},
-					"speed_knots": 0.868415116888404,
-					"sway_mps": 0.0155701925978065
+					"speed_knots": 0.874357048351765,
+					"sway_mps": 0.0155699700117111
 				},
 				"passed": true,
 				"scenario_key": "narrow_channel_head_on",
@@ -1909,17 +1909,17 @@
 				"traffic": [
 					{
 						"collision_layer": 1,
-						"dcpa_m": 314.052581787109,
-						"distance_m": 354.708282470703,
+						"dcpa_m": 313.897399902344,
+						"distance_m": 354.708190917969,
 						"external_agent_control_enabled": true,
 						"id": "HEAD-ON-01",
-						"own_along_traffic_track_m": 351.977325439453,
+						"own_along_traffic_track_m": 351.977233886719,
 						"position": {
-							"x": 21.9969482421875,
-							"z": -176.126281738281
+							"x": 21.9969253540039,
+							"z": -176.126724243164
 						},
 						"role": "reciprocal_course",
-						"speed_knots": 0.425466977203667,
+						"speed_knots": 0.429717205690563,
 						"tcpa_s": 180.0
 					}
 				],
@@ -1980,18 +1980,18 @@
 					"x": 18.0,
 					"z": -178.0
 				},
-				"nearest_dcpa_m": 130.934722900391,
-				"nearest_distance_m": 106.019981384277,
+				"nearest_dcpa_m": 129.187561035156,
+				"nearest_distance_m": 106.017677307129,
 				"nearest_tcpa_s": 180.0,
 				"own_ship": {
 					"collision_warning": "CLEAR",
-					"heading_degrees": 359.971949963879,
+					"heading_degrees": 359.974260960719,
 					"position": {
-						"x": 18.0129985809326,
-						"z": -177.76838684082
+						"x": 18.0127182006836,
+						"z": -177.777130126953
 					},
-					"speed_knots": 1.15538933704019,
-					"sway_mps": -0.0370268784463406
+					"speed_knots": 1.16868266279197,
+					"sway_mps": -0.0355524756014347
 				},
 				"passed": true,
 				"scenario_key": "narrow_channel_overtaking",
@@ -2000,17 +2000,17 @@
 				"traffic": [
 					{
 						"collision_layer": 1,
-						"dcpa_m": 130.934722900391,
-						"distance_m": 106.019981384277,
+						"dcpa_m": 129.187561035156,
+						"distance_m": 106.017677307129,
 						"external_agent_control_enabled": true,
 						"id": "SLOW-AHEAD-01",
-						"own_along_traffic_track_m": -106.019966125488,
+						"own_along_traffic_track_m": -106.01766204834,
 						"position": {
-							"x": 18.0130233764648,
-							"z": -71.748405456543
+							"x": 18.0127010345459,
+							"z": -71.7594528198242
 						},
 						"role": "overtaken_vessel",
-						"speed_knots": 1.42444704275322,
+						"speed_knots": 1.41889736253476,
 						"tcpa_s": 180.0
 					}
 				],
@@ -2034,7 +2034,7 @@
 					"receipt_id": "AMR-000029",
 					"schema_version": "ship_advanced_mission_receipt_v1",
 					"status": "ACCEPTED_SIMULATION_ONLY",
-					"utc": "2026-08-29T15:28:10"
+					"utc": "2026-09-12T13:24:45"
 				}
 			},
 			"passed": true
@@ -2219,7 +2219,7 @@
 			"gate": {
 				"collision_free": true,
 				"expected_passing": "",
-				"minimum_passing_distance_m": 43.9971313476562,
+				"minimum_passing_distance_m": 43.9971084594727,
 				"overtaking_agreement_authorizer": "",
 				"overtaking_agreement_confirmed": false,
 				"overtaking_agreement_required": false,
@@ -2238,7 +2238,7 @@
 			"gate": {
 				"collision_free": true,
 				"expected_passing": "astern_of_stand_on_vessel",
-				"minimum_passing_distance_m": 228.285797119141,
+				"minimum_passing_distance_m": 228.293853759766,
 				"overtaking_agreement_authorizer": "",
 				"overtaking_agreement_confirmed": false,
 				"overtaking_agreement_required": false,
@@ -2360,7 +2360,7 @@
 		}
 	],
 	"errors": [],
-	"generated_at": "2026-08-29T15:28:10",
+	"generated_at": "2026-09-12T13:24:45",
 	"passed": true,
 	"passed_checks": 43,
 	"scenario_records": [
@@ -2401,13 +2401,13 @@
 				}
 			},
 			"gate": {
-				"berth_distance_m": 258.90673828125,
+				"berth_distance_m": 258.914398193359,
 				"collision_free": true,
-				"heading_error_degrees": 75.9946108189078,
+				"heading_error_degrees": 75.9954782529324,
 				"passed": false,
-				"speed_knots": 0.454403863071442,
+				"speed_knots": 0.450380869189203,
 				"status": "ACTIVE",
-				"sway_mps": 0.007127670571208
+				"sway_mps": 0.00655793678015471
 			},
 			"immediate_own_position": {
 				"x": -142.0,
@@ -2418,13 +2418,13 @@
 			"nearest_tcpa_s": null,
 			"own_ship": {
 				"collision_warning": "CLEAR",
-				"heading_degrees": 75.9946108189078,
+				"heading_degrees": 75.9954782529324,
 				"position": {
-					"x": -141.920639038086,
-					"z": -111.970176696777
+					"x": -141.927886962891,
+					"z": -111.972961425781
 				},
-				"speed_knots": 0.454403863071442,
-				"sway_mps": -0.007127670571208
+				"speed_knots": 0.450380869189203,
+				"sway_mps": -0.00655793678015471
 			},
 			"passed": true,
 			"scenario_key": "auto_berthing",
@@ -2470,10 +2470,10 @@
 				}
 			},
 			"gate": {
-				"clear_distance_m": 0.123966068029404,
+				"clear_distance_m": 0.111307844519615,
 				"collision_free": true,
 				"passed": false,
-				"speed_knots": 0.462434817724407,
+				"speed_knots": 0.462292886613786,
 				"status": "ACTIVE"
 			},
 			"immediate_own_position": {
@@ -2487,11 +2487,11 @@
 				"collision_warning": "CLEAR",
 				"heading_degrees": 180.0,
 				"position": {
-					"x": 82.0961151123047,
-					"z": 17.9217090606689
+					"x": 82.0861663818359,
+					"z": 17.9295387268066
 				},
-				"speed_knots": 0.462434817724407,
-				"sway_mps": -0.023093095049262
+				"speed_knots": 0.462292886613786,
+				"sway_mps": -0.02093237452209
 			},
 			"passed": true,
 			"scenario_key": "auto_unberthing",
@@ -2539,7 +2539,7 @@
 			"gate": {
 				"collision_free": true,
 				"expected_passing": "",
-				"minimum_passing_distance_m": 354.708282470703,
+				"minimum_passing_distance_m": 354.708190917969,
 				"overtaking_agreement_authorizer": "",
 				"overtaking_agreement_confirmed": false,
 				"overtaking_agreement_required": false,
@@ -2552,18 +2552,18 @@
 				"x": -22.0,
 				"z": 176.0
 			},
-			"nearest_dcpa_m": 314.052581787109,
-			"nearest_distance_m": 354.708282470703,
+			"nearest_dcpa_m": 313.897399902344,
+			"nearest_distance_m": 354.708190917969,
 			"nearest_tcpa_s": 180.0,
 			"own_ship": {
 				"collision_warning": "CLEAR",
 				"heading_degrees": 180.011237482417,
 				"position": {
 					"x": -22.0030651092529,
-					"z": 175.842422485352
+					"z": 175.841873168945
 				},
-				"speed_knots": 0.868415116888404,
-				"sway_mps": 0.0155701925978065
+				"speed_knots": 0.874357048351765,
+				"sway_mps": 0.0155699700117111
 			},
 			"passed": true,
 			"scenario_key": "narrow_channel_head_on",
@@ -2572,17 +2572,17 @@
 			"traffic": [
 				{
 					"collision_layer": 1,
-					"dcpa_m": 314.052581787109,
-					"distance_m": 354.708282470703,
+					"dcpa_m": 313.897399902344,
+					"distance_m": 354.708190917969,
 					"external_agent_control_enabled": true,
 					"id": "HEAD-ON-01",
-					"own_along_traffic_track_m": 351.977325439453,
+					"own_along_traffic_track_m": 351.977233886719,
 					"position": {
-						"x": 21.9969482421875,
-						"z": -176.126281738281
+						"x": 21.9969253540039,
+						"z": -176.126724243164
 					},
 					"role": "reciprocal_course",
-					"speed_knots": 0.425466977203667,
+					"speed_knots": 0.429717205690563,
 					"tcpa_s": 180.0
 				}
 			],
@@ -2627,7 +2627,7 @@
 			"gate": {
 				"collision_free": true,
 				"expected_passing": "astern_of_stand_on_vessel",
-				"minimum_passing_distance_m": 279.380279541016,
+				"minimum_passing_distance_m": 279.383178710938,
 				"overtaking_agreement_authorizer": "",
 				"overtaking_agreement_confirmed": false,
 				"overtaking_agreement_required": false,
@@ -2640,18 +2640,18 @@
 				"x": -182.0,
 				"z": 0.0
 			},
-			"nearest_dcpa_m": 192.130065917969,
-			"nearest_distance_m": 279.380279541016,
+			"nearest_dcpa_m": 194.277313232422,
+			"nearest_distance_m": 279.383178710938,
 			"nearest_tcpa_s": 180.0,
 			"own_ship": {
 				"collision_warning": "CLEAR",
-				"heading_degrees": 90.02582744973,
+				"heading_degrees": 90.0236896005198,
 				"position": {
-					"x": -181.908248901367,
-					"z": 0.0836174264550209
+					"x": -181.912826538086,
+					"z": 0.0802469849586487
 				},
-				"speed_knots": 0.539049897444606,
-				"sway_mps": 0.0341900251805782
+				"speed_knots": 0.532805276163697,
+				"sway_mps": 0.032816331833601
 			},
 			"passed": true,
 			"scenario_key": "crossing_starboard",
@@ -2660,17 +2660,17 @@
 			"traffic": [
 				{
 					"collision_layer": 1,
-					"dcpa_m": 192.130065917969,
-					"distance_m": 279.380279541016,
+					"dcpa_m": 194.277313232422,
+					"distance_m": 279.383178710938,
 					"external_agent_control_enabled": true,
 					"id": "CROSS-STBD-01",
-					"own_along_traffic_track_m": 181.843811035156,
+					"own_along_traffic_track_m": 181.857818603516,
 					"position": {
-						"x": 30.0851192474365,
-						"z": -181.883834838867
+						"x": 30.0811023712158,
+						"z": -181.891021728516
 					},
 					"role": "stand_on_starboard",
-					"speed_knots": 0.851437027780652,
+					"speed_knots": 0.818297214141011,
 					"tcpa_s": 180.0
 				}
 			],
@@ -2728,18 +2728,18 @@
 				"x": 18.0,
 				"z": -178.0
 			},
-			"nearest_dcpa_m": 130.934722900391,
-			"nearest_distance_m": 106.019981384277,
+			"nearest_dcpa_m": 129.187561035156,
+			"nearest_distance_m": 106.017677307129,
 			"nearest_tcpa_s": 180.0,
 			"own_ship": {
 				"collision_warning": "CLEAR",
-				"heading_degrees": 359.971949963879,
+				"heading_degrees": 359.974260960719,
 				"position": {
-					"x": 18.0129985809326,
-					"z": -177.76838684082
+					"x": 18.0127182006836,
+					"z": -177.777130126953
 				},
-				"speed_knots": 1.15538933704019,
-				"sway_mps": -0.0370268784463406
+				"speed_knots": 1.16868266279197,
+				"sway_mps": -0.0355524756014347
 			},
 			"passed": true,
 			"scenario_key": "narrow_channel_overtaking",
@@ -2748,17 +2748,17 @@
 			"traffic": [
 				{
 					"collision_layer": 1,
-					"dcpa_m": 130.934722900391,
-					"distance_m": 106.019981384277,
+					"dcpa_m": 129.187561035156,
+					"distance_m": 106.017677307129,
 					"external_agent_control_enabled": true,
 					"id": "SLOW-AHEAD-01",
-					"own_along_traffic_track_m": -106.019966125488,
+					"own_along_traffic_track_m": -106.01766204834,
 					"position": {
-						"x": 18.0130233764648,
-						"z": -71.748405456543
+						"x": 18.0127010345459,
+						"z": -71.7594528198242
 					},
 					"role": "overtaken_vessel",
-					"speed_knots": 1.42444704275322,
+					"speed_knots": 1.41889736253476,
 					"tcpa_s": 180.0
 				}
 			],

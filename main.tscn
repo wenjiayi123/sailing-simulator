@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://1puthffyfgaa"]
 
+[ext_resource type="Script" path="res://scripts/ui/ship_demo_guide.gd" id="109_demo_guide"]
 [ext_resource type="Script" path="res://scripts/rl/mission_rl_controller.gd" id="mission_direct_rl"]
 [ext_resource type="Script" path="res://scripts/rl/mission_rl_traffic_controller.gd" id="mission_traffic_rl"]
 [ext_resource type="Script" uid="uid://jhcagtqy1xpp" path="res://player.gd" id="1_ig7tw"]
@@ -3260,3 +3261,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35661614, -140.18494, -0.04
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GroundCollision" unique_id=1048097954]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_jh35h")
+
+[node name="ShipDemoGuide" type="CanvasLayer" parent="."]
+script = ExtResource("109_demo_guide")

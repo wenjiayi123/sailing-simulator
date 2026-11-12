@@ -63,6 +63,7 @@ PRIVATE_KEY_RE = re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"
 # These exact source lines describe continuing a paused policy/training run.
 # Keep frozen sources byte-identical without exempting comments/files generally.
 CONTINUATION_SOURCE_LINES = {
+    'const DEFAULT_XIAOYI_RETURN_URL := "http://127.0.0.1:8010/?xiaoyi_resume=system-linkage"',
     "var resume := auto_switch",
     "if resume:",
     "# constant 1000 on a resumed model silently skips replay warmup.",

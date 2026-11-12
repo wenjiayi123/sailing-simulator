@@ -1,0 +1,3658 @@
+{
+  "schema": "demo-trained-scenarios.v1",
+  "system": "智能船舶自主航行模拟器",
+  "generated_at": "2026-10-21T07:36:42.703344+00:00",
+  "boundary": "公开实测、官方汇总、工程派生和模拟交互分项标识。已训练不代表业务准入；离线收益不是现场实绩。",
+  "scenarios": [
+    {
+      "id": "open_water",
+      "name": "开放水域",
+      "algorithm": "SAC",
+      "datasets": {
+        "name": "MissionEnv 在线物理仿真交互（无实船数据集）",
+        "real_world_training_rows": 0,
+        "interaction_steps": 75000,
+        "validation_episodes": 8,
+        "independent_test_episodes": 20,
+        "port_geometry_source": "data/ports/default_port_profile.json",
+        "dynamics_reference": "data/verification/catamaran_usv_dynamics_reference_v2.json",
+        "demonstrations_used": false
+      },
+      "state": [
+        "distance_to_waypoint/100",
+        "sin_bearing",
+        "cos_bearing",
+        "local_forward/50",
+        "local_right/50",
+        "surge/11",
+        "sway/3",
+        "yaw_rate/0.5",
+        "left_thruster",
+        "right_thruster",
+        "rudder/18deg",
+        "sin_next_bearing",
+        "cos_next_bearing",
+        "waypoint_progress",
+        "last_waypoint",
+        "berthing_flag",
+        "sin_berth_heading_error",
+        "cos_berth_heading_error",
+        "current_forward",
+        "current_right",
+        "obstacle_clearance/30",
+        "normalized_x",
+        "normalized_z",
+        "sin_heading",
+        "cos_heading",
+        "target_exists",
+        "target_forward/200",
+        "target_right/100",
+        "relative_surge/11",
+        "relative_sway/11",
+        "TCPA/180",
+        "DCPA/100",
+        "first_action_done",
+        "overtaking_agreement",
+        "passed_ahead",
+        "success_hold_ratio",
+        "head_on_flag",
+        "crossing_flag",
+        "overtaking_flag",
+        "unberthing_flag"
+      ],
+      "actions": {
+        "policy_action": [
+          "throttle",
+          "rudder"
+        ],
+        "normalized_box": [
+          -1,
+          1
+        ],
+        "execution_limits": {
+          "action_low": [
+            -0.6,
+            -0.65
+          ],
+          "action_high": [
+            0.65,
+            0.65
+          ]
+        }
+      },
+      "reward": {
+        "base": "progress_weight * (previous_distance - distance) - step_cost；碰撞惩罚；完成奖励；场景专项门槛",
+        "config": {
+          "decision_frames": 30,
+          "max_steps": 1200,
+          "vessel_radius_m": 3.2,
+          "curriculum_probability": 0.7,
+          "train_start_jitter_m": 2.0,
+          "eval_start_jitter_m": 1.0,
+          "heading_jitter_deg": 4.0,
+          "environment_variation": 0.1,
+          "success_hold_seconds": 3.0,
+          "progress_weight": 1.0,
+          "collision_penalty": 150.0,
+          "success_bonus": 120.0,
+          "step_cost": 0.15,
+          "action_low": [
+            -0.6,
+            -0.65
+          ],
+          "action_high": [
+            0.65,
+            0.65
+          ]
+        },
+        "exact_source": "def step(self,action):\n        raw=np.clip(np.asarray(action,dtype=float),-1,1)\n        low=np.array(self.config['action_low']);high=np.array(self.config['action_high'])\n        command=low+(raw+1)*.5*(high-low)\n        old=self.plant.state[:2].copy();old_dist=self.distance();previous_first=self.first_action\n        samples=self.plant.advance(command,self.forcing,self.config['decision_frames'])\n        clearance=float(self.clearances(samples).min())\n        for p,a in zip(self.traffic,self.traffic_actions):\n            target_samples=p.advance(a,self.traffic_forcing,self.config['decision_frames'])\n            distances=np.linalg.norm(samples-target_samples,axis=1)\n            clearance=min(clearance,float(distances.min())-self.config['vessel_radius_m']*2)\n        self.steps+=1;self.minimum_clearance=min(self.minimum_clearance,clearance)\n        self._physical_safety(samples);self._update_encounter()\n        collided=clearance<=0;self.collisions+=int(collided)\n        dist=self.distance();s=self.plant.state;last=self.waypoint==len(self.route)-1\n        dock=last and self.key=='auto_berthing'\n        reward=(old_dist-dist)*self.config['progress_weight']-self.config['step_cost']\n        target_speed=3.5\n        if self.key=='auto_unberthing':target_speed=2.\n        if self.key=='narrow_channel_overtaking':target_speed=5.8\n        if dock:target_speed=min(2.,dist*.15)\n        reward-=.08*(s[2]-target_speed)**2+.04*abs(raw[1]-self.previous_action[1])+.015*abs(raw[1])\n        if clearance<8:reward-=.3*(8-clearance)\n        if dock:\n            target=self.evaluation['berth_target'];herr=abs(wrap(math.radians(target['heading_degrees'])-s[5]))\n            reward-=max(0,1-dist/30)*(.8*herr+.15*abs(s[3]))\n        if self.key in ('narrow_channel_head_on','crossing_starboard') and self.first_action is None:\n            change=wrap(s[5]-self.initial_heading)\n            reward+=.3*min(change/math.radians(12),1)\n        if previous_first is None and self.first_action is not None:\n            reward+=4 if self.first_action['side']=='STARBOARD' else -8\n        if self.key=='narrow_channel_head_on' and s[0]>0:reward-=2\n        if self.traffic:\n            d,*_=self._dynamic()[0];safe=self.evaluation['minimum_passing_distance_m']\n            if d<safe+10:reward-=2*max(0,(safe+10-d)/10)\n        if dist<=self.arrival and not last:\n            self.waypoint+=1;reward+=8\n        elif dist<=self.arrival and last:self.route_complete=True\n        gate=self.gate()\n        if all(gate.values()):self.hold_seconds+=self.dt\n        else:self.hold_seconds=0\n        success=all(gate.values()) and (not dock or self.hold_seconds>=self.config['success_hold_seconds'])\n        if success:reward+=self.config['success_bonus']\n        if collided:reward-=self.config['collision_penalty']\n        terminated=success or collided\n        truncated=self.steps>=self.config['max_steps'] and not terminated\n        self.path_length+=float(np.linalg.norm(s[:2]-old));self.effort+=float(np.sum(np.abs(command)))*self.dt\n        self.action_variation+=float(np.sum(np.abs(raw-self.previous_action)))\n        self.previous_action=raw;self.reward_sum+=reward\n        if self.record:self._record(command)\n        info={}\n        if terminated or truncated:\n            info=self.result(success);info['episode']={'r':self.reward_sum,'l':self.steps}\n        return self.observation(),float(reward),terminated,truncated,info"
+      },
+      "outputs": {
+        "test_summary": {
+          "episodes": 20,
+          "success_rate": 1.0,
+          "collisions": 0,
+          "mean_duration_seconds": 95.375,
+          "minimum_clearance_m": 24.37805062895205,
+          "minimum_separation_m": null
+        },
+        "numeric_status": "PASS",
+        "runtime_admitted": true,
+        "model": {
+          "path": "reports/artifacts/mission_rl_v1/open_water_attempt_01/sac_75000.zip",
+          "sha256": "fdb23b8efcf73610744427efc7c52b565b81c2b958bcde3ddfb36c906e40df2d"
+        },
+        "actor": {
+          "path": "data/rl/mission_rl_deployments_v1/open_water_requalified_20261020.json",
+          "sha256": "3a289fee3fe2bcf1eae94daea64a5dc48e016f07d60c3e2fa056c818e26525c2"
+        },
+        "hash_matches_catalog": true,
+        "trajectory_fields": [
+          "x",
+          "z",
+          "heading",
+          "speed",
+          "throttle",
+          "rudder",
+          "clearance",
+          "separation",
+          "CPA",
+          "TCPA",
+          "reward",
+          "business_gate"
+        ]
+      },
+      "sources": [
+        {
+          "path": "reports/artifacts/mission_rl_v1/open_water_requalified_20261020/receipt.json",
+          "sha256": "87d553d793ca9cfec9914aac0bce6b0a67a88878234da6dae9049e2d508656f4"
+        },
+        {
+          "path": "data/rl/mission_rl_catalog_v1.json",
+          "sha256": "414988f8d96edf1db6752ce6b17a30279772c64e3c28dd946edc06451c3597a8"
+        },
+        {
+          "path": "tools/mission_rl/environment.py",
+          "sha256": "1cc2d5e063897f79786f16552b594b048fe22e078cc25d434f6b439b7ba3f9a4"
+        }
+      ],
+      "status": "强化学习已通过数值与原生验收，可按场景切换",
+      "training": {
+        "seed": 90701,
+        "timesteps": 75000,
+        "actor_critic_updates": 18250,
+        "training_source": "online_environment_interaction",
+        "validation_seeds": [
+          10001,
+          10002,
+          10003,
+          10004,
+          20001,
+          20002,
+          20003,
+          20004
+        ],
+        "test_seeds": [
+          30001,
+          30002,
+          30003,
+          30004,
+          30005,
+          30006,
+          30007,
+          30008,
+          30009,
+          30010,
+          30011,
+          30012,
+          30013,
+          30014,
+          30015,
+          30016,
+          30017,
+          30018,
+          30019,
+          30020
+        ],
+        "qualification_only": true,
+        "this_run_timesteps": 0
+      }
+    },
+    {
+      "id": "harbor",
+      "name": "港口引航水域",
+      "algorithm": "SAC",
+      "datasets": {
+        "name": "MissionEnv 在线物理仿真交互（无实船数据集）",
+        "real_world_training_rows": 0,
+        "interaction_steps": 350000,
+        "validation_episodes": 8,
+        "independent_test_episodes": 20,
+        "port_geometry_source": "data/ports/default_port_profile.json",
+        "dynamics_reference": "data/verification/catamaran_usv_dynamics_reference_v2.json",
+        "demonstrations_used": false
+      },
+      "state": [
+        "distance_to_waypoint/100",
+        "sin_bearing",
+        "cos_bearing",
+        "local_forward/50",
+        "local_right/50",
+        "surge/11",
+        "sway/3",
+        "yaw_rate/0.5",
+        "left_thruster",
+        "right_thruster",
+        "rudder/18deg",
+        "sin_next_bearing",
+        "cos_next_bearing",
+        "waypoint_progress",
+        "last_waypoint",
+        "berthing_flag",
+        "sin_berth_heading_error",
+        "cos_berth_heading_error",
+        "current_forward",
+        "current_right",
+        "obstacle_clearance/30",
+        "normalized_x",
+        "normalized_z",
+        "sin_heading",
+        "cos_heading",
+        "target_exists",
+        "target_forward/200",
+        "target_right/100",
+        "relative_surge/11",
+        "relative_sway/11",
+        "TCPA/180",
+        "DCPA/100",
+        "first_action_done",
+        "overtaking_agreement",
+        "passed_ahead",
+        "success_hold_ratio",
+        "head_on_flag",
+        "crossing_flag",
+        "overtaking_flag",
+        "unberthing_flag"
+      ],
+      "actions": {
+        "policy_action": [
+          "throttle",
+          "rudder"
+        ],
+        "normalized_box": [
+          -1,
+          1
+        ],
+        "execution_limits": {
+          "action_low": [
+            -0.6,
+            -0.65
+          ],
+          "action_high": [
+            0.65,
+            0.65
+          ]
+        }
+      },
+      "reward": {
+        "base": "progress_weight * (previous_distance - distance) - step_cost；碰撞惩罚；完成奖励；场景专项门槛",
+        "config": {
+          "decision_frames": 30,
+          "max_steps": 1200,
+          "vessel_radius_m": 3.2,
+          "curriculum_probability": 0.7,
+          "train_start_jitter_m": 2.0,
+          "eval_start_jitter_m": 1.0,
+          "heading_jitter_deg": 4.0,
+          "environment_variation": 0.1,
+          "success_hold_seconds": 3.0,
+          "progress_weight": 1.0,
+          "collision_penalty": 150.0,
+          "success_bonus": 120.0,
+          "step_cost": 0.15,
+          "action_low": [
+            -0.6,
+            -0.65
+          ],
+          "action_high": [
+            0.65,
+            0.65
+          ],
+          "reward_profile": "business_v2"
+        },
+        "exact_source": "def step(self,action):\n        raw=np.clip(np.asarray(action,dtype=float),-1,1)\n        low=np.array(self.config['action_low']);high=np.array(self.config['action_high'])\n        command=low+(raw+1)*.5*(high-low)\n        old=self.plant.state[:2].copy();old_dist=self.distance();previous_first=self.first_action\n        samples=self.plant.advance(command,self.forcing,self.config['decision_frames'])\n        clearance=float(self.clearances(samples).min())\n        for p,a in zip(self.traffic,self.traffic_actions):\n            target_samples=p.advance(a,self.traffic_forcing,self.config['decision_frames'])\n            distances=np.linalg.norm(samples-target_samples,axis=1)\n            clearance=min(clearance,float(distances.min())-self.config['vessel_radius_m']*2)\n        self.steps+=1;self.minimum_clearance=min(self.minimum_clearance,clearance)\n        self._physical_safety(samples);self._update_encounter()\n        collided=clearance<=0;self.collisions+=int(collided)\n        dist=self.distance();s=self.plant.state;last=self.waypoint==len(self.route)-1\n        dock=last and self.key=='auto_berthing'\n        reward=(old_dist-dist)*self.config['progress_weight']-self.config['step_cost']\n        target_speed=3.5\n        if self.key=='auto_unberthing':target_speed=2.\n        if self.key=='narrow_channel_overtaking':target_speed=5.8\n        if dock:target_speed=min(2.,dist*.15)\n        reward-=.08*(s[2]-target_speed)**2+.04*abs(raw[1]-self.previous_action[1])+.015*abs(raw[1])\n        if clearance<8:reward-=.3*(8-clearance)\n        if dock:\n            target=self.evaluation['berth_target'];herr=abs(wrap(math.radians(target['heading_degrees'])-s[5]))\n            reward-=max(0,1-dist/30)*(.8*herr+.15*abs(s[3]))\n        if self.key in ('narrow_channel_head_on','crossing_starboard') and self.first_action is None:\n            change=wrap(s[5]-self.initial_heading)\n            reward+=.3*min(change/math.radians(12),1)\n        if previous_first is None and self.first_action is not None:\n            reward+=4 if self.first_action['side']=='STARBOARD' else -8\n        if self.key=='narrow_channel_head_on' and s[0]>0:reward-=2\n        if self.traffic:\n            d,*_=self._dynamic()[0];safe=self.evaluation['minimum_passing_distance_m']\n            if d<safe+10:reward-=2*max(0,(safe+10-d)/10)\n        if dist<=self.arrival and not last:\n            self.waypoint+=1;reward+=8\n        elif dist<=self.arrival and last:self.route_complete=True\n        gate=self.gate()\n        if all(gate.values()):self.hold_seconds+=self.dt\n        else:self.hold_seconds=0\n        success=all(gate.values()) and (not dock or self.hold_seconds>=self.config['success_hold_seconds'])\n        if success:reward+=self.config['success_bonus']\n        if collided:reward-=self.config['collision_penalty']\n        terminated=success or collided\n        truncated=self.steps>=self.config['max_steps'] and not terminated\n        self.path_length+=float(np.linalg.norm(s[:2]-old));self.effort+=float(np.sum(np.abs(command)))*self.dt\n        self.action_variation+=float(np.sum(np.abs(raw-self.previous_action)))\n        self.previous_action=raw;self.reward_sum+=reward\n        if self.record:self._record(command)\n        info={}\n        if terminated or truncated:\n            info=self.result(success);info['episode']={'r':self.reward_sum,'l':self.steps}\n        return self.observation(),float(reward),terminated,truncated,info"
+      },
+      "outputs": {
+        "test_summary": {
+          "episodes": 20,
+          "success_rate": 1.0,
+          "collisions": 0,
+          "mean_duration_seconds": 64.725,
+          "minimum_clearance_m": 1.7158649722962673,
+          "minimum_separation_m": null
+        },
+        "numeric_status": "PASS",
+        "runtime_admitted": true,
+        "model": {
+          "path": "reports/artifacts/mission_rl_v1/harbor_business_05/sac_350000.zip",
+          "sha256": "df3c092d2cf171184151754f680a25e49fb9b8d1f76a2c650ad023ded76e3041"
+        },
+        "actor": {
+          "path": "data/rl/mission_rl_deployments_v1/harbor_requalified_20261020.json",
+          "sha256": "42478bd538bc92a9016e0fe9ea9089bac93669527a3d77545dc38235f0c70014"
+        },
+        "hash_matches_catalog": true,
+        "trajectory_fields": [
+          "x",
+          "z",
+          "heading",
+          "speed",
+          "throttle",
+          "rudder",
+          "clearance",
+          "separation",
+          "CPA",
+          "TCPA",
+          "reward",
+          "business_gate"
+        ]
+      },
+      "sources": [
+        {
+          "path": "reports/artifacts/mission_rl_v1/harbor_requalified_20261020/receipt.json",
+          "sha256": "ca5715396e25d3c41ca2a7a8294996e1bc541cd015baaadafbceb726352c707d"
+        },
+        {
+          "path": "data/rl/mission_rl_catalog_v1.json",
+          "sha256": "414988f8d96edf1db6752ce6b17a30279772c64e3c28dd946edc06451c3597a8"
+        },
+        {
+          "path": "tools/mission_rl/environment.py",
+          "sha256": "1cc2d5e063897f79786f16552b594b048fe22e078cc25d434f6b439b7ba3f9a4"
+        }
+      ],
+      "status": "强化学习已通过数值与原生验收，可按场景切换",
+      "training": {
+        "seed": 90701,
+        "timesteps": 350000,
+        "actor_critic_updates": 86500,
+        "training_source": "online_environment_interaction",
+        "validation_seeds": [
+          10001,
+          10002,
+          10003,
+          10004,
+          20001,
+          20002,
+          20003,
+          20004
+        ],
+        "test_seeds": [
+          30001,
+          30002,
+          30003,
+          30004,
+          30005,
+          30006,
+          30007,
+          30008,
+          30009,
+          30010,
+          30011,
+          30012,
+          30013,
+          30014,
+          30015,
+          30016,
+          30017,
+          30018,
+          30019,
+          30020
+        ],
+        "qualification_only": true,
+        "this_run_timesteps": 0
+      }
+    },
+    {
+      "id": "auto_berthing",
+      "name": "自动靠泊评测水域",
+      "algorithm": "SAC",
+      "datasets": {
+        "name": "MissionEnv 在线物理仿真交互（无实船数据集）",
+        "real_world_training_rows": 0,
+        "interaction_steps": 200000,
+        "validation_episodes": 8,
+        "independent_test_episodes": 20,
+        "port_geometry_source": "data/ports/default_port_profile.json",
+        "dynamics_reference": "data/verification/catamaran_usv_dynamics_reference_v2.json",
+        "demonstrations_used": false
+      },
+      "state": [
+        "distance_to_waypoint/100",
+        "sin_bearing",
+        "cos_bearing",
+        "local_forward/50",
+        "local_right/50",
+        "surge/11",
+        "sway/3",
+        "yaw_rate/0.5",
+        "left_thruster",
+        "right_thruster",
+        "rudder/18deg",
+        "sin_next_bearing",
+        "cos_next_bearing",
+        "waypoint_progress",
+        "last_waypoint",
+        "berthing_flag",
+        "sin_berth_heading_error",
+        "cos_berth_heading_error",
+        "current_forward",
+        "current_right",
+        "obstacle_clearance/30",
+        "normalized_x",
+        "normalized_z",
+        "sin_heading",
+        "cos_heading",
+        "target_exists",
+        "target_forward/200",
+        "target_right/100",
+        "relative_surge/11",
+        "relative_sway/11",
+        "TCPA/180",
+        "DCPA/100",
+        "first_action_done",
+        "overtaking_agreement",
+        "passed_ahead",
+        "success_hold_ratio",
+        "head_on_flag",
+        "crossing_flag",
+        "overtaking_flag",
+        "unberthing_flag"
+      ],
+      "actions": {
+        "policy_action": [
+          "throttle",
+          "rudder"
+        ],
+        "normalized_box": [
+          -1,
+          1
+        ],
+        "execution_limits": {
+          "action_low": [
+            -0.6,
+            -0.65
+          ],
+          "action_high": [
+            0.65,
+            0.65
+          ]
+        }
+      },
+      "reward": {
+        "base": "progress_weight * (previous_distance - distance) - step_cost；碰撞惩罚；完成奖励；场景专项门槛",
+        "config": {
+          "decision_frames": 30,
+          "max_steps": 1200,
+          "vessel_radius_m": 3.2,
+          "curriculum_probability": 0.7,
+          "train_start_jitter_m": 2.0,
+          "eval_start_jitter_m": 1.0,
+          "heading_jitter_deg": 4.0,
+          "environment_variation": 0.1,
+          "success_hold_seconds": 3.0,
+          "progress_weight": 1.0,
+          "collision_penalty": 150.0,
+          "success_bonus": 120.0,
+          "step_cost": 0.15,
+          "action_low": [
+            -0.6,
+            -0.65
+          ],
+          "action_high": [
+            0.65,
+            0.65
+          ]
+        },
+        "exact_source": "def step(self,action):\n        raw=np.clip(np.asarray(action,dtype=float),-1,1)\n        low=np.array(self.config['action_low']);high=np.array(self.config['action_high'])\n        command=low+(raw+1)*.5*(high-low)\n        old=self.plant.state[:2].copy();old_dist=self.distance();previous_first=self.first_action\n        samples=self.plant.advance(command,self.forcing,self.config['decision_frames'])\n        clearance=float(self.clearances(samples).min())\n        for p,a in zip(self.traffic,self.traffic_actions):\n            target_samples=p.advance(a,self.traffic_forcing,self.config['decision_frames'])\n            distances=np.linalg.norm(samples-target_samples,axis=1)\n            clearance=min(clearance,float(distances.min())-self.config['vessel_radius_m']*2)\n        self.steps+=1;self.minimum_clearance=min(self.minimum_clearance,clearance)\n        self._physical_safety(samples);self._update_encounter()\n        collided=clearance<=0;self.collisions+=int(collided)\n        dist=self.distance();s=self.plant.state;last=self.waypoint==len(self.route)-1\n        dock=last and self.key=='auto_berthing'\n        reward=(old_dist-dist)*self.config['progress_weight']-self.config['step_cost']\n        target_speed=3.5\n        if self.key=='auto_unberthing':target_speed=2.\n        if self.key=='narrow_channel_overtaking':target_speed=5.8\n        if dock:target_speed=min(2.,dist*.15)\n        reward-=.08*(s[2]-target_speed)**2+.04*abs(raw[1]-self.previous_action[1])+.015*abs(raw[1])\n        if clearance<8:reward-=.3*(8-clearance)\n        if dock:\n            target=self.evaluation['berth_target'];herr=abs(wrap(math.radians(target['heading_degrees'])-s[5]))\n            reward-=max(0,1-dist/30)*(.8*herr+.15*abs(s[3]))\n        if self.key in ('narrow_channel_head_on','crossing_starboard') and self.first_action is None:\n            change=wrap(s[5]-self.initial_heading)\n            reward+=.3*min(change/math.radians(12),1)\n        if previous_first is None and self.first_action is not None:\n            reward+=4 if self.first_action['side']=='STARBOARD' else -8\n        if self.key=='narrow_channel_head_on' and s[0]>0:reward-=2\n        if self.traffic:\n            d,*_=self._dynamic()[0];safe=self.evaluation['minimum_passing_distance_m']\n            if d<safe+10:reward-=2*max(0,(safe+10-d)/10)\n        if dist<=self.arrival and not last:\n            self.waypoint+=1;reward+=8\n        elif dist<=self.arrival and last:self.route_complete=True\n        gate=self.gate()\n        if all(gate.values()):self.hold_seconds+=self.dt\n        else:self.hold_seconds=0\n        success=all(gate.values()) and (not dock or self.hold_seconds>=self.config['success_hold_seconds'])\n        if success:reward+=self.config['success_bonus']\n        if collided:reward-=self.config['collision_penalty']\n        terminated=success or collided\n        truncated=self.steps>=self.config['max_steps'] and not terminated\n        self.path_length+=float(np.linalg.norm(s[:2]-old));self.effort+=float(np.sum(np.abs(command)))*self.dt\n        self.action_variation+=float(np.sum(np.abs(raw-self.previous_action)))\n        self.previous_action=raw;self.reward_sum+=reward\n        if self.record:self._record(command)\n        info={}\n        if terminated or truncated:\n            info=self.result(success);info['episode']={'r':self.reward_sum,'l':self.steps}\n        return self.observation(),float(reward),terminated,truncated,info"
+      },
+      "outputs": {
+        "test_summary": {
+          "episodes": 20,
+          "success_rate": 1.0,
+          "collisions": 0,
+          "mean_duration_seconds": 74.675,
+          "minimum_clearance_m": 8.725992479486042,
+          "minimum_separation_m": null
+        },
+        "numeric_status": "PASS",
+        "runtime_admitted": true,
+        "model": {
+          "path": "reports/artifacts/mission_rl_v1/berthing_attempt_02/sac_200000.zip",
+          "sha256": "772e1a7c02a2f598b757a85fa969d5508e457947b349dd287e29835fb0057687"
+        },
+        "actor": {
+          "path": "data/rl/mission_rl_deployments_v1/auto_berthing_requalified_20261020.json",
+          "sha256": "90b9c12d9566574a8ef339313aa0b301e4c0ee6f0e62e5d55f015100e4ede8e2"
+        },
+        "hash_matches_catalog": true,
+        "trajectory_fields": [
+          "x",
+          "z",
+          "heading",
+          "speed",
+          "throttle",
+          "rudder",
+          "clearance",
+          "separation",
+          "CPA",
+          "TCPA",
+          "reward",
+          "business_gate"
+        ]
+      },
+      "sources": [
+        {
+          "path": "reports/artifacts/mission_rl_v1/auto_berthing_requalified_20261020/receipt.json",
+          "sha256": "0dabc613881180bbd2eba243ebbf243018cd8120895a263983c530326c1e2bf4"
+        },
+        {
+          "path": "data/rl/mission_rl_catalog_v1.json",
+          "sha256": "414988f8d96edf1db6752ce6b17a30279772c64e3c28dd946edc06451c3597a8"
+        },
+        {
+          "path": "tools/mission_rl/environment.py",
+          "sha256": "1cc2d5e063897f79786f16552b594b048fe22e078cc25d434f6b439b7ba3f9a4"
+        }
+      ],
+      "status": "强化学习已通过数值与原生验收，可按场景切换",
+      "training": {
+        "seed": 90701,
+        "timesteps": 200000,
+        "actor_critic_updates": 49500,
+        "training_source": "online_environment_interaction",
+        "validation_seeds": [
+          10001,
+          10002,
+          10003,
+          10004,
+          20001,
+          20002,
+          20003,
+          20004
+        ],
+        "test_seeds": [
+          30001,
+          30002,
+          30003,
+          30004,
+          30005,
+          30006,
+          30007,
+          30008,
+          30009,
+          30010,
+          30011,
+          30012,
+          30013,
+          30014,
+          30015,
+          30016,
+          30017,
+          30018,
+          30019,
+          30020
+        ],
+        "qualification_only": true,
+        "this_run_timesteps": 0
+      }
+    },
+    {
+      "id": "auto_unberthing",
+      "name": "自动离泊评测水域",
+      "algorithm": "SAC",
+      "datasets": {
+        "name": "MissionEnv 在线物理仿真交互（无实船数据集）",
+        "real_world_training_rows": 0,
+        "interaction_steps": 75000,
+        "validation_episodes": 8,
+        "independent_test_episodes": 20,
+        "port_geometry_source": "data/ports/default_port_profile.json",
+        "dynamics_reference": "data/verification/catamaran_usv_dynamics_reference_v2.json",
+        "demonstrations_used": false
+      },
+      "state": [
+        "distance_to_waypoint/100",
+        "sin_bearing",
+        "cos_bearing",
+        "local_forward/50",
+        "local_right/50",
+        "surge/11",
+        "sway/3",
+        "yaw_rate/0.5",
+        "left_thruster",
+        "right_thruster",
+        "rudder/18deg",
+        "sin_next_bearing",
+        "cos_next_bearing",
+        "waypoint_progress",
+        "last_waypoint",
+        "berthing_flag",
+        "sin_berth_heading_error",
+        "cos_berth_heading_error",
+        "current_forward",
+        "current_right",
+        "obstacle_clearance/30",
+        "normalized_x",
+        "normalized_z",
+        "sin_heading",
+        "cos_heading",
+        "target_exists",
+        "target_forward/200",
+        "target_right/100",
+        "relative_surge/11",
+        "relative_sway/11",
+        "TCPA/180",
+        "DCPA/100",
+        "first_action_done",
+        "overtaking_agreement",
+        "passed_ahead",
+        "success_hold_ratio",
+        "head_on_flag",
+        "crossing_flag",
+        "overtaking_flag",
+        "unberthing_flag"
+      ],
+      "actions": {
+        "policy_action": [
+          "throttle",
+          "rudder"
+        ],
+        "normalized_box": [
+          -1,
+          1
+        ],
+        "execution_limits": {
+          "action_low": [
+            -0.6,
+            -0.65
+          ],
+          "action_high": [
+            0.65,
+            0.65
+          ]
+        }
+      },
+      "reward": {
+        "base": "progress_weight * (previous_distance - distance) - step_cost；碰撞惩罚；完成奖励；场景专项门槛",
+        "config": {
+          "decision_frames": 30,
+          "max_steps": 1200,
+          "vessel_radius_m": 3.2,
+          "curriculum_probability": 0.7,
+          "train_start_jitter_m": 2.0,
+          "eval_start_jitter_m": 1.0,
+          "heading_jitter_deg": 4.0,
+          "environment_variation": 0.1,
+          "success_hold_seconds": 3.0,
+          "progress_weight": 1.0,
+          "collision_penalty": 150.0,
+          "success_bonus": 120.0,
+          "step_cost": 0.15,
+          "action_low": [
+            -0.6,
+            -0.65
+          ],
+          "action_high": [
+            0.65,
+            0.65
+          ]
+        },
+        "exact_source": "def step(self,action):\n        raw=np.clip(np.asarray(action,dtype=float),-1,1)\n        low=np.array(self.config['action_low']);high=np.array(self.config['action_high'])\n        command=low+(raw+1)*.5*(high-low)\n        old=self.plant.state[:2].copy();old_dist=self.distance();previous_first=self.first_action\n        samples=self.plant.advance(command,self.forcing,self.config['decision_frames'])\n        clearance=float(self.clearances(samples).min())\n        for p,a in zip(self.traffic,self.traffic_actions):\n            target_samples=p.advance(a,self.traffic_forcing,self.config['decision_frames'])\n            distances=np.linalg.norm(samples-target_samples,axis=1)\n            clearance=min(clearance,float(distances.min())-self.config['vessel_radius_m']*2)\n        self.steps+=1;self.minimum_clearance=min(self.minimum_clearance,clearance)\n        self._physical_safety(samples);self._update_encounter()\n        collided=clearance<=0;self.collisions+=int(collided)\n        dist=self.distance();s=self.plant.state;last=self.waypoint==len(self.route)-1\n        dock=last and self.key=='auto_berthing'\n        reward=(old_dist-dist)*self.config['progress_weight']-self.config['step_cost']\n        target_speed=3.5\n        if self.key=='auto_unberthing':target_speed=2.\n        if self.key=='narrow_channel_overtaking':target_speed=5.8\n        if dock:target_speed=min(2.,dist*.15)\n        reward-=.08*(s[2]-target_speed)**2+.04*abs(raw[1]-self.previous_action[1])+.015*abs(raw[1])\n        if clearance<8:reward-=.3*(8-clearance)\n        if dock:\n            target=self.evaluation['berth_target'];herr=abs(wrap(math.radians(target['heading_degrees'])-s[5]))\n            reward-=max(0,1-dist/30)*(.8*herr+.15*abs(s[3]))\n        if self.key in ('narrow_channel_head_on','crossing_starboard') and self.first_action is None:\n            change=wrap(s[5]-self.initial_heading)\n            reward+=.3*min(change/math.radians(12),1)\n        if previous_first is None and self.first_action is not None:\n            reward+=4 if self.first_action['side']=='STARBOARD' else -8\n        if self.key=='narrow_channel_head_on' and s[0]>0:reward-=2\n        if self.traffic:\n            d,*_=self._dynamic()[0];safe=self.evaluation['minimum_passing_distance_m']\n            if d<safe+10:reward-=2*max(0,(safe+10-d)/10)\n        if dist<=self.arrival and not last:\n            self.waypoint+=1;reward+=8\n        elif dist<=self.arrival and last:self.route_complete=True\n        gate=self.gate()\n        if all(gate.values()):self.hold_seconds+=self.dt\n        else:self.hold_seconds=0\n        success=all(gate.values()) and (not dock or self.hold_seconds>=self.config['success_hold_seconds'])\n        if success:reward+=self.config['success_bonus']\n        if collided:reward-=self.config['collision_penalty']\n        terminated=success or collided\n        truncated=self.steps>=self.config['max_steps'] and not terminated\n        self.path_length+=float(np.linalg.norm(s[:2]-old));self.effort+=float(np.sum(np.abs(command)))*self.dt\n        self.action_variation+=float(np.sum(np.abs(raw-self.previous_action)))\n        self.previous_action=raw;self.reward_sum+=reward\n        if self.record:self._record(command)\n        info={}\n        if terminated or truncated:\n            info=self.result(success);info['episode']={'r':self.reward_sum,'l':self.steps}\n        return self.observation(),float(reward),terminated,truncated,info"
+      },
+      "outputs": {
+        "test_summary": {
+          "episodes": 20,
+          "success_rate": 1.0,
+          "collisions": 0,
+          "mean_duration_seconds": 60.175,
+          "minimum_clearance_m": 4.262949802737498,
+          "minimum_separation_m": null
+        },
+        "numeric_status": "PASS",
+        "runtime_admitted": true,
+        "model": {
+          "path": "reports/artifacts/mission_rl_v1/unberthing_attempt_02/sac_75000.zip",
+          "sha256": "440bc02c38cb5a00d199c65decb0e19a859c0a8d018f8c010ca4c3ce26fb4057"
+        },
+        "actor": {
+          "path": "data/rl/mission_rl_deployments_v1/auto_unberthing_requalified_20261020.json",
+          "sha256": "fef346917122929cffd08991aa34c68b6e7920f9d70a4a9c07b46db72dc6b996"
+        },
+        "hash_matches_catalog": true,
+        "trajectory_fields": [
+          "x",
+          "z",
+          "heading",
+          "speed",
+          "throttle",
+          "rudder",
+          "clearance",
+          "separation",
+          "CPA",
+          "TCPA",
+          "reward",
+          "business_gate"
+        ]
+      },
+      "sources": [
+        {
+          "path": "reports/artifacts/mission_rl_v1/auto_unberthing_requalified_20261020/receipt.json",
+          "sha256": "950a187a261e222a3f8952b01285c66900575d82981eaad2cc873171838dfbab"
+        },
+        {
+          "path": "data/rl/mission_rl_catalog_v1.json",
+          "sha256": "414988f8d96edf1db6752ce6b17a30279772c64e3c28dd946edc06451c3597a8"
+        },
+        {
+          "path": "tools/mission_rl/environment.py",
+          "sha256": "1cc2d5e063897f79786f16552b594b048fe22e078cc25d434f6b439b7ba3f9a4"
+        }
+      ],
+      "status": "强化学习已通过数值与原生验收，可按场景切换",
+      "training": {
+        "seed": 90701,
+        "timesteps": 75000,
+        "actor_critic_updates": 18250,
+        "training_source": "online_environment_interaction",
+        "validation_seeds": [
+          10001,
+          10002,
+          10003,
+          10004,
+          20001,
+          20002,
+          20003,
+          20004
+        ],
+        "test_seeds": [
+          30001,
+          30002,
+          30003,
+          30004,
+          30005,
+          30006,
+          30007,
+          30008,
+          30009,
+          30010,
+          30011,
+          30012,
+          30013,
+          30014,
+          30015,
+          30016,
+          30017,
+          30018,
+          30019,
+          30020
+        ],
+        "qualification_only": true,
+        "this_run_timesteps": 0
+      }
+    },
+    {
+      "id": "narrow_channel_head_on",
+      "name": "狭水道对遇会船",
+      "algorithm": "SAC",
+      "datasets": {
+        "name": "MissionEnv 在线物理仿真交互（无实船数据集）",
+        "real_world_training_rows": 0,
+        "interaction_steps": 87000,
+        "validation_episodes": 8,
+        "independent_test_episodes": 20,
+        "port_geometry_source": "data/ports/default_port_profile.json",
+        "dynamics_reference": "data/verification/catamaran_usv_dynamics_reference_v2.json",
+        "demonstrations_used": false
+      },
+      "state": [
+        "distance_to_waypoint/100",
+        "sin_bearing",
+        "cos_bearing",
+        "local_forward/50",
+        "local_right/50",
+        "surge/11",
+        "sway/3",
+        "yaw_rate/0.5",
+        "left_thruster",
+        "right_thruster",
+        "rudder/18deg",
+        "sin_next_bearing",
+        "cos_next_bearing",
+        "waypoint_progress",
+        "last_waypoint",
+        "berthing_flag",
+        "sin_berth_heading_error",
+        "cos_berth_heading_error",
+        "current_forward",
+        "current_right",
+        "obstacle_clearance/30",
+        "normalized_x",
+        "normalized_z",
+        "sin_heading",
+        "cos_heading",
+        "target_exists",
+        "target_forward/200",
+        "target_right/100",
+        "relative_surge/11",
+        "relative_sway/11",
+        "TCPA/180",
+        "DCPA/100",
+        "first_action_done",
+        "overtaking_agreement",
+        "passed_ahead",
+        "success_hold_ratio",
+        "head_on_flag",
+        "crossing_flag",
+        "overtaking_flag",
+        "unberthing_flag"
+      ],
+      "actions": {
+        "policy_action": [
+          "throttle",
+          "rudder"
+        ],
+        "normalized_box": [
+          -1,
+          1
+        ],
+        "execution_limits": {
+          "action_low": [
+            -0.6,
+            -0.65
+          ],
+          "action_high": [
+            0.65,
+            0.65
+          ]
+        }
+      },
+      "reward": {
+        "base": "progress_weight * (previous_distance - distance) - step_cost；碰撞惩罚；完成奖励；场景专项门槛",
+        "config": {
+          "decision_frames": 30,
+          "max_steps": 1200,
+          "vessel_radius_m": 3.2,
+          "curriculum_probability": 0.3,
+          "train_start_jitter_m": 2.0,
+          "eval_start_jitter_m": 1.0,
+          "heading_jitter_deg": 4.0,
+          "environment_variation": 0.1,
+          "success_hold_seconds": 3.0,
+          "progress_weight": 1.0,
+          "collision_penalty": 150.0,
+          "success_bonus": 120.0,
+          "step_cost": 0.15,
+          "action_low": [
+            -0.6,
+            -0.65
+          ],
+          "action_high": [
+            0.65,
+            0.65
+          ],
+          "reward_profile": "cpa_bank_refinement_v11",
+          "policy_replay_warmup_steps": 2000,
+          "fine_tune_learning_rate": 1e-05
+        },
+        "exact_source": "def step(self,action):\n        raw=np.clip(np.asarray(action,dtype=float),-1,1)\n        low=np.array(self.config['action_low']);high=np.array(self.config['action_high'])\n        command=low+(raw+1)*.5*(high-low)\n        old=self.plant.state[:2].copy();old_dist=self.distance();previous_first=self.first_action\n        samples=self.plant.advance(command,self.forcing,self.config['decision_frames'])\n        clearance=float(self.clearances(samples).min())\n        for p,a in zip(self.traffic,self.traffic_actions):\n            target_samples=p.advance(a,self.traffic_forcing,self.config['decision_frames'])\n            distances=np.linalg.norm(samples-target_samples,axis=1)\n            clearance=min(clearance,float(distances.min())-self.config['vessel_radius_m']*2)\n        self.steps+=1;self.minimum_clearance=min(self.minimum_clearance,clearance)\n        self._physical_safety(samples);self._update_encounter()\n        collided=clearance<=0;self.collisions+=int(collided)\n        dist=self.distance();s=self.plant.state;last=self.waypoint==len(self.route)-1\n        dock=last and self.key=='auto_berthing'\n        reward=(old_dist-dist)*self.config['progress_weight']-self.config['step_cost']\n        target_speed=3.5\n        if self.key=='auto_unberthing':target_speed=2.\n        if self.key=='narrow_channel_overtaking':target_speed=5.8\n        if dock:target_speed=min(2.,dist*.15)\n        reward-=.08*(s[2]-target_speed)**2+.04*abs(raw[1]-self.previous_action[1])+.015*abs(raw[1])\n        if clearance<8:reward-=.3*(8-clearance)\n        if dock:\n            target=self.evaluation['berth_target'];herr=abs(wrap(math.radians(target['heading_degrees'])-s[5]))\n            reward-=max(0,1-dist/30)*(.8*herr+.15*abs(s[3]))\n        if self.key in ('narrow_channel_head_on','crossing_starboard') and self.first_action is None:\n            change=wrap(s[5]-self.initial_heading)\n            reward+=.3*min(change/math.radians(12),1)\n        if previous_first is None and self.first_action is not None:\n            reward+=4 if self.first_action['side']=='STARBOARD' else -8\n        if self.key=='narrow_channel_head_on' and s[0]>0:reward-=2\n        if self.traffic:\n            d,*_=self._dynamic()[0];safe=self.evaluation['minimum_passing_distance_m']\n            if d<safe+10:reward-=2*max(0,(safe+10-d)/10)\n        if dist<=self.arrival and not last:\n            self.waypoint+=1;reward+=8\n        elif dist<=self.arrival and last:self.route_complete=True\n        gate=self.gate()\n        if all(gate.values()):self.hold_seconds+=self.dt\n        else:self.hold_seconds=0\n        success=all(gate.values()) and (not dock or self.hold_seconds>=self.config['success_hold_seconds'])\n        if success:reward+=self.config['success_bonus']\n        if collided:reward-=self.config['collision_penalty']\n        terminated=success or collided\n        truncated=self.steps>=self.config['max_steps'] and not terminated\n        self.path_length+=float(np.linalg.norm(s[:2]-old));self.effort+=float(np.sum(np.abs(command)))*self.dt\n        self.action_variation+=float(np.sum(np.abs(raw-self.previous_action)))\n        self.previous_action=raw;self.reward_sum+=reward\n        if self.record:self._record(command)\n        info={}\n        if terminated or truncated:\n            info=self.result(success);info['episode']={'r':self.reward_sum,'l':self.steps}\n        return self.observation(),float(reward),terminated,truncated,info"
+      },
+      "outputs": {
+        "test_summary": {
+          "episodes": 20,
+          "success_rate": 1.0,
+          "collisions": 0,
+          "mean_duration_seconds": 86.45,
+          "minimum_clearance_m": 19.323288200622045,
+          "minimum_separation_m": 25.794058530462415
+        },
+        "numeric_status": "PASS",
+        "runtime_admitted": true,
+        "model": {
+          "path": "reports/artifacts/mission_rl_v1/head_on_refinement_20261020/sac_87000.zip",
+          "sha256": "e676f1b6b969caae5e61eb53cb0d272fef8ba95031acebef5814294f57466e89"
+        },
+        "actor": {
+          "path": "data/rl/mission_rl_deployments_v1/narrow_channel_head_on_requalified_20261020.json",
+          "sha256": "a80afa0982a868b819b5252ed2cd0b7452e0880f2c23214ae2771e9c4de7f80e"
+        },
+        "hash_matches_catalog": true,
+        "trajectory_fields": [
+          "x",
+          "z",
+          "heading",
+          "speed",
+          "throttle",
+          "rudder",
+          "clearance",
+          "separation",
+          "CPA",
+          "TCPA",
+          "reward",
+          "business_gate"
+        ]
+      },
+      "sources": [
+        {
+          "path": "reports/artifacts/mission_rl_v1/narrow_channel_head_on_requalified_20261020/receipt.json",
+          "sha256": "22c65ecfd00245783e0cd848555333cf2e7a372b221fdab79d6277a965d4be42"
+        },
+        {
+          "path": "data/rl/mission_rl_catalog_v1.json",
+          "sha256": "414988f8d96edf1db6752ce6b17a30279772c64e3c28dd946edc06451c3597a8"
+        },
+        {
+          "path": "tools/mission_rl/environment.py",
+          "sha256": "1cc2d5e063897f79786f16552b594b048fe22e078cc25d434f6b439b7ba3f9a4"
+        }
+      ],
+      "status": "强化学习已通过数值与原生验收，可按场景切换",
+      "training": {
+        "seed": 90701,
+        "timesteps": 87000,
+        "actor_critic_updates": 20750,
+        "training_source": "online_environment_interaction",
+        "validation_seeds": [
+          10001,
+          10002,
+          10003,
+          10004,
+          20001,
+          20002,
+          20003,
+          20004
+        ],
+        "test_seeds": [
+          30001,
+          30002,
+          30003,
+          30004,
+          30005,
+          30006,
+          30007,
+          30008,
+          30009,
+          30010,
+          30011,
+          30012,
+          30013,
+          30014,
+          30015,
+          30016,
+          30017,
+          30018,
+          30019,
+          30020
+        ],
+        "qualification_only": true,
+        "this_run_timesteps": 0
+      }
+    },
+    {
+      "id": "crossing_starboard",
+      "name": "右舷来船交叉",
+      "algorithm": "SAC",
+      "datasets": {
+        "name": "MissionEnv 在线物理仿真交互（无实船数据集）",
+        "real_world_training_rows": 0,
+        "interaction_steps": 25000,
+        "validation_episodes": 8,
+        "independent_test_episodes": 20,
+        "port_geometry_source": "data/ports/default_port_profile.json",
+        "dynamics_reference": "data/verification/catamaran_usv_dynamics_reference_v2.json",
+        "demonstrations_used": false
+      },
+      "state": [
+        "distance_to_waypoint/100",
+        "sin_bearing",
+        "cos_bearing",
+        "local_forward/50",
+        "local_right/50",
+        "surge/11",
+        "sway/3",
+        "yaw_rate/0.5",
+        "left_thruster",
+        "right_thruster",
+        "rudder/18deg",
+        "sin_next_bearing",
+        "cos_next_bearing",
+        "waypoint_progress",
+        "last_waypoint",
+        "berthing_flag",
+        "sin_berth_heading_error",
+        "cos_berth_heading_error",
+        "current_forward",
+        "current_right",
+        "obstacle_clearance/30",
+        "normalized_x",
+        "normalized_z",
+        "sin_heading",
+        "cos_heading",
+        "target_exists",
+        "target_forward/200",
+        "target_right/100",
+        "relative_surge/11",
+        "relative_sway/11",
+        "TCPA/180",
+        "DCPA/100",
+        "first_action_done",
+        "overtaking_agreement",
+        "passed_ahead",
+        "success_hold_ratio",
+        "head_on_flag",
+        "crossing_flag",
+        "overtaking_flag",
+        "unberthing_flag"
+      ],
+      "actions": {
+        "policy_action": [
+          "throttle",
+          "rudder"
+        ],
+        "normalized_box": [
+          -1,
+          1
+        ],
+        "execution_limits": {
+          "action_low": [
+            -0.6,
+            -0.65
+          ],
+          "action_high": [
+            0.65,
+            0.65
+          ]
+        }
+      },
+      "reward": {
+        "base": "progress_weight * (previous_distance - distance) - step_cost；碰撞惩罚；完成奖励；场景专项门槛",
+        "config": {
+          "decision_frames": 30,
+          "max_steps": 1200,
+          "vessel_radius_m": 3.2,
+          "curriculum_probability": 0.7,
+          "train_start_jitter_m": 2.0,
+          "eval_start_jitter_m": 1.0,
+          "heading_jitter_deg": 4.0,
+          "environment_variation": 0.1,
+          "success_hold_seconds": 3.0,
+          "progress_weight": 1.0,
+          "collision_penalty": 150.0,
+          "success_bonus": 120.0,
+          "step_cost": 0.15,
+          "action_low": [
+            -0.6,
+            -0.65
+          ],
+          "action_high": [
+            0.65,
+            0.65
+          ]
+        },
+        "exact_source": "def step(self,action):\n        raw=np.clip(np.asarray(action,dtype=float),-1,1)\n        low=np.array(self.config['action_low']);high=np.array(self.config['action_high'])\n        command=low+(raw+1)*.5*(high-low)\n        old=self.plant.state[:2].copy();old_dist=self.distance();previous_first=self.first_action\n        samples=self.plant.advance(command,self.forcing,self.config['decision_frames'])\n        clearance=float(self.clearances(samples).min())\n        for p,a in zip(self.traffic,self.traffic_actions):\n            target_samples=p.advance(a,self.traffic_forcing,self.config['decision_frames'])\n            distances=np.linalg.norm(samples-target_samples,axis=1)\n            clearance=min(clearance,float(distances.min())-self.config['vessel_radius_m']*2)\n        self.steps+=1;self.minimum_clearance=min(self.minimum_clearance,clearance)\n        self._physical_safety(samples);self._update_encounter()\n        collided=clearance<=0;self.collisions+=int(collided)\n        dist=self.distance();s=self.plant.state;last=self.waypoint==len(self.route)-1\n        dock=last and self.key=='auto_berthing'\n        reward=(old_dist-dist)*self.config['progress_weight']-self.config['step_cost']\n        target_speed=3.5\n        if self.key=='auto_unberthing':target_speed=2.\n        if self.key=='narrow_channel_overtaking':target_speed=5.8\n        if dock:target_speed=min(2.,dist*.15)\n        reward-=.08*(s[2]-target_speed)**2+.04*abs(raw[1]-self.previous_action[1])+.015*abs(raw[1])\n        if clearance<8:reward-=.3*(8-clearance)\n        if dock:\n            target=self.evaluation['berth_target'];herr=abs(wrap(math.radians(target['heading_degrees'])-s[5]))\n            reward-=max(0,1-dist/30)*(.8*herr+.15*abs(s[3]))\n        if self.key in ('narrow_channel_head_on','crossing_starboard') and self.first_action is None:\n            change=wrap(s[5]-self.initial_heading)\n            reward+=.3*min(change/math.radians(12),1)\n        if previous_first is None and self.first_action is not None:\n            reward+=4 if self.first_action['side']=='STARBOARD' else -8\n        if self.key=='narrow_channel_head_on' and s[0]>0:reward-=2\n        if self.traffic:\n            d,*_=self._dynamic()[0];safe=self.evaluation['minimum_passing_distance_m']\n            if d<safe+10:reward-=2*max(0,(safe+10-d)/10)\n        if dist<=self.arrival and not last:\n            self.waypoint+=1;reward+=8\n        elif dist<=self.arrival and last:self.route_complete=True\n        gate=self.gate()\n        if all(gate.values()):self.hold_seconds+=self.dt\n        else:self.hold_seconds=0\n        success=all(gate.values()) and (not dock or self.hold_seconds>=self.config['success_hold_seconds'])\n        if success:reward+=self.config['success_bonus']\n        if collided:reward-=self.config['collision_penalty']\n        terminated=success or collided\n        truncated=self.steps>=self.config['max_steps'] and not terminated\n        self.path_length+=float(np.linalg.norm(s[:2]-old));self.effort+=float(np.sum(np.abs(command)))*self.dt\n        self.action_variation+=float(np.sum(np.abs(raw-self.previous_action)))\n        self.previous_action=raw;self.reward_sum+=reward\n        if self.record:self._record(command)\n        info={}\n        if terminated or truncated:\n            info=self.result(success);info['episode']={'r':self.reward_sum,'l':self.steps}\n        return self.observation(),float(reward),terminated,truncated,info"
+      },
+      "outputs": {
+        "test_summary": {
+          "episodes": 20,
+          "success_rate": 1.0,
+          "collisions": 0,
+          "mean_duration_seconds": 75.7,
+          "minimum_clearance_m": 53.853062420852794,
+          "minimum_separation_m": 126.44028874794331
+        },
+        "numeric_status": "PASS",
+        "runtime_admitted": true,
+        "model": {
+          "path": "reports/artifacts/mission_rl_v1/crossing_attempt_01/sac_25000.zip",
+          "sha256": "9714c859722998dbf8f3ab11fb4eff4f918fc0579fab4507d03f2f7feb31a5a1"
+        },
+        "actor": {
+          "path": "data/rl/mission_rl_deployments_v1/crossing_starboard_requalified_20261020.json",
+          "sha256": "4826bfda1134df4c0f8cd4ce1fdd3bada6da34857d82e8fbf2f54cb10b2e016b"
+        },
+        "hash_matches_catalog": true,
+        "trajectory_fields": [
+          "x",
+          "z",
+          "heading",
+          "speed",
+          "throttle",
+          "rudder",
+          "clearance",
+          "separation",
+          "CPA",
+          "TCPA",
+          "reward",
+          "business_gate"
+        ]
+      },
+      "sources": [
+        {
+          "path": "reports/artifacts/mission_rl_v1/crossing_starboard_requalified_20261020/receipt.json",
+          "sha256": "be8f04f4258c92d0a1c7eb6d0ac570a62c120e09b9a383f0028fbdfb0e59a2f8"
+        },
+        {
+          "path": "data/rl/mission_rl_catalog_v1.json",
+          "sha256": "414988f8d96edf1db6752ce6b17a30279772c64e3c28dd946edc06451c3597a8"
+        },
+        {
+          "path": "tools/mission_rl/environment.py",
+          "sha256": "1cc2d5e063897f79786f16552b594b048fe22e078cc25d434f6b439b7ba3f9a4"
+        }
+      ],
+      "status": "强化学习已通过数值与原生验收，可按场景切换",
+      "training": {
+        "seed": 90701,
+        "timesteps": 25000,
+        "actor_critic_updates": 5750,
+        "training_source": "online_environment_interaction",
+        "validation_seeds": [
+          10001,
+          10002,
+          10003,
+          10004,
+          20001,
+          20002,
+          20003,
+          20004
+        ],
+        "test_seeds": [
+          30001,
+          30002,
+          30003,
+          30004,
+          30005,
+          30006,
+          30007,
+          30008,
+          30009,
+          30010,
+          30011,
+          30012,
+          30013,
+          30014,
+          30015,
+          30016,
+          30017,
+          30018,
+          30019,
+          30020
+        ],
+        "qualification_only": true,
+        "this_run_timesteps": 0
+      }
+    },
+    {
+      "id": "narrow_channel_overtaking",
+      "name": "狭水道追越",
+      "algorithm": "SAC",
+      "datasets": {
+        "name": "MissionEnv 在线物理仿真交互（无实船数据集）",
+        "real_world_training_rows": 0,
+        "interaction_steps": 727000,
+        "validation_episodes": 8,
+        "independent_test_episodes": 20,
+        "port_geometry_source": "data/ports/default_port_profile.json",
+        "dynamics_reference": "data/verification/catamaran_usv_dynamics_reference_v2.json",
+        "demonstrations_used": false
+      },
+      "state": [
+        "distance_to_waypoint/100",
+        "sin_bearing",
+        "cos_bearing",
+        "local_forward/50",
+        "local_right/50",
+        "surge/11",
+        "sway/3",
+        "yaw_rate/0.5",
+        "left_thruster",
+        "right_thruster",
+        "rudder/18deg",
+        "sin_next_bearing",
+        "cos_next_bearing",
+        "waypoint_progress",
+        "last_waypoint",
+        "berthing_flag",
+        "sin_berth_heading_error",
+        "cos_berth_heading_error",
+        "current_forward",
+        "current_right",
+        "obstacle_clearance/30",
+        "normalized_x",
+        "normalized_z",
+        "sin_heading",
+        "cos_heading",
+        "target_exists",
+        "target_forward/200",
+        "target_right/100",
+        "relative_surge/11",
+        "relative_sway/11",
+        "TCPA/180",
+        "DCPA/100",
+        "first_action_done",
+        "overtaking_agreement",
+        "passed_ahead",
+        "success_hold_ratio",
+        "head_on_flag",
+        "crossing_flag",
+        "overtaking_flag",
+        "unberthing_flag"
+      ],
+      "actions": {
+        "policy_action": [
+          "throttle",
+          "rudder"
+        ],
+        "normalized_box": [
+          -1,
+          1
+        ],
+        "execution_limits": {
+          "action_low": [
+            -0.6,
+            -0.65
+          ],
+          "action_high": [
+            1.0,
+            0.65
+          ]
+        }
+      },
+      "reward": {
+        "base": "progress_weight * (previous_distance - distance) - step_cost；碰撞惩罚；完成奖励；场景专项门槛",
+        "config": {
+          "decision_frames": 30,
+          "max_steps": 1200,
+          "vessel_radius_m": 3.2,
+          "curriculum_probability": 0.0,
+          "train_start_jitter_m": 2.0,
+          "eval_start_jitter_m": 1.0,
+          "heading_jitter_deg": 4.0,
+          "environment_variation": 0.1,
+          "success_hold_seconds": 3.0,
+          "progress_weight": 1.0,
+          "collision_penalty": 150.0,
+          "success_bonus": 120.0,
+          "step_cost": 0.15,
+          "action_low": [
+            -0.6,
+            -0.65
+          ],
+          "action_high": [
+            1.0,
+            0.65
+          ],
+          "reward_profile": "training_clearance_curriculum_v10",
+          "restart_exploration": false,
+          "policy_replay_warmup_steps": 2000,
+          "fine_tune_learning_rate": 0.0001,
+          "training_clearance_schedule": [
+            [
+              0,
+              9
+            ],
+            [
+              20000,
+              13
+            ],
+            [
+              40000,
+              17
+            ],
+            [
+              60000,
+              20
+            ]
+          ],
+          "held_out_minimum_passing_distance_m": 20,
+          "traffic_policy_path": "reports/artifacts/mission_rl_v1/traffic_lane_requalified_20261020/actor.json",
+          "traffic_policy_sha256": "aaaf1fcfad00a81d200135d826c0be89e09ff9700c74d2a5dacaa362587caedf"
+        },
+        "exact_source": "def step(self,action):\n        raw=np.clip(np.asarray(action,dtype=float),-1,1)\n        low=np.array(self.config['action_low']);high=np.array(self.config['action_high'])\n        command=low+(raw+1)*.5*(high-low)\n        old=self.plant.state[:2].copy();old_dist=self.distance();previous_first=self.first_action\n        samples=self.plant.advance(command,self.forcing,self.config['decision_frames'])\n        clearance=float(self.clearances(samples).min())\n        for p,a in zip(self.traffic,self.traffic_actions):\n            target_samples=p.advance(a,self.traffic_forcing,self.config['decision_frames'])\n            distances=np.linalg.norm(samples-target_samples,axis=1)\n            clearance=min(clearance,float(distances.min())-self.config['vessel_radius_m']*2)\n        self.steps+=1;self.minimum_clearance=min(self.minimum_clearance,clearance)\n        self._physical_safety(samples);self._update_encounter()\n        collided=clearance<=0;self.collisions+=int(collided)\n        dist=self.distance();s=self.plant.state;last=self.waypoint==len(self.route)-1\n        dock=last and self.key=='auto_berthing'\n        reward=(old_dist-dist)*self.config['progress_weight']-self.config['step_cost']\n        target_speed=3.5\n        if self.key=='auto_unberthing':target_speed=2.\n        if self.key=='narrow_channel_overtaking':target_speed=5.8\n        if dock:target_speed=min(2.,dist*.15)\n        reward-=.08*(s[2]-target_speed)**2+.04*abs(raw[1]-self.previous_action[1])+.015*abs(raw[1])\n        if clearance<8:reward-=.3*(8-clearance)\n        if dock:\n            target=self.evaluation['berth_target'];herr=abs(wrap(math.radians(target['heading_degrees'])-s[5]))\n            reward-=max(0,1-dist/30)*(.8*herr+.15*abs(s[3]))\n        if self.key in ('narrow_channel_head_on','crossing_starboard') and self.first_action is None:\n            change=wrap(s[5]-self.initial_heading)\n            reward+=.3*min(change/math.radians(12),1)\n        if previous_first is None and self.first_action is not None:\n            reward+=4 if self.first_action['side']=='STARBOARD' else -8\n        if self.key=='narrow_channel_head_on' and s[0]>0:reward-=2\n        if self.traffic:\n            d,*_=self._dynamic()[0];safe=self.evaluation['minimum_passing_distance_m']\n            if d<safe+10:reward-=2*max(0,(safe+10-d)/10)\n        if dist<=self.arrival and not last:\n            self.waypoint+=1;reward+=8\n        elif dist<=self.arrival and last:self.route_complete=True\n        gate=self.gate()\n        if all(gate.values()):self.hold_seconds+=self.dt\n        else:self.hold_seconds=0\n        success=all(gate.values()) and (not dock or self.hold_seconds>=self.config['success_hold_seconds'])\n        if success:reward+=self.config['success_bonus']\n        if collided:reward-=self.config['collision_penalty']\n        terminated=success or collided\n        truncated=self.steps>=self.config['max_steps'] and not terminated\n        self.path_length+=float(np.linalg.norm(s[:2]-old));self.effort+=float(np.sum(np.abs(command)))*self.dt\n        self.action_variation+=float(np.sum(np.abs(raw-self.previous_action)))\n        self.previous_action=raw;self.reward_sum+=reward\n        if self.record:self._record(command)\n        info={}\n        if terminated or truncated:\n            info=self.result(success);info['episode']={'r':self.reward_sum,'l':self.steps}\n        return self.observation(),float(reward),terminated,truncated,info"
+      },
+      "outputs": {
+        "test_summary": {
+          "episodes": 20,
+          "success_rate": 1.0,
+          "collisions": 0,
+          "mean_duration_seconds": 58.6,
+          "minimum_clearance_m": 20.789346373488236,
+          "minimum_separation_m": 27.19936275603743
+        },
+        "numeric_status": "PASS",
+        "runtime_admitted": true,
+        "model": {
+          "path": "reports/artifacts/mission_rl_v1/overtaking_clearance_curriculum_12/sac_727000.zip",
+          "sha256": "f6fb18f7f5f33f30a73170904fe8bb4ef640806d31493b124f287b4d93c6cffe"
+        },
+        "actor": {
+          "path": "data/rl/mission_rl_deployments_v1/narrow_channel_overtaking_requalified_20261020_v2.json",
+          "sha256": "ae4bc7d46cc7eeb42e7d59be67d4455c31557cab13a0d2ae4050d6cccb2931d9"
+        },
+        "hash_matches_catalog": true,
+        "trajectory_fields": [
+          "x",
+          "z",
+          "heading",
+          "speed",
+          "throttle",
+          "rudder",
+          "clearance",
+          "separation",
+          "CPA",
+          "TCPA",
+          "reward",
+          "business_gate"
+        ]
+      },
+      "sources": [
+        {
+          "path": "reports/artifacts/mission_rl_v1/narrow_channel_overtaking_requalified_20261020_v2/receipt.json",
+          "sha256": "dfcd6901455f20169fed0e7e0ac23a2fb2a338952bdae65e8afd7d586ca23932"
+        },
+        {
+          "path": "data/rl/mission_rl_catalog_v1.json",
+          "sha256": "414988f8d96edf1db6752ce6b17a30279772c64e3c28dd946edc06451c3597a8"
+        },
+        {
+          "path": "tools/mission_rl/environment.py",
+          "sha256": "1cc2d5e063897f79786f16552b594b048fe22e078cc25d434f6b439b7ba3f9a4"
+        }
+      ],
+      "status": "强化学习已通过数值与原生验收，可按场景切换",
+      "training": {
+        "seed": 90701,
+        "timesteps": 727000,
+        "actor_critic_updates": 180250,
+        "training_source": "online_environment_interaction",
+        "validation_seeds": [
+          10001,
+          10002,
+          10003,
+          10004,
+          20001,
+          20002,
+          20003,
+          20004
+        ],
+        "test_seeds": [
+          30001,
+          30002,
+          30003,
+          30004,
+          30005,
+          30006,
+          30007,
+          30008,
+          30009,
+          30010,
+          30011,
+          30012,
+          30013,
+          30014,
+          30015,
+          30016,
+          30017,
+          30018,
+          30019,
+          30020
+        ],
+        "qualification_only": true,
+        "this_run_timesteps": 0
+      }
+    },
+    {
+      "id": "retained-7",
+      "name": "Long Beach historical AIS + NOAA ENC port-operations benchmark",
+      "algorithm": [
+        "a2c",
+        "ddpg",
+        "dqn",
+        "ppo",
+        "sac",
+        "td3",
+        "trpo"
+      ],
+      "datasets": {
+        "name": "Long Beach historical AIS + NOAA ENC port-operations benchmark",
+        "source": {
+          "provider": "NOAA OCM / BOEM / U.S. Coast Guard Marine Cadastre",
+          "catalog": "https://coast.noaa.gov/digitalcoast/data/vesseltraffic.html",
+          "bulk_index": "https://coast.noaa.gov/htdata/CMSP/AISDataHandler/2025/index.html",
+          "observed_ais": true,
+          "live_data_verified": false,
+          "coverage_bbox_wgs84": [
+            -118.35,
+            33.65,
+            -118.15,
+            33.82
+          ],
+          "period": {
+            "start": "2025-01-01",
+            "end": "2025-01-07"
+          },
+          "raw_files": [
+            {
+              "file": "ais-2025-01-01.csv.zst",
+              "url": "https://coast.noaa.gov/htdata/CMSP/AISDataHandler/2025/ais-2025-01-01.csv.zst",
+              "bytes": 202190247,
+              "sha256": "36c07f4abad24f86fdd2ae8722b5a1d9422f3a223efc3482a568665275bdde53"
+            },
+            {
+              "file": "ais-2025-01-02.csv.zst",
+              "url": "https://coast.noaa.gov/htdata/CMSP/AISDataHandler/2025/ais-2025-01-02.csv.zst",
+              "bytes": 186214844,
+              "sha256": "9a82be237a58e4be26b0919ab5caa18fa40a092b55279e4605a9b13359fe33ee"
+            },
+            {
+              "file": "ais-2025-01-03.csv.zst",
+              "url": "https://coast.noaa.gov/htdata/CMSP/AISDataHandler/2025/ais-2025-01-03.csv.zst",
+              "bytes": 183328957,
+              "sha256": "08798d9069e41ee8527f8d320054b99b03b89ee69d2b660b6c5272d82480f002"
+            },
+            {
+              "file": "ais-2025-01-04.csv.zst",
+              "url": "https://coast.noaa.gov/htdata/CMSP/AISDataHandler/2025/ais-2025-01-04.csv.zst",
+              "bytes": 193641307,
+              "sha256": "6f5cdd9982414c172afe7e7545fe7a7b056da4491e4433774f306ecfcd6d3eda"
+            },
+            {
+              "file": "ais-2025-01-05.csv.zst",
+              "url": "https://coast.noaa.gov/htdata/CMSP/AISDataHandler/2025/ais-2025-01-05.csv.zst",
+              "bytes": 213642240,
+              "sha256": "d2d73ed9b547875f0b378aee942cf7bc6de4979870daa31f8e09754be98e0a0a"
+            },
+            {
+              "file": "ais-2025-01-06.csv.zst",
+              "url": "https://coast.noaa.gov/htdata/CMSP/AISDataHandler/2025/ais-2025-01-06.csv.zst",
+              "bytes": 175909907,
+              "sha256": "c159d650ea1a282203b45228db09b1f188ab2cdd293581ecb5e70c1379391d98"
+            },
+            {
+              "file": "ais-2025-01-07.csv.zst",
+              "url": "https://coast.noaa.gov/htdata/CMSP/AISDataHandler/2025/ais-2025-01-07.csv.zst",
+              "bytes": 180779744,
+              "sha256": "4b5d7a6f6089885b870de7391495f389762c3ce7c4c79ab442aeb1814956bfbd"
+            }
+          ],
+          "raw_ais_rows_scanned": 47958624,
+          "filtered_ais_rows": 85435,
+          "rejected_missing_position_or_time": 0,
+          "rejected_motion_outlier": 582986,
+          "distinct_mmsi": 385,
+          "license_note": "Historical NAIS-derived public data for coastal/ocean planning; cite Marine Cadastre. The checked-in derivative is not a live feed.",
+          "weather": {
+            "provider": "Open-Meteo",
+            "license": "CC BY 4.0; attribution required",
+            "cached": true,
+            "hourly_file": "long_beach_open_meteo_2025_w01_hourly.csv",
+            "hourly_sha256": "50fc83bac44542b557069fc992340355d2b619232b29a7c55a54db6c977ae22e"
+          },
+          "enc": {
+            "provider": "NOAA Office of Coast Survey ENC Direct to GIS",
+            "service": "Harbor-scale S-57 derived GIS",
+            "documentation": "https://nauticalcharts.noaa.gov/learn/encdirect/",
+            "bbox_wgs84": [
+              -118.35,
+              33.65,
+              -118.15,
+              33.82
+            ],
+            "retrieved_at": "2026-07-25T09:48:46+00:00",
+            "requests": [
+              {
+                "layer_id": 238,
+                "layer_name": "NOAA ENC Approach Land Area",
+                "url": "https://gis.charttools.noaa.gov/arcgis/rest/services/encdirect/enc_approach/MapServer/238/query?where=1%3D1&geometry=-118.35%2C33.65%2C-118.15%2C33.82&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&outFields=%2A&returnGeometry=true&f=geojson",
+                "source_feature_count": 11,
+                "normalized_feature_count": 11
+              },
+              {
+                "layer_id": 143,
+                "layer_name": "NOAA ENC Approach Shoreline Construction",
+                "url": "https://gis.charttools.noaa.gov/arcgis/rest/services/encdirect/enc_approach/MapServer/143/query?where=1%3D1&geometry=-118.35%2C33.65%2C-118.15%2C33.82&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&outFields=%2A&returnGeometry=true&f=geojson",
+                "source_feature_count": 0,
+                "normalized_feature_count": 0
+              },
+              {
+                "layer_id": 161,
+                "layer_name": "NOAA ENC Approach Obstruction Area",
+                "url": "https://gis.charttools.noaa.gov/arcgis/rest/services/encdirect/enc_approach/MapServer/161/query?where=1%3D1&geometry=-118.35%2C33.65%2C-118.15%2C33.82&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&outFields=%2A&returnGeometry=true&f=geojson",
+                "source_feature_count": 3,
+                "normalized_feature_count": 3
+              },
+              {
+                "layer_id": 163,
+                "layer_name": "NOAA ENC Approach Wreck Area",
+                "url": "https://gis.charttools.noaa.gov/arcgis/rest/services/encdirect/enc_approach/MapServer/163/query?where=1%3D1&geometry=-118.35%2C33.65%2C-118.15%2C33.82&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&outFields=%2A&returnGeometry=true&f=geojson",
+                "source_feature_count": 0,
+                "normalized_feature_count": 0
+              },
+              {
+                "layer_id": 36,
+                "layer_name": "NOAA ENC Approach Obstruction Point",
+                "url": "https://gis.charttools.noaa.gov/arcgis/rest/services/encdirect/enc_approach/MapServer/36/query?where=1%3D1&geometry=-118.35%2C33.65%2C-118.15%2C33.82&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&outFields=%2A&returnGeometry=true&f=geojson",
+                "source_feature_count": 33,
+                "normalized_feature_count": 33
+              },
+              {
+                "layer_id": 39,
+                "layer_name": "NOAA ENC Approach Wreck Point",
+                "url": "https://gis.charttools.noaa.gov/arcgis/rest/services/encdirect/enc_approach/MapServer/39/query?where=1%3D1&geometry=-118.35%2C33.65%2C-118.15%2C33.82&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&outFields=%2A&returnGeometry=true&f=geojson",
+                "source_feature_count": 14,
+                "normalized_feature_count": 14
+              },
+              {
+                "layer_id": 213,
+                "layer_name": "NOAA ENC Approach Fairway",
+                "url": "https://gis.charttools.noaa.gov/arcgis/rest/services/encdirect/enc_approach/MapServer/213/query?where=1%3D1&geometry=-118.35%2C33.65%2C-118.15%2C33.82&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&outFields=%2A&returnGeometry=true&f=geojson",
+                "source_feature_count": 12,
+                "normalized_feature_count": 12
+              },
+              {
+                "layer_id": 202,
+                "layer_name": "NOAA ENC Approach Restricted Area",
+                "url": "https://gis.charttools.noaa.gov/arcgis/rest/services/encdirect/enc_approach/MapServer/202/query?where=1%3D1&geometry=-118.35%2C33.65%2C-118.15%2C33.82&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&outFields=%2A&returnGeometry=true&f=geojson",
+                "source_feature_count": 2,
+                "normalized_feature_count": 2
+              },
+              {
+                "layer_id": 216,
+                "layer_name": "NOAA ENC Approach Precautionary Area",
+                "url": "https://gis.charttools.noaa.gov/arcgis/rest/services/encdirect/enc_approach/MapServer/216/query?where=1%3D1&geometry=-118.35%2C33.65%2C-118.15%2C33.82&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&outFields=%2A&returnGeometry=true&f=geojson",
+                "source_feature_count": 1,
+                "normalized_feature_count": 1
+              },
+              {
+                "layer_id": 220,
+                "layer_name": "NOAA ENC Approach TSS Lane",
+                "url": "https://gis.charttools.noaa.gov/arcgis/rest/services/encdirect/enc_approach/MapServer/220/query?where=1%3D1&geometry=-118.35%2C33.65%2C-118.15%2C33.82&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&outFields=%2A&returnGeometry=true&f=geojson",
+                "source_feature_count": 1,
+                "normalized_feature_count": 1
+              },
+              {
+                "layer_id": 232,
+                "layer_name": "NOAA ENC Approach Depth Area",
+                "url": "https://gis.charttools.noaa.gov/arcgis/rest/services/encdirect/enc_approach/MapServer/232/query?where=1%3D1&geometry=-118.35%2C33.65%2C-118.15%2C33.82&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&outFields=%2A&returnGeometry=true&f=geojson",
+                "source_feature_count": 32,
+                "normalized_feature_count": 32
+              }
+            ],
+            "navigation_suitability": "ENC Direct to GIS is not certified for navigation; official NOAA ENC and local notices are required for operational use",
+            "normalized_file": "long_beach_noaa_enc_harbour_v1.json",
+            "normalized_sha256": "72b3d0158391d2c3f73e9dabc36255e60d7517d0ebcab74dae3cc86359c6a997"
+          },
+          "temporal_alignment_note": "AIS and weather use 2025-01-01..07; ENC Direct to GIS reflects the retrieval-date chart derivative and may not match 2025 notices."
+        },
+        "split_scenarios": {
+          "train": 207,
+          "validation": 72,
+          "test": 130
+        },
+        "training_dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+        "audit": {}
+      },
+      "state": {
+        "dimension": 45,
+        "contract": "45",
+        "exact_observation_order": "def _observation(self) -> np.ndarray:\n        _x, _z, heading, speed, throttle, rudder = self.state\n        distance = self._distance_to_target()\n        heading_error = self._heading_error()\n        nearest = self._nearest_obstacle(True)\n        clearance = float(nearest[\"clearance\"])\n        obstacle_bearing = float(nearest[\"bearing\"])\n        cross_track = self._cross_track_error()\n        boundary = max(float(self.task.get(\"boundary_half_extent\", 780.0)), 1.0)\n        boundary_clearance = self._boundary_clearance()\n        current_speed = float(self.sea_state.get(\"current_speed_knots\", 0.0)) * 0.514444\n        current_heading = math.radians(float(self.sea_state.get(\"current_direction_degrees\", 0.0))) - heading\n        wind_speed = float(self.sea_state.get(\"wind_speed_knots\", 0.0)) / 60.0\n        wind_heading = (\n            math.radians(\n                float(self.sea_state.get(\"wind_direction_degrees\", 0.0))\n            )\n            - heading\n        )\n        wave_height = float(\n            self.sea_state.get(\"wave_height_meters\", 0.0)\n        )\n        wave_heading = (\n            math.radians(\n                float(self.sea_state.get(\"wave_direction_degrees\", 0.0))\n            )\n            - heading\n        )\n        waypoint_progress = self.waypoint_index / max(len(self.route) - 1, 1)\n        sensor_range = float(self.environment_config[\"sensor_range_m\"])\n        sectors = self._sector_clearances(sensor_range)\n        return np.asarray(\n            [\n                np.clip(distance / (boundary * 2.0), 0.0, 1.0),\n                math.sin(heading_error), math.cos(heading_error),\n                np.clip(speed / max(self.performance.max_forward_speed, 0.1), -1.0, 1.0),\n                throttle, rudder,\n                np.clip(cross_track / boundary, -1.0, 1.0),\n                np.clip(clearance / sensor_range, -1.0, 1.0),\n                math.sin(obstacle_bearing), math.cos(obstacle_bearing),\n                np.clip(current_speed / 4.2, 0.0, 1.0),\n                math.sin(current_heading), math.cos(current_heading),\n                np.clip(wind_speed, 0.0, 1.0),\n                math.sin(wind_heading), math.cos(wind_heading),\n                np.clip(wave_height / 8.0, 0.0, 1.0),\n                math.sin(wave_heading), math.cos(wave_heading),\n                waypoint_progress,\n                np.clip(float(nearest[\"closing_speed\"]) / max(self.performance.max_forward_speed, 0.1), -1.0, 1.0),\n                np.clip(float(nearest[\"tcpa\"]) / float(self.environment_config[\"tcpa_horizon_seconds\"]), 0.0, 1.0),\n                np.clip(float(nearest[\"dcpa\"]) / sensor_range, 0.0, 1.0),\n                1.0 if bool(nearest[\"dynamic\"]) else 0.0,\n                np.clip(boundary_clearance / boundary, -1.0, 1.0),\n                np.clip(sectors[\"front\"] / sensor_range, -1.0, 1.0),\n                np.clip(sectors[\"port\"] / sensor_range, -1.0, 1.0),\n                np.clip(sectors[\"starboard\"] / sensor_range, -1.0, 1.0),\n            ],\n            dtype=np.float32,\n        )"
+      },
+      "actions": {
+        "continuous": [
+          "throttle",
+          "rudder"
+        ],
+        "range": [
+          -1,
+          1
+        ],
+        "DQN": "离散油门舵角格点，详见源代码契约"
+      },
+      "reward": {
+        "weights": {
+          "reward_progress": 2.4,
+          "reward_heading": 1.2,
+          "reward_speed": 0.25,
+          "reward_goal_reached": 800.0,
+          "reward_port_compliant": 800.0,
+          "penalty_incomplete_terminal": 400.0,
+          "penalty_collision": 1200.0,
+          "penalty_terrain_collision": 1600.0,
+          "penalty_boundary": 1200.0,
+          "penalty_rudder": 0.25,
+          "penalty_proximity": 4.0,
+          "penalty_predicted_collision": 10.0,
+          "penalty_cross_track": 0.12,
+          "penalty_action_slew": 0.08,
+          "penalty_step": 0.005,
+          "penalty_under_keel_clearance": 40.0,
+          "penalty_speed_limit": 20.0,
+          "penalty_channel_departure": 30.0,
+          "penalty_colreg_give_way": 40.0,
+          "minimum_under_keel_clearance_meters": 1.0,
+          "safe_distance": 80.0
+        },
+        "exact_step": "def step(self, action: Any) -> Tuple[np.ndarray, float, bool, bool, Dict[str, Any]]:\n        command = DISCRETE_ACTIONS[int(action)] if self.discrete_actions else np.clip(np.asarray(action, dtype=np.float32), -1.0, 1.0)\n        action_slew = float(np.sum(np.abs(command - self.previous_action)))\n        previous = self.state[:2].copy()\n        previous_distance = self._distance_to_target()\n        self._advance_dynamic_obstacles()\n        self._integrate(float(command[0]), float(command[1]))\n        self.steps += 1\n        distance = self._distance_to_target()\n        collision, boundary, collision_obstacle = self._collision_status()\n        collision_event = collision and not self.collision_active\n        if collision_event:\n            self.collision_count += 1\n            if collision_obstacle and collision_obstacle.kind in (\"cliff\", \"terrain\", \"shoreline\"):\n                self.terrain_collision_count += 1\n            self.last_collision = {\n                \"name\": collision_obstacle.name if collision_obstacle else \"navigation_boundary\",\n                \"kind\": collision_obstacle.kind if collision_obstacle else \"boundary\",\n                \"step\": self.steps,\n            }\n        self.collision_active = collision\n        if collision:\n            self.state[3] *= 0.25\n        nearest = self._nearest_obstacle(False)\n        clearance = float(nearest[\"clearance\"])\n        self.minimum_clearance = min(self.minimum_clearance, clearance)\n        if bool(nearest[\"dynamic\"]):\n            self.minimum_dcpa = min(\n                self.minimum_dcpa,\n                float(nearest[\"dcpa\"]),\n            )\n        safe_distance = max(self.reward_config[\"safe_distance\"], 1.0)\n        predicted_dynamic_conflict = (\n            bool(nearest[\"dynamic\"])\n            and float(nearest[\"tcpa\"])\n            < float(self.environment_config[\"tcpa_horizon_seconds\"])\n            and float(nearest[\"dcpa\"]) < safe_distance\n        )\n        near_miss = 0.0 < clearance < safe_distance or predicted_dynamic_conflict\n        if near_miss and not self.near_miss_active:\n            self.near_miss_count += 1\n        self.near_miss_active = near_miss\n        cross_track = self._cross_track_error()\n        self.max_cross_track_error = max(self.max_cross_track_error, abs(cross_track))\n        self.path_length += float(np.linalg.norm(self.state[:2] - previous))\n        reached_waypoint = distance <= float(self.task.get(\"arrival_radius\", 12.0))\n        goal_reached = False\n        if reached_waypoint:\n            if self.waypoint_index >= len(self.route) - 1:\n                goal_reached = True\n            else:\n                self.waypoint_index += 1\n        terminated = goal_reached or (collision and bool(self.environment_config[\"terminate_on_collision\"]))\n        truncated = self.steps >= self.max_steps and not terminated\n        heading_error = abs(self._heading_error())\n        speed_ratio = abs(self.state[3]) / max(self.performance.max_forward_speed, 0.1)\n        reward = (previous_distance - distance) * self.reward_config[\"progress\"]\n        reward += math.cos(heading_error) * self.reward_config[\"heading\"] * 0.02\n        reward += min(speed_ratio, 1.0) * self.reward_config[\"speed\"] * 0.01\n        reward -= abs(self.state[5]) * self.reward_config[\"rudder\"] * 0.01\n        reward -= min(abs(cross_track) / safe_distance, 3.0) * self.reward_config[\"cross_track\"]\n        reward -= action_slew * self.reward_config[\"action_slew\"]\n        reward -= self.reward_config[\"step\"]\n        if clearance < safe_distance:\n            reward -= (safe_distance - clearance) / safe_distance * self.reward_config[\"proximity\"]\n        if predicted_dynamic_conflict:\n            horizon = float(self.environment_config[\"tcpa_horizon_seconds\"])\n            dcpa_factor = (safe_distance - float(nearest[\"dcpa\"])) / safe_distance\n            urgency = 1.0 - float(nearest[\"tcpa\"]) / horizon\n            reward -= (\n                max(0.0, dcpa_factor)\n                * max(0.0, urgency)\n                * self.reward_config[\"predicted_collision\"]\n            )\n        if collision_event:\n            if boundary:\n                reward -= self.reward_config[\"boundary\"]\n            elif collision_obstacle and collision_obstacle.kind in (\"cliff\", \"terrain\", \"shoreline\"):\n                reward -= self.reward_config[\"terrain_collision\"]\n            else:\n                reward -= self.reward_config[\"collision\"]\n        if reached_waypoint:\n            reward += 12.0 if goal_reached else 3.0\n        self.total_reward += reward\n        self.previous_action[:] = command\n        self._record_sample(command, reward, collision)\n        info = self._info(terminated, truncated, goal_reached)\n        if terminated or truncated:\n            info[\"episode\"] = {\"r\": round(self.total_reward, 6), \"l\": self.steps}\n        return self._observation(), float(reward), terminated, truncated, info"
+      },
+      "outputs": {
+        "fields": [
+          "throttle",
+          "rudder",
+          "trajectory",
+          "success",
+          "collisions",
+          "reward",
+          "checkpoint",
+          "pickup",
+          "operational_compliance"
+        ],
+        "models": [
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/checkpoint.json",
+              "sha256": "1eb722f3229ffd4255fae1424e862a2d0492729df43a15cf59698cb22c4618b7"
+            },
+            "artifact": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/sac_policy.zip",
+              "sha256": "807fd72303d1c92220c161a89744ed073fc908dfc180ec7a3193735348f2cfa5"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 40000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0001,
+              "warmup_steps": 5000,
+              "batch_size": 256,
+              "buffer_size": 150000,
+              "milestone_interval": 10000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/milestone_checkpoints/checkpoint_40000.json",
+              "sha256": "92a4dea7e892bb51e72eb8c28e3ecde1d4033551ee7486c810fc426c2ca63abf"
+            },
+            "artifact": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/milestone_checkpoints/../milestones/sac_champion_v5_40000_steps.zip",
+              "sha256": "86f1cc5839ae4c6c946b0cdb23ef2026133fd3f152edf2f41fd45b7e5b64983b"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 40000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0001,
+              "warmup_steps": 5000,
+              "batch_size": 256,
+              "buffer_size": 150000,
+              "milestone_interval": 10000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/milestone_checkpoints/checkpoint_30000.json",
+              "sha256": "66222f0effb21a9a600a8dcc7737184ebd3072e61112ab2d8944fc7dbfb89589"
+            },
+            "artifact": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/milestone_checkpoints/../milestones/sac_champion_v5_30000_steps.zip",
+              "sha256": "6d8df1a8709c4ed10085d6c427252e0e381570eb21745c015a44319a7ac020e2"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 30000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0001,
+              "warmup_steps": 5000,
+              "batch_size": 256,
+              "buffer_size": 150000,
+              "milestone_interval": 10000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/milestone_checkpoints/checkpoint_20000.json",
+              "sha256": "a98f4e2a709cbb123c214fc26a5e0f625dc3cd39d6734fded4509be26aae828b"
+            },
+            "artifact": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/milestone_checkpoints/../milestones/sac_champion_v5_20000_steps.zip",
+              "sha256": "270799d83e51b2a41161759244e53c3c841a04a362696a62cce29180d4cb63e8"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 20000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0001,
+              "warmup_steps": 5000,
+              "batch_size": 256,
+              "buffer_size": 150000,
+              "milestone_interval": 10000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/milestone_checkpoints/checkpoint_10000.json",
+              "sha256": "860a255a0364e2f0b48faf8d913ff9f8c348fd7866d764f70a63f1d763fd6f55"
+            },
+            "artifact": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/milestone_checkpoints/../milestones/sac_champion_v5_10000_steps.zip",
+              "sha256": "d0fbfcd807d63ced892bd92caa37c77d899a8bf9b067a705c4f185e4c372b822"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 10000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0001,
+              "warmup_steps": 5000,
+              "batch_size": 256,
+              "buffer_size": 150000,
+              "milestone_interval": 10000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/sac_champion_v5/pilot_pure_20k/checkpoint.json",
+              "sha256": "78fe09b53438d2e7458fd3ece847a042bba1e4b347bbd99369d202032b62d11a"
+            },
+            "artifact": {
+              "path": "reports/artifacts/sac_champion_v5/pilot_pure_20k/sac_policy.zip",
+              "sha256": "8b60c3bc2a6602c9d0bc659cd7ff80cded1ba011fd795441d9396c5d1648c81d"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 20000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.99,
+              "rollout_horizon": 1024,
+              "batch_size": 256,
+              "minibatch_size": 128,
+              "buffer_size": 150000,
+              "warmup_steps": 5000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_pure_60k_seed250107/checkpoint.json",
+              "sha256": "41ad742e42baf8874b5c262bc8f28746941425fa346042fe40c4873adc505bcd"
+            },
+            "artifact": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_pure_60k_seed250107/sac_policy.zip",
+              "sha256": "fa604d55ab896a61a4c00679760e67a82cbc9d5d2c1eb66e4b1e547a382520a2"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 60000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.99,
+              "rollout_horizon": 1024,
+              "batch_size": 256,
+              "minibatch_size": 128,
+              "buffer_size": 150000,
+              "warmup_steps": 5000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v2/sac/checkpoint.json",
+              "sha256": "d8af3a8d52b758adf797f6bd22c219e404bb37561e4ebfe160efbb46f1fb567e"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v2/sac/sac_policy.zip",
+              "sha256": "1bc1b3d1ab0a65045d933b7192d5c4a9cc9f17d40b08e5edb7d5b86b8a8c019d"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 2000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v2/ddpg/checkpoint.json",
+              "sha256": "0ae63af060609cac2c88c417369c152cc5f40582336ff7fee271ca88b4b276e1"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v2/ddpg/ddpg_policy.zip",
+              "sha256": "44516ae96129451c81c605ccc733bde05d6adbaffa5feff0841e927c48250ec8"
+            },
+            "algorithm": "ddpg",
+            "actual_timesteps": 2000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v2/dqn/checkpoint.json",
+              "sha256": "015a06d8dcf6366c9f214795ebb84d04b61b7546ca44f5ef4d6f126f536dea13"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v2/dqn/dqn_policy.zip",
+              "sha256": "e72e3d82b7511fae1e9eb3e8f1ca7d8fe14b2d4ce572329d646384172a7a2d33"
+            },
+            "algorithm": "dqn",
+            "actual_timesteps": 2000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v2/ppo/checkpoint.json",
+              "sha256": "ee7553133ae6958eb87f1e54be4c13415e8b1afb1ba4f4efa4afa387250d02ff"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v2/ppo/ppo_policy.zip",
+              "sha256": "0040ecb6aaaede4bd425711665145f0c33b737d304cdb770b545da69dddb3570"
+            },
+            "algorithm": "ppo",
+            "actual_timesteps": 2048,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v2/a2c/checkpoint.json",
+              "sha256": "484bd05b755fa136d9f2b3a4cd9b57f6f7cd08d7dd062d96c921f7959fb541f9"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v2/a2c/a2c_policy.zip",
+              "sha256": "e7fc50cebdf3b56e18acc640bd2e84d9f1ae390f883ee56e98a96b6f93934aea"
+            },
+            "algorithm": "a2c",
+            "actual_timesteps": 2048,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v2/trpo/checkpoint.json",
+              "sha256": "877fcb31f2b2923aa6d82ebc73efd5a1fec4aa2ce802671d00f053d21c5daf92"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v2/trpo/trpo_policy.zip",
+              "sha256": "20ebe5448a5a856f29d1840584bfc1111c0cbbd6db00f8c5389948e01b937340"
+            },
+            "algorithm": "trpo",
+            "actual_timesteps": 2048,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v2/td3/checkpoint.json",
+              "sha256": "700e19a5d5858f24dae17b4b631102495deded832474157c911ea91782ab2cd9"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v2/td3/td3_policy.zip",
+              "sha256": "376ea6d2f68f7c0a667eb841b94cd932d76ad5b10935d7115ca82f83f1023b1f"
+            },
+            "algorithm": "td3",
+            "actual_timesteps": 2000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          }
+        ]
+      },
+      "sources": [
+        {
+          "path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/checkpoint.json",
+          "sha256": "1eb722f3229ffd4255fae1424e862a2d0492729df43a15cf59698cb22c4618b7"
+        },
+        {
+          "path": "tools/ship_rl/environment.py",
+          "sha256": "4d77c791b296d814c9c4e70d890bbbbc6f05b1464329022c765af8bee0c68fe8"
+        }
+      ],
+      "status": "历史模型已训练，回放/准入以原生验收状态为准",
+      "training": {
+        "checkpoint_count": 14,
+        "models": [
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/checkpoint.json",
+              "sha256": "1eb722f3229ffd4255fae1424e862a2d0492729df43a15cf59698cb22c4618b7"
+            },
+            "artifact": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/sac_policy.zip",
+              "sha256": "807fd72303d1c92220c161a89744ed073fc908dfc180ec7a3193735348f2cfa5"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 40000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0001,
+              "warmup_steps": 5000,
+              "batch_size": 256,
+              "buffer_size": 150000,
+              "milestone_interval": 10000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/milestone_checkpoints/checkpoint_40000.json",
+              "sha256": "92a4dea7e892bb51e72eb8c28e3ecde1d4033551ee7486c810fc426c2ca63abf"
+            },
+            "artifact": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/milestone_checkpoints/../milestones/sac_champion_v5_40000_steps.zip",
+              "sha256": "86f1cc5839ae4c6c946b0cdb23ef2026133fd3f152edf2f41fd45b7e5b64983b"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 40000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0001,
+              "warmup_steps": 5000,
+              "batch_size": 256,
+              "buffer_size": 150000,
+              "milestone_interval": 10000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/milestone_checkpoints/checkpoint_30000.json",
+              "sha256": "66222f0effb21a9a600a8dcc7737184ebd3072e61112ab2d8944fc7dbfb89589"
+            },
+            "artifact": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/milestone_checkpoints/../milestones/sac_champion_v5_30000_steps.zip",
+              "sha256": "6d8df1a8709c4ed10085d6c427252e0e381570eb21745c015a44319a7ac020e2"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 30000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0001,
+              "warmup_steps": 5000,
+              "batch_size": 256,
+              "buffer_size": 150000,
+              "milestone_interval": 10000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/milestone_checkpoints/checkpoint_20000.json",
+              "sha256": "a98f4e2a709cbb123c214fc26a5e0f625dc3cd39d6734fded4509be26aae828b"
+            },
+            "artifact": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/milestone_checkpoints/../milestones/sac_champion_v5_20000_steps.zip",
+              "sha256": "270799d83e51b2a41161759244e53c3c841a04a362696a62cce29180d4cb63e8"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 20000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0001,
+              "warmup_steps": 5000,
+              "batch_size": 256,
+              "buffer_size": 150000,
+              "milestone_interval": 10000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/milestone_checkpoints/checkpoint_10000.json",
+              "sha256": "860a255a0364e2f0b48faf8d913ff9f8c348fd7866d764f70a63f1d763fd6f55"
+            },
+            "artifact": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_reward_aligned_ft40k/milestone_checkpoints/../milestones/sac_champion_v5_10000_steps.zip",
+              "sha256": "d0fbfcd807d63ced892bd92caa37c77d899a8bf9b067a705c4f185e4c372b822"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 10000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0001,
+              "warmup_steps": 5000,
+              "batch_size": 256,
+              "buffer_size": 150000,
+              "milestone_interval": 10000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/sac_champion_v5/pilot_pure_20k/checkpoint.json",
+              "sha256": "78fe09b53438d2e7458fd3ece847a042bba1e4b347bbd99369d202032b62d11a"
+            },
+            "artifact": {
+              "path": "reports/artifacts/sac_champion_v5/pilot_pure_20k/sac_policy.zip",
+              "sha256": "8b60c3bc2a6602c9d0bc659cd7ff80cded1ba011fd795441d9396c5d1648c81d"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 20000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.99,
+              "rollout_horizon": 1024,
+              "batch_size": 256,
+              "minibatch_size": 128,
+              "buffer_size": 150000,
+              "warmup_steps": 5000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_pure_60k_seed250107/checkpoint.json",
+              "sha256": "41ad742e42baf8874b5c262bc8f28746941425fa346042fe40c4873adc505bcd"
+            },
+            "artifact": {
+              "path": "reports/artifacts/sac_champion_v5/candidate_pure_60k_seed250107/sac_policy.zip",
+              "sha256": "fa604d55ab896a61a4c00679760e67a82cbc9d5d2c1eb66e4b1e547a382520a2"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 60000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.99,
+              "rollout_horizon": 1024,
+              "batch_size": 256,
+              "minibatch_size": 128,
+              "buffer_size": 150000,
+              "warmup_steps": 5000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v2/sac/checkpoint.json",
+              "sha256": "d8af3a8d52b758adf797f6bd22c219e404bb37561e4ebfe160efbb46f1fb567e"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v2/sac/sac_policy.zip",
+              "sha256": "1bc1b3d1ab0a65045d933b7192d5c4a9cc9f17d40b08e5edb7d5b86b8a8c019d"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 2000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v2/ddpg/checkpoint.json",
+              "sha256": "0ae63af060609cac2c88c417369c152cc5f40582336ff7fee271ca88b4b276e1"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v2/ddpg/ddpg_policy.zip",
+              "sha256": "44516ae96129451c81c605ccc733bde05d6adbaffa5feff0841e927c48250ec8"
+            },
+            "algorithm": "ddpg",
+            "actual_timesteps": 2000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v2/dqn/checkpoint.json",
+              "sha256": "015a06d8dcf6366c9f214795ebb84d04b61b7546ca44f5ef4d6f126f536dea13"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v2/dqn/dqn_policy.zip",
+              "sha256": "e72e3d82b7511fae1e9eb3e8f1ca7d8fe14b2d4ce572329d646384172a7a2d33"
+            },
+            "algorithm": "dqn",
+            "actual_timesteps": 2000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v2/ppo/checkpoint.json",
+              "sha256": "ee7553133ae6958eb87f1e54be4c13415e8b1afb1ba4f4efa4afa387250d02ff"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v2/ppo/ppo_policy.zip",
+              "sha256": "0040ecb6aaaede4bd425711665145f0c33b737d304cdb770b545da69dddb3570"
+            },
+            "algorithm": "ppo",
+            "actual_timesteps": 2048,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v2/a2c/checkpoint.json",
+              "sha256": "484bd05b755fa136d9f2b3a4cd9b57f6f7cd08d7dd062d96c921f7959fb541f9"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v2/a2c/a2c_policy.zip",
+              "sha256": "e7fc50cebdf3b56e18acc640bd2e84d9f1ae390f883ee56e98a96b6f93934aea"
+            },
+            "algorithm": "a2c",
+            "actual_timesteps": 2048,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v2/trpo/checkpoint.json",
+              "sha256": "877fcb31f2b2923aa6d82ebc73efd5a1fec4aa2ce802671d00f053d21c5daf92"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v2/trpo/trpo_policy.zip",
+              "sha256": "20ebe5448a5a856f29d1840584bfc1111c0cbbd6db00f8c5389948e01b937340"
+            },
+            "algorithm": "trpo",
+            "actual_timesteps": 2048,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v2/td3/checkpoint.json",
+              "sha256": "700e19a5d5858f24dae17b4b631102495deded832474157c911ea91782ab2cd9"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v2/td3/td3_policy.zip",
+              "sha256": "376ea6d2f68f7c0a667eb841b94cd932d76ad5b10935d7115ca82f83f1023b1f"
+            },
+            "algorithm": "td3",
+            "actual_timesteps": 2000,
+            "observation_size": 45,
+            "seed": 250107,
+            "dataset_sha256": "7d4745110eec5f6c53d74fe8ab4ca26a8789341a2dbc7ea9654d3b8d720a5827",
+            "port_contract": {
+              "research_training_ready": true,
+              "live_control_ready": false
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "retained-8",
+      "name": "Long Beach January-April 2024 public-weather navigation benchmark",
+      "algorithm": [
+        "dqn",
+        "ppo",
+        "sac",
+        "td3"
+      ],
+      "datasets": {
+        "name": "Long Beach January-April 2024 public-weather navigation benchmark",
+        "source": {
+          "type": "public_environment_forcing_plus_simulator_scenarios",
+          "provider": "Open-Meteo",
+          "hourly_file": "long_beach_open_meteo_2024_01_04_hourly.csv",
+          "hourly_sha256": "cdc9c9ddc22b0cd83cafb56a9cc4d46c6670bbb0280f0465a0c20533ed0e38bd",
+          "hourly_rows": 2904,
+          "period": {
+            "start": "2024-01-01",
+            "end": "2024-04-30"
+          },
+          "license": "CC BY 4.0; attribution required",
+          "observed_ais": false,
+          "route_geometry": "project_native_synthetic",
+          "counterfactual_actions": "simulator_only",
+          "live_data_verified": false
+        },
+        "split_scenarios": {
+          "train": 60,
+          "validation": 31,
+          "test": 30
+        },
+        "training_dataset_sha256": "e05ea1305583681d9245644a1782c05a2392aa82d3318188f8dd7f3e04f4dc4e",
+        "audit": {}
+      },
+      "state": {
+        "dimension": 28,
+        "contract": "28",
+        "exact_observation_order": "def _observation(self) -> np.ndarray:\n        _x, _z, heading, speed, throttle, rudder = self.state\n        distance = self._distance_to_target()\n        heading_error = self._heading_error()\n        nearest = self._nearest_obstacle(True)\n        clearance = float(nearest[\"clearance\"])\n        obstacle_bearing = float(nearest[\"bearing\"])\n        cross_track = self._cross_track_error()\n        boundary = max(float(self.task.get(\"boundary_half_extent\", 780.0)), 1.0)\n        boundary_clearance = self._boundary_clearance()\n        current_speed = float(self.sea_state.get(\"current_speed_knots\", 0.0)) * 0.514444\n        current_heading = math.radians(float(self.sea_state.get(\"current_direction_degrees\", 0.0))) - heading\n        wind_speed = float(self.sea_state.get(\"wind_speed_knots\", 0.0)) / 60.0\n        wind_heading = (\n            math.radians(\n                float(self.sea_state.get(\"wind_direction_degrees\", 0.0))\n            )\n            - heading\n        )\n        wave_height = float(\n            self.sea_state.get(\"wave_height_meters\", 0.0)\n        )\n        wave_heading = (\n            math.radians(\n                float(self.sea_state.get(\"wave_direction_degrees\", 0.0))\n            )\n            - heading\n        )\n        waypoint_progress = self.waypoint_index / max(len(self.route) - 1, 1)\n        sensor_range = float(self.environment_config[\"sensor_range_m\"])\n        sectors = self._sector_clearances(sensor_range)\n        return np.asarray(\n            [\n                np.clip(distance / (boundary * 2.0), 0.0, 1.0),\n                math.sin(heading_error), math.cos(heading_error),\n                np.clip(speed / max(self.performance.max_forward_speed, 0.1), -1.0, 1.0),\n                throttle, rudder,\n                np.clip(cross_track / boundary, -1.0, 1.0),\n                np.clip(clearance / sensor_range, -1.0, 1.0),\n                math.sin(obstacle_bearing), math.cos(obstacle_bearing),\n                np.clip(current_speed / 4.2, 0.0, 1.0),\n                math.sin(current_heading), math.cos(current_heading),\n                np.clip(wind_speed, 0.0, 1.0),\n                math.sin(wind_heading), math.cos(wind_heading),\n                np.clip(wave_height / 8.0, 0.0, 1.0),\n                math.sin(wave_heading), math.cos(wave_heading),\n                waypoint_progress,\n                np.clip(float(nearest[\"closing_speed\"]) / max(self.performance.max_forward_speed, 0.1), -1.0, 1.0),\n                np.clip(float(nearest[\"tcpa\"]) / float(self.environment_config[\"tcpa_horizon_seconds\"]), 0.0, 1.0),\n                np.clip(float(nearest[\"dcpa\"]) / sensor_range, 0.0, 1.0),\n                1.0 if bool(nearest[\"dynamic\"]) else 0.0,\n                np.clip(boundary_clearance / boundary, -1.0, 1.0),\n                np.clip(sectors[\"front\"] / sensor_range, -1.0, 1.0),\n                np.clip(sectors[\"port\"] / sensor_range, -1.0, 1.0),\n                np.clip(sectors[\"starboard\"] / sensor_range, -1.0, 1.0),\n            ],\n            dtype=np.float32,\n        )"
+      },
+      "actions": {
+        "continuous": [
+          "throttle",
+          "rudder"
+        ],
+        "range": [
+          -1,
+          1
+        ],
+        "DQN": "离散油门舵角格点，详见源代码契约"
+      },
+      "reward": {
+        "weights": {
+          "reward_progress": 3.2,
+          "reward_heading": 1.8,
+          "reward_speed": 0.8,
+          "penalty_collision": 48.0,
+          "penalty_terrain_collision": 68.0,
+          "penalty_boundary": 36.0,
+          "penalty_rudder": 0.9,
+          "penalty_proximity": 1.1,
+          "penalty_predicted_collision": 1.6,
+          "penalty_cross_track": 0.12,
+          "penalty_action_slew": 0.04,
+          "penalty_step": 0.003,
+          "safe_distance": 32.0
+        },
+        "exact_step": "def step(self, action: Any) -> Tuple[np.ndarray, float, bool, bool, Dict[str, Any]]:\n        command = DISCRETE_ACTIONS[int(action)] if self.discrete_actions else np.clip(np.asarray(action, dtype=np.float32), -1.0, 1.0)\n        action_slew = float(np.sum(np.abs(command - self.previous_action)))\n        previous = self.state[:2].copy()\n        previous_distance = self._distance_to_target()\n        self._advance_dynamic_obstacles()\n        self._integrate(float(command[0]), float(command[1]))\n        self.steps += 1\n        distance = self._distance_to_target()\n        collision, boundary, collision_obstacle = self._collision_status()\n        collision_event = collision and not self.collision_active\n        if collision_event:\n            self.collision_count += 1\n            if collision_obstacle and collision_obstacle.kind in (\"cliff\", \"terrain\", \"shoreline\"):\n                self.terrain_collision_count += 1\n            self.last_collision = {\n                \"name\": collision_obstacle.name if collision_obstacle else \"navigation_boundary\",\n                \"kind\": collision_obstacle.kind if collision_obstacle else \"boundary\",\n                \"step\": self.steps,\n            }\n        self.collision_active = collision\n        if collision:\n            self.state[3] *= 0.25\n        nearest = self._nearest_obstacle(False)\n        clearance = float(nearest[\"clearance\"])\n        self.minimum_clearance = min(self.minimum_clearance, clearance)\n        if bool(nearest[\"dynamic\"]):\n            self.minimum_dcpa = min(\n                self.minimum_dcpa,\n                float(nearest[\"dcpa\"]),\n            )\n        safe_distance = max(self.reward_config[\"safe_distance\"], 1.0)\n        predicted_dynamic_conflict = (\n            bool(nearest[\"dynamic\"])\n            and float(nearest[\"tcpa\"])\n            < float(self.environment_config[\"tcpa_horizon_seconds\"])\n            and float(nearest[\"dcpa\"]) < safe_distance\n        )\n        near_miss = 0.0 < clearance < safe_distance or predicted_dynamic_conflict\n        if near_miss and not self.near_miss_active:\n            self.near_miss_count += 1\n        self.near_miss_active = near_miss\n        cross_track = self._cross_track_error()\n        self.max_cross_track_error = max(self.max_cross_track_error, abs(cross_track))\n        self.path_length += float(np.linalg.norm(self.state[:2] - previous))\n        reached_waypoint = distance <= float(self.task.get(\"arrival_radius\", 12.0))\n        goal_reached = False\n        if reached_waypoint:\n            if self.waypoint_index >= len(self.route) - 1:\n                goal_reached = True\n            else:\n                self.waypoint_index += 1\n        terminated = goal_reached or (collision and bool(self.environment_config[\"terminate_on_collision\"]))\n        truncated = self.steps >= self.max_steps and not terminated\n        heading_error = abs(self._heading_error())\n        speed_ratio = abs(self.state[3]) / max(self.performance.max_forward_speed, 0.1)\n        reward = (previous_distance - distance) * self.reward_config[\"progress\"]\n        reward += math.cos(heading_error) * self.reward_config[\"heading\"] * 0.02\n        reward += min(speed_ratio, 1.0) * self.reward_config[\"speed\"] * 0.01\n        reward -= abs(self.state[5]) * self.reward_config[\"rudder\"] * 0.01\n        reward -= min(abs(cross_track) / safe_distance, 3.0) * self.reward_config[\"cross_track\"]\n        reward -= action_slew * self.reward_config[\"action_slew\"]\n        reward -= self.reward_config[\"step\"]\n        if clearance < safe_distance:\n            reward -= (safe_distance - clearance) / safe_distance * self.reward_config[\"proximity\"]\n        if predicted_dynamic_conflict:\n            horizon = float(self.environment_config[\"tcpa_horizon_seconds\"])\n            dcpa_factor = (safe_distance - float(nearest[\"dcpa\"])) / safe_distance\n            urgency = 1.0 - float(nearest[\"tcpa\"]) / horizon\n            reward -= (\n                max(0.0, dcpa_factor)\n                * max(0.0, urgency)\n                * self.reward_config[\"predicted_collision\"]\n            )\n        if collision_event:\n            if boundary:\n                reward -= self.reward_config[\"boundary\"]\n            elif collision_obstacle and collision_obstacle.kind in (\"cliff\", \"terrain\", \"shoreline\"):\n                reward -= self.reward_config[\"terrain_collision\"]\n            else:\n                reward -= self.reward_config[\"collision\"]\n        if reached_waypoint:\n            reward += 12.0 if goal_reached else 3.0\n        self.total_reward += reward\n        self.previous_action[:] = command\n        self._record_sample(command, reward, collision)\n        info = self._info(terminated, truncated, goal_reached)\n        if terminated or truncated:\n            info[\"episode\"] = {\"r\": round(self.total_reward, 6), \"l\": self.steps}\n        return self._observation(), float(reward), terminated, truncated, info"
+      },
+      "outputs": {
+        "fields": [
+          "throttle",
+          "rudder",
+          "trajectory",
+          "success",
+          "collisions",
+          "reward",
+          "checkpoint",
+          "pickup",
+          "operational_compliance"
+        ],
+        "models": [
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v1/sac/checkpoint.json",
+              "sha256": "4ba91e53e9228a92ef065d4b40822de912e28ace9e4955163549e376b8206000"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v1/sac/sac_policy.zip",
+              "sha256": "b1de01f1c55ef3e9446690c59001dc6c95cbdeeb9bf539630a308a1d43f27a7d"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 20000,
+            "observation_size": 28,
+            "seed": 240705,
+            "dataset_sha256": "e05ea1305583681d9245644a1782c05a2392aa82d3318188f8dd7f3e04f4dc4e",
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v1/dqn/checkpoint.json",
+              "sha256": "2b355e0e913d6228acd7df049526bc7ba0817f865c3b1d2530fd811dbf681841"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v1/dqn/dqn_policy.zip",
+              "sha256": "2bf28a9167ec953b05669ef15539b32d0c9d9fe242616336785024d4bec83e16"
+            },
+            "algorithm": "dqn",
+            "actual_timesteps": 20000,
+            "observation_size": 28,
+            "seed": 240705,
+            "dataset_sha256": "e05ea1305583681d9245644a1782c05a2392aa82d3318188f8dd7f3e04f4dc4e",
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v1/ppo/checkpoint.json",
+              "sha256": "7da86b1d2d3ee345aa99b9e536ceaf54e1a6be29a3d0eec88b6fc7fc1e873567"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v1/ppo/ppo_policy.zip",
+              "sha256": "115eb41f603181958110e37f20eb030c98dcb23c95d49ab0f46baa7684914e8f"
+            },
+            "algorithm": "ppo",
+            "actual_timesteps": 20480,
+            "observation_size": 28,
+            "seed": 240705,
+            "dataset_sha256": "e05ea1305583681d9245644a1782c05a2392aa82d3318188f8dd7f3e04f4dc4e",
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v1/td3/checkpoint.json",
+              "sha256": "91e7a1a8584e91391792fe314ee57db22b6178e019698f7b981463f80f148fef"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v1/td3/td3_policy.zip",
+              "sha256": "dada1ea208741493757c0894187d4e104adc59912423c02d08f7a951ded73f08"
+            },
+            "algorithm": "td3",
+            "actual_timesteps": 20000,
+            "observation_size": 28,
+            "seed": 240705,
+            "dataset_sha256": "e05ea1305583681d9245644a1782c05a2392aa82d3318188f8dd7f3e04f4dc4e",
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          }
+        ]
+      },
+      "sources": [
+        {
+          "path": "reports/artifacts/navigation_benchmark_v1/sac/checkpoint.json",
+          "sha256": "4ba91e53e9228a92ef065d4b40822de912e28ace9e4955163549e376b8206000"
+        },
+        {
+          "path": "tools/ship_rl/environment.py",
+          "sha256": "4d77c791b296d814c9c4e70d890bbbbc6f05b1464329022c765af8bee0c68fe8"
+        }
+      ],
+      "status": "历史模型已训练，回放/准入以原生验收状态为准",
+      "training": {
+        "checkpoint_count": 4,
+        "models": [
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v1/sac/checkpoint.json",
+              "sha256": "4ba91e53e9228a92ef065d4b40822de912e28ace9e4955163549e376b8206000"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v1/sac/sac_policy.zip",
+              "sha256": "b1de01f1c55ef3e9446690c59001dc6c95cbdeeb9bf539630a308a1d43f27a7d"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 20000,
+            "observation_size": 28,
+            "seed": 240705,
+            "dataset_sha256": "e05ea1305583681d9245644a1782c05a2392aa82d3318188f8dd7f3e04f4dc4e",
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v1/dqn/checkpoint.json",
+              "sha256": "2b355e0e913d6228acd7df049526bc7ba0817f865c3b1d2530fd811dbf681841"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v1/dqn/dqn_policy.zip",
+              "sha256": "2bf28a9167ec953b05669ef15539b32d0c9d9fe242616336785024d4bec83e16"
+            },
+            "algorithm": "dqn",
+            "actual_timesteps": 20000,
+            "observation_size": 28,
+            "seed": 240705,
+            "dataset_sha256": "e05ea1305583681d9245644a1782c05a2392aa82d3318188f8dd7f3e04f4dc4e",
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v1/ppo/checkpoint.json",
+              "sha256": "7da86b1d2d3ee345aa99b9e536ceaf54e1a6be29a3d0eec88b6fc7fc1e873567"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v1/ppo/ppo_policy.zip",
+              "sha256": "115eb41f603181958110e37f20eb030c98dcb23c95d49ab0f46baa7684914e8f"
+            },
+            "algorithm": "ppo",
+            "actual_timesteps": 20480,
+            "observation_size": 28,
+            "seed": 240705,
+            "dataset_sha256": "e05ea1305583681d9245644a1782c05a2392aa82d3318188f8dd7f3e04f4dc4e",
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          },
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/navigation_benchmark_v1/td3/checkpoint.json",
+              "sha256": "91e7a1a8584e91391792fe314ee57db22b6178e019698f7b981463f80f148fef"
+            },
+            "artifact": {
+              "path": "reports/artifacts/navigation_benchmark_v1/td3/td3_policy.zip",
+              "sha256": "dada1ea208741493757c0894187d4e104adc59912423c02d08f7a951ded73f08"
+            },
+            "algorithm": "td3",
+            "actual_timesteps": 20000,
+            "observation_size": 28,
+            "seed": 240705,
+            "dataset_sha256": "e05ea1305583681d9245644a1782c05a2392aa82d3318188f8dd7f3e04f4dc4e",
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "rollout_horizon": 1024,
+              "batch_size": 512,
+              "minibatch_size": 128,
+              "buffer_size": 120000,
+              "warmup_steps": 12000,
+              "target_update_steps": 1500,
+              "epsilon_start": 0.92,
+              "epsilon_end": 0.06,
+              "epsilon_decay_steps": 90000
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "retained-9",
+      "name": "动态取货环航 · 残差 SAC",
+      "algorithm": [
+        "sac"
+      ],
+      "datasets": {
+        "name": "data/rl/cargo_circuit_dataset_v1.json",
+        "source": {
+          "type": "原始数据集文件当前缺失，仅保留训练记录中的指纹"
+        },
+        "split_scenarios": {},
+        "training_dataset_sha256": "5fb5900203e4ad3be2d6e2cc38246a90096a783874a70e0417d6387b7d57e885",
+        "boundary": "项目原生仿真任务，无真实码头取货样本",
+        "held_out_episode_count": 1
+      },
+      "state": {
+        "dimension": 44,
+        "contract": "cargo_circuit_dynamic_continuous_v2_44d",
+        "exact_observation_order": "def _observation(self) -> np.ndarray:\n        base = super()._observation()\n        nearest = self._nearest_dynamic_obstacle(True)\n        sensor_range = float(self.environment_config[\"sensor_range_m\"])\n        horizon = float(self.environment_config[\"tcpa_horizon_seconds\"])\n        max_speed = max(self.performance.max_forward_speed, 0.1)\n        features = np.asarray(\n            [\n                np.clip(float(nearest[\"clearance\"]) / sensor_range, -1.0, 1.0),\n                math.sin(float(nearest[\"bearing\"])),\n                math.cos(float(nearest[\"bearing\"])),\n                np.clip(float(nearest[\"closing_speed\"]) / max_speed, -1.0, 1.0),\n                np.clip(float(nearest[\"tcpa\"]) / horizon, 0.0, 1.0),\n                np.clip(float(nearest[\"dcpa\"]) / sensor_range, 0.0, 1.0),\n                np.clip(float(nearest[\"relative_lateral_speed\"]) / max_speed, -1.0, 1.0),\n                np.clip(float(nearest[\"relative_forward_speed\"]) / max_speed, -1.0, 1.0),\n            ],\n            dtype=np.float32,\n        )\n        return np.concatenate((base, features), dtype=np.float32)"
+      },
+      "actions": {
+        "type": "residual_continuous_box",
+        "shape": 2,
+        "order": [
+          "throttle",
+          "rudder"
+        ],
+        "range": [
+          -1.0,
+          1.0
+        ],
+        "physical_throttle_mapping": [
+          -0.35,
+          1.0
+        ],
+        "physical_rudder_mapping": [
+          -1.0,
+          1.0
+        ],
+        "frozen_static_policy_path": "res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip",
+        "residual_scale": [
+          2.0,
+          2.0
+        ]
+      },
+      "reward": {
+        "weights": {},
+        "exact_step": "def step(self, action: Any) -> Tuple[np.ndarray, float, bool, bool, Dict[str, Any]]:\n        residual = np.clip(np.asarray(action, dtype=np.float32), -1.0, 1.0)\n        observation = self._observation()\n        base_action, _state = self.frozen_static_policy.predict(observation[:CARGO_OBSERVATION_SIZE], deterministic=True)\n        combined = np.clip(\n            np.asarray(base_action, dtype=np.float32)\n            + np.asarray(\n                [self.residual_throttle_scale * residual[0], self.residual_rudder_scale * residual[1]],\n                dtype=np.float32,\n            ),\n            -1.0,\n            1.0,\n        )\n        self.last_base_action[:] = base_action\n        self.last_residual_action[:] = residual\n        observation, reward, terminated, truncated, info = super().step(combined)\n        residual_penalty = self.residual_action_penalty * float(np.dot(residual, residual))\n        if residual_penalty > 0.0:\n            reward -= residual_penalty\n            self.total_reward -= residual_penalty\n        if self.trajectory:\n            self.trajectory[-1][\"reward\"] = round(float(reward), 6)\n            self.trajectory[-1].update(\n                {\n                    \"frozen_static_throttle_action\": round(float(base_action[0]), 5),\n                    \"frozen_static_rudder_action\": round(float(base_action[1]), 5),\n                    \"dynamic_residual_throttle_action\": round(float(residual[0]), 5),\n                    \"dynamic_residual_rudder_action\": round(float(residual[1]), 5),\n                }\n            )\n        return observation, float(reward), terminated, truncated, info"
+      },
+      "outputs": {
+        "fields": [
+          "throttle",
+          "rudder",
+          "trajectory",
+          "success",
+          "collisions",
+          "reward",
+          "checkpoint",
+          "pickup",
+          "operational_compliance"
+        ],
+        "models": [
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_policy_checkpoint.json",
+              "sha256": "3e7d3350d56cd68f7bc8c15c5a3ad127bcb1e8b2bb08fc79a2f20490c2ba7c35"
+            },
+            "artifact": {
+              "path": "reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip",
+              "sha256": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 500,
+            "observation_size": 44,
+            "observation_contract": "cargo_circuit_dynamic_continuous_v2_44d",
+            "action_contract": {
+              "type": "residual_continuous_box",
+              "shape": 2,
+              "order": [
+                "throttle",
+                "rudder"
+              ],
+              "range": [
+                -1.0,
+                1.0
+              ],
+              "physical_throttle_mapping": [
+                -0.35,
+                1.0
+              ],
+              "physical_rudder_mapping": [
+                -1.0,
+                1.0
+              ],
+              "frozen_static_policy_path": "res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip",
+              "residual_scale": [
+                2.0,
+                2.0
+              ]
+            },
+            "seed": 260815,
+            "dataset_sha256": "5fb5900203e4ad3be2d6e2cc38246a90096a783874a70e0417d6387b7d57e885",
+            "initialization": {
+              "checkpoint": null,
+              "demonstrations": {
+                "enabled": true,
+                "source": "dynamic_manual_feasibility_controller",
+                "episodes": 3,
+                "successful_episodes": 3,
+                "samples": 6474,
+                "actor_behavior_cloning": {
+                  "epochs": 5,
+                  "samples": 6474,
+                  "final_loss": 0.03739146143198013
+                },
+                "replay_buffer_prefill_samples": 6474,
+                "bypass_points_available_to_released_policy": false
+              }
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.995,
+              "batch_size": 256,
+              "buffer_size": 20000,
+              "warmup_steps": 0,
+              "rollout_horizon": 1024,
+              "minibatch_size": 128
+            }
+          }
+        ]
+      },
+      "sources": [
+        {
+          "path": "reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_policy_checkpoint.json",
+          "sha256": "3e7d3350d56cd68f7bc8c15c5a3ad127bcb1e8b2bb08fc79a2f20490c2ba7c35"
+        },
+        {
+          "path": "tools/cargo_rl/dynamic_environment.py",
+          "sha256": "5db2ba3ce968cf56d8c658e5bfb2809b69b0340bf22ae8b1f923410a6fe87f15"
+        }
+      ],
+      "status": "历史模型已训练，回放/准入以原生验收状态为准",
+      "training": {
+        "checkpoint_count": 1,
+        "models": [
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_policy_checkpoint.json",
+              "sha256": "3e7d3350d56cd68f7bc8c15c5a3ad127bcb1e8b2bb08fc79a2f20490c2ba7c35"
+            },
+            "artifact": {
+              "path": "reports/artifacts/cargo_circuit_dynamic_rl_v2/cargo_dynamic_sac_policy.zip",
+              "sha256": "0f19759cc96027673f5c0bfc050ec72d93d247c32cef57adbe9b6e454df53c20"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 500,
+            "observation_size": 44,
+            "observation_contract": "cargo_circuit_dynamic_continuous_v2_44d",
+            "action_contract": {
+              "type": "residual_continuous_box",
+              "shape": 2,
+              "order": [
+                "throttle",
+                "rudder"
+              ],
+              "range": [
+                -1.0,
+                1.0
+              ],
+              "physical_throttle_mapping": [
+                -0.35,
+                1.0
+              ],
+              "physical_rudder_mapping": [
+                -1.0,
+                1.0
+              ],
+              "frozen_static_policy_path": "res://reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip",
+              "residual_scale": [
+                2.0,
+                2.0
+              ]
+            },
+            "seed": 260815,
+            "dataset_sha256": "5fb5900203e4ad3be2d6e2cc38246a90096a783874a70e0417d6387b7d57e885",
+            "initialization": {
+              "checkpoint": null,
+              "demonstrations": {
+                "enabled": true,
+                "source": "dynamic_manual_feasibility_controller",
+                "episodes": 3,
+                "successful_episodes": 3,
+                "samples": 6474,
+                "actor_behavior_cloning": {
+                  "epochs": 5,
+                  "samples": 6474,
+                  "final_loss": 0.03739146143198013
+                },
+                "replay_buffer_prefill_samples": 6474,
+                "bypass_points_available_to_released_policy": false
+              }
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.995,
+              "batch_size": 256,
+              "buffer_size": 20000,
+              "warmup_steps": 0,
+              "rollout_horizon": 1024,
+              "minibatch_size": 128
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "retained-10",
+      "name": "Seven-scenario low-difficulty training-function smoke",
+      "algorithm": [
+        "sac"
+      ],
+      "datasets": {
+        "name": "Seven-scenario low-difficulty training-function smoke",
+        "source": {
+          "profile": "res://data/ports/default_port_profile.json",
+          "simulation_only": true,
+          "purpose": "trainer and inference wiring; not policy qualification"
+        },
+        "split_scenarios": {
+          "train": 7,
+          "validation": 7,
+          "test": 7
+        },
+        "training_dataset_sha256": "06b1f20df3e4d0e6a9cfd367e1f495d9206287e1c3aa8c563b3d581a30df7913",
+        "audit": {}
+      },
+      "state": {
+        "dimension": 36,
+        "contract": "cargo_circuit_continuous_v1_36d",
+        "exact_observation_order": "def _observation(self) -> np.ndarray:\n        _x, _z, heading, speed, throttle, rudder = self.state\n        distance = self._distance_to_target()\n        heading_error = self._heading_error()\n        nearest = self._nearest_obstacle(True)\n        clearance = float(nearest[\"clearance\"])\n        obstacle_bearing = float(nearest[\"bearing\"])\n        cross_track = self._cross_track_error()\n        boundary = max(float(self.task.get(\"boundary_half_extent\", 780.0)), 1.0)\n        boundary_clearance = self._boundary_clearance()\n        current_speed = float(self.sea_state.get(\"current_speed_knots\", 0.0)) * 0.514444\n        current_heading = math.radians(float(self.sea_state.get(\"current_direction_degrees\", 0.0))) - heading\n        wind_speed = float(self.sea_state.get(\"wind_speed_knots\", 0.0)) / 60.0\n        wind_heading = (\n            math.radians(\n                float(self.sea_state.get(\"wind_direction_degrees\", 0.0))\n            )\n            - heading\n        )\n        wave_height = float(\n            self.sea_state.get(\"wave_height_meters\", 0.0)\n        )\n        wave_heading = (\n            math.radians(\n                float(self.sea_state.get(\"wave_direction_degrees\", 0.0))\n            )\n            - heading\n        )\n        waypoint_progress = self.waypoint_index / max(len(self.route) - 1, 1)\n        sensor_range = float(self.environment_config[\"sensor_range_m\"])\n        sectors = self._sector_clearances(sensor_range)\n        return np.asarray(\n            [\n                np.clip(distance / (boundary * 2.0), 0.0, 1.0),\n                math.sin(heading_error), math.cos(heading_error),\n                np.clip(speed / max(self.performance.max_forward_speed, 0.1), -1.0, 1.0),\n                throttle, rudder,\n                np.clip(cross_track / boundary, -1.0, 1.0),\n                np.clip(clearance / sensor_range, -1.0, 1.0),\n                math.sin(obstacle_bearing), math.cos(obstacle_bearing),\n                np.clip(current_speed / 4.2, 0.0, 1.0),\n                math.sin(current_heading), math.cos(current_heading),\n                np.clip(wind_speed, 0.0, 1.0),\n                math.sin(wind_heading), math.cos(wind_heading),\n                np.clip(wave_height / 8.0, 0.0, 1.0),\n                math.sin(wave_heading), math.cos(wave_heading),\n                waypoint_progress,\n                np.clip(float(nearest[\"closing_speed\"]) / max(self.performance.max_forward_speed, 0.1), -1.0, 1.0),\n                np.clip(float(nearest[\"tcpa\"]) / float(self.environment_config[\"tcpa_horizon_seconds\"]), 0.0, 1.0),\n                np.clip(float(nearest[\"dcpa\"]) / sensor_range, 0.0, 1.0),\n                1.0 if bool(nearest[\"dynamic\"]) else 0.0,\n                np.clip(boundary_clearance / boundary, -1.0, 1.0),\n                np.clip(sectors[\"front\"] / sensor_range, -1.0, 1.0),\n                np.clip(sectors[\"port\"] / sensor_range, -1.0, 1.0),\n                np.clip(sectors[\"starboard\"] / sensor_range, -1.0, 1.0),\n            ],\n            dtype=np.float32,\n        )"
+      },
+      "actions": {
+        "type": "continuous_box",
+        "shape": 2,
+        "order": [
+          "throttle",
+          "rudder"
+        ],
+        "range": [
+          -1.0,
+          1.0
+        ],
+        "physical_throttle_mapping": [
+          -0.35,
+          1.0
+        ],
+        "physical_rudder_mapping": [
+          -1.0,
+          1.0
+        ],
+        "frozen_static_policy_path": null,
+        "residual_scale": null
+      },
+      "reward": {
+        "weights": {
+          "reward_progress": 3.2,
+          "reward_heading": 1.4,
+          "reward_speed": 0.8,
+          "penalty_collision": 1300.0,
+          "penalty_terrain_collision": 1500.0,
+          "penalty_boundary": 1300.0,
+          "penalty_rudder": 0.36,
+          "penalty_proximity": 3.4,
+          "penalty_predicted_collision": 6.0,
+          "penalty_cross_track": 0.012,
+          "penalty_action_slew": 0.028,
+          "penalty_step": 0.005,
+          "safe_distance": 48.0
+        },
+        "exact_step": "def step(self, action: Any) -> Tuple[np.ndarray, float, bool, bool, Dict[str, Any]]:\n        command = DISCRETE_ACTIONS[int(action)] if self.discrete_actions else np.clip(np.asarray(action, dtype=np.float32), -1.0, 1.0)\n        action_slew = float(np.sum(np.abs(command - self.previous_action)))\n        previous = self.state[:2].copy()\n        previous_distance = self._distance_to_target()\n        self._advance_dynamic_obstacles()\n        self._integrate(float(command[0]), float(command[1]))\n        self.steps += 1\n        distance = self._distance_to_target()\n        collision, boundary, collision_obstacle = self._collision_status()\n        collision_event = collision and not self.collision_active\n        if collision_event:\n            self.collision_count += 1\n            if collision_obstacle and collision_obstacle.kind in (\"cliff\", \"terrain\", \"shoreline\"):\n                self.terrain_collision_count += 1\n            self.last_collision = {\n                \"name\": collision_obstacle.name if collision_obstacle else \"navigation_boundary\",\n                \"kind\": collision_obstacle.kind if collision_obstacle else \"boundary\",\n                \"step\": self.steps,\n            }\n        self.collision_active = collision\n        if collision:\n            self.state[3] *= 0.25\n        nearest = self._nearest_obstacle(False)\n        clearance = float(nearest[\"clearance\"])\n        self.minimum_clearance = min(self.minimum_clearance, clearance)\n        if bool(nearest[\"dynamic\"]):\n            self.minimum_dcpa = min(\n                self.minimum_dcpa,\n                float(nearest[\"dcpa\"]),\n            )\n        safe_distance = max(self.reward_config[\"safe_distance\"], 1.0)\n        predicted_dynamic_conflict = (\n            bool(nearest[\"dynamic\"])\n            and float(nearest[\"tcpa\"])\n            < float(self.environment_config[\"tcpa_horizon_seconds\"])\n            and float(nearest[\"dcpa\"]) < safe_distance\n        )\n        near_miss = 0.0 < clearance < safe_distance or predicted_dynamic_conflict\n        if near_miss and not self.near_miss_active:\n            self.near_miss_count += 1\n        self.near_miss_active = near_miss\n        cross_track = self._cross_track_error()\n        self.max_cross_track_error = max(self.max_cross_track_error, abs(cross_track))\n        self.path_length += float(np.linalg.norm(self.state[:2] - previous))\n        reached_waypoint = distance <= float(self.task.get(\"arrival_radius\", 12.0))\n        goal_reached = False\n        if reached_waypoint:\n            if self.waypoint_index >= len(self.route) - 1:\n                goal_reached = True\n            else:\n                self.waypoint_index += 1\n        terminated = goal_reached or (collision and bool(self.environment_config[\"terminate_on_collision\"]))\n        truncated = self.steps >= self.max_steps and not terminated\n        heading_error = abs(self._heading_error())\n        speed_ratio = abs(self.state[3]) / max(self.performance.max_forward_speed, 0.1)\n        reward = (previous_distance - distance) * self.reward_config[\"progress\"]\n        reward += math.cos(heading_error) * self.reward_config[\"heading\"] * 0.02\n        reward += min(speed_ratio, 1.0) * self.reward_config[\"speed\"] * 0.01\n        reward -= abs(self.state[5]) * self.reward_config[\"rudder\"] * 0.01\n        reward -= min(abs(cross_track) / safe_distance, 3.0) * self.reward_config[\"cross_track\"]\n        reward -= action_slew * self.reward_config[\"action_slew\"]\n        reward -= self.reward_config[\"step\"]\n        if clearance < safe_distance:\n            reward -= (safe_distance - clearance) / safe_distance * self.reward_config[\"proximity\"]\n        if predicted_dynamic_conflict:\n            horizon = float(self.environment_config[\"tcpa_horizon_seconds\"])\n            dcpa_factor = (safe_distance - float(nearest[\"dcpa\"])) / safe_distance\n            urgency = 1.0 - float(nearest[\"tcpa\"]) / horizon\n            reward -= (\n                max(0.0, dcpa_factor)\n                * max(0.0, urgency)\n                * self.reward_config[\"predicted_collision\"]\n            )\n        if collision_event:\n            if boundary:\n                reward -= self.reward_config[\"boundary\"]\n            elif collision_obstacle and collision_obstacle.kind in (\"cliff\", \"terrain\", \"shoreline\"):\n                reward -= self.reward_config[\"terrain_collision\"]\n            else:\n                reward -= self.reward_config[\"collision\"]\n        if reached_waypoint:\n            reward += 12.0 if goal_reached else 3.0\n        self.total_reward += reward\n        self.previous_action[:] = command\n        self._record_sample(command, reward, collision)\n        info = self._info(terminated, truncated, goal_reached)\n        if terminated or truncated:\n            info[\"episode\"] = {\"r\": round(self.total_reward, 6), \"l\": self.steps}\n        return self._observation(), float(reward), terminated, truncated, info"
+      },
+      "outputs": {
+        "fields": [
+          "throttle",
+          "rudder",
+          "trajectory",
+          "success",
+          "collisions",
+          "reward",
+          "checkpoint",
+          "pickup",
+          "operational_compliance"
+        ],
+        "models": [
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/non47_training_function_smoke_v1/36d/checkpoint.json",
+              "sha256": "20182c571e4d49693124b23efcab36bf6d80b79470fa6af469089dcc7f54bae3"
+            },
+            "artifact": {
+              "path": "reports/artifacts/non47_training_function_smoke_v1/36d/cargo_sac_policy.zip",
+              "sha256": "60856f4c1c509bcbbd9c79d9d5bbc3253ae1d88ca342d1cdda6aeeb3eaf80384"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 64,
+            "observation_size": 36,
+            "observation_contract": "cargo_circuit_continuous_v1_36d",
+            "action_contract": {
+              "type": "continuous_box",
+              "shape": 2,
+              "order": [
+                "throttle",
+                "rudder"
+              ],
+              "range": [
+                -1.0,
+                1.0
+              ],
+              "physical_throttle_mapping": [
+                -0.35,
+                1.0
+              ],
+              "physical_rudder_mapping": [
+                -1.0,
+                1.0
+              ],
+              "frozen_static_policy_path": null,
+              "residual_scale": null
+            },
+            "seed": 290862,
+            "dataset_sha256": "06b1f20df3e4d0e6a9cfd367e1f495d9206287e1c3aa8c563b3d581a30df7913",
+            "initialization": {
+              "checkpoint": null,
+              "demonstrations": {
+                "enabled": false
+              }
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "batch_size": 16,
+              "buffer_size": 1000,
+              "warmup_steps": 8,
+              "rollout_horizon": 32,
+              "minibatch_size": 16
+            }
+          }
+        ]
+      },
+      "sources": [
+        {
+          "path": "reports/artifacts/non47_training_function_smoke_v1/36d/checkpoint.json",
+          "sha256": "20182c571e4d49693124b23efcab36bf6d80b79470fa6af469089dcc7f54bae3"
+        },
+        {
+          "path": "tools/ship_rl/environment.py",
+          "sha256": "4d77c791b296d814c9c4e70d890bbbbc6f05b1464329022c765af8bee0c68fe8"
+        }
+      ],
+      "status": "历史模型已训练，回放/准入以原生验收状态为准",
+      "training": {
+        "checkpoint_count": 1,
+        "models": [
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/non47_training_function_smoke_v1/36d/checkpoint.json",
+              "sha256": "20182c571e4d49693124b23efcab36bf6d80b79470fa6af469089dcc7f54bae3"
+            },
+            "artifact": {
+              "path": "reports/artifacts/non47_training_function_smoke_v1/36d/cargo_sac_policy.zip",
+              "sha256": "60856f4c1c509bcbbd9c79d9d5bbc3253ae1d88ca342d1cdda6aeeb3eaf80384"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 64,
+            "observation_size": 36,
+            "observation_contract": "cargo_circuit_continuous_v1_36d",
+            "action_contract": {
+              "type": "continuous_box",
+              "shape": 2,
+              "order": [
+                "throttle",
+                "rudder"
+              ],
+              "range": [
+                -1.0,
+                1.0
+              ],
+              "physical_throttle_mapping": [
+                -0.35,
+                1.0
+              ],
+              "physical_rudder_mapping": [
+                -1.0,
+                1.0
+              ],
+              "frozen_static_policy_path": null,
+              "residual_scale": null
+            },
+            "seed": 290862,
+            "dataset_sha256": "06b1f20df3e4d0e6a9cfd367e1f495d9206287e1c3aa8c563b3d581a30df7913",
+            "initialization": {
+              "checkpoint": null,
+              "demonstrations": {
+                "enabled": false
+              }
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "batch_size": 16,
+              "buffer_size": 1000,
+              "warmup_steps": 8,
+              "rollout_horizon": 32,
+              "minibatch_size": 16
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "retained-11",
+      "name": "动态取货环航 · 残差 SAC",
+      "algorithm": [
+        "sac"
+      ],
+      "datasets": {
+        "name": "Seven-scenario low-difficulty training-function smoke",
+        "source": {
+          "profile": "res://data/ports/default_port_profile.json",
+          "simulation_only": true,
+          "purpose": "trainer and inference wiring; not policy qualification"
+        },
+        "split_scenarios": {
+          "train": 7,
+          "validation": 7,
+          "test": 7
+        },
+        "training_dataset_sha256": "06b1f20df3e4d0e6a9cfd367e1f495d9206287e1c3aa8c563b3d581a30df7913",
+        "audit": {}
+      },
+      "state": {
+        "dimension": 44,
+        "contract": "cargo_circuit_dynamic_continuous_v2_44d",
+        "exact_observation_order": "def _observation(self) -> np.ndarray:\n        _x, _z, heading, speed, throttle, rudder = self.state\n        distance = self._distance_to_target()\n        heading_error = self._heading_error()\n        nearest = self._nearest_obstacle(True)\n        clearance = float(nearest[\"clearance\"])\n        obstacle_bearing = float(nearest[\"bearing\"])\n        cross_track = self._cross_track_error()\n        boundary = max(float(self.task.get(\"boundary_half_extent\", 780.0)), 1.0)\n        boundary_clearance = self._boundary_clearance()\n        current_speed = float(self.sea_state.get(\"current_speed_knots\", 0.0)) * 0.514444\n        current_heading = math.radians(float(self.sea_state.get(\"current_direction_degrees\", 0.0))) - heading\n        wind_speed = float(self.sea_state.get(\"wind_speed_knots\", 0.0)) / 60.0\n        wind_heading = (\n            math.radians(\n                float(self.sea_state.get(\"wind_direction_degrees\", 0.0))\n            )\n            - heading\n        )\n        wave_height = float(\n            self.sea_state.get(\"wave_height_meters\", 0.0)\n        )\n        wave_heading = (\n            math.radians(\n                float(self.sea_state.get(\"wave_direction_degrees\", 0.0))\n            )\n            - heading\n        )\n        waypoint_progress = self.waypoint_index / max(len(self.route) - 1, 1)\n        sensor_range = float(self.environment_config[\"sensor_range_m\"])\n        sectors = self._sector_clearances(sensor_range)\n        return np.asarray(\n            [\n                np.clip(distance / (boundary * 2.0), 0.0, 1.0),\n                math.sin(heading_error), math.cos(heading_error),\n                np.clip(speed / max(self.performance.max_forward_speed, 0.1), -1.0, 1.0),\n                throttle, rudder,\n                np.clip(cross_track / boundary, -1.0, 1.0),\n                np.clip(clearance / sensor_range, -1.0, 1.0),\n                math.sin(obstacle_bearing), math.cos(obstacle_bearing),\n                np.clip(current_speed / 4.2, 0.0, 1.0),\n                math.sin(current_heading), math.cos(current_heading),\n                np.clip(wind_speed, 0.0, 1.0),\n                math.sin(wind_heading), math.cos(wind_heading),\n                np.clip(wave_height / 8.0, 0.0, 1.0),\n                math.sin(wave_heading), math.cos(wave_heading),\n                waypoint_progress,\n                np.clip(float(nearest[\"closing_speed\"]) / max(self.performance.max_forward_speed, 0.1), -1.0, 1.0),\n                np.clip(float(nearest[\"tcpa\"]) / float(self.environment_config[\"tcpa_horizon_seconds\"]), 0.0, 1.0),\n                np.clip(float(nearest[\"dcpa\"]) / sensor_range, 0.0, 1.0),\n                1.0 if bool(nearest[\"dynamic\"]) else 0.0,\n                np.clip(boundary_clearance / boundary, -1.0, 1.0),\n                np.clip(sectors[\"front\"] / sensor_range, -1.0, 1.0),\n                np.clip(sectors[\"port\"] / sensor_range, -1.0, 1.0),\n                np.clip(sectors[\"starboard\"] / sensor_range, -1.0, 1.0),\n            ],\n            dtype=np.float32,\n        )"
+      },
+      "actions": {
+        "type": "continuous_box",
+        "shape": 2,
+        "order": [
+          "throttle",
+          "rudder"
+        ],
+        "range": [
+          -1.0,
+          1.0
+        ],
+        "physical_throttle_mapping": [
+          -0.35,
+          1.0
+        ],
+        "physical_rudder_mapping": [
+          -1.0,
+          1.0
+        ],
+        "frozen_static_policy_path": null,
+        "residual_scale": null
+      },
+      "reward": {
+        "weights": {
+          "reward_progress": 3.2,
+          "reward_heading": 1.4,
+          "reward_speed": 0.8,
+          "penalty_collision": 1300.0,
+          "penalty_terrain_collision": 1500.0,
+          "penalty_boundary": 1300.0,
+          "penalty_rudder": 0.36,
+          "penalty_proximity": 3.4,
+          "penalty_predicted_collision": 6.0,
+          "penalty_cross_track": 0.012,
+          "penalty_action_slew": 0.028,
+          "penalty_step": 0.005,
+          "safe_distance": 48.0
+        },
+        "exact_step": "def step(self, action: Any) -> Tuple[np.ndarray, float, bool, bool, Dict[str, Any]]:\n        command = DISCRETE_ACTIONS[int(action)] if self.discrete_actions else np.clip(np.asarray(action, dtype=np.float32), -1.0, 1.0)\n        action_slew = float(np.sum(np.abs(command - self.previous_action)))\n        previous = self.state[:2].copy()\n        previous_distance = self._distance_to_target()\n        self._advance_dynamic_obstacles()\n        self._integrate(float(command[0]), float(command[1]))\n        self.steps += 1\n        distance = self._distance_to_target()\n        collision, boundary, collision_obstacle = self._collision_status()\n        collision_event = collision and not self.collision_active\n        if collision_event:\n            self.collision_count += 1\n            if collision_obstacle and collision_obstacle.kind in (\"cliff\", \"terrain\", \"shoreline\"):\n                self.terrain_collision_count += 1\n            self.last_collision = {\n                \"name\": collision_obstacle.name if collision_obstacle else \"navigation_boundary\",\n                \"kind\": collision_obstacle.kind if collision_obstacle else \"boundary\",\n                \"step\": self.steps,\n            }\n        self.collision_active = collision\n        if collision:\n            self.state[3] *= 0.25\n        nearest = self._nearest_obstacle(False)\n        clearance = float(nearest[\"clearance\"])\n        self.minimum_clearance = min(self.minimum_clearance, clearance)\n        if bool(nearest[\"dynamic\"]):\n            self.minimum_dcpa = min(\n                self.minimum_dcpa,\n                float(nearest[\"dcpa\"]),\n            )\n        safe_distance = max(self.reward_config[\"safe_distance\"], 1.0)\n        predicted_dynamic_conflict = (\n            bool(nearest[\"dynamic\"])\n            and float(nearest[\"tcpa\"])\n            < float(self.environment_config[\"tcpa_horizon_seconds\"])\n            and float(nearest[\"dcpa\"]) < safe_distance\n        )\n        near_miss = 0.0 < clearance < safe_distance or predicted_dynamic_conflict\n        if near_miss and not self.near_miss_active:\n            self.near_miss_count += 1\n        self.near_miss_active = near_miss\n        cross_track = self._cross_track_error()\n        self.max_cross_track_error = max(self.max_cross_track_error, abs(cross_track))\n        self.path_length += float(np.linalg.norm(self.state[:2] - previous))\n        reached_waypoint = distance <= float(self.task.get(\"arrival_radius\", 12.0))\n        goal_reached = False\n        if reached_waypoint:\n            if self.waypoint_index >= len(self.route) - 1:\n                goal_reached = True\n            else:\n                self.waypoint_index += 1\n        terminated = goal_reached or (collision and bool(self.environment_config[\"terminate_on_collision\"]))\n        truncated = self.steps >= self.max_steps and not terminated\n        heading_error = abs(self._heading_error())\n        speed_ratio = abs(self.state[3]) / max(self.performance.max_forward_speed, 0.1)\n        reward = (previous_distance - distance) * self.reward_config[\"progress\"]\n        reward += math.cos(heading_error) * self.reward_config[\"heading\"] * 0.02\n        reward += min(speed_ratio, 1.0) * self.reward_config[\"speed\"] * 0.01\n        reward -= abs(self.state[5]) * self.reward_config[\"rudder\"] * 0.01\n        reward -= min(abs(cross_track) / safe_distance, 3.0) * self.reward_config[\"cross_track\"]\n        reward -= action_slew * self.reward_config[\"action_slew\"]\n        reward -= self.reward_config[\"step\"]\n        if clearance < safe_distance:\n            reward -= (safe_distance - clearance) / safe_distance * self.reward_config[\"proximity\"]\n        if predicted_dynamic_conflict:\n            horizon = float(self.environment_config[\"tcpa_horizon_seconds\"])\n            dcpa_factor = (safe_distance - float(nearest[\"dcpa\"])) / safe_distance\n            urgency = 1.0 - float(nearest[\"tcpa\"]) / horizon\n            reward -= (\n                max(0.0, dcpa_factor)\n                * max(0.0, urgency)\n                * self.reward_config[\"predicted_collision\"]\n            )\n        if collision_event:\n            if boundary:\n                reward -= self.reward_config[\"boundary\"]\n            elif collision_obstacle and collision_obstacle.kind in (\"cliff\", \"terrain\", \"shoreline\"):\n                reward -= self.reward_config[\"terrain_collision\"]\n            else:\n                reward -= self.reward_config[\"collision\"]\n        if reached_waypoint:\n            reward += 12.0 if goal_reached else 3.0\n        self.total_reward += reward\n        self.previous_action[:] = command\n        self._record_sample(command, reward, collision)\n        info = self._info(terminated, truncated, goal_reached)\n        if terminated or truncated:\n            info[\"episode\"] = {\"r\": round(self.total_reward, 6), \"l\": self.steps}\n        return self._observation(), float(reward), terminated, truncated, info"
+      },
+      "outputs": {
+        "fields": [
+          "throttle",
+          "rudder",
+          "trajectory",
+          "success",
+          "collisions",
+          "reward",
+          "checkpoint",
+          "pickup",
+          "operational_compliance"
+        ],
+        "models": [
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/non47_training_function_smoke_v1/44d/checkpoint.json",
+              "sha256": "10a783e24fcd5caf8f8335faf447395b3a663b26226179d43a6d277edd740592"
+            },
+            "artifact": {
+              "path": "reports/artifacts/non47_training_function_smoke_v1/44d/cargo_dynamic_sac_policy.zip",
+              "sha256": "932ad284e1048db1b8c879cc68cf23e122e93f4862ff9d51b5eadd84bd81a666"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 64,
+            "observation_size": 44,
+            "observation_contract": "cargo_circuit_dynamic_continuous_v2_44d",
+            "action_contract": {
+              "type": "continuous_box",
+              "shape": 2,
+              "order": [
+                "throttle",
+                "rudder"
+              ],
+              "range": [
+                -1.0,
+                1.0
+              ],
+              "physical_throttle_mapping": [
+                -0.35,
+                1.0
+              ],
+              "physical_rudder_mapping": [
+                -1.0,
+                1.0
+              ],
+              "frozen_static_policy_path": null,
+              "residual_scale": null
+            },
+            "seed": 290870,
+            "dataset_sha256": "06b1f20df3e4d0e6a9cfd367e1f495d9206287e1c3aa8c563b3d581a30df7913",
+            "initialization": {
+              "checkpoint": null,
+              "demonstrations": {
+                "enabled": false
+              }
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "batch_size": 16,
+              "buffer_size": 1000,
+              "warmup_steps": 8,
+              "rollout_horizon": 32,
+              "minibatch_size": 16
+            }
+          }
+        ]
+      },
+      "sources": [
+        {
+          "path": "reports/artifacts/non47_training_function_smoke_v1/44d/checkpoint.json",
+          "sha256": "10a783e24fcd5caf8f8335faf447395b3a663b26226179d43a6d277edd740592"
+        },
+        {
+          "path": "tools/ship_rl/environment.py",
+          "sha256": "4d77c791b296d814c9c4e70d890bbbbc6f05b1464329022c765af8bee0c68fe8"
+        }
+      ],
+      "status": "历史模型已训练，回放/准入以原生验收状态为准",
+      "training": {
+        "checkpoint_count": 1,
+        "models": [
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/non47_training_function_smoke_v1/44d/checkpoint.json",
+              "sha256": "10a783e24fcd5caf8f8335faf447395b3a663b26226179d43a6d277edd740592"
+            },
+            "artifact": {
+              "path": "reports/artifacts/non47_training_function_smoke_v1/44d/cargo_dynamic_sac_policy.zip",
+              "sha256": "932ad284e1048db1b8c879cc68cf23e122e93f4862ff9d51b5eadd84bd81a666"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 64,
+            "observation_size": 44,
+            "observation_contract": "cargo_circuit_dynamic_continuous_v2_44d",
+            "action_contract": {
+              "type": "continuous_box",
+              "shape": 2,
+              "order": [
+                "throttle",
+                "rudder"
+              ],
+              "range": [
+                -1.0,
+                1.0
+              ],
+              "physical_throttle_mapping": [
+                -0.35,
+                1.0
+              ],
+              "physical_rudder_mapping": [
+                -1.0,
+                1.0
+              ],
+              "frozen_static_policy_path": null,
+              "residual_scale": null
+            },
+            "seed": 290870,
+            "dataset_sha256": "06b1f20df3e4d0e6a9cfd367e1f495d9206287e1c3aa8c563b3d581a30df7913",
+            "initialization": {
+              "checkpoint": null,
+              "demonstrations": {
+                "enabled": false
+              }
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.985,
+              "batch_size": 16,
+              "buffer_size": 1000,
+              "warmup_steps": 8,
+              "rollout_horizon": 32,
+              "minibatch_size": 16
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "retained-12",
+      "name": "静态取货环航 · SAC",
+      "algorithm": [
+        "sac"
+      ],
+      "datasets": {
+        "name": "data/rl/cargo_circuit_dataset_v1.json",
+        "source": {
+          "type": "原始数据集文件当前缺失，仅保留训练记录中的指纹"
+        },
+        "split_scenarios": {},
+        "training_dataset_sha256": "5fb5900203e4ad3be2d6e2cc38246a90096a783874a70e0417d6387b7d57e885",
+        "boundary": "项目原生仿真任务，无真实码头取货样本",
+        "held_out_episode_count": 1
+      },
+      "state": {
+        "dimension": 36,
+        "contract": "cargo_circuit_continuous_v1_36d",
+        "exact_observation_order": "def _observation(self) -> np.ndarray:\n        base = super()._observation()\n        x, z, heading, speed, _throttle, rudder = self.state\n        target_index = min(self.waypoint_index, len(self.route) - 1)\n        next_index = min(target_index + 1, len(self.route) - 1)\n        target = self.route[target_index]\n        next_target = self.route[next_index]\n        boundary = max(float(self.task.get(\"boundary_half_extent\", 260.0)), 1.0)\n        sensor_range = float(self.environment_config[\"sensor_range_m\"])\n\n        next_dx = next_target[0] - x\n        next_dz = next_target[1] - z\n        next_distance = math.hypot(next_dx, next_dz)\n        next_bearing = self._wrap(math.atan2(next_dx, next_dz) - heading)\n\n        inbound = math.atan2(target[0] - x, target[1] - z)\n        outbound = math.atan2(next_target[0] - target[0], next_target[1] - target[1])\n        turn_angle = self._wrap(outbound - inbound) if next_index != target_index else 0.0\n\n        max_speed = max(self.performance.max_forward_speed, 0.1)\n        speed_ratio = float(np.clip(abs(speed) / max_speed, 0.0, 1.0))\n        turn_authority = self.performance.low_speed_turn_factor + (\n            1.0 - self.performance.low_speed_turn_factor\n        ) * speed_ratio\n        yaw_rate = rudder * math.radians(self.performance.max_turn_rate_degrees) * turn_authority\n        stopping_distance = (speed * speed) / max(2.0 * self.performance.brake_acceleration, 0.1)\n        max_yaw_rate = max(math.radians(self.performance.max_turn_rate_degrees), 1e-6)\n        turn_radius = abs(speed) / max(max_yaw_rate * max(turn_authority, 0.05), 1e-6)\n        target_distance = max(math.hypot(target[0] - x, target[1] - z), 1.0)\n\n        lookahead = np.asarray(\n            [\n                np.clip(next_distance / (boundary * 2.0), 0.0, 1.0),\n                math.sin(next_bearing),\n                math.cos(next_bearing),\n                math.sin(turn_angle),\n                math.cos(turn_angle),\n                np.clip(yaw_rate / max_yaw_rate, -1.0, 1.0),\n                np.clip(stopping_distance / sensor_range, 0.0, 1.0),\n                np.clip(turn_radius / target_distance, 0.0, 1.0),\n            ],\n            dtype=np.float32,\n        )\n        return np.concatenate((base, lookahead), dtype=np.float32)"
+      },
+      "actions": {
+        "type": "continuous_box",
+        "shape": 2,
+        "order": [
+          "throttle",
+          "rudder"
+        ],
+        "range": [
+          -1.0,
+          1.0
+        ],
+        "physical_throttle_mapping": [
+          -0.35,
+          1.0
+        ],
+        "physical_rudder_mapping": [
+          -1.0,
+          1.0
+        ]
+      },
+      "reward": {
+        "weights": {},
+        "exact_step": "def step(self, action: Any) -> Tuple[np.ndarray, float, bool, bool, Dict[str, Any]]:\n        policy_action = np.clip(np.asarray(action, dtype=np.float32), -1.0, 1.0)\n        command = policy_action.copy()\n        if not self.physical_action_input:\n            command[0] = self.throttle_action_min + (float(policy_action[0]) + 1.0) * 0.5 * (\n                self.throttle_action_max - self.throttle_action_min\n            )\n        action_slew = float(np.sum(np.abs(policy_action - self.previous_action)))\n        previous = self.state[:2].copy()\n        previous_distance = self._distance_to_target()\n        self._advance_dynamic_obstacles()\n        self._integrate(float(command[0]), float(command[1]))\n        self.steps += 1\n        distance = self._distance_to_target()\n        collision, boundary, collision_obstacle = self._collision_status()\n        collision_event = collision and not self.collision_active\n        if collision_event:\n            self.collision_count += 1\n            if collision_obstacle and collision_obstacle.kind in (\"cliff\", \"terrain\", \"shoreline\"):\n                self.terrain_collision_count += 1\n            self.last_collision = {\n                \"name\": collision_obstacle.name if collision_obstacle else \"navigation_boundary\",\n                \"kind\": collision_obstacle.kind if collision_obstacle else \"boundary\",\n                \"step\": self.steps,\n            }\n        self.collision_active = collision\n        if collision:\n            self.state[3] *= 0.25\n\n        nearest = self._nearest_obstacle(False)\n        clearance = float(nearest[\"clearance\"])\n        self.minimum_clearance = min(self.minimum_clearance, clearance)\n        nearest_dynamic = self._nearest_dynamic_obstacle(False)\n        if bool(nearest_dynamic[\"present\"]):\n            dynamic_clearance = float(nearest_dynamic[\"clearance\"])\n            self.minimum_dynamic_clearance = min(self.minimum_dynamic_clearance, dynamic_clearance)\n            self.minimum_dcpa = min(self.minimum_dcpa, float(nearest_dynamic[\"dcpa\"]))\n        else:\n            dynamic_clearance = float(\"inf\")\n        cross_track = self._cross_track_error()\n        self.max_cross_track_error = max(self.max_cross_track_error, abs(cross_track))\n        self.path_length += float(np.linalg.norm(self.state[:2] - previous))\n\n        safe_distance = max(self.reward_config[\"safe_distance\"], 1.0)\n        predicted_dynamic_conflict = bool(\n            nearest_dynamic[\"present\"]\n            and float(nearest_dynamic[\"tcpa\"]) < float(self.environment_config[\"tcpa_horizon_seconds\"])\n            and float(nearest_dynamic[\"dcpa\"]) < self.dynamic_safe_distance\n        )\n        near_miss = (\n            0.0 < clearance < safe_distance\n            or 0.0 < dynamic_clearance < self.dynamic_safe_distance\n            or predicted_dynamic_conflict\n        )\n        if near_miss and not self.near_miss_active:\n            self.near_miss_count += 1\n        self.near_miss_active = near_miss\n\n        reached_waypoint = distance <= float(self.task.get(\"arrival_radius\", 13.0))\n        goal_reached = False\n        if reached_waypoint:\n            if self.waypoint_index >= len(self.route) - 1:\n                goal_reached = True\n            else:\n                self.waypoint_index += 1\n        terminated = goal_reached or (\n            collision and bool(self.environment_config[\"terminate_on_collision\"])\n        )\n        truncated = self.steps >= self.max_steps and not terminated\n\n        heading_error = abs(self._heading_error())\n        speed_ratio = abs(self.state[3]) / max(self.performance.max_forward_speed, 0.1)\n        clearance_ratio = float(np.clip(clearance / safe_distance, 0.0, 1.0))\n        turn_demand = min(1.0, heading_error / math.radians(70.0))\n        desired_speed_ratio = self.safe_speed_ratio * (0.55 + 0.45 * clearance_ratio) * (\n            1.0 - 0.35 * turn_demand\n        )\n\n        reward = (previous_distance - distance) * self.reward_config[\"progress\"]\n        reward += math.cos(heading_error) * self.reward_config[\"heading\"] * 0.018\n        reward += max(0.0, 1.0 - abs(speed_ratio - desired_speed_ratio)) * self.reward_config[\"speed\"] * 0.012\n        if self.state[3] > 0.0:\n            reward += self.forward_motion_bonus * min(\n                self.state[3] / max(self.performance.max_forward_speed, 0.1), 1.0\n            )\n        reward -= abs(self.state[5]) * self.reward_config[\"rudder\"] * 0.006\n        reward -= min(abs(cross_track) / safe_distance, 3.0) * self.reward_config[\"cross_track\"]\n        reward -= action_slew * self.reward_config[\"action_slew\"]\n        reward -= self.reward_config[\"step\"]\n        if self.state[3] < -0.05:\n            reward -= self.reverse_penalty * min(abs(self.state[3]) / max(self.performance.max_reverse_speed, 0.1), 1.0)\n        if speed_ratio > desired_speed_ratio:\n            reward -= (speed_ratio - desired_speed_ratio) * self.overspeed_penalty\n        if clearance < safe_distance:\n            danger = (safe_distance - clearance) / safe_distance\n            reward -= danger * danger * self.reward_config[\"proximity\"]\n        if dynamic_clearance < self.dynamic_safe_distance:\n            danger = (self.dynamic_safe_distance - dynamic_clearance) / max(self.dynamic_safe_distance, 1.0)\n            reward -= danger * danger * self.dynamic_proximity_penalty\n        if predicted_dynamic_conflict:\n            horizon = float(self.environment_config[\"tcpa_horizon_seconds\"])\n            dcpa_factor = (self.dynamic_safe_distance - float(nearest_dynamic[\"dcpa\"])) / max(\n                self.dynamic_safe_distance, 1.0\n            )\n            urgency = 1.0 - float(nearest_dynamic[\"tcpa\"]) / max(horizon, 1.0)\n            reward -= max(0.0, dcpa_factor) * max(0.0, urgency) * self.reward_config[\"predicted_collision\"]\n        boundary_clearance = self._boundary_clearance()\n        if boundary_clearance < self.boundary_warning_distance:\n            boundary_danger = (\n                self.boundary_warning_distance - boundary_clearance\n            ) / max(self.boundary_warning_distance, 1.0)\n            reward -= boundary_danger * boundary_danger * self.boundary_proximity_penalty\n        if collision_event:\n            if boundary:\n                reward -= self.reward_config[\"boundary\"]\n            elif collision_obstacle and collision_obstacle.kind in (\"cliff\", \"terrain\", \"shoreline\"):\n                reward -= self.reward_config[\"terrain_collision\"]\n            else:\n                reward -= self.reward_config[\"collision\"]\n        if reached_waypoint:\n            reward += self.destination_bonus if goal_reached else self.checkpoint_bonus\n        if truncated:\n            remaining_ratio = (len(self.route) - self.waypoint_index) / max(len(self.route), 1)\n            reward -= self.incomplete_mission_penalty * (0.5 + 0.5 * remaining_ratio)\n\n        self.total_reward += reward\n        self.previous_action[:] = policy_action\n        self._record_sample(command, reward, collision)\n        self.trajectory[-1][\"policy_throttle_action\"] = round(float(policy_action[0]), 5)\n        self.trajectory[-1][\"policy_rudder_action\"] = round(float(policy_action[1]), 5)\n        info = self._info(terminated, truncated, goal_reached)\n        if terminated or truncated:\n            info[\"episode\"] = {\"r\": round(self.total_reward, 6), \"l\": self.steps}\n        return self._observation(), float(reward), terminated, truncated, info"
+      },
+      "outputs": {
+        "fields": [
+          "throttle",
+          "rudder",
+          "trajectory",
+          "success",
+          "collisions",
+          "reward",
+          "checkpoint",
+          "pickup",
+          "operational_compliance"
+        ],
+        "models": [
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/cargo_circuit_rl_v1/cargo_policy_checkpoint.json",
+              "sha256": "89b3c5266125dc7397862b60c74a2e1a522bf51830a8f4a3d6ea8263bacee87d"
+            },
+            "artifact": {
+              "path": "reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip",
+              "sha256": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 300000,
+            "observation_size": 36,
+            "observation_contract": "cargo_circuit_continuous_v1_36d",
+            "action_contract": {
+              "type": "continuous_box",
+              "shape": 2,
+              "order": [
+                "throttle",
+                "rudder"
+              ],
+              "range": [
+                -1.0,
+                1.0
+              ],
+              "physical_throttle_mapping": [
+                -0.35,
+                1.0
+              ],
+              "physical_rudder_mapping": [
+                -1.0,
+                1.0
+              ]
+            },
+            "seed": 260815,
+            "dataset_sha256": "5fb5900203e4ad3be2d6e2cc38246a90096a783874a70e0417d6387b7d57e885",
+            "initialization": {
+              "checkpoint": {
+                "path": "output/cargo_rl_final2/checkpoint.json",
+                "model_path": "output/cargo_rl_final2/cargo_sac_policy.zip",
+                "source_experiment_sha256": "2e6b8b27bbef45856b740780799e96ccbf5155a9a0b16f40e882677eb7ecaafa",
+                "source_timesteps": 300000,
+                "weights_only": true
+              },
+              "demonstrations": {
+                "enabled": true,
+                "source": "manual_feasibility_controller_on_train_split_only",
+                "episodes": 3,
+                "successful_episodes": 3,
+                "samples": 6470,
+                "actor_behavior_cloning": {
+                  "epochs": 3,
+                  "samples": 6470,
+                  "final_loss": 0.44493481516838074
+                },
+                "replay_buffer_prefill_samples": 6470,
+                "bypass_points_available_to_released_policy": false
+              }
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.995,
+              "batch_size": 256,
+              "buffer_size": 350000,
+              "warmup_steps": 0,
+              "rollout_horizon": 1024,
+              "minibatch_size": 128
+            }
+          }
+        ]
+      },
+      "sources": [
+        {
+          "path": "reports/artifacts/cargo_circuit_rl_v1/cargo_policy_checkpoint.json",
+          "sha256": "89b3c5266125dc7397862b60c74a2e1a522bf51830a8f4a3d6ea8263bacee87d"
+        },
+        {
+          "path": "tools/cargo_rl/environment.py",
+          "sha256": "a17854820da539dd919f684cdb2da03d49fc8d21197b6eee17c5d07153b43629"
+        }
+      ],
+      "status": "历史模型已训练，回放/准入以原生验收状态为准",
+      "training": {
+        "checkpoint_count": 1,
+        "models": [
+          {
+            "checkpoint": {
+              "path": "reports/artifacts/cargo_circuit_rl_v1/cargo_policy_checkpoint.json",
+              "sha256": "89b3c5266125dc7397862b60c74a2e1a522bf51830a8f4a3d6ea8263bacee87d"
+            },
+            "artifact": {
+              "path": "reports/artifacts/cargo_circuit_rl_v1/cargo_sac_policy.zip",
+              "sha256": "a6ccb46e1d89c3bea61e8ab8cea7b26fa2ef52813a7b77a4f77d4954e08553f5"
+            },
+            "algorithm": "sac",
+            "actual_timesteps": 300000,
+            "observation_size": 36,
+            "observation_contract": "cargo_circuit_continuous_v1_36d",
+            "action_contract": {
+              "type": "continuous_box",
+              "shape": 2,
+              "order": [
+                "throttle",
+                "rudder"
+              ],
+              "range": [
+                -1.0,
+                1.0
+              ],
+              "physical_throttle_mapping": [
+                -0.35,
+                1.0
+              ],
+              "physical_rudder_mapping": [
+                -1.0,
+                1.0
+              ]
+            },
+            "seed": 260815,
+            "dataset_sha256": "5fb5900203e4ad3be2d6e2cc38246a90096a783874a70e0417d6387b7d57e885",
+            "initialization": {
+              "checkpoint": {
+                "path": "output/cargo_rl_final2/checkpoint.json",
+                "model_path": "output/cargo_rl_final2/cargo_sac_policy.zip",
+                "source_experiment_sha256": "2e6b8b27bbef45856b740780799e96ccbf5155a9a0b16f40e882677eb7ecaafa",
+                "source_timesteps": 300000,
+                "weights_only": true
+              },
+              "demonstrations": {
+                "enabled": true,
+                "source": "manual_feasibility_controller_on_train_split_only",
+                "episodes": 3,
+                "successful_episodes": 3,
+                "samples": 6470,
+                "actor_behavior_cloning": {
+                  "epochs": 3,
+                  "samples": 6470,
+                  "final_loss": 0.44493481516838074
+                },
+                "replay_buffer_prefill_samples": 6470,
+                "bypass_points_available_to_released_policy": false
+              }
+            },
+            "hyperparameters": {
+              "learning_rate": 0.0003,
+              "gamma": 0.995,
+              "batch_size": 256,
+              "buffer_size": 350000,
+              "warmup_steps": 0,
+              "rollout_horizon": 1024,
+              "minibatch_size": 128
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

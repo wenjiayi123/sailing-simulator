@@ -1,0 +1,161 @@
+{
+	"checks": [
+		{
+			"detail": "场景强化学习接管：SAC-MISSION-open_water-open_water_requalified_20261020",
+			"name": "trained_network_start_open_water",
+			"passed": true
+		},
+		{
+			"detail": "场景强化学习接管：SAC-MISSION-harbor-harbor_requalified_20261020",
+			"name": "trained_network_start_harbor",
+			"passed": true
+		},
+		{
+			"detail": "场景强化学习接管：SAC-MISSION-auto_berthing-auto_berthing_requalified_20261020",
+			"name": "trained_network_start_auto_berthing",
+			"passed": true
+		},
+		{
+			"detail": "场景强化学习接管：SAC-MISSION-auto_unberthing-auto_unberthing_requalified_20261020",
+			"name": "trained_network_start_auto_unberthing",
+			"passed": true
+		},
+		{
+			"detail": "场景强化学习接管：SAC-MISSION-narrow_channel_head_on-narrow_channel_head_on_requalified_20261020",
+			"name": "trained_network_start_narrow_channel_head_on",
+			"passed": true
+		},
+		{
+			"detail": "场景强化学习接管：SAC-MISSION-crossing_starboard-crossing_starboard_requalified_20261020",
+			"name": "trained_network_start_crossing_starboard",
+			"passed": true
+		},
+		{
+			"detail": "场景强化学习接管：SAC-MISSION-narrow_channel_overtaking-narrow_channel_overtaking_requalified_20261020_v2",
+			"name": "trained_network_start_narrow_channel_overtaking",
+			"passed": true
+		},
+		{
+			"detail": null,
+			"name": "unconfirmed_direct_start_blocked",
+			"passed": true
+		},
+		{
+			"detail": null,
+			"name": "agreement_is_prerequisite_not_training_failure",
+			"passed": true
+		},
+		{
+			"detail": null,
+			"name": "manual_confirmation_clears_stale_error",
+			"passed": true
+		},
+		{
+			"detail": null,
+			"name": "revocation_cancels_pending_start",
+			"passed": true
+		},
+		{
+			"detail": null,
+			"name": "revocation_stops_active_policy",
+			"passed": true
+		},
+		{
+			"detail": null,
+			"name": "one_click_confirms_and_starts",
+			"passed": true
+		},
+		{
+			"detail": "强化学习任务完成",
+			"name": "overtaking_mission_completed",
+			"passed": true
+		}
+	],
+	"elapsed_seconds": 58.9999999999979,
+	"inference_count": 118,
+	"mission": {
+		"behavioral_assessment": {
+			"criteria": {
+				"agreement_confirmed": true,
+				"overtaking_vessel_passed_ahead": true
+			},
+			"first_substantial_action_distance_m": 35.4172325134277,
+			"first_substantial_action_s": 10.8500000000001,
+			"first_substantial_action_side": "PORT",
+			"first_substantial_action_tcpa_s": 15.0481670567926,
+			"initial_heading_degrees": 0.0,
+			"maximum_heading_change_degrees": 37.2216042405101,
+			"passed": true,
+			"status": "PASS",
+			"test_only_waypoint_traversal_is_not_behavioral_evidence": true
+		},
+		"claim_boundary": "COLREG training scenario; simulated agreement flag is not real VHF authorization.",
+		"colreg_rule_ids": [
+			"Rule 9",
+			"Rule 13"
+		],
+		"elapsed_seconds": 59.12,
+		"evaluation": {
+			"minimum_passing_distance_m": 20.0,
+			"overtaking_agreement_required": true,
+			"tcpa_horizon_seconds": 180.0
+		},
+		"existing_policy_modified": false,
+		"gate": {
+			"collision_free": true,
+			"expected_passing": "",
+			"minimum_passing_distance_m": 28.6763286590576,
+			"overtaking_agreement_authorizer": "navigation_planning_panel",
+			"overtaking_agreement_confirmed": true,
+			"overtaking_agreement_required": true,
+			"passed": true,
+			"required_passing_distance_m": 20.0,
+			"route_complete": true,
+			"status": "PASS"
+		},
+		"minimum_observed_separation_m": 28.6763286590576,
+		"nearest_dcpa_m": 672.234680175781,
+		"nearest_distance_m": 93.4142074584961,
+		"nearest_tcpa_s": 180.0,
+		"overtaking_agreement_authorizer": "navigation_planning_panel",
+		"overtaking_agreement_confirmed": true,
+		"own_ship": {
+			"collision_warning": "CLEAR",
+			"heading_degrees": 15.9063989636723,
+			"position": {
+				"x": 17.8711490631104,
+				"z": 169.061492919922
+			},
+			"speed_knots": 12.4671471899643,
+			"sway_mps": -0.258269876241684
+		},
+		"own_ship_commanded_by_controller": false,
+		"production_authority": false,
+		"scenario_key": "narrow_channel_overtaking",
+		"scenario_name": "狭水道追越",
+		"schema_version": "ship_advanced_mission_runtime_v1",
+		"task_type": "overtaking",
+		"traffic": [
+			{
+				"collision_layer": 1,
+				"dcpa_m": 672.234680175781,
+				"distance_m": 93.4142074584961,
+				"external_agent_control_enabled": true,
+				"id": "SLOW-AHEAD-01",
+				"own_along_traffic_track_m": 93.3601226806641,
+				"position": {
+					"x": 18.4519157409668,
+					"z": 75.6490859985352
+				},
+				"role": "overtaken_vessel",
+				"speed_knots": 6.49957358319283,
+				"tcpa_s": 180.0
+			}
+		],
+		"traffic_count": 1,
+		"traffic_uses_deterministic_simulator_commands": true
+	},
+	"passed": true,
+	"production_authority": false,
+	"ui_source_sha256": "873b236226d5352eb2b10717840b62e644b250aeeec7b63d0733c23df4f578ba"
+}

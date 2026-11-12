@@ -46,6 +46,11 @@ func start_current() -> bool:
 	if not bool(entry.get("live_switch_admitted", false)):
 		status = String(entry.get("status_zh", "本场景尚无通过完整验证的强化学习策略"))
 		return false
+	var advanced := get_tree().get_first_node_in_group(&"ship_advanced_mission_controller")
+	var snapshot := advanced.call("get_advanced_mission_snapshot") as Dictionary if advanced != null else {}
+	if String(snapshot.get("task_type", "")) == "overtaking" and not bool(snapshot.get("overtaking_agreement_confirmed", false)):
+		status = "请先确认模拟追越协议"
+		return false
 	auto_switch = true
 	return load_actor(String(entry.get("actor_path", "")))
 

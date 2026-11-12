@@ -5,10 +5,10 @@
 			"detail": {
 				"deadline_met": true,
 				"deadline_ms": 10.0,
-				"maximum_ms": 0.076132,
-				"mean_ms": 0.011729749,
-				"p95_ms": 0.01290555,
-				"p99_ms": 0.02042732,
+				"maximum_ms": 0.020204,
+				"mean_ms": 0.011521621,
+				"p95_ms": 0.0122412,
+				"p99_ms": 0.01471481,
 				"sample_count": 1000.0
 			},
 			"passed": true
@@ -277,7 +277,7 @@
 	},
 	"errors": [],
 	"existing_model_modified": false,
-	"generated_at": "2026-08-29T14:54:24",
+	"generated_at": "2026-09-12T13:23:23",
 	"passed": true,
 	"passed_checks": 21,
 	"physical_hil_verified": false,

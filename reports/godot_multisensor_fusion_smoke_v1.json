@@ -18,17 +18,17 @@
 			"passed": true
 		},
 		"audit_receipts_present": {
-			"detail": 144,
+			"detail": 146,
 			"passed": true
 		},
 		"baseline_gnss_ins_fusion": {
 			"detail": {
-				"gnss_ins_disagreement_meters": 1.76679396629333,
+				"gnss_ins_disagreement_meters": 1.76650655269623,
 				"heading_degrees": 180.0,
 				"integrity_alerts": [],
 				"mode": "GNSS_INS_FUSED",
 				"navigation_valid": true,
-				"position_xz": "(1.741848, -0.152104)",
+				"position_xz": "(1.742964, -0.151279)",
 				"sources": [
 					"GNSS",
 					"INS"
@@ -55,8 +55,8 @@
 				},
 				"production_authority": false,
 				"schema_version": "ship_sensor_receipt_v1",
-				"sequence": 135,
-				"simulation_time_seconds": 17.859815,
+				"sequence": 137,
+				"simulation_time_seconds": 17.882049,
 				"status": "REJECTED",
 				"subject": "RADAR"
 			},
@@ -64,12 +64,12 @@
 		},
 		"fault_clear_restores_navigation": {
 			"detail": {
-				"gnss_ins_disagreement_meters": 1.7334486246109,
+				"gnss_ins_disagreement_meters": 1.73339581489563,
 				"heading_degrees": 180.0,
 				"integrity_alerts": [],
 				"mode": "GNSS_INS_FUSED",
 				"navigation_valid": true,
-				"position_xz": "(0.091829, -1.260941)",
+				"position_xz": "(0.092945, -1.260116)",
 				"sources": [
 					"GNSS",
 					"INS"
@@ -199,8 +199,8 @@
 				},
 				"production_authority": false,
 				"schema_version": "ship_sensor_receipt_v1",
-				"sequence": 136,
-				"simulation_time_seconds": 17.859815,
+				"sequence": 138,
+				"simulation_time_seconds": 17.882049,
 				"status": "REJECTED",
 				"subject": "unknown_fault"
 			},
@@ -209,7 +209,7 @@
 	},
 	"errors": [],
 	"existing_policy_changed": false,
-	"generated_at": "2026-08-29T14:53:35",
+	"generated_at": "2026-09-12T13:22:19",
 	"motion_model_changed": false,
 	"passed": true,
 	"passed_checks": 21,

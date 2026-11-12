@@ -26,6 +26,15 @@ func run() -> void:
 	# Vessel, collision, weather, route and mission assessment still run natively.
 	for panel in main.find_children("*", "CanvasLayer", true, false):
 		panel.process_mode = Node.PROCESS_MODE_DISABLED
+	# Optional fast physical acceptance. These bridge-training services do not
+	# command the learned vessel; sensor/UI integration is checked separately.
+	var suspended_services: Array[String] = []
+	if args.has("--mission-rl-focused"):
+		for name in ["ShipNavigationEquipmentSuite", "ShipMultisensorFusionSuite", "ShipExecutionControlSuite", "ShipInstructorExerciseController", "ShipPortOperationsTrainingController", "ShipBridgeTeamCollaborationController", "ShipGmdssCommunicationsSuite", "ShipFullMissionBridgeSuite", "ShipBridgeCybersecuritySuite", "ShipPortProductionGateway"]:
+			var service := main.get_node_or_null(NodePath(name))
+			if service != null:
+				service.process_mode = Node.PROCESS_MODE_DISABLED
+				suspended_services.append(name)
 	var scenarios := main.get_node("ShipScenarioController")
 	var controller := main.get_node("MissionRLController")
 	var mission := main.get_node("ShipAdvancedMissionController")
@@ -99,6 +108,7 @@ func run() -> void:
 		"samples":samples,"trajectory_teleporting":false,"action_source":"SAC_neural_network_direct","controller_fallback_steps":0,
 		"production_authority":false}
 	var runtime_sources: Dictionary = {}
+	report["suspended_non_physical_services"] = suspended_services
 	for path in ["scripts/rl/mission_rl_controller.gd", "scripts/rl/ship_fleet_manager.gd", "scripts/training/ship_advanced_mission_controller.gd", "scripts/physics/catamaran_three_dof_dynamics.gd", "scripts/training/ship_advanced_mission_realism_controller.gd", "player.gd"]:
 		runtime_sources[path] = FileAccess.get_sha256("res://" + path)
 	report["native_runtime_sources"] = runtime_sources

@@ -1,6 +1,6 @@
 {
 	"boundary": "Runtime inventory and signal-binding audit. Disabled controls are recorded explicitly; action outcomes are covered by the interaction smoke.",
-	"button_count": 296,
+	"button_count": 297,
 	"buttons": [
 		{
 			"class": "Button",
@@ -892,6 +892,16 @@
 			"signal": "pressed",
 			"text": "应用任务",
 			"tooltip": "",
+			"visible": true
+		},
+		{
+			"class": "Button",
+			"disabled": false,
+			"handler_count": 1,
+			"panel": "ShipNavigationPlanningPanel",
+			"signal": "pressed",
+			"text": "启用场景强化学习",
+			"tooltip": "策略已通过验收。点击启用后，当前三维画面将显示 SAC 实时自主航行。",
 			"visible": true
 		},
 		{
@@ -3625,7 +3635,7 @@
 		}
 	],
 	"errors": [],
-	"generated_at": "2026-08-29T14:53:18",
+	"generated_at": "2026-09-12T13:18:49",
 	"passed": true,
 	"schema_version": "godot_button_inventory_v1"
 }

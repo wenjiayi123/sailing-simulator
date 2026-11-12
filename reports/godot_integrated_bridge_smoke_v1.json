@@ -27,17 +27,17 @@
 				"route": {
 					"active": true,
 					"arrival_radius": 16.0,
-					"current_distance": 72.0018615722656,
+					"current_distance": 72.0002670288086,
 					"current_index": 0,
 					"current_name": "WP-01",
 					"current_position": "(0.0, -140.05, -72.0)",
-					"deviation_distance": 0.071357229990096,
+					"deviation_distance": 0.0693453862552239,
 					"deviation_side": "ON TRACK",
 					"next_index": 1,
 					"next_name": "WP-02",
 					"next_position": "(72.0, -140.05, -132.0)",
-					"signed_deviation": 0.071357229990096,
-					"target_bearing_degrees": 180.343458433299
+					"signed_deviation": 0.0693453862552239,
+					"target_bearing_degrees": 180.341858701617
 				},
 				"rudder": 0.0,
 				"sensor_validity": {
@@ -46,7 +46,7 @@
 					"rudder_feedback": true,
 					"speed_log": true
 				},
-				"speed_knots": 0.0926729772998393,
+				"speed_knots": 0.0913911221294403,
 				"throttle": 0.0
 			},
 			"passed": true
@@ -133,7 +133,7 @@
 		}
 	},
 	"errors": [],
-	"generated_at": "2026-08-29T14:53:35",
+	"generated_at": "2026-09-12T13:22:08",
 	"passed": true,
 	"passed_checks": 15,
 	"schema_version": "godot_integrated_bridge_smoke_v1",

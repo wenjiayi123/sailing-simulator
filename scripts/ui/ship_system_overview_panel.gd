@@ -178,7 +178,7 @@ func _build_interface() -> void:
 	matrix_column.add_child(_small_note("原十策略与失败记录保留；Safety V3 仅作为并列组合策略。每个产物保留 checkpoint、SHA-256、独立验证与测试轨迹。"))
 	matrix_column.add_child(_action_button("打开训练结果复盘", COLOR_GREEN, _open_review))
 
-	var xiaoyi_column := _column("小懿训练顾问", "XIAOYI SYSTEM ADVISOR", COLOR_AMBER)
+	var xiaoyi_column := _column("舷鸥训练顾问", "GullMate SYSTEM ADVISOR", COLOR_AMBER)
 	xiaoyi_column.custom_minimum_size.x = 390.0
 	xiaoyi_column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	columns.add_child(xiaoyi_column)
@@ -191,12 +191,12 @@ func _build_interface() -> void:
 	portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	portrait_row.add_child(portrait)
-	var identity := _rich_label("[font_size=19][color=#73f5ff]小懿 / XIAOYI[/color][/font_size]\n\n[color=#86ff9b]● 系统在线[/color]\n训练顾问 · 系统联动\n港口适配 · 安全审查", 184.0)
+	var identity := _rich_label("[font_size=19][color=#73f5ff]舷鸥 / GullMate[/color][/font_size]\n\n[color=#86ff9b]● 系统在线[/color]\n训练顾问 · 系统联动\n港口适配 · 安全审查", 184.0)
 	identity.custom_minimum_size.x = 185.0
 	portrait_row.add_child(identity)
 	_advisor_label = _rich_label("", 220.0)
 	xiaoyi_column.add_child(_advisor_label)
-	xiaoyi_column.add_child(_action_button("小懿全系统助手", COLOR_AMBER, _open_instructor))
+	xiaoyi_column.add_child(_action_button("舷鸥全系统助手", COLOR_AMBER, _open_instructor))
 	xiaoyi_column.add_child(_action_button("训练顾问：查看算法选择依据", COLOR_CYAN, _advisor_review))
 	xiaoyi_column.add_child(_action_button("运行环境与数据边界审查", COLOR_GREEN, _boundary_review))
 
@@ -390,7 +390,7 @@ func _refresh_evidence() -> void:
 		+ "v2 覆盖 PPO / SAC / TD3 / DQN / A2C / DDPG / TRPO，与 LOS-PID / LQR / MPC；不用单一“最好分数”代替安全门槛。\n\n"
 		+ "[b]v2 状态[/b]\n%s\n\n" % v2_state
 		+ "[b]Safety V3 状态[/b]\n%s\n\n" % v3_state
-		+ "[color=#ffbd40]小懿不会把历史 AIS 回放描述成实时调度或实船控制。[/color]"
+		+ "[color=#ffbd40]舷鸥不会把历史 AIS 回放描述成实时调度或实船控制。[/color]"
 	)
 
 
@@ -613,7 +613,7 @@ func _open_instructor() -> void:
 
 
 func _advisor_review() -> void:
-	_status_label.text = "小懿建议：先比较 held-out test 的安全完成、碰撞/搁浅/COLREG/航道违例，再比较效率。"
+	_status_label.text = "舷鸥建议：先比较 held-out test 的安全完成、碰撞/搁浅/COLREG/航道违例，再比较效率。"
 
 
 func _boundary_review() -> void:

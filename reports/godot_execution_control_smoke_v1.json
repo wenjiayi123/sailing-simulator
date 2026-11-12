@@ -54,7 +54,7 @@
 				"production_authority": false,
 				"schema_version": "ship_execution_control_receipt_v1",
 				"sequence": 1,
-				"simulation_time_seconds": 1.75,
+				"simulation_time_seconds": 1.51666666666667,
 				"status": "REJECTED",
 				"subject": "RL"
 			},
@@ -95,7 +95,7 @@
 				"production_authority": false,
 				"schema_version": "ship_execution_control_receipt_v1",
 				"sequence": 16,
-				"simulation_time_seconds": 2.45,
+				"simulation_time_seconds": 2.21666666666667,
 				"status": "REJECTED",
 				"subject": "SMOKE_OPERATOR"
 			},
@@ -110,7 +110,7 @@
 				"production_authority": false,
 				"schema_version": "ship_execution_control_receipt_v1",
 				"sequence": 17,
-				"simulation_time_seconds": 2.45,
+				"simulation_time_seconds": 2.21666666666667,
 				"status": "REJECTED",
 				"subject": "EMERGENCY_STOP"
 			},
@@ -153,7 +153,7 @@
 				"production_authority": false,
 				"schema_version": "ship_execution_control_receipt_v1",
 				"sequence": 7,
-				"simulation_time_seconds": 2.25,
+				"simulation_time_seconds": 2.01666666666667,
 				"status": "ACCEPTED",
 				"subject": "RL"
 			},
@@ -231,7 +231,7 @@
 				"production_authority": false,
 				"schema_version": "ship_execution_control_receipt_v1",
 				"sequence": 3,
-				"simulation_time_seconds": 1.75,
+				"simulation_time_seconds": 1.51666666666667,
 				"status": "REJECTED",
 				"subject": "REMOTE_CONTROL_CENTER"
 			},
@@ -247,7 +247,7 @@
 				"production_authority": false,
 				"schema_version": "ship_execution_control_receipt_v1",
 				"sequence": 6,
-				"simulation_time_seconds": 1.75,
+				"simulation_time_seconds": 1.51666666666667,
 				"status": "REJECTED",
 				"subject": "RL"
 			},
@@ -262,7 +262,7 @@
 				"production_authority": false,
 				"schema_version": "ship_execution_control_receipt_v1",
 				"sequence": 4,
-				"simulation_time_seconds": 1.75,
+				"simulation_time_seconds": 1.51666666666667,
 				"status": "ACCEPTED",
 				"subject": "RL"
 			},
@@ -277,7 +277,7 @@
 				"production_authority": false,
 				"schema_version": "ship_execution_control_receipt_v1",
 				"sequence": 2,
-				"simulation_time_seconds": 1.75,
+				"simulation_time_seconds": 1.51666666666667,
 				"status": "ACCEPTED_SIMULATION_ONLY",
 				"subject": "SMOKE_OPERATOR"
 			},
@@ -292,7 +292,7 @@
 				"production_authority": false,
 				"schema_version": "ship_execution_control_receipt_v1",
 				"sequence": 19,
-				"simulation_time_seconds": 2.45,
+				"simulation_time_seconds": 2.21666666666667,
 				"status": "REJECTED",
 				"subject": "unknown_fault"
 			},
@@ -315,7 +315,7 @@
 	},
 	"errors": [],
 	"existing_policy_changed": false,
-	"generated_at": "2026-08-29T14:54:04",
+	"generated_at": "2026-09-12T13:22:29",
 	"motion_model_changed": false,
 	"passed": true,
 	"passed_checks": 28,

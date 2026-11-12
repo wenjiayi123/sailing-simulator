@@ -450,10 +450,10 @@ func _run() -> void:
 		"button_xiaoyi_assistant",
 		await _press_and_check(
 			center_root,
-			"小懿全系统助手",
+			"舷鸥全系统助手",
 			[panels["ShipInstructorConsolePanel"]],
 		),
-		"system overview -> Xiaoyi assistant",
+		"system overview -> GullMate assistant",
 	)
 	var status_label := center.get("_status_label") as Label
 	var advisor_button := _find_button(
@@ -463,7 +463,7 @@ func _run() -> void:
 	advisor_button.pressed.emit()
 	_record(
 		"button_xiaoyi_advisor",
-		status_label.text.begins_with("小懿建议"),
+		status_label.text.begins_with("舷鸥建议"),
 		status_label.text,
 	)
 	var boundary_button := _find_button(

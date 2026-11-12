@@ -11,13 +11,13 @@
 					"debrief_export_status": "EXPORTED",
 					"debrief_score": 100.0,
 					"debrief_status": "PASS",
-					"depth_froude": 0.0291627152237211,
+					"depth_froude": 0.00416266023889117,
 					"fault_factor_during_test": 0.5,
 					"near_bank_proximity": null,
 					"passed": true,
 					"predeparture_status": "PASS",
 					"scenario_key": "auto_berthing",
-					"squat_m": 0.000159172130534445,
+					"squat_m": 0.00000324034357728319,
 					"static_ukc_m": 6.15
 				},
 				{
@@ -27,13 +27,13 @@
 					"debrief_export_status": "EXPORTED",
 					"debrief_score": 100.0,
 					"debrief_status": "PASS",
-					"depth_froude": 0.0301139923299903,
+					"depth_froude": 0.00108374796993163,
 					"fault_factor_during_test": 0.5,
 					"near_bank_proximity": null,
 					"passed": true,
 					"predeparture_status": "PASS",
 					"scenario_key": "auto_unberthing",
-					"squat_m": 0.000179719781080934,
+					"squat_m": 0.000000232553186277489,
 					"static_ukc_m": 5.85
 				},
 				{
@@ -43,13 +43,13 @@
 					"debrief_export_status": "EXPORTED",
 					"debrief_score": 100.0,
 					"debrief_status": "PASS",
-					"depth_froude": 0.0677539632225743,
+					"depth_froude": 0.00650563016326265,
 					"fault_factor_during_test": 0.5,
 					"near_bank_proximity": 0.916666730244954,
 					"passed": true,
 					"predeparture_status": "PASS",
 					"scenario_key": "narrow_channel_head_on",
-					"squat_m": 0.00106531894462555,
+					"squat_m": 0.00000977707850016798,
 					"static_ukc_m": 4.05
 				},
 				{
@@ -59,13 +59,13 @@
 					"debrief_export_status": "EXPORTED",
 					"debrief_score": 100.0,
 					"debrief_status": "PASS",
-					"depth_froude": 0.0196543733975972,
+					"depth_froude": 0.00662143325061184,
 					"fault_factor_during_test": 0.5,
 					"near_bank_proximity": null,
 					"passed": true,
 					"predeparture_status": "PASS",
 					"scenario_key": "crossing_starboard",
-					"squat_m": 0.0000467596846359373,
+					"squat_m": 0.00000530528137482755,
 					"static_ukc_m": 19.75
 				},
 				{
@@ -75,13 +75,13 @@
 					"debrief_export_status": "EXPORTED",
 					"debrief_score": 100.0,
 					"debrief_status": "PASS",
-					"depth_froude": 0.0827163986217757,
+					"depth_froude": 0.00210695544578473,
 					"fault_factor_during_test": 0.5,
 					"near_bank_proximity": 0.920000061035156,
 					"passed": true,
 					"predeparture_status": "PASS",
 					"scenario_key": "narrow_channel_overtaking",
-					"squat_m": 0.00151561038238877,
+					"squat_m": 0.000000976641810682968,
 					"static_ukc_m": 4.65
 				}
 			],
@@ -172,7 +172,7 @@
 				"scenario_key": "open_water",
 				"schema_version": "ship_advanced_mission_realism_receipt_v1",
 				"status": "REJECTED",
-				"utc": "2026-08-29T15:28:21"
+				"utc": "2026-09-12T13:24:56"
 			},
 			"passed": true
 		},
@@ -221,13 +221,13 @@
 				"debrief_export_status": "EXPORTED",
 				"debrief_score": 100.0,
 				"debrief_status": "PASS",
-				"depth_froude": 0.0291627152237211,
+				"depth_froude": 0.00416266023889117,
 				"fault_factor_during_test": 0.5,
 				"near_bank_proximity": null,
 				"passed": true,
 				"predeparture_status": "PASS",
 				"scenario_key": "auto_berthing",
-				"squat_m": 0.000159172130534445,
+				"squat_m": 0.00000324034357728319,
 				"static_ukc_m": 6.15
 			},
 			"passed": true
@@ -240,13 +240,13 @@
 				"debrief_export_status": "EXPORTED",
 				"debrief_score": 100.0,
 				"debrief_status": "PASS",
-				"depth_froude": 0.0301139923299903,
+				"depth_froude": 0.00108374796993163,
 				"fault_factor_during_test": 0.5,
 				"near_bank_proximity": null,
 				"passed": true,
 				"predeparture_status": "PASS",
 				"scenario_key": "auto_unberthing",
-				"squat_m": 0.000179719781080934,
+				"squat_m": 0.000000232553186277489,
 				"static_ukc_m": 5.85
 			},
 			"passed": true
@@ -259,13 +259,13 @@
 				"debrief_export_status": "EXPORTED",
 				"debrief_score": 100.0,
 				"debrief_status": "PASS",
-				"depth_froude": 0.0196543733975972,
+				"depth_froude": 0.00662143325061184,
 				"fault_factor_during_test": 0.5,
 				"near_bank_proximity": null,
 				"passed": true,
 				"predeparture_status": "PASS",
 				"scenario_key": "crossing_starboard",
-				"squat_m": 0.0000467596846359373,
+				"squat_m": 0.00000530528137482755,
 				"static_ukc_m": 19.75
 			},
 			"passed": true
@@ -278,13 +278,13 @@
 				"debrief_export_status": "EXPORTED",
 				"debrief_score": 100.0,
 				"debrief_status": "PASS",
-				"depth_froude": 0.0677539632225743,
+				"depth_froude": 0.00650563016326265,
 				"fault_factor_during_test": 0.5,
 				"near_bank_proximity": 0.916666730244954,
 				"passed": true,
 				"predeparture_status": "PASS",
 				"scenario_key": "narrow_channel_head_on",
-				"squat_m": 0.00106531894462555,
+				"squat_m": 0.00000977707850016798,
 				"static_ukc_m": 4.05
 			},
 			"passed": true
@@ -297,20 +297,20 @@
 				"debrief_export_status": "EXPORTED",
 				"debrief_score": 100.0,
 				"debrief_status": "PASS",
-				"depth_froude": 0.0827163986217757,
+				"depth_froude": 0.00210695544578473,
 				"fault_factor_during_test": 0.5,
 				"near_bank_proximity": 0.920000061035156,
 				"passed": true,
 				"predeparture_status": "PASS",
 				"scenario_key": "narrow_channel_overtaking",
-				"squat_m": 0.00151561038238877,
+				"squat_m": 0.000000976641810682968,
 				"static_ukc_m": 4.65
 			},
 			"passed": true
 		}
 	},
 	"errors": [],
-	"generated_at": "2026-08-29T15:28:24",
+	"generated_at": "2026-09-12T13:24:58",
 	"passed": true,
 	"passed_checks": 12,
 	"scenario_records": [
@@ -321,13 +321,13 @@
 			"debrief_export_status": "EXPORTED",
 			"debrief_score": 100.0,
 			"debrief_status": "PASS",
-			"depth_froude": 0.0291627152237211,
+			"depth_froude": 0.00416266023889117,
 			"fault_factor_during_test": 0.5,
 			"near_bank_proximity": null,
 			"passed": true,
 			"predeparture_status": "PASS",
 			"scenario_key": "auto_berthing",
-			"squat_m": 0.000159172130534445,
+			"squat_m": 0.00000324034357728319,
 			"static_ukc_m": 6.15
 		},
 		{
@@ -337,13 +337,13 @@
 			"debrief_export_status": "EXPORTED",
 			"debrief_score": 100.0,
 			"debrief_status": "PASS",
-			"depth_froude": 0.0301139923299903,
+			"depth_froude": 0.00108374796993163,
 			"fault_factor_during_test": 0.5,
 			"near_bank_proximity": null,
 			"passed": true,
 			"predeparture_status": "PASS",
 			"scenario_key": "auto_unberthing",
-			"squat_m": 0.000179719781080934,
+			"squat_m": 0.000000232553186277489,
 			"static_ukc_m": 5.85
 		},
 		{
@@ -353,13 +353,13 @@
 			"debrief_export_status": "EXPORTED",
 			"debrief_score": 100.0,
 			"debrief_status": "PASS",
-			"depth_froude": 0.0677539632225743,
+			"depth_froude": 0.00650563016326265,
 			"fault_factor_during_test": 0.5,
 			"near_bank_proximity": 0.916666730244954,
 			"passed": true,
 			"predeparture_status": "PASS",
 			"scenario_key": "narrow_channel_head_on",
-			"squat_m": 0.00106531894462555,
+			"squat_m": 0.00000977707850016798,
 			"static_ukc_m": 4.05
 		},
 		{
@@ -369,13 +369,13 @@
 			"debrief_export_status": "EXPORTED",
 			"debrief_score": 100.0,
 			"debrief_status": "PASS",
-			"depth_froude": 0.0196543733975972,
+			"depth_froude": 0.00662143325061184,
 			"fault_factor_during_test": 0.5,
 			"near_bank_proximity": null,
 			"passed": true,
 			"predeparture_status": "PASS",
 			"scenario_key": "crossing_starboard",
-			"squat_m": 0.0000467596846359373,
+			"squat_m": 0.00000530528137482755,
 			"static_ukc_m": 19.75
 		},
 		{
@@ -385,13 +385,13 @@
 			"debrief_export_status": "EXPORTED",
 			"debrief_score": 100.0,
 			"debrief_status": "PASS",
-			"depth_froude": 0.0827163986217757,
+			"depth_froude": 0.00210695544578473,
 			"fault_factor_during_test": 0.5,
 			"near_bank_proximity": 0.920000061035156,
 			"passed": true,
 			"predeparture_status": "PASS",
 			"scenario_key": "narrow_channel_overtaking",
-			"squat_m": 0.00151561038238877,
+			"squat_m": 0.000000976641810682968,
 			"static_ukc_m": 4.65
 		}
 	],

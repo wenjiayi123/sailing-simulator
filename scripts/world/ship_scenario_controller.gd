@@ -80,6 +80,8 @@ func apply_scenario(index: int, teleport_ship: bool = true) -> void:
 		else:
 			_apply_open_water(teleport_ship)
 
+	if key == "open_water" and _background_controller != null:
+		_background_controller.call("apply_startup_port_background")
 	scenario_changed.emit(get_scenario_status())
 
 

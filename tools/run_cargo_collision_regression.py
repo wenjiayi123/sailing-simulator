@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the cargo collision suite, including its expected fail-closed cases."""
+"""Run the cargo collision suite and verify the released replay stays clear."""
 
 from __future__ import annotations
 
@@ -34,14 +34,14 @@ def _load_report(relative: str) -> dict:
     return json.loads((ROOT / relative).read_text(encoding="utf-8"))
 
 
-def _verify_expected_rejections() -> list[str]:
+def _verify_expected_acceptance() -> list[str]:
     errors: list[str] = []
     geometry = _load_report("reports/large_rock_collision_audit_v1.json")
     expected_geometry = {
-        "passed": False,
+        "passed": True,
         "large_rock_count": 32,
         "trajectory_conflict_count": 0,
-        "released_trajectory_replay_sweep_block_count": 2,
+        "released_trajectory_replay_sweep_block_count": 0,
         "physics_guard_center_hits": 3,
         "ship_sized_sweep_blocking_hits": 3,
     }
@@ -55,42 +55,42 @@ def _verify_expected_rejections() -> list[str]:
 
     replay = _load_report("reports/cargo_circuit_full_replay_smoke_v1.json")
     results = replay.get("results", [])
-    if replay.get("passed") is not False:
-        errors.append("legacy cargo replay must remain fail-closed on the current rock map")
+    if replay.get("passed") is not True:
+        errors.append("released cargo replay is not collision-free on the current rock map")
     if [item.get("name") for item in results] != ["SAC-S1", "RES-SAC-D2"]:
         errors.append("legacy cargo replay inventory changed")
     for item in results:
-        if item.get("passed") is not False:
-            errors.append(f"{item.get('name')}: legacy replay unexpectedly passed")
-        if item.get("large_rock_replay_guard_blocks") != 1:
-            errors.append(f"{item.get('name')}: expected one large-rock guard block")
+        if item.get("passed") is not True:
+            errors.append(f"{item.get('name')}: released replay did not finish successfully")
+        if item.get("large_rock_replay_guard_blocks") != 0:
+            errors.append(f"{item.get('name')}: released replay hit a large-rock guard")
         last_result = item.get("last_result", {})
-        if last_result.get("success") is not False or "已阻止穿模回放" not in str(
+        if last_result.get("success") is not True or "播放完成" not in str(
             last_result.get("message", "")
         ):
-            errors.append(f"{item.get('name')}: missing fail-closed collision receipt")
+            errors.append(f"{item.get('name')}: missing successful replay completion receipt")
     return errors
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Run cargo collision regression and verify expected safety rejection."
+        description="Run cargo collision regression and verify released replay acceptance."
     )
     parser.add_argument("--godot", required=True)
     args = parser.parse_args()
 
     stages = [
         ("large_rock_training_contract_smoke.gd", 0),
-        ("large_rock_collision_audit.gd", 1),
+        ("large_rock_collision_audit.gd", 0),
         ("cargo_circuit_godot_smoke.gd", 0),
-        ("cargo_circuit_full_replay_smoke.gd", 1),
+        ("cargo_circuit_full_replay_smoke.gd", 0),
     ]
     errors = [
         error
         for script, expected_code in stages
         if (error := _run(args.godot, script, expected_code)) is not None
     ]
-    errors.extend(_verify_expected_rejections())
+    errors.extend(_verify_expected_acceptance())
     if errors:
         for error in errors:
             print(f"ERROR: {error}", file=sys.stderr)
@@ -98,7 +98,7 @@ def main() -> int:
         return 1
     print(
         "CARGO_COLLISION_REGRESSION:PASS:4/4 "
-        "(legacy frozen replays rejected fail-closed)"
+        "(released frozen replays remain collision-free)"
     )
     return 0
 

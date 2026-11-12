@@ -47,6 +47,7 @@ const RADAR_SCOPE_RANGE_METERS := 260.0
 const HUD_LAYOUT_FILE := "user://ship_hud_layout.cfg"
 const HUD_LAYOUT_EDIT_KEY := KEY_L
 const HUD_LAYOUT_RESET_KEY := KEY_BACKSPACE
+const DEFAULT_XIAOYI_RETURN_URL := "http://127.0.0.1:8010/?xiaoyi_resume=system-linkage"
 
 @export var player_path: NodePath = NodePath("../Player")
 
@@ -1459,6 +1460,27 @@ func _build_interface() -> void:
 	reticle.set_anchors_preset(Control.PRESET_FULL_RECT)
 	root.add_child(reticle)
 
+	var xiaoyi_return_button := Button.new()
+	xiaoyi_return_button.name = "ReturnToXiaoyiButton"
+	xiaoyi_return_button.text = "← 返回舷鸥 · GullMate / RETURN TO GullMate"
+	xiaoyi_return_button.anchor_left = 1.0
+	xiaoyi_return_button.anchor_right = 1.0
+	xiaoyi_return_button.offset_left = -296.0
+	xiaoyi_return_button.offset_top = 18.0
+	xiaoyi_return_button.offset_right = -22.0
+	xiaoyi_return_button.offset_bottom = 58.0
+	xiaoyi_return_button.z_index = 40
+	xiaoyi_return_button.mouse_filter = Control.MOUSE_FILTER_STOP
+	xiaoyi_return_button.focus_mode = Control.FOCUS_ALL
+	xiaoyi_return_button.tooltip_text = "只切回本机舷鸥联动中心；不发送航线或操船指令。"
+	xiaoyi_return_button.add_theme_font_size_override("font_size", 12)
+	xiaoyi_return_button.add_theme_color_override("font_color", Color(0.90, 1.0, 0.97, 1.0))
+	xiaoyi_return_button.add_theme_color_override("font_hover_color", Color.WHITE)
+	xiaoyi_return_button.add_theme_stylebox_override("normal", _chip_style(Color(0.015, 0.16, 0.18, 0.95), Color(0.25, 0.94, 0.80, 0.78)))
+	xiaoyi_return_button.add_theme_stylebox_override("hover", _chip_style(Color(0.02, 0.25, 0.25, 0.98), Color(0.42, 1.0, 0.88, 0.96)))
+	xiaoyi_return_button.pressed.connect(_return_to_xiaoyi)
+	root.add_child(xiaoyi_return_button)
+
 	var key_guide_panel := _make_panel(
 		root,
 		"HotkeyGuideCard",
@@ -1752,6 +1774,13 @@ func _build_interface() -> void:
 	_layout_edit_overlay.tracked_controls = _layout_draggables
 	root.add_child(_layout_edit_overlay)
 	_load_hud_layout()
+
+
+func _return_to_xiaoyi() -> void:
+	var return_url := OS.get_environment("XIAOYI_RETURN_URL").strip_edges()
+	if not (return_url.begins_with("http://127.0.0.1:8010/") or return_url.begins_with("http://localhost:8010/")):
+		return_url = DEFAULT_XIAOYI_RETURN_URL
+	OS.shell_open(return_url)
 
 
 func _make_panel(

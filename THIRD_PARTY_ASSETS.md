@@ -9,7 +9,7 @@ video, or audio file is identified by path, SHA-256, origin, and license in
 - `assets/generated/release/*.svg` are project-authored vector replacements and
   are distributed under Apache-2.0. They replace legacy runtime references for
   the icon, hidden animation atlas, horizon, water floor, cloud bridge, rock
-  albedo, and Xiaoyi officer portrait.
+  albedo, and GullMate officer portrait.
 - `docs/readme-hero.svg`, the registered PNG files under `docs/screenshots/`
   (including `docs/screenshots/scenarios/`), and the four registered
   report screenshots are project-authored documentation artwork or project
@@ -28,7 +28,7 @@ video, or audio file is identified by path, SHA-256, origin, and license in
 ## Local-only excluded assets
 
 Legacy character sequences, the old icon, reference rock photograph, old sound
-effects, old backgrounds/cloud textures, and the old Xiaoyi raster portrait are
+effects, old backgrounds/cloud textures, and the old GullMate raster portrait are
 retained in the working tree so the author's source material is not destroyed.
 They are not referenced by the public runtime and are excluded by the verified
 full-visual release inventory. No redistribution permission is asserted for

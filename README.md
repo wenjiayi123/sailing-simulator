@@ -73,10 +73,10 @@
 ## 交互界面与系统联动 / Interface and system integration
 
 <p align="center">
-  <img src="docs/screenshots/01-port-ai-evidence-center.png" alt="同屏展示训练数据、十算法矩阵、小懿训练顾问和模块按钮联动" width="100%" />
+  <img src="docs/screenshots/01-port-ai-evidence-center.png" alt="同屏展示训练数据、十算法矩阵、舷鸥训练顾问和模块按钮联动" width="100%" />
 </p>
 
-系统总览可直接打开训练中心、航线规划、风险决策、海况、AIS、结果复盘、小懿全系统助手、[全任务软件船桥](docs/FULL_MISSION_BRIDGE.md)、[船舶网络安全靶场](docs/MARITIME_CYBERSECURITY.md)及[港口生产联动台](docs/PORT_PRODUCTION_INTEGRATION.md)。全任务船桥将雷达/自动标绘/电子海图、全球海上遇险与安全系统通信程序、自动舵/推进台、九岗位多学员、八扇区软件全向视景、教员时间线和复盘连接为统一任务链；网络安全靶场提供七区默认拒绝、四角色最小权限、签名更新隔离、八规则检测、链式审计、恢复和攻击复现；生产联动台覆盖 VTS、TOS、引航、拖轮、泊位和官方通告的签名、时效、降级、人工确认与回执审计。三者均保持不接实船、不修改运动模型或既有策略，生产授权为 `false`。自动测试同时覆盖对应入口、快捷键与主船人工/后端控制航行。
+系统总览可直接打开训练中心、航线规划、风险决策、海况、AIS、结果复盘、舷鸥全系统助手、[全任务软件船桥](docs/FULL_MISSION_BRIDGE.md)、[船舶网络安全靶场](docs/MARITIME_CYBERSECURITY.md)及[港口生产联动台](docs/PORT_PRODUCTION_INTEGRATION.md)。全任务船桥将雷达/自动标绘/电子海图、全球海上遇险与安全系统通信程序、自动舵/推进台、九岗位多学员、八扇区软件全向视景、教员时间线和复盘连接为统一任务链；网络安全靶场提供七区默认拒绝、四角色最小权限、签名更新隔离、八规则检测、链式审计、恢复和攻击复现；生产联动台覆盖 VTS、TOS、引航、拖轮、泊位和官方通告的签名、时效、降级、人工确认与回执审计。三者均保持不接实船、不修改运动模型或既有策略，生产授权为 `false`。自动测试同时覆盖对应入口、快捷键与主船人工/后端控制航行。
 
 ## 系统价值 / Engineering value
 
@@ -323,8 +323,8 @@ On every push and pull request, GitHub Actions verifies the environment contract
 Run the main scene and press `H` to open the total-control hub, where the bundled frozen trained policies can be selected and replayed directly; press `C` to open the training page. “Algorithm / Environment Settings” configures hull radius, overhang clearance, sensing range, collision horizon, domain randomization, and generated traffic. “Preview Safety Boundary” draws the effective envelope into the scene. Select an algorithm and budget, start training, and only after completion run the held-out test set with rendering.
 
 <p align="center">
-  <img src="docs/screenshots/03-xiaoyi-system-assistant.png" alt="晴天场景中的小懿全系统助手与场景、天气、事故、障碍和报告按钮" width="100%" />
-  <br /><sub>小懿全系统助手：场景、天气、事故、临时障碍、播放速度、重置与报告按钮均调用实际系统模块。</sub>
+  <img src="docs/screenshots/03-xiaoyi-system-assistant.png" alt="晴天场景中的舷鸥全系统助手与场景、天气、事故、障碍和报告按钮" width="100%" />
+  <br /><sub>舷鸥全系统助手：场景、天气、事故、临时障碍、播放速度、重置与报告按钮均调用实际系统模块。</sub>
 </p>
 
 ### 前端按钮与快捷键 / UI linkage and hotkeys
@@ -332,14 +332,14 @@ Run the main scene and press `H` to open the total-control hub, where the bundle
 | 键 | 实际模块 | 同屏按钮入口 |
 |---|---|---|
 | `H` | 全系统总控与已训练策略播放 | 可加载冻结 SAC-S1 / RES-SAC-D2；若旧轨迹与当前实体悬岩冲突则安全停止，需新地图重训后才能完整播放 |
-| `M` | 系统与指标总览 | 主入口；可继续打开训练、航线/风险/海况、AIS、复盘与小懿助手 |
+| `M` | 系统与指标总览 | 主入口；可继续打开训练、航线/风险/海况、AIS、复盘与舷鸥助手 |
 | `Z` / `X` / `C` | RL 控制台 / 船队页 / 训练中心 | 系统总览“打开训练中心” |
 | `N` | 航线规划 | “航线规划 / 风险决策 / 海况” |
 | `V` | 风险与策略准入 | “航线规划 / 风险决策 / 海况” |
 | `W` | 风浪流与能见度 | “航线规划 / 风险决策 / 海况” |
 | `I` | AIS 船队态势 | “AIS 船队态势” |
 | `P` | 仿真/训练结果复盘 | “打开训练结果复盘” |
-| `O` | 小懿全系统助手 | “小懿全系统助手” |
+| `O` | 舷鸥全系统助手 | “舷鸥全系统助手” |
 | `F10` | 港口生产联动 | “港口生产联动 / VTS · TOS · 引航 · 拖轮 · 泊位 · 通告” |
 | `F11` | 船舶网络安全靶场 | “船舶网络安全 / 分区 · 身份 · 签名更新 · IDS · 恢复” |
 | `F12` | 全任务软件船桥 | “全任务软件船桥 / GMDSS · 推进台 · 多学员 · 360°” |

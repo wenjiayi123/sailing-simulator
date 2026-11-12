@@ -1,20 +1,18 @@
 extends Node3D
 
-## Applies optional machine-local wallpaper and water textures.
-##
-## The tracked scene keeps the project-authored release-safe texture. A local
-## user:// override can restore the owner's original wallpaper without adding a
-## provenance-incomplete asset to the public runtime contract.
+## Preserve scene wallpaper profiles; the startup scene uses a port horizon.
 
 const CONFIG_PATH := "user://navigation_visual_overrides.json"
 const WALL_PREFIX := "FarBackground_"
 const VERTICAL_WALL_STATUS := "VERTICAL_LOCKED"
+const PORT_HORIZON := "res://assets/generated/tasks/auto_berthing/auto_berthing_horizon_v4.png"
 
 var _base_wall_materials: Dictionary = {}
 var _base_wall_transforms: Dictionary = {}
 var _base_floor_material: Material
 var _base_surface_material: Material
 var _base_wallpaper_status := "DEFAULT_RELEASE_TEXTURE"
+var _base_wallpaper_texture_path := ""
 var _base_water_status := "DEFAULT_RELEASE_TEXTURE"
 
 
@@ -26,6 +24,13 @@ func _ready() -> void:
 	_apply_machine_local_override()
 	_capture_base_material_state()
 	set_meta("active_visual_profile", "base")
+
+
+func apply_startup_port_background() -> void:
+	_apply_wallpaper_texture(load(PORT_HORIZON) as Texture2D, "mat_startup_port_horizon")
+	set_meta("wallpaper_override_status", "STARTUP_PORT_HORIZON")
+	set_meta("wallpaper_texture_path", PORT_HORIZON)
+	set_meta("active_visual_profile", "open_water")
 
 
 func _apply_machine_local_override() -> void:
@@ -124,6 +129,7 @@ func restore_base_visuals() -> void:
 	if surface != null:
 		surface.material_override = _base_surface_material
 	set_meta("wallpaper_override_status", _base_wallpaper_status)
+	set_meta("wallpaper_texture_path", _base_wallpaper_texture_path)
 	set_meta("water_override_status", _base_water_status)
 	set_meta("active_visual_profile", "base")
 	set_meta("task_wall_tilt_degrees", 0.0)
@@ -163,6 +169,11 @@ func _capture_base_material_state() -> void:
 	for wall in _background_walls():
 		_base_wall_materials[String(wall.name)] = wall.material_override
 		_base_wall_transforms[String(wall.name)] = wall.transform
+		var material := wall.material_override as StandardMaterial3D
+		if material == null and wall.mesh != null:
+			material = wall.mesh.surface_get_material(0) as StandardMaterial3D
+		if material != null and material.albedo_texture != null:
+			_base_wallpaper_texture_path = material.albedo_texture.resource_path
 	var floor := get_node_or_null("LakeFloor") as MeshInstance3D
 	var surface := get_node_or_null("LakeSurfaceMotion") as MeshInstance3D
 	_base_floor_material = floor.material_override if floor != null else null

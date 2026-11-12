@@ -171,7 +171,7 @@ func _test_overview() -> void:
 		"船舶网络安全 / 分区 · 身份 · 签名更新 · IDS · 恢复": ["ShipBridgeCybersecurityPanel"],
 		"港口生产联动 / VTS · TOS · 引航 · 拖轮 · 泊位 · 通告": ["ShipPortIntegrationPanel"],
 		"打开训练结果复盘": ["ShipSimulationReviewPanel"],
-		"小懿全系统助手": ["ShipInstructorConsolePanel"],
+		"舷鸥全系统助手": ["ShipInstructorConsolePanel"],
 	}
 	for title in targets:
 		panel.call("show_panel")
@@ -184,7 +184,7 @@ func _test_overview() -> void:
 	panel.call("show_panel")
 	var status := panel.get("_status_label") as Label
 	_press(root, "训练顾问：查看算法选择依据")
-	_record("overview_advisor", status.text.begins_with("小懿建议"), status.text)
+	_record("overview_advisor", status.text.begins_with("舷鸥建议"), status.text)
 	_press(root, "运行环境与数据边界审查")
 	_record("overview_boundary", status.text.begins_with("边界审查"), status.text)
 	_press(root, "校验 v2 港口数据契约")
@@ -261,7 +261,7 @@ func _test_cargo_hub() -> void:
 		"海况与时间": "ShipWeatherSeaPanel",
 		"AIS 船队态势": "ShipAISFleetPanel",
 		"训练与仿真复盘": "ShipSimulationReviewPanel",
-		"小懿系统助手": "ShipInstructorConsolePanel",
+		"舷鸥系统助手": "ShipInstructorConsolePanel",
 		"系统与指标总览": "ShipSystemOverviewPanel",
 	}
 	var return_root := panel.get("_hub_return_root") as Control

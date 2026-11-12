@@ -8,17 +8,17 @@
 		"accepted_snapshot_persists_summary_not_body": {
 			"detail": {
 				"payload_persisted": false,
-				"payload_sha256": "83031ae1388c542de039fd17927ccad0738cffe77ade207196debf1419911e1d",
+				"payload_sha256": "b727e0d60cc0dd2313361be442607290547801ea924a098a7600bd06c2bb257f",
 				"production_source": false,
 				"sequence": 10,
 				"snapshot_id": "VTS-VALID-10",
-				"source_time_unix": 1788015286,
+				"source_time_unix": 1789219468,
 				"summary": {
 					"adapter_id": "VTS_TRAFFIC",
 					"advisory_count": 1,
 					"field_count": 5,
 					"payload_body_persisted": false,
-					"payload_sha256": "83031ae1388c542de039fd17927ccad0738cffe77ade207196debf1419911e1d",
+					"payload_sha256": "b727e0d60cc0dd2313361be442607290547801ea924a098a7600bd06c2bb257f",
 					"track_count": 12
 				}
 			},
@@ -27,9 +27,9 @@
 		"ack_receipt_never_dispatches_or_actuates": {
 			"detail": {
 				"acknowledged_by": "fixture-pilot",
-				"acknowledged_utc": "2026-08-29T14:54:46",
+				"acknowledged_utc": "2026-09-12T13:24:28",
 				"adapter_id": "PILOTAGE_ORDER",
-				"created_utc": "2026-08-29T14:54:46",
+				"created_utc": "2026-09-12T13:24:28",
 				"external_dispatch_performed": false,
 				"mapped_to_actuation": false,
 				"operator_id": "oow-01",
@@ -123,7 +123,7 @@
 				"payload_persisted": false,
 				"production_source": false,
 				"reason": "LINK_DISCONNECTED",
-				"snapshot_id": "FIXTURE-VTS_TRAFFIC-000200-1788015286"
+				"snapshot_id": "FIXTURE-VTS_TRAFFIC-000200-1789219468"
 			},
 			"passed": true
 		},
@@ -244,12 +244,12 @@
 		"panel_coordination_receipt_closes": {
 			"detail": {
 				"action": "receive_coordination_ack",
-				"audit_hash": "75428bc71fe512a1759de683f242610bfb5b2f38235d6a7888bc3767a94576d5",
+				"audit_hash": "cd964581e8fb52a0be7ed06fe3da524698253b7e5e9a170f802ec6cac853420e",
 				"detail": {
 					"acknowledged_by": "fixture-service-operator",
-					"acknowledged_utc": "2026-08-29T14:54:46",
+					"acknowledged_utc": "2026-09-12T13:24:29",
 					"adapter_id": "PILOTAGE_ORDER",
-					"created_utc": "2026-08-29T14:54:46",
+					"created_utc": "2026-09-12T13:24:29",
 					"external_dispatch_performed": false,
 					"mapped_to_actuation": false,
 					"operator_id": "port-link-panel-operator",
@@ -260,14 +260,14 @@
 				},
 				"external_dispatch_performed": false,
 				"mapped_to_vessel_actuation": false,
-				"previous_audit_hash": "c086f395a8dc383060c9c65d29c12bb7c0b934c7c577376a63fd346170107ea1",
+				"previous_audit_hash": "3d3243968b78ff871f8bf9beeb3ccdc47285a0ce60ed49d4f550f08510fb786e",
 				"production_authority": false,
 				"receipt_id": "PORTLINK-000044",
 				"schema_version": "ship_port_production_gateway_receipt_v1",
 				"sequence": 44,
 				"status": "ACKNOWLEDGED_FIXTURE_RECEIPT",
 				"subject": "PORT-REQ-000003",
-				"utc": "2026-08-29T14:54:46"
+				"utc": "2026-09-12T13:24:29"
 			},
 			"passed": true
 		},
@@ -281,7 +281,7 @@
 		"panel_fixture_action_reaches_gateway": {
 			"detail": {
 				"action": "ingest_all_training_fixtures",
-				"audit_hash": "0defafaed541705dd9b93024b618e144c89e904a3e3ad1882d36a9e64b415373",
+				"audit_hash": "e9b6a9dea45e06a0eb8b78a79e735d15695c979b0a6196ff77c4ea4c810b6f22",
 				"detail": {
 					"accepted_count": 6,
 					"adapter_count": 6,
@@ -289,14 +289,14 @@
 				},
 				"external_dispatch_performed": false,
 				"mapped_to_vessel_actuation": false,
-				"previous_audit_hash": "8602394b7e58cc66445090596f6d993055cd178ff837f3d119193a62ce19f0a1",
+				"previous_audit_hash": "b704e1ac059aa58e27f46fab3d795219ee23588330ec942921818cb551f9a6e8",
 				"production_authority": false,
 				"receipt_id": "PORTLINK-000042",
 				"schema_version": "ship_port_production_gateway_receipt_v1",
 				"sequence": 42,
 				"status": "PASS",
 				"subject": "ALL_ADAPTERS",
-				"utc": "2026-08-29T14:54:46"
+				"utc": "2026-09-12T13:24:29"
 			},
 			"passed": true
 		},
@@ -315,8 +315,8 @@
 							"degraded": false,
 							"degraded_reason": "",
 							"last_sequence": 1104,
-							"last_snapshot_id": "FIXTURE-BERTH_RESOURCE-001104-1788015286",
-							"last_source_time_unix": 1788015286,
+							"last_snapshot_id": "FIXTURE-BERTH_RESOURCE-001104-1789219469",
+							"last_source_time_unix": 1789219469,
 							"last_summary": {
 								"adapter_id": "BERTH_RESOURCE",
 								"availability": "AVAILABLE_FIXTURE",
@@ -335,14 +335,14 @@
 							"degraded": false,
 							"degraded_reason": "",
 							"last_sequence": 1105,
-							"last_snapshot_id": "FIXTURE-OFFICIAL_NOTICES-001105-1788015286",
-							"last_source_time_unix": 1788015286,
+							"last_snapshot_id": "FIXTURE-OFFICIAL_NOTICES-001105-1789219469",
+							"last_source_time_unix": 1789219469,
 							"last_summary": {
 								"adapter_id": "OFFICIAL_NOTICES",
 								"field_count": 6,
 								"notice_id": "NOTICE-FIXTURE-01",
 								"payload_body_persisted": false,
-								"payload_sha256": "e6fbce1ece1f43524f22988f1be6d1c645b982cd025ef7084bd02c6223c78c2b",
+								"payload_sha256": "b8f287cda3da513ff523c06f374cc539df692f75197785356cd8e4a6fbfdbcba",
 								"severity": "ADVISORY_FIXTURE"
 							},
 							"link_state": "STALE_DEGRADED",
@@ -355,8 +355,8 @@
 							"degraded": false,
 							"degraded_reason": "",
 							"last_sequence": 1102,
-							"last_snapshot_id": "FIXTURE-PILOTAGE_ORDER-001102-1788015286",
-							"last_source_time_unix": 1788015286,
+							"last_snapshot_id": "FIXTURE-PILOTAGE_ORDER-001102-1789219469",
+							"last_source_time_unix": 1789219469,
 							"last_summary": {
 								"adapter_id": "PILOTAGE_ORDER",
 								"field_count": 5,
@@ -375,15 +375,15 @@
 							"degraded": false,
 							"degraded_reason": "",
 							"last_sequence": 1101,
-							"last_snapshot_id": "FIXTURE-TOS_BERTH_PLAN-001101-1788015286",
-							"last_source_time_unix": 1788015286,
+							"last_snapshot_id": "FIXTURE-TOS_BERTH_PLAN-001101-1789219469",
+							"last_source_time_unix": 1789219469,
 							"last_summary": {
 								"adapter_id": "TOS_BERTH_PLAN",
 								"berth_id": "BERTH-TRAINING-01",
 								"field_count": 6,
 								"operation_id": "OPS-FIXTURE-01",
 								"payload_body_persisted": false,
-								"payload_sha256": "dc6ea31fdb94ddf21135704d69a51326aeb23da88a5afc88bdfeab662129948e",
+								"payload_sha256": "53f7acca2b4c109c134f68fdc010725b3a19208858d02900927f11d0c456121d",
 								"status": "PLANNED_FIXTURE"
 							},
 							"link_state": "STALE_DEGRADED",
@@ -396,8 +396,8 @@
 							"degraded": false,
 							"degraded_reason": "",
 							"last_sequence": 1103,
-							"last_snapshot_id": "FIXTURE-TUG_ORDER-001103-1788015286",
-							"last_source_time_unix": 1788015286,
+							"last_snapshot_id": "FIXTURE-TUG_ORDER-001103-1789219469",
+							"last_source_time_unix": 1789219469,
 							"last_summary": {
 								"adapter_id": "TUG_ORDER",
 								"assigned_tug_count": 2,
@@ -417,14 +417,14 @@
 							"degraded": false,
 							"degraded_reason": "",
 							"last_sequence": 1100,
-							"last_snapshot_id": "FIXTURE-VTS_TRAFFIC-001100-1788015286",
-							"last_source_time_unix": 1788015286,
+							"last_snapshot_id": "FIXTURE-VTS_TRAFFIC-001100-1789219469",
+							"last_source_time_unix": 1789219469,
 							"last_summary": {
 								"adapter_id": "VTS_TRAFFIC",
 								"advisory_count": 2,
 								"field_count": 5,
 								"payload_body_persisted": false,
-								"payload_sha256": "cf1ca7e52c4bfe7dcd4aa4b493d33bebadc5807c1c5c2d6e1dee4e6193e5426b",
+								"payload_sha256": "2521e0b561639c213da29f8c53e6cb85df08a47bf25c6acc8b89ad09a3db43e1",
 								"track_count": 18
 							},
 							"link_state": "CONNECTED_OFFLINE_FIXTURE",
@@ -433,7 +433,7 @@
 						}
 					},
 					"audit_chain": {
-						"chain_head_sha256": "75428bc71fe512a1759de683f242610bfb5b2f38235d6a7888bc3767a94576d5",
+						"chain_head_sha256": "cd964581e8fb52a0be7ed06fe3da524698253b7e5e9a170f802ec6cac853420e",
 						"errors": [],
 						"passed": true,
 						"record_count": 44
@@ -442,9 +442,9 @@
 					"coordination_requests": [
 						{
 							"acknowledged_by": "fixture-pilot",
-							"acknowledged_utc": "2026-08-29T14:54:46",
+							"acknowledged_utc": "2026-09-12T13:24:28",
 							"adapter_id": "PILOTAGE_ORDER",
-							"created_utc": "2026-08-29T14:54:46",
+							"created_utc": "2026-09-12T13:24:28",
 							"external_dispatch_performed": false,
 							"mapped_to_actuation": false,
 							"operator_id": "oow-01",
@@ -455,7 +455,7 @@
 						},
 						{
 							"adapter_id": "TUG_ORDER",
-							"created_utc": "2026-08-29T14:54:46",
+							"created_utc": "2026-09-12T13:24:28",
 							"external_dispatch_performed": false,
 							"mapped_to_actuation": false,
 							"operator_id": "oow-01",
@@ -466,9 +466,9 @@
 						},
 						{
 							"acknowledged_by": "fixture-service-operator",
-							"acknowledged_utc": "2026-08-29T14:54:46",
+							"acknowledged_utc": "2026-09-12T13:24:29",
 							"adapter_id": "PILOTAGE_ORDER",
-							"created_utc": "2026-08-29T14:54:46",
+							"created_utc": "2026-09-12T13:24:29",
 							"external_dispatch_performed": false,
 							"mapped_to_actuation": false,
 							"operator_id": "port-link-panel-operator",
@@ -529,7 +529,7 @@
 		"pilot_request_never_dispatches_or_actuates": {
 			"detail": {
 				"adapter_id": "PILOTAGE_ORDER",
-				"created_utc": "2026-08-29T14:54:46",
+				"created_utc": "2026-09-12T13:24:28",
 				"external_dispatch_performed": false,
 				"mapped_to_actuation": false,
 				"operator_id": "oow-01",
@@ -682,7 +682,7 @@
 	"errors": [],
 	"existing_policy_modified": false,
 	"external_dispatch_performed": false,
-	"generated_at": "2026-08-29T14:54:46",
+	"generated_at": "2026-09-12T13:24:29",
 	"live_tos_connected": false,
 	"live_vts_connected": false,
 	"mapped_to_vessel_actuation": false,

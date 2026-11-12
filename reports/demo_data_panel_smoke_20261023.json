@@ -1,0 +1,14 @@
+{
+	"checks": {
+		"missing_clears_report_and_export": true,
+		"no_authority": true,
+		"read_current_report": true,
+		"research_tasks_visible": true,
+		"source_and_pending_visible": true
+	},
+	"existing_models_modified": false,
+	"headless_widget_check": true,
+	"passed": true,
+	"production_authority": false,
+	"visual_desktop_verified": false
+}

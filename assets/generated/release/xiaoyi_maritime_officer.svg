@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="371" height="720" viewBox="0 0 371 720">
-  <title>Project-authored Xiaoyi maritime training officer</title>
+  <title>Project-authored GullMate maritime training officer</title>
   <defs><linearGradient id="uniform" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#143d59"/><stop offset="1" stop-color="#071c31"/></linearGradient><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#0b3450"/><stop offset="1" stop-color="#03121f"/></linearGradient></defs>
   <rect width="371" height="720" rx="34" fill="url(#bg)"/>
   <circle cx="185.5" cy="235" r="122" fill="#77e9f5" fill-opacity=".11" stroke="#66e9fa" stroke-opacity=".4" stroke-width="3"/>
@@ -15,5 +15,5 @@
   <path d="M110 160q75-55 151 0" fill="#10344e"/>
   <circle cx="186" cy="175" r="18" fill="#58e7f4"/><path d="M186 161v28M172 175h28" stroke="#08334a" stroke-width="4"/>
   <g fill="#f2c75b"><rect x="102" y="525" width="60" height="10" rx="5"/><rect x="211" y="525" width="60" height="10" rx="5"/><circle cx="131" cy="570" r="11"/><circle cx="241" cy="570" r="11"/></g>
-  <text x="185.5" y="676" text-anchor="middle" fill="#bff8ff" font-family="sans-serif" font-size="19" font-weight="700">XIAOYI · TRAINING</text>
+  <text x="185.5" y="676" text-anchor="middle" fill="#bff8ff" font-family="sans-serif" font-size="19" font-weight="700">GullMate · TRAINING</text>
 </svg>

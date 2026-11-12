@@ -51,8 +51,8 @@ func _run() -> void:
 	var water_status := String(background.get_meta("water_override_status", "MISSING"))
 	var local_config_present := FileAccess.file_exists(CONFIG_PATH)
 	_record(
-		"local_wallpaper_applied_when_configured",
-		not local_config_present or override_status == "APPLIED_LOCAL_WALLPAPER",
+		"startup_scene_uses_port_wallpaper",
+		override_status == "STARTUP_PORT_HORIZON",
 		{"config_present": local_config_present, "status": override_status},
 	)
 	_record(

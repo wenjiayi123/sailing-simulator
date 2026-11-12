@@ -122,12 +122,16 @@ const MISSION_PRESETS := [
 @export var advanced_mission_realism_path: NodePath = NodePath("../ShipAdvancedMissionRealismController")
 @export var weather_time_path: NodePath = NodePath("../ShipWeatherTimeController")
 @export_file("*.json") var mission_profile_path: String = "res://data/ports/default_port_profile.json"
+@export_file("*.json") var demo_data_readiness_path: String = "res://reports/demo_data_readiness_v1.json"
 @export var planned_speed_knots: float = 12.0
 @export var arrival_radius_meters: float = 16.0
 @export var loop_route_enabled: bool = true
 
 var _root: Control
 var _tabs: TabContainer
+var _demo_data_label: Label
+var _demo_data_export_button: Button
+var _demo_data_report: Dictionary = {}
 var _mission_option: OptionButton
 var _mission_rl_button: Button
 var _mission_rl_label: Label
@@ -387,6 +391,7 @@ func _build_interface() -> void:
 	_tabs.add_child(_build_mission_tab())
 	_tabs.add_child(_build_chart_tab())
 	_tabs.add_child(_build_waypoints_tab())
+	_tabs.add_child(_build_demo_data_tab())
 
 
 func _build_mission_tab() -> Control:
@@ -445,7 +450,8 @@ func _build_mission_tab() -> Control:
 	_loop_check.toggled.connect(_on_loop_toggled)
 	check_row.add_child(_loop_check)
 	_overtaking_agreement_check = CheckBox.new()
-	_overtaking_agreement_check.text = "追越协议确认"
+	_overtaking_agreement_check.text = "模拟追越协议确认"
+	_overtaking_agreement_check.tooltip_text = "离线仿真中的协商预设；也可点击上方“确认模拟协议并启用 SAC”一次完成确认与启动。"
 	_overtaking_agreement_check.button_pressed = false
 	_overtaking_agreement_check.toggled.connect(_on_overtaking_agreement_toggled)
 	check_row.add_child(_overtaking_agreement_check)
@@ -547,6 +553,105 @@ func _build_waypoints_tab() -> Control:
 	return root
 
 
+func _build_demo_data_tab() -> Control:
+	var scroll := ScrollContainer.new()
+	scroll.name = "数据与换源"
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	var box := VBoxContainer.new()
+	box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	box.add_theme_constant_override("separation", 12)
+	scroll.add_child(box)
+	var actions := HBoxContainer.new()
+	box.add_child(actions)
+	var refresh := _make_button("检查演示数据齐备")
+	refresh.name = "CheckDemoDataButton"
+	refresh.pressed.connect(_refresh_demo_data_readiness)
+	actions.add_child(refresh)
+	_demo_data_export_button = _make_button("导出数据与换源清单")
+	_demo_data_export_button.disabled = true
+	_demo_data_export_button.pressed.connect(_export_demo_data_readiness)
+	actions.add_child(_demo_data_export_button)
+	_demo_data_label = _make_label("按需核验当前路线、公开研究数据与现场缺项；不修改原有策略、任务或控制权。", 12, COLOR_TEXT)
+	_demo_data_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_demo_data_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	box.add_child(_demo_data_label)
+	return scroll
+
+
+func _refresh_demo_data_readiness() -> void:
+	_demo_data_report = {}
+	_demo_data_export_button.disabled = true
+	if not FileAccess.file_exists(demo_data_readiness_path):
+		_demo_data_label.text = "数据审阅报告尚未提供；未用静态数值替代。可运行 tools/audit_demo_data.py 生成新报告。"
+		return
+	var raw: Variant = JSON.parse_string(FileAccess.get_file_as_string(demo_data_readiness_path))
+	if not raw is Dictionary or String(raw.get("schema_version", "")) != "ship_demo_data_readiness.v1":
+		_demo_data_label.text = "数据审阅报告格式不匹配；导出保持关闭。"
+		return
+	var report := raw as Dictionary
+	for item in (report.get("sources", {}) as Dictionary).values():
+		var source := item as Dictionary
+		var path := "res://" + String(source.get("path", ""))
+		if not FileAccess.file_exists(path) or FileAccess.get_sha256(path) != String(source.get("sha256", "")):
+			_demo_data_label.text = "资料已变化或缺失：%s；请重新生成审阅报告。原有策略不受本报告授权。" % path
+			return
+	var current_profile: Dictionary = {}
+	var current_path := mission_profile_path
+	if is_instance_valid(_scenario_source) and _scenario_source.has_method("get_port_profile"):
+		current_profile = _scenario_source.call("get_port_profile") as Dictionary
+		current_path = String(_scenario_source.call("get_port_profile_path"))
+	elif FileAccess.file_exists(mission_profile_path):
+		var payload: Variant = JSON.parse_string(FileAccess.get_file_as_string(mission_profile_path))
+		if payload is Dictionary:
+			current_profile = payload as Dictionary
+	var research := report.get("research", {}) as Dictionary
+	var lines: Array[String] = [
+		"当前场景配置：%s" % String(current_profile.get("name", "未取得")),
+		"来源：%s" % current_path,
+		"几何/任务来源：%s" % JSON.stringify(current_profile.get("source", {})),
+		"配置任务 %d 类；独立研究集 %d 个任务 / %d 条筛选AIS记录。" % [(current_profile.get("navigation_missions", []) as Array).size(), int(research.get("task_count", 0)), int(research.get("filtered_ais_rows", 0))],
+		"研究字段覆盖（不是现场精度）：",
+	]
+	for key in (research.get("task_field_coverage", {}) as Dictionary):
+		lines.append("  %s：%.1f%%" % [key, float(research["task_field_coverage"][key]) * 100.0])
+	lines.append("现场仍需补齐：")
+	for key in (research.get("deployment_factor_coverage", {}) as Dictionary):
+		if not bool(research["deployment_factor_coverage"][key]):
+			lines.append("  待接入/验收：%s" % key)
+	lines.append("换源位置：")
+	for item in report.get("replacement", []) as Array:
+		lines.append("  %s → %s" % [String(item.get("input", "")), String(item.get("replace", ""))])
+	lines.append(String(report.get("boundary", "")))
+	_demo_data_report = report.duplicate(true)
+	_demo_data_report["current_profile_path"] = current_path
+	_demo_data_report["current_profile_source"] = current_profile.get("source", {})
+	_demo_data_report["production_authority"] = false
+	_demo_data_report["live_control_ready"] = false
+	_demo_data_label.text = "\n\n".join(lines)
+	_demo_data_export_button.disabled = false
+
+
+func _export_demo_data_readiness() -> void:
+	if _demo_data_report.is_empty():
+		return
+	var path := "user://ship_demo_data_review_%d_%d.json" % [int(Time.get_unix_time_from_system()), Time.get_ticks_msec()]
+	if FileAccess.file_exists(path):
+		_demo_data_label.text += "\n同名导出已存在，原文件保留；请重试。"
+		return
+	var file := FileAccess.open(path, FileAccess.WRITE)
+	if file == null:
+		_demo_data_label.text += "\n导出失败；未报告成功。"
+		return
+	file.store_string(JSON.stringify(_demo_data_report, "\t"))
+	file.close()
+	_demo_data_label.text += "\n已导出：%s" % ProjectSettings.globalize_path(path)
+
+
+func get_demo_data_readiness_snapshot() -> Dictionary:
+	return {"report": _demo_data_report.duplicate(true), "text": _demo_data_label.text,
+		"export_enabled": not _demo_data_export_button.disabled, "production_authority": false}
+
+
 func _add_status_pill(parent: Control, key: String, text: String) -> void:
 	var label := _make_label(text, 13, COLOR_TEXT, HORIZONTAL_ALIGNMENT_CENTER)
 	label.custom_minimum_size = Vector2(116.0, 30.0)
@@ -585,7 +690,7 @@ func _load_mission_presets() -> void:
 	var loaded_path := ""
 	if _scenario_source != null and _scenario_source.has_method("get_port_profile"):
 		profile = _scenario_source.call("get_port_profile") as Dictionary
-		loaded_path = String(_scenario_source.call("get_port_profile_path"))
+		loaded_path = _display_path(String(_scenario_source.call("get_port_profile_path")))
 	if profile.is_empty():
 		var candidates: Array[String] = []
 		var environment_path := OS.get_environment("SHIP_PORT_PROFILE")
@@ -603,7 +708,7 @@ func _load_mission_presets() -> void:
 			file.close()
 			if parsed is Dictionary and String((parsed as Dictionary).get("schema_version", "")) == "ship_port_profile_v1":
 				profile = parsed as Dictionary
-				loaded_path = ProjectSettings.globalize_path(candidate)
+				loaded_path = _display_path(candidate)
 				break
 	var converted: Array = []
 	for raw_mission in profile.get("navigation_missions", []) as Array:
@@ -641,6 +746,25 @@ func _resolve_node(path: NodePath, group_name: StringName) -> Node:
 	if node == null:
 		node = get_tree().get_first_node_in_group(group_name)
 	return node
+
+
+func _display_path(path: String) -> String:
+	# Keep machine-specific absolute paths out of the operator-facing UI while
+	# retaining the Godot resource alias that identifies the exact artifact.
+	var value := path.strip_edges()
+	if value.is_empty() or value.begins_with("res://") or value.begins_with("user://"):
+		return value
+	for mapping in [
+		{"alias": "res://", "absolute": ProjectSettings.globalize_path("res://").trim_suffix("/")},
+		{"alias": "user://", "absolute": ProjectSettings.globalize_path("user://").trim_suffix("/")},
+		]:
+		var absolute := String(mapping["absolute"])
+		var alias := String(mapping["alias"])
+		if value == absolute:
+			return alias
+		if value.begins_with(absolute + "/"):
+			return alias + value.substr(absolute.length() + 1)
+	return value
 
 
 func _resolve_node3d(path: NodePath, group_name: StringName) -> Node3D:
@@ -768,6 +892,16 @@ func _on_overtaking_agreement_toggled(confirmed: bool) -> void:
 	var message := "追越模拟协议已%s；不代表真实甚高频通信授权。" % ("确认" if confirmed else "撤销") \
 		if accepted else "当前不是追越场景，未写入协议。"
 	_update_label("mission_footer", message, COLOR_GREEN if accepted and confirmed else COLOR_AMBER)
+	if accepted:
+		if confirmed and _mission_rl_start_error == "请先确认模拟追越协议":
+			_mission_rl_start_error = ""
+		if not confirmed:
+			_cancel_mission_rl_request()
+			var controller := get_tree().get_first_node_in_group(&"mission_rl_controller")
+			if controller != null and bool(controller.get("active")):
+				controller.set("auto_switch", false)
+				controller.call("stop", "已停止：模拟追越协议已撤销")
+	_update_panel()
 
 
 func _on_apply_mission_pressed() -> void:
@@ -845,7 +979,7 @@ func _on_realism_debrief_pressed() -> void:
 	var detail := receipt.get("detail", {}) as Dictionary
 	_update_label(
 		"mission_footer",
-		"复盘%s：%s  score=%s" % ["已导出" if exported else "导出失败", detail.get("path", "--"), str(detail.get("score", "--"))],
+		"复盘%s：%s  score=%s" % ["已导出" if exported else "导出失败", _display_path(String(detail.get("path", "--"))), str(detail.get("score", "--"))],
 		COLOR_GREEN if exported else COLOR_RED,
 	)
 	_update_panel()
@@ -1044,6 +1178,13 @@ func _update_mission_rl_controls() -> void:
 	var notice := String(controller.get("status"))
 	if not _mission_rl_start_error.is_empty():
 		notice = _mission_rl_start_error
+	var snapshot := _advanced_mission_source.call("get_advanced_mission_snapshot") as Dictionary if is_instance_valid(_advanced_mission_source) else {}
+	if String(snapshot.get("task_type", "")) == "overtaking":
+		if not bool(snapshot.get("overtaking_agreement_confirmed", false)) and notice != "强化学习任务完成" and not notice.begins_with("任务失败"):
+			_set_mission_rl_presentation("agreement_required", "确认模拟协议并启用 SAC", "本场景 SAC 已训练 %s 步并通过仿真验收。点击上方按钮将记录模拟追越协商并启动，也可先勾选下方协议。" % str(int(entry.get("timesteps", 0))), COLOR_AMBER, false)
+			return
+		if notice == "请先确认模拟追越协议":
+			notice = ""
 	if notice == "强化学习任务完成":
 		_set_mission_rl_presentation("completed", "任务已完成 · 请重新应用任务", "强化学习已完成本次航行。重新观看：勾选“重定位船舶”，再点击“应用任务”。", COLOR_GREEN, true)
 	elif notice.begins_with("任务失败"):
@@ -1072,6 +1213,16 @@ func _on_mission_rl_pressed() -> void:
 		if not _mission_rl_selection_applied() or not bool(entry.get("live_switch_admitted", false)):
 			_update_mission_rl_controls()
 			return
+		var snapshot := _advanced_mission_source.call("get_advanced_mission_snapshot") as Dictionary if is_instance_valid(_advanced_mission_source) else {}
+		if String(snapshot.get("task_type", "")) == "overtaking" and not bool(snapshot.get("overtaking_agreement_confirmed", false)):
+			# The primary button explicitly says this click confirms the simulated
+			# agreement. Keep the native receipt and controller gate intact.
+			_overtaking_agreement_check.set_pressed(true)
+			snapshot = _advanced_mission_source.call("get_advanced_mission_snapshot") as Dictionary
+			if not bool(snapshot.get("overtaking_agreement_confirmed", false)):
+				_mission_rl_start_error = "模拟追越协议未能确认，请重新应用任务。"
+				_update_mission_rl_controls()
+				return
 		_mission_rl_start_error = ""
 		_mission_rl_pending = true
 		_mission_rl_request_id += 1
@@ -1157,7 +1308,7 @@ func _export_plan_snapshot(show_status: bool = true) -> void:
 	file.store_string(JSON.stringify(payload, "\t"))
 	file.close()
 	if show_status:
-		_update_label("mission_footer", "任务快照已导出: " + ProjectSettings.globalize_path(PLAN_EXPORT_PATH), COLOR_GREEN)
+		_update_label("mission_footer", "任务快照已导出: " + _display_path(PLAN_EXPORT_PATH), COLOR_GREEN)
 
 
 func _ship_snapshot(ship: Node3D) -> Dictionary:
@@ -1254,6 +1405,9 @@ func _update_advanced_mission_labels(snapshot: Dictionary) -> void:
 	_update_label("advanced_task", task_text)
 	var gate := snapshot.get("gate", {}) as Dictionary
 	var gate_status := String(gate.get("status", "MONITOR"))
+	var waiting_agreement := task_type == "overtaking" and not bool(gate.get("overtaking_agreement_confirmed", false)) and bool(gate.get("collision_free", false)) and float(gate.get("minimum_passing_distance_m", 0)) >= float(gate.get("required_passing_distance_m", 0))
+	if waiting_agreement:
+		gate_status = "待确认模拟协议"
 	var gate_text := gate_status
 	match task_type:
 		"berthing":
@@ -1277,7 +1431,7 @@ func _update_advanced_mission_labels(snapshot: Dictionary) -> void:
 				gate_text += "  追越协议 %s" % ("已确认" if bool(gate.get("overtaking_agreement_confirmed", false)) else "未确认")
 	var behavioral := snapshot.get("behavioral_assessment", {}) as Dictionary
 	if task_type in ["head_on", "crossing_give_way", "overtaking"]:
-		gate_text += "  行为证据 %s" % String(behavioral.get("status", "NOT_YET_PASS"))
+		gate_text += "  行为证据 %s" % ("等待任务执行" if waiting_agreement else String(behavioral.get("status", "NOT_YET_PASS")))
 	var complete_gate := bool(gate.get("passed", false)) \
 		and (bool(behavioral.get("passed", false)) if task_type in ["head_on", "crossing_give_way", "overtaking"] else true)
 	_update_label("advanced_gate", gate_text, COLOR_GREEN if complete_gate else COLOR_AMBER)

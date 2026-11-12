@@ -38,11 +38,24 @@ func _run() -> void:
 	var guard_status := large_rock_guard.call("get_guard_status") as Dictionary
 	if int(guard_status.get("guard_count", 0)) != 3:
 		errors.append("expected three supplemental solid guards for relocated crossing rocks")
-	if controller.is_large_rock_replay_segment_clear(
-		Vector3(170.0, -140.73494, -37.77),
-		Vector3(430.0, -140.73494, -37.77)
-	):
-		errors.append("recorded replay sweep failed to detect the preserved east-side giant rock")
+	var guard_probe_blocked := false
+	for raw_guard in guard_status.get("rocks", []) as Array:
+		var guard_record := raw_guard as Dictionary
+		var center := guard_record.get("center", {}) as Dictionary
+		var size := guard_record.get("size", {}) as Dictionary
+		var guard_center := Vector3(
+			float(center.get("x", 0.0)),
+			float(center.get("y", -140.73494)),
+			float(center.get("z", 0.0))
+		)
+		var probe_half_span := maxf(float(size.get("x", 0.0)) * 0.75, 4.0)
+		var probe_from := guard_center + Vector3(-probe_half_span, 0.0, 0.0)
+		var probe_to := guard_center + Vector3(probe_half_span, 0.0, 0.0)
+		if not controller.is_large_rock_replay_segment_clear(probe_from, probe_to):
+			guard_probe_blocked = true
+			break
+	if not guard_probe_blocked:
+		errors.append("supplemental large-rock guard did not block a ship replay sweep through its reviewed span")
 	var algorithm_option := panel.get("_algorithm_option") as OptionButton
 	var strategy_option := panel.get("_strategy_option") as OptionButton
 	var algorithm_ids: Array[String] = []

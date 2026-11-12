@@ -138,7 +138,7 @@
 	},
 	"errors": [],
 	"existing_policy_changed": false,
-	"generated_at": "2026-08-29T14:54:04",
+	"generated_at": "2026-09-12T13:22:40",
 	"motion_model_changed": false,
 	"named_vessel_dynamics_calibrated": false,
 	"passed": true,

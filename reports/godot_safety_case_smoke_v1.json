@@ -131,7 +131,7 @@
 				"directory": "user://mass_safety_case_evidence",
 				"files_sha256": {
 					"user://mass_safety_case_evidence/mass_safety_case_acceptance_manifest.json": "c564a5d261bd0f3fad492b90c41d5a16611690bd08fb802162b778be1ded2ef9",
-					"user://mass_safety_case_evidence/mass_safety_case_assessment_v1.json": "2dff05fb4f42d359b3a9a7f2ad22835fa121968ea98fffcf47ed075e4b003801",
+					"user://mass_safety_case_evidence/mass_safety_case_assessment_v1.json": "691d6035c1bb0bf69996045fd34941ca4e74c0c3cc82099a680d6e269f6408a0",
 					"user://mass_safety_case_evidence/mass_safety_case_v1.json": "8e025ec5760dd68d8398aab2620a097a56bc7bdf2937e02366b8a7139c1e5b09"
 				},
 				"passed": true
@@ -353,7 +353,7 @@
 	},
 	"errors": [],
 	"existing_model_modified": false,
-	"generated_at": "2026-08-29T14:54:23",
+	"generated_at": "2026-09-12T13:23:34",
 	"independent_review_complete": false,
 	"mass_safety_certificate": false,
 	"passed": true,

@@ -443,7 +443,7 @@
 				"last_export": {
 					"directory": "user://rl_generalization_evidence",
 					"files_sha256": {
-						"user://rl_generalization_evidence/rl_generalization_assurance_v1.json": "4e07822e9a97cade2fb5e50f88b8b66d80c4360683fdf3d38005d4c80cc0c45c",
+						"user://rl_generalization_evidence/rl_generalization_assurance_v1.json": "4c73abde1d4be11bbecdf546580151cb5f7d4575f0d4cf1721db7eac5252c280",
 						"user://rl_generalization_evidence/rl_generalization_campaign_v1.json": "e22820dae509f51b2a075b451518e8ee5f8b2c46dcd43f57ec8e97c8abc4b16a",
 						"user://rl_generalization_evidence/rl_generalization_evaluation_plan_v1.json": "be6a8dbe80c23a6a7fb43d6afac32e26e0dd90bceb15f92acb9e94e181956933",
 						"user://rl_generalization_evidence/rl_generalization_results_manifest.json": "50776e80e03d3a3f75fe0c8e40a942a0be7138c7b843493416a2b56434bdbd01"
@@ -5147,7 +5147,7 @@
 						"ship_motion_model_modified": false,
 						"training_performed": false
 					},
-					"generated_at_utc": "2026-08-29T14:54:46.099340+00:00",
+					"generated_at_utc": "2026-09-12T13:23:56.381638+00:00",
 					"inputs_sha256": {
 						"data/rl/long_beach_ais_port_ops_benchmark_v2.json": "1d676e7446f22206f6113777524d46724545e58e55c1df73a9d359795a415a1f",
 						"data/verification/rl_generalization_campaign_v1.json": "e22820dae509f51b2a075b451518e8ee5f8b2c46dcd43f57ec8e97c8abc4b16a",
@@ -5410,7 +5410,7 @@
 			"detail": {
 				"directory": "user://rl_generalization_evidence",
 				"files_sha256": {
-					"user://rl_generalization_evidence/rl_generalization_assurance_v1.json": "4e07822e9a97cade2fb5e50f88b8b66d80c4360683fdf3d38005d4c80cc0c45c",
+					"user://rl_generalization_evidence/rl_generalization_assurance_v1.json": "4c73abde1d4be11bbecdf546580151cb5f7d4575f0d4cf1721db7eac5252c280",
 					"user://rl_generalization_evidence/rl_generalization_campaign_v1.json": "e22820dae509f51b2a075b451518e8ee5f8b2c46dcd43f57ec8e97c8abc4b16a",
 					"user://rl_generalization_evidence/rl_generalization_evaluation_plan_v1.json": "be6a8dbe80c23a6a7fb43d6afac32e26e0dd90bceb15f92acb9e94e181956933",
 					"user://rl_generalization_evidence/rl_generalization_results_manifest.json": "50776e80e03d3a3f75fe0c8e40a942a0be7138c7b843493416a2b56434bdbd01"
@@ -5537,7 +5537,7 @@
 			"passed": true
 		},
 		"generalization_panel_root_present": {
-			"detail": "ShipRlGeneralizationRoot:<Control#250517401153>",
+			"detail": "ShipRlGeneralizationRoot:<Control#251624697438>",
 			"passed": true
 		},
 		"hotkey_T_opens_generalization_panel": {
@@ -5811,7 +5811,7 @@
 	"convergence_demonstrated": false,
 	"errors": [],
 	"existing_policy_modified": false,
-	"generated_at": "2026-08-29T14:54:46",
+	"generated_at": "2026-09-12T13:23:56",
 	"passed": true,
 	"passed_count": 30,
 	"production_authority": false,
